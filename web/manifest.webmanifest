@@ -1,0 +1,14 @@
+{
+  "name": "Minister Salary",
+  "short_name": "Minister",
+  "description": "Climb from junior public servant to Prime Minister.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#14171c",
+  "theme_color": "#14171c",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

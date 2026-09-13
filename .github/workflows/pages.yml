@@ -1,0 +1,66 @@
+name: Deploy game to Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ['web/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Content is the game. A malformed JSON file must never reach the phone.
+      - name: Validate content
+        run: |
+          node -e "
+            const fs=require('fs');
+            const g=JSON.parse(fs.readFileSync('web/content/game.json'));
+            const ev=JSON.parse(fs.readFileSync('web/content/events.json'));
+            const ids=ev.map(e=>e.id);
+            const dup=ids.filter((x,i)=>ids.indexOf(x)!==i);
+            if(dup.length) throw new Error('duplicate event ids: '+dup);
+            const missing=[...new Set(ev.flatMap(e=>e.choices.flatMap(c=>(c.schedule||[]).map(s=>s.eventId))))]
+              .filter(x=>!ids.includes(x));
+            if(missing.length) throw new Error('schedule targets missing: '+missing);
+            for(const e of ev){
+              if(!e.choices||!e.choices.length) throw new Error(e.id+': no choices');
+              for(const c of e.choices) if(!c.text||!c.outcome) throw new Error(e.id+': choice missing text/outcome');
+            }
+            if(g.ladder.length!==17) throw new Error('ladder must have 17 rungs');
+            console.log('OK: '+ev.length+' events, '+ev.reduce((n,e)=>n+e.choices.length,0)+' choices');
+          "
+
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+
+      - name: Simulate careers
+        run: node test/sim.js 200
+
+      # The game is edited from a phone, where a broken UI cannot be debugged.
+      # A bad push must fail here rather than on someone's Home Screen.
+      - name: End-to-end UI test
+        run: |
+          npm install jsdom@24 --no-save --silent --no-fund --no-audit
+          node test/ui.test.js
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - id: deploy
+        uses: actions/deploy-pages@v4

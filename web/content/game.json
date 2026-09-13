@@ -1,0 +1,280 @@
+{
+  "startAge": 23,
+  "retireAge": 65,
+  "minYearsInGrade": 2,
+  "ladder": [
+    {
+      "id": 0,
+      "title": "Management Executive",
+      "grade": "MX13",
+      "org": "statutory board",
+      "pay": 45600
+    },
+    {
+      "id": 1,
+      "title": "Senior Management Executive",
+      "grade": "MX12",
+      "org": "statutory board",
+      "pay": 66000
+    },
+    {
+      "id": 2,
+      "title": "Assistant Director",
+      "grade": "MX11",
+      "org": "ministry",
+      "pay": 90000
+    },
+    {
+      "id": 3,
+      "title": "Deputy Director",
+      "grade": "MX10",
+      "org": "ministry",
+      "pay": 120000
+    },
+    {
+      "id": 4,
+      "title": "Director",
+      "grade": "MX9",
+      "org": "ministry",
+      "pay": 168000
+    },
+    {
+      "id": 5,
+      "title": "Senior Director",
+      "grade": "Superscale",
+      "org": "ministry",
+      "pay": 240000
+    },
+    {
+      "id": 6,
+      "title": "Deputy Secretary",
+      "grade": "Superscale",
+      "org": "ministry",
+      "pay": 420000
+    },
+    {
+      "id": 7,
+      "title": "Permanent Secretary",
+      "grade": "Staff Grade",
+      "org": "ministry",
+      "pay": 1000000
+    },
+    {
+      "id": 8,
+      "title": "Member of Parliament",
+      "grade": "MP",
+      "org": "Parliament",
+      "pay": 192500
+    },
+    {
+      "id": 9,
+      "title": "Parliamentary Secretary",
+      "grade": "PS",
+      "org": "ministry",
+      "pay": 385000
+    },
+    {
+      "id": 10,
+      "title": "Senior Parliamentary Secretary",
+      "grade": "SPS",
+      "org": "ministry",
+      "pay": 500000
+    },
+    {
+      "id": 11,
+      "title": "Minister of State",
+      "grade": "MOS",
+      "org": "ministry",
+      "pay": 770000
+    },
+    {
+      "id": 12,
+      "title": "Senior Minister of State",
+      "grade": "SMS",
+      "org": "ministry",
+      "pay": 935000
+    },
+    {
+      "id": 13,
+      "title": "Minister",
+      "grade": "MR4",
+      "org": "Cabinet",
+      "pay": 1100000
+    },
+    {
+      "id": 14,
+      "title": "Minister",
+      "grade": "MR3",
+      "org": "Cabinet",
+      "pay": 1320000
+    },
+    {
+      "id": 15,
+      "title": "Deputy Prime Minister",
+      "grade": "MR1",
+      "org": "Cabinet",
+      "pay": 1760000
+    },
+    {
+      "id": 16,
+      "title": "Prime Minister",
+      "grade": "PM",
+      "org": "Cabinet",
+      "pay": 2200000
+    }
+  ],
+  "ministries": [
+    "Ministry of Finance",
+    "Ministry of Trade and Industry",
+    "Ministry of Manpower",
+    "Ministry of Education",
+    "Ministry of Health",
+    "Ministry of Home Affairs",
+    "Ministry of National Development",
+    "Ministry of Transport",
+    "Ministry of Sustainability and the Environment",
+    "Ministry of Social and Family Development"
+  ],
+  "origins": [
+    {
+      "id": "scholar",
+      "name": "President's Scholar",
+      "blurb": "Overseas degree, Administrative Service, bonded for six years. Everyone knows your name before you arrive.",
+      "startRank": 5,
+      "startAge": 26,
+      "cep": [
+        9,
+        13
+      ],
+      "bondYears": 6,
+      "stats": {
+        "reputation": 35,
+        "standing": 65,
+        "integrity": 50,
+        "competence": 55
+      },
+      "difficulty": "Easy"
+    },
+    {
+      "id": "grad",
+      "name": "Local Graduate",
+      "blurb": "Good degree, no scholarship, no bond. You applied through Careers@Gov like everyone else.",
+      "startRank": 0,
+      "startAge": 23,
+      "cep": [
+        5,
+        9
+      ],
+      "bondYears": 0,
+      "stats": {
+        "reputation": 20,
+        "standing": 35,
+        "integrity": 60,
+        "competence": 40
+      },
+      "difficulty": "Normal"
+    },
+    {
+      "id": "poly",
+      "name": "Poly, then night classes",
+      "blurb": "Diploma, four years of work, a part-time degree finished at 27. You know how the counter actually works.",
+      "startRank": 0,
+      "startAge": 27,
+      "cep": [
+        4,
+        7
+      ],
+      "bondYears": 0,
+      "stats": {
+        "reputation": 15,
+        "standing": 25,
+        "integrity": 70,
+        "competence": 50
+      },
+      "difficulty": "Hard"
+    }
+  ],
+  "grades": [
+    {
+      "min": 72,
+      "code": "A",
+      "label": "Your performance is described as \"outstanding, with clear potential for wider responsibility\"."
+    },
+    {
+      "min": 58,
+      "code": "B+",
+      "label": "Your performance is described as \"strong, consistently exceeding expectations\"."
+    },
+    {
+      "min": 42,
+      "code": "B",
+      "label": "Your performance is described as \"solid and dependable\"."
+    },
+    {
+      "min": 28,
+      "code": "C",
+      "label": "Your performance is described as \"meeting requirements in most areas\"."
+    },
+    {
+      "min": 0,
+      "code": "D",
+      "label": "Your performance is described as \"an area we would like to work on together\"."
+    }
+  ],
+  "cepHints": [
+    "Your reporting officer describes your trajectory as \"steady\".",
+    "You were not on the list for the Leadership Programme. No reason was given.",
+    "Someone in HR called you \"a safe pair of hands\". You are not sure this is good.",
+    "At the division lunch, you are seated facing the door.",
+    "Your name appears in the succession chart. It is in the third column.",
+    "A colleague two years your junior is sent on the Harvard programme instead."
+  ],
+  "endings": [
+    {
+      "id": "pm",
+      "title": "Prime Minister",
+      "epitaph": "You made it. The formula pays you twice the entry-grade minister's salary, and the formula was published, so nobody can say they were not told."
+    },
+    {
+      "id": "permsec",
+      "title": "Permanent Secretary",
+      "epitaph": "The top of the civil service. No street is named after you and none ever will be, which is rather the point."
+    },
+    {
+      "id": "level",
+      "title": "You Found Your Level",
+      "epitaph": "Thirty years, a pewter plate, and a CPF balance that will comfortably outlast you. The scheme you designed in year nine is still running."
+    },
+    {
+      "id": "declined",
+      "title": "The Tea Was Declined",
+      "epitaph": "You said no. You are not sure, even now, whether it was principle or nerve. Your children think it was principle."
+    },
+    {
+      "id": "lostward",
+      "title": "Lost the Ward",
+      "epitaph": "Forty-eight point two percent. You shook every hand in that ward and it was not enough, and it was never going to be about you anyway."
+    },
+    {
+      "id": "scandal",
+      "title": "Everything Surfaced",
+      "epitaph": "It all came out in one week, which was merciful in its way. The press conference was eleven minutes long."
+    },
+    {
+      "id": "quiet",
+      "title": "The Quiet Conversation",
+      "epitaph": "You were asked whether you had considered the private sector. No announcement was made. Your pass stopped working on a Friday."
+    },
+    {
+      "id": "backbench",
+      "title": "Backbench Lifer",
+      "epitaph": "Never a portfolio. But at your last Meet-the-People Session there was a queue out the door, and half of them had come only to say thank you."
+    },
+    {
+      "id": "retired",
+      "title": "Retired, Honourably",
+      "epitaph": "You served. The service continued. Both of these facts are entirely unremarkable and that is the highest compliment the system can pay."
+    }
+  ],
+  "politicalRetireAge": 72
+}
