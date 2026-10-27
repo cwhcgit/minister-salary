@@ -10,7 +10,7 @@ Node 22.18 or later (TypeScript runs directly; there is no build step), then:
 
 ```bash
 cd agents && npm ci
-export ANTHROPIC_API_KEY=...   # a key from the project's own Console workspace (see Spend)
+export PLAYTEST_ANTHROPIC_API_KEY=...   # a key from the project's own Console workspace (see Spend)
 ```
 
 Everything that costs nothing runs without the install: `node agents/leak-check.ts`, `node test/sim.js`, `node test/harness.test.js`.

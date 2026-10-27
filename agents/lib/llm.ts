@@ -85,21 +85,27 @@ export function parseMessage<T>(model: ModelId, msg: MessageLike, batch = false)
   };
 }
 
+// PLAYTEST_ANTHROPIC_API_KEY first, so the playtest key can live in an environment that also
+// runs Claude Code without that tool picking it up as its own. Unset: the SDK's usual lookup
+// (ANTHROPIC_API_KEY, then an `ant auth login` profile).
+export function client(): Anthropic {
+  return new Anthropic({ apiKey: process.env.PLAYTEST_ANTHROPIC_API_KEY || undefined, maxRetries: 4 });   // retries 429 / 5xx / connection errors
+}
+
 export function realLlm(): Llm {
-  const client = new Anthropic({ maxRetries: 4 });   // SDK retries 429 / 5xx / connection errors with backoff
+  const c = client();
   return {
     mock: false,
     async call<T>(o: CallOpts) {
       const params = buildParams(o);
       const msg = o.stream
-        ? await client.beta.messages.stream(params).finalMessage()
-        : await client.beta.messages.create(params);
+        ? await c.beta.messages.stream(params).finalMessage()
+        : await c.beta.messages.create(params);
       return parseMessage<T>(o.model, msg);
     }
   };
 }
 
-export function client(): Anthropic { return new Anthropic({ maxRetries: 4 }); }
 
 // --- mock ------------------------------------------------------------------
 // Fills any schema with plausible values, picks only available choices, and reports

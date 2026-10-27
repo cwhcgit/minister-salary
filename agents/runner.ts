@@ -14,7 +14,7 @@
 //   node agents/runner.ts score <cohort dir> [--no-batch] [--mock]
 //       code each diary's "what held you back" answer (Haiku, Batch API) and re-summarize
 //
-// Credentials: the SDK reads ANTHROPIC_API_KEY (or an `ant auth login` profile).
+// Credentials: PLAYTEST_ANTHROPIC_API_KEY, else the SDK's usual ANTHROPIC_API_KEY or `ant auth login` profile.
 import fs from "node:fs";
 import path from "node:path";
 import { ANALYSIS, DEFAULTS, PERSONAS, REPORTS, runPlan, type Persona } from "./lib/config.ts";
