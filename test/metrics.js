@@ -107,7 +107,7 @@ class Metrics {
       picks: {},           // event -> choice -> count
       shownRuns: {},       // event -> runs it appeared in
       observedDir: Object.fromEntries(ALL_FX.map(k => [k, { up: 0, down: 0, flat: 0 }])),
-      consequences: {},    // event -> { scheduled, fired, dropped, pending, delays[] }
+      consequences: {},    // event -> { scheduled, fired, late, lateYears, dropped, pending }
       runs: 0
     });
     function z() { return { turns: 0, quiet: 0, repeat: 0, repeatFiller: 0, dead: 0 }; }
@@ -150,7 +150,11 @@ class Metrics {
       }
       // consequences
       for (const s of t.scheduled) this.cons(b, s.eventId).scheduled++;
-      if (t.event.source === "scheduled") this.cons(b, t.event.id).fired++;
+      if (t.event.source === "scheduled") {
+        const c = this.cons(b, t.event.id);
+        c.fired++;
+        if (t.event.late) { c.late++; c.lateYears += t.event.late; }
+      }
       for (const d of t.event.dropped) this.cons(b, d.eventId).dropped++;
       // CEP safeguard
       if (this.cepEvents.has(t.event.id) && ceilingTurn !== null) {
@@ -181,7 +185,7 @@ class Metrics {
     }
   }
 
-  cons(b, id) { return b.consequences[id] || (b.consequences[id] = { scheduled: 0, fired: 0, dropped: 0, pending: 0 }); }
+  cons(b, id) { return b.consequences[id] || (b.consequences[id] = { scheduled: 0, fired: 0, late: 0, lateYears: 0, dropped: 0, pending: 0 }); }
 
   result() {
     const content = this.content, out = { bots: {} };
@@ -214,9 +218,11 @@ class Metrics {
         const d = b.observedDir[k], n = d.up + d.down;
         r.observedDirection[k] = { upShare: pct(d.up, n), downShare: pct(d.down, n), moved: n };
       }
-      // scheduled = fired + dropped (two fell due the same year) + pendingAtEnd (the run ended first)
+      // scheduled = fired + pendingAtEnd (the run ended first) + dropped (must stay 0).
+      // late: fired after its year because another consequence fell due first.
       for (const [id, c] of Object.entries(b.consequences)) {
-        r.consequences[id] = { scheduled: c.scheduled, fired: c.fired, dropped: c.dropped, pendingAtEnd: c.pending,
+        r.consequences[id] = { scheduled: c.scheduled, fired: c.fired, firedLate: c.late,
+          meanYearsLate: c.late ? +(c.lateYears / c.late).toFixed(2) : 0, dropped: c.dropped, pendingAtEnd: c.pending,
           fireRate: pct(c.fired, c.scheduled), triggered: this.triggered.includes(id) };
       }
       for (const [id, p] of Object.entries(b.picks)) {
@@ -288,6 +294,8 @@ function regress(m, content) {
     fails.push(`PM is common for first-timer ${o}: ${ft.origins[o].pmRate}% (max ${RANDOM_PM_MAX}%)`);
   for (const [bot, r] of Object.entries(m.bots)) for (const [o, x] of Object.entries(r.origins))
     if (x.endings.UNTERMINATED) fails.push(`${bot} ${o}: ${x.endings.UNTERMINATED} runs never ended`);
+  for (const [bot, r] of Object.entries(m.bots)) for (const [id, c] of Object.entries(r.consequences))
+    if (c.dropped) fails.push(`${bot}: ${c.dropped} ${id} consequences were scheduled and silently dropped`);
   return { pass: !fails.length, fails, warns };
 }
 

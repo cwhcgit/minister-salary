@@ -35,7 +35,7 @@ Scandal exposure. Raised by corner-cutting choices, lowered by disclosure. From 
 
 ### Which event comes up
 
-1. A scheduled consequence due this year fires first. If two fall due in the same year, only the first fires and the rest are lost.
+1. A scheduled consequence due this year fires first. Only one fires a year: if several fall due together, the earliest fires and the rest carry over to the following years, in order.
 2. Otherwise a priority event fires as soon as it qualifies (the tea session, the succession).
 3. Otherwise a weighted random draw among events whose requirements the player meets. One-time events never repeat; filler events can.
 

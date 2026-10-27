@@ -5,7 +5,7 @@
 //
 //   node test/sim.js [N]                 win rates + fun-proxy metrics (N runs per bot per origin)
 //   node test/sim.js regress [N]         the same, then exit 1 if the regression rule fails
-//     --json FILE        write the aggregated metrics
+//     --json [FILE]      write the aggregated metrics (default reports/baseline/bot-metrics.json)
 //     --content DIR      play another build (a web/ root, e.g. a proposal's patched copy)
 //     --baseline FILE    print every metric that moved against an earlier --json
 //
@@ -25,7 +25,16 @@ const BOTS = {
 
 const argv = process.argv.slice(2);
 const flag = k => { const i = argv.indexOf(k); return i >= 0 ? argv.splice(i, 2)[1] : null; };
-const jsonOut = flag('--json'), contentDir = flag('--content'), baseline = flag('--baseline');
+const BASELINE = path.join(__dirname, '..', 'reports', 'baseline', 'bot-metrics.json');
+const jsonOut = (() => {   // --json with no file name writes the baseline
+  const i = argv.indexOf('--json');
+  if (i < 0) return null;
+  const v = argv[i + 1];
+  if (v && v.endsWith('.json')) return argv.splice(i, 2)[1];
+  argv.splice(i, 1);
+  return BASELINE;
+})();
+const contentDir = flag('--content'), baseline = flag('--baseline');
 const mode = argv[0] === 'regress' ? argv.shift() : 'report';
 const N = +argv[0] || 800;
 
@@ -100,8 +109,8 @@ console.log('CEP safeguard (first-timer): runs that hit the ceiling, then share 
 for (const o of ORIGINS) { const c = ft.origins[o].cepSafeguard;
   line(o, `${c.ceilingRuns} hit it; ${c.reachableAfterCeilingRate ?? '-'}% reachable, ${c.shownAfterCeilingRate ?? '-'}% shown, ${c.takenAfterCeilingRate ?? '-'}% taken`); }
 
-console.log('consequences (first-timer): fired / scheduled (dropped: fell due the same year as another; pending: run ended first)');
-for (const [id, c] of Object.entries(ft.consequences).sort()) line(id, `${c.fired}/${c.scheduled} (${c.fireRate}%), dropped ${c.dropped}, pending ${c.pendingAtEnd}`);
+console.log('consequences (first-timer): fired / scheduled (late: waited behind another that fell due the same year; pending: run ended first)');
+for (const [id, c] of Object.entries(ft.consequences).sort()) line(id, `${c.fired}/${c.scheduled} (${c.fireRate}%), late ${c.firedLate} (avg ${c.meanYearsLate}y), dropped ${c.dropped}, pending ${c.pendingAtEnd}`);
 
 console.log('origin invariant (PM rate, 95% CI):');
 for (const [bot, r] of [['first-timer', ft], ['knows the win', kw]])

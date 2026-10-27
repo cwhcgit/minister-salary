@@ -73,11 +73,13 @@ const Engine = (() => {
   }
 
   function pickEvent(content, s) {
-    // 1. scheduled consequences pre-empt everything
+    // 1. scheduled consequences pre-empt everything. One fires a year; when several fall
+    //    due together, the rest carry over to the following years, earliest first.
     const due = s.scheduled.filter(x => x.fireYear <= s.year);
     if (due.length) {
-      s.scheduled = s.scheduled.filter(x => x.fireYear > s.year);
-      const ev = content.events.find(e => e.id === due[0].eventId);
+      const next = due.reduce((a, b) => (b.fireYear < a.fireYear ? b : a));
+      s.scheduled.splice(s.scheduled.indexOf(next), 1);
+      const ev = content.events.find(e => e.id === next.eventId);
       if (ev) return ev;
     }
     const pool = content.events.filter(e => eligible(e, s));

@@ -96,7 +96,8 @@ function minus(a, b) {
 
 // Draw the next event and note where it came from: a consequence firing, a priority
 // event, the random pool, or the empty-pool safety net. More than one consequence can
-// fall due in the same year; the engine fires the first and drops the rest.
+// fall due in the same year; the engine fires the earliest and carries the rest over.
+// `dropped` should therefore always be empty; it is kept as a check.
 function draw(build, S) {
   const n = build.engine.nextEvent(build.content, S);
   const removed = minus(S.scheduled, n.state.scheduled);
@@ -106,7 +107,8 @@ function draw(build, S) {
     if (removed[0].eventId === n.event.id) { source = "scheduled"; fired = removed[0]; dropped = removed.slice(1); }
     else dropped = removed;
   }
-  return { S: n.state, draw: { source, fired, dropped } };
+  const deferred = n.state.scheduled.filter(x => x.fireYear <= S.year);   // due, waiting their turn
+  return { S: n.state, draw: { source, fired, late: fired ? S.year - fired.fireYear : 0, dropped, deferred } };
 }
 
 function newRun(origin, seed, opts = {}) {
