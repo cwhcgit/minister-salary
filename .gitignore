@@ -1,0 +1,8 @@
+node_modules/
+# offline test output from the agent runner
+reports/**/*-mock/
+reports/**/*-mock.*
+reports/**/*-dry/
+reports/**/*-dry-mock/
+# patched copies of web/ that proposals build for testing
+proposals/*/build/

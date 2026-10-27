@@ -29,7 +29,13 @@ web/
   content/game.json       ladder, pay, origins, appraisal grades, endings
   content/events.json     every event and choice
 docs/DESIGN.md            the design
-.github/workflows/        validates content, simulates 400 runs, deploys to Pages
+harness/                  runs the engine headlessly: screen view, full trace, seeded replays
+test/                     bots, balance metrics, regression rule, UI and harness tests
+agents/                   Claude playtesters, analyst and designer (see agents/README.md)
+reports/                  playtest output; reports/baseline/ is the bot baseline
+proposals/                designer changes awaiting your approval
+.github/workflows/        validates content, enforces the balance rule, deploys to Pages;
+                          runs the harness, leak checks and agent pipeline on every push
 ```
 
 `engine.js` is a pure function of `(content, state, choice)`. It is `require`-able from Node,
@@ -71,26 +77,45 @@ object to `events.json` — no code changes:
 The service worker is cache-first, so an edit shows up on the *next* launch. To force it
 immediately, bump `VERSION` in `web/sw.js`.
 
-Push to `main` and the workflow validates the JSON, simulates 400 runs, and deploys.
-A malformed event fails the build instead of reaching your phone.
+Push to `main` and the workflow validates the JSON, simulates 400 runs per bot per origin,
+and deploys. A malformed event, or one that breaks the balance rule below, fails the build
+instead of reaching your phone.
 
 ## Balance
 
 ```bash
-node test/sim.js 800                 # balance across three bots and three origins
-npm i jsdom@24 && node test/ui.test.js   # plays three full careers through the real DOM
+node test/sim.js 800                 # balance and fun proxies across three bots and three origins
+node test/sim.js regress 800         # the same, exit 1 if the regression rule fails
+node test/harness.test.js            # replays, screen hygiene, trace
+npm i jsdom@24 && node test/ui.test.js       # plays three full careers through the real DOM
+npm i jsdom@24 && node test/screen.test.js   # the harness screen matches the phone
 ```
 
-Current PM win rates — the win must stay rare by accident and reachable by skill:
+Every run is seeded, so the same content always gives the same numbers. Current PM win
+rates — the win must stay rare by accident and reachable by skill:
 
 | play style | scholar | graduate | poly |
 |---|---|---|---|
-| first-timer (random choices) | 8.6% | 1.6% | 0% |
-| optimising stats | 14.8% | 21.3% | 11.3% |
-| knows the win condition | 78.8% | 67.4% | 22.9% |
+| first-timer (random choices) | 6.4% | 2.0% | 0% |
+| optimising stats | 15.1% | 22.1% | 11.3% |
+| knows the win condition | 82.3% | 69.3% | 24.0% |
 
 The origin difficulty ladder is the meritocracy joke expressed as balance, so if a content
-change inverts that ordering, the change is wrong.
+change inverts that ordering, the change is wrong. `regress` rejects a change that
+significantly inverts it for first-timer or win-seeking play, or lets a first-timer reach PM
+in more than 15% of runs.
+
+Beyond win rates, the sim reports fun proxies: dead and repeated years per act, which way
+each stat gets pushed, dominated choices, events nobody reaches, whether early losses come
+from choices or luck, whether a CEP-raising event is still reachable once you hit the ceiling,
+and how often each consequence actually fires. `reports/baseline/README.md` is what they
+show today.
+
+## Agent playtests
+
+Claude personas play the same build through the harness, seeing only what the phone shows,
+and an analyst and designer turn their runs into ranked findings and proposed changes. Nothing
+reaches `web/` without your approval. See [`agents/README.md`](agents/README.md).
 
 ## Tone
 

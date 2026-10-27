@@ -15,6 +15,10 @@ const STATKEYS = [
   ["competence", "Comp",  "--com"]
 ];
 
+// Log tags as the player reads them. CEP hints and Heat rumours are both just rumours on
+// screen: naming the hidden values would give away what the player is meant to infer.
+const TAG_LABEL = { cep: "rumour", heat: "rumour" };
+
 const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
 function save()  { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log })); }
@@ -103,7 +107,7 @@ function outcomeScreen() {
     <div class="card">
       <div class="outcome serif">${esc(outcome)}</div>
       <div class="log">${log.map(l => `
-        <div class="li"><span class="tag t-${l.kind}">${l.kind === "appraisal" ? "appraisal" : l.kind}</span>
+        <div class="li"><span class="tag t-${l.kind}">${TAG_LABEL[l.kind] || l.kind}</span>
         <span>${esc(l.text)}</span></div>`).join("")}</div>
       <button class="primary" id="next">Confirm Another Year</button>
     </div>`;

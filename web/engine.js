@@ -73,11 +73,13 @@ const Engine = (() => {
   }
 
   function pickEvent(content, s) {
-    // 1. scheduled consequences pre-empt everything
+    // 1. scheduled consequences pre-empt everything. One fires a year; when several fall
+    //    due together, the rest carry over to the following years, earliest first.
     const due = s.scheduled.filter(x => x.fireYear <= s.year);
     if (due.length) {
-      s.scheduled = s.scheduled.filter(x => x.fireYear > s.year);
-      const ev = content.events.find(e => e.id === due[0].eventId);
+      const next = due.reduce((a, b) => (b.fireYear < a.fireYear ? b : a));
+      s.scheduled.splice(s.scheduled.indexOf(next), 1);
+      const ev = content.events.find(e => e.id === next.eventId);
       if (ev) return ev;
     }
     const pool = content.events.filter(e => eligible(e, s));
@@ -98,7 +100,7 @@ const Engine = (() => {
   }
 
   // --- applying a choice ----------------------------------------------
-  function applyChoice(content, s, ev, ch) {
+  function applyChoice(content, s, ev, ch, t = {}) {
     const log = [];
     const fx = ch.effects || {};
     for (const k of STATS) if (fx[k]) s[k] = clamp(s[k] + fx[k], 0, 100);
@@ -121,13 +123,15 @@ const Engine = (() => {
       const chance = ch.election === "grc"
         ? 0.60 + s.reputation / 400 + s.standing / 500
         : 0.28 + s.reputation / 200;
-      if (roll(s) < chance) {
+      const won = roll(s) < chance;
+      t.election = { kind: ch.election, chance, won };
+      if (won) {
         s.rank = 8;
         s.yearsInGrade = 0;
         s.cep = clamp(8 + Math.floor((s.standing + s.reputation) / 28), 8, 15);
-        log.push(ch.election === "smc"
+        log.push({ kind: "promo", text: ch.election === "smc"
           ? "You win the seat with 53.1%. It is yours, and everyone knows it is yours."
-          : "The team takes the GRC with 61.4%. You are a Member of Parliament.");
+          : "The team takes the GRC with 61.4%. You are a Member of Parliament." });
       } else {
         s.ending = "lostward";
       }
@@ -150,16 +154,18 @@ const Engine = (() => {
   function appraise(content, s) {
     const noise = (roll(s) * 20) - 10;
     const score = 0.50 * s.competence + 0.30 * s.standing + 0.15 * s.reputation + noise;
-    return { grade: content.grades.find(g => score >= g.min), score };
+    return { grade: content.grades.find(g => score >= g.min), score, noise };
   }
 
-  function yearEnd(content, s) {
+  // `t` collects what the year-end decided and why, for playtest traces. The UI ignores it.
+  function yearEnd(content, s, t = {}) {
     const log = [];
     const pay = payout(content, s);
     log.push({ kind: "pay", text: `Annual package: $${pay.toLocaleString()}` });
 
     s.yearsInGrade++;
-    const { grade, score } = appraise(content, s);
+    const { grade, score, noise } = appraise(content, s);
+    t.appraisal = { grade: grade.code, score, noise };
     log.push({ kind: "appraisal", text: grade.label });
 
     if (grade.code === "C") s.consecutiveC++; else s.consecutiveC = 0;
@@ -177,9 +183,12 @@ const Engine = (() => {
     const needYears = content.minYearsInGrade
       + (s.rank >= 10 ? 1 : 0) + (s.rank >= 13 ? 1 : 0) + (s.rank >= 15 ? 1 : 0);
     const topRungs = s.rank >= 13;
-    const promotable = (grade.code === "A" || (grade.code === "B+" && !topRungs))
+    const gradeOk = grade.code === "A" || (grade.code === "B+" && !topRungs);
+    const promotable = gradeOk
       && s.yearsInGrade >= needYears
       && s.rank < 16;
+    t.promotion = { rank: s.rank, yearsInGrade: s.yearsInGrade, needYears, gradeOk,
+      result: !promotable ? "not_eligible" : s.rank >= s.cep ? "cep_ceiling" : s.rank === 7 ? "service_ceiling" : "promoted" };
 
     if (promotable && s.rank >= s.cep) {
       log.push({ kind: "cep", text: content.cepHints[Math.floor(roll(s) * content.cepHints.length)] });
@@ -190,6 +199,7 @@ const Engine = (() => {
       // a late starter ever makes up the years a scholar was simply given.
       const doubleJump = grade.code === "A" && s.rank <= 4 && score >= 84 && s.rank + 1 < s.cep;
       s.rank += doubleJump ? 2 : 1;
+      if (doubleJump) t.promotion.result = "promoted_two";
       s.yearsInGrade = 0;
       const r = rank(content, s);
       log.push({ kind: "promo", text: doubleJump
@@ -220,15 +230,16 @@ const Engine = (() => {
     choices: [{ text: "Carry on.", effects: { competence: 1 }, outcome: "You carry on." }] };
 
   // --- public turn API --------------------------------------------------
-  // advance(content, state, choiceIndex) -> { state, outcome, log }
+  // advance(content, state, choiceIndex) -> { state, outcome, log, trace }
   function advance(content, state, choiceIndex) {
     const s = JSON.parse(JSON.stringify(state));   // immutable in, new state out
     const ev = s.currentEvent === "__quiet" ? QUIET_YEAR : content.events.find(e => e.id === s.currentEvent);
     const ch = ev.choices[choiceIndex];
-    const log = applyChoice(content, s, ev, ch);
-    if (!s.ending) log.push(...yearEnd(content, s));
+    const trace = {};
+    const log = applyChoice(content, s, ev, ch, trace);
+    if (!s.ending) log.push(...yearEnd(content, s, trace));
     s.currentEvent = null;
-    return { state: s, outcome: ch.outcome, log };
+    return { state: s, outcome: ch.outcome, log, trace };
   }
 
   function nextEvent(content, state) {
@@ -239,7 +250,7 @@ const Engine = (() => {
     return { state: s, event: ev };
   }
 
-  return { newGame, advance, nextEvent, choiceAvailable, rank, STATS, QUIET: QUIET_YEAR };
+  return { newGame, advance, nextEvent, choiceAvailable, eligible, rank, STATS, QUIET: QUIET_YEAR };
 })();
 
 if (typeof module !== "undefined") module.exports = Engine;
