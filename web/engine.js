@@ -125,9 +125,9 @@ const Engine = (() => {
         s.rank = 8;
         s.yearsInGrade = 0;
         s.cep = clamp(8 + Math.floor((s.standing + s.reputation) / 28), 8, 15);
-        log.push(ch.election === "smc"
+        log.push({ kind: "promo", text: ch.election === "smc"
           ? "You win the seat with 53.1%. It is yours, and everyone knows it is yours."
-          : "The team takes the GRC with 61.4%. You are a Member of Parliament.");
+          : "The team takes the GRC with 61.4%. You are a Member of Parliament." });
       } else {
         s.ending = "lostward";
       }
