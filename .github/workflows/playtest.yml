@@ -1,0 +1,46 @@
+name: Playtest harness
+
+# The harness, bot metrics and agent runner must keep working on every change to the game,
+# and a content change that breaks the balance invariant must fail here, before any agent
+# (or any phone) sees it. Everything below is free: no API calls.
+on:
+  push:
+    paths: ['web/**', 'harness/**', 'test/**', 'agents/**', '.github/workflows/playtest.yml']
+  pull_request:
+    paths: ['web/**', 'harness/**', 'test/**', 'agents/**', '.github/workflows/playtest.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  harness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+
+      - name: Harness tests (replay, information hygiene, trace)
+        run: node test/harness.test.js
+
+      - name: Screens never leak hidden state
+        run: node harness/leak-check.js 100
+
+      - name: Blind prompts never leak hidden state
+        run: node agents/leak-check.ts
+
+      - name: Bot regression (origin order, PM rare by accident, every run ends)
+        run: node test/sim.js regress 400
+
+      - name: Harness screen matches the phone
+        run: |
+          npm install jsdom@24 --no-save --silent --no-fund --no-audit
+          node test/screen.test.js
+
+      - name: Agent runner (typecheck, offline mock cohorts)
+        working-directory: agents
+        run: |
+          npm ci --no-fund --no-audit
+          npx tsc -p .
+          node test.ts
