@@ -12,6 +12,9 @@ const STATKEYS = [
 
 const LETTERS = "ABCDEFGH";
 
+// same as ui.js: the CEP hint and the Heat rumour both read as RUMOUR
+const TAG_LABEL = { cep: "rumour", heat: "rumour" };
+
 // same as ui.js
 const money = n =>
   Math.abs(n) >= 1e6 ? "$" + (n / 1e6).toFixed(2).replace(/\.?0+$/, "") + "M"
@@ -55,7 +58,7 @@ function eventCard(build, S, ev) {
 // String() as the template literals in ui.js do, so a malformed log entry shows here
 // exactly as broken as on the phone (and the leak check catches it).
 function outcomeCard(outcome, log) {
-  return { text: outcome, log: log.map(l => ({ tag: String(l.kind), text: String(l.text) })) };
+  return { text: outcome, log: log.map(l => ({ tag: TAG_LABEL[l.kind] || String(l.kind), text: String(l.text) })) };
 }
 
 function endingCard(build, S) {
