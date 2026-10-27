@@ -15,7 +15,7 @@ export type Effort = "low" | "medium" | "high" | "xhigh" | "max";
 // $ per million tokens (standard API rates; cache write = 5-minute TTL). Batch is half.
 // https://platform.claude.com/docs/en/about-claude/pricing — re-check before trusting a forecast.
 export const PRICES: Record<ModelId, { input: number; output: number; cacheWrite: number; cacheRead: number }> = {
-  "claude-sonnet-5-5": { input: 2.0, output: 10.0, cacheWrite: 2.5, cacheRead: 0.2 },
+  "claude-sonnet-5-5": { input: 2.0, output: 10.0, cacheWrite: 2.5, cacheRead: 0.1 },
   "claude-haiku-5-5": { input: 0.1, output: 0.5, cacheWrite: 0.125, cacheRead: 0.01 },
   "claude-opus-5-5": { input: 4.0, output: 20.0, cacheWrite: 5.0, cacheRead: 0.2 },
   "claude-fable-5-1": { input: 10.0, output: 50.0, cacheWrite: 12.5, cacheRead: 0.25 }

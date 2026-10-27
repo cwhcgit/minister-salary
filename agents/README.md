@@ -116,4 +116,4 @@ personas/        one prompt per persona
 prompts/         store page, play and diary instructions, briefs, analysis prompts
 ```
 
-`prompts/m1-brief.md` is a stand-in reconstructed from the design doc. Replace it with the real M1 playtest brief before the first analyst pass: the analyst and designer take its fun criteria and known gaps as given.
+`prompts/m1-brief.md` is the M1 playtest brief. The analyst and designer take its fun criteria and known gaps as given, so keep it current when the design moves.
