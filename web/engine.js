@@ -73,11 +73,14 @@ const Engine = (() => {
   }
 
   function pickEvent(content, s) {
-    // 1. scheduled consequences pre-empt everything
-    const due = s.scheduled.filter(x => x.fireYear <= s.year);
+    // 1. scheduled consequences pre-empt everything. One fires per year; others
+    //    that fall due together wait their turn rather than being dropped.
+    const due = s.scheduled.filter(x => x.fireYear <= s.year)
+      .sort((a, b) => a.fireYear - b.fireYear);
     if (due.length) {
-      s.scheduled = s.scheduled.filter(x => x.fireYear > s.year);
-      const ev = content.events.find(e => e.id === due[0].eventId);
+      const id = due[0].eventId;
+      s.scheduled = s.scheduled.filter(x => !(x.eventId === id && x.fireYear <= s.year));
+      const ev = content.events.find(e => e.id === id);
       if (ev) return ev;
     }
     const pool = content.events.filter(e => eligible(e, s));

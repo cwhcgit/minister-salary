@@ -85,9 +85,9 @@ Current PM win rates — the win must stay rare by accident and reachable by ski
 
 | play style | scholar | graduate | poly |
 |---|---|---|---|
-| first-timer (random choices) | 8.6% | 1.6% | 0% |
-| optimising stats | 14.8% | 21.3% | 11.3% |
-| knows the win condition | 78.8% | 67.4% | 22.9% |
+| first-timer (random choices) | 5.9% | 1.0% | 0.3% |
+| optimising stats | 15.1% | 22.1% | 11.3% |
+| knows the win condition | 82.3% | 69.3% | 24.0% |
 
 The origin difficulty ladder is the meritocracy joke expressed as balance, so if a content
 change inverts that ordering, the change is wrong.

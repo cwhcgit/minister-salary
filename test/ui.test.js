@@ -30,6 +30,9 @@ server.listen(0, async () => {
   const $$ = s => [...window.document.querySelectorAll(s)];
   const txt = () => window.document.getElementById('app').textContent;
   const wait = ms => new Promise(r => setTimeout(r, ms));
+  const ORIGINS = ['scholar','grad','poly'];
+  const pick = o => $$('.origin').find(x => x.dataset.o === o).click();
+  const savedOrigin = () => JSON.parse(window.localStorage.getItem('ministerSalary.v1')).S.origin;
 
   try {
     await wait(500);
@@ -37,23 +40,25 @@ server.listen(0, async () => {
     console.log('✓ page loads over HTTP, both scripts execute,', $$('.origin').length, 'origins');
 
     // every origin must start a valid run
-    for (const o of ['scholar','grad','poly']) {
-      $$('.origin').find(x => x.dataset.o === o).click();
+    for (const o of ORIGINS) {
+      pick(o);
       if ($$('.origin').find(x => x.dataset.o === o).getAttribute('aria-checked') !== 'true')
         throw new Error(o + ': selection did not register');
     }
     console.log('✓ origin selection works for all three');
 
     $('#nm').value = 'Tan Wei Ming';
+    pick(ORIGINS[0]);
     $('#go').click();
     await wait(60);
     if (!$('.choice')) throw new Error('first event card did not render: ' + txt().slice(0,200));
     if (!$('.stat')) throw new Error('stat bars did not render');
     console.log('✓ run starts, first event:', JSON.stringify($('h2').textContent));
 
-    // play 3 full careers
+    // play 3 full careers, one per origin
     for (let run = 0; run < 3; run++) {
-      if (run) { $('#again').click(); await wait(30); $('#go').click(); await wait(30); }
+      if (run) { $('#again').click(); await wait(30); pick(ORIGINS[run]); $('#go').click(); await wait(30); }
+      if (savedOrigin() !== ORIGINS[run]) throw new Error(`career ${run+1} started as ${savedOrigin()}, not ${ORIGINS[run]}`);
       let turns = 0, promos = 0, titles = new Set(), sawAppraisal = false;
       while (!$('.ending') && turns < 130) {
         if ($('.choice')) {
@@ -73,7 +78,7 @@ server.listen(0, async () => {
       if (!$('.ending')) throw new Error('career never terminated after ' + turns + ' turns');
       if (!sawAppraisal) throw new Error('no appraisal ever shown');
       if (!$('#again') || !$('#share')) throw new Error('ending screen missing buttons');
-      console.log(`✓ career ${run+1}: ${turns}y, ${promos} promotions, ${titles.size} distinct events → "${$('.ending h1').textContent}"`);
+      console.log(`✓ career ${run+1} (${ORIGINS[run]}): ${turns}y, ${promos} promotions, ${titles.size} distinct events → "${$('.ending h1').textContent}"`);
     }
 
     // persistence
