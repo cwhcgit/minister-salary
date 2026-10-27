@@ -1,0 +1,42 @@
+[
+  {
+    "id": "canary_bland",
+    "canary": "bland",
+    "title": "The Quarterly Return",
+    "body": "The quarterly return is due on Friday. It is the same form as last quarter. You fill it in.",
+    "weight": 9,
+    "once": true,
+    "choices": [
+      {
+        "text": "Submit the return.",
+        "effects": { "competence": 1 },
+        "outcome": "The return is submitted. An automated email confirms receipt."
+      },
+      {
+        "text": "Submit the return on Thursday.",
+        "effects": { "standing": 1 },
+        "outcome": "The return is submitted a day early. An automated email confirms receipt."
+      }
+    ]
+  },
+  {
+    "id": "canary_wink",
+    "canary": "wink",
+    "title": "Is This Satire?",
+    "body": "Your director leans across the table and lowers her voice. \"Between us, this whole system is a bit of a joke, isn't it? A game, almost. Ha!\" She looks straight at you for slightly too long, as if you were holding a phone.",
+    "weight": 9,
+    "once": true,
+    "choices": [
+      {
+        "text": "Laugh along. You get the joke.",
+        "effects": { "standing": 2 },
+        "outcome": "You both laugh. Somewhere, a narrator nods knowingly. The salary is, after all, the punchline. Get it?"
+      },
+      {
+        "text": "Say nothing.",
+        "effects": { "integrity": 1 },
+        "outcome": "She winks. You are fairly sure she winks."
+      }
+    ]
+  }
+]
