@@ -52,7 +52,8 @@
       "grade": "Superscale",
       "org": "ministry",
       "pay": 420000,
-      "minAge": 35
+      "minAge": 35,
+      "minAgeExceptional": 33
     },
     {
       "id": 7,
@@ -60,7 +61,8 @@
       "grade": "Staff Grade",
       "org": "ministry",
       "pay": 1000000,
-      "minAge": 38
+      "minAge": 40,
+      "minAgeExceptional": 38
     },
     {
       "id": 8,
@@ -250,7 +252,7 @@
     {
       "id": "level",
       "title": "You Found Your Level",
-      "epitaph": "Nearly forty years, a pewter plate, and a CPF balance that will comfortably outlast you. The scheme you designed in year nine is still running."
+      "epitaph": "Four decades, give or take, a pewter plate, and a CPF balance that will comfortably outlast you. The scheme you designed in year nine is still running."
     },
     {
       "id": "declined",
@@ -276,6 +278,11 @@
       "id": "backbench",
       "title": "Backbench Lifer",
       "epitaph": "Never a portfolio. But at your last Meet-the-People Session there was a queue out the door, and half of them had come only to say thank you."
+    },
+    {
+      "id": "office",
+      "title": "Never Quite Cabinet",
+      "epitaph": "You answered Parliamentary Questions, from answers your old colleagues had drafted, and answered them well. Cabinet was always one reshuffle away."
     },
     {
       "id": "retired",
@@ -361,11 +368,11 @@
   "legacyTiers": [
     {
       "min": 130,
-      "text": "People you trained quote you in rooms you will never enter. Two of them say you are the reason they stayed."
+      "text": "People you trained still quote you. Two say you are why they stayed."
     },
     {
       "min": 105,
-      "text": "Remembered fondly, by name, in rooms you left years ago. Your old minute papers are still forwarded, with your name taken off."
+      "text": "Your old minute papers are still forwarded, with your name taken off."
     },
     {
       "min": 80,
@@ -373,11 +380,11 @@
     },
     {
       "min": 55,
-      "text": "Your farewell lunch was well attended. The speeches were about the scheme, not about you."
+      "text": "Your farewell speeches were about the scheme, not about you."
     },
     {
       "min": 0,
-      "text": "Your farewell card was signed by the whole division. Several signatures are in the same handwriting."
+      "text": "Your farewell card has forty signatures. Several are in the same handwriting."
     }
   ],
   "reElectionLines": [
@@ -404,5 +411,40 @@
     "There is no rung above this one. The next step is not a promotion; it is a different life.",
     "Your appraisal is outstanding again. The form has nowhere further to send it.",
     "At a leadership retreat, a younger officer asks you what comes after this. You realise you had been hoping someone would tell you."
-  ]
+  ],
+  "exceptionalAfter": 2,
+  "probationCards": 6,
+  "freshness": 0.35,
+  "legacyByEnding": {
+    "quiet": [
+      {
+        "min": 105,
+        "text": "Two old colleagues still meet you for lunch. Neither mentions the appraisals. They read them."
+      },
+      {
+        "min": 0,
+        "text": "Your name came off the circulation lists within a week. The lists did not notice."
+      }
+    ],
+    "scandal": [
+      {
+        "min": 110,
+        "text": "Three former staff wrote to the papers in your defence. They knew it would not help."
+      },
+      {
+        "min": 0,
+        "text": "In the building, your name is still said carefully, like a project that went wrong."
+      }
+    ],
+    "consultancy": [
+      {
+        "min": 105,
+        "text": "Your old team still calls when something breaks. You never bill them for it."
+      },
+      {
+        "min": 0,
+        "text": "Your old division still uses your templates. Your new firm bills them for it."
+      }
+    ]
+  }
 }

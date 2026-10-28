@@ -1,0 +1,363 @@
+{
+ "pool": 88,
+ "players": 120,
+ "runsEach": 4,
+ "results": {
+  "random/grad": {
+   "off": {
+    "taps": 21.1,
+    "distinct": 17.7,
+    "repeatWithin": 16,
+    "overlapCards": 54,
+    "overlapScenes": 54,
+    "cardsSeenEver": 83,
+    "spine": [
+     "the_work 100%",
+     "the_appraisal_talk 97%",
+     "the_quiet_year 94%",
+     "postit_workshop 94%",
+     "bto_queue 91%",
+     "late_night 67%"
+    ],
+    "spineScenes": [
+     "the_work#0 100%",
+     "the_appraisal_talk#0 97%",
+     "the_quiet_year#0 94%",
+     "postit_workshop#0 94%",
+     "bto_queue#0 91%",
+     "late_night#0 67%"
+    ]
+   },
+   "on": {
+    "taps": 21.1,
+    "distinct": 17.7,
+    "repeatWithin": 16,
+    "overlapCards": 54,
+    "overlapScenes": 54,
+    "cardsSeenEver": 83,
+    "spine": [
+     "the_work 100%",
+     "the_appraisal_talk 97%",
+     "the_quiet_year 94%",
+     "postit_workshop 94%",
+     "bto_queue 91%",
+     "late_night 67%"
+    ],
+    "spineScenes": [
+     "the_work#0 100%",
+     "the_appraisal_talk#0 97%",
+     "the_quiet_year#0 94%",
+     "postit_workshop#0 94%",
+     "bto_queue#0 91%",
+     "late_night#0 67%"
+    ]
+   }
+  },
+  "random/poly": {
+   "off": {
+    "taps": 22.7,
+    "distinct": 20.5,
+    "repeatWithin": 10,
+    "overlapCards": 58,
+    "overlapScenes": 58,
+    "cardsSeenEver": 86,
+    "spine": [
+     "the_work 100%",
+     "the_quiet_year 95%",
+     "the_appraisal_talk 94%",
+     "postit_workshop 91%",
+     "bto_queue 81%",
+     "late_night 78%",
+     "headhunter_mid 63%",
+     "cep_discovery 62%",
+     "the_leak 61%"
+    ],
+    "spineScenes": [
+     "the_work#0 100%",
+     "the_quiet_year#0 95%",
+     "the_appraisal_talk#0 94%",
+     "postit_workshop#0 91%",
+     "bto_queue#0 81%",
+     "late_night#0 78%",
+     "headhunter_mid#0 63%",
+     "cep_discovery#0 62%",
+     "the_leak#0 61%"
+    ]
+   },
+   "on": {
+    "taps": 22.7,
+    "distinct": 20.5,
+    "repeatWithin": 10,
+    "overlapCards": 58,
+    "overlapScenes": 58,
+    "cardsSeenEver": 86,
+    "spine": [
+     "the_work 100%",
+     "the_quiet_year 95%",
+     "the_appraisal_talk 94%",
+     "postit_workshop 91%",
+     "bto_queue 81%",
+     "late_night 78%",
+     "headhunter_mid 63%",
+     "cep_discovery 62%",
+     "the_leak 61%"
+    ],
+    "spineScenes": [
+     "the_work#0 100%",
+     "the_quiet_year#0 95%",
+     "the_appraisal_talk#0 94%",
+     "postit_workshop#0 91%",
+     "bto_queue#0 81%",
+     "late_night#0 78%",
+     "headhunter_mid#0 63%",
+     "cep_discovery#0 62%",
+     "the_leak#0 61%"
+    ]
+   }
+  },
+  "random/scholar": {
+   "off": {
+    "taps": 20.9,
+    "distinct": 18.3,
+    "repeatWithin": 10,
+    "overlapCards": 42,
+    "overlapScenes": 42,
+    "cardsSeenEver": 72,
+    "spine": [
+     "the_quiet_year 79%",
+     "the_work 78%",
+     "late_night 66%"
+    ],
+    "spineScenes": [
+     "the_quiet_year#0 79%",
+     "the_work#0 78%",
+     "late_night#0 66%"
+    ]
+   },
+   "on": {
+    "taps": 20.9,
+    "distinct": 18.3,
+    "repeatWithin": 10,
+    "overlapCards": 42,
+    "overlapScenes": 42,
+    "cardsSeenEver": 72,
+    "spine": [
+     "the_quiet_year 79%",
+     "the_work 78%",
+     "late_night 66%"
+    ],
+    "spineScenes": [
+     "the_quiet_year#0 79%",
+     "the_work#0 78%",
+     "late_night#0 66%"
+    ]
+   }
+  },
+  "sensible/grad": {
+   "off": {
+    "taps": 26.4,
+    "distinct": 24.4,
+    "repeatWithin": 7,
+    "overlapCards": 63,
+    "overlapScenes": 63,
+    "cardsSeenEver": 63,
+    "spine": [
+     "the_work 100%",
+     "the_appraisal_talk 98%",
+     "the_quiet_year 95%",
+     "postit_workshop 89%",
+     "bto_queue 85%",
+     "the_mps_night 78%",
+     "the_walkabout 76%",
+     "the_pq 74%",
+     "the_townhall 67%",
+     "the_bonus_reveal 65%",
+     "pofma_moment 63%",
+     "town_council 62%"
+    ],
+    "spineScenes": [
+     "the_work#0 100%",
+     "the_appraisal_talk#0 98%",
+     "the_quiet_year#0 95%",
+     "postit_workshop#0 89%",
+     "bto_queue#0 85%",
+     "the_mps_night#0 78%",
+     "the_walkabout#0 76%",
+     "the_pq#0 74%",
+     "the_townhall#0 67%",
+     "the_bonus_reveal#0 65%",
+     "pofma_moment#0 63%",
+     "town_council#0 62%"
+    ]
+   },
+   "on": {
+    "taps": 26.4,
+    "distinct": 24.4,
+    "repeatWithin": 7,
+    "overlapCards": 63,
+    "overlapScenes": 63,
+    "cardsSeenEver": 63,
+    "spine": [
+     "the_work 100%",
+     "the_appraisal_talk 98%",
+     "the_quiet_year 95%",
+     "postit_workshop 89%",
+     "bto_queue 85%",
+     "the_mps_night 78%",
+     "the_walkabout 76%",
+     "the_pq 74%",
+     "the_townhall 67%",
+     "the_bonus_reveal 65%",
+     "pofma_moment 63%",
+     "town_council 62%"
+    ],
+    "spineScenes": [
+     "the_work#0 100%",
+     "the_appraisal_talk#0 98%",
+     "the_quiet_year#0 95%",
+     "postit_workshop#0 89%",
+     "bto_queue#0 85%",
+     "the_mps_night#0 78%",
+     "the_walkabout#0 76%",
+     "the_pq#0 74%",
+     "the_townhall#0 67%",
+     "the_bonus_reveal#0 65%",
+     "pofma_moment#0 63%",
+     "town_council#0 62%"
+    ]
+   }
+  },
+  "sensible/poly": {
+   "off": {
+    "taps": 27.7,
+    "distinct": 26.7,
+    "repeatWithin": 4,
+    "overlapCards": 62,
+    "overlapScenes": 62,
+    "cardsSeenEver": 67,
+    "spine": [
+     "the_work 94%",
+     "the_appraisal_talk 88%",
+     "the_quiet_year 86%",
+     "the_mps_night 76%",
+     "postit_workshop 74%",
+     "the_walkabout 72%",
+     "the_pq 71%",
+     "bto_queue 67%",
+     "town_council 62%",
+     "the_townhall 61%"
+    ],
+    "spineScenes": [
+     "the_work#0 94%",
+     "the_appraisal_talk#0 88%",
+     "the_quiet_year#0 86%",
+     "the_mps_night#0 76%",
+     "postit_workshop#0 74%",
+     "the_walkabout#0 72%",
+     "the_pq#0 71%",
+     "bto_queue#0 67%",
+     "town_council#0 62%",
+     "the_townhall#0 61%"
+    ]
+   },
+   "on": {
+    "taps": 27.7,
+    "distinct": 26.7,
+    "repeatWithin": 4,
+    "overlapCards": 62,
+    "overlapScenes": 62,
+    "cardsSeenEver": 67,
+    "spine": [
+     "the_work 94%",
+     "the_appraisal_talk 88%",
+     "the_quiet_year 86%",
+     "the_mps_night 76%",
+     "postit_workshop 74%",
+     "the_walkabout 72%",
+     "the_pq 71%",
+     "bto_queue 67%",
+     "town_council 62%",
+     "the_townhall 61%"
+    ],
+    "spineScenes": [
+     "the_work#0 94%",
+     "the_appraisal_talk#0 88%",
+     "the_quiet_year#0 86%",
+     "the_mps_night#0 76%",
+     "postit_workshop#0 74%",
+     "the_walkabout#0 72%",
+     "the_pq#0 71%",
+     "bto_queue#0 67%",
+     "town_council#0 62%",
+     "the_townhall#0 61%"
+    ]
+   }
+  },
+  "sensible/scholar": {
+   "off": {
+    "taps": 25,
+    "distinct": 22.4,
+    "repeatWithin": 9,
+    "overlapCards": 62,
+    "overlapScenes": 62,
+    "cardsSeenEver": 58,
+    "spine": [
+     "the_mps_night 85%",
+     "the_pq 85%",
+     "the_walkabout 84%",
+     "the_quiet_year 83%",
+     "the_townhall 80%",
+     "the_bonus_reveal 80%",
+     "pofma_moment 79%",
+     "reshuffle 79%",
+     "the_indicators 73%",
+     "town_council 67%"
+    ],
+    "spineScenes": [
+     "the_mps_night#0 85%",
+     "the_pq#0 85%",
+     "the_walkabout#0 84%",
+     "the_quiet_year#0 83%",
+     "the_townhall#0 80%",
+     "the_bonus_reveal#0 80%",
+     "pofma_moment#0 79%",
+     "reshuffle#0 79%",
+     "the_indicators#0 73%",
+     "town_council#0 67%"
+    ]
+   },
+   "on": {
+    "taps": 25,
+    "distinct": 22.4,
+    "repeatWithin": 9,
+    "overlapCards": 62,
+    "overlapScenes": 62,
+    "cardsSeenEver": 58,
+    "spine": [
+     "the_mps_night 85%",
+     "the_pq 85%",
+     "the_walkabout 84%",
+     "the_quiet_year 83%",
+     "the_townhall 80%",
+     "the_bonus_reveal 80%",
+     "pofma_moment 79%",
+     "reshuffle 79%",
+     "the_indicators 73%",
+     "town_council 67%"
+    ],
+    "spineScenes": [
+     "the_mps_night#0 85%",
+     "the_pq#0 85%",
+     "the_walkabout#0 84%",
+     "the_quiet_year#0 83%",
+     "the_townhall#0 80%",
+     "the_bonus_reveal#0 80%",
+     "pofma_moment#0 79%",
+     "reshuffle#0 79%",
+     "the_indicators#0 73%",
+     "town_council#0 67%"
+    ]
+   }
+  }
+ }
+}

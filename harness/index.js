@@ -126,10 +126,12 @@ function draw(build, S) {
 function newRun(origin, seed, opts = {}) {
   const build = opts.build || getBuild(opts.buildHash);
   if (!build.content.origins.some(o => o.id === origin)) throw new Error(`unknown origin ${origin}`);
-  const S0 = build.engine.newGame(build.content, origin, opts.name || "You", seed >>> 0, { rival: !!opts.rival });
+  // opts.recent: card ids and versions from the player's last runs (the phone's freshness memory)
+  const recent = Array.isArray(opts.recent) ? opts.recent : [];
+  const S0 = build.engine.newGame(build.content, origin, opts.name || "You", seed >>> 0, { rival: !!opts.rival, recent });
   const { S, draw: d } = draw(build, S0);
   return {
-    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name, rival: !!opts.rival,
+    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name, rival: !!opts.rival, recent,
     turn: 1, phase: S.ending ? "ending" : "event",
     S, pendingDraw: d,
     last: null,          // { outcome, log, prev } shown on the next screen
@@ -186,7 +188,7 @@ function step(run, choiceId) {
     turn: run.turn, year: pre.year, age: pre.age,
     act: actOf(ev, pre),
     event: { id: ev.id, ...run.pendingDraw, once: !!ev.once, filler: ev.id !== "__quiet" && !ev.once && !ev.triggered,
-             montage: ev.id.startsWith("__montage:"),
+             montage: ev.id.startsWith("__montage:"), variant: ev.variant || 0,
              repeat: ev.id.startsWith("__montage:") || run.turns.some(t => t.event.id === ev.id) },
     choice: { id: View.LETTERS[i], index: i, effects: ch.effects || {},
               available: ev.choices.map((_, j) => sibling(build, pre, ev, j)).filter(x => x.available).map(x => x.id) },
@@ -264,6 +266,8 @@ function trace(run) {
   return {
     buildHash: run.buildHash, origin: run.origin, seed: run.seed, name: run.name,
     rival: run.rival || false, batchmate: S.rival || null,   // the batchmate's hidden file, if any
+    recent: run.recent || [],                                 // freshness memory the run started with (replay key)
+    exceptional: S.flags.includes("exceptional") ? (S.exceptionalAt || true) : null,
     choices: run.choiceList,
     start: run.start,
     ending: S.ending || null,
@@ -277,7 +281,7 @@ function replay(spec, opts = {}) {
   const build = opts.build || getBuild(spec.buildHash);
   if (spec.buildHash && spec.buildHash !== build.hash)
     throw new Error(`run was recorded on build ${spec.buildHash}, this build is ${build.hash}`);
-  let run = newRun(spec.origin, spec.seed, { build, name: spec.name, rival: !!spec.rival });
+  let run = newRun(spec.origin, spec.seed, { build, name: spec.name, rival: !!spec.rival, recent: spec.recent || [] });
   for (const c of spec.choices) run = step(run, c);
   return run;
 }

@@ -147,6 +147,44 @@
         },
         "outcome": "Nobody else wanted it. It becomes the only document from the offsite that anyone reads, which makes it, quietly, yours."
       }
+    ],
+    "variants": [
+      {
+        "title": "Design Thinking",
+        "body": "A design-thinking sprint. There is a journey map on the wall, a persona called \"Auntie Mary\", and a facilitator who has asked everyone to put their assumptions in a box on the whiteboard marked PARKING LOT.",
+        "choices": [
+          {
+            "text": "Park the assumption everyone actually has.",
+            "outcome": "You write \"no new resources\" on a sticky note and put it in the parking lot. The facilitator laughs, then stops laughing, then moves it to a corner. It is noted."
+          },
+          {
+            "text": "Give Auntie Mary a tagline.",
+            "outcome": "\"Auntie Mary: Served Once, Served Right.\" It is printed on a tote bag. You see the tote bag at hawker centres for years."
+          },
+          {
+            "text": "Volunteer to turn the wall into a plan.",
+            "outcome": "Nobody else wanted the wall. Your plan is the only thing from the sprint that survives the sprint, which makes it, quietly, yours."
+          }
+        ]
+      },
+      {
+        "title": "The Retreat",
+        "body": "A transformation retreat at a hotel on Sentosa. The breakout rooms are named after the organisation's values. You have been assigned to Integrity, which is the room with no window.",
+        "choices": [
+          {
+            "text": "Say, in Integrity, what the room is for.",
+            "outcome": "You say the division needs three more officers, not a fourth value. The room agrees in silence. The scribe does not write it down. It is noted."
+          },
+          {
+            "text": "Coin a value.",
+            "outcome": "You propose \"Ownership with Heart\". It is adopted by the afternoon and on a lanyard by the end of the quarter."
+          },
+          {
+            "text": "Volunteer to write up the retreat.",
+            "outcome": "You write it up properly, with owners and dates. It is the only retreat report anyone has ever acted on, and you are now, somehow, in charge of it."
+          }
+        ]
+      }
     ]
   },
   {
@@ -266,7 +304,8 @@
           "cep": 1,
           "heat": 6
         },
-        "outcome": "Eleven drafts. The Minister delivers the ninth almost verbatim. On Tuesday the Perm Sec asks for your name, and is told it, and writes it down."
+        "outcome": "Eleven drafts. The Minister delivers the ninth almost verbatim. On Tuesday the Perm Sec asks for your name, and is told it, and writes it down.",
+        "standout": true
       },
       {
         "text": "Run the operations room instead. Let someone else write.",
@@ -660,7 +699,8 @@
           "cep": 2,
           "standing": -3
         },
-        "outcome": "You have about ninety seconds and you use all of them. She listens without eating. At the end she says \"say that again on Thursday, to the committee\", and you realise you have just been promoted in every sense except the paperwork."
+        "outcome": "You have about ninety seconds and you use all of them. She listens without eating. At the end she says \"say that again on Thursday, to the committee\", and you realise you have just been promoted in every sense except the paperwork.",
+        "standout": true
       },
       {
         "text": "Something safe about communications.",
@@ -786,6 +826,44 @@
           "integrity": 3
         },
         "outcome": "Done by Thursday. The cash-over-valuation hurts for eleven years, and you never again have to explain a queue number at a family dinner."
+      }
+    ],
+    "variants": [
+      {
+        "title": "The Prime Launch",
+        "body": "This launch is a Prime project: a central location, a lower price now, a clawback of the subsidy when you sell, and a minimum occupation period of ten years. The queue is already longer than the estate.",
+        "choices": [
+          {
+            "text": "Apply, and take your chances.",
+            "outcome": "Queue number 1,206 for 290 units. You do the arithmetic once, and then decide not to do it again."
+          },
+          {
+            "text": "Ask a friend in the agency how the next launch looks.",
+            "outcome": "He tells you which launch next quarter will have the shorter queue. It is on the website three weeks later, word for word. For three weeks, you were the website."
+          },
+          {
+            "text": "Buy resale instead, and stop thinking about it.",
+            "outcome": "You buy a 1990s five-room with its original kitchen cabinets and a view of a multi-storey carpark. The loan is long. The cabinets are, it turns out, very good."
+          }
+        ]
+      },
+      {
+        "title": "The Fifth Ballot",
+        "body": "Fifth application. The ballot results page now remembers you. Your queue numbers, laid end to end, would house a small town.",
+        "choices": [
+          {
+            "text": "Ballot again.",
+            "outcome": "Queue number 3,104. You screenshot it for a group chat that has become, over five years, mainly a support group."
+          },
+          {
+            "text": "Ask a friend in the agency what is coming up.",
+            "outcome": "He walks you through next quarter's launches over kopi. Every word of it goes on the website three weeks later. You have, technically, only had your kopi early."
+          },
+          {
+            "text": "Buy resale. Take the loan.",
+            "outcome": "Done in a week. The valuation comes in below the price, and the difference has to be paid in cash, which is the rule and is also most of your savings."
+          }
+        ]
       }
     ]
   },
@@ -1512,6 +1590,34 @@
           }
         ]
       }
+    ],
+    "variants": [
+      {
+        "body": "A phone call, not an email. The voice is warm and unhurried and does not give a surname. Would you be free for lunch on Thursday? Nobody has ever been free for lunch on a Thursday the way you are suddenly free for lunch on this one.",
+        "choices": [
+          {
+            "text": "Go.",
+            "outcome": "Lunch is at a club with carpet so thick it swallows footsteps. The conversation is about nothing for an hour. Then the coffee comes, and so does a second man, with a folder, and he opens it, and reads."
+          },
+          {
+            "text": "Decline, politely.",
+            "outcome": "You say you are honoured, and committed to the service. The voice says it understands completely. It is the most understanding voice you will ever hear, and you never hear it again."
+          }
+        ]
+      },
+      {
+        "body": "A note on your desk, in a hand-delivered envelope, asking whether you might spare an hour for a conversation \"about the future\". It does not say whose.",
+        "choices": [
+          {
+            "text": "Go.",
+            "outcome": "The hour is in a quiet room with very good chairs. Two people ask for your views on the country, and then, without changing tone, open a folder and begin to read from it."
+          },
+          {
+            "text": "Decline, politely.",
+            "outcome": "You reply by hand, because it seems right, and you say no. You are thanked, by hand, within a day. Then the future happens without you in it."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1543,6 +1649,34 @@
         },
         "folder": "conceal",
         "outcome": "The questions are precise and you answer them precisely. He thanks you. Nobody mentions the folder again, which is how you know it is still there."
+      }
+    ],
+    "variants": [
+      {
+        "body": "A different room this time, with a window that does not open. Two people now: one asks, one writes. The folder is on the table between them, closed, which is somehow worse.",
+        "choices": [
+          {
+            "text": "Tell them everything, including what is not in the folder.",
+            "outcome": "You talk for forty minutes. The one who writes fills four pages. The one who asks says, at the end, \"Thank you. That was very complete,\" and it sounds like the highest praise either of them is allowed to give."
+          },
+          {
+            "text": "Answer the questions you are asked, and only those.",
+            "outcome": "Precise questions, precise answers. Nobody opens the folder. When you leave it is still on the table, closed, and you understand that it will be opened later, somewhere else."
+          }
+        ]
+      },
+      {
+        "body": "The background check arrives first as a form: forty-two questions, three of them about companies you have never heard of and one about a company you have. Then a meeting, to \"go through it together\".",
+        "choices": [
+          {
+            "text": "Go through all of it, including question thirty-one.",
+            "outcome": "You go through everything, and then the things the form did not ask. The meeting runs an hour over. Nobody seems to mind; that appears to have been the point."
+          },
+          {
+            "text": "Go through what is on the form.",
+            "outcome": "The form is answered completely and exactly. Question thirty-one is answered in eleven words. The meeting ends on time, and the folder goes back into a drawer you do not get to see."
+          }
+        ]
       }
     ]
   },
@@ -1588,6 +1722,34 @@
         ],
         "setFlags": [
           "seat_smc"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "body": "Polling Day is announced on a Monday. By Wednesday your face is on a lamp post outside a coffee shop you have never been into, and the coffee shop has opinions about your face.",
+        "choices": [
+          {
+            "text": "Stand in the GRC, with the team.",
+            "outcome": "You spend nine days learning which blocks have lifts that stop on every floor. The anchor minister does the rally speeches. You do the lifts."
+          },
+          {
+            "text": "Ask for the single-member seat.",
+            "outcome": "A single seat, a real opponent, and nobody to share the swing with. Yours is the only name on your posters, which is thrilling for exactly one day."
+          }
+        ]
+      },
+      {
+        "body": "Nomination Day, in a school hall that smells of floor polish. Your papers are checked twice. Across the hall, an opposition candidate you once sat beside at a seminar waves, cheerfully, as if this were not happening.",
+        "choices": [
+          {
+            "text": "Stand with the team in the GRC.",
+            "outcome": "Nine days of walkabouts in a team of five. At every coffee shop someone asks which one you are. By the end, you can answer."
+          },
+          {
+            "text": "Ask for the single seat.",
+            "outcome": "Nine days of being the only person anyone in the ward asks. By the last rally your voice has gone and your opponent's has not, which feels significant and is not."
+          }
         ]
       }
     ]
@@ -1895,7 +2057,77 @@
         "A quiet year at your desk. Your out-of-office message is the best thing you write.",
         "The papers come in and go out. Somewhere on your floor someone is working late, and it is not you."
       ]
-    }
+    },
+    "variants": [
+      {
+        "body": "A form that citizens fill in has eleven fields. Seven of them ask for things the government already knows. Removing them takes four agencies, two legal opinions and a year of meetings that will never be minuted as important.",
+        "choices": [
+          {
+            "text": "Do the work properly.",
+            "outcome": "Three fields go. The other four turn out to be required by a regulation nobody can find the reason for. Three is a good year."
+          },
+          {
+            "text": "Do the work, and make sure the right people see it.",
+            "outcome": "Your one-page note on the three fields is circulated as \"a good example of citizen-centric design\". You will be asked to give the talk."
+          },
+          {
+            "text": "Let the agencies sort it out among themselves.",
+            "outcome": "They do not. The form keeps its eleven fields. You keep your evenings, which you decide were also a public good."
+          }
+        ]
+      },
+      {
+        "body": "This year's work is a review of a review: what was recommended three years ago, what was done, and why the difference is described as \"phased implementation\".",
+        "choices": [
+          {
+            "text": "Write it straight.",
+            "outcome": "Your review says what happened. It is accepted with thanks, and its recommendations are, in due course, phased."
+          },
+          {
+            "text": "Write it straight, and present it yourself.",
+            "outcome": "You show the gap between recommendation and implementation in a chart so clear that two directors ask for the slide. One of them later uses it against you, admiringly."
+          },
+          {
+            "text": "Write it the way the last one was written.",
+            "outcome": "It reads beautifully and says nothing anyone could disagree with. It takes a week. You spend the rest of the year on other things, mostly lunch."
+          }
+        ]
+      },
+      {
+        "body": "A hotline takes two thousand calls a week. Four hundred are the same question, which the website answers on page six. Someone has to decide whether the problem is the callers or page six.",
+        "choices": [
+          {
+            "text": "Fix page six.",
+            "outcome": "Page six becomes page one, in plain words. Calls drop by a third. The hotline team sends a cake with no message, which is the highest honour a hotline can give."
+          },
+          {
+            "text": "Fix page six, and present the call figures.",
+            "outcome": "Your before-and-after chart travels further than the website did. Two other agencies cite it in their own papers, with your name in the footnote."
+          },
+          {
+            "text": "Note it for whoever owns the website, and go home on time.",
+            "outcome": "Your note is clear and lands in the right inbox, where it stays. The calls continue. You are home by half past six, most days."
+          }
+        ]
+      },
+      {
+        "body": "A circular has to reach forty agencies by the first of the month. It is on its ninth draft, and the ninth is the first one anyone outside this building could understand.",
+        "choices": [
+          {
+            "text": "Send the ninth draft, on time.",
+            "outcome": "It goes out on the twenty-eighth. Three agencies reply that it is the clearest circular they have had this year, which in agency terms is a standing ovation."
+          },
+          {
+            "text": "Send it, and brief the agencies yourself.",
+            "outcome": "Forty agencies, four briefings, one set of slides. By the last one you can do it without the slides, and two directors now ask for you by name."
+          },
+          {
+            "text": "Leave the last draft to the next person in the chain.",
+            "outcome": "It goes out on the third of the month. Nobody asks why it was late, and you were home for dinner on all three days."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "the_appraisal_talk",
@@ -1951,7 +2183,77 @@
         "You ask what is not being done. There is a list. By March most of it is done, and you are on a new list.",
         "Your reporting officer says the ranking exercise was \"very tight this year\". You ask what would have loosened it, and are told."
       ]
-    }
+    },
+    "variants": [
+      {
+        "body": "The appraisal form has been redesigned. It now has four competency domains instead of six, a section called \"Aspirations\", and a box for your reporting officer's overall impression that is larger than all the others put together.",
+        "choices": [
+          {
+            "text": "Ask what the overall impression says.",
+            "outcome": "\"It's still being calibrated.\" The form is turned face down, gently, the way people close the door on a sleeping room."
+          },
+          {
+            "text": "Fill in \"Aspirations\" with something ambitious.",
+            "outcome": "You write \"to lead a cross-agency effort\". Within the month you are put on one, as a member. It is a start, and it is minuted as one."
+          },
+          {
+            "text": "Ask which of the four domains actually counts.",
+            "outcome": "A pause, and then an honest answer: \"Ownership.\" You spend the year owning things. It shows."
+          }
+        ]
+      },
+      {
+        "body": "Your appraisal is done over a video call, because your reporting officer is overseas. Her camera is off. Her connection is excellent. The forty minutes feel like ninety.",
+        "choices": [
+          {
+            "text": "Ask, plainly, where you stand.",
+            "outcome": "\"You're doing fine.\" There is a long silence on the line, and then: \"Fine is good.\" It is clearly not the whole sentence."
+          },
+          {
+            "text": "Turn your camera on, and keep it on.",
+            "outcome": "Hers comes on too, eventually. The second half of the conversation is noticeably warmer. You are now, in a small way, visible."
+          },
+          {
+            "text": "Ask what she would want done while she is away.",
+            "outcome": "She lists three things. You do two of them before she lands. She mentions it at the ranking meeting, which is the only meeting that matters."
+          }
+        ]
+      },
+      {
+        "body": "The appraisal is in a meeting room booked for thirty minutes. Your reporting officer arrives twelve minutes late, from another appraisal, carrying its form by mistake.",
+        "choices": [
+          {
+            "text": "Ask, while there is time, where your ceiling is.",
+            "outcome": "She looks at the form in her hand, which is not yours, and says that is above her pay grade. It may be the only literal thing said to you all year."
+          },
+          {
+            "text": "Use the eighteen minutes to list what you did.",
+            "outcome": "You get through the list in eleven minutes. She writes down four items, and they are the four that end up in your ranking. You learn which four to lead with."
+          },
+          {
+            "text": "Ask what she needs from you this year.",
+            "outcome": "She answers before she has sat down: a paper nobody has started. You start it that afternoon, and your next appraisal begins on time."
+          }
+        ]
+      },
+      {
+        "body": "This year's appraisal includes 360-degree feedback. One anonymous comment says you \"never say no to anything from upstairs\". It is meant, you think, as a complaint.",
+        "choices": [
+          {
+            "text": "Ask what the comment means for your ceiling.",
+            "outcome": "She says it is \"a development point, not a ceiling point\", and then that ceilings are not discussed. Both halves are true, and only one of them was an answer."
+          },
+          {
+            "text": "Say you will be more visible, sideways as well as up.",
+            "outcome": "You start a monthly lunch for the people around you. Attendance is excellent. Next year's comment is about the lunches, and it is fond."
+          },
+          {
+            "text": "Ask what she needs you to say no to.",
+            "outcome": "She names two things, immediately. You drop them both, and everyone around you notices before she does."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "late_night",
@@ -1998,7 +2300,37 @@
         "A birthday dinner, attended. The comments on the fourth draft wait until morning, as comments always could.",
         "You have stopped apologising for leaving on time. Two people on your floor have started doing the same."
       ]
-    }
+    },
+    "variants": [
+      {
+        "title": "Sunday, 4pm",
+        "body": "Your niece's birthday party. An email from upstairs wants a brief by eight tomorrow morning, and everyone else at the table is holding cake.",
+        "choices": [
+          {
+            "text": "Find a quiet corner and write it now.",
+            "outcome": "You write it on your phone behind the cake table. It is cleared by nine. In the party photographs you are the back of a head, bent over a screen."
+          },
+          {
+            "text": "Stay at the party. Write it at six tomorrow.",
+            "outcome": "You sing, badly, and cut the cake. The brief goes in at 7:55am. Upstairs never asks when it was written, which teaches you something you try to remember."
+          }
+        ]
+      },
+      {
+        "title": "10:50pm, One Comment",
+        "body": "Your paper comes back with a single comment, sent at 10:50pm: \"Can we tighten?\" The paper is already two pages.",
+        "choices": [
+          {
+            "text": "Tighten it tonight.",
+            "outcome": "Two pages become one and a half. The half you cut was the only part anyone would have disagreed with, so the paper sails through."
+          },
+          {
+            "text": "Reply that it is tight, and go to bed.",
+            "outcome": "You reply at 10:52pm that it is already tight, and go to bed. In the morning there is a thumbs-up, which in this building is a concession."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "budget_round",
@@ -2110,7 +2442,45 @@
         "The volunteers handle the tail. They are very good at it, and they are getting tired.",
         "A resident thanks you for something the Town Council did. You accept on its behalf, and leave at ten."
       ]
-    }
+    },
+    "variants": [
+      {
+        "title": "Meet-the-People, After the Rain",
+        "body": "A downpour at seven, so everyone comes at nine. The queue includes a family whose flat appeal has been turned down twice, and a man who would like the void deck named after his father.",
+        "choices": [
+          {
+            "text": "Stay until the last one is seen.",
+            "outcome": "Past one in the morning. The void deck will not be renamed, and you tell him so kindly enough that he shakes your hand twice."
+          },
+          {
+            "text": "Take the family's appeal, and write it yourself.",
+            "outcome": "Two pages, citing the right paragraph. The appeal succeeds on the third try, which the family credits to persistence and you credit to the paragraph."
+          },
+          {
+            "text": "Leave the volunteers to finish.",
+            "outcome": "You leave at ten. The volunteers stay until one. By Thursday a resident has posted about the evening, and the post is about you leaving at ten."
+          }
+        ]
+      },
+      {
+        "title": "Tuesday Night, the Lift",
+        "body": "Thirty residents and one theme: a lift that has been under upgrading for eleven months. Nobody is angry with you. Everybody would like you to be angry on their behalf.",
+        "choices": [
+          {
+            "text": "See every one of them, one by one.",
+            "outcome": "Thirty conversations about the same lift. They all go home feeling heard, which is not the same as a lift but is not nothing."
+          },
+          {
+            "text": "Write about the lift properly, tonight.",
+            "outcome": "Your letter names the contractor, the start date and the eleven months. A new completion date arrives within the week and is, for once, met."
+          },
+          {
+            "text": "Let the volunteers take the rest.",
+            "outcome": "You leave at ten. Twenty-nine residents are seen about the lift. The thirtieth wanted you, and mentions it at every block party for a year."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "the_walkabout",
@@ -2152,7 +2522,37 @@
         "A walkabout in the rain, on schedule. The photograph of you holding someone else's umbrella does very well.",
         "Eleven stalls in forty minutes. Everyone gets a handshake and nobody gets a sentence."
       ]
-    }
+    },
+    "variants": [
+      {
+        "title": "The Hawker Centre",
+        "body": "Lunchtime at a hawker centre, with photographers. The uncle at the drinks stall would like to explain, in detail, why his rent has gone up and what he thinks should be done about it.",
+        "choices": [
+          {
+            "text": "Sit down and hear him out.",
+            "outcome": "Twenty minutes, one kopi going cold, and you follow up on his rent in writing. The one photographer who stayed gets the best picture of the day."
+          },
+          {
+            "text": "Buy a kopi, smile, and keep moving.",
+            "outcome": "You pay for the kopi, smile for the photograph and move on. In the photograph, he is still talking."
+          }
+        ]
+      },
+      {
+        "title": "The Estate Visit",
+        "body": "Eight blocks before lunch and a ribbon to cut. A resident on a mobility scooter would like to show you a ramp that does not quite reach the kerb.",
+        "choices": [
+          {
+            "text": "Go and look at the ramp.",
+            "outcome": "You walk the ramp with her, slowly, cameras behind you. It is two centimetres short. It is fixed within a fortnight, and she sends a photograph of herself using it."
+          },
+          {
+            "text": "Promise someone will look, and stay on schedule.",
+            "outcome": "Someone does look, eventually. The ribbon is cut on time, by you, in a photograph that is very well lit."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "the_pq",
@@ -2216,7 +2616,45 @@
         "Seven questions this sitting. The figures follow in writing, as promised, two weeks later.",
         "You promise the figures in writing again. Your office has a template for the covering letter now."
       ]
-    }
+    },
+    "variants": [
+      {
+        "title": "Question Time",
+        "body": "A Member has asked how many applicants to a well-announced scheme actually received anything. You have the number. It is eleven per cent.",
+        "choices": [
+          {
+            "text": "Give the number, and what you are doing about it.",
+            "outcome": "Eleven per cent, said aloud in the Chamber, followed by three changes. The supplementary is short, because there is nothing left to ask."
+          },
+          {
+            "text": "Give the number of applications instead.",
+            "outcome": "Forty thousand applications, which is true and is not what was asked. The Member stands to say so, and the clip of her saying so does better than your answer."
+          },
+          {
+            "text": "Say the figures will follow in writing.",
+            "outcome": "The written answer goes out on a Friday afternoon. It is read by the Member who asked, and by one journalist with a long memory."
+          }
+        ]
+      },
+      {
+        "title": "The Supplementary",
+        "body": "Your answer to the question went well. The Member rises for a supplementary, and it is the one your officials said would not come.",
+        "choices": [
+          {
+            "text": "Answer it straight, without the brief.",
+            "outcome": "You say you do not have the figure to hand, then say what you do know, which is enough. Your officials send a note that reads, in full, \"Well handled.\""
+          },
+          {
+            "text": "Answer a nearby question the brief does cover.",
+            "outcome": "The answer is fluent, confident and about something else. The Member says, \"That was not my question,\" and is quoted the next morning in full."
+          },
+          {
+            "text": "Offer to write to the Member with the details.",
+            "outcome": "You promise to write. The letter goes out three weeks later, when nobody is looking, and says what you could have said in the Chamber."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "the_townhall",
@@ -2260,7 +2698,37 @@
         "The townhall's top question is about workload. You address the theme of it, warmly.",
         "Your townhall slides circulate, unofficially, as an example of what a townhall can be."
       ]
-    }
+    },
+    "variants": [
+      {
+        "title": "The Curated Questions",
+        "body": "This year's townhall questions were submitted in advance and curated. An officer at the back puts her hand up anyway.",
+        "choices": [
+          {
+            "text": "Take her question.",
+            "outcome": "It is about promotions, and it is fair. You answer it partly, and say that it is partly. Afterwards the curated questions are the part nobody remembers."
+          },
+          {
+            "text": "Say there will be time at the end.",
+            "outcome": "There is no time at the end. There was never going to be, and four hundred officers watched her lower her hand."
+          }
+        ]
+      },
+      {
+        "title": "The Survey Results",
+        "body": "The ministry's engagement survey is back. Most numbers went up. One went down a long way: whether officers feel safe raising concerns.",
+        "choices": [
+          {
+            "text": "Put that number on the first slide.",
+            "outcome": "The first slide is the bad number, in large type, and you talk about it for ten minutes. Two directors look at the floor. Four hundred officers look at you."
+          },
+          {
+            "text": "Lead with the numbers that went up.",
+            "outcome": "The deck opens on engagement, up four points. The other number is on slide nineteen. Most of the room found slide nineteen before you started."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "the_quiet_year",
@@ -2314,7 +2782,43 @@
         "Bintan in June. You check your email twice, which is progress.",
         "A quiet year. Somewhere, someone writes \"steady\" about you and means it kindly."
       ]
-    }
+    },
+    "variants": [
+      {
+        "body": "No crisis, no reorganisation, no parliamentary question with your name in it. Your diary has white space for the first time in years, and everyone around you has noticed, and is pretending not to.",
+        "choices": [
+          {
+            "text": "Use it to fix something small and permanent.",
+            "outcome": "You fix the thing that has made every new joiner's first week worse for a decade. Nobody thanks you. The new joiners never find out what it used to be like."
+          },
+          {
+            "text": "Use it for the lunches you keep postponing.",
+            "outcome": "Eleven lunches, four dinners and one kopi at a hawker centre that turns out to matter more than the dinners. People remember you now in a way they did not."
+          },
+          {
+            "text": "Use it to sleep.",
+            "outcome": "You sleep. Your doctor, who has been saying things for three years, says nothing, which is the nicest thing a doctor has ever said to you."
+          }
+        ]
+      },
+      {
+        "body": "A year so uneventful that the most discussed thing around you is the new coffee machine. It has nine settings. Everyone uses the same one.",
+        "choices": [
+          {
+            "text": "Read every file you have been forwarded and never opened.",
+            "outcome": "You find two things that matter and one that should have mattered three years ago. You fix the two and write a note about the third that nobody will enjoy receiving."
+          },
+          {
+            "text": "Make yourself useful to the people who decide things.",
+            "outcome": "You become the person who knows where things are. It is not a title, but it is the next best thing."
+          },
+          {
+            "text": "Take your leave, all of it.",
+            "outcome": "You take all of it. The building does not fall down, which is either reassuring or the opposite."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "the_counter",
@@ -2441,7 +2945,8 @@
           "standing": 4,
           "competence": 3
         },
-        "outcome": "Four pages. You do not argue that you have been treated unfairly, which would have been true and useless; you argue what you would do with the next grade. The estimate is revised. Nobody tells you by how much."
+        "outcome": "Four pages. You do not argue that you have been treated unfairly, which would have been true and useless; you argue what you would do with the next grade. The estimate is revised. Nobody tells you by how much.",
+        "standout": true
       },
       {
         "text": "Let the record speak.",
@@ -2480,7 +2985,8 @@
     ],
     "requires": {
       "maxRank": 6
-    }
+    },
+    "standout": true
   },
   {
     "id": "minute_vindicated",
@@ -2505,7 +3011,8 @@
         },
         "outcome": "They let you. It takes a year, and a consultancy is engaged to evaluate your fix."
       }
-    ]
+    ],
+    "standout": true
   },
   {
     "id": "cos_vindicated",
@@ -2534,7 +3041,8 @@
     ],
     "requires": {
       "maxRank": 6
-    }
+    },
+    "standout": true
   },
   {
     "id": "dialogue_vindicated",
@@ -2562,7 +3070,8 @@
     ],
     "requires": {
       "maxRank": 6
-    }
+    },
+    "standout": true
   },
   {
     "id": "committee_vindicated",
@@ -2590,7 +3099,8 @@
     ],
     "requires": {
       "maxRank": 6
-    }
+    },
+    "standout": true
   },
   {
     "id": "pofma_vindicated",
@@ -2692,7 +3202,8 @@
     ],
     "requires": {
       "maxRank": 6
-    }
+    },
+    "standout": true
   },
   {
     "id": "re_election",
@@ -3520,6 +4031,612 @@
           "standing": -1
         },
         "outcome": "You take them to a Tuesday night. One of them stays until midnight writing a letter that actually argues the case. You recognise the look."
+      }
+    ]
+  },
+  {
+    "id": "improvement_plan",
+    "title": "The Improvement Plan",
+    "triggered": true,
+    "requires": {
+      "maxRank": 7
+    },
+    "alternates": [
+      "whip_word"
+    ],
+    "body": "Your reporting officer has put you on a performance improvement plan. It has three objectives, a review in six months, and a line for your signature that is described, twice, as an acknowledgement rather than an agreement.",
+    "choices": [
+      {
+        "text": "Sign it, and do exactly what it says.",
+        "effects": {
+          "competence": 3,
+          "standing": 2,
+          "appraisal": 10
+        },
+        "pip": true,
+        "outcome": "You meet all three objectives, two of them early. The six-month review lasts eleven minutes and ends with the word \"encouraging\"."
+      },
+      {
+        "text": "Ask for a transfer before the review.",
+        "effects": {
+          "competence": 4,
+          "standing": -3
+        },
+        "pip": true,
+        "resetWarnings": true,
+        "outcome": "HR finds you a post in a division with a new director, who reads files from the most recent page backwards. You start, in effect, again."
+      },
+      {
+        "text": "Contest the assessment, in writing.",
+        "effects": {
+          "integrity": 5,
+          "standing": -4,
+          "appraisal": 4
+        },
+        "pip": true,
+        "outcome": "Your reply runs to four pages and is filed with the plan. It changes nothing on paper and something in the room: your reporting officer now writes everything down."
+      }
+    ],
+    "variants": [
+      {
+        "body": "HR has scheduled a meeting called a \"development conversation\". It has an agenda, a template, and a second HR officer, who takes notes and does not speak.",
+        "choices": [
+          {
+            "text": "Agree to the objectives, and meet them.",
+            "outcome": "The objectives are measurable, which turns out to be a kindness. You meet them by October. The second HR officer is not at the review."
+          },
+          {
+            "text": "Ask to be posted somewhere else.",
+            "outcome": "A post comes up in another division, with a director who prefers to form her own views. Your file arrives a month after you do."
+          },
+          {
+            "text": "Put your side on the record.",
+            "outcome": "You write two pages, calmly. They are attached to the template, and the template is filed. The next conversation has no second officer in it."
+          }
+        ]
+      },
+      {
+        "body": "Your reporting officer would like to \"set some clear expectations\" for the next six months. There are six, numbered, and copied to a name you do not recognise.",
+        "choices": [
+          {
+            "text": "Meet every one of them, in writing.",
+            "outcome": "Six months, six expectations, six emails confirming each one met. The name you did not recognise replies to the last one: \"Noted, thanks.\""
+          },
+          {
+            "text": "Ask for a fresh start somewhere else.",
+            "outcome": "HR agrees briskly, as if it had been waiting for you to ask. The new division has never heard of you, which is the point."
+          },
+          {
+            "text": "Reply to each expectation, point by point.",
+            "outcome": "Your reply is longer than the expectations. It is read carefully by the name you did not recognise, who now knows exactly who you are."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "whip_word",
+    "title": "A Word from the Whip",
+    "triggered": true,
+    "requires": {
+      "minRank": 8
+    },
+    "body": "The Party Whip would like a word, over kopi, about your attendance, your ward, and a speech the papers described as \"brief\". Nobody uses the word \"plan\". Everybody can see one.",
+    "choices": [
+      {
+        "text": "Promise to do better, and then do better.",
+        "effects": {
+          "competence": 3,
+          "reputation": 3,
+          "appraisal": 10
+        },
+        "pip": true,
+        "outcome": "You speak in three debates and visit every block in your ward twice. The Whip's next note to you is one line long and says \"Good.\""
+      },
+      {
+        "text": "Ask to move to a committee where you can be useful.",
+        "effects": {
+          "competence": 4,
+          "standing": -3
+        },
+        "pip": true,
+        "resetWarnings": true,
+        "outcome": "You are moved to a Government Parliamentary Committee that meets at eight in the morning. You are, it turns out, a morning person now."
+      },
+      {
+        "text": "Explain, politely, that the ward comes first.",
+        "effects": {
+          "reputation": 5,
+          "standing": -4,
+          "appraisal": 4
+        },
+        "pip": true,
+        "outcome": "The Whip agrees that the ward comes first, and notes that Parliament is also, technically, somewhere."
+      }
+    ]
+  },
+  {
+    "id": "moh_beds",
+    "title": "The Bed Crunch",
+    "body": "Public hospitals are running at over ninety per cent bed occupancy, and emergency department waiting times are in the papers again. You have been asked for a paper on transitional care: beds outside the hospitals for patients who are well enough to leave and have nowhere ready to go.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of Health",
+      "minRank": 1,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Recommend more transitional beds, and say where the nurses will come from.",
+        "effects": {
+          "competence": 6,
+          "integrity": 4,
+          "standing": -3
+        },
+        "outcome": "Your paper has a section on manpower that nobody asked for and everybody quotes. The beds are approved. The nurses are, as you said, the hard part."
+      },
+      {
+        "text": "Recommend the beds, and leave the nurses to a later paper.",
+        "effects": {
+          "standing": 5,
+          "competence": -2
+        },
+        "outcome": "The beds are approved quickly. A later paper, not yours, discovers the nurses. It cites yours as \"an important first step\"."
+      },
+      {
+        "text": "Recommend better discharge planning instead.",
+        "effects": {
+          "competence": 4,
+          "reputation": 3,
+          "standing": -2
+        },
+        "outcome": "It is the right answer and the less announceable one. The hospitals like it. The press office asks whether there is a version with a number in it."
+      }
+    ]
+  },
+  {
+    "id": "moh_premiums",
+    "title": "The Premiums",
+    "body": "MediShield Life premiums are due for review. The actuaries' number is the actuaries' number. The question in front of you is how to present it, over how many years, and with how much in subsidies alongside.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of Health",
+      "minRank": 1,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Present the full number, with the subsidies next to it.",
+        "effects": {
+          "integrity": 6,
+          "competence": 3,
+          "standing": -3
+        },
+        "outcome": "The number is large and the subsidies are larger for the people who need them, and the slide says both. It is the least comfortable slide in the deck, and the only one nobody later has to correct."
+      },
+      {
+        "text": "Phase it over three years, so no single year looks large.",
+        "effects": {
+          "standing": 5,
+          "integrity": -3
+        },
+        "outcome": "Each year looks reasonable. Somebody adds the three years together within a week, in a Forum letter with a table in it."
+      },
+      {
+        "text": "Ask the actuaries to walk you through their assumptions first.",
+        "effects": {
+          "competence": 6,
+          "standing": 1,
+          "reputation": -1
+        },
+        "outcome": "Two days in a room with the actuaries. You come out understanding claims inflation better than anyone in your division, and slightly worried about it."
+      }
+    ]
+  },
+  {
+    "id": "moh_waiting",
+    "title": "The Waiting Time",
+    "body": "A resident's six-hour wait at an emergency department has been posted online, with photographs. The post has four thousand shares and one factual error. You will be asked about it at a community event on Sunday whether you prepare or not.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of Health",
+      "minRank": 9,
+      "maxRank": 15
+    },
+    "choices": [
+      {
+        "text": "Visit the emergency department on Saturday night, unannounced.",
+        "effects": {
+          "reputation": 6,
+          "competence": 3,
+          "standing": -2
+        },
+        "outcome": "You sit in the waiting area for two hours. Nobody recognises you, which tells you something about the waiting area and something else about you."
+      },
+      {
+        "text": "Answer on Sunday with the figures, and correct the error.",
+        "effects": {
+          "standing": 4,
+          "competence": 2,
+          "reputation": -2
+        },
+        "outcome": "The figures are accurate and the error is corrected. The resident's reply is shared more widely than your answer."
+      },
+      {
+        "text": "Say the wait was too long, and stop there.",
+        "effects": {
+          "integrity": 6,
+          "reputation": 4,
+          "standing": -4
+        },
+        "outcome": "It was too long, and you say so in nine words. The clip is on the evening news. Your colleagues' faces suggest it was about eight words too many."
+      }
+    ]
+  },
+  {
+    "id": "mom_dorms",
+    "title": "The Dormitory Standards",
+    "body": "New standards for migrant worker dormitories: fewer beds to a room, more toilets, better ventilation, more space per worker. The operators have written to say the costs will be passed on. The employers have written to say they will not be absorbed.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of Manpower",
+      "minRank": 1,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Hold the standards, and phase the deadline.",
+        "effects": {
+          "integrity": 5,
+          "competence": 4,
+          "standing": -2
+        },
+        "outcome": "The standards hold. The deadline moves twice, in writing, with reasons. Two years later the rooms are measurably less crowded, which is not a headline and is the point."
+      },
+      {
+        "text": "Hold the standards and the deadline.",
+        "effects": {
+          "integrity": 8,
+          "standing": -5,
+          "reputation": 2
+        },
+        "outcome": "Three operators complain to three different people about you, by name. The rooms are less crowded on schedule."
+      },
+      {
+        "text": "Soften the space requirement for existing dormitories.",
+        "effects": {
+          "standing": 5,
+          "integrity": -5
+        },
+        "outcome": "Everyone is relieved, including you, briefly. The new dormitories meet the new standard. The old ones meet the old one, for longer than anyone said."
+      }
+    ]
+  },
+  {
+    "id": "mom_wages",
+    "title": "The Wage Ladder",
+    "body": "Your division is extending the Progressive Wage Model to another sector. The union wants the ladder steeper. The employers want it longer. The workers in the sector, when you finally meet some, want to know when.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of Manpower",
+      "minRank": 1,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Back the steeper ladder.",
+        "effects": {
+          "integrity": 5,
+          "reputation": 3,
+          "standing": -4
+        },
+        "outcome": "The ladder is steeper than the employers wanted and shallower than the union asked for, which in tripartism is a win for everyone and a story for nobody."
+      },
+      {
+        "text": "Broker the longer, gentler ladder.",
+        "effects": {
+          "standing": 6,
+          "competence": 2,
+          "integrity": -2
+        },
+        "outcome": "Everyone signs. The first rung is lower than you hoped. You tell yourself it is a ladder, and ladders are climbed."
+      },
+      {
+        "text": "Take both versions back to the workers, and ask.",
+        "effects": {
+          "competence": 5,
+          "integrity": 3,
+          "standing": -2
+        },
+        "outcome": "They choose the steeper one and ask for it sooner. You write that down exactly, and it is in the paper that goes up, which is not where it usually goes."
+      }
+    ]
+  },
+  {
+    "id": "mom_retirement",
+    "title": "The Retirement Age",
+    "body": "The retirement and re-employment ages are going up again, in steps, by law. You are to explain it at a dialogue for older workers. The slides are excellent. The first question, from a cleaner in the second row, is not on any of them.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of Manpower",
+      "minRank": 9,
+      "maxRank": 15
+    },
+    "choices": [
+      {
+        "text": "Answer her question, not the slides.",
+        "effects": {
+          "reputation": 6,
+          "integrity": 4,
+          "standing": -2
+        },
+        "outcome": "Her question was whether she could keep her job if her knees could not. You answer it properly, which takes the rest of the session. The slides go home unshown."
+      },
+      {
+        "text": "Take the question offline, and follow up.",
+        "effects": {
+          "standing": 4,
+          "competence": 2
+        },
+        "outcome": "Your office follows up within a week, with a contact at her employer and a scheme she had not heard of. She does not know who sent it. That is fine."
+      },
+      {
+        "text": "Ask the union representative beside you to take it.",
+        "effects": {
+          "integrity": 3,
+          "competence": 2,
+          "reputation": -3
+        },
+        "outcome": "He answers it well, with a detail about re-employment contracts you did not know. The photograph in the newsletter is of him, answering it."
+      }
+    ]
+  },
+  {
+    "id": "mnd_classification",
+    "title": "The Classification",
+    "body": "A new estate is being drawn up, and someone has to decide which projects are Standard, which are Plus and which are Prime. You have a map, a set of criteria, and three neighbouring blocks that are, in every way a resident would notice, the same.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of National Development",
+      "minRank": 1,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Apply the criteria exactly, and let the line fall where it falls.",
+        "effects": {
+          "integrity": 5,
+          "competence": 3,
+          "standing": -2
+        },
+        "outcome": "The line falls between two of the three blocks. Years later, two neighbours on the same corridor will have different rules for selling the same kind of flat, and both will know exactly why."
+      },
+      {
+        "text": "Move the line so it follows the road.",
+        "effects": {
+          "standing": 5,
+          "competence": 1,
+          "integrity": -2
+        },
+        "outcome": "The road makes a tidy boundary. The criteria are footnoted. Nobody looks at footnotes, until somebody does."
+      },
+      {
+        "text": "Write a note on the three blocks, and send it up.",
+        "effects": {
+          "competence": 4,
+          "integrity": 2,
+          "standing": -3
+        },
+        "outcome": "Your note asks a question nobody wanted asked. It is answered, eventually, in a way you can live with, by someone more senior who takes the credit for the question."
+      }
+    ]
+  },
+  {
+    "id": "mnd_lease",
+    "title": "Ninety-Nine Years",
+    "body": "A residents' committee from an estate built in the 1970s has written in. The letter is polite, well researched and asks one question: what happens to their flats when the lease runs out. The answer is in the policy. They have read the policy.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of National Development",
+      "minRank": 1,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Meet them, and explain it in person.",
+        "effects": {
+          "integrity": 4,
+          "reputation": 4,
+          "competence": 2,
+          "standing": -2
+        },
+        "outcome": "Two hours in a void deck. You explain the policy, and then you listen to what it means to them, which is a different and longer conversation."
+      },
+      {
+        "text": "Reply in writing, accurately and kindly.",
+        "effects": {
+          "standing": 4,
+          "competence": 2
+        },
+        "outcome": "Your letter is accurate and kind. It is pinned on the noticeboard, beside the lift, where it is read by everyone and believed by most."
+      },
+      {
+        "text": "Invite them to the consultation on redevelopment.",
+        "effects": {
+          "competence": 3,
+          "reputation": 3,
+          "standing": -1
+        },
+        "outcome": "They come, all eleven of them, with a folder. Their folder is better organised than yours."
+      }
+    ]
+  },
+  {
+    "id": "mnd_million",
+    "title": "The Million-Dollar Flat",
+    "body": "A resale flat in a mature estate has sold for one and a half million dollars. It is a very good flat. The headline does not say that. Your phone has begun to buzz in the particular rhythm of a ministry with a question to answer.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of National Development",
+      "minRank": 9,
+      "maxRank": 15
+    },
+    "choices": [
+      {
+        "text": "Point out, with numbers, how rare such sales are.",
+        "effects": {
+          "standing": 4,
+          "competence": 3,
+          "reputation": -2
+        },
+        "outcome": "The numbers are correct and reassuring. The comments under the article are neither."
+      },
+      {
+        "text": "Say what the government is doing about supply.",
+        "effects": {
+          "standing": 3,
+          "reputation": 2
+        },
+        "outcome": "You list the launches. It is a solid answer and a forgettable one, which on this subject is a success."
+      },
+      {
+        "text": "Say you understand why people are worried, and mean it.",
+        "effects": {
+          "reputation": 5,
+          "integrity": 3,
+          "standing": -3
+        },
+        "outcome": "You do mean it, and it shows, and the clip travels. A colleague says, kindly, that understanding is not a policy. It is, you think, a start."
+      }
+    ]
+  },
+  {
+    "id": "moe_mergers",
+    "title": "The Merger List",
+    "body": "Cohorts are smaller every year, and a list of schools to be merged has to be drawn up. Every school on it has an alumni association, a school song, and a former principal who is still alive and writes letters.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of Education",
+      "minRank": 1,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Draw the list on the numbers.",
+        "effects": {
+          "integrity": 5,
+          "competence": 4,
+          "standing": -3
+        },
+        "outcome": "The list is defensible line by line. The letters arrive line by line too, many of them beautifully written, and all of them signed."
+      },
+      {
+        "text": "Keep the oldest names, whatever the numbers say.",
+        "effects": {
+          "standing": 5,
+          "reputation": 2,
+          "integrity": -3
+        },
+        "outcome": "The old names survive. Two newer schools with stronger numbers do not, and their students will remember the year their school was described as \"consolidated\"."
+      },
+      {
+        "text": "Propose that merged schools keep both names.",
+        "effects": {
+          "competence": 2,
+          "reputation": 4,
+          "standing": 1
+        },
+        "outcome": "The names are hyphenated. The school songs are not, and the first combined assembly is, by every account, loud."
+      }
+    ]
+  },
+  {
+    "id": "moe_banding",
+    "title": "The Banding",
+    "body": "Full Subject-Based Banding means students take subjects at different levels, which means timetables that no longer fit inside a class. A principal has written to say her teachers are now, in effect, air traffic controllers.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of Education",
+      "minRank": 1,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Fund the timetabling software she asked for.",
+        "effects": {
+          "competence": 4,
+          "reputation": 3,
+          "standing": -2
+        },
+        "outcome": "The software works, mostly. Her teachers are now air traffic controllers with radar, which they say is an improvement."
+      },
+      {
+        "text": "Send a guidebook and a hotline number.",
+        "effects": {
+          "standing": 4,
+          "competence": -2
+        },
+        "outcome": "The guidebook is thorough and the hotline is staffed. Her reply thanks you for both in a tone you will remember."
+      },
+      {
+        "text": "Spend a week in her school, and find out.",
+        "effects": {
+          "competence": 6,
+          "integrity": 3,
+          "standing": -2
+        },
+        "outcome": "You spend a week with a timetable on a wall the size of a car park. You come back with three changes that fit on one page, and they work."
+      }
+    ]
+  },
+  {
+    "id": "moe_psle",
+    "title": "The PSLE Question",
+    "body": "A parents' dialogue. The topic is the joy of learning. The first question is about PSLE Achievement Levels, the second about tuition, and the third is from a twelve-year-old who has been brought along and wants to know why there is an exam at all.",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "ministry": "Ministry of Education",
+      "minRank": 9,
+      "maxRank": 15
+    },
+    "choices": [
+      {
+        "text": "Answer the twelve-year-old first.",
+        "effects": {
+          "reputation": 6,
+          "integrity": 4,
+          "standing": -3
+        },
+        "outcome": "Your answer is honest and does not entirely defend the exam. The child nods. Several parents write it down, which is either a good sign or the opposite."
+      },
+      {
+        "text": "Take the questions in order.",
+        "effects": {
+          "standing": 4,
+          "competence": 2
+        },
+        "outcome": "Achievement Levels, tuition, and then, briefly, the child, who has by now been taken outside for a drink."
+      },
+      {
+        "text": "Explain how Achievement Levels work, carefully, with the chart.",
+        "effects": {
+          "competence": 4,
+          "standing": 2,
+          "reputation": -1
+        },
+        "outcome": "Everyone in the room understands the chart. Nobody in the room is reassured by it. You suspect the chart was never the problem."
       }
     ]
   }

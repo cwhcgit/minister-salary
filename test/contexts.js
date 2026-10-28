@@ -27,7 +27,13 @@ function sample(build, n = 600, opts = {}) {
     batchmate: { active: 0, inactive: 0, service: 0, politics: 0, ranks: new Set() } };
   const line = key => lines[key] ||= { fires: 0, playerService: 0, playerPolitics: 0, apart: 0, same: 0,
     batchmateStatus: {}, batchmateRanks: new Set(), playerRanks: new Set() };
-  const minAge = r => (build.content.ladder[r] && build.content.ladder[r].minAge) || 0;
+  const minAge = (r, flags) => {
+    const L = build.content.ladder[r];
+    if (!L) return 0;
+    // an exceptional file (two standout moments) may use the rung's lower floor, never anything lower
+    if (flags && flags.includes('exceptional') && L.minAgeExceptional !== undefined) return L.minAgeExceptional;
+    return L.minAge || 0;
+  };
 
   for (const rival of modes) for (const [bot, score] of Object.entries(BOTS)) for (const origin of ORIGINS) for (let i = 0; i < n; i++) {
     const pick = H.rng((i * 2654435761 + 17 + (rival ? 99991 : 0)) >>> 0);
@@ -96,8 +102,8 @@ function sample(build, n = 600, opts = {}) {
         x.playerRanks.add(at.player);
       }
       // the service's age floors hold for everyone in the same intake, in passed years too
-      if (after.rank < 8 && after.age < minAge(after.rank)) floors.push(`player ${build.content.ladder[after.rank].title} at ${after.age}`);
-      for (const p of t.passed || []) if (p.rank < 8 && p.age < minAge(p.rank)) floors.push(`player ${build.content.ladder[p.rank].title} at ${p.age}`);
+      if (after.rank < 8 && after.age < minAge(after.rank, after.flags)) floors.push(`player ${build.content.ladder[after.rank].title} at ${after.age}`);
+      for (const p of t.passed || []) if (p.rank < 8 && p.age < minAge(p.rank, after.flags)) floors.push(`player ${build.content.ladder[p.rank].title} at ${p.age}`);
       const v = after.rival;
       if (v && v.rank < 8 && after.age < minAge(v.rank)) floors.push(`batchmate ${build.content.ladder[v.rank].title} at ${after.age}`);
     }
@@ -156,6 +162,8 @@ const LINE_RULES = {
 function texts(e) {
   const out = [e.title, e.body];
   for (const c of e.choices || []) out.push(c.text, c.outcome);
+  // every version of the card is shown in the same contexts as the card itself
+  for (const v of e.variants || []) { out.push(v.title, v.body); for (const c of v.choices || []) out.push(c.text, c.outcome); }
   const m = e.montageLines;
   if (m) out.push(...(Array.isArray(m) ? m : Object.values(m).flat()));
   return out.filter(Boolean);

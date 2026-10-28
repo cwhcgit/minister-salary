@@ -29,10 +29,14 @@ export interface Status {
 }
 
 const WEB = path.join(REPO, "web");
-const FX_KEYS = new Set(["reputation", "standing", "integrity", "competence", "wealth", "heat", "cep"]);
-const REQ_KEYS = new Set(["minRank", "maxRank", "minStats", "maxStats", "minAge", "maxAge", "flagsAll", "flagsNone", "origin", "originNot", "notDuringBond"]);
-const EVENT_KEYS = new Set(["id", "title", "body", "requires", "weight", "once", "priority", "triggered", "choices"]);
-const CHOICE_KEYS = new Set(["text", "effects", "setFlags", "clearFlags", "outcome", "schedule", "requiresStat", "setRank", "election"]);
+const FX_KEYS = new Set(["reputation", "standing", "integrity", "competence", "wealth", "heat", "cep", "appraisal"]);
+const REQ_KEYS = new Set(["minRank", "maxRank", "minStats", "maxStats", "minAge", "maxAge", "flagsAll", "flagsNone", "origin", "originNot", "notDuringBond",
+  "ministry", "economy", "electionDue", "cooldown", "rival"]);
+// Everything web/engine.js reads on a card. A field missing here is refused in a proposal.
+const EVENT_KEYS = new Set(["id", "title", "body", "requires", "weight", "once", "priority", "triggered", "choices",
+  "alternates", "variants", "standout", "noMontage", "montageLines", "montageEffects", "autoPlay", "cooldown", "rivalCard"]);
+const CHOICE_KEYS = new Set(["text", "effects", "setFlags", "clearFlags", "outcome", "schedule", "requiresStat", "setRank", "election",
+  "standout", "pip", "resetWarnings", "readFolder", "folder", "privateSector", "nationalBonus", "nationalBonusRisk", "newMinistry", "markSeen", "rival"]);
 
 export const dirOf = (id: string) => path.join(PROPOSALS, id);
 export const readJson = (f: string) => JSON.parse(fs.readFileSync(f, "utf8"));
@@ -50,7 +54,7 @@ function validateEvent(e: any): string[] {
   for (const k of Object.keys(e)) if (!EVENT_KEYS.has(k)) errs.push(`${at}: unknown field ${k}`);
   if (!/^[a-z][a-z0-9_]*$/.test(e.id ?? "")) errs.push(`${at}: id must be snake_case`);
   if (!e.title || !e.body) errs.push(`${at}: needs title and body`);
-  if (e.triggered && e.requires) errs.push(`${at}: a triggered event takes no requires`);
+  // a triggered event may take requires: it then waits, still scheduled, until they hold
   for (const k of Object.keys(e.requires || {})) if (!REQ_KEYS.has(k)) errs.push(`${at}: unknown requirement ${k}`);
   if (!Array.isArray(e.choices) || e.choices.length < 1 || e.choices.length > 4) errs.push(`${at}: needs 1-4 choices`);
   for (const [i, c] of (e.choices || []).entries()) {

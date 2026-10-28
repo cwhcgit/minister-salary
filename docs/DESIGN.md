@@ -108,7 +108,10 @@ instead of two until Director. The advantage is the clock and the ceiling, not a
 start: even the fastest real officers made Director around 29. This is the sharpest
 satirical point in the game and it is a *mechanic*, not a line of dialogue — see §7
 Character creation. Age floors (plausible, not official rules): Director 28, Deputy
-Secretary 35, Permanent Secretary 38.
+Secretary 35, Permanent Secretary 40. An exceptional file lowers the top two: two
+standout moments in the service (a crisis statement written well, a vindicated paper, a
+second look by the board) mark it "exceptional", and Deputy Secretary opens at 33 and
+Permanent Secretary at 38. Nothing ever goes below 38 for Permanent Secretary.
 
 ### Act II — The Crossing
 
@@ -166,7 +169,8 @@ performanceScore = 0.5·Competence + 0.3·Standing + 0.15·Reputation + noise(±
 
 - **A / B+** → promotion eligible, if `currentRank < CEP`
 - **C** twice consecutively → lateral transfer to a posting nobody wants
-- **D** → the quiet conversation
+- **D** → a warning; the next year, the improvement plan card. Two Ds in a row after it →
+  the quiet conversation (never in the first four years, or before six cards)
 - `currentRank == CEP` → *"You are described as having found your level."* Promotion
   never comes. Player must find a CEP-raising event or accept the ceiling.
 
@@ -216,6 +220,17 @@ design; it ships in M1, not later.
 **Selection:** filter the pool by `requires` against current state → weighted random →
 suppress `once` events already seen. Scheduled events pre-empt the random pool.
 
+**Variety.** A second career should not replay the first. Three mechanisms, measured by
+`test/variety.js`:
+- *Versions.* A card may carry `variants`: the same mechanics in a different scene (title,
+  body, choice text and outcomes change; effects, flags and consequences do not). A run's
+  first showing prefers a version the phone has not shown recently; a repeatable card shown
+  in full again later in the run moves on to its next version.
+- *Freshness.* The phone remembers the cards and versions of its last two runs; those cards
+  are drawn at 0.35 of their weight.
+- *Ministry decks.* Some cards require the player's ministry (Health, Manpower, National
+  Development, Education), so two careers in different ministries see different work.
+
 **Content targets**
 - M1: ~25 events, enough to reach Director
 - M3: 120+ events, full ladder, 8-10 endings
@@ -250,7 +265,9 @@ one-line epitaph. Collected in a gallery — the main replay driver.
 6. **POFMA'd Into The Sea** — Heat maxed out. Everything surfaces at once.
 7. **The Quiet Conversation** — asked to resign. No announcement is made.
 8. **Backbench Lifer** — MP for thirty years, never a portfolio, beloved locally.
-9. *(stretch)* **Leader of the Opposition** — see §11.
+9. **Never Quite Cabinet** — retired as a junior office-holder (Parliamentary Secretary to
+   Senior Minister of State). Answered the Questions; never sat at the table.
+10. *(stretch)* **Leader of the Opposition** — see §11.
 
 ---
 

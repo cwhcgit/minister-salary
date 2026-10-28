@@ -40,13 +40,19 @@ function cards(build) {
 const strings = v => typeof v === "string" ? [v] : Array.isArray(v) ? v.flatMap(strings)
   : v && typeof v === "object" ? Object.values(v).flatMap(strings) : [];
 
-// Texts per card: its body, each choice's outcome and its montage lines; plus ending epitaphs.
+// Texts per card: its body, each choice's outcome and its montage lines, the same for each of its
+// versions; plus ending epitaphs.
 function texts(list, game) {
   const out = [];
   for (const e of list) {
     if (e.body) out.push({ card: e.id, kind: "body", where: `${e.id}.body`, text: e.body });
     (e.choices || []).forEach((c, i) => c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}.choices[${i}].outcome`, text: c.outcome }));
     strings(e.montageLines).forEach((m, i) => out.push({ card: e.id, kind: "montage", where: `${e.id}.montageLines#${i}`, text: m }));
+    // a card's other versions are the same card in another scene: checked against every other card
+    (e.variants || []).forEach((v, k) => {
+      if (v.body) out.push({ card: e.id, kind: "body", where: `${e.id}.variants[${k}].body`, text: v.body });
+      (v.choices || []).forEach((c, i) => c && c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}.variants[${k}].choices[${i}].outcome`, text: c.outcome }));
+    });
   }
   for (const en of (game.endings || [])) out.push({ card: `ending:${en.id}`, kind: "epitaph", where: `endings.${en.id}.epitaph`, text: en.epitaph });
   return out;

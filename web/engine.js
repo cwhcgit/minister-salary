@@ -46,6 +46,11 @@ const Engine = (() => {
       scheduled: [],     // { eventId, fireYear }
       consecutiveC: 0,
       consecutiveD: 0,
+      cardsPlayed: 0,    // taps on real cards; probation counts these as well as years
+      standouts: 0,      // standout moments toward an "exceptional" file
+      // cards (and card versions) seen in the player's last runs on this phone: drawn less
+      // often this run, so a second career does not replay the first
+      recent: Array.isArray(opts.recent) ? opts.recent.slice(0, 400) : [],
       rngCalls: 0,
       ending: null,
       currentEvent: null
@@ -255,6 +260,7 @@ const Engine = (() => {
     if (q.flagsNone && q.flagsNone.some(f => s.flags.includes(f))) return false;
     for (const k in (q.minStats || {})) if (s[k] < q.minStats[k]) return false;
     for (const k in (q.maxStats || {})) if (s[k] > q.maxStats[k]) return false;
+    if (q.ministry !== undefined && s.ministry !== q.ministry) return false;   // ministry decks
     if (q.economy !== undefined && economy(s) !== q.economy) return false;
     if (q.electionDue !== undefined && electionDue(s) !== q.electionDue) return false;
     if (q.cooldown) {   // a shared clock: e.g. one Budget-cycle card every three years
@@ -308,9 +314,10 @@ const Engine = (() => {
     if (pri.length) { info.source = "priority"; return pri[0]; }
     // 3. weighted random
     info.source = "random";
-    const total = pool.reduce((n, e) => n + (e.weight || 5), 0);
+    const w = e => (e.weight || 5) * (s.recent && s.recent.includes(e.id) ? (content.freshness || 0.35) : 1);
+    const total = pool.reduce((n, e) => n + w(e), 0);
     let x = roll(s) * total;
-    for (const e of pool) { x -= (e.weight || 5); if (x <= 0) return e; }
+    for (const e of pool) { x -= w(e); if (x <= 0) return e; }
     return pool[pool.length - 1];
   }
 
@@ -405,6 +412,19 @@ const Engine = (() => {
     }
 
     (ch.setFlags || []).forEach(f => { if (!s.flags.includes(f)) s.flags.push(f); });
+    // Standout moments in the service. Two of them mark the file "exceptional", which lets the
+    // top rungs' age floors give a little (ladder minAgeExceptional). Rare by design.
+    if ((ch.standout || ev.standout) && s.rank < 8) {
+      s.standouts = (s.standouts || 0) + 1;
+      if (s.standouts >= (content.exceptionalAfter || 2) && !s.flags.includes("exceptional")) {
+        s.flags.push("exceptional");
+        s.exceptionalAt = { age: s.age, title: ev.title };
+        t.exceptional = true;
+      }
+    }
+    // The improvement plan: being eased out always follows a card the player saw.
+    if (ch.pip) s.pipDone = true;
+    if (ch.resetWarnings) { s.consecutiveD = 0; s.consecutiveC = 0; }
     (ch.markSeen || []).forEach(id => { if (!s.seen.includes(id)) s.seen.push(id); });
     (ch.clearFlags || []).forEach(f => { s.flags = s.flags.filter(x => x !== f); });
     if (ev.once && !s.seen.includes(ev.id)) s.seen.push(ev.id);
@@ -505,6 +525,15 @@ const Engine = (() => {
     return content.minYearsInGrade + (r >= 10 ? 1 : 0) + (r >= 13 ? 1 : 0) + (r >= 15 ? 1 : 0);
   }
 
+  // The age floor on a rung (ladder minAge). A file marked exceptional (two standout moments)
+  // may use the rung's minAgeExceptional instead, and nothing goes lower than that.
+  function floorAge(content, s, r) {
+    const L = content.ladder[r];
+    if (!L) return 0;
+    if (s.flags.includes("exceptional") && L.minAgeExceptional !== undefined) return L.minAgeExceptional;
+    return L.minAge || 0;
+  }
+
   function appraise(content, s) {
     const noise = (roll(s) * 20) - 10;
     const mod = s.appraisalMod;
@@ -530,13 +559,25 @@ const Engine = (() => {
       ? `${grade.label} The comments section includes the word "however".` : grade.label });
 
     if (grade.code === "C") s.consecutiveC++; else s.consecutiveC = 0;
-    if (grade.code === "D") s.consecutiveD++; else s.consecutiveD = 0;
-    // Probation: nobody is eased out in their first four years; a second D is a second warning.
-    if (s.consecutiveD >= 2 && s.year <= (content.probationYears || 4)) { s.consecutiveD = 1; t.probation = true; }
+    if (grade.code === "D") s.consecutiveD++; else { s.consecutiveD = 0; s.pipDone = false; }
+    // Probation: nobody is eased out in their first four years, or before their sixth card;
+    // a second D is a second warning.
+    if (s.consecutiveD >= 2 && (s.year <= (content.probationYears || 4) || (s.cardsPlayed || 0) < (content.probationCards || 6))) {
+      s.consecutiveD = 1; t.probation = true;
+    }
+    // Nobody is eased out without the improvement plan in front of them first.
+    if (s.consecutiveD >= 2 && !s.pipDone) { s.consecutiveD = 1; t.pipHeld = true; }
     if (s.consecutiveD >= 2) { s.ending = "quiet"; return log; }
-    if (s.consecutiveD === 1) log.push({ kind: "warn", text: s.rank >= 8
-      ? "The Whip asks, kindly, whether you have thought about spending more time in your ward. It is phrased as concern."
-      : "Your reporting officer asks whether you have considered the private sector. It is phrased as concern." });
+    if (s.consecutiveD === 1) {
+      log.push({ kind: "warn", text: s.rank >= 8
+        ? "The Whip asks, kindly, whether you have thought about spending more time in your ward. It is phrased as concern."
+        : "Your reporting officer asks whether you have considered the private sector. It is phrased as concern." });
+      if (!s.pipDone && !s.scheduled.some(x => x.eventId === "improvement_plan") && content.events.some(e => e.id === "improvement_plan")) {
+        const e = { eventId: "improvement_plan", fireYear: s.year + 1 };
+        s.scheduled.push(e);
+        (t.added = t.added || []).push(e);
+      }
+    }
     if (s.consecutiveC >= 3) {
       s.consecutiveC = 0;
       s.competence = clamp(s.competence + 3, 0, 100);
@@ -558,7 +599,7 @@ const Engine = (() => {
 
     // The batchmate's year runs first: at the same grade there is one slot. A player held by
     // the age floor is not in that year's contest at all.
-    const ageFloored = s.rank < 16 && (content.ladder[s.rank + 1].minAge || 0) > s.age;
+    const ageFloored = s.rank < 16 && floorAge(content, s, s.rank + 1) > s.age;
     const pmGivenAway = s.rank === 15 && s.flags.includes("kingmaker");
     const wouldPromote = promotable && s.rank < s.cep && s.rank !== 7 && !ageFloored && !pmGivenAway;
     const rv = s.rival ? rivalYear(content, s, t, wouldPromote ? score : null) : { lost: false, log: [] };
@@ -595,7 +636,7 @@ const Engine = (() => {
       // A standout junior officer occasionally skips a grade. This is the only way
       // a late starter ever makes up the years a scholar was simply given.
       const doubleJump = !fast && grade.code === "A" && s.rank <= 4 && score >= 84 && s.rank + 1 < s.cep
-        && (content.ladder[s.rank + 2].minAge || 0) <= s.age;
+        && floorAge(content, s, s.rank + 2) <= s.age;
       s.rank += doubleJump ? 2 : 1;
       if (doubleJump) t.promotion.result = "promoted_two";
       s.yearsInGrade = 0;
@@ -629,6 +670,8 @@ const Engine = (() => {
     if (s.rank >= 13) return "retired";
     if (s.rank === 7) return "permsec";
     if (s.flags.includes("tea_withdrawn")) return "withdrawn";
+    // a junior office-holder is not a backbencher: Parliamentary Secretary to Senior Minister of State
+    if (s.rank >= 9) return "office";
     if (s.rank >= 8) return "backbench";
     return "level";
   }
@@ -667,7 +710,45 @@ const Engine = (() => {
     if (id === "__quiet") return QUIET_YEAR;
     if (id.startsWith(MONTAGE)) return montageOf(content.events.find(e => e.id === id.slice(MONTAGE.length)), s);
     const ev = allEvents(content, s).find(e => e.id === id);
-    return ev && ev.rivalCard ? withNames(ev, s) : ev;
+    const v = ev ? variantOf(ev, s) : ev;
+    return v && v.rivalCard ? withNames(v, s) : v;
+  }
+
+  // --- card versions ---------------------------------------------------------
+  // A card may carry variants: the same mechanics, flags and choices in a different scene.
+  // The first showing in a run is chosen from the seed, preferring a version the player has not
+  // seen in their last runs on this phone; a card shown in full again later in the same run moves
+  // on to its next version. Only words change (title, body, choice text, outcomes).
+  function hashId(id) { let h = 2166136261; for (const ch of id) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0; return h; }
+  function variantIndex(ev, s) {
+    const n = (ev.variants || []).length + 1;
+    if (n === 1) return 0;
+    const start = Math.floor(rng((s.seed ^ hashId(ev.id)) >>> 0)() * n);
+    const order = Array.from({ length: n }, (_, k) => (start + k) % n);
+    const recent = s.recent || [];
+    const fresh = order.filter(i => !recent.includes(ev.id + "#" + i));
+    const list = fresh.concat(order.filter(i => !fresh.includes(i)));
+    // a card shown in full again in the same run (a repeat card, an improvement plan) moves on
+    const shownBefore = (s.history || []).filter(h => h.ev === ev.id && !h.passed).length;
+    return list[shownBefore % n];
+  }
+  function variantOf(ev, s) { return applyVariant(ev, variantIndex(ev, s)); }
+  function applyVariant(ev, i) {
+    if (!i || !ev.variants || !ev.variants[i - 1]) return ev;
+    const v = ev.variants[i - 1];
+    return { ...ev, variant: i, title: v.title || ev.title, body: v.body || ev.body,
+      choices: ev.choices.map((c, k) => ({ ...c, ...(v.choices && v.choices[k] ? { text: v.choices[k].text || c.text, outcome: v.choices[k].outcome || c.outcome } : {}) })),
+      ...(v.autoPlayLine && ev.autoPlay ? { autoPlay: { ...ev.autoPlay, line: v.autoPlayLine } } : {}) };
+  }
+
+  // What this run showed, for the next run's freshness: card ids and the versions seen.
+  function recentKeys(content, s) {
+    const out = new Set();
+    for (const h of s.history || []) {
+      if (h.passed || !h.ev || h.ev.startsWith("__")) continue;
+      out.add(h.ev); out.add(h.ev + "#" + (h.variant || 0));
+    }
+    return [...out];
   }
 
   function withNames(ev, s) {
@@ -702,7 +783,7 @@ const Engine = (() => {
     t.passed = [];
     for (let k = 0; k < 60 && !s.ending; k++) {
       const info = {};
-      const ev = pickEvent(content, s, info);
+      let ev = pickEvent(content, s, info);
       const kind = passKind(ev, s);
       if (!kind) { s.currentEvent = ev.id; t.nextDraw = info; return log; }
       const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
@@ -715,7 +796,9 @@ const Engine = (() => {
         s.fillerSeen[ev.id]++;
         lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${m.body}` });
       } else if (kind === "auto") {
-        choice = ev.autoPlay.choice || 0; ch = ev.choices[choice];
+        const vev = variantOf(ev, s);
+        choice = ev.autoPlay.choice || 0; ch = vev.choices[choice];
+        ev = vev;
         const al = applyChoice(content, s, ev, ch, pt, { safe: true });
         lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${ev.autoPlay.line || ch.outcome}` }, ...al);
       } else {
@@ -728,6 +811,7 @@ const Engine = (() => {
       log.push(...lines);
       t.passed.push(pt);
       s.history.push({ ...before, ev: pt.ev, title: ev ? ev.title : QUIET_YEAR.title, choice, text: ch.text, passed: kind,
+        grade: (pt.appraisal || {}).grade,
         cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation, noted: false,
         hints: yl.filter(l => l.kind === "cep" || l.kind === "heat").map(l => l.kind + "|" + l.text) });
     }
@@ -753,7 +837,9 @@ const Engine = (() => {
       s.fillerSeen[ev.id] = (s.fillerSeen[ev.id] || 0) + 1;
       (s.habits = s.habits || {})[ev.id] = choiceIndex;   // what habit years will repeat
     }
-    s.history.push({ ...before, ev: ev.id, title: ev.title, choice: choiceIndex, text: ch.text,
+    s.cardsPlayed = (s.cardsPlayed || 0) + 1;
+    s.history.push({ ...before, ev: ev.id, title: ev.title, choice: choiceIndex, text: ch.text, variant: ev.variant || 0,
+      grade: (trace.appraisal || {}).grade,
       cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation,
       noted: ((ch.effects || {}).appraisal || 0) < 0,
       hints: log.filter(l => l.kind === "cep" || l.kind === "heat").map(l => l.kind + "|" + l.text) });
@@ -785,8 +871,26 @@ const Engine = (() => {
   function legacy(content, s) {
     const marks = (content.legacyFlags || []).filter(f => s.flags.includes(f)).length;
     const score = s.integrity + s.reputation / 2 + 8 * marks;
-    const tiers = content.legacyTiers || [];
+    // an exit that was not a retirement has its own lines: nobody gives a farewell speech for those
+    const tiers = (content.legacyByEnding || {})[s.ending] || content.legacyTiers || [];
     return (tiers.find(x => score >= x.min) || { text: "" }).text;
+  }
+
+  // The ending card's labels: not every ending is a retirement.
+  function finalLabels(content, s) {
+    const politician = s.rank >= 8;
+    switch (s.ending) {
+      case "pm": return { position: "Final position", age: "Took office at", share: "became Prime Minister at" };
+      case "consultancy": return politician
+        ? { position: "Left Parliament as", age: "At age", share: "left Parliament as" }
+        : { position: "Left the service as", age: "At age", share: "left the service as" };
+      case "quiet": return { position: "Last held", age: "At age", share: "was eased out as" };
+      case "scandal": return { position: "Resigned as", age: "At age", share: "resigned as" };
+      case "lostward": return politician
+        ? { position: "Lost the seat as", age: "At age", share: "lost the seat as" }
+        : { position: "Last held", age: "At age", share: "lost the election, having been" };
+      default: return { position: "Retired as", age: "At age", share: "retired as" };
+    }
   }
 
   function title(content, r) {
@@ -796,89 +900,108 @@ const Engine = (() => {
   // What was really going on, as a short list of lines for the ending screen.
   const NUM = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
 
+  // Each line is one idea, short enough to read at a glance: the label names it, the text says it.
   function declassify(content, s) {
     const out = [], H = s.history || [];
-    // In the service a ceiling of 7 or more means no ceiling at all; in politics it is a rank.
+    const count = n => NUM[n] || String(n);
+    // In the service a ceiling of 7 is the top rung and 8 or more is none at all; in politics it is a rank.
     const ceiling = (r, political) => political ? title(content, r)
-      : r === 7 ? "Permanent Secretary, the top of the service"
-      : r >= 8 ? "no ceiling inside the service" : title(content, r);
+      : r === 7 ? "Permanent Secretary" : r >= 8 ? "none" : title(content, r);
     out.push({ label: "Your ceiling", text: s.cepStart >= 8
-      ? "When you joined, your file put no ceiling on you inside the service. Most people's files do."
-      : `When you joined, your file estimated your potential at ${ceiling(s.cepStart, false)}. You were not told.` });
+      ? "None inside the service. Most people have one. Not mentioned."
+      : `${ceiling(s.cepStart, false)}. Decided on day one. Not mentioned.` });
     const won = H.find(h => h.ev === "the_election" && h.rankAfter === 8);
-    if (won) out.push({ label: "The party's estimate", text: `When you won your seat, the party made its own: ${title(content, won.cepAfter)}. Nobody told you that either.` });
+    if (won) out.push({ label: "The party's estimate", text: `${title(content, won.cepAfter)}. Also not mentioned.` });
 
-    // Raises that mattered: in the service while a ceiling below the top still applied; in
-    // politics, after the election that set the party's own estimate. A politician sees both.
+    // The move that raised the ceiling: in the service while a ceiling below the top still applied;
+    // in politics, after the election that set the party's own estimate. A politician sees both.
     const political = s.rank >= 8;
     // A year that passed by itself was not a choice, so it is neither a raise you chose nor one you missed.
     const raisesIn = pol => H.filter(h => !h.passed && h.cepAfter > h.cep && h.ev !== "the_election"
       && (pol ? h.rank >= 8 : h.rank < 8 && h.cep < 7));
-    const best = xs => xs.reduce((a, b) => (b.cepAfter - b.cep > a.cepAfter - a.cep ? b : a));
-    const said = r => {
-      const to = r.rank < 8 && r.cepAfter >= 8 ? "It removed your ceiling inside the service altogether."
-        : `It raised your ceiling to ${ceiling(r.cepAfter, r.rank >= 8)}.`;
-      return `At ${r.age}, in ${r.title}, you chose "${r.text}" ${to}`;
+    // The choice that set the final ceiling, not merely the biggest step: a career's story ends
+    // at the raise that made its last rung possible.
+    const last = xs => xs.reduce((a, b) => (b.cepAfter >= a.cepAfter ? b : a));
+    const said = r => `${r.title}, age ${r.age}. "${r.text}" Ceiling: ${r.rank < 8 && r.cepAfter >= 8 ? "gone" : ceiling(r.cepAfter, r.rank >= 8)}.`;
+    // The first choice that would have raised it, had you taken it.
+    const missed = pol => {
+      const h = H.filter(h => !h.passed && (pol ? h.rank >= 8 : h.rank < 8)).find(h => {
+        const ev = content.events.find(e => e.id === h.ev);
+        return ev && ev.choices.some((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
+      });
+      if (!h) return "None. Nothing you were offered could have raised it.";
+      // quoted as the player saw it: the version of the card that run showed
+      const c = applyVariant(content.events.find(e => e.id === h.ev), h.variant).choices.find((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
+      return `None. At ${h.age}, "${c.text}" would have raised it.`;
     };
-    const missedIn = pol => H.filter(h => !h.passed && (pol ? h.rank >= 8 : h.rank < 8)).filter(h => {
-      const ev = content.events.find(e => e.id === h.ev);
-      return ev && ev.choices.some((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
-    }).slice(0, 2).map(h => {
-      const ev = content.events.find(e => e.id === h.ev);
-      const c = ev.choices.find((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
-      return `at ${h.age}, "${c.text}"`;
-    });
     const service = raisesIn(false);
-    if (service.length) out.push({ label: "The year it changed", text: said(best(service)) });
-    else if (s.cepStart >= 7 && !political) out.push({ label: "The year it changed", text: s.origin === "scholar"
-      ? "It never needed to. That is what the scholarship was for."
-      : "It never needed to. Your file had expected this of you from the first day, and never said so." });
-    else if (!political) {
-      const m = missedIn(false);
-      out.push({ label: "The year it changed", text: m.length ? `It never did. It could have: ${m.join("; ")}`
-        : "It never did. Nothing you were offered could have changed it." });
-    }
+    let moved = false;
+    if (service.length) { out.push({ label: "The move", text: said(last(service)) }); moved = true; }
+    else if (s.cepStart >= 7 && !political) out.push({ label: "The move", text: s.origin === "scholar"
+      ? "Never needed one. That is what the scholarship was for."
+      : "Never needed one. Your file expected it from day one." });
+    else if (!political) out.push({ label: "The move", text: missed(false) });
     if (political) {
       const pol = raisesIn(true);
-      const m = pol.length ? [] : missedIn(true);
-      // The choice that set your final ceiling, not merely the biggest step: a Prime Minister's
-      // story ends at the raise that made it possible.
-      const last = pol.length && pol.reduce((a, b) => (b.cepAfter >= a.cepAfter ? b : a));
-      const more = pol.length > 1 ? ` It was the last of ${NUM[pol.length] || pol.length} choices that raised it.` : "";
-      out.push({ label: "In politics", text: pol.length ? said(last) + more
-        : m.length ? `The party's estimate never moved. It could have: ${m.join("; ")}`
-        : "The party's estimate never moved. Nothing you were offered could have moved it." });
+      out.push({ label: moved ? "The next move" : "The move", text: pol.length ? said(last(pol)) : missed(true) });
     }
 
     // Only the ceiling rumours (content.cepHints); the Perm Sec "no rung above" line is not one.
     const allHints = [...content.cepHints, ...(content.cepHintsPolitics || [])];
     const isHint = x => x.startsWith("cep|") && allHints.includes(x.slice(4));
-    const blocked = H.filter(h => h.hints.some(isHint));
-    if (blocked.length) {
-      const first = blocked[0].hints.find(isHint).slice(4);
-      out.push({ label: "The rumours, translated", text: `"${first}" meant: your work had earned a promotion and your ceiling refused it. You were told this ${blocked.length} time${blocked.length > 1 ? "s" : ""}.` });
-    }
+    const blocked = H.filter(h => h.hints.some(isHint)).length;
+    if (blocked) out.push({ label: blocked === 1 ? "The rumour" : "The rumours", text: blocked === 1
+      ? "It meant: promotion earned, ceiling said no."
+      : `${blocked === 2 ? "Both" : `All ${count(blocked)}`} meant the same: promotion earned, ceiling said no.` });
 
     // Why the tea never came, for a career that stayed in the service and was never asked.
+    // One reason, the one that fell furthest short.
     const asked = ["went_to_tea", "declined_tea", "tea_withdrawn"].some(f => s.flags.includes(f));
     const tea = content.events.find(e => e.id === "tea_session");
     if (!asked && tea && s.rank < 8 && s.ending && !["consultancy", "scandal"].includes(s.ending)) {
       const q = tea.requires || {}, need = q.minStats || {};
       const window = H.filter(h => h.rankAfter >= (q.minRank || 0) && h.rankAfter <= (q.maxRank ?? 7));
-      const noted = H.filter(h => h.noted).length;
-      const n = NUM[noted] || String(noted);
-      const notedText = !noted ? "" : ` ${n[0].toUpperCase() + n.slice(1)} of your choices had been noted along the way.`;
-      if (!window.length) out.push({ label: "The invitation", text: `It never came. The people who decide who is asked to tea look at officers of ${title(content, q.minRank || 0)}'s grade and above, and you never reached it.${notedText}` });
+      let text;
+      if (!window.length) text = `Never came. Tea starts at ${title(content, q.minRank || 0)}. You never got there.`;
       else {
-        const st = Math.max(...window.map(h => h.standing ?? 0)), rep = Math.max(...window.map(h => h.reputation ?? 0));
-        out.push({ label: "The invitation", text: `It never came. The people who decide who is asked to tea look for Standing of ${need.standing} and Reputation of ${need.reputation}. In those years your best was Standing ${st} and Reputation ${rep}.${notedText}` });
+        const peak = k => Math.max(...window.map(h => h[k] ?? 0));
+        const short = Object.keys(need).map(k => ({ k, need: need[k], got: peak(k) })).filter(x => x.got < x.need)
+          .sort((a, b) => (b.need - b.got) - (a.need - a.got))[0];
+        const both = Object.keys(need).map(k => `${cap(k)} ${need[k]}`).join(" and ");
+        text = short ? `Never came. Tea wants ${cap(short.k)} ${short.need}. You peaked at ${short.got}.`
+          : `Never came. Tea wants ${both} together. You never had both.`;
       }
+      out.push({ label: "The invitation", text });
+      const noted = H.filter(h => h.noted).length;
+      if (noted) out.push({ label: "Noted", text: noted === 1
+        ? "Once. It cost that year's appraisal."
+        : `${cap(noted === 2 ? "twice" : `${count(noted)} times`)}. Each cost that year's appraisal.` });
+    }
+
+    // The exception: two standout moments marked the file, and the top rungs' age floors gave.
+    if (s.flags.includes("exceptional") && s.exceptionalAt) {
+      const L = content.ladder;
+      const early = [7, 6].map(r => ({ r, h: H.find(h => h.rankAfter === r && h.rank !== r) }))
+        .find(x => x.h && L[x.r].minAge && x.h.age < L[x.r].minAge);
+      const x = s.exceptionalAt;
+      out.push({ label: "The exception", text: early
+        ? `Marked "exceptional" at ${x.age}. Hence ${L[early.r].title} at ${early.h.age}, not ${L[early.r].minAge}.`
+        : x.age >= (L[7].minAge || 0) ? `Marked "exceptional" at ${x.age}. By then, nobody thought you too young.`
+        : `Marked "exceptional" at ${x.age}. The age floors would have bent. They never had to.` });
+    }
+
+    // A career that ended below its ceiling was not stopped by the ceiling: say what did.
+    const ownCeiling = s.rank < 8 ? (s.cep >= 7 ? 7 : s.cep) : s.cep;
+    if (["level", "backbench", "office"].includes(s.ending) && ownCeiling > s.rank) {
+      const gs = H.map(h => h.grade).filter(Boolean);
+      const low = gs.filter(g => !["A", "B+"].includes(g)).length;
+      out.push({ label: "What stopped you", text: `Appraisals, not the ceiling. ${low} of ${gs.length} came in below "strong".` });
     }
 
     const peak = H.reduce((a, b) => (b.heatAfter > a.heatAfter ? b : a), { heatAfter: 0 });
     out.push({ label: "Exposure", text: peak.heatAfter >= 20
-      ? `Your scandal exposure peaked at ${peak.heatAfter} out of 100, after "${peak.title}" at age ${peak.age}. At 85, everything surfaces at once.`
-      : "Your file is clean enough to be boring. In this building, that is a compliment." });
+      ? `Peaked at ${peak.heatAfter}, after "${peak.title}". At 85, it all comes out.`
+      : "Clean enough to be boring. In this building, a compliment." });
 
     if (s.rival) out.push(...declassifyRival(content, s));
     out.push({ label: "Legacy", text: legacy(content, s) });
@@ -888,35 +1011,39 @@ const Engine = (() => {
   function declassifyRival(content, s) {
     const v = s.rival, p = PRON[v.pron] || PRON.f, out = [];
     const t = title(content, v.rank);
-    const where = v.status === "consultancy" ? `${v.name} left for a consultancy as ${t}.`
-      : v.status === "scandal" ? `${v.name} resigned as ${t}, for personal reasons.`
-      : v.status === "retired" ? `${v.name} retired as ${t}.`
-      : v.rank === 16 ? `${v.name} became Prime Minister.`
-      : `When your career ended, ${v.name} was ${t}.`;
-    const est = v.cepStart >= 8 ? `${cap(p.their)} file put no ceiling on ${p.them} inside the service.`
-      : `${cap(p.their)} file estimated ${p.their} potential at ${v.cepStart === 7 ? "Permanent Secretary" : title(content, v.cepStart)}.`;
-    out.push({ label: "Your batchmate", text: `${where} ${est}` });
+    const where = v.status === "consultancy" ? `Left for a consultancy as ${t}.`
+      : v.status === "scandal" ? `Resigned as ${t}. Personal reasons.`
+      : v.status === "retired" ? `Retired as ${t}.`
+      : v.rank === 16 ? "Prime Minister."
+      : `${t} when you finished.`;
     const yrs = n => `${n} year${n === 1 ? "" : "s"}`;
     const level = v.level || 0;
     const ranks = v.ahead + v.behind === 0 ? (level
-        ? `You were level for ${yrs(level)}, at the same grade, and neither of you ever outranked the other.`
-        : "You were never on the same ladder long enough to compare.")
-      : !v.behind ? `${v.name} outranked you for ${yrs(v.ahead)}; you never outranked ${p.them}.`
-      : !v.ahead ? `You outranked ${p.them} for ${yrs(v.behind)}; ${v.name} never outranked you.`
-      : `${v.name} outranked you for ${yrs(v.ahead)}; you outranked ${p.them} for ${yrs(v.behind)}.`;
-    out.push({ label: "Head to head", text: (v.met
-      ? `You were set against each other ${v.met === 1 ? "once" : v.met === 2 ? "twice" : `${NUM[v.met] || v.met} times`}${
-          v.wonMet === v.met ? (v.met === 1 ? " and came out ahead" : " and came out ahead every time")
-          : v.wonMet === 0 ? " and never came out ahead" : `, and came out ahead in ${NUM[v.wonMet] || v.wonMet}`}. `
-      : "You were never set against each other directly. ") + ranks });
-    const said = v.rel >= 3 ? `${v.name} still tells people you were the best colleague ${p.they} ever had, usually when you are not there to hear it.`
-      : v.rel <= -3 ? `${v.name} has never said anything about you in public, which in this building is its own kind of statement.`
-      : `${v.name} describes you as "a good colleague", which in this building is a complete sentence.`;
+        ? `Level with you for ${yrs(level)}. Neither outranked the other.`
+        : "Never on the same ladder long enough to compare.")
+      : !v.behind ? `Outranked you ${yrs(v.ahead)}. Never the reverse.`
+      : !v.ahead ? `You outranked ${p.them} ${yrs(v.behind)}. Never the reverse.`
+      : `Outranked you ${yrs(v.ahead)}; you outranked ${p.them} ${v.behind}.`;
+    out.push({ label: v.name, text: `${where} ${ranks}` });
+    out.push({ label: `${v.name}'s ceiling`, text: v.cepStart >= 8 ? `None inside the service. Not mentioned to ${p.them} either.`
+      : `${v.cepStart === 7 ? "Permanent Secretary" : title(content, v.cepStart)}. Not mentioned to ${p.them} either.` });
+    if (v.met) {
+      const times = v.met === 1 ? "Once" : v.met === 2 ? "Twice" : `${cap(NUM[v.met] || String(v.met))} times`;
+      const won = v.met === 1 ? (v.wonMet ? "You came out ahead." : `${v.name} came out ahead.`)
+        : v.wonMet === v.met ? "You came out ahead every time."
+        : v.wonMet === 0 ? `${v.name} came out ahead every time.`
+        : `You came out ahead ${v.wonMet === 1 ? "once" : v.wonMet === 2 ? "twice" : `${NUM[v.wonMet] || v.wonMet} times`}.`;
+      out.push({ label: "Head to head", text: `${times}. ${won}` });
+    }
+    const said = v.rel >= 3 ? `"The best colleague I ever had." Usually when you are not there.`
+      : v.rel <= -3 ? "Nothing, in public. In this building, that is a statement."
+      : `"A good colleague." In this building, a complete sentence.`;
     out.push({ label: `What ${v.name} says`, text: said });
     return out;
   }
 
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
+    finalLabels, recentKeys,
     STATS, QUIET: QUIET_YEAR };
 })();
 
