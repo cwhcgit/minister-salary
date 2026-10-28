@@ -14,6 +14,9 @@ jobs:
             const token = await core.getIDToken('https://api.anthropic.com');
             core.setSecret(token);
             core.exportVariable('JWT', token);
+            // The claims are not secret; printing them makes a rule mismatch easy to spot.
+            const c = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString());
+            core.notice(`sub=${c.sub} aud=${c.aud} ref=${c.ref} event_name=${c.event_name} repository_owner_id=${c.repository_owner_id}`, { title: 'GitHub token claims' });
       - name: Exchange for an Anthropic access token
         # Fails the job unless an access token comes back, so a green run means WIF works.
         run: |

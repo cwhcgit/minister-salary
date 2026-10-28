@@ -41,14 +41,14 @@ jobs:
   cohort:
     name: ${{ inputs.persona }}${{ inputs.dry_run && ' (dry run)' || '' }}
     runs-on: ubuntu-latest
-    environment: playtest
     timeout-minutes: 340
     env:
-      # Federation identifiers, not secrets: variables on the playtest environment.
-      ANTHROPIC_FEDERATION_RULE_ID: ${{ vars.ANTHROPIC_FEDERATION_RULE_ID }}
-      ANTHROPIC_ORGANIZATION_ID: ${{ vars.ANTHROPIC_ORGANIZATION_ID }}
-      ANTHROPIC_SERVICE_ACCOUNT_ID: ${{ vars.ANTHROPIC_SERVICE_ACCOUNT_ID }}
-      ANTHROPIC_WORKSPACE_ID: ${{ vars.ANTHROPIC_WORKSPACE_ID }}
+      # Federation identifiers, not secrets. No `environment:` here: it would change the token subject
+      # to repo:...:environment:..., and the rule matches repo:cwhcgit/minister-salary:ref:refs/heads/main.
+      ANTHROPIC_FEDERATION_RULE_ID: fdrl_01CYm8iJcdD1ZtSrR1gKpdMM
+      ANTHROPIC_ORGANIZATION_ID: 2f3a39e4-5a60-4ee0-9db1-1634ed555743
+      ANTHROPIC_SERVICE_ACCOUNT_ID: svac_012M6HPUHTmfwquraMjux41T
+      ANTHROPIC_WORKSPACE_ID: wrkspc_014M7AmfQuPoyQccxD9agdEB
       ANTHROPIC_IDENTITY_TOKEN_FILE: /tmp/anthropic-wif/github-oidc.jwt
       PLAYTEST_REQUIRE_WIF: "1"
       PERSONA: ${{ inputs.persona }}

@@ -15,12 +15,12 @@ Paid runs happen in GitHub Actions and authenticate with [workload identity fede
 **One-time setup**
 
 1. Claude Console → [Workload identity](https://platform.claude.com/settings/workload-identity-federation) → Connect workload → GitHub Actions. The wizard registers GitHub's issuer (`https://token.actions.githubusercontent.com`, discovery mode) and creates a service account and a federation rule. Use these values for the rule:
-   - `subject_prefix`: `repo:cwhcgit/minister-salary:environment:playtest`, the subject of a job that runs in the `playtest` environment. Nothing else in the repository matches it.
-   - `audience`: `https://api.anthropic.com`; `claims`: `{ "repository_owner": "cwhcgit" }`
-   - `workspace_id`: the project's own workspace, the one with the spend limit
+   - `subject_prefix`: `repo:cwhcgit/minister-salary:ref:refs/heads/main`, the subject of a job dispatched on `main`. The workflows must not set `environment:`, which would change the subject to `…:environment:<name>`.
+   - `audience`: `https://api.anthropic.com`; `claims`: `repository_owner` `cwhcgit`, `repository_owner_id` `156731708`, `repository` `cwhcgit/minister-salary`, `ref` `refs/heads/main`, `event_name` `workflow_dispatch`. Only people with write access can dispatch, so forks cannot get tokens.
+   - `workspace_id`: the project's own workspace (`wrkspc_014M7AmfQuPoyQccxD9agdEB`, no spend limit by the owner's choice)
    - `oauth_scope`: `workspace:developer`
    - `token_lifetime_seconds`: 600. Keep it at 420 or more. The SDK renews an access token once fewer than 120 seconds remain, and the file must have been replaced since the last exchange by then, because each GitHub token is accepted once; it is replaced every 180 seconds.
-2. GitHub → Settings → Environments → `playtest` (the first workflow run creates it). Add these as **variables**, not secrets; they are identifiers, not credentials: `ANTHROPIC_FEDERATION_RULE_ID` (`fdrl_…`), `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID` (`svac_…`), and `ANTHROPIC_WORKSPACE_ID` (`wrkspc_…`, required only if the rule covers more than one workspace). Restrict the environment's deployment branches to `main`, so a workflow edited on another branch cannot use it. Adding yourself as a required reviewer makes every paid run wait for your click.
+2. The four identifiers (rule `fdrl_…`, organization, service account `svac_…`, workspace `wrkspc_…`) are written directly into `cohort.yml` and `wif-smoke.yml`. They are identifiers, not credentials, so no GitHub secrets or variables are needed. If the rule is ever recreated, update them in both files.
 3. Actions → **WIF smoke test** → Run workflow. It makes one tiny Haiku call through the same client and token handling as the cohorts, and fails with a pointer to the Console's authentication history if the exchange is refused.
 
 **Running a cohort**
