@@ -189,12 +189,16 @@ function step(run, choiceId) {
     act: actOf(ev, pre),
     event: { id: ev.id, ...run.pendingDraw, once: !!ev.once, filler: ev.id !== "__quiet" && !ev.once && !ev.triggered,
              montage: ev.id.startsWith("__montage:"), variant: ev.variant || 0,
-             repeat: ev.id.startsWith("__montage:") || run.turns.some(t => t.event.id === ev.id) },
+             repeat: ev.id.startsWith("__montage:") || run.turns.some(t => t.event.id === ev.id),
+             // the scene as shown: which part options were assembled, and which of the run's people it named
+             ...(ev.picked ? { parts: ev.picked } : {}),
+             ...(ev.who ? { cast: castNames(pre, ev.who) } : {}) },
     choice: { id: View.LETTERS[i], index: i, effects: ch.effects || {},
               available: ev.choices.map((_, j) => sibling(build, pre, ev, j)).filter(x => x.available).map(x => x.id) },
     siblings: ev.choices.map((_, j) => sibling(build, pre, ev, j)),
     before, after, delta,
     flagsSet: S.flags.filter(f => !pre.flags.includes(f)),
+    castOps: r.trace.cast || null,                 // what the choice did to or for the run's people
     flagsCleared: pre.flags.filter(f => !S.flags.includes(f)),
     scheduled: addedSched,
     scheduleMissed: (ch.schedule || []).filter(sc => !addedSched.some(a => a.eventId === sc.eventId)),
@@ -219,6 +223,15 @@ function step(run, choiceId) {
     choiceList: run.choiceList.concat(View.LETTERS[i]),
     turns: run.turns.concat([rec])
   };
+}
+
+// role -> { id, name } for the people a card named (the trace's view of the cast)
+function castNames(S, who) {
+  const all = S.cast ? Object.values(S.cast.on).concat(S.cast.past).filter(Boolean) : [];
+  return Object.fromEntries(Object.entries(who).map(([role, id]) => {
+    const p = all.find(x => x.id === id);
+    return [role, { id, name: p ? p.nm.full : null, rank: p ? p.rank : null }];
+  }));
 }
 
 function actOf(ev, S) {
@@ -266,6 +279,7 @@ function trace(run) {
   return {
     buildHash: run.buildHash, origin: run.origin, seed: run.seed, name: run.name,
     rival: run.rival || false, batchmate: S.rival || null,   // the batchmate's hidden file, if any
+    cast: S.cast || null,                                     // the run's people: who held each role, and what happened to them
     recent: run.recent || [],                                 // freshness memory the run started with (replay key)
     exceptional: S.flags.includes("exceptional") ? (S.exceptionalAt || true) : null,
     choices: run.choiceList,

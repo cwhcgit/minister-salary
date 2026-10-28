@@ -57,6 +57,7 @@ const Engine = (() => {
     };
     g.cepStart = g.cep;
     if (opts.rival && content.rival) g.rival = newRival(content, origin, seed);
+    castSync(content, g, null, true);   // the run's people, before the first card
     return g;
   }
 
@@ -85,13 +86,446 @@ const Engine = (() => {
   }
 
   // {rival} is the name; pronouns only as object/possessive or before past-tense verbs.
+  // The same holds for the cast's pronoun tokens ({peer.they} etc.), so a line never depends on
+  // whether the pronoun takes "is" or "are".
   const PRON = { f: { they: "she", them: "her", their: "her" }, m: { they: "he", them: "him", their: "his" } };
-  function sub(text, s) {
-    if (!s.rival || typeof text !== "string") return text;
+  // Every name token on a card: {peer}, {Peer.They}, {asker.short}, {rival}. Card parts are
+  // filled first, then the cast, then the batchmate.
+  function sub(text, s, content) {
+    if (typeof text !== "string" || text.indexOf("{") < 0) return text;
+    if (content && s.cast) text = castSub(content, s, text);
+    if (!s.rival) return text;
     const p = PRON[s.rival.pron] || PRON.f;
     return text.replace(/\{rival\}/g, s.rival.name)
       .replace(/\{(They|Them|Their)\}/g, (_, k) => cap(p[k.toLowerCase()]))
       .replace(/\{(they|them|their)\}/g, (_, k) => p[k]);
+  }
+
+  // --- the cast ------------------------------------------------------------
+  // A handful of recurring people per run (content.cast): a peer from your intake, an officer
+  // who reports to you, someone senior, a journalist, and in politics a grassroots leader and a
+  // fellow MP. Names, pronouns and ages are drawn from the seed on their own stream, so the cast
+  // never moves the run's dice. Each role holds one person at a time. A role is filled only in
+  // the player contexts it makes sense in (role.when); when its holder leaves (retires, is caught
+  // up with, leaves the service, or a choice says so) the role is vacant, cards that name it
+  // cannot be drawn, and a refill is a new person with no history. What the player did to or for
+  // a person is kept on that person (their flags), so callbacks can never land on a stranger.
+  const TOKEN = /\{([A-Za-z]+)(?:\.([A-Za-z]+))?\}/g;
+  const NOT_ROLES = new Set(["rival", "they", "them", "their", "title"]);
+  const NAME_PARTICLES = new Set(["bin", "binte", "bte", "s/o", "d/o", "a/l", "a/p", "de", "da", "van"]);
+  const lc1 = x => x.charAt(0).toLowerCase() + x.slice(1);
+  const isUpper = x => !!x && x.charAt(0) !== x.charAt(0).toLowerCase();
+  function hashStr(id) { let h = 2166136261; for (const ch of id) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0; return h; }
+
+  // The highest service rung (0-7) a person of this age may hold (ladder minAge).
+  function maxRankForAge(content, age) {
+    let r = 0;
+    for (let k = 1; k <= 7; k++) { if ((content.ladder[k].minAge || 0) > age) break; r = k; }
+    return r;
+  }
+  const personAge = (s, p) => s.age + p.ageOff;
+  const nameWords = nm => nm.full.split(/\s+/).filter(w => !NAME_PARTICLES.has(w.toLowerCase())).map(w => w.toLowerCase());
+
+  function personTitle(content, cfg, p, s) {
+    if (cfg.track === "none") {
+      if (p.post) return p.post;
+      const yrs = s.year - p.since;
+      return (cfg.titles || []).reduce((t, [y, x]) => (yrs >= y ? x : t), "");
+    }
+    return content.ladder[Math.min(16, p.rank)].title;
+  }
+  // One field of a person, for a token or a log line.
+  function personField(content, s, role, p, field) {
+    const C = content.cast, cfg = C.roles[role], f = (field || "").toLowerCase();
+    const hon = ((C.honorifics || {})[role] || (C.honorifics || {}).default || { m: "Mr", f: "Ms" })[p.pron];
+    const P = PRON[p.pron] || PRON.f;
+    switch (f) {
+      case "": case "name": return cfg.call === "formal" ? `${hon} ${p.nm.formal}` : cfg.call === "full" ? p.nm.full : p.nm.given;
+      case "full": return p.nm.full;
+      case "given": return p.nm.given;
+      case "formal": return `${hon} ${p.nm.formal}`;
+      case "title": return personTitle(content, cfg, p, s);
+      case "atitle": { const t = personTitle(content, cfg, p, s); return (/^[aeiou]/i.test(t) ? "an " : "a ") + t; }
+      case "they": case "them": case "their": return P[f];
+      case "years": { const n = s.year - p.since; return n < 1 ? "less than a year" : n === 1 ? "a year" : `${NUM_WORDS[n] || n} years`; }
+      default: return null;
+    }
+  }
+  const NUM_WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+  function castSub(content, s, text) {
+    if (!content.cast || !s.cast || text.indexOf("{") < 0) return text;
+    return text.replace(TOKEN, (m, name, field) => {
+      const role = name.toLowerCase();
+      if (!content.cast.roles[role]) return m;
+      const p = s.cast.on[role];
+      if (!p) return m;   // a vacant role is never filled in; the lint and the leak check catch it
+      const v = personField(content, s, role, p, field);
+      if (v === null) return m;
+      return isUpper(name) || isUpper(field) ? cap(v) : v;
+    });
+  }
+
+  // Roles a text names, and the slots of the card's own parts it uses.
+  function tokensIn(text) {
+    const out = [];
+    if (typeof text === "string") for (const m of text.matchAll(TOKEN)) out.push({ name: lc1(m[1]), field: m[2] || "" });
+    return out;
+  }
+  // The roles a card names in its own text (title, body, choices, every version), which must all
+  // be filled for the card to be drawn. Roles named only inside a part option gate that option.
+  // Derived data is cached on the content objects under symbols, which JSON (saves, the build
+  // hash) never sees.
+  const NEEDS = Symbol("needs"), SLOTS = Symbol("slots"), ROLES = Symbol("roles");
+  function cardTexts(ev) {
+    const out = [ev.title, ev.body];
+    for (const c of ev.choices || []) { out.push(c.text, c.outcome); if (c.rival && c.rival.contest) out.push(c.rival.contest.winText, c.rival.contest.loseText); }
+    for (const v of ev.variants || []) { out.push(v.title, v.body, v.autoPlayLine); for (const c of v.choices || []) if (c) out.push(c.text, c.outcome); }
+    return out.filter(x => typeof x === "string");
+  }
+  function roleNeeds(ev) {
+    if (ev[NEEDS]) return ev[NEEDS];
+    const slots = new Set(partSlots(ev).map(([k]) => k));
+    const roles = new Set();
+    for (const t of cardTexts(ev)) for (const { name } of tokensIn(t))
+      if (!slots.has(name) && !NOT_ROLES.has(name.toLowerCase())) roles.add(name.toLowerCase());
+    const out = [...roles];
+    if (Object.prototype.hasOwnProperty.call(ev, "id")) Object.defineProperty(ev, NEEDS, { value: out });
+    return out;
+  }
+  // (an option's own text may use another slot's words, e.g. {asker.their}: those are not roles)
+  function optionNeeds(opt, ev) {
+    if (opt[NEEDS]) return opt[NEEDS];
+    const slots = new Set(ev ? partSlots(ev).map(([k]) => k) : []);
+    const roles = new Set();
+    for (const v of Object.values(opt)) for (const { name } of tokensIn(v)) if (!slots.has(name) && !NOT_ROLES.has(name.toLowerCase())) roles.add(name.toLowerCase());
+    const out = [...roles];
+    if (ev) Object.defineProperty(opt, NEEDS, { value: out });
+    return out;
+  }
+  const rolesFilled = (roles, s) => roles.every(r => !!(s.cast && s.cast.on[r]));
+
+  // Requirements on a cast member: { peer: {} } (the role is filled), { peer: false } or
+  // { peer: { vacant: true } } (it is not), plus flagsAll / flagsNone / minRank / maxRank /
+  // minYears (years in the role) on the person who holds it.
+  function castMeets(q, s) {
+    for (const [role, c] of Object.entries(q)) {
+      const p = s.cast && s.cast.on[role];
+      if (c === false || (c && c.vacant)) { if (p) return false; continue; }
+      if (!p) return false;
+      if (!c) continue;
+      if (c.flagsAll && !c.flagsAll.every(f => p.flags.includes(f))) return false;
+      if (c.flagsNone && c.flagsNone.some(f => p.flags.includes(f))) return false;
+      if (c.minRank !== undefined && p.rank < c.minRank) return false;
+      if (c.maxRank !== undefined && p.rank > c.maxRank) return false;
+      if (c.minYears !== undefined && s.year - p.since < c.minYears) return false;
+    }
+    return true;
+  }
+
+  // A new person for a role: a name nobody else in this run shares a word with (nor the
+  // batchmate), preferring names the phone has not seen in its last runs; age, and where the
+  // role has one, a rank.
+  function drawPerson(content, s, role) {
+    const C = content.cast, cfg = C.roles[role], K = s.cast;
+    const gen = (K.gen[role] = (K.gen[role] || 0) + 1);
+    const r = rng((Math.imul(s.seed >>> 0, 2654435761) ^ Math.imul(hashStr(role), 31) ^ Math.imul(gen, 7919)) >>> 0);
+    const used = new Set();
+    for (const p of Object.values(K.on).concat(K.past)) if (p) nameWords(p.nm).forEach(w => used.add(w));
+    if (s.rival) s.rival.name.split(/\s+/).forEach(w => used.add(w.toLowerCase()));
+    const order = C.names.map((_, i) => i);
+    for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+    const ok = i => nameWords(C.names[i]).every(w => !used.has(w));
+    const recent = s.recent || [];
+    const i = order.find(i => ok(i) && !recent.includes("cast:" + C.names[i].full)) ?? order.find(ok);
+    if (i === undefined) return null;   // the pool is exhausted: the role stays vacant
+    const n = C.names[i];
+    const span = ([a, b]) => a + Math.floor(r() * (b - a + 1));
+    let ageOff = cfg.age ? span(cfg.age) - s.age : span(cfg.ageOff || [0, 0]);
+    if (cfg.retireAge) ageOff = Math.min(ageOff, cfg.retireAge - 8 - s.age);   // nobody arrives only to retire
+    if (cfg.minAge) ageOff = Math.max(ageOff, cfg.minAge - s.age);
+    const p = { id: ++K.n, role, nm: { given: n.given, formal: n.formal, full: n.full }, pron: n.pron,
+      ageOff, rank: 0, since: s.year, rankYear: s.year, flags: [] };
+    if (cfg.track === "alongside") {
+      p.lead = 0; p.cap = span(cfg.cap || [7, 7]);
+      p.rank = Math.min(s.rank < 8 ? s.rank : 7, maxRankForAge(content, personAge(s, p)));
+    } else if (cfg.track === "below") {
+      p.gap = span(cfg.gap || [1, 1]);
+      p.rank = Math.max(0, Math.min(s.rank - p.gap, maxRankForAge(content, personAge(s, p))));
+    } else if (cfg.track === "above") {
+      while (maxRankForAge(content, personAge(s, p)) <= s.rank && p.ageOff < 40) p.ageOff++;
+      p.rank = Math.min(7, s.rank + span(cfg.gap || [1, 1]), maxRankForAge(content, personAge(s, p)));
+    } else if (cfg.track === "political") {
+      p.rank = cfg.rank || 8;
+    } else if (cfg.posts) {
+      p.post = cfg.posts[Math.floor(r() * cfg.posts.length)];
+    }
+    return p;
+  }
+
+  // Why the holder of a role has to go now, if they do.
+  function exitReason(content, s, role, cfg, p) {
+    if (cfg.retireAge && personAge(s, p) >= cfg.retireAge) return "retired";
+    if (cfg.track === "above" && s.rank < 8 && s.rank >= p.rank) return "caughtUp";
+    if (cfg.track === "below" && p.rank >= s.rank && s.rank < 8) return "movedUp";
+    if (!meets(cfg.when || {}, s)) return "context";
+    return null;
+  }
+  // A person's own career, one step a year at most.
+  function stepRank(content, s, cfg, p) {
+    if (s.year <= p.rankYear) return;
+    const ceil = Math.min(7, maxRankForAge(content, personAge(s, p)));
+    if (cfg.track === "alongside") {
+      // in the service they move up alongside you; once you have left it they go at their own pace
+      const target = s.rank < 8 ? Math.min(ceil, s.rank + (p.lead || 0)) : Math.min(ceil, p.cap);
+      if (p.rank < target && (s.rank < 8 || s.year - p.rankYear >= (cfg.driftEvery || 3))) { p.rank++; p.rankYear = s.year; }
+    } else if (cfg.track === "below") {
+      const target = Math.max(0, Math.min(s.rank - p.gap, ceil));
+      if (p.rank < target && s.year - p.rankYear >= (cfg.catchUpEvery || 2)) { p.rank++; p.rankYear = s.year; }
+    } else if (cfg.track === "above") {
+      if (p.rank < ceil && s.year - p.rankYear >= (cfg.promoteEvery || 4)) { p.rank++; p.rankYear = s.year; }
+    }
+  }
+  // A line for an arrival or a departure nobody chose. Each kind has several versions, taken in
+  // an order drawn from the seed and never repeated within a run; when a kind has run out, the
+  // change happens without a line. The version is only used up if the line is shown (see capNotes).
+  function castLine(content, s, role, key, p) {
+    const lines = ((content.cast.lines || {})[role] || {})[key];
+    if (!lines || !lines.length) return null;
+    const used = ((s.cast && s.cast.used) || {})[role + "." + key] || [];
+    const r = rng((s.seed ^ hashStr(role + "." + key)) >>> 0);
+    const order = lines.map((_, i) => i);
+    for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+    const i = order.find(k => !used.includes(k));
+    if (i === undefined) return null;
+    const text = lines[i].replace(/\{([A-Za-z]+)\}/g, (m, f) => {
+      const v = personField(content, s, role, p, f);
+      return v === null ? m : isUpper(f) ? cap(v) : v;
+    });
+    return { kind: "note", text, cast: role, key, line: i, at: { player: s.rank, rank: p.rank, person: p.id } };
+  }
+
+  // One cast line per outcome screen, however many years it covers: the one that matters most.
+  // Someone you have history with (flags) first, then by role (peer, senior, journalist, junior,
+  // grassroots leader, fellow MP); a departure before an arrival. Nobody who arrived and left
+  // within the same screen is mentioned at all. The others change without a line.
+  const NOTE_ORDER = ["peer", "senior", "journalist", "junior", "grassroots", "mp"];
+  function capNotes(s, log) {
+    const notes = log.filter(l => l.cast);
+    if (!notes.length) return log;
+    const ids = key => new Set(notes.filter(l => (key === "arrive") === ["arrive", "first"].includes(l.key)).map(l => l.at.person));
+    const came = ids("arrive"), went = ids("leave");
+    const person = id => Object.values(s.cast.on).concat(s.cast.past).find(p => p && p.id === id);
+    const rank = l => {
+      const p = person(l.at.person), role = NOTE_ORDER.indexOf(l.cast);
+      return [p && p.flags.length ? 0 : 1, role < 0 ? NOTE_ORDER.length : role, ["arrive", "first"].includes(l.key) ? 1 : 0];
+    };
+    const cmp = (a, b) => { const x = rank(a), y = rank(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; };
+    const best = notes.filter(l => !(came.has(l.at.person) && went.has(l.at.person))).sort(cmp)[0];
+    if (best) {
+      const u = (s.cast.used = s.cast.used || {}), k = best.cast + "." + best.key;
+      (u[k] = u[k] || []).push(best.line);
+    }
+    return log.filter(l => !l.cast || l === best);
+  }
+
+  // Bring the cast up to date with the player: called when a run starts, after every choice and
+  // after every year end. Deterministic and free of the run's dice. `log` (optional) collects the
+  // lines for arrivals and departures that nobody chose.
+  function castSync(content, s, log, quiet) {
+    const C = content.cast;
+    if (!C) return;
+    const K = s.cast || (s.cast = { on: {}, past: [], vacant: {}, gen: {}, n: 0 });
+    const roles = C[ROLES] || (Object.defineProperty(C, ROLES, { value: Object.entries(C.roles) }), C[ROLES]);
+    for (const [role, cfg] of roles) {
+      let p = K.on[role];
+      if (p) {
+        const why = exitReason(content, s, role, cfg, p);
+        if (why) {
+          p.left = s.year; p.why = why;
+          K.past.push(p); K.on[role] = null; K.vacant[role] = s.year;
+          const l = !quiet && castLine(content, s, role, why, p);
+          if (l && log) log.push(l);
+          p = null;
+        } else stepRank(content, s, cfg, p);
+      }
+      if (!p && meets(cfg.when || {}, s)) {
+        const first = K.vacant[role] === undefined;
+        if (!first && !meets(cfg.refillWhen || {}, s)) continue;
+        if (!first && s.year - K.vacant[role] < (cfg.refillYears || 0)) continue;
+        const np = drawPerson(content, s, role);
+        // nobody is cast who would have to leave at once (a senior who cannot be senior to you)
+        if (!np || exitReason(content, s, role, cfg, np)) continue;
+        K.on[role] = np;
+        const l = !quiet && castLine(content, s, role, first ? "first" : "arrive", np);
+        if (l && log) log.push(l);
+      }
+    }
+  }
+
+  // A choice's effect on the cast: { junior: { flags: [...], unflags: [...], promote: 1, leave: "resigned" } }.
+  // Only someone the card named, as shown, is changed: a choice on a version of the card (or a
+  // part option) that never mentioned the junior does nothing to the junior.
+  function castOps(content, s, ops, t, who) {
+    if (!s.cast || !content.cast) return;
+    for (const [role, op] of Object.entries(ops)) {
+      const p = s.cast.on[role], cfg = content.cast.roles[role];
+      if (!p || !cfg || !who || who[role] !== p.id) continue;
+      for (const f of op.flags || []) if (!p.flags.includes(f)) p.flags.push(f);
+      if (op.unflags) p.flags = p.flags.filter(f => !op.unflags.includes(f));
+      if (op.promote) {
+        const ceil = cfg.track === "political" ? 15 : Math.min(7, maxRankForAge(content, personAge(s, p)));
+        const to = Math.min(ceil, p.rank + op.promote);
+        if (cfg.track === "alongside") p.lead = (p.lead || 0) + (to - p.rank);
+        if (cfg.track === "below") p.gap = Math.max(0, p.gap - (to - p.rank));
+        p.rank = to; p.rankYear = s.year;
+      }
+      if (op.leave) {
+        p.left = s.year; p.why = typeof op.leave === "string" ? op.leave : "left";
+        s.cast.past.push(p); s.cast.on[role] = null; s.cast.vacant[role] = s.year;
+      }
+      (t.cast = t.cast || []).push({ role, person: p.id, ...op });
+    }
+  }
+
+  // --- card parts ------------------------------------------------------------
+  // A card may declare parts: named slots, each with interchangeable options. Its text uses
+  // {slot} (the option's text), {Slot} (capitalised) or {slot.field} (another of the option's
+  // strings). Each showing assembles one combination: options whose requires hold (rank, act,
+  // flags, cast, and earlier slots' picks via requires.parts), in an order drawn from the seed,
+  // preferring options this phone has not shown in its last runs and this run has not shown yet.
+  // A slot written { "pick": "first", "options": [...] } takes the first option that fits
+  // instead: conditional text, for callbacks that name someone only if they are still there.
+  // An option may also carry effects (added to the card's choices: { "*": {...}, "1": {...} })
+  // or scale ({ "heat": 1.5 }), so who is asking can change the stakes, and "prefer": true to win
+  // ties with options just as fresh (a callback to something this run did).
+  function partSlots(ev) {
+    if (!ev.parts) return [];
+    if (ev.parts[SLOTS]) return ev.parts[SLOTS];
+    const out = Object.entries(ev.parts).map(([k, v]) => [k, Array.isArray(v) ? { pick: "fresh", options: v } : { pick: v.pick || "fresh", options: v.options || [] }]);
+    Object.defineProperty(ev.parts, SLOTS, { value: out });
+    return out;
+  }
+  const optId = (o, k) => (o.id !== undefined ? String(o.id) : String(k));
+  function optionOk(ev, o, s, picked) {
+    const q = o.requires || {};
+    if (!meets(q, s)) return false;
+    for (const [slot, ids] of Object.entries(q.parts || {})) if (!ids.includes(picked[slot])) return false;
+    return rolesFilled(optionNeeds(o, ev), s);
+  }
+  function partOrder(ev, slot, opts, s) {
+    const r = rng((s.seed ^ hashStr(ev.id + "~" + slot)) >>> 0);
+    const order = opts.map((_, k) => k);
+    for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+    const recent = s.recent || [];
+    const shown = {};
+    for (const h of s.history || []) if (h.ev === ev.id && !h.passed && h.parts && h.parts[slot] !== undefined) shown[h.parts[slot]] = (shown[h.parts[slot]] || 0) + 1;
+    const stale = k => { const id = optId(opts[k], k); return shown[id] ? 2 + shown[id] : recent.includes(`${ev.id}~${slot}=${id}`) ? 1 : 0; };
+    // among equally fresh options, one marked "prefer" (usually a callback to this run) goes first
+    return order.map((k, i) => ({ k, i, st: stale(k), pr: opts[k].prefer ? 0 : 1 }))
+      .sort((a, b) => a.st - b.st || a.pr - b.pr || a.i - b.i).map(x => x.k);
+  }
+  // The combination this showing uses, or null when no combination fits.
+  function pickParts(ev, s) {
+    const slots = partSlots(ev), out = {};
+    const go = i => {
+      if (i === slots.length) return true;
+      const [name, sl] = slots[i];
+      const order = sl.pick === "first" ? sl.options.map((_, k) => k) : partOrder(ev, name, sl.options, s);
+      for (const k of order) {
+        if (!optionOk(ev, sl.options[k], s, out)) continue;
+        out[name] = optId(sl.options[k], k);
+        if (go(i + 1)) return true;
+      }
+      delete out[name];
+      return false;
+    };
+    return go(0) ? out : null;
+  }
+  // Whether any combination fits (the order does not matter for that).
+  function partsFit(ev, s) {
+    const slots = partSlots(ev), cur = {};
+    const go = i => {
+      if (i === slots.length) return true;
+      const [name, sl] = slots[i];
+      for (let k = 0; k < sl.options.length; k++) {
+        if (!optionOk(ev, sl.options[k], s, cur)) continue;
+        cur[name] = optId(sl.options[k], k);
+        if (go(i + 1)) return true;
+      }
+      delete cur[name];
+      return false;
+    };
+    return go(0);
+  }
+  // Every combination that fits this state (up to `limit`), for the immersion lint.
+  function partCombos(ev, s, limit = 64) {
+    const slots = partSlots(ev), out = [], cur = {};
+    const go = i => {
+      if (out.length >= limit) return;
+      if (i === slots.length) { out.push({ ...cur }); return; }
+      const [name, sl] = slots[i];
+      sl.options.forEach((o, k) => { if (out.length < limit && optionOk(ev, o, s, cur)) { cur[name] = optId(o, k); go(i + 1); delete cur[name]; } });
+    };
+    go(0);
+    return out;
+  }
+  function partOption(ev, slot, id) {
+    const sl = partSlots(ev).find(([k]) => k === slot);
+    return sl ? sl[1].options.find((o, k) => optId(o, k) === id) : null;
+  }
+  function fillParts(text, ev, pick) {
+    if (typeof text !== "string" || !pick || text.indexOf("{") < 0) return text;
+    return text.replace(TOKEN, (m, name, field) => {
+      const slot = lc1(name);
+      if (pick[slot] === undefined) return m;
+      const o = partOption(ev, slot, pick[slot]);
+      let v = o && (field ? o[field] : o.text);
+      if (typeof v !== "string") return m;
+      v = fillParts(v, ev, pick);   // an option may use another slot's words
+      // {Slot}: capitalise the first letter, or the first token if the option opens with one
+      return isUpper(name) ? (v.startsWith("{") ? "{" + cap(v.slice(1)) : cap(v)) : v;
+    });
+  }
+  function partEffects(fx, k, ev, pick) {
+    let out = { ...(fx || {}) }, changed = false;
+    for (const [slot, id] of Object.entries(pick)) {
+      const o = partOption(ev, slot, id);
+      if (!o) continue;
+      for (const [stat, f] of Object.entries(o.scale || {})) if (out[stat]) { out[stat] = Math.round(out[stat] * f); changed = true; }
+      for (const add of [(o.effects || {})["*"], (o.effects || {})[k]]) for (const [stat, n] of Object.entries(add || {})) {
+        out[stat] = (out[stat] || 0) + n; changed = true;
+        if (!out[stat]) delete out[stat];
+      }
+    }
+    return changed ? out : fx;
+  }
+
+  // The card as the player sees it: parts assembled, every name filled in. `force` (lint only)
+  // renders a given combination instead of the one this showing would pick.
+  function render(content, ev, s, force) {
+    const pick = ev.parts ? (force && force.parts) || pickParts(ev, s) || fallbackParts(ev) : null;
+    // who: the people this showing actually names (not every role some other version of it names)
+    const who = {};
+    const named = t => {
+      if (t.indexOf("{") < 0) return t;
+      for (const { name } of tokensIn(t)) { const r = name.toLowerCase(); if (!NOT_ROLES.has(r) && s.cast && s.cast.on[r]) who[r] = s.cast.on[r].id; }
+      return t;
+    };
+    const T = t => (typeof t === "string" ? sub(named(fillParts(t, ev, pick)), s, content) : t);
+    const out = { ...ev, title: T(ev.title), body: T(ev.body),
+      choices: ev.choices.map((c, k) => {
+        const x = { ...c, text: T(c.text), outcome: T(c.outcome) };
+        if (pick) x.effects = partEffects(c.effects, k, ev, pick);
+        if (c.rival && c.rival.contest) x.rival = { ...c.rival, contest: { ...c.rival.contest, winText: T(c.rival.contest.winText), loseText: T(c.rival.contest.loseText) } };
+        return x;
+      }) };
+    if (pick) out.picked = pick;
+    if (Object.keys(who).length) out.who = who;
+    return out;
+  }
+  // Only for a save made before a card's parts changed: the first option of every slot.
+  function fallbackParts(ev) {
+    return Object.fromEntries(partSlots(ev).map(([k, sl]) => [k, optId(sl.options[0] || {}, 0)]));
   }
 
   const REL_WEIGHT = 1.2;   // each point of goodwill is worth this much in a close ranking call
@@ -104,7 +538,7 @@ const Engine = (() => {
     let text = lines.length ? lines[(n - 1) % lines.length] : "";
     for (const [k, v] of Object.entries(extra)) text = text.split("{" + k + "}").join(v);
     // `at`: the state the line was written in (one outcome screen can span several years); the UI ignores it
-    return { kind: "rival", key, text: sub(text, s), at: { player: s.rank, batchmate: s.rival.rank, status: s.rival.status } };
+    return { kind: "rival", key, text: sub(text, s, content), at: { player: s.rank, batchmate: s.rival.rank, status: s.rival.status } };
   }
 
   // A head-to-head right now (one posting, one slot): the player's appraisal-style score,
@@ -118,7 +552,7 @@ const Engine = (() => {
     v.met++; if (won) v.wonMet++;
     t.rivalContest = { mine: +mine.toFixed(1), theirs: +theirs.toFixed(1), won };
     applyEffects(s, (won ? c.win : c.lose) || {});
-    return [{ kind: "rival", key: won ? "contestWon" : "contestLost", text: sub(won ? c.winText : c.loseText, s),
+    return [{ kind: "rival", key: won ? "contestWon" : "contestLost", text: sub(won ? c.winText : c.loseText, s, content),
       at: { player: s.rank, batchmate: v.rank, status: v.status } }];
   }
 
@@ -229,13 +663,19 @@ const Engine = (() => {
   function eligible(ev, s) {
     if (ev.triggered) return false;
     if (ev.once && s.seen.includes(ev.id)) return false;
-    return meets(ev.requires || {}, s);
+    return cardOk(ev, s);
+  }
+
+  // A card can be shown when its requirements hold, every cast member its text names is in
+  // their role, and its parts (if any) have at least one combination that fits.
+  function cardOk(ev, s) {
+    return meets(ev.requires || {}, s) && rolesFilled(roleNeeds(ev), s) && (!ev.parts || partsFit(ev, s));
   }
 
   // A scheduled consequence waits, still scheduled, until its own requirements hold (a
   // promotion-board callback never lands on a Minister). It is never silently dropped.
   function fits(ev, s) {
-    return !!ev && !(ev.once && s.seen.includes(ev.id)) && meets(ev.requires || {}, s);
+    return !!ev && !(ev.once && s.seen.includes(ev.id)) && cardOk(ev, s);
   }
 
   // A scheduled card may list alternates: written for wherever the player has got to by the
@@ -263,6 +703,8 @@ const Engine = (() => {
     if (q.ministry !== undefined && s.ministry !== q.ministry) return false;   // ministry decks
     if (q.economy !== undefined && economy(s) !== q.economy) return false;
     if (q.electionDue !== undefined && electionDue(s) !== q.electionDue) return false;
+    if (q.act !== undefined && (q.act === "III") !== (s.rank >= 8)) return false;   // I: the service, III: politics
+    if (q.cast && !castMeets(q.cast, s)) return false;
     if (q.cooldown) {   // a shared clock: e.g. one Budget-cycle card every three years
       const last = (s.cooldowns || {})[q.cooldown.key];
       if (last !== undefined && s.year - last < q.cooldown.years) return false;
@@ -331,7 +773,7 @@ const Engine = (() => {
   const cap = x => x.charAt(0).toUpperCase() + x.slice(1);
   function folderItems(content, s) {
     const list = (content.folder || []).concat(s.rival && content.rival ? content.rival.folder || [] : []);
-    return list.filter(f => s.flags.includes(f.flag)).map(f => sub(f.item, s));
+    return list.filter(f => s.flags.includes(f.flag)).map(f => sub(f.item, s, content));
   }
 
   function readFolder(content, s) {
@@ -412,6 +854,8 @@ const Engine = (() => {
     }
 
     (ch.setFlags || []).forEach(f => { if (!s.flags.includes(f)) s.flags.push(f); });
+    // What the choice did to or for a cast member stays with that person.
+    if (ch.cast) castOps(content, s, ch.cast, t, ev.who);
     // Standout moments in the service. Two of them mark the file "exceptional", which lets the
     // top rungs' age floors give a little (ladder minAgeExceptional). Rare by design.
     if ((ch.standout || ev.standout) && s.rank < 8) {
@@ -496,6 +940,8 @@ const Engine = (() => {
         s.ending = "lostward";
       }
     }
+    // the cast follows the player: a junior stays behind in the service, a fellow MP arrives
+    if (!s.ending) castSync(content, s, log);
     return log;
   }
 
@@ -662,6 +1108,7 @@ const Engine = (() => {
     s.age++; s.year++;
     const retireAt = s.rank >= 8 ? content.politicalRetireAge : content.retireAge;
     if (s.age >= retireAt) s.ending = retirementEnding(s);
+    else castSync(content, s, log);   // the cast's own year: promotions, retirements, arrivals
     return log;
   }
 
@@ -688,7 +1135,7 @@ const Engine = (() => {
 
   // A montage year repeats the player's habit: the effects of what they chose the first
   // time they played this card in full (without its "noted" hit or its consequences).
-  function montageOf(src, s) {
+  function montageOf(content, src, s) {
     // montageLines is either one list, or lists keyed by the habit's choice index, so a year
     // of coasting never reads like a year of hard work.
     const pool = src.montageLines, h = (s.habits || {})[src.id];
@@ -699,7 +1146,7 @@ const Engine = (() => {
     const habit = src.choices[(s.habits || {})[src.id]];
     const effects = habit ? Object.fromEntries(Object.entries(habit.effects || {}).filter(([k]) => k !== "appraisal"))
       : (src.montageEffects || { competence: 1 });
-    return { id: MONTAGE + src.id, title: src.title, body: lines[(n - 1) % lines.length], montage: true,
+    return { id: MONTAGE + src.id, title: sub(src.title, s, content), body: lines[(n - 1) % lines.length], montage: true,
       choices: [{ text: habit ? `As usual: ${habit.text}` : "Carry on.", effects, outcome: "Another year." }] };
   }
 
@@ -708,11 +1155,18 @@ const Engine = (() => {
     const id = s.currentEvent;
     if (!id) return null;
     if (id === "__quiet") return QUIET_YEAR;
-    if (id.startsWith(MONTAGE)) return montageOf(content.events.find(e => e.id === id.slice(MONTAGE.length)), s);
+    if (!s.cast && content.cast) { s = { ...s }; castSync(content, s, null, true); }   // a save from before the cast
+    if (id.startsWith(MONTAGE)) return montageOf(content, content.events.find(e => e.id === id.slice(MONTAGE.length)), s);
+    // the same card in the same state renders the same way: the UI and the harness ask several times
+    const key = `${id}|${s.year}|${s.rank}|${s.flags.length}|${(s.history || []).length}|${s.cardsPlayed || 0}`;
+    const hit = SHOWN.get(s);
+    if (hit && hit.key === key && hit.content === content) return hit.ev;
     const ev = allEvents(content, s).find(e => e.id === id);
-    const v = ev ? variantOf(ev, s) : ev;
-    return v && v.rivalCard ? withNames(v, s) : v;
+    const out = ev ? render(content, variantOf(ev, s), s) : ev;
+    SHOWN.set(s, { key, content, ev: out });
+    return out;
   }
+  const SHOWN = new WeakMap();
 
   // --- card versions ---------------------------------------------------------
   // A card may carry variants: the same mechanics, flags and choices in a different scene.
@@ -741,19 +1195,17 @@ const Engine = (() => {
       ...(v.autoPlayLine && ev.autoPlay ? { autoPlay: { ...ev.autoPlay, line: v.autoPlayLine } } : {}) };
   }
 
-  // What this run showed, for the next run's freshness: card ids and the versions seen.
+  // What this run showed, for the next run's freshness: card ids, the versions and part options
+  // seen, and the names of the run's people.
   function recentKeys(content, s) {
     const out = new Set();
     for (const h of s.history || []) {
       if (h.passed || !h.ev || h.ev.startsWith("__")) continue;
       out.add(h.ev); out.add(h.ev + "#" + (h.variant || 0));
+      for (const [slot, id] of Object.entries(h.parts || {})) out.add(`${h.ev}~${slot}=${id}`);
     }
+    if (s.cast) for (const p of Object.values(s.cast.on).concat(s.cast.past)) if (p) out.add("cast:" + p.nm.full);
     return [...out];
-  }
-
-  function withNames(ev, s) {
-    return { ...ev, title: sub(ev.title, s), body: sub(ev.body, s),
-      choices: ev.choices.map(c => ({ ...c, text: sub(c.text, s), outcome: sub(c.outcome, s) })) };
   }
 
   // --- years that pass by themselves ---------------------------------------
@@ -790,13 +1242,14 @@ const Engine = (() => {
       const pt = { kind, ev: ev ? ev.id : "__quiet", source: info.source, fired: info.fired || null, age: s.age, rank: s.rank, origin: s.origin };
       let choice = 0, ch, lines = [];
       if (kind === "habit") {
-        const m = montageOf(ev, s);
+        const m = montageOf(content, ev, s);
         choice = s.habits[ev.id]; ch = m.choices[0]; pt.habit = choice; pt.line = m.body;
         applyEffects(s, ch.effects);
         s.fillerSeen[ev.id]++;
         lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${m.body}` });
+        ev = { ...ev, title: m.title };
       } else if (kind === "auto") {
-        const vev = variantOf(ev, s);
+        const vev = render(content, variantOf(ev, s), s);
         choice = ev.autoPlay.choice || 0; ch = vev.choices[choice];
         ev = vev;
         const al = applyChoice(content, s, ev, ch, pt, { safe: true });
@@ -825,7 +1278,9 @@ const Engine = (() => {
   // the next card is drawn: state.currentEvent is set unless the run has ended.
   function advance(content, state, choiceIndex) {
     const s = JSON.parse(JSON.stringify(state));   // immutable in, new state out
-    const ev = eventOf(content, s);
+    if (!s.cast && content.cast) castSync(content, s, null, true);   // a save from before the cast
+    // the card as shown: a pure function of the state, so the copy reads the same as the original
+    const ev = eventOf(content, state);
     const ch = ev.choices[choiceIndex];
     const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
     const trace = {};
@@ -838,20 +1293,27 @@ const Engine = (() => {
       (s.habits = s.habits || {})[ev.id] = choiceIndex;   // what habit years will repeat
     }
     s.cardsPlayed = (s.cardsPlayed || 0) + 1;
-    s.history.push({ ...before, ev: ev.id, title: ev.title, choice: choiceIndex, text: ch.text, variant: ev.variant || 0,
+    // A card with parts or cast keeps what it showed: the combination (freshness, the next
+    // showing's rotation), who it named, and, when the Declassified file may quote an untaken
+    // choice from it (one that raised the ceiling), its choices' words as read.
+    const quoted = ev.choices.some((c, i) => i !== choiceIndex && ((c.effects || {}).cep || 0) > 0);
+    const shown = ev.picked || ev.who ? { ...(ev.picked ? { parts: ev.picked } : {}), ...(ev.who ? { who: ev.who } : {}),
+      ...(quoted ? { texts: ev.choices.map(c => c.text) } : {}) } : {};
+    s.history.push({ ...before, ev: ev.id, title: ev.title, choice: choiceIndex, text: ch.text, variant: ev.variant || 0, ...shown,
       grade: (trace.appraisal || {}).grade,
       cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation,
       noted: ((ch.effects || {}).appraisal || 0) < 0,
       hints: log.filter(l => l.kind === "cep" || l.kind === "heat").map(l => l.kind + "|" + l.text) });
     s.currentEvent = null;
     if (!s.ending) log.push(...passYears(content, s, trace));
-    return { state: s, outcome: trace.outcome || ch.outcome, log, trace };
+    return { state: s, outcome: trace.outcome ? sub(trace.outcome, s, content) : ch.outcome, log: capNotes(s, log), trace };
   }
 
   // The card for this year. advance() has normally drawn it already; this draws only for the
   // first year of a run (and for saves from before years passed by themselves).
   function nextEvent(content, state) {
     const s = JSON.parse(JSON.stringify(state));
+    if (!s.cast && content.cast) castSync(content, s, null, true);   // a save from before the cast
     if (s.currentEvent) return { state: s, event: eventOf(content, s) };
     const ev = pickEvent(content, s);
     if (!ev) { s.currentEvent = "__quiet"; return { state: s, event: QUIET_YEAR }; }
@@ -859,10 +1321,10 @@ const Engine = (() => {
     const seenN = s.fillerSeen[ev.id] || 0;
     if (isFiller(ev) && seenN >= 1 && seenN % 4 !== 0) {
       s.currentEvent = MONTAGE + ev.id;
-      return { state: s, event: montageOf(ev, s) };
+      return { state: s, event: montageOf(content, ev, s) };
     }
     s.currentEvent = ev.id;
-    return { state: s, event: ev };
+    return { state: s, event: eventOf(content, s) };
   }
 
   // --- the ending: legacy and the declassified file --------------------------
@@ -930,9 +1392,10 @@ const Engine = (() => {
         return ev && ev.choices.some((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
       });
       if (!h) return "None. Nothing you were offered could have raised it.";
-      // quoted as the player saw it: the version of the card that run showed
-      const c = applyVariant(content.events.find(e => e.id === h.ev), h.variant).choices.find((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
-      return `None. At ${h.age}, "${c.text}" would have raised it.`;
+      // quoted as the player saw it: the version of the card that run showed, names and all
+      const cs = applyVariant(content.events.find(e => e.id === h.ev), h.variant).choices;
+      const i = cs.findIndex((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
+      return `None. At ${h.age}, "${h.texts ? h.texts[i] : cs[i].text}" would have raised it.`;
     };
     const service = raisesIn(false);
     let moved = false;
@@ -1044,6 +1507,8 @@ const Engine = (() => {
 
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
     finalLabels, recentKeys,
+    // cast and card parts, for the immersion lint and the tests
+    render, applyVariant, partSlots, partCombos, roleNeeds, optionNeeds, maxRankForAge, personField, TOKEN,
     STATS, QUIET: QUIET_YEAR };
 })();
 

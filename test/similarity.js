@@ -40,18 +40,51 @@ function cards(build) {
 const strings = v => typeof v === "string" ? [v] : Array.isArray(v) ? v.flatMap(strings)
   : v && typeof v === "object" ? Object.values(v).flatMap(strings) : [];
 
+// Text is checked as the player reads it: a card's parts are assembled (enough combinations that
+// every option appears at least once) and the cast's names are filled in. Names are filled with
+// placeholders that count as function words ("castpeer", "she"), so a recurring person is not
+// mistaken for a recurring phrase.
+const castWord = role => "cast" + role.toLowerCase();
+function expandCast(t) {
+  return String(t).replace(/\{([A-Za-z]+)(?:\.([A-Za-z]+))?\}/g, (m, name, field) => {
+    const f = (field || "").toLowerCase();
+    if (f === "they") return "she"; if (f === "them" || f === "their") return "her";
+    if (f === "title" || f === "atitle") return "casttitle";
+    if (f === "years") return "casttitle";
+    return castWord(name);
+  });
+}
+function expansions(e) {
+  // one combination per k: option k of every slot (wrapping), so every option is read at least once
+  const slots = Object.entries(e.parts || {}).map(([k, v]) => [k, Array.isArray(v) ? v : v.options || []]);
+  if (!slots.length) return [null];
+  const n = Math.max(...slots.map(([, o]) => o.length));
+  return Array.from({ length: n }, (_, k) => Object.fromEntries(slots.map(([s, o]) => [s, o[k % o.length]])));
+}
+function fill(t, pick) {
+  if (typeof t !== "string") return t;
+  if (pick) for (let i = 0; i < 3; i++) t = t.replace(/\{([A-Za-z]+)(?:\.([A-Za-z]+))?\}/g, (m, name, field) => {
+    const o = pick[name.charAt(0).toLowerCase() + name.slice(1)];
+    const v = o && (field ? o[field] : o.text);
+    return typeof v === "string" ? v : m;
+  });
+  return expandCast(t);
+}
+
 // Texts per card: its body, each choice's outcome and its montage lines, the same for each of its
-// versions; plus ending epitaphs.
+// versions, assembled; plus ending epitaphs.
 function texts(list, game) {
   const out = [];
-  for (const e of list) {
-    if (e.body) out.push({ card: e.id, kind: "body", where: `${e.id}.body`, text: e.body });
-    (e.choices || []).forEach((c, i) => c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}.choices[${i}].outcome`, text: c.outcome }));
-    strings(e.montageLines).forEach((m, i) => out.push({ card: e.id, kind: "montage", where: `${e.id}.montageLines#${i}`, text: m }));
+  for (const e of list) for (const [x, pick] of expansions(e).entries()) {
+    const tag = pick ? `#${x}` : "";
+    if (e.body) out.push({ card: e.id, kind: "body", where: `${e.id}${tag}.body`, text: fill(e.body, pick) });
+    (e.choices || []).forEach((c, i) => c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}${tag}.choices[${i}].outcome`, text: fill(c.outcome, pick) }));
+    if (x) continue;   // montage lines and versions once per card
+    strings(e.montageLines).forEach((m, i) => out.push({ card: e.id, kind: "montage", where: `${e.id}.montageLines#${i}`, text: fill(m) }));
     // a card's other versions are the same card in another scene: checked against every other card
     (e.variants || []).forEach((v, k) => {
-      if (v.body) out.push({ card: e.id, kind: "body", where: `${e.id}.variants[${k}].body`, text: v.body });
-      (v.choices || []).forEach((c, i) => c && c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}.variants[${k}].choices[${i}].outcome`, text: c.outcome }));
+      if (v.body) out.push({ card: e.id, kind: "body", where: `${e.id}.variants[${k}].body`, text: fill(v.body, pick) });
+      (v.choices || []).forEach((c, i) => c && c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}.variants[${k}].choices[${i}].outcome`, text: fill(c.outcome, pick) }));
     });
   }
   for (const en of (game.endings || [])) out.push({ card: `ending:${en.id}`, kind: "epitaph", where: `endings.${en.id}.epitaph`, text: en.epitaph });
@@ -102,7 +135,7 @@ function overusedPhrases(items) {
     const w = words(t.text);
     for (const n of [4, 5, 6]) for (const g of ngrams(w, n)) {
       const toks = g.split(" ");
-      if (toks.filter(x => !STOP.has(x)).length < 2 || term(g)) continue;   // two content words, not a name
+      if (toks.filter(x => !STOP.has(x) && !x.startsWith("cast")).length < 2 || term(g)) continue;   // two content words, not a name
       if (!byPhrase.has(g)) byPhrase.set(g, new Set());
       byPhrase.get(g).add(t.card);
     }
@@ -125,7 +158,7 @@ function overusedOpeners(items) {
   const by = new Map();
   for (const t of items) for (const s of sentences(t.text)) {
     const w = words(s).slice(0, 3);
-    if (w.length < 3 || refrain(w.join(" "))) continue;
+    if (w.length < 3 || refrain(w.join(" ")) || w[0].startsWith("cast")) continue;   // a sentence that opens on a name is not a template
     const k = w.join(" ");
     if (!by.has(k)) by.set(k, new Set());
     by.get(k).add(fam(t.card));
@@ -147,7 +180,7 @@ if (require.main === module) {
   const jsonAt = argv.indexOf("--json");
   const r = check(H.loadBuild());
   const fails = [...r.nearDuplicates, ...r.phrases, ...r.openers].filter(x => x.fail);
-  console.log(`similarity: ${r.cards} cards, ${r.texts} texts (bodies, outcomes, montage lines, epitaphs)`);
+  console.log(`similarity: ${r.cards} cards, ${r.texts} texts as read (bodies, outcomes, montage lines, epitaphs; parts assembled, names filled)`);
   console.log(`\nnear-duplicates (4-gram Jaccard >= ${LIMITS.nearDupWarn}; fail >= ${LIMITS.nearDupFail}): ${r.nearDuplicates.length}`);
   r.nearDuplicates.slice(0, 15).forEach(d => console.log(`  ${d.fail ? "✗" : "!"} ${d.jaccard}  ${d.a}  ~  ${d.b}`));
   console.log(`\nphrases recurring across cards (>= ${LIMITS.phraseWarn} cards; fail >= ${LIMITS.phraseFail}): ${r.phrases.length}`);

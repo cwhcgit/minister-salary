@@ -2,7 +2,7 @@
   {
     "id": "inconvenient_figure",
     "title": "The Inconvenient Figure",
-    "body": "The utilisation rate for your division's flagship scheme came in at 31%. Your director asks, mildly, whether it might be \"presented as a range rather than a number\".",
+    "body": "The utilisation rate for your division's flagship scheme came in at 31%. {senior}, the {senior.title} your division answers to, asks, mildly, whether it might be \"presented as a range rather than a number\".",
     "requires": {
       "minRank": 1,
       "maxRank": 3
@@ -17,10 +17,18 @@
           "integrity": -12,
           "heat": 12
         },
+        "cast": {
+          "senior": {
+            "flags": [
+              "asked_for_range",
+              "you_obliged"
+            ]
+          }
+        },
         "setFlags": [
           "buried_figure"
         ],
-        "outcome": "The slide reads \"30-60%\". Nobody asks. Your director says nothing further about it, which you decide to read as approval.",
+        "outcome": "The slide reads \"30-60%\". Nobody asks. {senior} says nothing further about it, which you decide to read as approval.",
         "schedule": [
           {
             "eventId": "figure_resurfaces",
@@ -37,7 +45,15 @@
           "standing": -7,
           "appraisal": -8
         },
-        "outcome": "The meeting runs forty minutes over. The scheme is reviewed. You are not invited to the next one, or the four after that. It is noted.",
+        "cast": {
+          "senior": {
+            "flags": [
+              "asked_for_range",
+              "you_refused"
+            ]
+          }
+        },
+        "outcome": "The meeting runs forty minutes over. The scheme is reviewed. {senior} does not invite you to the next one, or the four after that. It is noted.",
         "schedule": [
           {
             "eventId": "figure_vindicated",
@@ -53,10 +69,18 @@
           "competence": 8,
           "standing": 3
         },
+        "cast": {
+          "senior": {
+            "flags": [
+              "asked_for_range",
+              "took_your_slides"
+            ]
+          }
+        },
         "requiresStat": {
           "competence": 45
         },
-        "outcome": "You spend the weekend on eleven slides nobody asked for. The director presents them as his own. The scheme survives. So do you."
+        "outcome": "You spend the weekend on eleven slides nobody asked for. {senior} presents them as {senior.their} own. The scheme survives. So do you."
       }
     ]
   },
@@ -112,7 +136,7 @@
   {
     "id": "postit_workshop",
     "title": "Public Sector Transformation",
-    "body": "Two days offsite. There are post-its. You have been asked to ideate on how the division might become \"more agile, more citizen-centric, and more data-driven\" without additional headcount or budget.",
+    "body": "Two days offsite, with {peer} at your table. There are post-its. You have been asked to ideate on how the division might become \"more agile, more citizen-centric, and more data-driven\" without additional headcount or budget.",
     "requires": {
       "minRank": 0,
       "maxRank": 5
@@ -128,7 +152,14 @@
           "standing": -5,
           "appraisal": -6
         },
-        "outcome": "Your post-it says \"we need three more officers\". The facilitator photographs the wall. Your post-it does not appear in the deck. It is noted."
+        "cast": {
+          "peer": {
+            "flags": [
+              "agreed_with_you"
+            ]
+          }
+        },
+        "outcome": "Your post-it says \"we need three more officers\". {peer} puts one up beside it that says \"agree\". Neither appears in the deck. It is noted."
       },
       {
         "text": "Produce an acronym.",
@@ -231,7 +262,7 @@
   {
     "id": "leadership_programme",
     "title": "The Nomination",
-    "body": "Two names from your division go forward for the Public Service Leadership Programme. Your director asks for your view on who should be put up.",
+    "body": "Two names from your division go forward for the Public Service Leadership Programme. {senior}, who signs off on the division's nominations, asks for your view on who should be put up.",
     "requires": {
       "minRank": 2,
       "maxRank": 3,
@@ -609,10 +640,18 @@
           "integrity": -4,
           "standing": 3
         },
+        "cast": {
+          "peer": {
+            "flags": [
+              "leaked",
+              "you_know"
+            ]
+          }
+        },
         "setFlags": [
           "knows_leaker"
         ],
-        "outcome": "It took you a fortnight. It was the one you would not have guessed, for a reason you find you have some sympathy with. You keep it.",
+        "outcome": "It takes a fortnight. It was {peer}, from your own intake, for a reason you find you have some sympathy with. You keep it, and {peer} never learns that you know.",
         "schedule": [
           {
             "eventId": "interview_panel",
@@ -758,12 +797,19 @@
         "outcome": "Your minutes are widely admired. The committee meets fourteen more times. You are commended for your support of the committee's work."
       },
       {
-        "text": "Leak the deadlock to a friendly journalist.",
+        "text": "Leak the deadlock to {journalist}, a friendly {journalist.title}.",
         "effects": {
           "reputation": 6,
           "integrity": -8,
           "heat": 22,
           "standing": -4
+        },
+        "cast": {
+          "journalist": {
+            "flags": [
+              "you_were_a_source"
+            ]
+          }
         },
         "outcome": "A decision follows within a month. You had been right about what needed to happen and wrong about how, and only one of those is survivable.",
         "schedule": [
@@ -929,7 +975,7 @@
   {
     "id": "reorg",
     "title": "The Reorganisation",
-    "body": "Your division is being moved to another ministry. The rationale runs to forty slides. Nobody in your division was consulted, and the new org chart has one fewer director-level box than the old one.",
+    "body": "Your division is being moved to another ministry. The rationale runs to forty slides, nobody was consulted, and the new org chart has one fewer director-level box. The two people in line for it are you and {peer}.",
     "requires": {
       "minRank": 3,
       "maxRank": 5
@@ -945,10 +991,17 @@
           "standing": -6,
           "competence": 3
         },
+        "cast": {
+          "peer": {
+            "flags": [
+              "got_the_box"
+            ]
+          }
+        },
         "setFlags": [
           "protected_team"
         ],
-        "outcome": "You place all nine of them before you place yourself. You end up in the worst of the remaining boxes. They know exactly what you did and one of them will be in a position to repay it.",
+        "outcome": "You place all nine of them before you place yourself, and {peer} gets the good box. The nine know exactly what you did, and one of them will be in a position to repay it.",
         "schedule": [
           {
             "eventId": "promotion_board",
@@ -964,7 +1017,15 @@
           "integrity": -12,
           "reputation": -5
         },
-        "outcome": "You get it. It is a good box. The nine of them are placed adequately, and something in the division's manner toward you changes in a way that is never once spoken aloud.",
+        "cast": {
+          "peer": {
+            "flags": [
+              "lost_the_box",
+              "fell_out"
+            ]
+          }
+        },
+        "outcome": "You get it, a week before {peer} would have. The nine are placed adequately, and something in the division's manner toward you changes in a way that is never once spoken aloud.",
         "setFlags": [
           "grabbed_box"
         ],
@@ -1183,6 +1244,30 @@
     "id": "figure_resurfaces",
     "triggered": true,
     "title": "The Figure, Again",
+    "parts": {
+      "asked": {
+        "pick": "first",
+        "options": [
+          {
+            "id": "senior",
+            "text": "the part where {senior} asked",
+            "requires": {
+              "cast": {
+                "senior": {
+                  "flagsAll": [
+                    "you_obliged"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "unnamed",
+            "text": "the part where you were asked"
+          }
+        ]
+      }
+    },
     "body": "An audit of the scheme has requested the original utilisation data for the year you presented as a range. The request is routine. It is addressed to you by name.",
     "choices": [
       {
@@ -1192,7 +1277,7 @@
           "heat": -18,
           "standing": -6
         },
-        "outcome": "You write it down plainly, including the part where you were asked. It is accepted with a coolness that lasts about two years and then, oddly, becomes a kind of respect."
+        "outcome": "You write it down plainly, including {asked}. It is accepted with a coolness that lasts about two years and then, oddly, becomes a kind of respect."
       },
       {
         "text": "Provide the range, and say the raw file was not retained.",
@@ -1240,7 +1325,44 @@
     "id": "leak_resurfaces",
     "triggered": true,
     "title": "A Journalist Has Been Asking",
-    "body": "Someone is reconstructing an old story and has been calling people who were on a circulation list years ago. They have now called you.",
+    "parts": {
+      "caller": {
+        "pick": "first",
+        "options": [
+          {
+            "id": "source",
+            "text": "{journalist} rings, without naming you or anyone, to say that a colleague at another paper is reconstructing an old story from the people on a circulation list years ago. The colleague has your number.",
+            "requires": {
+              "cast": {
+                "journalist": {
+                  "flagsAll": [
+                    "you_were_a_source"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "journalist",
+            "text": "{journalist}, {journalist.aTitle}, is reconstructing an old story and has been calling people who were on a circulation list years ago. {journalist.formal} has now called you.",
+            "requires": {
+              "cast": {
+                "journalist": {
+                  "flagsNone": [
+                    "you_were_a_source"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "unnamed",
+            "text": "Someone is reconstructing an old story and has been calling people who were on a circulation list years ago. They have now called you."
+          }
+        ]
+      }
+    },
+    "body": "{caller}",
     "choices": [
       {
         "text": "Decline to comment. Say nothing to anyone.",
@@ -1795,7 +1917,7 @@
   {
     "id": "town_council",
     "title": "The Town Council",
-    "body": "A lift upgrading contract in your ward. The sinking fund does not cover it. The residents' committee has views, the contractor has a cousin, and you have signing authority.",
+    "body": "A lift upgrading contract in your ward. The sinking fund does not cover it. {grassroots}, {grassroots.title}, has views, the contractor has a cousin, and you have signing authority.",
     "requires": {
       "minRank": 8,
       "maxRank": 13
@@ -1810,6 +1932,13 @@
           "reputation": -4,
           "competence": 5
         },
+        "cast": {
+          "grassroots": {
+            "flags": [
+              "slow_lifts"
+            ]
+          }
+        },
         "outcome": "Eight months of complaints at every MPS. The lifts are done correctly and under budget and nobody thanks you, and in four years the accounts are clean when somebody looks."
       },
       {
@@ -1818,6 +1947,13 @@
           "reputation": 8,
           "heat": 22,
           "integrity": -10
+        },
+        "cast": {
+          "grassroots": {
+            "flags": [
+              "fast_lifts"
+            ]
+          }
         },
         "outcome": "The lifts are done in eleven weeks and the ward is delighted. The paperwork is sorted out approximately, which is a word that does not appear in the Town Councils Act."
       }
@@ -1914,7 +2050,7 @@
   {
     "id": "reshuffle",
     "title": "The Reshuffle",
-    "body": "The Prime Minister's office has asked to see you on Thursday. Nobody knows what about, and eleven people have told you they are sure it is good news.",
+    "body": "The Prime Minister's office has asked to see you on Thursday. Nobody knows what about, and eleven people, {mp} first among them, have told you they are sure it is good news.",
     "requires": {
       "minRank": 12,
       "maxRank": 14
@@ -2002,7 +2138,7 @@
   {
     "id": "the_work",
     "title": "The Work",
-    "body": "A scheme goes out on time because you and four other people made it. It will never have your name on it. Nobody's name is on it; that is how you know it is real.",
+    "body": "A scheme goes out on time because you, {peer} and three other people made it. It will never have your name on it. Nobody's name is on it; that is how you know it is real.",
     "requires": {
       "minRank": 0,
       "maxRank": 7
@@ -2025,7 +2161,14 @@
           "reputation": 4,
           "standing": 2
         },
-        "outcome": "You present it at the divisional meeting with four slides more than it needed. Two people now know your name who did not."
+        "cast": {
+          "peer": {
+            "flags": [
+              "you_took_the_slides"
+            ]
+          }
+        },
+        "outcome": "You present it at the divisional meeting with four slides more than it needed. Two people now know your name who did not. {peer}, who made half the slides, is not mentioned."
       },
       {
         "text": "Coast. You have earned a quiet year.",
@@ -2258,7 +2401,7 @@
   {
     "id": "late_night",
     "title": "11:40pm, Level 9",
-    "body": "The clearance has come back with comments for the fourth time. The dinner you promised to be home for was at eight.",
+    "body": "The clearance has come back with comments for the fourth time. {junior} is still at {junior.their} desk, waiting to see what you decide. The dinner you promised to be home for was at eight.",
     "requires": {
       "minRank": 1,
       "maxRank": 7
@@ -2274,7 +2417,14 @@
           "integrity": -2,
           "reputation": -1
         },
-        "outcome": "Cleared at 1:20am. You are thanked in a one-word email. Dinner is in the fridge, with a note that is mostly punctuation."
+        "cast": {
+          "junior": {
+            "flags": [
+              "kept_late"
+            ]
+          }
+        },
+        "outcome": "Cleared at 1:20am, with {junior} proofreading the annexes. You are both thanked in one email of one word. Dinner is in the fridge, with a note that is mostly punctuation."
       },
       {
         "text": "Go. Send it in the morning.",
@@ -2282,7 +2432,14 @@
           "integrity": 6,
           "standing": -3
         },
-        "outcome": "You make it home for dessert. It goes in at 8:40am and the world does not end, and you note carefully that the world did not end."
+        "cast": {
+          "junior": {
+            "flags": [
+              "sent_home"
+            ]
+          }
+        },
+        "outcome": "You send {junior} home first, and make it home yourself for dessert. It goes in at 8:40am and the world does not end, and you note carefully that the world did not end."
       }
     ],
     "montageEffects": {
@@ -2823,7 +2980,7 @@
   {
     "id": "the_counter",
     "title": "The Counter",
-    "body": "A redesign of the public-facing application process. The project team has never worked a counter. You worked one for four years.",
+    "body": "{senior} has commissioned a redesign of the public-facing application process. The project team has never worked a counter. You worked one for four years.",
     "requires": {
       "origin": [
         "poly"
@@ -2842,7 +2999,14 @@
           "cep": 2,
           "standing": -2
         },
-        "outcome": "You describe, from memory, the eleven things a person at that counter is actually holding in their hands. The room goes quiet. The design changes. Somebody senior asks where you worked before, and listens to the answer."
+        "cast": {
+          "senior": {
+            "flags": [
+              "heard_about_the_counter"
+            ]
+          }
+        },
+        "outcome": "You describe, from memory, the eleven things a person at that counter is actually holding in their hands. The room goes quiet. The design changes. {senior} asks where you worked before, and listens to the answer."
       },
       {
         "text": "Let them learn it from the pilot.",
@@ -2858,7 +3022,7 @@
   {
     "id": "the_night_degree",
     "title": "The Last Paper",
-    "body": "Six years of Tuesday and Thursday evenings, and one Saturday exam left. Half your cohort at work finished theirs at twenty-two, full-time, funded.",
+    "body": "Six years of Tuesday and Thursday evenings, and one Saturday exam left. {peer}, who joined the service the same year you did, finished {peer.their} degree at twenty-two, full-time, funded.",
     "requires": {
       "origin": [
         "poly"
@@ -2961,7 +3125,33 @@
   {
     "id": "figure_vindicated",
     "title": "The Figure, Cited",
-    "body": "A review of the scheme's design cites a utilisation rate of 31%, attributed to a slide from your division. Someone senior asks, carefully, who presented it.",
+    "body": "A review of the scheme's design cites a utilisation rate of 31%, attributed to a slide from your division. {Asker} asks, carefully, who presented it.",
+    "parts": {
+      "asker": {
+        "pick": "first",
+        "options": [
+          {
+            "id": "senior",
+            "text": "{senior}, who once asked you for a range,",
+            "short": "{senior}",
+            "requires": {
+              "cast": {
+                "senior": {
+                  "flagsAll": [
+                    "you_refused"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "unnamed",
+            "text": "someone senior",
+            "short": "the questioner"
+          }
+        ]
+      }
+    },
     "triggered": true,
     "choices": [
       {
@@ -2971,7 +3161,7 @@
           "standing": 6,
           "reputation": 3
         },
-        "outcome": "He nods slowly. You watch your name move from one column of something to another."
+        "outcome": "{Asker.short} nods slowly. You watch your name move from one column of something to another."
       },
       {
         "text": "Say it was a team effort.",
@@ -3105,7 +3295,7 @@
   {
     "id": "pofma_vindicated",
     "title": "The Third Point",
-    "body": "The scheme has been amended, quietly, in exactly the way the third point suggested. A political reporter notices that you were the only office holder who said so in public.",
+    "body": "The scheme has been amended, quietly, in exactly the way the third point suggested. {journalist}, {journalist.aTitle} at the paper, notices that you were the only office holder who said so in public.",
     "triggered": true,
     "choices": [
       {
@@ -3605,13 +3795,20 @@
         "outcome": "He accepts the thanks with the expression of a teacher accepting homework that has clearly been copied. The panel's report is fair, and has a section on responsiveness."
       },
       {
-        "text": "Leave the sessions to your deputy.",
+        "text": "Leave the sessions to {junior}.",
         "effects": {
           "standing": 3,
           "heat": 4,
           "competence": -1
         },
-        "outcome": "Your deputy reports that the panel was constructive, and that one member asked, twice, whether you would be attending."
+        "cast": {
+          "junior": {
+            "flags": [
+              "covered_for_you"
+            ]
+          }
+        },
+        "outcome": "{junior} reports that the panel was constructive, and that one member asked, twice, whether you would be attending."
       }
     ],
     "requires": {
@@ -3714,10 +3911,17 @@
   {
     "id": "budget_committee",
     "title": "The Budget Committee",
-    "body": "The officer who would have had the good box in the reorganisation, before you secured it for yourself, has had a perfectly good career anyway. She now chairs the committee that decides your division's budget. She is scrupulously fair to you, which is somehow worse.",
+    "body": "{peer} would have had the good box in the reorganisation, before you secured it for yourself, and has had a perfectly good career anyway. {peer} now chairs the committee that decides your division's budget, and is scrupulously fair to you, which is somehow worse.",
     "triggered": true,
     "requires": {
-      "maxRank": 6
+      "maxRank": 6,
+      "cast": {
+        "peer": {
+          "flagsAll": [
+            "lost_the_box"
+          ]
+        }
+      }
     },
     "choices": [
       {
@@ -3726,7 +3930,17 @@
           "integrity": 8,
           "standing": -3
         },
-        "outcome": "She lets you finish. Then she says she stopped thinking about it years ago, which you both know is the kind of thing people say. Your budget is approved in full. You will never know whether the coffee had anything to do with it."
+        "cast": {
+          "peer": {
+            "unflags": [
+              "fell_out"
+            ],
+            "flags": [
+              "you_apologised"
+            ]
+          }
+        },
+        "outcome": "{peer} lets you finish, then says {peer.they} stopped thinking about it years ago, which you both know is the kind of thing people say. Your budget is approved in full. You will never know whether the coffee helped."
       },
       {
         "text": "Make your bid on its merits and nothing else.",
@@ -3779,10 +3993,17 @@
   {
     "id": "interview_panel",
     "title": "The Interview Panel",
-    "body": "The officer you quietly worked out was the source of the leak has done well since. She now sits on the interview panel for a post you want. She does not know that you know. You are almost sure of this.",
+    "body": "{peer}, whom you quietly worked out was the source of the leak, has done well since, and has been asked to sit on the interview panel for a post you want. {peer} does not know that you know. You are almost sure of this.",
     "triggered": true,
     "requires": {
-      "maxRank": 6
+      "maxRank": 6,
+      "cast": {
+        "peer": {
+          "flagsAll": [
+            "leaked"
+          ]
+        }
+      }
     },
     "choices": [
       {
@@ -3792,26 +4013,34 @@
           "integrity": 4,
           "standing": -1
         },
-        "outcome": "She asks you two fair questions and one hard one. You answer all three. Whether she knows remains, as far as you can tell, entirely your problem."
+        "outcome": "{peer} asks you two fair questions and one hard one. You answer all three. Whether {peer} knows remains, as far as you can tell, entirely your problem."
       },
       {
-        "text": "Let her understand, very quietly, that you know.",
+        "text": "Let {peer} understand, very quietly, that you know.",
         "effects": {
           "standing": 6,
           "integrity": -10,
           "heat": 10
         },
+        "cast": {
+          "peer": {
+            "flags": [
+              "fell_out",
+              "owes_you_silence"
+            ]
+          }
+        },
         "setFlags": [
           "quiet_word"
         ],
-        "outcome": "You mention, in passing, a Telegram channel. She does not react at all, which is how you know. The post is yours. So, now, is something else."
+        "outcome": "You mention, in passing, a Telegram channel. {peer} does not react at all, which is how you know. The post is yours. So, now, is something else."
       }
     ]
   },
   {
     "id": "two_names",
     "title": "Two Names",
-    "body": "A journalist has noticed that the \"Enhanced\" scheme announced at Committee of Supply has the same budget line, the same eligibility criteria and the same hotline as the scheme it replaced. She would like to know which name people should use when they call.",
+    "body": "{journalist}, {journalist.aTitle}, has noticed that the \"Enhanced\" scheme announced at Committee of Supply has the same budget line, eligibility criteria and hotline as the scheme it replaced. {journalist.formal} would like to know which name people should use when they call.",
     "triggered": true,
     "choices": [
       {
@@ -3821,7 +4050,14 @@
           "reputation": -4,
           "integrity": -3
         },
-        "outcome": "Both names are correct. She prints this. It reads exactly as well as it sounds."
+        "cast": {
+          "journalist": {
+            "flags": [
+              "you_dodged"
+            ]
+          }
+        },
+        "outcome": "Both names are correct. {journalist.formal} prints this. It reads exactly as well as it sounds."
       },
       {
         "text": "Say it is the same scheme, renamed, and explain what changed.",
@@ -3830,6 +4066,13 @@
           "reputation": 3,
           "standing": -5,
           "heat": -6
+        },
+        "cast": {
+          "journalist": {
+            "flags": [
+              "you_were_straight"
+            ]
+          }
         },
         "outcome": "What changed was the word \"Enhanced\". You say so. The piece runs with your quote in the headline and is, against all expectation, quite kind."
       }
@@ -3868,7 +4111,7 @@
   {
     "id": "officer_a",
     "title": "Officer A",
-    "body": "Your recusal memo from the tender evaluation is now slide 14 of the procurement module every new officer takes. It does not name you. It calls you Officer A. At lunch, two of your juniors discuss Officer A, approvingly, in front of you.",
+    "body": "Your recusal memo from the tender evaluation is now slide 14 of the procurement module every new officer takes. It does not name you. It calls you Officer A. At lunch, {junior} and another officer discuss Officer A, approvingly, in front of you.",
     "triggered": true,
     "requires": {
       "maxRank": 7
@@ -4637,6 +4880,628 @@
           "reputation": -1
         },
         "outcome": "Everyone in the room understands the chart. Nobody in the room is reassured by it. You suspect the chart was never the problem."
+      }
+    ]
+  },
+  {
+    "id": "the_ask",
+    "title": "The Ask",
+    "parts": {
+      "asker": [
+        {
+          "id": "peer",
+          "text": "{peer}, from your intake,",
+          "short": "{peer}",
+          "their": "{peer.their}",
+          "yes": "{peer} says you are owed one, and writes it in a notebook you have seen before.",
+          "no": "{peer} takes it well, and has asked someone else by lunchtime.",
+          "requires": {
+            "cast": {
+              "peer": {
+                "flagsNone": [
+                  "fell_out",
+                  "got_the_box"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "peer_box",
+          "prefer": true,
+          "text": "{peer}, who got the good box in the reorganisation,",
+          "short": "{peer}",
+          "their": "{peer.their}",
+          "yes": "{peer} says that makes the two of you even, and you both know it does not.",
+          "no": "{peer} says that is fair, and reminds you, lightly, whose box it was.",
+          "requires": {
+            "cast": {
+              "peer": {
+                "flagsAll": [
+                  "got_the_box"
+                ],
+                "flagsNone": [
+                  "fell_out"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "junior",
+          "text": "{junior}, who reports to you,",
+          "short": "{junior}",
+          "their": "{junior.their}",
+          "yes": "{junior} thanks you twice, the second time when nobody else is around to hear it.",
+          "no": "{junior} nods, and does not ask you for anything else for some months.",
+          "requires": {
+            "cast": {
+              "junior": {
+                "flagsNone": [
+                  "kept_late",
+                  "sent_home"
+                ]
+              }
+            }
+          },
+          "effects": {
+            "1": {
+              "integrity": -2
+            }
+          }
+        },
+        {
+          "id": "junior_late",
+          "prefer": true,
+          "text": "{junior}, who once proofread your annexes until 1:20am,",
+          "short": "{junior}",
+          "their": "{junior.their}",
+          "yes": "{junior} thanks you once, and you understand it is for the annexes as well.",
+          "no": "{junior} says that is fine, in very nearly the tone you used at 1:20am.",
+          "requires": {
+            "cast": {
+              "junior": {
+                "flagsAll": [
+                  "kept_late"
+                ]
+              }
+            }
+          },
+          "effects": {
+            "1": {
+              "integrity": -2
+            },
+            "2": {
+              "standing": -1
+            }
+          }
+        },
+        {
+          "id": "junior_home",
+          "prefer": true,
+          "text": "{junior}, whom you once sent home before a deadline,",
+          "short": "{junior}",
+          "their": "{junior.their}",
+          "yes": "{junior} thanks you, and leaves on time that evening, which you also take as thanks.",
+          "no": "{junior} says that is fine, and leaves on time, which you take as the reply.",
+          "requires": {
+            "cast": {
+              "junior": {
+                "flagsAll": [
+                  "sent_home"
+                ]
+              }
+            }
+          },
+          "effects": {
+            "1": {
+              "integrity": -2
+            }
+          }
+        },
+        {
+          "id": "senior",
+          "text": "{senior}, {senior.aTitle} two floors up,",
+          "short": "{senior}",
+          "their": "{senior.their}",
+          "yes": "{senior} remembers it at your next ranking meeting, the only room where it counts.",
+          "no": "{senior} says that is perfectly fine, in the way the word is used upstairs.",
+          "effects": {
+            "1": {
+              "standing": 2
+            },
+            "2": {
+              "standing": -3
+            }
+          }
+        }
+      ],
+      "want": [
+        {
+          "id": "reference",
+          "text": "a reference for a two-year posting to the Budget Division",
+          "a": "You write three paragraphs, all of them true, and send them before midnight.",
+          "b": "You write three good paragraphs, and copy two people who will remember that you wrote them.",
+          "c": "You explain that a reference from you would read as a favour, because it would be one.",
+          "requires": {
+            "parts": {
+              "asker": [
+                "peer",
+                "peer_box",
+                "junior",
+                "junior_late",
+                "junior_home"
+              ]
+            }
+          }
+        },
+        {
+          "id": "read",
+          "text": "a second read of a paper that goes up at nine tomorrow",
+          "a": "You read it twice and send back three comments, all of them fair, at 11:40pm.",
+          "b": "You send back three comments, and mention at the morning meeting that you looked it over.",
+          "c": "You say you cannot do it justice tonight, which is true, and no help to the paper."
+        },
+        {
+          "id": "cover",
+          "text": "someone to take {asker.their} place at a Saturday dialogue session in Jurong",
+          "a": "You spend the Saturday in Jurong with forty residents and a microphone that works half the time.",
+          "b": "You take the Saturday session. Its photograph goes in the division newsletter, with you in front.",
+          "c": "You keep your Saturday. The session goes ahead with nobody senior there, and is written up as \"intimate\".",
+          "requires": {
+            "parts": {
+              "asker": [
+                "peer",
+                "peer_box",
+                "senior"
+              ]
+            }
+          }
+        }
+      ],
+      "snag": [
+        {
+          "id": "deadline",
+          "text": "Your own paper is due the same week, and is not finished.",
+          "effects": {
+            "0": {
+              "competence": -2
+            },
+            "1": {
+              "competence": -2
+            }
+          }
+        },
+        {
+          "id": "conflicts",
+          "text": "HR sent round a reminder about conflicts of interest this morning, in bold.",
+          "requires": {
+            "parts": {
+              "want": [
+                "reference"
+              ]
+            }
+          },
+          "effects": {
+            "1": {
+              "heat": 4
+            }
+          }
+        },
+        {
+          "id": "queue",
+          "text": "Someone else on your floor asked you for the same thing an hour ago.",
+          "requires": {
+            "parts": {
+              "want": [
+                "reference",
+                "read"
+              ]
+            }
+          },
+          "effects": {
+            "2": {
+              "standing": 2
+            }
+          }
+        },
+        {
+          "id": "quiet",
+          "text": "Nobody else has asked you for anything all week."
+        }
+      ]
+    },
+    "body": "{Asker} stops you by the lift and asks for {want}. {snag}",
+    "requires": {
+      "minRank": 1,
+      "maxRank": 6
+    },
+    "weight": 6,
+    "once": true,
+    "choices": [
+      {
+        "text": "Say yes, and do it properly.",
+        "effects": {
+          "integrity": 6,
+          "reputation": 3,
+          "competence": 2,
+          "standing": -2
+        },
+        "cast": {
+          "peer": {
+            "flags": [
+              "owes_you"
+            ]
+          },
+          "junior": {
+            "flags": [
+              "owes_you"
+            ]
+          },
+          "senior": {
+            "flags": [
+              "owes_you"
+            ]
+          }
+        },
+        "outcome": "{want.a} {asker.yes}"
+      },
+      {
+        "text": "Say yes, and make sure it is seen.",
+        "effects": {
+          "standing": 5,
+          "reputation": 3,
+          "integrity": -4
+        },
+        "cast": {
+          "peer": {
+            "flags": [
+              "owes_you",
+              "you_made_it_known"
+            ]
+          },
+          "junior": {
+            "flags": [
+              "owes_you",
+              "you_made_it_known"
+            ]
+          },
+          "senior": {
+            "flags": [
+              "owes_you",
+              "you_made_it_known"
+            ]
+          }
+        },
+        "outcome": "{want.b} {asker.yes}"
+      },
+      {
+        "text": "Say no, and say why.",
+        "effects": {
+          "integrity": 4,
+          "competence": 4,
+          "standing": -5
+        },
+        "cast": {
+          "peer": {
+            "flags": [
+              "you_said_no"
+            ]
+          },
+          "junior": {
+            "flags": [
+              "you_said_no"
+            ]
+          },
+          "senior": {
+            "flags": [
+              "you_said_no"
+            ]
+          }
+        },
+        "outcome": "{want.c} {asker.no}"
+      }
+    ]
+  },
+  {
+    "id": "the_ribbon",
+    "title": "The Ribbon",
+    "parts": {
+      "occasion": [
+        {
+          "id": "lifts",
+          "text": "the handover of the new lifts at Blk 412"
+        },
+        {
+          "id": "hawker",
+          "text": "the reopening of the hawker centre after renovation"
+        },
+        {
+          "id": "garden",
+          "text": "the opening of a rooftop garden on the MSCP"
+        },
+        {
+          "id": "fitness",
+          "text": "the launch of a fitness corner first planned six years ago"
+        }
+      ],
+      "host": [
+        {
+          "id": "grassroots",
+          "text": "{grassroots}, who organised it,",
+          "where": "is waiting at the ribbon with the scissors",
+          "give": "Hand {grassroots} the scissors. It was {grassroots.their} work.",
+          "saw": "{grassroots} mentions it to every RC in the ward by Monday.",
+          "left": "{grassroots} walks you to the car and does not say anything, which is also a sentence.",
+          "gave": "{grassroots}, {grassroots.title}, cuts the ribbon slowly, to applause that is mostly for {grassroots.them}, and keeps the scissors.",
+          "effects": {
+            "2": {
+              "reputation": 2
+            }
+          }
+        },
+        {
+          "id": "mp",
+          "text": "{mp}, the MP for the next ward,",
+          "where": "is waiting with a spare pair of scissors",
+          "give": "Hand {mp} the scissors, and stand at the back.",
+          "saw": "{mp} leaves halfway, and is in none of the photographs.",
+          "left": "{mp} stays for the rest of it, and is in every photograph.",
+          "gave": "{mp} cuts the ribbon. The newsletter's photograph is of {mp}, captioned with the name of your ward, and the Whip asks you why.",
+          "effects": {
+            "1": {
+              "standing": 1
+            }
+          }
+        },
+        {
+          "id": "journalist",
+          "text": "{journalist}, from the paper,",
+          "where": "is waiting by the ribbon with a camera",
+          "give": "Ask {journalist.formal} to photograph the residents instead of you.",
+          "saw": "{journalist.formal} files three paragraphs about it, and all three are accurate.",
+          "left": "{journalist.formal} photographs you leaving. It is the photograph that runs.",
+          "gave": "The photograph that runs is of four residents and a pair of scissors. It is the best one the paper prints that month, and you are not in it.",
+          "effects": {
+            "0": {
+              "reputation": 2
+            },
+            "1": {
+              "reputation": -2
+            }
+          }
+        }
+      ],
+      "snag": [
+        {
+          "id": "rain",
+          "text": "Twenty minutes in, it starts to rain on the speeches.",
+          "stay": "You stay through the rain and the speeches, and shake every wet hand there is.",
+          "go": "You cut the ribbon under someone else's umbrella and are gone before the second speech."
+        },
+        {
+          "id": "petition",
+          "text": "A resident has brought a petition about the bus stop, and a folding chair.",
+          "stay": "You sit beside the folding chair and read the petition, which has 212 signatures and one good idea.",
+          "go": "You accept the petition with both hands, pass it to an aide with one, and leave.",
+          "effects": {
+            "0": {
+              "reputation": 2
+            },
+            "1": {
+              "reputation": -2
+            }
+          }
+        },
+        {
+          "id": "ribbon",
+          "text": "The ribbon is the wrong colour. The right one is stuck on the PIE.",
+          "stay": "You wait forty minutes for the van and talk to everyone in the queue, which is everyone.",
+          "go": "You cut the wrong ribbon. Nobody minds except the person who ordered the right one."
+        },
+        {
+          "id": "late",
+          "text": "You are due across the ward in fifteen minutes.",
+          "stay": "You stay, and reach the next event as it is packing up, apologising mainly to the chairs.",
+          "go": "You cut the ribbon on time and are across the ward in fourteen minutes, which the driver mentions.",
+          "effects": {
+            "0": {
+              "standing": -2
+            }
+          }
+        }
+      ]
+    },
+    "body": "You are at {occasion}. {Host} {host.where}. {snag}",
+    "requires": {
+      "minRank": 8,
+      "maxRank": 10
+    },
+    "weight": 6,
+    "once": true,
+    "choices": [
+      {
+        "text": "Stay to the end, and talk to everyone.",
+        "effects": {
+          "reputation": 6,
+          "competence": 2,
+          "standing": -4
+        },
+        "outcome": "{snag.stay} {host.saw}"
+      },
+      {
+        "text": "Cut the ribbon, smile, and go.",
+        "effects": {
+          "standing": 5,
+          "reputation": -3
+        },
+        "outcome": "{snag.go} {host.left}"
+      },
+      {
+        "text": "{host.give}",
+        "effects": {
+          "integrity": 6,
+          "reputation": 2,
+          "standing": -5
+        },
+        "cast": {
+          "grassroots": {
+            "flags": [
+              "you_gave_the_scissors"
+            ]
+          },
+          "mp": {
+            "flags": [
+              "you_gave_the_scissors"
+            ]
+          },
+          "journalist": {
+            "flags": [
+              "you_stepped_aside"
+            ]
+          }
+        },
+        "outcome": "{host.gave}"
+      }
+    ]
+  },
+  {
+    "id": "reply_all",
+    "title": "Reply All",
+    "parts": {
+      "sent": [
+        {
+          "id": "draft",
+          "text": "your draft reply, with your notes to yourself still in square brackets",
+          "fix": "Your correction is two lines long. The square brackets are discussed for a week, and then quoted, fondly, at the division retreat."
+        },
+        {
+          "id": "attachment",
+          "text": "last year's figures, attached instead of this year's",
+          "fix": "Your correction attaches the right file and the words \"with apologies\". By then, three people had already pasted last year's figures into something."
+        },
+        {
+          "id": "aside",
+          "text": "a reply meant for one person, which reads in full: \"Is this serious?\"",
+          "fix": "Your correction explains that the line was not meant for circulation. By then it is the most widely read thing you have written."
+        }
+      ],
+      "to": [
+        {
+          "id": "division",
+          "text": "the whole division",
+          "joke": "The joke lands. Two people you have never spoken to say hello in the lift the following week."
+        },
+        {
+          "id": "agencies",
+          "text": "forty-one agencies",
+          "joke": "Forty agencies ignore the joke. One replies all to ask to be taken off the list, which starts the whole thing again."
+        },
+        {
+          "id": "minister",
+          "text": "the Minister's office",
+          "joke": "The Minister's office does not reply. Your reporting officer forwards your joke back to you without comment, which is a comment.",
+          "effects": {
+            "0": {
+              "standing": -1
+            },
+            "2": {
+              "standing": -3
+            }
+          }
+        }
+      ],
+      "noticed": [
+        {
+          "id": "peer",
+          "text": "{peer} messages you within the minute: \"Check your sent folder.\""
+        },
+        {
+          "id": "senior",
+          "text": "{senior} replies to all, \"Noted, thanks,\" which keeps the thread alive into the weekend.",
+          "effects": {
+            "1": {
+              "standing": -2
+            }
+          }
+        },
+        {
+          "id": "nobody",
+          "text": "Nobody says anything. Everyone has read it."
+        }
+      ]
+    },
+    "body": "At 4:52pm on a Friday, you send {to} {sent}. {noticed}",
+    "requires": {
+      "minRank": 0,
+      "maxRank": 1
+    },
+    "weight": 5,
+    "once": true,
+    "choices": [
+      {
+        "text": "Send a short correction to everyone, now.",
+        "effects": {
+          "integrity": 4,
+          "competence": 4,
+          "reputation": 2,
+          "standing": -3
+        },
+        "cast": {
+          "peer": {
+            "flags": [
+              "warned_you"
+            ]
+          },
+          "senior": {
+            "flags": [
+              "saw_your_reply_all"
+            ]
+          }
+        },
+        "outcome": "{sent.fix}"
+      },
+      {
+        "text": "Recall it, and hope.",
+        "effects": {
+          "standing": 5,
+          "integrity": -6,
+          "heat": 5
+        },
+        "cast": {
+          "peer": {
+            "flags": [
+              "warned_you"
+            ]
+          },
+          "senior": {
+            "flags": [
+              "saw_your_reply_all"
+            ]
+          }
+        },
+        "outcome": "The recall reaches the people who had not opened it. Everyone else receives a second email, saying you would like to recall the first."
+      },
+      {
+        "text": "Reply all once more, with an apology and a joke.",
+        "effects": {
+          "reputation": 6,
+          "standing": -3,
+          "competence": -1
+        },
+        "cast": {
+          "peer": {
+            "flags": [
+              "warned_you"
+            ]
+          },
+          "senior": {
+            "flags": [
+              "saw_your_reply_all"
+            ]
+          }
+        },
+        "outcome": "{to.joke}"
       }
     ]
   }

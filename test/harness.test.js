@@ -44,7 +44,7 @@ ok('a game has no batchmate unless asked for, and the batchmate stays hidden unt
     assert.ok(!('rival' in S), 'no batchmate unless asked for');
     const { screens } = playRandom(origin, seed, { rival: true, screens: true });
     for (const sc of screens.slice(0, -1)) {
-      assert.ok(!/\bability\b|cepStart|"rel"|\{rival\}|\{the(y|m|ir)\}/i.test(sc.text), 'batchmate internals or placeholders on screen: ' + sc.text.slice(0, 200));
+      assert.ok(!/\bability\b|cepStart|"rel"|\{rival\}|\{the(y|m|ir)\}|\{[^{}\s]+\}/i.test(sc.text), 'batchmate internals or placeholders on screen: ' + sc.text.slice(0, 200));
     }
   }
   // batchmate cards: every schedule target exists, every choice has text and outcome, no dominated choices
@@ -181,6 +181,106 @@ ok('ending causes classify losses', () => {
     } else if (t.ending) assert.strictEqual(t.endingCause.kind, 'outcome');
   }
   assert.ok(Object.keys(kinds).length > 0, 'expected some losses in 900 random runs');
+});
+
+ok('the run\'s cast: names, pronouns, grades and memory hold for whole careers', () => {
+  const C = build.content, L = C.ladder, E = build.engine;
+  let refills = 0, named = 0;
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
+    const r = H.rng(seed * 3 + 1);
+    let run = H.newRun(origin, seed, { build, rival: seed % 2 === 0 });
+    const pron = {}, holder = {}, lines = new Set();
+    for (let t = 0; t < 95; t++) {
+      const S = run.S;
+      // at most one cast line per outcome screen, and no version of a line twice in a run
+      const notes = run.last ? run.last.log.filter(l => l.cast) : [];
+      assert.ok(notes.length <= 1, `${origin} ${seed}: ${notes.length} cast lines on one screen`);
+      for (const l of notes) { const k = `${l.cast}.${l.key}#${l.line}`; assert.ok(!lines.has(k), `${origin} ${seed}: cast line ${k} repeated`); lines.add(k); }
+      if (!S.ending) {
+        const people = Object.values(S.cast.on).filter(Boolean).concat(S.cast.past);
+        const words = people.flatMap(p => p.nm.full.toLowerCase().split(/\s+/).filter(w => !['bin', 'binte', 'de'].includes(w)));
+        assert.strictEqual(new Set(words).size, words.length, `${origin} ${seed}: two of the run's people share a name`);
+        if (S.rival) for (const w of S.rival.name.toLowerCase().split(/\s+/)) assert.ok(!words.includes(w), 'a cast member shares the batchmate\'s name');
+        for (const [role, p] of Object.entries(S.cast.on)) {
+          if (!p) continue;
+          pron[p.id] = pron[p.id] || p.pron;
+          assert.strictEqual(p.pron, pron[p.id], 'a person\'s pronoun changed');
+          const track = C.cast.roles[role].track;
+          if (track === 'above' && S.rank < 8) assert.ok(p.rank > S.rank, `senior ${L[p.rank].title} is not above ${L[S.rank].title}`);
+          if (track === 'below') assert.ok(p.rank < S.rank && S.rank < 8, `junior ${L[p.rank].title} does not report to ${L[S.rank].title}`);
+          if (track !== 'none' && track !== 'political') assert.ok(p.rank <= E.maxRankForAge(C, S.age + p.ageOff), `${role} under the age floor`);
+          // a refilled role is a new person who arrives with no history
+          if (holder[role] !== undefined && holder[role] !== p.id) { refills++; assert.deepStrictEqual(p.flags, [], `a refilled ${role} inherited flags`); }
+          holder[role] = p.id;
+        }
+      }
+      if (run.phase === 'ending') break;
+      const ev = H.currentEvent(build, S);
+      if (ev.who) named++;
+      assert.ok(!/\{[^{}\s]+\}/.test([ev.title, ev.body, ...ev.choices.flatMap(c => [c.text, c.outcome])].join(' ')), `raw token on ${ev.id}`);
+      const live = H.choices(run).filter(c => c.available);
+      run = H.step(run, live[Math.floor(r() * live.length)].id);
+    }
+  }
+  assert.ok(refills > 20 && named > 300, `expected refills and cast cards (${refills}, ${named})`);
+  // the cast is drawn on its own stream: the run's dice are untouched
+  const bare = { ...C, cast: undefined };
+  for (const origin of ['scholar', 'grad', 'poly']) for (const seed of [1, 2, 3]) {
+    const a = E.newGame(C, origin, 'X', seed), b = E.newGame(bare, origin, 'X', seed);
+    assert.deepStrictEqual([a.cep, a.ministry, a.rngCalls], [b.cep, b.ministry, b.rngCalls]);
+    assert.ok(a.cast && !b.cast);
+  }
+});
+
+ok('card parts: one combination per showing, fresh next run, every combination renders with no dominated choice', () => {
+  const C = build.content, E = build.engine;
+  const cards = C.events.filter(e => e.parts);
+  assert.ok(cards.length >= 3, 'expected cards with parts');
+  // a state with every role filled, so every option can be assembled
+  const S0 = JSON.parse(JSON.stringify(H.newRun('grad', 11, { build }).S));
+  S0.rank = 3;
+  for (const role of Object.keys(C.cast.roles)) S0.cast.on[role] = S0.cast.on[role] || { id: 900 + role.length, role, nm: { given: 'Kai Wen', formal: 'Pang', full: 'Pang Kai Wen' }, pron: 'm', ageOff: 9, rank: role === 'senior' ? 6 : role === 'junior' ? 1 : 3, since: 1, rankYear: 1, flags: [], post: 'CCC chairman' };
+  const { dominatedChoices } = require('./metrics');
+  for (const ev of cards) {
+    const all = [];
+    const go = (i, cur) => {
+      const slots = E.partSlots(ev);
+      if (i === slots.length) return all.push({ ...cur });
+      const [name, sl] = slots[i];
+      sl.options.forEach((o, k) => { if (!Object.entries((o.requires || {}).parts || {}).some(([x, ids]) => !ids.includes(cur[x]))) go(i + 1, { ...cur, [name]: o.id !== undefined ? String(o.id) : String(k) }); });
+    };
+    go(0, {});
+    for (const parts of all) {
+      const r = E.render(C, ev, S0, { parts });
+      const text = [r.title, r.body, ...r.choices.flatMap(c => [c.text, c.outcome])].join(' ');
+      assert.ok(!/\{[^{}\s]+\}/.test(text), `${ev.id} ${JSON.stringify(parts)}: raw token in "${text.slice(0, 120)}"`);
+      assert.deepStrictEqual(dominatedChoices({ events: [{ ...r, choices: r.choices }] }), [], `${ev.id} ${JSON.stringify(parts)}: a dominated choice`);
+    }
+  }
+  // freshness: with this run's options in the phone's memory, the next run picks others where it can
+  const ask = cards.find(e => e.id === 'the_ask') || cards[0];
+  const S = { ...S0, recent: [], history: [] };
+  const first = E.render(C, ask, S).picked;
+  const second = E.render(C, ask, { ...S, recent: Object.entries(first).map(([k, v]) => `${ask.id}~${k}=${v}`) }).picked;
+  assert.ok(Object.keys(first).some(k => first[k] !== second[k]), 'the next run repeated every part');
+  assert.deepStrictEqual(E.render(C, ask, S).picked, first, 'parts are not deterministic');
+});
+
+ok('the immersion lint\'s static checks pass (tokens, slots, pronouns, grades, guarded callbacks)', () => {
+  assert.deepStrictEqual(require('./contexts').castStatic(build), []);
+});
+
+ok('the trace shows which of the run\'s people and which part options a card used', () => {
+  let cast = 0, parts = 0;
+  for (const origin of ['grad', 'poly']) for (let seed = 1; seed <= 30; seed++) {
+    const t = H.trace(playRandom(origin, seed).run);
+    assert.ok(t.cast && t.cast.on, 'trace carries the cast');
+    for (const turn of t.turns) {
+      if (turn.event.cast) { cast++; for (const v of Object.values(turn.event.cast)) assert.ok(v.name && v.id); }
+      if (turn.event.parts) parts++;
+    }
+  }
+  assert.ok(cast > 20 && parts > 10, `expected cast and parts in traces (${cast}, ${parts})`);
 });
 
 console.log(`\nAll ${passed} harness tests passed.`);

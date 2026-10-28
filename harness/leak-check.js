@@ -64,6 +64,9 @@ function checkScreen(text, build, terms = screenTerms(build)) {
   for (const [re, why] of [
     [/"\w+"\s*:/, "JSON"], [/\bundefined\b|\bNaN\b|\[object Object\]/, "render bug"],
     [/\{(rival|they|them|their|They|Them|Their|title)\}/, "unfilled batchmate placeholder"],
+    // any other template token: a cast member ({peer}, {Junior.They}) or a card part ({asker})
+    // that was never filled in. The screen never shows a raw token.
+    [/\{[^{}\s]{1,40}\}/, "unfilled template token"],
     [/\b(heat|cep)\s*[:=]\s*-?\d/i, "hidden value"],
     [/\b(reputation|standing|integrity|competence)\s*[:=]?\s*[+-]\s?\d/i, "effect number"]
   ]) {
