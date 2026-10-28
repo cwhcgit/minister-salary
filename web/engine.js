@@ -92,7 +92,7 @@ const Engine = (() => {
   // Every name token on a card: {peer}, {Peer.They}, {asker.short}, {rival}. Card parts are
   // filled first, then the cast, then the batchmate.
   function sub(text, s, content) {
-    if (typeof text !== "string") return text;
+    if (typeof text !== "string" || text.indexOf("{") < 0) return text;
     if (content && s.cast) text = castSub(content, s, text);
     if (!s.rival) return text;
     const p = PRON[s.rival.pron] || PRON.f;
@@ -147,13 +147,13 @@ const Engine = (() => {
       case "title": return personTitle(content, cfg, p, s);
       case "atitle": { const t = personTitle(content, cfg, p, s); return (/^[aeiou]/i.test(t) ? "an " : "a ") + t; }
       case "they": case "them": case "their": return P[f];
-      case "years": { const n = s.year - p.since; return NUM_WORDS[n] || String(n); }
+      case "years": { const n = s.year - p.since; return n < 1 ? "less than a year" : n === 1 ? "a year" : `${NUM_WORDS[n] || n} years`; }
       default: return null;
     }
   }
   const NUM_WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
   function castSub(content, s, text) {
-    if (!content.cast || !s.cast) return text;
+    if (!content.cast || !s.cast || text.indexOf("{") < 0) return text;
     return text.replace(TOKEN, (m, name, field) => {
       const role = name.toLowerCase();
       if (!content.cast.roles[role]) return m;
@@ -173,7 +173,9 @@ const Engine = (() => {
   }
   // The roles a card names in its own text (title, body, choices, every version), which must all
   // be filled for the card to be drawn. Roles named only inside a part option gate that option.
-  const NEEDS = new WeakMap();
+  // Derived data is cached on the content objects under symbols, which JSON (saves, the build
+  // hash) never sees.
+  const NEEDS = Symbol("needs"), SLOTS = Symbol("slots"), ROLES = Symbol("roles");
   function cardTexts(ev) {
     const out = [ev.title, ev.body];
     for (const c of ev.choices || []) { out.push(c.text, c.outcome); if (c.rival && c.rival.contest) out.push(c.rival.contest.winText, c.rival.contest.loseText); }
@@ -181,23 +183,23 @@ const Engine = (() => {
     return out.filter(x => typeof x === "string");
   }
   function roleNeeds(ev) {
-    if (NEEDS.has(ev)) return NEEDS.get(ev);
+    if (ev[NEEDS]) return ev[NEEDS];
     const slots = new Set(partSlots(ev).map(([k]) => k));
     const roles = new Set();
     for (const t of cardTexts(ev)) for (const { name } of tokensIn(t))
       if (!slots.has(name) && !NOT_ROLES.has(name.toLowerCase())) roles.add(name.toLowerCase());
     const out = [...roles];
-    NEEDS.set(ev, out);
+    if (Object.prototype.hasOwnProperty.call(ev, "id")) Object.defineProperty(ev, NEEDS, { value: out });
     return out;
   }
   // (an option's own text may use another slot's words, e.g. {asker.their}: those are not roles)
   function optionNeeds(opt, ev) {
-    if (NEEDS.has(opt)) return NEEDS.get(opt);
+    if (opt[NEEDS]) return opt[NEEDS];
     const slots = new Set(ev ? partSlots(ev).map(([k]) => k) : []);
     const roles = new Set();
     for (const v of Object.values(opt)) for (const { name } of tokensIn(v)) if (!slots.has(name) && !NOT_ROLES.has(name.toLowerCase())) roles.add(name.toLowerCase());
     const out = [...roles];
-    NEEDS.set(opt, out);
+    if (ev) Object.defineProperty(opt, NEEDS, { value: out });
     return out;
   }
   const rolesFilled = (roles, s) => roles.every(r => !!(s.cast && s.cast.on[r]));
@@ -300,7 +302,8 @@ const Engine = (() => {
     const C = content.cast;
     if (!C) return;
     const K = s.cast || (s.cast = { on: {}, past: [], vacant: {}, gen: {}, n: 0 });
-    for (const [role, cfg] of Object.entries(C.roles)) {
+    const roles = C[ROLES] || (Object.defineProperty(C, ROLES, { value: Object.entries(C.roles) }), C[ROLES]);
+    for (const [role, cfg] of roles) {
       let p = K.on[role];
       if (p) {
         const why = exitReason(content, s, role, cfg, p);
@@ -364,7 +367,10 @@ const Engine = (() => {
   // ties with options just as fresh (a callback to something this run did).
   function partSlots(ev) {
     if (!ev.parts) return [];
-    return Object.entries(ev.parts).map(([k, v]) => [k, Array.isArray(v) ? { pick: "fresh", options: v } : { pick: v.pick || "fresh", options: v.options || [] }]);
+    if (ev.parts[SLOTS]) return ev.parts[SLOTS];
+    const out = Object.entries(ev.parts).map(([k, v]) => [k, Array.isArray(v) ? { pick: "fresh", options: v } : { pick: v.pick || "fresh", options: v.options || [] }]);
+    Object.defineProperty(ev.parts, SLOTS, { value: out });
+    return out;
   }
   const optId = (o, k) => (o.id !== undefined ? String(o.id) : String(k));
   function optionOk(ev, o, s, picked) {
@@ -402,6 +408,22 @@ const Engine = (() => {
     };
     return go(0) ? out : null;
   }
+  // Whether any combination fits (the order does not matter for that).
+  function partsFit(ev, s) {
+    const slots = partSlots(ev), cur = {};
+    const go = i => {
+      if (i === slots.length) return true;
+      const [name, sl] = slots[i];
+      for (let k = 0; k < sl.options.length; k++) {
+        if (!optionOk(ev, sl.options[k], s, cur)) continue;
+        cur[name] = optId(sl.options[k], k);
+        if (go(i + 1)) return true;
+      }
+      delete cur[name];
+      return false;
+    };
+    return go(0);
+  }
   // Every combination that fits this state (up to `limit`), for the immersion lint.
   function partCombos(ev, s, limit = 64) {
     const slots = partSlots(ev), out = [], cur = {};
@@ -419,7 +441,7 @@ const Engine = (() => {
     return sl ? sl[1].options.find((o, k) => optId(o, k) === id) : null;
   }
   function fillParts(text, ev, pick) {
-    if (typeof text !== "string" || !pick) return text;
+    if (typeof text !== "string" || !pick || text.indexOf("{") < 0) return text;
     return text.replace(TOKEN, (m, name, field) => {
       const slot = lc1(name);
       if (pick[slot] === undefined) return m;
@@ -452,6 +474,7 @@ const Engine = (() => {
     // who: the people this showing actually names (not every role some other version of it names)
     const who = {};
     const named = t => {
+      if (t.indexOf("{") < 0) return t;
       for (const { name } of tokensIn(t)) { const r = name.toLowerCase(); if (!NOT_ROLES.has(r) && s.cast && s.cast.on[r]) who[r] = s.cast.on[r].id; }
       return t;
     };
@@ -613,7 +636,7 @@ const Engine = (() => {
   // A card can be shown when its requirements hold, every cast member its text names is in
   // their role, and its parts (if any) have at least one combination that fits.
   function cardOk(ev, s) {
-    return meets(ev.requires || {}, s) && rolesFilled(roleNeeds(ev), s) && (!ev.parts || !!pickParts(ev, s));
+    return meets(ev.requires || {}, s) && rolesFilled(roleNeeds(ev), s) && (!ev.parts || partsFit(ev, s));
   }
 
   // A scheduled consequence waits, still scheduled, until its own requirements hold (a
@@ -1101,9 +1124,16 @@ const Engine = (() => {
     if (id === "__quiet") return QUIET_YEAR;
     if (!s.cast && content.cast) { s = { ...s }; castSync(content, s, null, true); }   // a save from before the cast
     if (id.startsWith(MONTAGE)) return montageOf(content, content.events.find(e => e.id === id.slice(MONTAGE.length)), s);
+    // the same card in the same state renders the same way: the UI and the harness ask several times
+    const key = `${id}|${s.year}|${s.rank}|${s.flags.length}|${(s.history || []).length}|${s.cardsPlayed || 0}`;
+    const hit = SHOWN.get(s);
+    if (hit && hit.key === key && hit.content === content) return hit.ev;
     const ev = allEvents(content, s).find(e => e.id === id);
-    return ev ? render(content, variantOf(ev, s), s) : ev;
+    const out = ev ? render(content, variantOf(ev, s), s) : ev;
+    SHOWN.set(s, { key, content, ev: out });
+    return out;
   }
+  const SHOWN = new WeakMap();
 
   // --- card versions ---------------------------------------------------------
   // A card may carry variants: the same mechanics, flags and choices in a different scene.
@@ -1216,7 +1246,8 @@ const Engine = (() => {
   function advance(content, state, choiceIndex) {
     const s = JSON.parse(JSON.stringify(state));   // immutable in, new state out
     if (!s.cast && content.cast) castSync(content, s, null, true);   // a save from before the cast
-    const ev = eventOf(content, s);
+    // the card as shown: a pure function of the state, so the copy reads the same as the original
+    const ev = eventOf(content, state);
     const ch = ev.choices[choiceIndex];
     const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
     const trace = {};
@@ -1230,8 +1261,11 @@ const Engine = (() => {
     }
     s.cardsPlayed = (s.cardsPlayed || 0) + 1;
     // A card with parts or cast keeps what it showed: the combination (freshness, the next
-    // showing's rotation) and its choices' words as read (the Declassified file quotes them).
-    const shown = ev.picked || ev.who ? { ...(ev.picked ? { parts: ev.picked } : {}), ...(ev.who ? { who: ev.who } : {}), texts: ev.choices.map(c => c.text) } : {};
+    // showing's rotation), who it named, and, when the Declassified file may quote an untaken
+    // choice from it (one that raised the ceiling), its choices' words as read.
+    const quoted = ev.choices.some((c, i) => i !== choiceIndex && ((c.effects || {}).cep || 0) > 0);
+    const shown = ev.picked || ev.who ? { ...(ev.picked ? { parts: ev.picked } : {}), ...(ev.who ? { who: ev.who } : {}),
+      ...(quoted ? { texts: ev.choices.map(c => c.text) } : {}) } : {};
     s.history.push({ ...before, ev: ev.id, title: ev.title, choice: choiceIndex, text: ch.text, variant: ev.variant || 0, ...shown,
       grade: (trace.appraisal || {}).grade,
       cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation,

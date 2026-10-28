@@ -195,13 +195,29 @@ A card gets two or three alternate scenes when it appears in more than about 40%
    - Deadpan; never wink.
    - Accuracy is the joke.
    - Write with affection.
+   - Write in a Singaporean voice: local names and terms as locals say them (HDB, PUB, NParks, GRC,
+     RC, void deck, the Whip), with no glosses or explanations.
 2. **Accuracy.** Check every institutional fact against a primary or official source (PSD, MOF, the
    Parliament website, statutes, ministry sites). Put the source in the pack's PR description, one line
    per fact. Facts that change (pay, thresholds, targets, names of schemes) must match today's values.
    Example: political pay follows the 2026 framework (MR4 $1.8m, PM 2x MR4).
-3. **Immersion.** Every line must make sense in every situation the card can fire in. Run
-   `node test/contexts.js`; zero contradictions. The player is gender-neutral, with no assumed
-   family; a batchmate's or colleague's pronoun is fixed per person.
+3. **Believability and congruence.** Plausibility is optional; congruence is not.
+   - **Believability lives in motive, not physics.** Impossible premises are allowed: sci-fi,
+     magical, supernatural. What is not allowed is anyone acting against their own incentives or
+     their institution's habits. That is unbelievable even when it is physically realistic: a
+     ruling-party member founding a society of anarchist groups to settle opposition voices could
+     happen, and no such person would do it. A cast member (section 8) also acts in character for
+     their role and for their history with you in this run: a peer you cut out of a promotion does
+     not ask you for a favour as if nothing happened.
+   - Then the three ways the game can contradict itself. Every line must make sense in every
+     situation the card can fire in; `node test/contexts.js` checks these, with zero contradictions:
+     - **Who you are:** your rank, age, origin and what you did. "Your director" for a Director,
+       a ward for a civil servant, a callback to a choice you did not make.
+     - **What happened in the run:** a person who left still acting as a colleague; a promoted
+       person still at their old grade; a callback that names a stranger as if they were there.
+     - **The tone:** a wink, a register break, a line that steps outside the world to nudge you.
+   - The player is gender-neutral, with no assumed family; a batchmate's or cast member's pronoun
+     is fixed per person.
 4. **Genuine choices.** At least two choices, each costing something. No choice may be worse on
    every stat (check with the bot dominance metric in `node test/sim.js`). Use three choices when the
    third is a real third way, not a "do nothing" filler.
@@ -271,3 +287,126 @@ Packs merge only after the owner's read.
 **Measuring.** After every two packs, rerun `test/variety.js`. The targets: a second run shares
 at most about 40% of its cards with the first, and no card that isn't structural appears in more
 than about 60% of runs. Then rerun a blind agent cohort when credits allow.
+
+## 8. The run's cast and card parts
+
+A second career should not replay the first. Two engine features multiply what one card can be,
+without letting the game contradict itself. Both are text-first: they never use the run's dice, and
+a card that uses them plays exactly as it did before, mechanically.
+
+### The cast
+
+Every run draws a small set of recurring people from the seed: names, pronouns and ages, from the
+pool in `web/content/game.json` (`cast.names`; invented, across communities, never a real public
+figure, never sharing a name with the batchmate or with each other). The same peer can carry your
+intake's story across a career; the next run has different people.
+
+| Role | Who | Present while | Grade |
+| --- | --- | --- | --- |
+| `peer` | an officer from your intake | always (stays in the service if you leave it) | moves up alongside you; at their own pace once you are in politics |
+| `junior` | an officer who reports to you | you are in the service, from your first promotion | one or two grades below you, never level with you |
+| `senior` | a mentor or boss figure | you are in the service below Permanent Secretary | two or three grades above you; moves on when you reach their grade |
+| `journalist` | a journalist on the public-service beat | always | correspondent, then senior correspondent, then political editor |
+| `grassroots` | a grassroots leader in your ward | you are in Parliament | CCC, RC or CCMC chairman |
+| `mp` | a fellow MP | you are in Parliament | Member of Parliament, or higher if a choice promotes them |
+
+**Tokens.** `{peer}` is the name as the role calls them (a peer or junior by given name, a senior or
+grassroots leader as "Ms Chua" or "Mdm Rohani", a journalist by full name). Fields:
+`{peer.full}`, `{peer.given}`, `{peer.formal}`, `{peer.title}` (their grade now, from their rank),
+`{peer.aTitle}` ("an Assistant Director"), `{peer.years}` ("three years" in the role),
+`{peer.they}`, `{peer.them}`, `{peer.their}`. Capitalise the role or the field for a capital:
+`{Peer.They}`. As with the batchmate, a subject pronoun only comes before a past-tense verb
+("{peer.they} said"); otherwise use the name. Never write a grade out next to a cast member
+("{senior}, the Deputy Secretary"): use `{senior.title}`, which is right at every rank.
+
+**Drawing.** A card that names a role in its own text can only be drawn while that role is filled.
+`requires.cast` adds conditions on the person: `{ "peer": { "flagsAll": [...], "flagsNone": [...],
+"minRank": 3, "maxRank": 6, "minYears": 2 } }`, or `{ "peer": false }` for a vacant role.
+
+**Choices.** A choice may change the person the card named:
+`"cast": { "peer": { "flags": ["owes_you"], "unflags": ["fell_out"], "promote": 1, "leave": "private sector" } }`.
+Flags stay with that person; `promote` moves them up a grade at once; `leave` ends their part in the
+run. A choice only changes someone the card actually named as shown (another version of the card, or
+a part option that did not mention them, leaves them alone). Useful flags: `owes_you`, `fell_out`,
+`you_said_no`, plus one per thing you did ("lost_the_box", "kept_late").
+
+**Lifecycle.** People retire, are caught up with (a senior), are promoted to your grade (a junior),
+or stay behind when you leave the service. Their departure and their replacement's arrival appear as
+a line on the outcome screen (`cast.lines`). A role refills after `refillYears` with a new person
+who has no history: flags never pass to a successor, so a callback that requires a flag can only ever
+name the person it remembers.
+
+**Worked example: the junior.** `late_night` names the junior and records how you treated them:
+
+```json
+"body": "The clearance has come back with comments for the fourth time. {junior} is still at {junior.their} desk, waiting to see what you decide. The dinner you promised to be home for was at eight.",
+"choices": [
+  { "text": "Finish it tonight.", "cast": { "junior": { "flags": ["kept_late"] } },
+    "outcome": "Cleared at 1:20am, with {junior} proofreading the annexes. You are both thanked in one email of one word. ..." },
+  { "text": "Go. Send it in the morning.", "cast": { "junior": { "flags": ["sent_home"] } },
+    "outcome": "You send {junior} home first, and make it home yourself for dessert. ..." }
+]
+```
+
+Years later, `the_ask` remembers it, but only for that same person (a part option, below):
+`{ "id": "junior_late", "prefer": true, "text": "{junior}, who once proofread your annexes until 1:20am,",
+"requires": { "cast": { "junior": { "flagsAll": ["kept_late"] } } } }`. A scheduled callback works the
+same way: `budget_committee` requires `{ "cast": { "peer": { "flagsAll": ["lost_the_box"] } } }`, so it
+fires only while the peer you beat to the box is still your peer; if they have gone, it never fires.
+
+### Card parts
+
+A card may declare `parts`: named slots, each with interchangeable options. The card's title, body,
+choices and outcomes use `{slot}` (the option's `text`), `{Slot}` (capitalised) or `{slot.field}`
+(any other string on the option). Each showing assembles one combination.
+
+- **Which combination.** Options whose `requires` hold (rank, `act`, flags, `cast`, and earlier slots'
+  picks via `"parts": { "want": ["reference", "read"] }`), in an order drawn from the seed, preferring
+  options this phone has not shown in its last two runs and this run has not shown yet. `"prefer": true`
+  wins ties (use it for callbacks). A card is only drawn when some combination fits.
+- **Conditional text.** A slot written `{ "pick": "first", "options": [...] }` takes the first option
+  that fits, in order: the way to name someone only if they are still there, with a fallback.
+- **Stakes.** An option may add to the card's choices (`"effects": { "*": {...}, "1": { "standing": -3 } }`)
+  or scale them (`"scale": { "heat": 1.5 }`), so who is asking changes the price. Keep it small; no
+  combination may leave a choice worse on every stat (`node test/harness.test.js` checks all of them).
+- **With variants and alternates.** Parts are shared by every version of the card, and a version's
+  text may use them. A scheduled card's `alternates` are chosen first, then its parts.
+- **Not in** montage lines, autoplay lines, a repeatable card's title, or the Folder: nothing fills
+  them there.
+
+**Worked example: Reply All.** Three slots of three options make 27 scenes from one card:
+
+```json
+"parts": {
+  "sent": [ { "id": "draft", "text": "your draft reply, with your notes to yourself still in square brackets", "fix": "Your correction is two lines long. ..." },
+            { "id": "attachment", "text": "last year's figures, attached instead of this year's", "fix": "..." },
+            { "id": "aside", "text": "a reply meant for one person, which reads in full: \"Is this serious?\"", "fix": "..." } ],
+  "to": [ { "id": "division", "text": "the whole division", "joke": "..." },
+          { "id": "agencies", "text": "forty-one agencies", "joke": "..." },
+          { "id": "minister", "text": "the Minister's office", "joke": "...", "effects": { "0": { "standing": -1 }, "2": { "standing": -3 } } } ],
+  "noticed": [ { "id": "peer", "text": "{peer} messages you within the minute: \"Check your sent folder.\"" },
+               { "id": "senior", "text": "{senior} replies to all, \"Noted, thanks,\" which keeps the thread alive into the weekend." },
+               { "id": "nobody", "text": "Nobody says anything. Everyone has read it." } ]
+},
+"body": "At 4:52pm on a Friday, you send {to} {sent}. {noticed}",
+"choices": [ { "text": "Send a short correction to everyone, now.", "outcome": "{sent.fix}", ... },
+             { "text": "Recall it, and hope.", "outcome": "The recall reaches the people who had not opened it. ...", ... },
+             { "text": "Reply all once more, with an apology and a joke.", "outcome": "{to.joke}", ... } ]
+```
+
+Write every option so it reads well beside every option of every other slot, or tie them with
+`requires.parts`. Every assembled body still keeps to 25-45 words and every outcome to 15-35.
+
+### Checks
+
+- `node test/contexts.js` re-renders every cast or parts card in every context it was seen to fire in
+  (rank, act, origin, who holds each role and what they remember), with every version and every part
+  combination that fits there (a sample when there are more than 64), and lints the text: no raw
+  `{token}`, nobody vacant or departed named, every grade beside a name right for that person's rank,
+  a senior above you and a junior below, names unique in the run, and every callback that names a role
+  checking that it is the person the earlier choice was about.
+- `node harness/leak-check.js` fails on any raw `{token}` on screen.
+- `node test/similarity.js` reads cards as assembled, with names filled by placeholders.
+- `node test/variety.js` reports next-run overlap by card, by version (card, variant and parts) and by
+  scene (version and the people it names).
+- The trace records, per turn, the part options used (`event.parts`) and the people named (`event.cast`).

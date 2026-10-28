@@ -5047,7 +5047,16 @@
           "text": "someone to take {asker.their} place at a Saturday dialogue session in Jurong",
           "a": "You spend the Saturday in Jurong with forty residents and a microphone that works half the time.",
           "b": "You take the Saturday session. Its photograph goes in the division newsletter, with you in front.",
-          "c": "You keep your Saturday. The session goes ahead with nobody senior there, and is written up as \"intimate\"."
+          "c": "You keep your Saturday. The session goes ahead with nobody senior there, and is written up as \"intimate\".",
+          "requires": {
+            "parts": {
+              "asker": [
+                "peer",
+                "peer_box",
+                "senior"
+              ]
+            }
+          }
         }
       ],
       "snag": [
@@ -5107,7 +5116,7 @@
       "minRank": 1,
       "maxRank": 6
     },
-    "weight": 8,
+    "weight": 6,
     "once": true,
     "choices": [
       {
@@ -5115,7 +5124,8 @@
         "effects": {
           "integrity": 6,
           "reputation": 3,
-          "competence": -3
+          "competence": 2,
+          "standing": -2
         },
         "cast": {
           "peer": {
@@ -5139,7 +5149,8 @@
       {
         "text": "Say yes, and make sure it is seen.",
         "effects": {
-          "standing": 7,
+          "standing": 5,
+          "reputation": 3,
           "integrity": -4
         },
         "cast": {
@@ -5168,7 +5179,7 @@
         "text": "Say no, and say why.",
         "effects": {
           "integrity": 4,
-          "competence": 3,
+          "competence": 4,
           "standing": -5
         },
         "cast": {
@@ -5284,7 +5295,7 @@
         },
         {
           "id": "ribbon",
-          "text": "The ribbon is the wrong colour; the right one is in a van on the expressway.",
+          "text": "The ribbon is the wrong colour. The right one is stuck on the PIE.",
           "stay": "You wait forty minutes for the van and talk to everyone in the queue, which is everyone.",
           "go": "You cut the wrong ribbon. Nobody minds except the person who ordered the right one."
         },
@@ -5306,7 +5317,7 @@
       "minRank": 8,
       "maxRank": 10
     },
-    "weight": 8,
+    "weight": 6,
     "once": true,
     "choices": [
       {
@@ -5423,9 +5434,9 @@
     "body": "At 4:52pm on a Friday, you send {to} {sent}. {noticed}",
     "requires": {
       "minRank": 0,
-      "maxRank": 2
+      "maxRank": 1
     },
-    "weight": 8,
+    "weight": 5,
     "once": true,
     "choices": [
       {
@@ -5433,7 +5444,8 @@
         "effects": {
           "integrity": 4,
           "competence": 4,
-          "standing": -2
+          "reputation": 2,
+          "standing": -3
         },
         "cast": {
           "peer": {
@@ -5452,8 +5464,8 @@
       {
         "text": "Recall it, and hope.",
         "effects": {
-          "standing": 4,
-          "integrity": -5,
+          "standing": 5,
+          "integrity": -6,
           "heat": 5
         },
         "cast": {
@@ -5473,9 +5485,9 @@
       {
         "text": "Reply all once more, with an apology and a joke.",
         "effects": {
-          "reputation": 5,
+          "reputation": 6,
           "standing": -3,
-          "competence": -2
+          "competence": -1
         },
         "cast": {
           "peer": {

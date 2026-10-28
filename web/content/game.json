@@ -448,7 +448,7 @@
     ]
   },
   "cast": {
-    "note": "The run's recurring people. See docs/CONTENT_PLAN.md section 6 for how cards use them. Names are invented; never add a real public figure, or a batchmate's name (rival.json).",
+    "note": "The run's recurring people. See docs/CONTENT_PLAN.md section 8 for how cards use them. Names are invented; never add a real public figure, or a batchmate's name (rival.json).",
     "roles": {
       "peer": {
         "about": "an officer from your intake who moves up alongside you; stays in the service if you leave it",
@@ -888,7 +888,7 @@
       },
       "senior": {
         "caughtUp": [
-          "You are now the same grade as {name}, who was senior to you for {years} years. {name} is posted to another ministry, and sends a two-line email that ends \"Well done. Finally.\""
+          "You are now the same grade as {name}, who was senior to you for {years}. {name} is posted to another ministry, and sends a two-line email that ends \"Well done. Finally.\""
         ],
         "retired": [
           "{name} retires from the service as {title}. At the farewell lunch you are asked to say a few words, and find you have more than a few."
@@ -899,12 +899,12 @@
       },
       "journalist": {
         "retired": [
-          "{name} retires from the paper after {years} years. The last column is about the public service, and is kinder than any of the others."
+          "{name} retires from the paper after {years}. The last column is about the public service, and is kinder than any of the others."
         ]
       },
       "grassroots": {
         "retired": [
-          "{name} steps down as {title} after {years} years, and is given a plaque, a dinner and an advisory role with no agenda."
+          "{name} steps down as {title} after {years}, and is given a plaque, a dinner and an advisory role with no agenda."
         ]
       },
       "mp": {

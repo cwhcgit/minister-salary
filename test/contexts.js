@@ -174,13 +174,13 @@ function textProblems(build, S, id, texts, where) {
     const m = t.match(RAW);
     if (m) out.push(`${id}: ${where}unfilled token ${m[0]} (a vacant role, or a missing part field)`);
     if (/,\s*,|\s{2,}|\s[,.]/.test(t)) out.push(`${id}: ${where}empty field in "${t.slice(0, 60)}..."`);
-    if (/\ba [AEIOU]/.test(t) && titlesOf(build).some(x => /^[AEIOU]/.test(x) && t.includes('a ' + x))) out.push(`${id}: ${where}"a" before a vowel title`);
+    if (/\ba [AEIOU]/.test(t) && (build.__vowelTitles ||= titlesOf(build).filter(x => /^[AEIOU]/.test(x))).some(x => t.includes('a ' + x))) out.push(`${id}: ${where}"a" before a vowel title`);
     for (const [role, p] of Object.entries((S.cast && S.cast.on) || {})) {
       if (!p) continue;
+      const call = build.engine.personField(build.content, S, role, p, '');
+      if (!t.includes(p.nm.given) && !t.includes(call)) continue;   // not named here
       const mine = build.content.cast.roles[role].track === 'none' ? null : build.content.ladder[Math.min(16, p.rank)].title;
-      const names = [...new Set([build.engine.personField(build.content, S, role, p, ''), p.nm.full, p.nm.given])].map(escRe).join('|');
-      const re = new RegExp(`(?:\\b(?:${names}),? (?:the |a |an |now |our |your |as )?(${titlesOf(build).map(escRe).join('|')})\\b)|(?:\\b(${titlesOf(build).map(escRe).join('|')}) (?:${names})\\b)`, 'g');
-      for (const hit of t.matchAll(re)) {
+      for (const hit of t.matchAll(nameTitleRe(build, p, call))) {
         const title = hit[1] || hit[2];
         const a = x => (/^[AEIOU]/.test(x) ? 'an ' : 'a ') + x;
         if (mine && title !== mine) out.push(`${id}: ${where}calls ${role} ${a(title)} when ${p.nm.full} is ${a(mine)}`);
@@ -189,6 +189,17 @@ function textProblems(build, S, id, texts, where) {
     }
   }
   return out;
+}
+// "<name>, the <grade>" or "<grade> <name>": compiled once per person and name form
+const RE_CACHE = new Map();
+function nameTitleRe(build, p, call) {
+  const key = p.id + '|' + call + '|' + build.hash;
+  if (!RE_CACHE.has(key)) {
+    const names = [...new Set([call, p.nm.full, p.nm.given])].map(escRe).join('|');
+    const titles = (build.__titleAlt ||= titlesOf(build).map(escRe).join('|'));
+    RE_CACHE.set(key, new RegExp(`(?:\\b(?:${names}),? (?:the |a |an |now |our |your |as )?(${titles})\\b)|(?:\\b(${titles}) (?:${names})\\b)`, 'g'));
+  }
+  return RE_CACHE.get(key);
 }
 const cardStrings = ev => [ev.title, ev.body, ...ev.choices.flatMap(c => [c.text, c.outcome])];
 const castOrParts = (E, ev) => !!(ev.parts || E.roleNeeds(ev).length);
