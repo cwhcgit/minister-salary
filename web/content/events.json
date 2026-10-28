@@ -1200,7 +1200,7 @@
   {
     "id": "grassroots_invite",
     "title": "The Adviser Suggests Something",
-    "body": "After a community event, the constituency's grassroots adviser mentions — apparently in passing, definitely not in passing — that you handle yourself well with people.",
+    "body": "After a community event, the constituency's grassroots adviser stops you at the lift lobby to say that you handle yourself well with people. He does not say it to anyone else that evening.",
     "requires": {
       "minRank": 4,
       "maxRank": 7,
@@ -4138,7 +4138,7 @@
   {
     "id": "lanterns",
     "title": "Lanterns",
-    "body": "The grassroots adviser who mentioned, apparently in passing, that you handle yourself well with people would like to know if you are free on Saturday. It is a Mid-Autumn celebration at the community club. There will be lanterns, a lion dance and an MP, and the MP would like to meet you. This is also, apparently, in passing.",
+    "body": "The grassroots adviser who once told you, at a lift lobby, that you handle yourself well with people would like to know if you are free on Saturday. It is a Mid-Autumn celebration at the community club. There will be lanterns, a lion dance and an MP, and the MP would like to meet you. This, he says, is nothing formal.",
     "triggered": true,
     "requires": {
       "maxRank": 7
