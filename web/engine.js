@@ -165,7 +165,7 @@ const Engine = (() => {
     v.yearsInGrade++;
     const score = rivalScore(s);
     v.mod = 0;
-    const need = content.minYearsInGrade + (v.rank >= 10 ? 1 : 0) + (v.rank >= 13 ? 1 : 0) + (v.rank >= 15 ? 1 : 0);
+    const need = yearsNeeded(content, s.origin, v.rank);   // same intake, same fast lane
     const gradeOk = score >= 72 || (score >= 58 && v.rank < 13);
     // If the player backed someone else in the succession, that someone is Prime Minister, not the batchmate.
     const pmTaken = s.rank === 16 || (s.flags.includes("kingmaker") && !s.flags.includes("backed_batchmate"));
@@ -491,6 +491,18 @@ const Engine = (() => {
     return total;
   }
 
+  // Years in grade before a promotion. Senior rungs cost time as well as stats: Cabinet does not
+  // turn over quickly. An origin's fast lane (the scholars' Administrative Service clock) halves
+  // the wait below a given rank; it starts nobody higher up.
+  function fastLane(content, originId, r) {
+    const o = content.origins.find(x => x.id === originId);
+    return !!(o && o.fastLane && r < o.fastLane.untilRank);
+  }
+  function yearsNeeded(content, originId, r) {
+    if (fastLane(content, originId, r)) return content.origins.find(x => x.id === originId).fastLane.yearsInGrade;
+    return content.minYearsInGrade + (r >= 10 ? 1 : 0) + (r >= 13 ? 1 : 0) + (r >= 15 ? 1 : 0);
+  }
+
   function appraise(content, s) {
     const noise = (roll(s) * 20) - 10;
     const mod = s.appraisalMod;
@@ -531,10 +543,9 @@ const Engine = (() => {
         : "You are transferred sideways to a division nobody asked to join. The work is real, at least." });
     }
 
-    // Senior rungs cost time as well as stats: Cabinet does not turn over quickly,
-    // and the last two steps are never given on "strong" alone.
-    const needYears = content.minYearsInGrade
-      + (s.rank >= 10 ? 1 : 0) + (s.rank >= 13 ? 1 : 0) + (s.rank >= 15 ? 1 : 0);
+    // The last two steps are never given on "strong" alone.
+    const needYears = yearsNeeded(content, s.origin, s.rank);
+    const fast = fastLane(content, s.origin, s.rank);
     const topRungs = s.rank >= 13;
     const gradeOk = grade.code === "A" || (grade.code === "B+" && !topRungs);
     const promotable = gradeOk
@@ -581,7 +592,7 @@ const Engine = (() => {
     } else if (promotable) {
       // A standout junior officer occasionally skips a grade. This is the only way
       // a late starter ever makes up the years a scholar was simply given.
-      const doubleJump = grade.code === "A" && s.rank <= 4 && score >= 84 && s.rank + 1 < s.cep
+      const doubleJump = !fast && grade.code === "A" && s.rank <= 4 && score >= 84 && s.rank + 1 < s.cep
         && (content.ladder[s.rank + 2].minAge || 0) <= s.age;
       s.rank += doubleJump ? 2 : 1;
       if (doubleJump) t.promotion.result = "promoted_two";
@@ -781,6 +792,8 @@ const Engine = (() => {
   }
 
   // What was really going on, as a short list of lines for the ending screen.
+  const NUM = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+
   function declassify(content, s) {
     const out = [], H = s.history || [];
     // In the service a ceiling of 7 or more means no ceiling at all; in politics it is a rank.
@@ -796,7 +809,8 @@ const Engine = (() => {
     // Raises that mattered: in the service while a ceiling below the top still applied; in
     // politics, after the election that set the party's own estimate. A politician sees both.
     const political = s.rank >= 8;
-    const raisesIn = pol => H.filter(h => h.cepAfter > h.cep && h.ev !== "the_election"
+    // A year that passed by itself was not a choice, so it is neither a raise you chose nor one you missed.
+    const raisesIn = pol => H.filter(h => !h.passed && h.cepAfter > h.cep && h.ev !== "the_election"
       && (pol ? h.rank >= 8 : h.rank < 8 && h.cep < 7));
     const best = xs => xs.reduce((a, b) => (b.cepAfter - b.cep > a.cepAfter - a.cep ? b : a));
     const said = r => {
@@ -804,7 +818,7 @@ const Engine = (() => {
         : `It raised your ceiling to ${ceiling(r.cepAfter, r.rank >= 8)}.`;
       return `At ${r.age}, in ${r.title}, you chose "${r.text}" ${to}`;
     };
-    const missedIn = pol => H.filter(h => (pol ? h.rank >= 8 : h.rank < 8)).filter(h => {
+    const missedIn = pol => H.filter(h => !h.passed && (pol ? h.rank >= 8 : h.rank < 8)).filter(h => {
       const ev = content.events.find(e => e.id === h.ev);
       return ev && ev.choices.some((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
     }).slice(0, 2).map(h => {
@@ -825,7 +839,11 @@ const Engine = (() => {
     if (political) {
       const pol = raisesIn(true);
       const m = pol.length ? [] : missedIn(true);
-      out.push({ label: "In politics", text: pol.length ? said(best(pol))
+      // The choice that set your final ceiling, not merely the biggest step: a Prime Minister's
+      // story ends at the raise that made it possible.
+      const last = pol.length && pol.reduce((a, b) => (b.cepAfter >= a.cepAfter ? b : a));
+      const more = pol.length > 1 ? ` It was the last of ${NUM[pol.length] || pol.length} choices that raised it.` : "";
+      out.push({ label: "In politics", text: pol.length ? said(last) + more
         : m.length ? `The party's estimate never moved. It could have: ${m.join("; ")}`
         : "The party's estimate never moved. Nothing you were offered could have moved it." });
     }
@@ -846,7 +864,8 @@ const Engine = (() => {
       const q = tea.requires || {}, need = q.minStats || {};
       const window = H.filter(h => h.rankAfter >= (q.minRank || 0) && h.rankAfter <= (q.maxRank ?? 7));
       const noted = H.filter(h => h.noted).length;
-      const notedText = noted ? ` ${noted} of your choices had been noted along the way.` : "";
+      const n = NUM[noted] || String(noted);
+      const notedText = !noted ? "" : ` ${n[0].toUpperCase() + n.slice(1)} of your choices had been noted along the way.`;
       if (!window.length) out.push({ label: "The invitation", text: `It never came. The people who decide who is asked to tea look at officers of ${title(content, q.minRank || 0)}'s grade and above, and you never reached it.${notedText}` });
       else {
         const st = Math.max(...window.map(h => h.standing ?? 0)), rep = Math.max(...window.map(h => h.reputation ?? 0));
@@ -884,7 +903,9 @@ const Engine = (() => {
       : !v.ahead ? `You outranked ${p.them} for ${yrs(v.behind)}; ${v.name} never outranked you.`
       : `${v.name} outranked you for ${yrs(v.ahead)}; you outranked ${p.them} for ${yrs(v.behind)}.`;
     out.push({ label: "Head to head", text: (v.met
-      ? `You were set against each other ${v.met} time${v.met > 1 ? "s" : ""} and came out ahead in ${v.wonMet}. `
+      ? `You were set against each other ${v.met === 1 ? "once" : v.met === 2 ? "twice" : `${NUM[v.met] || v.met} times`}${
+          v.wonMet === v.met ? (v.met === 1 ? " and came out ahead" : " and came out ahead every time")
+          : v.wonMet === 0 ? " and never came out ahead" : `, and came out ahead in ${NUM[v.wonMet] || v.wonMet}`}. `
       : "You were never set against each other directly. ") + ranks });
     const said = v.rel >= 3 ? `${v.name} still tells people you were the best colleague ${p.they} ever had, usually when you are not there to hear it.`
       : v.rel <= -3 ? `${v.name} has never said anything about you in public, which in this building is its own kind of statement.`

@@ -135,6 +135,19 @@ ok('the trace agrees with the engine (appraisal weights, consequences, flags)', 
   }
 });
 
+ok('ladder pay and age floors match the published figures', () => {
+  // 2026 political salary review (accepted 8 Sep 2026, effective 15 Oct 2026): MR4 is the
+  // benchmark; the rest are multiples of it. MOS, SMS and DPM keep the old multiples.
+  const L = build.content.ladder, mr4 = L[13].pay;
+  assert.strictEqual(mr4, 1800000);
+  assert.strictEqual(L[8].pay, 18500 * 14, 'MP allowance, monthly x 14');
+  const multiple = { 9: 0.45, 10: 0.45, 11: 0.7, 12: 0.85, 14: 1.3, 15: 1.6, 16: 2 };
+  for (const [r, m] of Object.entries(multiple)) assert.strictEqual(L[r].pay, Math.round(mr4 * m), `${L[r].title} (${L[r].grade})`);
+  assert.strictEqual(L[6].minAge, 35); assert.strictEqual(L[7].minAge, 38);
+  const scholar = build.content.origins.find(o => o.id === 'scholar');
+  assert.ok(scholar.startRank <= 2 && scholar.startAge === 25, 'scholars start as Assistant Directors at 25');
+});
+
 ok('ending causes classify losses', () => {
   const kinds = {};
   for (const origin of ['grad', 'poly', 'scholar']) for (let seed = 1; seed <= 300; seed++) {

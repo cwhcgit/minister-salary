@@ -4,7 +4,9 @@ Secret: veterans, breakers and the analysis agents only. Never part of a blind p
 
 One event per year. The chosen option's effects apply at once: the four stats clamp to 0-100, Heat to 0-100, CEP to 0-16. Flags are set, and each scheduled consequence rolls its chance at that moment. Then the year ends: pay, appraisal, promotion check, Heat check, and the player ages one year.
 
-Pay is base salary for the rank, plus a performance bonus of 10% to 45% of base scaled by Competence, plus from rank 13 a national bonus of up to 30% of base scaled by Reputation, all times 0.82 for tax and CPF. Wealth is the score; it gates nothing.
+Pay is base salary for the rank, plus a performance bonus of 10% to 45% of base scaled by Competence, plus from rank 11 a National Bonus of base/16 per month for 0 to 6 months (3 unless a Budget choice set it otherwise; the riskier choices can pay less, or nothing), all times 0.82 for tax and CPF. Wealth is the score; it gates nothing.
+
+A year with no decision in it passes without a card: a repeat filler the player has already answered replays their habit, a safe re-election (Reputation 60 or more, Heat under 40) is a log line, and its pay and appraisal are compressed into the next outcome screen. A choice that is noted shows in that year's appraisal line.
 
 ### Appraisal
 
@@ -18,12 +20,13 @@ Score = 0.50 Competence + 0.30 Standing + 0.15 Reputation + noise drawn evenly f
 Promoted at year end when all of these hold:
 
 - grade A, or grade B+ below rank 13 (Cabinet rungs need an A);
-- years in grade at least 2, plus 1 from rank 10, plus 1 more from 13, plus 1 more from 15;
+- years in grade at least 2, plus 1 from rank 10, plus 1 more from 13, plus 1 more from 15 (the scholar's fast lane: 1 below rank 4);
+- age at least the next rung's floor: 35 for Deputy Secretary, 38 for Permanent Secretary;
 - rank below CEP. At or above CEP the player gets a rumour line instead (the CEP hint), and the promotion never comes until CEP rises.
 
 Rank 7 (Permanent Secretary) is the top of the civil service: there is no promotion from it. The only way further is politics.
 
-An A with a score of 84 or more at rank 4 or below jumps two grades, if CEP allows.
+An A with a score of 84 or more at rank 4 or below jumps two grades, if CEP allows and the origin has no fast lane.
 
 ### CEP
 
@@ -37,7 +40,7 @@ Scandal exposure. Raised by corner-cutting choices, lowered by disclosure. From 
 
 1. A scheduled consequence due this year fires first. Only one fires a year: if several fall due together, the earliest fires and the rest carry over to the following years, in order.
 2. Otherwise a priority event fires as soon as it qualifies (the tea session, the succession).
-3. Otherwise a weighted random draw among events whose requirements the player meets. One-time events never repeat; filler events can.
+3. Otherwise a weighted random draw among events whose requirements the player meets. One-time events never repeat; filler events can. The Budget cards (the Indicators) come up at most once per three-year cycle, in the variant that fits the economy and the election calendar.
 
 ### The crossing
 
@@ -47,10 +50,10 @@ The vetting: disclose everything (Heat -25) or answer minimally (Heat +10). The 
 
 ### Origins
 
-- President's Scholar: starts at rank 5 (Senior Director) aged 26, bonded for 6 years, high CEP.
+- President's Scholar: starts at rank 2 (Assistant Director) aged 25, one year in grade below rank 4, bonded for 6 years, high CEP.
 - Local Graduate: rank 0 aged 23, middling CEP.
 - Poly, then night classes: rank 0 aged 27, lowest CEP, but three events of its own that raise it.
 
 ### Endings
 
-Prime Minister (rank 16, the win). Scandal (Heat). The Quiet Conversation (two Ds). Lost the Ward (election). At retirement (65 in the service, 72 in politics): The Tea Was Declined if the player declined; otherwise Retired, Honourably from rank 13, Permanent Secretary at rank 7, Backbench Lifer from rank 8 to 12, You Found Your Level below rank 7.
+Prime Minister (rank 16, the win). Scandal (Heat). The Quiet Conversation (two Ds in a row, never in the first four years). Lost the Ward (election). At retirement (65 in the service, 72 in politics): The Tea Was Declined if the player declined; otherwise Retired, Honourably from rank 13, Permanent Secretary at rank 7, Backbench Lifer from rank 8 to 12, You Found Your Level below rank 7.

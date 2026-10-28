@@ -196,7 +196,10 @@
     "body": "Two names from your division go forward for the Public Service Leadership Programme. Your director asks for your view on who should be put up.",
     "requires": {
       "minRank": 2,
-      "maxRank": 3
+      "maxRank": 3,
+      "originNot": [
+        "scholar"
+      ]
     },
     "weight": 11,
     "once": true,
@@ -439,7 +442,7 @@
   {
     "id": "mps_duty",
     "title": "Meet-the-People Session",
-    "body": "You have been volunteered to help at an MP's Meet-the-People Session. Tuesday nights, writing appeal letters for people whose cases have, in almost every instance, already been correctly decided.",
+    "body": "A friend from your old school volunteers at her MP's branch and asks if you could help at the Meet-the-People Session: Tuesday nights, writing appeal letters for residents whose cases have, in almost every instance, already been correctly decided. It is a party branch. You are a civil servant, and neutral. She says lots of people help in their own time.",
     "requires": {
       "minRank": 1,
       "maxRank": 5
@@ -448,7 +451,7 @@
     "once": true,
     "choices": [
       {
-        "text": "Go every week for a year.",
+        "text": "Go every Tuesday for a year, in your own time.",
         "effects": {
           "reputation": 10,
           "standing": 4,
@@ -458,7 +461,7 @@
         "setFlags": [
           "did_mps"
         ],
-        "outcome": "Fifty-one Tuesdays. You learn more about how policy actually lands than in all your years of writing it. The MP notices you, which is the part that will matter later.",
+        "outcome": "Fifty-one Tuesdays, in your own T-shirt, never the branch one. You learn more about how policy actually lands than in all your years of writing it. The MP notices you, which is the part that will matter later.",
         "schedule": [
           {
             "eventId": "block_party",
@@ -475,16 +478,16 @@
           "integrity": -3,
           "competence": 1
         },
-        "outcome": "Enough to mention. Not enough to change your mind about anything."
+        "outcome": "Enough to be seen by the people who were looking. Not enough to change your mind about anything."
       },
       {
-        "text": "Decline. Your Tuesday nights are already spoken for.",
+        "text": "Decline. You are a civil servant, and you would like to stay a neutral one.",
         "effects": {
           "integrity": 3,
           "standing": -4,
           "competence": 4
         },
-        "outcome": "It is a completely reasonable answer. Reasonable answers are noted, filed, and remembered at exactly the wrong moment."
+        "outcome": "Your friend says she completely understands. The branch secretary, who was standing next to her, also understands, and remembers."
       }
     ]
   },
@@ -1661,7 +1664,7 @@
   {
     "id": "the_bonus_reveal",
     "title": "The National Bonus",
-    "body": "Your National Bonus is computed from four indicators: real median income growth, real income growth of the lowest 20th percentile, unemployment, and real GDP growth. You now hold a portfolio that moves at least two of them.",
+    "body": "Your National Bonus is computed from four indicators, equally weighted: unemployment, real median income growth, real income growth at the 20th percentile, and real GDP growth. Each has a published target band (GDP growth of 2 to 4 per cent, for instance), and the formula is in the public domain. You now hold a portfolio that moves at least two of them.",
     "requires": {
       "minRank": 11
     },
@@ -1669,7 +1672,7 @@
     "once": true,
     "choices": [
       {
-        "text": "Push the policy that lifts the bottom 20th.",
+        "text": "Push the policy that lifts incomes at the 20th percentile.",
         "effects": {
           "integrity": 12,
           "reputation": 10,
@@ -3172,7 +3175,7 @@
   {
     "id": "block_party",
     "title": "The Block Party",
-    "body": "At a block party in your ward, a woman you do not recognise introduces you to forty of her neighbours. Years ago, on one of fifty-one Tuesday nights, an officer volunteering at a Meet-the-People Session wrote an appeal for her that actually argued her case. It was you. She has told everyone, in detail, more than once.",
+    "body": "At a block party in your ward, a woman you do not recognise introduces you to forty of her neighbours. Years ago, on one of fifty-one Tuesday nights, a young volunteer at a Meet-the-People Session wrote an appeal for her that actually argued her case. It was you. She has told everyone, in detail, more than once.",
     "triggered": true,
     "requires": {
       "minRank": 8

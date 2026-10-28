@@ -59,70 +59,70 @@
       "grade": "Staff Grade",
       "org": "ministry",
       "pay": 1000000,
-      "minAge": 40
+      "minAge": 38
     },
     {
       "id": 8,
       "title": "Member of Parliament",
       "grade": "MP",
       "org": "Parliament",
-      "pay": 192500
+      "pay": 259000
     },
     {
       "id": 9,
       "title": "Parliamentary Secretary",
       "grade": "PS",
       "org": "ministry",
-      "pay": 385000
+      "pay": 810000
     },
     {
       "id": 10,
       "title": "Senior Parliamentary Secretary",
       "grade": "SPS",
       "org": "ministry",
-      "pay": 500000
+      "pay": 810000
     },
     {
       "id": 11,
       "title": "Minister of State",
       "grade": "MOS",
       "org": "ministry",
-      "pay": 770000
+      "pay": 1260000
     },
     {
       "id": 12,
       "title": "Senior Minister of State",
       "grade": "SMS",
       "org": "ministry",
-      "pay": 935000
+      "pay": 1530000
     },
     {
       "id": 13,
       "title": "Minister",
       "grade": "MR4",
       "org": "Cabinet",
-      "pay": 1100000
+      "pay": 1800000
     },
     {
       "id": 14,
       "title": "Minister",
       "grade": "MR3",
       "org": "Cabinet",
-      "pay": 1320000
+      "pay": 2340000
     },
     {
       "id": 15,
       "title": "Deputy Prime Minister",
       "grade": "MR1",
       "org": "Cabinet",
-      "pay": 1760000
+      "pay": 2880000
     },
     {
       "id": 16,
       "title": "Prime Minister",
       "grade": "PM",
       "org": "Cabinet",
-      "pay": 2200000
+      "pay": 3600000
     }
   ],
   "ministries": [
@@ -141,9 +141,9 @@
     {
       "id": "scholar",
       "name": "President's Scholar",
-      "blurb": "Overseas degree, Administrative Service, bonded for six years. Everyone knows your name before you arrive.",
-      "startRank": 5,
-      "startAge": 26,
+      "blurb": "Overseas degree, Administrative Service, bonded for six years. You start as an Assistant Director, a year in each grade where others need two, until Director. Everyone knows your name before you arrive.",
+      "startRank": 2,
+      "startAge": 25,
       "cep": [
         9,
         13
@@ -155,7 +155,11 @@
         "integrity": 50,
         "competence": 55
       },
-      "difficulty": "Easy"
+      "difficulty": "Easy",
+      "fastLane": {
+        "untilRank": 4,
+        "yearsInGrade": 1
+      }
     },
     {
       "id": "grad",

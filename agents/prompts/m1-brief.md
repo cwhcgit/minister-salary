@@ -40,13 +40,13 @@ The current web build is the M1 playtest harness. It exists to answer one questi
   - SMC (single seat): riskier, needs Reputation 60.
   - Losing the election ends the run.
   - Declining the tea is its own ending path.
-- **Act III, politics:** MP ($192.5k, a big pay cut), Parliamentary Secretary, Senior Parliamentary Secretary, Minister of State, Senior Minister of State, Minister ($1.1M), senior Minister, DPM, **PM ($2.2M)**.
+- **Act III, politics:** MP ($259k), Parliamentary Secretary and Senior Parliamentary Secretary (one merged pay grade, $810k), Minister of State, Senior Minister of State, Minister ($1.8M), senior Minister, DPM, **PM ($3.6M)**. Figures follow the 2026 political salary review.
 - Retirement age is 65 in the civil service and 72 in politics.
 
 ## Origins (the meritocracy joke expressed as balance)
 | Origin | Start | Ceiling | Difficulty |
 |---|---|---|---|
-| President's Scholar | Senior Director, age 26, 6-year bond (no politics while bonded) | high | Easy |
+| President's Scholar | Assistant Director, age 25, one year in grade instead of two until Director, 6-year bond (no politics while bonded) | high | Easy |
 | Local Graduate | bottom rung, age 23 | median | Normal |
 | Poly, then night classes | bottom rung, age 27, high integrity, has exclusive events | low | Hard |
 
