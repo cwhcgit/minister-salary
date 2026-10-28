@@ -1,0 +1,992 @@
+{
+  "id": "backbench",
+  "title": "Backbench and Junior Office",
+  "note": "The House, the ward and the first rungs of office: MP (rank 8), Parliamentary Secretary and Senior Parliamentary Secretary (9-10), with one card for office holders (11-16). Ward cards stop at 10 on purpose: the pool at 11-14 is where The Reshuffle raises the ceiling, and every card there dilutes it. Backbench cards trade Reputation against Standing with the Whip; junior office cards trade Integrity against Standing with the Minister. Parts and the cast make one card many scenes: the bill and the Whip's text, the ministry a promise belongs to, the facility residents petition against. The two seat cards are exclusive: The Next Ward needs seat_grc, The Other Candidate seat_smc.",
+  "events": [
+    {
+      "id": "bench_whip",
+      "title": "The Whip's Text",
+      "parts": {
+        "msg": [
+          {
+            "id": "attend",
+            "text": "\"Pls be in the Chamber by 3pm tmr. Thx.\""
+          },
+          {
+            "id": "ack",
+            "text": "\"Vote tmr. Pls acknowledge.\""
+          },
+          {
+            "id": "slot",
+            "text": "\"2nd Reading tmr. Want a slot to speak? Pls advise.\"",
+            "effects": {
+              "1": {
+                "standing": -1
+              }
+            }
+          }
+        ],
+        "bill": [
+          {
+            "id": "data",
+            "text": "data-sharing between nine agencies, without asking residents",
+            "short": "the data clause"
+          },
+          {
+            "id": "appeals",
+            "text": "new powers for a statutory board, with appeals to its own Minister",
+            "short": "the appeals clause"
+          },
+          {
+            "id": "fines",
+            "text": "higher fines for parking offences in HDB car parks",
+            "short": "the fines schedule"
+          }
+        ]
+      },
+      "body": "At 10:52pm the Whip texts: {msg} Tomorrow's bill brings in {bill}. You have a view on it, and the party has a different one.",
+      "requires": {
+        "minRank": 8,
+        "maxRank": 8
+      },
+      "weight": 7,
+      "once": true,
+      "choices": [
+        {
+          "text": "Vote with the party. Send your view to the GPC.",
+          "effects": {
+            "standing": 5,
+            "integrity": -3
+          },
+          "outcome": "You vote with the party and email your view to the GPC chairman, who replies with a thumbs-up. The bill passes. Your view is filed with the thumbs-up."
+        },
+        {
+          "text": "Speak against {bill.short}. Then vote for the bill.",
+          "effects": {
+            "reputation": 5,
+            "integrity": 2,
+            "competence": 1,
+            "standing": -3
+          },
+          "outcome": "Your eleven minutes on {bill.short} go into Hansard. So does your vote, an hour later. A resident writes to ask which one you meant. You write back: both."
+        },
+        {
+          "text": "Ask the Whip to lift the whip.",
+          "effects": {
+            "integrity": 5,
+            "standing": -5
+          },
+          "outcome": "The Whip replies at 7am: \"Not this one.\" You vote with the party. The Whip now keeps a short list of the bills you would like to be this one."
+        }
+      ]
+    },
+    {
+      "id": "bench_adjournment",
+      "title": "The Adjournment Motion",
+      "parts": {
+        "topic": [
+          {
+            "id": "bus",
+            "text": "the bus service your ward lost in the last route review",
+            "short": "one bus service"
+          },
+          {
+            "id": "carers",
+            "text": "caregivers who earn slightly too much for every scheme",
+            "short": "caregivers"
+          },
+          {
+            "id": "lifts",
+            "text": "lifts that are upgraded on schedule and break down off it",
+            "short": "lifts"
+          }
+        ],
+        "house": [
+          {
+            "id": "mp",
+            "text": "{mp} has promised to stay and listen."
+          },
+          {
+            "id": "press",
+            "text": "{journalist}, in the press gallery, has brought a sandwich."
+          },
+          {
+            "id": "empty",
+            "text": "By then the Chamber will hold eleven Members and the Clerks."
+          }
+        ]
+      },
+      "body": "You win the ballot for the adjournment motion: twenty minutes, at the end of a long sitting, on {topic}. {house}",
+      "requires": {
+        "minRank": 8,
+        "maxRank": 8
+      },
+      "weight": 7,
+      "once": true,
+      "choices": [
+        {
+          "text": "Speak for the full twenty minutes.",
+          "effects": {
+            "competence": 3,
+            "integrity": 3,
+            "reputation": 3,
+            "standing": -3
+          },
+          "outcome": "Twenty minutes on {topic.short}, at 9:40pm. The reply takes ten. Then the House agrees that Parliament do now adjourn, which was the motion all along, and it carries."
+        },
+        {
+          "text": "Cut it to five. Let the House go home.",
+          "effects": {
+            "standing": 4,
+            "reputation": -2,
+            "competence": -1
+          },
+          "outcome": "Five minutes, and the House is grateful in the lift. The reply, written for twenty minutes of argument, is read out in full, at the usual pace."
+        },
+        {
+          "text": "Send the ministry your speech the day before.",
+          "effects": {
+            "competence": 3,
+            "standing": 2,
+            "reputation": -2
+          },
+          "outcome": "The reply answers every point you make, in order, including the one you cut at 9:38pm. You have never been so thoroughly answered, or so little reported."
+        }
+      ]
+    },
+    {
+      "id": "bench_cut",
+      "title": "One Hundred Dollars",
+      "parts": {
+        "head": [
+          {
+            "id": "mot",
+            "text": "MOT",
+            "ward": "a sheltered linkway to the MRT station"
+          },
+          {
+            "id": "moh",
+            "text": "MOH",
+            "ward": "a polyclinic nearer than the next town's"
+          },
+          {
+            "id": "msf",
+            "text": "MSF",
+            "ward": "longer hours at the family service centre"
+          },
+          {
+            "id": "mnd",
+            "text": "MND",
+            "ward": "lifts for the three blocks the upgrading missed"
+          }
+        ]
+      },
+      "body": "Committee of Supply. So that you may speak, you have filed a cut of $100 to {head}'s budget, as Standing Orders allow. You have a few minutes, a ward that wants {head.ward}, and a harder question.",
+      "requires": {
+        "minRank": 8,
+        "maxRank": 8
+      },
+      "weight": 6,
+      "once": true,
+      "choices": [
+        {
+          "text": "Ask for what your ward wants.",
+          "effects": {
+            "reputation": 5,
+            "standing": 1,
+            "competence": -2
+          },
+          "outcome": "The Minister promises, by name, to study {head.ward}. In your ward, that counts as delivery. You ask leave to withdraw your amendment. Leave is granted."
+        },
+        {
+          "text": "Ask the harder question.",
+          "effects": {
+            "integrity": 4,
+            "competence": 3,
+            "standing": -4
+          },
+          "outcome": "The Minister answers carefully, and for longer than planned. You ask leave to withdraw your $100. It is granted, a little more slowly than the others."
+        },
+        {
+          "text": "Ask the question your GPC agreed on, word for word.",
+          "effects": {
+            "standing": 4,
+            "integrity": -2,
+            "reputation": -1
+          },
+          "outcome": "Four Members ask it in the same words. The Minister answers it once, warmly, and all four ask leave to withdraw their $100. The budget is unchanged by $400."
+        }
+      ]
+    },
+    {
+      "id": "bench_gpc",
+      "title": "The Briefing",
+      "body": "Your GPC is briefed, behind closed doors, on a scheme you once worked on. The briefer is {peer}, from your intake, now {peer.aTitle}. Slide nine leaves out what you would have left out too.",
+      "requires": {
+        "minRank": 8,
+        "maxRank": 8,
+        "cast": {
+          "peer": {
+            "minRank": 4
+          }
+        }
+      },
+      "weight": 6,
+      "once": true,
+      "choices": [
+        {
+          "text": "Ask about what slide nine leaves out.",
+          "effects": {
+            "integrity": 4,
+            "competence": 3,
+            "standing": -3
+          },
+          "cast": {
+            "peer": {
+              "flags": [
+                "you_asked"
+              ]
+            }
+          },
+          "outcome": "{peer} answers it fully, with a figure you recognise. Afterwards {peer} sends one word: \"Thanks.\" Slide nine, you realise, was left that way for somebody to ask."
+        },
+        {
+          "text": "Thank {peer} for a comprehensive briefing.",
+          "effects": {
+            "standing": 4,
+            "integrity": -3
+          },
+          "cast": {
+            "peer": {
+              "flags": [
+                "you_let_it_pass"
+              ]
+            }
+          },
+          "outcome": "The GPC thanks {peer}, and {peer} thanks the GPC. The scheme goes ahead as briefed, slide nine and all. GPCs publish no minutes, so the thanks are the record."
+        },
+        {
+          "text": "Ask {peer} about it afterwards, over kopi.",
+          "effects": {
+            "competence": 1,
+            "standing": 2,
+            "integrity": -2
+          },
+          "cast": {
+            "peer": {
+              "flags": [
+                "kept_it_formal"
+              ]
+            }
+          },
+          "outcome": "{peer} comes for kopi, talks about your intake's reunion for forty minutes, and says of the scheme only: \"It's in the briefing.\" It was."
+        }
+      ]
+    },
+    {
+      "id": "bench_letters",
+      "title": "The Letter Writer",
+      "parts": {
+        "writer": [
+          {
+            "id": "veteran",
+            "text": "Mr Ang, twenty-six years at the folding table",
+            "short": "Mr Ang"
+          },
+          {
+            "id": "teacher",
+            "text": "Mdm Chew, a retired teacher",
+            "short": "Mdm Chew"
+          },
+          {
+            "id": "student",
+            "text": "Darren, a law student who types very fast",
+            "short": "Darren"
+          }
+        ],
+        "trick": [
+          {
+            "id": "income",
+            "text": "Every resident in {writer.short}'s letters earns slightly less than on the forms."
+          },
+          {
+            "id": "fall",
+            "text": "Every family in {writer.short}'s letters has an elderly parent who has just had a fall."
+          },
+          {
+            "id": "para",
+            "text": "{Writer.short}'s letters cite a paragraph of the policy that does not exist, with great confidence."
+          }
+        ]
+      },
+      "body": "An agency's reply notes, politely, a discrepancy. It leads to your best letter writer, {writer}. {trick} The letters work better than anyone else's.",
+      "requires": {
+        "minRank": 8,
+        "maxRank": 10
+      },
+      "weight": 6,
+      "once": true,
+      "choices": [
+        {
+          "text": "Stop it. Send every agency a correction.",
+          "effects": {
+            "integrity": 6,
+            "competence": 1,
+            "reputation": -4,
+            "standing": -1
+          },
+          "outcome": "Corrections go to eleven agencies under your name. Four cases are reconsidered and three refused. {Writer.short} stays on, and now writes what the forms say, more slowly."
+        },
+        {
+          "text": "Leave it. The cases are real, if not the details.",
+          "effects": {
+            "reputation": 4,
+            "integrity": -5,
+            "heat": 7
+          },
+          "outcome": "The letters keep working. In the agency that noticed, someone opens a file of discrepancies, and every page of it is on your letterhead."
+        },
+        {
+          "text": "Read and sign every letter yourself from now on.",
+          "effects": {
+            "competence": 4,
+            "integrity": 3,
+            "standing": -2,
+            "reputation": -1
+          },
+          "outcome": "Tuesdays now end at one in the morning. The letters are accurate, and slightly less persuasive. {Writer.short} brings you kopi at eleven. You understand it to be a review."
+        }
+      ]
+    },
+    {
+      "id": "bench_site",
+      "title": "Not at This Block",
+      "parts": {
+        "site": [
+          {
+            "id": "eldercare",
+            "text": "an eldercare centre at the void deck of Blk 118",
+            "short": "the eldercare centre",
+            "later": "Two years after it opens, the woman who started the petition drops her mother there on weekdays."
+          },
+          {
+            "id": "nursing",
+            "text": "a nursing home on the field beside the playground",
+            "short": "the nursing home",
+            "later": "Three years after it opens, the block's choir sings there on Sundays. Two of the altos signed the petition."
+          },
+          {
+            "id": "halfway",
+            "text": "a halfway house in the old school building",
+            "short": "the halfway house",
+            "later": "Five years on, two of its former residents work at the coffee shop that started the petition. Nobody brings it up."
+          }
+        ],
+        "objection": [
+          {
+            "id": "petition",
+            "text": "A petition against it has 412 signatures and a Facebook group."
+          },
+          {
+            "id": "emails",
+            "text": "You have had 61 emails about it, all with the same subject line."
+          },
+          {
+            "id": "grassroots",
+            "text": "{grassroots} reports that the coffee shop is against it, and so is {grassroots.their} own block."
+          }
+        ]
+      },
+      "body": "The ministry has picked a site in your ward for {site}. {objection} The agency wants you beside it at Saturday's dialogue.",
+      "requires": {
+        "minRank": 8,
+        "maxRank": 10
+      },
+      "weight": 6,
+      "once": true,
+      "choices": [
+        {
+          "text": "Stand beside the agency. Say it is needed.",
+          "effects": {
+            "integrity": 5,
+            "competence": 2,
+            "standing": 2,
+            "reputation": -5
+          },
+          "outcome": "You say it on Saturday and are heckled, politely, for forty minutes. {site.later}"
+        },
+        {
+          "text": "Ask the ministry to look at other sites.",
+          "effects": {
+            "reputation": 5,
+            "integrity": -4,
+            "standing": -3
+          },
+          "outcome": "The ministry finds a site two towns away. That ward has a petition too, with more signatures, and its MP rings you to ask how you did it."
+        },
+        {
+          "text": "Back it, if residents get something for the space.",
+          "effects": {
+            "competence": 3,
+            "reputation": 2,
+            "standing": -3
+          },
+          "outcome": "{Site.short} shrinks by a fifth, the residents get a fitness corner, and the agency gets its site a year late. Everyone describes this as a win, separately."
+        }
+      ]
+    },
+    {
+      "id": "bench_arrears",
+      "title": "The Arrears",
+      "parts": {
+        "who": [
+          {
+            "id": "cleaner",
+            "text": "a retired cleaner at Blk 52 who pays $20 whenever she can",
+            "short": "the cleaner"
+          },
+          {
+            "id": "hawker",
+            "text": "a hawker who lost three months' takings when the market was renovated",
+            "short": "the hawker"
+          },
+          {
+            "id": "widower",
+            "text": "a widower who comes to your Tuesday session every month to apologise for it",
+            "short": "the widower"
+          }
+        ]
+      },
+      "body": "At the Town Council meeting, the managing agent proposes taking households more than six months behind on S&CC to court. Forty are on the list. One of them is {who}.",
+      "requires": {
+        "minRank": 8,
+        "maxRank": 10
+      },
+      "weight": 6,
+      "once": true,
+      "choices": [
+        {
+          "text": "Approve it. The rules apply to everyone.",
+          "effects": {
+            "competence": 2,
+            "standing": 4,
+            "reputation": -2
+          },
+          "outcome": "Thirty-one households pay within a month of the letters. Nine go to court, among them {who.short}, who brings the court's letter to your next Tuesday session."
+        },
+        {
+          "text": "Take one name off the list, quietly.",
+          "effects": {
+            "reputation": 2,
+            "integrity": -4,
+            "heat": 5
+          },
+          "outcome": "Thirty-nine households get the letter. {Who.short} does not, and never learns why. At the next meeting the managing agent's list has a footnote, and the footnote is you."
+        },
+        {
+          "text": "Change it for everyone: payment plans before courts.",
+          "effects": {
+            "integrity": 5,
+            "reputation": 2,
+            "standing": -4,
+            "competence": -1
+          },
+          "outcome": "Nobody goes to court. Arrears rise for a quarter, then fall below where they began. The agent presents the chart to three Town Councils as a warning, and to a fourth as advice."
+        }
+      ]
+    },
+    {
+      "id": "bench_next_ward",
+      "title": "The Next Ward",
+      "parts": {
+        "reason": [
+          {
+            "id": "fast",
+            "text": "your volunteers write faster"
+          },
+          {
+            "id": "late",
+            "text": "your session ends later"
+          },
+          {
+            "id": "letter",
+            "text": "you once wrote a letter there that worked"
+          }
+        ]
+      },
+      "body": "Blk 438 is in {mp}'s ward, one of the team's, but its residents come to your Meet-the-People Session because {reason}. {mp} has mentioned this at the team's breakfast, as a joke, twice.",
+      "requires": {
+        "minRank": 8,
+        "maxRank": 10,
+        "flagsAll": [
+          "seat_grc"
+        ]
+      },
+      "weight": 6,
+      "once": true,
+      "choices": [
+        {
+          "text": "Keep seeing them. Residents choose.",
+          "effects": {
+            "reputation": 4,
+            "integrity": 1,
+            "standing": -3
+          },
+          "cast": {
+            "mp": {
+              "flags": [
+                "kept_438"
+              ]
+            }
+          },
+          "outcome": "Blk 438 keeps coming. {mp} stops mentioning it at breakfast, which is worse. In the team's newsletter photograph you stand at one end and {mp} at the other."
+        },
+        {
+          "text": "Send them to {mp}, with a note on every case.",
+          "effects": {
+            "standing": 3,
+            "competence": 2,
+            "reputation": -1
+          },
+          "cast": {
+            "mp": {
+              "flags": [
+                "owes_you"
+              ]
+            }
+          },
+          "outcome": "{mp} sees every one of them, properly, and thanks you at breakfast without a joke. By March {mp}'s session also ends later. Two residents still come to yours."
+        },
+        {
+          "text": "Propose a joint session for the block.",
+          "effects": {
+            "competence": 3,
+            "standing": 1,
+            "integrity": 1,
+            "reputation": -1
+          },
+          "cast": {
+            "mp": {
+              "flags": [
+                "shared_438"
+              ]
+            }
+          },
+          "outcome": "Every fourth Tuesday, Blk 438 gets both of you at one table. Residents explain each case twice, once to each MP, and leave sure it will be done twice as fast."
+        }
+      ]
+    },
+    {
+      "id": "bench_other_candidate",
+      "title": "The Other Candidate",
+      "parts": {
+        "where": [
+          {
+            "id": "market",
+            "text": "Sundays at the wet market"
+          },
+          {
+            "id": "mrt",
+            "text": "Saturday mornings at the MRT exit"
+          },
+          {
+            "id": "hawker",
+            "text": "every weekend in the hawker centre's breakfast queue"
+          }
+        ]
+      },
+      "body": "The candidate you beat at the last election has not stopped walking your ward: {where}, in a party T-shirt, shaking hands you shook first. Your branch chairman would like you out there too, in yours.",
+      "requires": {
+        "minRank": 8,
+        "maxRank": 10,
+        "flagsAll": [
+          "seat_smc"
+        ]
+      },
+      "weight": 6,
+      "once": true,
+      "choices": [
+        {
+          "text": "Match them, every weekend.",
+          "effects": {
+            "reputation": 5,
+            "standing": 1,
+            "competence": -3
+          },
+          "outcome": "For a year, two T-shirts work the same stalls an hour apart. Residents compare you, in detail, out loud. Your papers for the House are read on Sunday nights."
+        },
+        {
+          "text": "Leave them to it. Do the work instead.",
+          "effects": {
+            "competence": 4,
+            "integrity": 1,
+            "reputation": -3
+          },
+          "outcome": "Your weekends go to cases and papers. The other candidate is photographed with more residents than you are, and your branch chairman cuts the photographs out for you."
+        },
+        {
+          "text": "Invite them for kopi.",
+          "effects": {
+            "integrity": 4,
+            "reputation": 2,
+            "standing": -5
+          },
+          "outcome": "They accept. You talk about the lifts for an hour and agree on most of it. The photograph is online by noon, and the Whip asks, kindly, whose idea it was."
+        }
+      ]
+    },
+    {
+      "id": "bench_date",
+      "title": "The Date",
+      "parts": {
+        "promise": [
+          {
+            "id": "mnd",
+            "requires": {
+              "ministry": "Ministry of National Development"
+            },
+            "text": "the lifts at Blk 210 will be upgraded by Chinese New Year",
+            "real": "June",
+            "made": "The lifts open on the eve of Chinese New Year. On the first day of the New Year one of them stops between floors, with two families and a mandarin orange plant inside."
+          },
+          {
+            "id": "mot",
+            "requires": {
+              "ministry": "Ministry of Transport"
+            },
+            "text": "a new bus service will start in March",
+            "real": "September, after the tender",
+            "made": "The service starts in March with buses borrowed from three other routes. Those three now come every twenty minutes, and their passengers write to you."
+          },
+          {
+            "id": "moh",
+            "requires": {
+              "ministry": "Ministry of Health"
+            },
+            "text": "the new polyclinic will open by December",
+            "real": "the middle of next year",
+            "made": "The polyclinic opens in the last week of December with a pharmacy, a waiting area and two doctors. The other ten arrive in June, as your officials said."
+          },
+          {
+            "id": "moe",
+            "requires": {
+              "ministry": "Ministry of Education"
+            },
+            "text": "the school's new hall will be ready for next year's Primary One",
+            "real": "the year after",
+            "made": "The hall is ready in January and the air-conditioning in April. Primary One learns the school song in record time, in a very warm hall."
+          },
+          {
+            "id": "mse",
+            "requires": {
+              "ministry": "Ministry of Sustainability and the Environment"
+            },
+            "text": "the drain works on the main road will be done before the monsoon",
+            "real": "after it",
+            "made": "The drain is finished in November, and works. The contractor's overtime appears in next year's budget, under drains."
+          },
+          {
+            "id": "mha",
+            "requires": {
+              "ministry": "Ministry of Home Affairs"
+            },
+            "text": "the new neighbourhood police post will open by National Day",
+            "real": "December",
+            "made": "The post opens on 8 August, staffed and freshly painted. The paint is still wet on National Day. The officers mention this to everyone who leans on it."
+          },
+          {
+            "id": "mom",
+            "requires": {
+              "ministry": "Ministry of Manpower"
+            },
+            "text": "the careers centre at the community club will open next month",
+            "real": "in five months",
+            "made": "It opens next month with two career coaches, a printer and no internet. The internet arrives in month five, along with most of the jobseekers."
+          },
+          {
+            "id": "msf",
+            "requires": {
+              "ministry": "Ministry of Social and Family Development"
+            },
+            "text": "the new family service centre will open next month",
+            "real": "the autumn, once the lease is signed",
+            "made": "It opens next month in a room borrowed from the community club, between a karaoke class and a line-dancing one. The caseworkers learn to time their calls."
+          },
+          {
+            "id": "mti",
+            "requires": {
+              "ministry": "Ministry of Trade and Industry"
+            },
+            "text": "the grant for heartland shops will open next month",
+            "real": "the new financial year",
+            "made": "The grant opens next month, with a form that asks for information it will only need next year. Eleven shops apply. Two of them understand the form."
+          },
+          {
+            "id": "mof",
+            "requires": {
+              "ministry": "Ministry of Finance"
+            },
+            "text": "the household payouts will arrive before the school holidays",
+            "real": "a week after them",
+            "made": "The payouts arrive a week before the holidays. The hotline takes forty thousand calls that week, most of them asking what the money is for."
+          }
+        ]
+      },
+      "body": "On a visit, the Minister tells a crowd of residents that {promise}. Your officials, standing behind you, have told you it will be {promise.real}. The cameras are still on.",
+      "requires": {
+        "minRank": 9,
+        "maxRank": 10
+      },
+      "weight": 7,
+      "once": true,
+      "choices": [
+        {
+          "text": "Correct the date now, beside the Minister.",
+          "effects": {
+            "integrity": 5,
+            "reputation": 3,
+            "standing": -6
+          },
+          "outcome": "You say, gently, that it will be {promise.real}. The Minister says, \"Better to under-promise,\" without missing a beat. The clip is of the Minister. The car is quiet."
+        },
+        {
+          "text": "Tell the Minister in the car.",
+          "effects": {
+            "integrity": 2,
+            "competence": 1,
+            "standing": 2,
+            "reputation": -2
+          },
+          "outcome": "The Minister thanks you, and gives the right date at the next visit, crediting your officials. The residents at the first visit keep the first date, and ask after it."
+        },
+        {
+          "text": "Ask your officials to make the date.",
+          "effects": {
+            "standing": 5,
+            "reputation": 2,
+            "integrity": -3,
+            "competence": -1
+          },
+          "outcome": "{promise.made}"
+        }
+      ]
+    },
+    {
+      "id": "bench_stand_in",
+      "title": "The Stand-In",
+      "parts": {
+        "event": [
+          {
+            "id": "gala",
+            "text": "a charity's annual gala"
+          },
+          {
+            "id": "trade",
+            "text": "a trade association's fiftieth anniversary dinner"
+          },
+          {
+            "id": "alumni",
+            "text": "a university's alumni dinner"
+          }
+        ],
+        "story": [
+          {
+            "id": "kampong",
+            "text": "a kampong with one well",
+            "short": "in a kampong with one well",
+            "guest": "Afterwards a guest says, delighted, that he grew up in the same kampong, and asks which house."
+          },
+          {
+            "id": "kueh",
+            "text": "selling kueh at a market at six every morning",
+            "short": "selling kueh before school",
+            "guest": "Afterwards a guest asks which market, because her family sold kueh there too, and would remember you."
+          },
+          {
+            "id": "shop",
+            "text": "a grandmother's provision shop and its abacus",
+            "short": "behind a shop counter",
+            "guest": "Afterwards a guest asks whether the shop is still there. You say it has gone, which is true of some shop, somewhere."
+          }
+        ]
+      },
+      "body": "The Minister is overseas, so tonight's speech at {event} is yours. It was written for the Minister. Paragraph three is the Minister's childhood, in the first person: {story}.",
+      "requires": {
+        "minRank": 9,
+        "maxRank": 10
+      },
+      "weight": 6,
+      "once": true,
+      "choices": [
+        {
+          "text": "Read it as written.",
+          "effects": {
+            "standing": 4,
+            "integrity": -4
+          },
+          "outcome": "You spend two minutes growing up {story.short}, and it lands. {story.guest}"
+        },
+        {
+          "text": "Cut paragraph three, and read the rest.",
+          "effects": {
+            "competence": 2,
+            "standing": 1,
+            "reputation": -2
+          },
+          "outcome": "The speech runs four minutes short and has no middle. Dinner is served early, and the evening is remembered, warmly, for the dinner."
+        },
+        {
+          "text": "Tell your own story instead.",
+          "effects": {
+            "reputation": 5,
+            "integrity": 3,
+            "standing": -4
+          },
+          "outcome": "Your own childhood, unrehearsed, is less tidy than the Minister's. It gets the only real laugh of the night. The Minister's office asks for a copy, for the files."
+        }
+      ]
+    },
+    {
+      "id": "bench_reply",
+      "title": "The Reply",
+      "parts": {
+        "draft": [
+          {
+            "id": "nothing",
+            "text": "Your officials' draft reply concedes nothing, beautifully."
+          },
+          {
+            "id": "long",
+            "text": "The draft reply runs to twelve minutes. You have ten."
+          },
+          {
+            "id": "early",
+            "text": "The draft reply was finished before {mp} finished the speech."
+          }
+        ]
+      },
+      "body": "{mp} has won the ballot for tonight's adjournment motion, on a matter your ministry handles, so the reply is yours: ten minutes, at about ten o'clock. {draft}",
+      "requires": {
+        "minRank": 9,
+        "maxRank": 10
+      },
+      "weight": 6,
+      "once": true,
+      "choices": [
+        {
+          "text": "Concede the point {mp} is right about.",
+          "effects": {
+            "integrity": 4,
+            "reputation": 3,
+            "standing": -4
+          },
+          "cast": {
+            "mp": {
+              "flags": [
+                "you_conceded"
+              ]
+            }
+          },
+          "outcome": "You concede it in your second minute and spend the other eight on what will change. {mp} thanks you across the floor. Your officials thank you less."
+        },
+        {
+          "text": "Read the draft, at a steady pace.",
+          "effects": {
+            "standing": 4,
+            "integrity": -2,
+            "reputation": -1
+          },
+          "cast": {
+            "mp": {
+              "flags": [
+                "read_the_draft"
+              ]
+            }
+          },
+          "outcome": "The reply is read in full. {mp} listens with the face of a colleague, then posts the speech online with your reply beneath it, unedited."
+        },
+        {
+          "text": "Call {mp} beforehand, and agree the exchange.",
+          "effects": {
+            "competence": 3,
+            "standing": 2,
+            "reputation": -2
+          },
+          "cast": {
+            "mp": {
+              "flags": [
+                "agreed_the_exchange"
+              ]
+            }
+          },
+          "outcome": "The exchange goes as agreed, which nobody watching can tell. {mp} thanks you in the lift. The newspaper calls the debate \"cordial\" and gives it two paragraphs."
+        }
+      ]
+    },
+    {
+      "id": "bench_tea",
+      "title": "The Other Side of the Table",
+      "body": "You are asked to sit in on a tea for a possible candidate. The file is thin and very good. The candidate is {peer}, from your intake, now {peer.aTitle}, who does not know you will be there.",
+      "requires": {
+        "minRank": 11,
+        "maxRank": 16,
+        "cast": {
+          "peer": {
+            "minRank": 4
+          }
+        }
+      },
+      "weight": 5,
+      "once": true,
+      "choices": [
+        {
+          "text": "Say that you know {peer}, and step aside.",
+          "effects": {
+            "integrity": 5,
+            "standing": -2
+          },
+          "cast": {
+            "peer": {
+              "flags": [
+                "you_stepped_aside"
+              ]
+            }
+          },
+          "outcome": "The tea goes ahead without you, and you hear nothing about it, correctly. {peer} never mentions it either, which you take as good manners, or good news."
+        },
+        {
+          "text": "Say that you know {peer}, and sit anyway.",
+          "effects": {
+            "competence": 3,
+            "standing": 2,
+            "integrity": 1
+          },
+          "cast": {
+            "peer": {
+              "flags": [
+                "you_sat_in"
+              ]
+            }
+          },
+          "outcome": "The panel lets you stay. You ask {peer} about the folder, gently, in the voice that once asked you. {peer} answers it better than you did."
+        },
+        {
+          "text": "Sit, and say nothing about knowing {peer}.",
+          "effects": {
+            "standing": 4,
+            "integrity": -5,
+            "heat": 4
+          },
+          "cast": {
+            "peer": {
+              "flags": [
+                "owes_you"
+              ]
+            }
+          },
+          "outcome": "Nobody asks, and you are fair, mostly. A year later, at a wedding, {peer} thanks you for being on the panel, in front of two people who were also on it."
+        }
+      ]
+    }
+  ]
+}
