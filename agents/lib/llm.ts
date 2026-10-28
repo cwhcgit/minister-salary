@@ -85,11 +85,44 @@ export function parseMessage<T>(model: ModelId, msg: MessageLike, batch = false)
   };
 }
 
-// PLAYTEST_ANTHROPIC_API_KEY first, so the playtest key can live in an environment that also
-// runs Claude Code without that tool picking it up as its own. Unset: the SDK's usual lookup
-// (ANTHROPIC_API_KEY, then an `ant auth login` profile).
+// --- credentials -------------------------------------------------------------
+// Paid runs authenticate from GitHub Actions with Workload Identity Federation, so no API key
+// exists anywhere. The zero-argument client reads ANTHROPIC_FEDERATION_RULE_ID,
+// ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID and
+// ANTHROPIC_IDENTITY_TOKEN_FILE, exchanges the identity token on the first request, and
+// re-reads the file each time its access token needs refreshing
+// (.github/scripts/anthropic-wif.sh keeps the file fresh). PLAYTEST_ANTHROPIC_API_KEY is still
+// honoured for a run outside Actions.
+
+// Any of these would be used instead of federation. Checked by presence, since some SDK
+// releases treat an empty ANTHROPIC_API_KEY as set.
+const KEY_VARS = ["ANTHROPIC_API_KEY", "PLAYTEST_ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "ANTHROPIC_PROFILE"];
+const WIF_VARS = ["ANTHROPIC_FEDERATION_RULE_ID", "ANTHROPIC_ORGANIZATION_ID", "ANTHROPIC_IDENTITY_TOKEN_FILE"];
+export const RETRIES = { maxRetries: 4 };   // per request: 429 / 5xx / connection errors, with backoff
+
+// Names the credential this process will use, and refuses a mixed or incomplete setup.
+// PLAYTEST_REQUIRE_WIF (set by the workflows) makes federation the only acceptable source.
+export function credentialSource(env: NodeJS.ProcessEnv = process.env): string {
+  const keys = KEY_VARS.filter(k => k in env);
+  const wif = WIF_VARS.every(k => env[k]);
+  if (env.PLAYTEST_REQUIRE_WIF && !wif)
+    throw new Error(`PLAYTEST_REQUIRE_WIF is set, but ${WIF_VARS.filter(k => !env[k]).join(", ")} is not`);
+  if ((wif || env.PLAYTEST_REQUIRE_WIF) && keys.length)
+    throw new Error(`workload identity federation is configured, but ${keys.join(", ")} is also set and would be used instead; unset it`);
+  if (wif) return "workload identity federation";
+  if (env.PLAYTEST_ANTHROPIC_API_KEY) return "PLAYTEST_ANTHROPIC_API_KEY";
+  return "the SDK's default lookup (ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN or an `ant auth login` profile)";
+}
+
+// One client per process, so one token cache: each access token costs one exchange, and a
+// single-use identity token is never presented twice by two clients.
+let shared: Anthropic | null = null;
 export function client(): Anthropic {
-  return new Anthropic({ apiKey: process.env.PLAYTEST_ANTHROPIC_API_KEY || undefined, maxRetries: 4 });   // retries 429 / 5xx / connection errors
+  if (shared) return shared;
+  credentialSource();
+  const key = process.env.PLAYTEST_ANTHROPIC_API_KEY;
+  shared = key ? new Anthropic({ apiKey: key }) : new Anthropic();
+  return shared;
 }
 
 export function realLlm(): Llm {
@@ -99,8 +132,8 @@ export function realLlm(): Llm {
     async call<T>(o: CallOpts) {
       const params = buildParams(o);
       const msg = o.stream
-        ? await c.beta.messages.stream(params).finalMessage()
-        : await c.beta.messages.create(params);
+        ? await c.beta.messages.stream(params, RETRIES).finalMessage()
+        : await c.beta.messages.create(params, RETRIES);
       return parseMessage<T>(o.model, msg);
     }
   };

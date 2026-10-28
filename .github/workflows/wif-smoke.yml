@@ -1,0 +1,44 @@
+name: WIF smoke test
+
+# One tiny Haiku call (a fraction of a cent) through the same client and the same token
+# handling as the cohort workflow, to prove workload identity federation works before a
+# paid cohort depends on it.
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    environment: playtest
+    timeout-minutes: 10
+    env:
+      ANTHROPIC_FEDERATION_RULE_ID: ${{ vars.ANTHROPIC_FEDERATION_RULE_ID }}
+      ANTHROPIC_ORGANIZATION_ID: ${{ vars.ANTHROPIC_ORGANIZATION_ID }}
+      ANTHROPIC_SERVICE_ACCOUNT_ID: ${{ vars.ANTHROPIC_SERVICE_ACCOUNT_ID }}
+      ANTHROPIC_WORKSPACE_ID: ${{ vars.ANTHROPIC_WORKSPACE_ID }}
+      ANTHROPIC_IDENTITY_TOKEN_FILE: /tmp/anthropic-wif/github-oidc.jwt
+      PLAYTEST_REQUIRE_WIF: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: Install the agent runner
+        working-directory: agents
+        run: npm ci --no-fund --no-audit
+      - name: No API key in this job
+        run: .github/scripts/anthropic-wif.sh check
+      - name: Fetch the GitHub OIDC token
+        run: .github/scripts/anthropic-wif.sh start
+      - name: One Haiku call
+        run: node agents/wif-smoke.ts
+      - name: Stop the token refresher
+        if: always()
+        run: .github/scripts/anthropic-wif.sh stop

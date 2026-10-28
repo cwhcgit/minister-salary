@@ -1,0 +1,107 @@
+name: Agent cohort
+
+# Paid: plays one cohort against the Claude API, or runs the content auditor. The job
+# authenticates with workload identity federation: it proves who it is with a GitHub OIDC
+# token, so no API key exists anywhere. Setup: agents/README.md, "Paid runs".
+on:
+  workflow_dispatch:
+    inputs:
+      persona:
+        description: Cohort to play (content-audit runs the content auditor instead)
+        type: choice
+        required: true
+        default: blind-insider
+        options:
+          - content-audit
+          - blind-insider
+          - blind-general
+          - blind-international
+          - lineage
+          - veteran
+          - breaker
+      dry_run:
+        description: Dry run (3 runs, then the projected cost of the full cohort)
+        type: boolean
+        default: true
+
+permissions:
+  id-token: write
+  contents: read
+
+# One run per persona at a time, so two dispatches never spend the same cohort's cap twice.
+concurrency:
+  group: cohort-${{ inputs.persona }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  cohort:
+    name: ${{ inputs.persona }}${{ inputs.dry_run && ' (dry run)' || '' }}
+    runs-on: ubuntu-latest
+    environment: playtest
+    timeout-minutes: 340
+    env:
+      # Federation identifiers, not secrets: variables on the playtest environment.
+      ANTHROPIC_FEDERATION_RULE_ID: ${{ vars.ANTHROPIC_FEDERATION_RULE_ID }}
+      ANTHROPIC_ORGANIZATION_ID: ${{ vars.ANTHROPIC_ORGANIZATION_ID }}
+      ANTHROPIC_SERVICE_ACCOUNT_ID: ${{ vars.ANTHROPIC_SERVICE_ACCOUNT_ID }}
+      ANTHROPIC_WORKSPACE_ID: ${{ vars.ANTHROPIC_WORKSPACE_ID }}
+      ANTHROPIC_IDENTITY_TOKEN_FILE: /tmp/anthropic-wif/github-oidc.jwt
+      PLAYTEST_REQUIRE_WIF: "1"
+      PERSONA: ${{ inputs.persona }}
+      DRY_RUN: ${{ inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+
+      - name: Install the agent runner
+        working-directory: agents
+        run: npm ci --no-fund --no-audit
+
+      - name: No API key in this job
+        run: .github/scripts/anthropic-wif.sh check
+
+      - name: Fetch the GitHub OIDC token and keep it fresh
+        run: .github/scripts/anthropic-wif.sh start
+
+      - name: Play
+        run: |
+          log="$RUNNER_TEMP/cohort.log"
+          if [ "$PERSONA" = content-audit ]; then
+            node agents/audit.ts | tee "$log"
+          else
+            args=(play "$PERSONA")
+            if [ "$DRY_RUN" = true ]; then args+=(--dry-run); fi
+            node agents/runner.ts "${args[@]}" | tee "$log"
+            if [ "$PERSONA" = lineage ] && [ "$DRY_RUN" != true ]; then
+              # A new process makes its own first exchange, so give it a token nobody has used.
+              .github/scripts/anthropic-wif.sh refresh
+              cohort=(reports/cohorts/*-lineage-*/)   # a fresh checkout holds only this one
+              node agents/runner.ts score "${cohort[0]}" --no-batch | tee -a "$log"
+            fi
+          fi
+          {
+            echo "### $PERSONA$([ "$DRY_RUN" = true ] && echo ' (dry run)')"
+            echo '```'
+            grep -E "credentials:|===|spent|projected|completed|findings|total spent|→" "$log" || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Stop the token refresher
+        if: always()
+        run: .github/scripts/anthropic-wif.sh stop
+
+      - name: Upload the reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.persona }}-${{ inputs.dry_run && 'dry-run' || 'cohort' }}-${{ github.run_id }}
+          path: |
+            reports/cohorts/
+            reports/audit/
+          if-no-files-found: warn
+          retention-days: 90

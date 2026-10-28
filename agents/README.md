@@ -6,31 +6,49 @@ Nothing here changes the game. Agents produce reports and proposals, and a propo
 
 ## Setup
 
-Node 22.18 or later (TypeScript runs directly; there is no build step), then:
+Node 22.18 or later (TypeScript runs directly; there is no build step), then `cd agents && npm ci`. Everything free runs without the install: `node agents/leak-check.ts`, `node test/sim.js`, `node test/harness.test.js`, and any agent command with `--mock`.
 
-```bash
-cd agents && npm ci
-export PLAYTEST_ANTHROPIC_API_KEY=...   # a key from the project's own Console workspace (see Spend)
-```
+## Paid runs
 
-Everything that costs nothing runs without the install: `node agents/leak-check.ts`, `node test/sim.js`, `node test/harness.test.js`.
+Paid runs happen in GitHub Actions and authenticate with [workload identity federation](https://platform.claude.com/docs/en/manage-claude/wif-providers/github-actions): each job proves who it is with a GitHub OIDC token and exchanges it for a short-lived Anthropic access token. No API key exists anywhere: not in the repository, not in GitHub secrets, not on anyone's laptop.
+
+**One-time setup**
+
+1. Claude Console → [Workload identity](https://platform.claude.com/settings/workload-identity-federation) → Connect workload → GitHub Actions. The wizard registers GitHub's issuer (`https://token.actions.githubusercontent.com`, discovery mode) and creates a service account and a federation rule. Use these values for the rule:
+   - `subject_prefix`: `repo:cwhcgit/minister-salary:environment:playtest`, the subject of a job that runs in the `playtest` environment. Nothing else in the repository matches it.
+   - `audience`: `https://api.anthropic.com`; `claims`: `{ "repository_owner": "cwhcgit" }`
+   - `workspace_id`: the project's own workspace, the one with the spend limit
+   - `oauth_scope`: `workspace:developer`
+   - `token_lifetime_seconds`: 600. Keep it at 420 or more. The SDK renews an access token once fewer than 120 seconds remain, and the file must have been replaced since the last exchange by then, because each GitHub token is accepted once; it is replaced every 180 seconds.
+2. GitHub → Settings → Environments → `playtest` (the first workflow run creates it). Add these as **variables**, not secrets; they are identifiers, not credentials: `ANTHROPIC_FEDERATION_RULE_ID` (`fdrl_…`), `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID` (`svac_…`), and `ANTHROPIC_WORKSPACE_ID` (`wrkspc_…`, required only if the rule covers more than one workspace). Restrict the environment's deployment branches to `main`, so a workflow edited on another branch cannot use it. Adding yourself as a required reviewer makes every paid run wait for your click.
+3. Actions → **WIF smoke test** → Run workflow. It makes one tiny Haiku call through the same client and token handling as the cohorts, and fails with a pointer to the Console's authentication history if the exchange is refused.
+
+**Running a cohort**
+
+Actions → **Agent cohort** → Run workflow, then choose a persona (or `content-audit`) and whether it is a dry run. One cohort per job. A dry run plays 3 runs and reports the projected cost of the full cohort in the job summary. The run logs, summaries and audit come back as an artifact named after the persona. Order for a month: `content-audit`, the three blind cohorts, `lineage` (diaries are coded in the same job), `breaker`, `veteran`.
+
+How the job authenticates (`.github/scripts/anthropic-wif.sh`):
+
+- `check` fails the job if `ANTHROPIC_API_KEY`, `PLAYTEST_ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_PROFILE` is set, even empty, since any of them would win over federation. It also fails if a federation variable is missing.
+- `start` fetches a GitHub OIDC token with audience `https://api.anthropic.com` into `ANTHROPIC_IDENTITY_TOKEN_FILE`, then replaces it in the background every 180 seconds. The token lasts about 5 minutes and is accepted once. It is written atomically, readable only by the job, and never printed.
+- The runner builds a zero-argument SDK client (`@anthropic-ai/sdk` 1.3.0, pinned by the lockfile). The client reads `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, `ANTHROPIC_WORKSPACE_ID` and `ANTHROPIC_IDENTITY_TOKEN_FILE`, exchanges the token on the first request, and re-reads the file whenever the access token needs renewing. There is one client per process, so one exchange per access token. `PLAYTEST_REQUIRE_WIF` makes the runner refuse any other credential.
+- `refresh` fetches a token immediately. It runs before each further process in the same job, so that process's first exchange never sees a token another process already used.
+
+`test.ts` runs both halves offline against fake GitHub and Anthropic endpoints. It checks the audience, the refresh, that a reused token is never presented, and that a key anywhere stops the run.
 
 ## The monthly loop
 
 ```bash
 node test/sim.js regress 800 --json reports/bot-metrics.json   # free: bots, balance, fun proxies
-node agents/audit.ts                                            # once per content version, Opus, Batch API (under $1)
-node agents/runner.ts play blind --dry-run                      # 3 real runs per persona + projected cost
-node agents/runner.ts play blind                                # three blind cohorts of 50
-node agents/runner.ts play lineage                              # 20 lineages x 5 lives
-node agents/runner.ts score reports/cohorts/<date>-lineage-<hash>   # code the "what held you back" answers (Haiku, Batch)
-node agents/runner.ts play veteran breaker                      # win-by-skill check, exploit hunt
-node agents/analyse.ts reports/cohorts/<date>-* --metrics reports/bot-metrics.json
+# Actions → Agent cohort: content-audit, then each persona (dry run first)
+node agents/analyse.ts <downloaded cohort dirs> --metrics reports/bot-metrics.json
 node agents/design.ts reports/analysis/<date>-<hash>            # proposals → proposals/
 node agents/proposals.ts list                                   # then show / apply / reject
 ```
 
-`--mock` on any of these runs the whole pipeline with a scripted stand-in instead of the API: free, offline, and what CI runs. Mock output is gitignored.
+The analyst and designer still run locally. Without an API key, sign in with `ant auth login` first; the SDK picks up the profile. Moving them into a workflow too means downloading the cohort artifacts into that job.
+
+`--mock` on any command runs the whole pipeline with a scripted stand-in instead of the API: free, offline, and what CI runs. Mock output is gitignored.
 
 ## Personas
 
@@ -89,7 +107,7 @@ The caps add up to $76, leaving room in the $100 credit to re-test approved chan
 - A cohort stops launching runs once it has spent its cap (`lib/config.ts`); `--max-usd` caps a whole invocation.
 - Every run stops at 60 turns.
 - `--dry-run` plays three runs per persona for real and prints the projected cohort cost before you commit to it.
-- Use a dedicated Console workspace with its own spend limit, and a key that belongs to it, so the monthly credit cannot be spent by anything else.
+- Use a dedicated Console workspace with its own spend limit, and point the federation rule at it: every token the cohorts get is scoped to that workspace, so the monthly credit cannot be spent by anything else.
 - Play requests use the regular Messages API, one request per turn, with up to 4 games at once (`--concurrency`). The Batch API (half price) is used only where nothing waits on the answer: the content audit and diary coding.
 - Sonnet and Opus requests opt into server-side refusal fallback (`fallbacks: "default"`), so a rare safety decline is retried on another model instead of failing the turn. Haiku has no fallback; a turn that cannot be used is retried once, then picked at random and flagged `autoPicked` so analysis can drop it.
 
@@ -99,7 +117,7 @@ The caps add up to $76, leaving room in the $100 credit to re-test approved chan
 - **Are events stored as data the designer can add to?** Yes: `web/content/events.json`. The designer writes ops (add, replace, set a field); `lib/proposals.ts` validates them, builds a patched copy of `web/`, and produces the diff.
 - **Are balance numbers in config or hardcoded?** Both. In config: the ladder and pay, origins and CEP ranges, grade thresholds and euphemisms, minimum years in grade, retirement ages, and every choice's effects. Hardcoded in `engine.js`: the appraisal weights and noise, the bonus formula, the election win chances, the post-election CEP formula, the Heat thresholds (55 and 85), the C and D streak rules, the extra years at senior rungs and the double-jump rule. The designer can only propose content and config; if the analysis points at one of the hardcoded numbers, it says so instead. Moving them into `game.json` would open them up.
 - **Node/TypeScript with the Anthropic SDK?** That is what this is: TypeScript run by Node's built-in type stripping, with `@anthropic-ai/sdk` as the only runtime dependency.
-- **Which Console workspace and spend limit?** Yours to choose. Suggested: a workspace for this project alone, a spend limit of $90 a month, and an API key created inside it.
+- **Which Console workspace and spend limit?** Yours to choose. Suggested: a workspace for this project alone with a spend limit of $90 a month, targeted by the federation rule (see Paid runs). No API key is needed.
 
 ## Files
 

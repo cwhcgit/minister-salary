@@ -14,12 +14,13 @@
 //   node agents/runner.ts score <cohort dir> [--no-batch] [--mock]
 //       code each diary's "what held you back" answer (Haiku, Batch API) and re-summarize
 //
-// Credentials: PLAYTEST_ANTHROPIC_API_KEY, else the SDK's usual ANTHROPIC_API_KEY or `ant auth login` profile.
+// Credentials: paid runs go through .github/workflows/cohort.yml, which authenticates with
+// workload identity federation (no API key anywhere). See lib/llm.ts for the lookup order.
 import fs from "node:fs";
 import path from "node:path";
 import { ANALYSIS, DEFAULTS, PERSONAS, REPORTS, runPlan, type Persona } from "./lib/config.ts";
 import { H, type Build } from "./lib/harness.ts";
-import { mockLlm, pool, realLlm, Spend, type Llm } from "./lib/llm.ts";
+import { credentialSource, mockLlm, pool, realLlm, Spend, type Llm } from "./lib/llm.ts";
 import { playRun, type Ctx, type RunResult, type Spec } from "./lib/play.ts";
 import { leakGate, read, sha, systemPrompt } from "./lib/prompts.ts";
 import { readRun, runFiles, summarizeCohort } from "./lib/report.ts";
@@ -63,6 +64,7 @@ async function play() {
   const buildRoot = opt("--build");
   const personas = pick(argv);
   const llm: Llm = mock ? mockLlm(7) : realLlm();
+  if (!mock) log(`credentials: ${credentialSource()}`);
   let spentAll = 0;
   const date = new Date().toISOString().slice(0, 10);
 
