@@ -33,7 +33,7 @@ await ok("cohorts share seeds and split origins evenly", () => {
   const n = (o: string) => a.filter(x => x.origin === o).length;
   assert.ok(Math.abs(n("scholar") - n("poly")) <= 1);
   const L = runPlan(PERSONAS.find(p => p.lineage)!);
-  assert.strictEqual(L.length, 100);
+  const lp = PERSONAS.find(p => p.lineage)!; assert.strictEqual(L.length, lp.lineage!.lineages * lp.lineage!.runsEach);
   assert.ok(L.every(x => x.origin === L.find(y => y.lineage === x.lineage)!.origin), "a lineage keeps its origin");
 });
 

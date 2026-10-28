@@ -21,8 +21,9 @@ const TAG_LABEL = { cep: "rumour", heat: "rumour" };
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
-function save()  { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log })); }
-function wipe()  { localStorage.removeItem(SAVE); }
+// Storage can be blocked (private windows, embedded previews); the game must still play.
+function save()  { try { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log })); } catch (e) {} }
+function wipe()  { try { localStorage.removeItem(SAVE); } catch (e) {} }
 function load()  {
   try {
     const d = JSON.parse(localStorage.getItem(SAVE));
@@ -45,7 +46,7 @@ function header() {
         <div class="rank">${esc(r.title)}<span class="grade">${esc(r.grade)}</span></div>
         <div class="sub">Age ${S.age} &middot; Year ${S.year} &middot; ${esc(S.ministry)}</div>
       </div>
-      <div class="cash">${money(S.wealth)}</div>
+      <div class="cashbox"><div class="cash">${money(S.wealth)}</div><div class="cashlab">lifetime earnings</div></div>
     </div>
     <div class="stats">${STATKEYS.map(([k, label, col]) => `
       <div class="stat">
@@ -61,7 +62,7 @@ function startScreen() {
   app.innerHTML = `
     <div class="title serif">Minister<br>Salary</div>
     <div class="tag-line">You join the public service at the bottom. The formula that sets the Prime Minister's pay is published, and so is the distance between you and it.</div>
-    <input id="nm" placeholder="Your name" maxlength="28" value="${esc(localStorage.getItem("ms.name") || "")}">
+    <input id="nm" placeholder="Your name" maxlength="28" value="${esc((() => { try { return localStorage.getItem("ms.name") || ""; } catch (e) { return ""; } })())}">
     ${content.origins.map(o => `
       <div class="origin" role="radio" tabindex="0" data-o="${o.id}" aria-checked="${o.id === pickedOrigin}">
         <div class="n"><span>${esc(o.name)}</span><span class="diff">${esc(o.difficulty)}</span></div>
@@ -78,7 +79,7 @@ function startScreen() {
 
   app.querySelector("#go").onclick = () => {
     const name = (app.querySelector("#nm").value || "").trim() || "You";
-    localStorage.setItem("ms.name", name);
+    try { localStorage.setItem("ms.name", name); } catch (e) {}
     S = Engine.newGame(content, pickedOrigin, name, (Math.random() * 2 ** 31) | 0);
     prev = null;
     nextTurn();
@@ -86,7 +87,7 @@ function startScreen() {
 }
 
 function eventScreen() {
-  const ev = content.events.find(e => e.id === S.currentEvent) || Engine.QUIET;
+  const ev = Engine.eventOf(content, S) || Engine.QUIET;
   app.innerHTML = header() + `
     <div class="card">
       <h2 class="serif">${esc(ev.title)}</h2>
@@ -128,6 +129,11 @@ function endingScreen() {
         <div><div class="k">At age</div><div class="v">${S.age}</div></div>
         <div><div class="k">Lifetime earnings</div><div class="v" style="color:var(--cash)">${money(S.wealth)}</div></div>
         <div><div class="k">Integrity</div><div class="v">${S.integrity}</div></div>
+      </div>
+      <div class="declass">
+        <div class="lab">Declassified</div>
+        ${Engine.declassify(content, S).map(l => `
+          <div class="dl"><div class="k">${esc(l.label)}</div><div class="t">${esc(l.text)}</div></div>`).join("")}
       </div>
       <button class="primary" id="again">Start Again</button>
       <button class="primary ghost" id="share" style="margin-top:8px">Share this ending</button>

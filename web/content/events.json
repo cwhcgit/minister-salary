@@ -34,9 +34,17 @@
         "effects": {
           "integrity": 10,
           "competence": 4,
-          "standing": -7
+          "standing": -7,
+          "appraisal": -8
         },
-        "outcome": "The meeting runs forty minutes over. The scheme is reviewed. You are not invited to the next one, or the four after that."
+        "outcome": "The meeting runs forty minutes over. The scheme is reviewed. You are not invited to the next one, or the four after that. It is noted.",
+        "schedule": [
+          {
+            "eventId": "figure_vindicated",
+            "inYears": 3,
+            "chance": 0.55
+          }
+        ]
       },
       {
         "text": "Present the number, with a recovery plan attached.",
@@ -77,9 +85,17 @@
         "effects": {
           "competence": 7,
           "reputation": 5,
-          "standing": -8
+          "standing": -8,
+          "appraisal": -8
         },
-        "outcome": "The email is received in silence by fourteen people. One of them, a deputy secretary you have never met, replies only to you: \"Noted. Good paper.\" You keep that email for years."
+        "outcome": "The email is received in silence by fourteen people. One of them, a deputy secretary you have never met, replies only to you: \"Noted. Good paper.\" You keep that email for years. It is noted.",
+        "schedule": [
+          {
+            "eventId": "minute_vindicated",
+            "inYears": 2,
+            "chance": 0.5
+          }
+        ]
       },
       {
         "text": "Ask the consultants, in the Q&A, what their data source was.",
@@ -109,9 +125,10 @@
         "effects": {
           "integrity": 8,
           "reputation": 3,
-          "standing": -5
+          "standing": -5,
+          "appraisal": -6
         },
-        "outcome": "Your post-it says \"we need three more officers\". The facilitator photographs the wall. Your post-it does not appear in the deck."
+        "outcome": "Your post-it says \"we need three more officers\". The facilitator photographs the wall. Your post-it does not appear in the deck. It is noted."
       },
       {
         "text": "Produce an acronym.",
@@ -230,18 +247,19 @@
       {
         "text": "Take the pen. Write the statement.",
         "effects": {
-          "competence": 12,
-          "standing": 10,
+          "competence": 6,
+          "standing": 8,
           "reputation": 8,
-          "cep": 1
+          "cep": 1,
+          "heat": 6
         },
         "outcome": "Eleven drafts. The Minister delivers the ninth almost verbatim. On Tuesday the Perm Sec asks for your name, and is told it, and writes it down."
       },
       {
         "text": "Run the operations room instead. Let someone else write.",
         "effects": {
-          "competence": 10,
-          "standing": 5,
+          "competence": 12,
+          "standing": 6,
           "reputation": -2
         },
         "outcome": "You are extremely good at this and nobody outside the room will ever know it happened. The thing does not get worse. That was the entire job."
@@ -249,9 +267,9 @@
       {
         "text": "Stay out of it. It is not your division.",
         "effects": {
-          "standing": -10,
-          "integrity": -3,
-          "competence": -2
+          "standing": -6,
+          "integrity": 2,
+          "competence": 2
         },
         "outcome": "It was not your division. That is true, and it is the sort of true thing that gets remembered in a particular tone."
       }
@@ -289,7 +307,7 @@
       {
         "text": "Find out who he is.",
         "effects": {
-          "standing": 2,
+          "standing": 7,
           "integrity": -14,
           "heat": 15
         },
@@ -376,7 +394,10 @@
           "standing": -2,
           "competence": -2
         },
-        "outcome": "The panel proceeds without you and awards it to the same firm. Your recusal memo sits in the file, where, years later, it will be the only reason nobody asks you anything."
+        "outcome": "The panel proceeds without you and awards it to the same firm. Your recusal memo sits in the file, where, years later, it will be the only reason nobody asks you anything.",
+        "setFlags": [
+          "recused"
+        ]
       },
       {
         "text": "Award it to the other vendor to be safe.",
@@ -404,9 +425,9 @@
         "text": "Go every week for a year.",
         "effects": {
           "reputation": 10,
-          "standing": 7,
+          "standing": 4,
           "integrity": 6,
-          "competence": 4
+          "competence": -4
         },
         "setFlags": [
           "did_mps"
@@ -417,8 +438,9 @@
         "text": "Go a few times, enough to be seen.",
         "effects": {
           "reputation": 4,
-          "standing": 3,
-          "integrity": -3
+          "standing": 5,
+          "integrity": -3,
+          "competence": 1
         },
         "outcome": "Enough to mention. Not enough to change your mind about anything."
       },
@@ -426,8 +448,8 @@
         "text": "Decline. You have a young family.",
         "effects": {
           "integrity": 3,
-          "standing": -6,
-          "reputation": -4
+          "standing": -4,
+          "competence": 4
         },
         "outcome": "It is a completely reasonable answer. Reasonable answers are noted, filed, and remembered at exactly the wrong moment."
       }
@@ -452,7 +474,7 @@
         "effects": {
           "integrity": 9,
           "competence": 6,
-          "standing": 3
+          "standing": -3
         },
         "setFlags": [
           "taught_scholar"
@@ -469,17 +491,18 @@
       {
         "text": "Clear it. Let him find out the hard way.",
         "effects": {
-          "standing": -2,
-          "integrity": -6
+          "standing": 4,
+          "integrity": -6,
+          "competence": 3
         },
         "outcome": "He presents it. It goes badly. He is moved to a better posting three months later anyway, which teaches him a different lesson than the one you intended."
       },
       {
         "text": "Rewrite it yourself overnight.",
         "effects": {
-          "competence": 4,
+          "competence": -2,
           "integrity": -3,
-          "standing": 5
+          "standing": 7
         },
         "outcome": "It is now a good paper with his name on it. He thanks you. He does not learn to write, and he does not need to."
       }
@@ -553,7 +576,7 @@
     "once": true,
     "choices": [
       {
-        "text": "Accept, and bring your mother to the Istana.",
+        "text": "Accept, and bring your mother to the investiture.",
         "effects": {
           "reputation": 6,
           "standing": 4,
@@ -568,7 +591,10 @@
           "standing": 5,
           "reputation": 4
         },
-        "outcome": "You are told the quota is fixed. You give the medal's mention at the division meeting entirely to them, which is not the same thing, and they know it is not, and it still lands."
+        "outcome": "You are told the quota is fixed. You give the medal's mention at the division meeting entirely to them, which is not the same thing, and they know it is not, and it still lands.",
+        "setFlags": [
+          "team_recognised"
+        ]
       }
     ]
   },
@@ -627,9 +653,17 @@
         "effects": {
           "competence": 9,
           "standing": -5,
-          "reputation": 5
+          "reputation": 5,
+          "appraisal": -6
         },
-        "outcome": "Your paper presents three options and recommends one. Two ministries object. A decision is made anyway, largely to stop the paper circulating."
+        "outcome": "Your paper presents three options and recommends one. Two ministries object. A decision is made anyway, largely to stop the paper circulating. It is noted.",
+        "schedule": [
+          {
+            "eventId": "committee_vindicated",
+            "inYears": 2,
+            "chance": 0.45
+          }
+        ]
       },
       {
         "text": "Keep taking excellent minutes.",
@@ -655,6 +689,9 @@
             "inYears": 6,
             "chance": 0.45
           }
+        ],
+        "setFlags": [
+          "leaked_deadlock"
         ]
       }
     ]
@@ -686,7 +723,10 @@
           "heat": 10,
           "standing": 2
         },
-        "outcome": "There is nothing improper in what he tells you — it is all public, three weeks early. That is the whole of the impropriety, and you both know its exact size."
+        "outcome": "There is nothing improper in what he tells you — it is all public, three weeks early. That is the whole of the impropriety, and you both know its exact size.",
+        "setFlags": [
+          "friend_at_hdb"
+        ]
       },
       {
         "text": "Buy resale. Take the loan.",
@@ -727,16 +767,27 @@
           "integrity": -8,
           "competence": -3
         },
-        "outcome": "\"Enhanced\". It is enhanced by the word \"enhanced\". It is covered favourably. Nobody is harmed and nothing is gained and this is, you suspect, most of what happens here."
+        "outcome": "\"Enhanced\". It is enhanced by the word \"enhanced\". It is covered favourably. Nobody is harmed and nothing is gained and this is, you suspect, most of what happens here.",
+        "setFlags": [
+          "rebranded_scheme"
+        ]
       },
       {
         "text": "Tell the Minister there is nothing, and say so early.",
         "effects": {
           "integrity": 12,
           "standing": -8,
-          "competence": 4
+          "competence": 4,
+          "appraisal": -10
         },
-        "outcome": "He is annoyed for a day and grateful for a year, because the alternative was being annoyed in Parliament. He does not forget either part."
+        "outcome": "He is annoyed for a day and grateful for a year, because the alternative was being annoyed in Parliament. He does not forget either part. It is noted.",
+        "schedule": [
+          {
+            "eventId": "cos_vindicated",
+            "inYears": 2,
+            "chance": 0.5
+          }
+        ]
       }
     ]
   },
@@ -771,7 +822,10 @@
           "integrity": -12,
           "reputation": -5
         },
-        "outcome": "You get it. It is a good box. The nine of them are placed adequately, and something in the division's manner toward you changes in a way that is never once spoken aloud."
+        "outcome": "You get it. It is a good box. The nine of them are placed adequately, and something in the division's manner toward you changes in a way that is never once spoken aloud.",
+        "setFlags": [
+          "grabbed_box"
+        ]
       },
       {
         "text": "Volunteer to run the transition.",
@@ -811,7 +865,10 @@
           "integrity": -9,
           "competence": -2
         },
-        "outcome": "It fits beautifully. The launch is well received. Somewhere in a file there is a spreadsheet of what eleven hundred people actually said, and it is not the report."
+        "outcome": "It fits beautifully. The launch is well received. Somewhere in a file there is a spreadsheet of what eleven hundred people actually said, and it is not the report.",
+        "setFlags": [
+          "smoothed_feedback"
+        ]
       },
       {
         "text": "Publish the raw feedback alongside the report.",
@@ -819,9 +876,20 @@
           "integrity": 14,
           "reputation": 9,
           "standing": -10,
-          "heat": 8
+          "heat": 8,
+          "appraisal": -10
         },
-        "outcome": "This has not been done before. It is permitted, eventually, after a fortnight of anxiety at three levels. It is the single most-read government document of the year."
+        "outcome": "This has not been done before. It is permitted, eventually, after a fortnight of anxiety at three levels. It is the single most-read government document of the year. It is noted.",
+        "schedule": [
+          {
+            "eventId": "dialogue_vindicated",
+            "inYears": 3,
+            "chance": 0.5
+          }
+        ],
+        "setFlags": [
+          "raw_feedback"
+        ]
       }
     ]
   },
@@ -856,8 +924,9 @@
       {
         "text": "Keep your head down until she leaves.",
         "effects": {
-          "standing": -7,
-          "competence": -4
+          "standing": -4,
+          "competence": 3,
+          "integrity": 2
         },
         "outcome": "She stays five years. Your appraisals during that period are a flat line that will be visible to every promotion board for the rest of your career."
       }
@@ -877,26 +946,35 @@
       {
         "text": "Go, and fix it.",
         "effects": {
-          "competence": 12,
-          "standing": 7,
-          "reputation": 7,
-          "cep": 2
+          "competence": 10,
+          "standing": -2,
+          "reputation": 3,
+          "cep": 1
         },
-        "outcome": "It was a proving ground. You find out which it was only by how the phone starts ringing in month twenty-two."
+        "outcome": "It was a proving ground. You find out which it was only by how the phone starts ringing in month twenty-two.",
+        "schedule": [
+          {
+            "eventId": "secondment_verdict",
+            "inYears": 2,
+            "chance": 0.65
+          }
+        ]
       },
       {
         "text": "Go, and keep your head down for two years.",
         "effects": {
           "competence": 2,
-          "standing": -3
+          "standing": 2,
+          "integrity": -2
         },
         "outcome": "It becomes a siding. Sidings are not assigned; they are accepted."
       },
       {
         "text": "Refuse it and stay where you are visible.",
         "effects": {
-          "standing": -8,
-          "reputation": 2
+          "standing": 3,
+          "reputation": 2,
+          "competence": -2
         },
         "outcome": "You stay visible doing work of no consequence, which turns out to be a worse place to be seen than a hard job nobody watched."
       }
@@ -960,7 +1038,10 @@
           "integrity": -10,
           "standing": 2
         },
-        "outcome": "The file was retained. It is retained in three places. You have now told an auditor something untrue in writing, which is a different category of thing from what you did four years ago."
+        "outcome": "The file was retained. It is retained in three places. You have now told an auditor something untrue in writing, which is a different category of thing from what you did four years ago.",
+        "setFlags": [
+          "raw_file_lost"
+        ]
       }
     ]
   },
@@ -983,9 +1064,12 @@
         "effects": {
           "heat": 30,
           "integrity": -15,
-          "standing": -5
+          "standing": 4
         },
-        "outcome": "It stays out. Two people now know why it stayed out, and one of them is not you."
+        "outcome": "It stays out. Two people now know why it stayed out, and one of them is not you.",
+        "setFlags": [
+          "hid_annex"
+        ]
       }
     ]
   },
@@ -1044,7 +1128,7 @@
           "standing": 12,
           "integrity": 5
         },
-        "outcome": "He says he has put your name forward for something and that he did it on the strength of one afternoon in 2019. You go back to your desk and sit there for a while."
+        "outcome": "He says he has put your name forward for something and that he did it on the strength of one afternoon eleven years ago. You go back to your desk and sit there for a while."
       }
     ]
   },
@@ -1056,8 +1140,8 @@
       "minRank": 4,
       "maxRank": 7,
       "minStats": {
-        "standing": 58,
-        "reputation": 48
+        "standing": 54,
+        "reputation": 44
       },
       "notDuringBond": true
     },
@@ -1073,14 +1157,15 @@
         "setFlags": [
           "went_to_tea"
         ],
-        "outcome": "Ninety minutes. Four people, very senior, extremely pleasant. The questions are gentle and the silences after your answers are not. At the end nobody offers you anything and everybody thanks you warmly.",
+        "outcome": "Tea is served. The conversation is about nothing for forty minutes. Then a second man arrives with a folder, and opens it, and reads.",
         "schedule": [
           {
             "eventId": "the_vetting",
             "inYears": 1,
-            "chance": 1.0
+            "chance": 1
           }
-        ]
+        ],
+        "readFolder": true
       },
       {
         "text": "Decline, politely.",
@@ -1099,38 +1184,25 @@
     "id": "the_vetting",
     "triggered": true,
     "title": "The Background Check",
-    "body": "Everything. Finances, family, a dormant company you registered at 24, and — in a folder someone is holding but not opening — whatever else there is.",
+    "body": "The same man, the same folder, a smaller room. He has read it all. He would like to hear it from you, and he is very good at not saying which parts he means.",
     "choices": [
       {
         "text": "Disclose everything, including the things they may not have.",
         "effects": {
-          "integrity": 12,
-          "heat": -25,
-          "standing": 5
+          "integrity": 6,
+          "heat": -25
         },
-        "outcome": "It takes two sessions. Disclosing it yourself converts every single item from a liability into evidence of judgement, which is a trick you wish you had understood twenty years earlier.",
-        "schedule": [
-          {
-            "eventId": "the_election",
-            "inYears": 1,
-            "chance": 1.0
-          }
-        ]
+        "folder": "disclose",
+        "outcome": "He listens without writing anything until you have finished, and then writes for a long time."
       },
       {
         "text": "Answer exactly what is asked and nothing more.",
         "effects": {
-          "standing": 2,
-          "heat": 10
+          "heat": 5,
+          "standing": 3
         },
-        "outcome": "Correct, complete, and minimal. The folder is not opened. It is also not returned to the drawer.",
-        "schedule": [
-          {
-            "eventId": "the_election",
-            "inYears": 1,
-            "chance": 1.0
-          }
-        ]
+        "folder": "conceal",
+        "outcome": "The questions are precise and you answer them precisely. He thanks you. Nobody mentions the folder again, which is how you know it is still there."
       }
     ]
   },
@@ -1146,7 +1218,13 @@
           "reputation": 5
         },
         "election": "grc",
-        "outcome": "Your name is fourth on a poster. You shake eleven thousand hands and understand, with total clarity, that almost none of this is about you."
+        "outcome": "Your name is fourth on a poster. You shake eleven thousand hands and understand, with total clarity, that almost none of this is about you.",
+        "schedule": [
+          {
+            "eventId": "re_election",
+            "inYears": 5
+          }
+        ]
       },
       {
         "text": "Ask for the single seat.",
@@ -1158,7 +1236,13 @@
         "requiresStat": {
           "reputation": 60
         },
-        "outcome": "A contested SMC, alone, against a decent opponent with a real ground game. Nobody carries you and nobody can blame anybody else."
+        "outcome": "A contested SMC, alone, against a decent opponent with a real ground game. Nobody carries you and nobody can blame anybody else.",
+        "schedule": [
+          {
+            "eventId": "re_election",
+            "inYears": 5
+          }
+        ]
       }
     ]
   },
@@ -1189,7 +1273,14 @@
           "standing": -5,
           "competence": 4
         },
-        "outcome": "It is quoted. Two of the quotations are the ones you meant and one is not. A Minister you have never met sends a one-line note: \"That needed saying.\""
+        "outcome": "It is quoted. Two of the quotations are the ones you meant and one is not. A Minister you have never met sends a one-line note: \"That needed saying.\" It is noted.",
+        "schedule": [
+          {
+            "eventId": "speech_vindicated",
+            "inYears": 4,
+            "chance": 0.4
+          }
+        ]
       }
     ]
   },
@@ -1227,7 +1318,7 @@
   {
     "id": "the_bonus_reveal",
     "title": "The National Bonus",
-    "body": "Your annual variable component is computed from four indicators: real median income growth, real income growth of the lowest 20th percentile, unemployment, and real GDP growth. You now hold a portfolio that moves at least two of them.",
+    "body": "Your National Bonus is computed from four indicators: real median income growth, real income growth of the lowest 20th percentile, unemployment, and real GDP growth. You now hold a portfolio that moves at least two of them.",
     "requires": {
       "minRank": 11
     },
@@ -1252,7 +1343,7 @@
           "reputation": 3,
           "integrity": -6
         },
-        "outcome": "Cleaner, faster, and it moves the largest indicator. The bonus is eleven months. You do not look closely at the distributional annex."
+        "outcome": "Cleaner, faster, and it moves the largest indicator. The bonus is six months, the maximum. You do not look closely at the distributional annex."
       },
       {
         "text": "Ask, in Cabinet, whether ministers should be paid on indicators they set.",
@@ -1262,7 +1353,14 @@
           "standing": -14,
           "heat": 8
         },
-        "outcome": "The question is received with great seriousness and complete stillness. It is minuted. It is answered thoroughly and it is not answered at all, and you have marked yourself out as a particular kind of colleague."
+        "outcome": "The question is received with great seriousness and complete stillness. It is minuted. It is answered thoroughly and it is not answered at all, and you have marked yourself out as a particular kind of colleague. It is noted.",
+        "schedule": [
+          {
+            "eventId": "bonus_vindicated",
+            "inYears": 3,
+            "chance": 0.45
+          }
+        ]
       }
     ]
   },
@@ -1293,7 +1391,14 @@
           "standing": -8,
           "competence": 5
         },
-        "outcome": "You concede it in a Facebook post at 11pm written in your own words. It is shared more than anything your ministry has ever published, and half of the shares are from people who dislike you."
+        "outcome": "You concede it in a Facebook post at 11pm written in your own words. It is shared more than anything your ministry has ever published, and half of the shares are from people who dislike you. It is noted.",
+        "schedule": [
+          {
+            "eventId": "pofma_vindicated",
+            "inYears": 2,
+            "chance": 0.5
+          }
+        ]
       }
     ]
   },
@@ -1316,7 +1421,8 @@
           "cep": 2,
           "reputation": -4
         },
-        "outcome": "Housing, or health, or transport. Something with a queue and a waiting list and a headline every week. You are given it immediately, and the speed of the agreement tells you what it was going to be anyway."
+        "outcome": "Housing, or health, or transport. Something with a queue and a waiting list and a headline every week. You are given it immediately, and the speed of the agreement tells you what it was going to be anyway.",
+        "newMinistry": true
       },
       {
         "text": "Ask for the comfortable one.",
@@ -1325,7 +1431,8 @@
           "wealth": 100000,
           "competence": -4
         },
-        "outcome": "You get it. It is pleasant and important and nobody will ever find out whether you were any good, including you."
+        "outcome": "You get it. It is pleasant and important and nobody will ever find out whether you were any good, including you.",
+        "newMinistry": true
       }
     ]
   },
@@ -1372,7 +1479,7 @@
   {
     "id": "the_work",
     "title": "The Work",
-    "body": "Nothing happens this year. There are papers, and clearances, and a scheme that goes out on time because you and four other people made it.",
+    "body": "A scheme goes out on time because you and four other people made it. It will never have your name on it. Nobody's name is on it; that is how you know it is real.",
     "requires": {
       "minRank": 0,
       "maxRank": 7
@@ -1406,6 +1513,16 @@
         },
         "outcome": "You leave at six every day for a year, see your children awake, and it costs you exactly what you thought it would."
       }
+    ],
+    "montageEffects": {
+      "competence": 3,
+      "standing": 1
+    },
+    "montageLines": [
+      "A scheme goes out on time. Five people know why. You are one of them.",
+      "You clear forty-one papers, attend ninety meetings, and write one sentence you are proud of.",
+      "The year is mostly clearances. One comes back with a comment you agree with, which is a first.",
+      "A minute you wrote three years ago is quoted back to you as the ministry's position. You do not correct anyone."
     ]
   },
   {
@@ -1444,6 +1561,16 @@
         },
         "outcome": "She thinks for a moment and then tells you something real. You do it. That conversation is worth the other thirty-nine minutes."
       }
+    ],
+    "montageEffects": {
+      "standing": 1,
+      "competence": 1
+    },
+    "montageLines": [
+      "Your appraisal conversation lasts thirty-five minutes. Visibility is mentioned twice.",
+      "Six competency domains, one new acronym, and the phrase \"stretch assignment\".",
+      "Your reporting officer says the ranking exercise was \"very tight this year\". It is always very tight this year.",
+      "You are told you are \"on track\". You are not told for what."
     ]
   },
   {
@@ -1475,6 +1602,15 @@
         },
         "outcome": "You make the second half. It goes in at 8:40am and the world does not end, and you note carefully that the world did not end."
       }
+    ],
+    "montageEffects": {
+      "competence": 2,
+      "integrity": -1
+    },
+    "montageLines": [
+      "Level 9 at 11pm becomes a habit, then a reputation.",
+      "You miss a school concert and make a deadline. Both are forgotten by March, by different people.",
+      "The cleaner on your floor now says goodnight to you by name."
     ]
   },
   {
@@ -1514,6 +1650,15 @@
         },
         "outcome": "Finance is delighted. Your officers do the work of eleven people for three years and two of them leave."
       }
+    ],
+    "montageEffects": {
+      "competence": 2,
+      "standing": 1
+    },
+    "montageLines": [
+      "The envelope is flat. It has been flat for three years, which Finance describes as growth in real terms.",
+      "You bid for eleven and get four, which is what you bid eleven for.",
+      "Budget season. You learn a new way to say \"absorb\"."
     ]
   },
   {
@@ -1551,6 +1696,15 @@
         },
         "outcome": "You leave at ten. The volunteers are entirely capable. Word still gets round that you left at ten."
       }
+    ],
+    "montageEffects": {
+      "reputation": 3,
+      "integrity": 1
+    },
+    "montageLines": [
+      "Tuesday nights. Forty letters. The man whose case cannot be reopened brings you kueh.",
+      "A resident thanks you for something the Town Council did. You accept on its behalf.",
+      "Meet-the-People runs past midnight. The volunteers have started bringing their own chairs."
     ]
   },
   {
@@ -1580,6 +1734,14 @@
         },
         "outcome": "Nineteen stalls in forty minutes. The photographs are excellent and no one remembers a word."
       }
+    ],
+    "montageEffects": {
+      "reputation": 2
+    },
+    "montageLines": [
+      "Wet markets, 7am, cameras. You now know the price of chillies better than the price of anything else.",
+      "A walkabout in the rain. The photograph of you holding someone else's umbrella does very well.",
+      "An auntie tells you that you looked thinner on television. You decide this is support."
     ]
   },
   {
@@ -1600,7 +1762,14 @@
           "standing": -4,
           "competence": 3
         },
-        "outcome": "You concede the point and say what you are doing about it. The follow-up supplementary is gentler than it would have been, because there is nothing left to prise open."
+        "outcome": "You concede the point and say what you are doing about it. The follow-up supplementary is gentler than it would have been, because there is nothing left to prise open. It is noted.",
+        "schedule": [
+          {
+            "eventId": "speech_vindicated",
+            "inYears": 3,
+            "chance": 0.3
+          }
+        ]
       },
       {
         "text": "Answer the question you wish had been asked.",
@@ -1612,13 +1781,22 @@
         "outcome": "Technically responsive, substantively not. It is a skill and you are good at it and the clip is on the internet forever."
       },
       {
-        "text": "Take it on notice.",
+        "text": "Answer briefly, and promise the figures in writing.",
         "effects": {
           "standing": 2,
           "competence": -2
         },
         "outcome": "The written reply goes out in three weeks, when nobody is looking, which was the entire purpose."
       }
+    ],
+    "montageEffects": {
+      "standing": 1,
+      "competence": 1
+    },
+    "montageLines": [
+      "Seven questions this sitting, five for written answer. You write all five as if they were oral.",
+      "A supplementary you prepared for two years ago is finally asked, by someone on your own side.",
+      "Question Time. You answer the question that was asked, mostly."
     ]
   },
   {
@@ -1635,19 +1813,29 @@
         "text": "Read it out and answer it.",
         "effects": {
           "integrity": 10,
-          "standing": 5,
-          "reputation": 4
+          "reputation": 4,
+          "standing": -6
         },
-        "outcome": "You read it in full, including the rude part, and then you answer it for eleven minutes without notes. The room changes temperature. It is the only thing from that townhall anybody repeats."
+        "outcome": "You read it in full, including the rude part, and then you answer it for eleven minutes without notes. The room changes temperature. It is the only thing from that townhall anybody repeats. It is noted."
       },
       {
         "text": "Address the theme without reading it.",
         "effects": {
-          "standing": 4,
-          "integrity": -4
+          "standing": 6,
+          "integrity": -4,
+          "reputation": -2
         },
         "outcome": "You speak warmly about wellbeing and the importance of sustainable pace. Four hundred officers understand precisely what has happened."
       }
+    ],
+    "montageEffects": {
+      "standing": 1,
+      "reputation": 1
+    },
+    "montageLines": [
+      "The townhall's top question is about workload again. The upvotes have stopped being anonymous in spirit.",
+      "Four hundred officers, one microphone, and a question about hybrid work you answer honestly and briefly.",
+      "Your townhall slides circulate, unofficially, as an example of what a townhall can be."
     ]
   },
   {
@@ -1684,6 +1872,15 @@
         },
         "outcome": "You rest. It turns out you needed it more than the ministry needed the other two options."
       }
+    ],
+    "montageEffects": {
+      "competence": 1,
+      "integrity": 1
+    },
+    "montageLines": [
+      "Nothing breaks. You suspect this is not a coincidence and cannot prove it.",
+      "Bintan in June. You check your email twice, which is progress.",
+      "A quiet year. Somewhere a reporting officer writes \"steady\" and means it kindly."
     ]
   },
   {
@@ -1724,7 +1921,7 @@
   {
     "id": "the_night_degree",
     "title": "The Last Paper",
-    "body": "Six years of Tuesday and Thursday evenings, and one Saturday exam left. You are thirty-one. Half your cohort at work finished theirs at twenty-two, full-time, funded.",
+    "body": "Six years of Tuesday and Thursday evenings, and one Saturday exam left. Half your cohort at work finished theirs at twenty-two, full-time, funded.",
     "requires": {
       "origin": [
         "poly"
@@ -1820,6 +2017,412 @@
           "integrity": 6
         },
         "outcome": "The record does speak, and it is a good record, and it moves them slightly less than four pages would have."
+      }
+    ]
+  },
+  {
+    "id": "figure_vindicated",
+    "title": "The Figure, Cited",
+    "body": "A review of the scheme's design cites a utilisation rate of 31%, attributed to a slide from your division. Your new director asks, carefully, who presented it.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Say it was you.",
+        "effects": {
+          "cep": 2,
+          "standing": 6,
+          "reputation": 3
+        },
+        "outcome": "He nods slowly. You watch your name move from one column of something to another."
+      },
+      {
+        "text": "Say it was a team effort.",
+        "effects": {
+          "cep": 1,
+          "integrity": 6,
+          "standing": 3
+        },
+        "outcome": "It was not, entirely. Your team knows that, and it does you more good with them than the other answer would have done upstairs."
+      }
+    ]
+  },
+  {
+    "id": "minute_vindicated",
+    "title": "Paragraph Four",
+    "body": "The consultancy's recommendations have been implemented, and have failed in exactly the way your minute paper, two years older, predicted in paragraph four. Someone has found paragraph four.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Let paragraph four speak for itself.",
+        "effects": {
+          "cep": 2,
+          "standing": 4
+        },
+        "outcome": "It is read aloud at a meeting you are not at. Afterwards, three people forward it to you, each believing they are the first."
+      },
+      {
+        "text": "Offer to fix it.",
+        "effects": {
+          "cep": 1,
+          "competence": 8,
+          "standing": 6
+        },
+        "outcome": "They let you. It takes a year, and a consultancy is engaged to evaluate your fix."
+      }
+    ]
+  },
+  {
+    "id": "cos_vindicated",
+    "title": "The Thing Nobody Announced",
+    "body": "Every ministry that announced something at COS is now explaining delays. Your Minister, who announced nothing, is the only one who is not. She has noticed.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Bring her the pilot, now that it is ready.",
+        "effects": {
+          "cep": 2,
+          "standing": 8,
+          "competence": 3
+        },
+        "outcome": "She announces it at the next COS, on time and as described. She mentions your division by name, which Ministers do not do."
+      },
+      {
+        "text": "Say nothing. Let her draw the conclusion.",
+        "effects": {
+          "cep": 1,
+          "integrity": 4,
+          "standing": 5
+        },
+        "outcome": "She draws it. At the year-end ranking exercise she draws it again, in ink."
+      }
+    ]
+  },
+  {
+    "id": "dialogue_vindicated",
+    "title": "The Raw Feedback",
+    "body": "A think tank has analysed the raw feedback you published. Its paper is cited in Parliament, approvingly, by both sides. Your Permanent Secretary forwards it to you with no comment, which from her is a great deal of comment.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Reply with one line.",
+        "effects": {
+          "cep": 2,
+          "standing": 6
+        },
+        "outcome": "\"Thank you. It was their feedback.\" She replies within a minute, which nobody has ever seen her do."
+      },
+      {
+        "text": "Write the follow-up nobody asked for.",
+        "effects": {
+          "cep": 1,
+          "competence": 8,
+          "reputation": 6
+        },
+        "outcome": "It becomes the template for the next national conversation, which uses four pillars."
+      }
+    ]
+  },
+  {
+    "id": "committee_vindicated",
+    "title": "The Decision Paper",
+    "body": "The Inter-Ministry Committee has been dissolved. Its replacement has adopted your decision paper as its terms of reference, and someone has left your name in the footer.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Leave your name on it.",
+        "effects": {
+          "cep": 2,
+          "standing": 4,
+          "reputation": 4
+        },
+        "outcome": "The footer travels further than you ever have. A Deputy Secretary you have never met asks for you by name."
+      },
+      {
+        "text": "Take it off before it circulates.",
+        "effects": {
+          "cep": 1,
+          "integrity": 8
+        },
+        "outcome": "It circulates anonymously, which in this building is how people find out who wrote it."
+      }
+    ]
+  },
+  {
+    "id": "pofma_vindicated",
+    "title": "The Third Point",
+    "body": "The scheme has been amended, quietly, in exactly the way the third point suggested. A political reporter notices that you were the only office holder who said so in public.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Take the question on the record.",
+        "effects": {
+          "reputation": 10,
+          "standing": 6
+        },
+        "outcome": "The piece runs on a Sunday. Its headline uses the word \"candid\", which your press secretary has asked you never to be again."
+      },
+      {
+        "text": "Credit the post's author.",
+        "effects": {
+          "integrity": 10,
+          "reputation": 6,
+          "standing": -2
+        },
+        "outcome": "He is astonished, then gracious, then a reliable critic for the rest of your career, which is a kind of compliment."
+      }
+    ]
+  },
+  {
+    "id": "speech_vindicated",
+    "title": "Hansard",
+    "body": "A newer Member quotes you in her own speech, word for word, with attribution. Someone on the front bench looks up the original.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Send her a note.",
+        "effects": {
+          "reputation": 6,
+          "standing": 6
+        },
+        "outcome": "She frames it. You hear about this from four people, none of whom are her."
+      },
+      {
+        "text": "Say nothing.",
+        "effects": {
+          "integrity": 6,
+          "reputation": 8
+        },
+        "outcome": "The quote goes round without you. It turns out to be the most-shared thing you have ever said."
+      }
+    ]
+  },
+  {
+    "id": "bonus_vindicated",
+    "title": "Terms of Reference",
+    "body": "A committee has been appointed to review political salaries. Your question in Cabinet appears, unattributed, as item three of its terms of reference.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Make a submission under your own name.",
+        "effects": {
+          "integrity": 10,
+          "reputation": 10,
+          "standing": -6
+        },
+        "outcome": "The committee thanks you for your submission. Its report adjusts the formula by a percentage point, which it describes as significant."
+      },
+      {
+        "text": "Let item three do the work.",
+        "effects": {
+          "standing": 8,
+          "integrity": 2
+        },
+        "outcome": "It does very little work. But you were seen not to make a fuss, which is its own kind of item."
+      }
+    ]
+  },
+  {
+    "id": "secondment_verdict",
+    "title": "The Annual Report",
+    "body": "The statutory board you were sent to fix has published its annual report. For the first time in four years it contains no restatements, and the auditors' letter is one page long.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Ask to come back.",
+        "effects": {
+          "cep": 2,
+          "standing": 6
+        },
+        "outcome": "You come back to a better office than the one you left. It turns out the secondment was a proving ground. Nobody tells you this; they simply act as if it had always been obvious."
+      },
+      {
+        "text": "Ask to stay and finish it.",
+        "effects": {
+          "cep": 1,
+          "competence": 8,
+          "reputation": 6
+        },
+        "outcome": "You stay. The board becomes the case study on the leadership programme, taught by someone who was never there."
+      }
+    ]
+  },
+  {
+    "id": "re_election",
+    "title": "Polling Day, Again",
+    "triggered": true,
+    "body": "Parliament is dissolved on a Tuesday. Nobody is surprised; the tents went up in the void decks a fortnight ago. Your face is larger on the poster this time, which means the swing is, in some small part, about you.",
+    "choices": [
+      {
+        "text": "Campaign on the record.",
+        "effects": {
+          "reputation": 2
+        },
+        "election": "incumbent",
+        "schedule": [
+          {
+            "eventId": "re_election",
+            "inYears": 5
+          }
+        ],
+        "outcome": "You stand on a lorry and read out numbers. Some of them are your numbers."
+      },
+      {
+        "text": "Walk every block, every night, for nine days.",
+        "effects": {
+          "reputation": 4,
+          "competence": -3
+        },
+        "election": "incumbent",
+        "schedule": [
+          {
+            "eventId": "re_election",
+            "inYears": 5
+          }
+        ],
+        "outcome": "Nine nights, four hundred lift lobbies, one pair of shoes you will never wear again."
+      }
+    ]
+  },
+  {
+    "id": "the_indicators",
+    "title": "The Indicators",
+    "weight": 16,
+    "noMontage": true,
+    "requires": {
+      "minRank": 11
+    },
+    "body": "The Budget is in February. Your ministry's levers move two of the four indicators the National Bonus is computed from. The indicators do not record who moved them, and neither does the bonus.",
+    "choices": [
+      {
+        "text": "Push headline GDP.",
+        "nationalBonus": 5,
+        "effects": {
+          "standing": 4,
+          "competence": 2,
+          "integrity": -4,
+          "reputation": -2
+        },
+        "outcome": "Growth comes in above forecast. The lowest quintile rises too, slightly, in the way a small boat rises when a larger one goes past."
+      },
+      {
+        "text": "Push the bottom 20th.",
+        "nationalBonus": 3,
+        "effects": {
+          "reputation": 4,
+          "competence": 2,
+          "integrity": 3,
+          "standing": -2
+        },
+        "outcome": "The lowest quintile's income grows faster than the median for the first time in six years. It makes a good chart. Your bonus is, exactly, the target."
+      },
+      {
+        "text": "Push employment, and hold everything else steady.",
+        "nationalBonus": 4,
+        "effects": {
+          "competence": 4,
+          "standing": 1
+        },
+        "outcome": "Unemployment falls a tenth of a point. Nobody notices except the people who found work, who were not going to be asked."
+      }
+    ]
+  },
+  {
+    "id": "headhunter_early",
+    "title": "The Recruiter",
+    "weight": 7,
+    "once": true,
+    "requires": {
+      "minRank": 2,
+      "maxRank": 4,
+      "notDuringBond": true
+    },
+    "body": "A recruiter has found you on LinkedIn, which you did not know you were still on. A bank would like someone who understands how ministries think. The salary is a number you read twice.",
+    "choices": [
+      {
+        "text": "Take it.",
+        "privateSector": true,
+        "effects": {},
+        "outcome": "Your pass stops working on a Friday. On Monday you have a new one, and a view."
+      },
+      {
+        "text": "Mention the offer, lightly, to HR.",
+        "effects": {
+          "standing": -4,
+          "cep": 1,
+          "integrity": -2
+        },
+        "outcome": "HR notes your \"market value\" and, for one ranking cycle, takes you more seriously. It is also noted."
+      },
+      {
+        "text": "Decline. You are not finished here.",
+        "effects": {
+          "integrity": 3,
+          "standing": 1
+        },
+        "outcome": "You delete the message. Then you un-delete it, read the number again, and delete it."
+      }
+    ]
+  },
+  {
+    "id": "headhunter_mid",
+    "title": "The Consultancy",
+    "weight": 8,
+    "once": true,
+    "requires": {
+      "minRank": 5,
+      "maxRank": 7,
+      "notDuringBond": true
+    },
+    "body": "The firm that charged your ministry $1.9 million for a deck would like to hire someone who knows what ministries actually want. You are that person, apparently. The offer letter is on very good paper.",
+    "choices": [
+      {
+        "text": "Take it.",
+        "privateSector": true,
+        "effects": {},
+        "outcome": "Your first engagement is with your old ministry. The slides are beautiful. They say what your minute papers said."
+      },
+      {
+        "text": "Decline, and tell them why.",
+        "effects": {
+          "integrity": 5,
+          "reputation": 2
+        },
+        "outcome": "They take it well, and quote you in a thought-leadership piece about public-sector talent."
+      },
+      {
+        "text": "Decline, and keep the letter in a drawer.",
+        "effects": {
+          "standing": 2
+        },
+        "outcome": "The drawer is the top one. You open it more often than you would admit."
+      }
+    ]
+  },
+  {
+    "id": "headhunter_political",
+    "title": "The Board Seat",
+    "weight": 7,
+    "once": true,
+    "requires": {
+      "minRank": 9,
+      "maxRank": 14,
+      "notDuringBond": true
+    },
+    "body": "A conglomerate would like a director who has been in Cabinet, or near it. The role involves four meetings a year and pays more than the Prime Minister.",
+    "choices": [
+      {
+        "text": "Resign your seat and take it.",
+        "privateSector": true,
+        "effects": {},
+        "outcome": "There is a by-election. It is described as a referendum on nothing in particular, and your successor wins it comfortably."
+      },
+      {
+        "text": "Decline.",
+        "effects": {
+          "integrity": 4,
+          "reputation": 3
+        },
+        "outcome": "You decline in writing, which you will later find was framed in the chairman's office as a curiosity."
       }
     ]
   }

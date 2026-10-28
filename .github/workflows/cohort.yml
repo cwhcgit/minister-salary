@@ -26,7 +26,7 @@ on:
 
 permissions:
   id-token: write
-  contents: read
+  contents: write   # to publish the reports to the playtest-results branch
 
 # One run per persona at a time, so two dispatches never spend the same cohort's cap twice.
 concurrency:
@@ -105,3 +105,9 @@ jobs:
             reports/audit/
           if-no-files-found: warn
           retention-days: 90
+
+      - name: Publish the reports to the playtest-results branch
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: .github/scripts/publish-results.sh "$PERSONA$([ "$DRY_RUN" = true ] && echo -dry)" reports/cohorts reports/audit

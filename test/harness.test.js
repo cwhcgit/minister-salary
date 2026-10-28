@@ -58,9 +58,11 @@ ok('locked and unknown choices are refused', () => {
 ok('the screen view carries nothing hidden', () => {
   // Every key that may appear in a screen object. Anything else is a leak by construction.
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
-    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'stats', 'key', 'label', 'value', 'delta',
+    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'stats', 'key', 'label', 'value', 'delta',
     'outcome', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
-    'ending', 'epitaph', 'retiredAs', 'lifetimeEarnings', 'integrity']);
+    'ending', 'epitaph', 'retiredAs', 'lifetimeEarnings', 'integrity',
+    // the ending screen's Declassified file: the hidden values, revealed on purpose once the run is over
+    'declassified']);
   const walk = (o, where) => {
     if (Array.isArray(o)) return o.forEach((x, i) => walk(x, `${where}[${i}]`));
     if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) {
@@ -84,7 +86,8 @@ ok('the trace agrees with the engine (appraisal weights, consequences, flags)', 
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 60; seed++) {
     const t = H.trace(playRandom(origin, seed).run);
     for (const turn of t.turns) {
-      if (turn.appraisal) {
+      // (the vetting's folder and the campaign move stats outside choice effects, so skip those turns)
+      if (turn.appraisal && !['the_vetting', 'the_election'].includes(turn.event.id)) {
         // stats as they stood at appraisal: before + the choice's effects, clamped
         const at = k => Math.max(0, Math.min(100, turn.before[k] + (turn.choice.effects[k] || 0)));
         const base = Object.entries(H.APPRAISAL_WEIGHTS).reduce((n, [k, w]) => n + w * at(k), 0);

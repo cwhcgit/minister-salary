@@ -32,7 +32,7 @@ function header(build, S, prev) {
   return {
     rank: r.title, grade: r.grade,
     age: S.age, year: S.year, ministry: S.ministry,
-    wealth: money(S.wealth),
+    wealth: money(S.wealth), wealthLabel: "lifetime earnings",
     stats: STATKEYS.map(([key, label]) => ({
       key, label, value: S[key],
       delta: prev && prev[key] !== S[key] ? S[key] - prev[key] : 0
@@ -68,7 +68,9 @@ function endingCard(build, S) {
     label: `${S.name} · the final position`,
     title: e.title, epitaph: e.epitaph,
     retiredAs: r.title, age: S.age,
-    lifetimeEarnings: money(S.wealth), integrity: S.integrity
+    lifetimeEarnings: money(S.wealth), integrity: S.integrity,
+    // what was really going on, revealed only now (engine.declassify; same lines as ui.js)
+    declassified: build.engine.declassify ? build.engine.declassify(build.content, S) : []
   };
 }
 
@@ -84,7 +86,7 @@ function startCard(build, originId) {
 function headerText(h) {
   const stats = h.stats.map(s =>
     `${s.label.toUpperCase()} ${s.value}${s.delta ? ` (${s.delta > 0 ? "+" : ""}${s.delta})` : ""}`).join("   ");
-  return `${h.rank} [${h.grade}]   ${h.wealth}\nAge ${h.age} · Year ${h.year} · ${h.ministry}\n${stats}`;
+  return `${h.rank} [${h.grade}]   ${h.wealth} ${h.wealthLabel.toUpperCase()}\nAge ${h.age} · Year ${h.year} · ${h.ministry}\n${stats}`;
 }
 
 function toText(view, opts = {}) {
@@ -95,7 +97,8 @@ function toText(view, opts = {}) {
   }
   if (view.ending) {
     const e = view.ending;
-    out.push(`${e.label.toUpperCase()}\n${e.title}\n\n${e.epitaph}\n\nRETIRED AS ${e.retiredAs}\nAT AGE ${e.age}\nLIFETIME EARNINGS ${e.lifetimeEarnings}\nINTEGRITY ${e.integrity}`);
+    out.push(`${e.label.toUpperCase()}\n${e.title}\n\n${e.epitaph}\n\nRETIRED AS ${e.retiredAs}\nAT AGE ${e.age}\nLIFETIME EARNINGS ${e.lifetimeEarnings}\nINTEGRITY ${e.integrity}`
+      + (e.declassified.length ? "\n\nDECLASSIFIED\n" + e.declassified.map(l => `${l.label.toUpperCase()}: ${l.text}`).join("\n") : ""));
     return out.join("\n\n");
   }
   if (view.header) out.push(headerText(view.header));

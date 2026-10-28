@@ -10,10 +10,14 @@ on:
         description: Agent cohort run IDs to analyse, comma-separated (full cohorts, not dry runs; a content-audit run is shown alongside)
         type: string
         required: true
+      publish_only:
+        description: Only download the cohorts and publish them to the playtest-results branch (free, no analysis)
+        type: boolean
+        default: false
 
 permissions:
   id-token: write
-  contents: read
+  contents: write   # to publish the reports to the playtest-results branch
   actions: read   # to download the cohort artifacts
 
 defaults:
@@ -59,12 +63,15 @@ jobs:
             while IFS= read -r -d '' a; do cat "$a"; cat "$a" >> "$GITHUB_STEP_SUMMARY"; done
 
       - name: No API key in this job
+        if: ${{ !inputs.publish_only }}
         run: .github/scripts/anthropic-wif.sh check
 
       - name: Fetch the GitHub OIDC token and keep it fresh
+        if: ${{ !inputs.publish_only }}
         run: .github/scripts/anthropic-wif.sh start
 
       - name: Analyse
+        if: ${{ !inputs.publish_only }}
         run: |
           node agents/analyse.ts reports/cohorts/*/
           cat reports/analysis/*/report.md
@@ -84,3 +91,9 @@ jobs:
             reports/cohorts/*/summary.json
           if-no-files-found: warn
           retention-days: 90
+
+      - name: Publish the reports to the playtest-results branch
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: .github/scripts/publish-results.sh "${{ inputs.publish_only && 'cohorts' || 'analysis' }}" reports/analysis reports/cohorts

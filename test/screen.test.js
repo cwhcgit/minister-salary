@@ -49,6 +49,7 @@ server.listen(0, async () => {
     expect(where + ' grade', $('.grade').textContent, h.grade);
     expect(where + ' sub', $('.sub').textContent, `Age ${h.age} · Year ${h.year} · ${h.ministry}`);
     expect(where + ' cash', $('.cash').textContent, h.wealth);
+    expect(where + ' cash label', $('.cashlab').textContent, h.wealthLabel);
     $$('.stat').forEach((el, i) => {
       const s = h.stats[i];
       expect(`${where} stat ${i} label`, el.querySelector('.k').textContent, s.label);
@@ -81,7 +82,7 @@ server.listen(0, async () => {
         if (st.phase === 'event') {
           const where = `${origin} seed ${st.S.seed} y${st.S.year} event`;
           compareHeader(where, View.header(build, st.S, null));
-          const ev = build.content.events.find(e => e.id === st.S.currentEvent) || build.engine.QUIET;
+          const ev = H.currentEvent(build, st.S);
           const want = View.eventCard(build, st.S, ev);
           expect(where + ' title', $('h2').textContent, want.title);
           expect(where + ' body', $('.body').textContent, want.body);
@@ -121,6 +122,12 @@ server.listen(0, async () => {
       expect('ending epitaph', $('.ending .ep').textContent, want.epitaph);
       const vals = $$('.final .v').map(v => v.textContent);
       expect('ending values', vals.join(' | '), [want.retiredAs, want.age, want.lifetimeEarnings, want.integrity].join(' | '));
+      const dls = $$('.dl');
+      expect('declassified count', dls.length, want.declassified.length);
+      dls.forEach((el, i) => {
+        expect(`declassified ${i} label`, el.querySelector('.k').textContent, want.declassified[i].label);
+        expect(`declassified ${i} text`, el.querySelector('.t').textContent, want.declassified[i].text);
+      });
       screens++;
       console.log(`✓ ${origin}: ${S.year - 1} years, ending "${want.title}", every screen matches`);
     }
