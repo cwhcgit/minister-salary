@@ -607,7 +607,7 @@
   {
     "id": "national_day_award",
     "title": "The Pingat",
-    "body": "You are on the list for a National Day Award. It is the entry-level one. Your mother will be extremely proud and will not understand which one it is.",
+    "body": "You are on the list for a National Day Award. It is the entry-level one. Your family will be extremely proud and will not understand which one it is.",
     "requires": {
       "minRank": 3,
       "maxRank": 5
@@ -616,13 +616,13 @@
     "once": true,
     "choices": [
       {
-        "text": "Accept, and bring your mother to the investiture.",
+        "text": "Accept, and bring your family to the investiture.",
         "effects": {
           "reputation": 6,
           "standing": 4,
           "integrity": 3
         },
-        "outcome": "She dresses as if for a wedding and photographs everything, including the carpet. It is, you realise afterwards, the single best day of her life, and it cost you nothing."
+        "outcome": "Your family dresses as if for a wedding and photographs everything, including the carpet. It is, you realise afterwards, the best day they have had in years, and it cost you nothing."
       },
       {
         "text": "Accept, and ask that your team be recognised too.",
@@ -641,7 +641,7 @@
   {
     "id": "cny_lohei",
     "title": "Lo Hei",
-    "body": "The divisional Chinese New Year lunch. The Permanent Secretary is at your table. There are eleven minutes of toss-and-auspicious-phrases and then a genuine, unhurried question directed at you: \"So \u2014 what do you actually think we're getting wrong?\"",
+    "body": "The divisional Chinese New Year lunch. The Permanent Secretary is at your table. There are eleven minutes of toss-and-auspicious-phrases and then a genuine, unhurried question directed at you: \"So — what do you actually think we're getting wrong?\"",
     "requires": {
       "minRank": 2,
       "maxRank": 6
@@ -763,7 +763,7 @@
           "heat": 10,
           "standing": 2
         },
-        "outcome": "There is nothing improper in what he tells you \u2014 it is all public, three weeks early. That is the whole of the impropriety, and you both know its exact size.",
+        "outcome": "There is nothing improper in what he tells you — it is all public, three weeks early. That is the whole of the impropriety, and you both know its exact size.",
         "setFlags": [
           "friend_at_hdb"
         ],
@@ -1058,7 +1058,7 @@
   {
     "id": "grassroots_invite",
     "title": "The Adviser Suggests Something",
-    "body": "After a community event, the constituency's grassroots adviser mentions \u2014 apparently in passing, definitely not in passing \u2014 that you handle yourself well with people.",
+    "body": "After a community event, the constituency's grassroots adviser mentions — apparently in passing, definitely not in passing — that you handle yourself well with people.",
     "requires": {
       "minRank": 4,
       "maxRank": 7,
@@ -1784,7 +1784,11 @@
       "minRank": 14,
       "minStats": {
         "standing": 60
-      }
+      },
+      "flagsNone": [
+        "bid_for_top",
+        "kingmaker"
+      ]
     },
     "weight": 100,
     "once": true,
@@ -1865,12 +1869,23 @@
       "competence": 3,
       "standing": 1
     },
-    "montageLines": [
-      "A scheme goes out on time. Five people know why. You are one of them.",
-      "You clear forty-one papers, attend ninety meetings, and write one sentence you are proud of.",
-      "The year is mostly clearances. One comes back with a comment you agree with, which is a first.",
-      "A minute you wrote three years ago is quoted back to you as the ministry's position. You do not correct anyone."
-    ]
+    "montageLines": {
+      "0": [
+        "A scheme goes out on time. Five people know why. You are one of them.",
+        "You clear forty-one papers and write one sentence you are proud of. Nobody notices the sentence, which is how you know it was right.",
+        "A minute you wrote is quoted back to you, months later, as the ministry's position. You do not correct anyone."
+      ],
+      "1": [
+        "You present the scheme at three different forums. By the third, you are the scheme.",
+        "Your name is on the slide, the email and the photograph. The work was mostly the same as last year's, which nobody mentions.",
+        "Someone from another ministry greets you by name in the lift. You have been seen, and the lift is evidence."
+      ],
+      "2": [
+        "You do what is asked, on time, and not a minute more. Nobody complains, because nobody can find anything to complain about.",
+        "A quiet year at your desk. Your out-of-office message is the best thing you write.",
+        "The papers come in and go out. Somewhere on your floor someone is working late, and it is not you."
+      ]
+    }
   },
   {
     "id": "the_appraisal_talk",
@@ -1913,12 +1928,20 @@
       "standing": 1,
       "competence": 1
     },
-    "montageLines": [
-      "Your appraisal conversation lasts thirty-five minutes. Visibility is mentioned twice.",
-      "Six competency domains, one new acronym, and the phrase \"stretch assignment\".",
-      "Your reporting officer says the ranking exercise was \"very tight this year\". It is always very tight this year.",
-      "You are told you are \"on track\". You are not told for what."
-    ]
+    "montageLines": {
+      "0": [
+        "You ask about your ceiling again. Your reporting officer says it is \"not a helpful way to think about it\", which is the most precise answer you have had.",
+        "Forty minutes, six competency domains, and one question from you that nobody writes down."
+      ],
+      "1": [
+        "You agree to be more visible. Your reporting officer agrees that you have been. Visibility is mentioned twice.",
+        "Six competency domains, one new acronym, and the phrase \"stretch assignment\". You nod at the right moments."
+      ],
+      "2": [
+        "You ask what is not being done. There is a list. By March most of it is done, and you are on a new list.",
+        "Your reporting officer says the ranking exercise was \"very tight this year\". You ask what would have loosened it, and are told."
+      ]
+    }
   },
   {
     "id": "late_night",
@@ -1954,11 +1977,18 @@
       "competence": 2,
       "integrity": -1
     },
-    "montageLines": [
-      "Level 9 at 11pm becomes a habit, then a reputation.",
-      "You miss a birthday dinner and make a deadline. Both are forgotten by March, by different people.",
-      "The cleaner on your floor now says goodnight to you by name."
-    ]
+    "montageLines": {
+      "0": [
+        "Level 9 at 11pm becomes a habit, then a reputation.",
+        "The cleaner on your floor now says goodnight to you by name.",
+        "You miss a birthday dinner and make a deadline. Both are forgotten by March, by different people."
+      ],
+      "1": [
+        "You leave at seven and send things in the morning. The things arrive. The building does not fall down.",
+        "A birthday dinner, attended. The comments on the fourth draft wait until morning, as comments always could.",
+        "You have stopped apologising for leaving on time. Two people on your floor have started doing the same."
+      ]
+    }
   },
   {
     "id": "budget_round",
@@ -2002,11 +2032,20 @@
       "competence": 2,
       "standing": 1
     },
-    "montageLines": [
-      "The envelope is flat. It has been flat for three years, which Finance describes as growth in real terms.",
-      "You bid for eleven and get four, which is what you bid eleven for.",
-      "Budget season. You learn a new way to say \"absorb\"."
-    ]
+    "montageLines": {
+      "0": [
+        "You bid for eleven and get four, which is what you bid eleven for.",
+        "Budget season. Every line is justified, footnoted and cut by a third, as planned."
+      ],
+      "1": [
+        "You bid for exactly what you need and get two-thirds of it, which Finance describes as a good outcome for you.",
+        "The envelope is flat. Your bid is honest. The two facts meet in a spreadsheet, and the spreadsheet wins."
+      ],
+      "2": [
+        "You absorb it again. Finance sends a note of thanks, which is the only budget increase you get.",
+        "Budget season. You learn a new way to say \"absorb\"."
+      ]
+    }
   },
   {
     "id": "the_mps_night",
@@ -2048,11 +2087,20 @@
       "reputation": 3,
       "integrity": 1
     },
-    "montageLines": [
-      "Tuesday nights. Forty letters. The man whose case cannot be reopened brings you kueh.",
-      "A resident thanks you for something the Town Council did. You accept on its behalf.",
-      "Meet-the-People runs past midnight. The volunteers have started bringing their own chairs."
-    ]
+    "montageLines": {
+      "0": [
+        "Tuesday nights, every last case. The man whose case cannot be reopened brings you kueh.",
+        "Meet-the-People runs past midnight. The volunteers have started bringing their own chairs."
+      ],
+      "1": [
+        "Forty letters a Tuesday, each one actually argued. Three a month succeed that would not have.",
+        "A resident's appeal, properly written, comes back approved. The resident thanks the volunteer who typed it, which is fair."
+      ],
+      "2": [
+        "The volunteers handle the tail. They are very good at it, and they are getting tired.",
+        "A resident thanks you for something the Town Council did. You accept on its behalf, and leave at ten."
+      ]
+    }
   },
   {
     "id": "the_walkabout",
@@ -2085,11 +2133,16 @@
     "montageEffects": {
       "reputation": 2
     },
-    "montageLines": [
-      "Wet markets, 7am, cameras. You now know the price of chillies better than the price of anything else.",
-      "A walkabout in the rain. The photograph of you holding someone else's umbrella does very well.",
-      "An auntie tells you that you looked thinner on television. You decide this is support."
-    ]
+    "montageLines": {
+      "0": [
+        "Wet markets, 7am, cameras. You now know the price of chillies better than the price of anything else.",
+        "An auntie tells you that you looked thinner on television. You listen to the rest of what she says, which is about the lift."
+      ],
+      "1": [
+        "A walkabout in the rain, on schedule. The photograph of you holding someone else's umbrella does very well.",
+        "Eleven stalls in forty minutes. Everyone gets a handshake and nobody gets a sentence."
+      ]
+    }
   },
   {
     "id": "the_pq",
@@ -2140,11 +2193,20 @@
       "standing": 1,
       "competence": 1
     },
-    "montageLines": [
-      "Seven questions this sitting, five for written answer. You write all five as if they were oral.",
-      "A supplementary you prepared for two years ago is finally asked, by someone on your own side.",
-      "Question Time. You answer the question that was asked, mostly."
-    ]
+    "montageLines": {
+      "0": [
+        "Question Time. You answer the question that was asked, which is still noticed.",
+        "Seven questions this sitting. Your answers are short and true, and two of them make the news for being short and true."
+      ],
+      "1": [
+        "Question Time. You answer a question that was nearly the one asked.",
+        "A sharp supplementary meets a smooth reply. Hansard records both; the papers record the reply."
+      ],
+      "2": [
+        "Seven questions this sitting. The figures follow in writing, as promised, two weeks later.",
+        "You promise the figures in writing again. Your office has a template for the covering letter now."
+      ]
+    }
   },
   {
     "id": "the_townhall",
@@ -2179,11 +2241,16 @@
       "standing": 1,
       "reputation": 1
     },
-    "montageLines": [
-      "The townhall's top question is about workload again. The upvotes have stopped being anonymous in spirit.",
-      "Four hundred officers, one microphone, and a question about hybrid work you answer honestly and briefly.",
-      "Your townhall slides circulate, unofficially, as an example of what a townhall can be."
-    ]
+    "montageLines": {
+      "0": [
+        "The townhall's top question is about workload again. You read it out, again. The upvotes have stopped being anonymous in spirit.",
+        "Four hundred officers, one microphone, and a rude question you read out in full. It is the only part anyone repeats."
+      ],
+      "1": [
+        "The townhall's top question is about workload. You address the theme of it, warmly.",
+        "Your townhall slides circulate, unofficially, as an example of what a townhall can be."
+      ]
+    }
   },
   {
     "id": "the_quiet_year",
@@ -2224,11 +2291,20 @@
       "competence": 1,
       "integrity": 1
     },
-    "montageLines": [
-      "Nothing breaks. You suspect this is not a coincidence and cannot prove it.",
-      "Bintan in June. You check your email twice, which is progress.",
-      "A quiet year. Somewhere, someone writes \"steady\" about you and means it kindly."
-    ]
+    "montageLines": {
+      "0": [
+        "Nothing breaks. You suspect this is not a coincidence, and cannot prove it.",
+        "You use a quiet year to fix a process that has annoyed people since before you arrived. It is never announced."
+      ],
+      "1": [
+        "A quiet year, and forty lunches. You remember thirty of them, which is about average.",
+        "You attend everything you are invited to. By December, you are invited to more."
+      ],
+      "2": [
+        "Bintan in June. You check your email twice, which is progress.",
+        "A quiet year. Somewhere, someone writes \"steady\" about you and means it kindly."
+      ]
+    }
   },
   {
     "id": "the_counter",

@@ -66,7 +66,7 @@
   "lines": {
     "promoted": [
       "{rival} is promoted to {title}. The congratulatory email reaches you too, as a courtesy.",
-      "{rival} is now {title}. Your mother hears about it before you do.",
+      "{rival} is now {title}. Your intake's group chat hears about it before you do.",
       "{rival} makes {title}. {They} sent round a very nice message, which you have read twice."
     ],
     "winService": [
@@ -111,11 +111,11 @@
     ],
     "appointed": [
       "{rival} is appointed {title}. The swearing-in photograph is on the front page, and you are in the background of it.",
-      "{rival} is now {title}. Your mother hears about it before you do."
+      "{rival} is now {title}. Your intake's group chat hears about it before you do."
     ],
     "promotedApart": [
       "{rival} is now {title}. You hear about it at a dinner, from someone who assumes you already knew.",
-      "{rival} is now {title}. Your mother hears about it before you do."
+      "{rival} is now {title}. Your intake's group chat hears about it before you do."
     ],
     "electedTogether": [
       "{rival} stood at the same general election, in another constituency, and won. Your batchmate is now a Member of Parliament too."

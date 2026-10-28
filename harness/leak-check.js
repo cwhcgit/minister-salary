@@ -63,6 +63,7 @@ function checkScreen(text, build, terms = screenTerms(build)) {
   for (const id of terms) if (text.includes(id)) hits.push({ why: "internal id", match: id });
   for (const [re, why] of [
     [/"\w+"\s*:/, "JSON"], [/\bundefined\b|\bNaN\b|\[object Object\]/, "render bug"],
+    [/\{(rival|they|them|their|They|Them|Their|title)\}/, "unfilled batchmate placeholder"],
     [/\b(heat|cep)\s*[:=]\s*-?\d/i, "hidden value"],
     [/\b(reputation|standing|integrity|competence)\s*[:=]?\s*[+-]\s?\d/i, "effect number"]
   ]) {
@@ -80,7 +81,7 @@ if (require.main === module) {
   for (const origin of ["scholar", "grad", "poly"]) {
     for (let i = 0; i < N; i++) {
       const r = H.rng(i * 31 + 7);
-      let run = H.newRun(origin, i * 13 + 1, { build });
+      let run = H.newRun(origin, i * 13 + 1, { build, rival: i % 2 === 1 });   // half with a batchmate
       for (let t = 0; t < 95; t++) {
         for (const tags of ["phone", "none"]) {
           const text = H.screenText(run, { tags });
