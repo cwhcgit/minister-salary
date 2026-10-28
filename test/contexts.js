@@ -51,6 +51,7 @@ function sample(build, n = 600, opts = {}) {
     let run = H.newRun(origin, i * 7 + 3, { build, name: 'Sim', rival });
     const scheduledAt = [];   // { eventId, fireYear, year }
     const touched = {};       // eventId@fireYear -> { role: person id } for the people the scheduling choice changed
+    const linesShown = new Set();   // cast line versions this run has shown
     castInvariants(build, run.S, cast.problems);
     while (run.phase !== 'ending' && run.turn < 95) {
       const S = run.S, ev = H.currentEvent(build, S);
@@ -92,9 +93,15 @@ function sample(build, n = 600, opts = {}) {
       for (const sc of t.scheduled) for (const op of t.castOps || []) if ((op.flags || []).length)
         (touched[sc.eventId + '@' + sc.fireYear] ||= {})[op.role] = op.person;
       castInvariants(build, run.S, cast.problems);
-      for (const l of run.last ? run.last.log : []) if (l.cast) {
+      const notes = (run.last ? run.last.log : []).filter(l => l.cast);
+      // one cast line per outcome screen, and no version of a line twice in a run
+      if (notes.length > 1) cast.problems.add(`${notes.length} cast lines on one outcome screen (${notes.map(l => l.cast + '/' + l.key).join(', ')})`);
+      for (const l of notes) {
         cast.lines++;
         if (RAW.test(l.text)) cast.problems.add(`cast line ${l.cast}/${l.key}: unfilled token in "${l.text}"`);
+        const k = `${l.cast}.${l.key}#${l.line}`;
+        if (linesShown.has(k)) cast.problems.add(`cast line ${l.cast}/${l.key} version ${l.line} shown twice in one run`);
+        linesShown.add(k);
       }
       // years that passed by themselves: their Meanwhile lines appear in these contexts too
       for (const p of t.passed || []) {

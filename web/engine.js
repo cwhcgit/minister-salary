@@ -241,7 +241,7 @@ const Engine = (() => {
     const n = C.names[i];
     const span = ([a, b]) => a + Math.floor(r() * (b - a + 1));
     let ageOff = cfg.age ? span(cfg.age) - s.age : span(cfg.ageOff || [0, 0]);
-    if (cfg.retireAge) ageOff = Math.min(ageOff, cfg.retireAge - 4 - s.age);   // nobody arrives to retire
+    if (cfg.retireAge) ageOff = Math.min(ageOff, cfg.retireAge - 8 - s.age);   // nobody arrives only to retire
     if (cfg.minAge) ageOff = Math.max(ageOff, cfg.minAge - s.age);
     const p = { id: ++K.n, role, nm: { given: n.given, formal: n.formal, full: n.full }, pron: n.pron,
       ageOff, rank: 0, since: s.year, rankYear: s.year, flags: [] };
@@ -285,14 +285,47 @@ const Engine = (() => {
       if (p.rank < ceil && s.year - p.rankYear >= (cfg.promoteEvery || 4)) { p.rank++; p.rankYear = s.year; }
     }
   }
+  // A line for an arrival or a departure nobody chose. Each kind has several versions, taken in
+  // an order drawn from the seed and never repeated within a run; when a kind has run out, the
+  // change happens without a line. The version is only used up if the line is shown (see capNotes).
   function castLine(content, s, role, key, p) {
     const lines = ((content.cast.lines || {})[role] || {})[key];
     if (!lines || !lines.length) return null;
-    const text = lines[(p.id + s.year) % lines.length].replace(/\{([A-Za-z]+)\}/g, (m, f) => {
+    const used = ((s.cast && s.cast.used) || {})[role + "." + key] || [];
+    const r = rng((s.seed ^ hashStr(role + "." + key)) >>> 0);
+    const order = lines.map((_, i) => i);
+    for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+    const i = order.find(k => !used.includes(k));
+    if (i === undefined) return null;
+    const text = lines[i].replace(/\{([A-Za-z]+)\}/g, (m, f) => {
       const v = personField(content, s, role, p, f);
       return v === null ? m : isUpper(f) ? cap(v) : v;
     });
-    return { kind: "note", text, cast: role, key, at: { player: s.rank, rank: p.rank, person: p.id } };
+    return { kind: "note", text, cast: role, key, line: i, at: { player: s.rank, rank: p.rank, person: p.id } };
+  }
+
+  // One cast line per outcome screen, however many years it covers: the one that matters most.
+  // Someone you have history with (flags) first, then by role (peer, senior, journalist, junior,
+  // grassroots leader, fellow MP); a departure before an arrival. Nobody who arrived and left
+  // within the same screen is mentioned at all. The others change without a line.
+  const NOTE_ORDER = ["peer", "senior", "journalist", "junior", "grassroots", "mp"];
+  function capNotes(s, log) {
+    const notes = log.filter(l => l.cast);
+    if (!notes.length) return log;
+    const ids = key => new Set(notes.filter(l => (key === "arrive") === ["arrive", "first"].includes(l.key)).map(l => l.at.person));
+    const came = ids("arrive"), went = ids("leave");
+    const person = id => Object.values(s.cast.on).concat(s.cast.past).find(p => p && p.id === id);
+    const rank = l => {
+      const p = person(l.at.person), role = NOTE_ORDER.indexOf(l.cast);
+      return [p && p.flags.length ? 0 : 1, role < 0 ? NOTE_ORDER.length : role, ["arrive", "first"].includes(l.key) ? 1 : 0];
+    };
+    const cmp = (a, b) => { const x = rank(a), y = rank(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; };
+    const best = notes.filter(l => !(came.has(l.at.person) && went.has(l.at.person))).sort(cmp)[0];
+    if (best) {
+      const u = (s.cast.used = s.cast.used || {}), k = best.cast + "." + best.key;
+      (u[k] = u[k] || []).push(best.line);
+    }
+    return log.filter(l => !l.cast || l === best);
   }
 
   // Bring the cast up to date with the player: called when a run starts, after every choice and
@@ -1273,7 +1306,7 @@ const Engine = (() => {
       hints: log.filter(l => l.kind === "cep" || l.kind === "heat").map(l => l.kind + "|" + l.text) });
     s.currentEvent = null;
     if (!s.ending) log.push(...passYears(content, s, trace));
-    return { state: s, outcome: trace.outcome ? sub(trace.outcome, s, content) : ch.outcome, log, trace };
+    return { state: s, outcome: trace.outcome ? sub(trace.outcome, s, content) : ch.outcome, log: capNotes(s, log), trace };
   }
 
   // The card for this year. advance() has normally drawn it already; this draws only for the

@@ -331,10 +331,13 @@ a part option that did not mention them, leaves them alone). Useful flags: `owes
 `you_said_no`, plus one per thing you did ("lost_the_box", "kept_late").
 
 **Lifecycle.** People retire, are caught up with (a senior), are promoted to your grade (a junior),
-or stay behind when you leave the service. Their departure and their replacement's arrival appear as
-a line on the outcome screen (`cast.lines`). A role refills after `refillYears` with a new person
-who has no history: flags never pass to a successor, so a callback that requires a flag can only ever
-name the person it remembers.
+or stay behind when you leave the service. A role refills after `refillYears` with a new person who
+has no history: flags never pass to a successor, so a callback that requires a flag can only ever
+name the person it remembers. An outcome screen carries at most one line about these changes
+(`cast.lines`): someone you have history with first, then the peer, senior, journalist, junior,
+grassroots leader and fellow MP, a departure before an arrival; nobody who arrives and leaves within
+one screen is mentioned. Each kind of line has three or four versions, taken in an order drawn from
+the seed and never repeated within a run; write new ones there, each sentence used once.
 
 **Worked example: the junior.** `late_night` names the junior and records how you treated them:
 

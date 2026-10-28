@@ -281,11 +281,17 @@ await ok("an unusable reply is retried once, then picked at random; the conversa
   } };
   const outDir = path.join(tmp, "reports/cohorts/failing");
   const builds = { plain: H.loadBuild(), canary: H.loadBuild({ canaries: true }) };
-  const r = await playSession({ cohort: "failing", persona: p, playerName: "X", builds, llm, spend: new Spend(1), outDir, maxTurns: 30, careers: 1,
-    canaryCareers: 0, tags: "phone", system: systemPrompt(p, builds.plain), systemHash: "x", log: () => {} }, sessionPlan(p, 1)[0]);
-  assert.ok(!r.aborted, String(r.aborted));
-  const turns = readRun(r.file).filter(l => l.type === "turn");
-  const picked = turns.filter(t => t.autoPicked);
+  // Keep playing careers until a turn has been auto-picked: how long a career lasts depends on the
+  // cards, so one career may end before the scripted bad replies come round.
+  const plan = sessionPlan(p, 12), turns: any[] = [];
+  let picked: any[] = [];
+  for (let i = 0; i < plan.length && !picked.length; i++) {
+    const r = await playSession({ cohort: "failing", persona: p, playerName: "X", builds, llm, spend: new Spend(1), outDir, maxTurns: 30, careers: 1,
+      canaryCareers: 0, tags: "phone", system: systemPrompt(p, builds.plain), systemHash: "x", log: () => {} }, plan[i]);
+    assert.ok(!r.aborted, String(r.aborted));
+    turns.push(...readRun(r.file).filter(l => l.type === "turn"));
+    picked = turns.filter(t => t.autoPicked);
+  }
   assert.ok(picked.length > 0 && picked.every(t => t.meter.model === 0 && t.retried), "auto-picked taps carry no reaction");
   assert.ok(turns.some(t => t.retried && !t.autoPicked), "a retry can rescue a turn");
   for (const o of seen.filter(x => x.messages.length > 1 && x.schema.properties.delta)) {

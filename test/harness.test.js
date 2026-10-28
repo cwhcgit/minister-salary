@@ -189,9 +189,13 @@ ok('the run\'s cast: names, pronouns, grades and memory hold for whole careers',
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
     const r = H.rng(seed * 3 + 1);
     let run = H.newRun(origin, seed, { build, rival: seed % 2 === 0 });
-    const pron = {}, holder = {};
+    const pron = {}, holder = {}, lines = new Set();
     for (let t = 0; t < 95; t++) {
       const S = run.S;
+      // at most one cast line per outcome screen, and no version of a line twice in a run
+      const notes = run.last ? run.last.log.filter(l => l.cast) : [];
+      assert.ok(notes.length <= 1, `${origin} ${seed}: ${notes.length} cast lines on one screen`);
+      for (const l of notes) { const k = `${l.cast}.${l.key}#${l.line}`; assert.ok(!lines.has(k), `${origin} ${seed}: cast line ${k} repeated`); lines.add(k); }
       if (!S.ending) {
         const people = Object.values(S.cast.on).filter(Boolean).concat(S.cast.past);
         const words = people.flatMap(p => p.nm.full.toLowerCase().split(/\s+/).filter(w => !['bin', 'binte', 'de'].includes(w)));
