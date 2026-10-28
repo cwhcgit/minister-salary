@@ -1,0 +1,161 @@
+{
+ "kind": "fun-sessions",
+ "cohort": "2026-10-28-fun-critic-d3abbdc2f63e",
+ "persona": "fun-critic",
+ "model": "claude-sonnet-5-5",
+ "thinking": "disabled",
+ "buildHashes": {
+  "plain": "d3abbdc2f63e",
+  "canary": "b871c32ee115"
+ },
+ "mock": false,
+ "fun": {
+  "start": 50,
+  "cap": 100,
+  "quitLine": 25,
+  "decay": 2,
+  "maxDelta": 10,
+  "repeatSteps": [
+   5,
+   10,
+   15
+  ],
+  "repeatMultiplier": 1,
+  "freshToReset": 3,
+  "careers": 5,
+  "origins": "rotate"
+ },
+ "sessions": 6,
+ "aborted": 6,
+ "taps": 0,
+ "autoPicks": 0,
+ "refusals": 0,
+ "retention": {
+  "quitSessions": 0,
+  "quitShare": null,
+  "tapsToQuit": {
+   "median": null,
+   "p25": null,
+   "p75": null,
+   "min": null,
+   "max": null,
+   "histogram": {}
+  },
+  "neverQuit": {
+   "sessions": 0,
+   "medianTaps": null
+  },
+  "runsToQuit": {
+   "median": null,
+   "distribution": {}
+  },
+  "careers": {
+   "started": 6,
+   "finished": 0,
+   "finishedShare": 0,
+   "cutAtTurnCap": 0,
+   "perSession": 0,
+   "endings": {}
+  }
+ },
+ "deltas": {
+  "meanModel": null,
+  "meanRepeatRule": null,
+  "decayPerTap": -2,
+  "positiveShare": null,
+  "zeroShare": null,
+  "negativeShare": null,
+  "repeatTapShare": null,
+  "offToneRate": null,
+  "reasonsOver12Words": null
+ },
+ "funCurve": [],
+ "cards": {
+  "minShownToRank": 1,
+  "top": [],
+  "bottom": [],
+  "all": []
+ },
+ "quitCards": [],
+ "endings": {},
+ "canaries": {
+  "bland": {
+   "shown": 0,
+   "meanDelta": null,
+   "overallMeanDelta": null,
+   "passed": false
+  },
+  "wink": {
+   "shown": 0,
+   "flagged": 0,
+   "offToneRate": null,
+   "baseOffToneRate": null,
+   "passed": false
+  },
+  "rules": {
+   "blandMaxMean": -1,
+   "blandBelowOverall": 2,
+   "winkMinRate": 0.5,
+   "winkAboveBase": 0.3
+  },
+  "passed": false
+ },
+ "survey": {
+  "quitReasons": [],
+  "bestCard": {},
+  "worstCard": {}
+ },
+ "cost": {
+  "total": 0,
+  "perTap": null,
+  "perCareer": 0,
+  "perSession": 0,
+  "surveyShare": null,
+  "tokens": {
+   "input": 0,
+   "output": 0,
+   "cacheWrite": 0,
+   "cacheRead": 0,
+   "thinking": 0
+  },
+  "tokensPerSession": {
+   "input": 0,
+   "output": 0,
+   "cacheWrite": 0,
+   "cacheRead": 0,
+   "thinking": 0
+  },
+  "tokensPerTap": {
+   "input": 0,
+   "output": 0,
+   "cacheWrite": 0,
+   "cacheRead": 0,
+   "thinking": 0
+  },
+  "cacheReadShare": null,
+  "costSplit": {
+   "input": null,
+   "cacheWrite": null,
+   "cacheRead": null,
+   "output": null
+  },
+  "projection": {
+   "perTap": {
+    "claude-haiku-5-5": 0,
+    "claude-sonnet-5-5": 0
+   },
+   "perCareer": {
+    "claude-haiku-5-5": 0,
+    "claude-sonnet-5-5": 0
+   },
+   "perSession": {
+    "claude-haiku-5-5": 0,
+    "claude-sonnet-5-5": 0
+   },
+   "fullSession": {
+    "claude-haiku-5-5": 0,
+    "claude-sonnet-5-5": 0
+   }
+  }
+ }
+}
