@@ -10,7 +10,7 @@ import { execFile, execFileSync } from "node:child_process";
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "playtest-"));
 process.env.PLAYTEST_REPORTS = path.join(tmp, "reports");
 process.env.PLAYTEST_PROPOSALS = path.join(tmp, "proposals");
-const { PERSONAS, runPlan, sessionPlan, FUN_DEFAULTS } = await import("./lib/config.ts");
+const { PERSONAS, runPlan, sessionPlan, FUN_DEFAULTS, DEFAULTS } = await import("./lib/config.ts");
 const { H } = await import("./lib/harness.ts");
 const { leakGate, systemPrompt, mechanicsAppendix, funTemplates } = await import("./lib/prompts.ts");
 const { Meter } = await import("./lib/meter.ts");
@@ -211,7 +211,8 @@ await ok("mock fun sessions: careers carry the meter and the repeat memory, a qu
           career = l.career;
           assert.strictEqual(l.meter, lastAfter, "the meter carries into the next career");
           if (career > 1 && lines.some(x => x.type === "career_end" && x.career === career - 1 && x.ending)) assert.ok(l.recent.length > 0, "the phone remembers the last career");
-          assert.strictEqual(l.canaries, career <= 1, "canaries in the first career only");
+          const session = lines[0].session as number;
+          assert.strictEqual(l.canaries, career <= 1 && session % DEFAULTS.canaryEvery === 0, "canaries in the first career of every canaryEvery-th session only");
         }
         if (l.type === "turn") {
           assert.strictEqual(l.meter.before, lastAfter);
@@ -228,7 +229,7 @@ await ok("mock fun sessions: careers carry the meter and the repeat memory, a qu
         }
         if (l.type === "career_end") {
           const turns = lines.filter(x => x.type === "turn" && x.career === l.career && !x.ending);
-          const build = H.loadBuild({ canaries: l.career <= 1 });
+          const build = H.loadBuild({ canaries: l.career <= 1 && (lines[0].session as number) % DEFAULTS.canaryEvery === 0 });
           assert.strictEqual(build.hash, l.buildHash);
           const replay = H.replay({ buildHash: l.buildHash, origin: l.origin, seed: l.seed, choices: l.choices, recent: l.recent }, { build });
           assert.deepStrictEqual(replay.turns.map(t => t.event.id), turns.map(t => t.trace.event.id), "a career replays from its choices and its freshness memory");

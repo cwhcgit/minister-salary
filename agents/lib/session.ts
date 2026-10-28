@@ -85,7 +85,11 @@ export async function playSession(ctx: SessionCtx, spec: SessionSpec): Promise<S
   try {
     for (const [k, c] of careers.entries()) {
       if (ctx.spend.exhausted) throw new CapReached(`cohort cap $${ctx.spend.cap} reached`);
-      const build = p.canaries && k < ctx.canaryCareers ? ctx.builds.canary : ctx.builds.plain;
+      // Canaries probe the reader, but a player who met the wink remembers it for the rest of the
+      // session (it led the exit survey). So only every canaryEvery-th session carries them
+      // (calibration: every session), and retention and the survey are read from the clean ones.
+      const canarySession = !Number.isFinite(ctx.canaryCareers) || spec.index % DEFAULTS.canaryEvery === 0;
+      const build = p.canaries && canarySession && k < ctx.canaryCareers ? ctx.builds.canary : ctx.builds.plain;
       if (!terms.has(build.hash)) terms.set(build.hash, Leak.screenTerms(build));
       const leakCheck = (screen: string) => {
         if (!p.blind) return;
