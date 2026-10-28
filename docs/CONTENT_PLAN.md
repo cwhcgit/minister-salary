@@ -256,8 +256,7 @@ claim a result the year's own lines may contradict (the pay line shows the bonus
 4. **Genuine choices.** At least two choices, each costing something. No choice may be worse on
    every stat (check with the bot dominance metric in `node test/sim.js`). Use three choices when the
    third is a real third way, not a "do nothing" filler.
-5. **Length.** Today's median body is 30 words (90th percentile 45) and the median outcome 25
-   (90th percentile 36). Keep bodies to 25-45 words and outcomes to 15-35. Choice text is one line,
+5. **Length.** Bodies run 30-60 words: setup comes before brevity. Outcomes 15-40. Choice text is one line,
    up to about 12 words.
 6. **Vary the joke's structure.** Rotate between:
    - the number;
@@ -270,6 +269,49 @@ claim a result the year's own lines may contradict (the pay line shows the bonus
    No more than two cards per pack may end on a ", which is ..." clause or open with "It is a ...".
 7. **Similarity.** `node test/similarity.js` must pass. A pack must not add a new near-duplicate,
    and must not push a phrase or opener over its warning count.
+
+### 5a. Plain English (the owner's rule, from playing on a phone)
+
+Deadpan is the tone; it is never an excuse for a sentence that is words but means nothing. A player
+who has never worked in government must understand every card on the first read.
+
+1. **Setup first.** The body's first sentence says what is happening, explicitly. The next says why
+   it matters to you (the stakes). Only then the joke. Local terms need no gloss (HDB, PSD, GRC), but
+   the logic of the situation must be on the screen: what the document is, who approves it, what
+   happens if it goes wrong.
+2. **No sentence that needs decoding.** If a line only works once you already know what it means,
+   rewrite it. No comma-stacked fragments ("There are six, numbered, and copied to a name you do not
+   recognise"); no pronoun without a clear noun ("the vendor has done *this*").
+3. **Say consequences plainly.** Never end on "It is noted." (the engine now says on the outcome
+   screen when a choice counts at appraisal). Use ", which is ..." endings rarely. An outcome says what
+   happened and what it means for you.
+4. **Links are explicit.** A follow-up card opens by naming its cause in plain words ("Years ago,
+   on the leadership programme, you covered for {peer}..."), and the cause's outcome plants the hook
+   (names the person or thing), so the player recognises it when it returns.
+5. **People are named and consistent.** Your reporting officer is always `{senior}` ("your reporting
+   officer, {senior}"); never an unnamed "supervisor". The engine introduces each person on the first
+   card they appear on, by adding an appositive after the first bare mention in the body, so put a
+   person's first mention where "Name, who ..., " reads naturally (as a subject or object, not inside
+   a list), or introduce them yourself (followed by a comma). Never "from your intake". Office holders
+   who are not cast members (the Minister, the Permanent Secretary, the Whip, the Prime Minister) get no
+   gendered pronoun, so two cards can never disagree about them.
+6. **The header always names a ministry.** Never put a CEO or a statutory board above the player.
+
+Before and after (approved by the owner):
+
+> Before: "You are taking notes at a meeting between the Permanent Secretary and three agencies. Forty
+> minutes in, the Permanent Secretary says, calmly, that the vendor has done this to two other
+> agencies. The notes are yours, and are cleared before they go out."
+>
+> After: "You're taking the minutes at a meeting between the Permanent Secretary and three agencies
+> about a project that is already behind. Forty minutes in, the Permanent Secretary says, calmly,
+> that the vendor building it has already failed two other agencies the same way. Nobody wants that in
+> writing: if it's in the minutes, someone will one day ask why the ministry hired them anyway. You
+> write the draft, and the Permanent Secretary's office approves it before it goes out."
+
+> Before: "Within the month you are put on one, as a member. It is a start, and it is minuted as one."
+> After: "A month later you're put on one, as an ordinary member. Your reporting officer calls it a good
+> first step."
 
 ## 6. How packs are stored and loaded
 
