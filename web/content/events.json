@@ -6074,7 +6074,7 @@
       "asker": [
         {
           "id": "peer",
-          "text": "{peer}, from your intake,",
+          "text": "{peer}, who joined the service with you,",
           "short": "{peer}",
           "their": "{peer.their}",
           "yes": "{peer} says you are owed one, and writes it in a notebook you have seen before.",
