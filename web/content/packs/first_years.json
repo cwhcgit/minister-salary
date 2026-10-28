@@ -8,9 +8,18 @@
       "title": "One Word",
       "parts": {
         "topic": [
-          { "id": "form", "text": "why the renewal form asks for the same date three times" },
-          { "id": "hotline", "text": "the hotline's rising call volumes" },
-          { "id": "pilot", "text": "whether to extend a pilot by a year" }
+          {
+            "id": "form",
+            "text": "why the renewal form asks for the same date three times"
+          },
+          {
+            "id": "hotline",
+            "text": "the hotline's rising call volumes"
+          },
+          {
+            "id": "pilot",
+            "text": "whether to extend a pilot by a year"
+          }
         ],
         "word": [
           {
@@ -51,23 +60,37 @@
         ]
       },
       "body": "Your minute paper on {topic} took a week and runs to four pages. It comes back from {senior}'s office the next morning with one word in the margin: \"{word}\"",
-      "requires": { "minRank": 0, "maxRank": 1 },
+      "requires": {
+        "minRank": 0,
+        "maxRank": 1
+      },
       "weight": 6,
       "once": true,
       "choices": [
         {
           "text": "Rewrite it from the top.",
-          "effects": { "competence": 7, "standing": -2 },
+          "effects": {
+            "competence": 7,
+            "standing": -2
+          },
           "outcome": "{word.a}"
         },
         {
           "text": "Go up and ask what the word means.",
-          "effects": { "standing": 5, "reputation": 2, "competence": -1 },
+          "effects": {
+            "standing": 5,
+            "reputation": 2,
+            "competence": -1
+          },
           "outcome": "{word.b}"
         },
         {
           "text": "Send it back up unchanged, with a one-line reply.",
-          "effects": { "integrity": 6, "competence": 3, "standing": -3 },
+          "effects": {
+            "integrity": 6,
+            "competence": 3,
+            "standing": -3
+          },
           "outcome": "{word.c}"
         }
       ]
@@ -84,8 +107,12 @@
             "b": "The yoghurt survives six more Fridays. Nothing else in the fridge does, and the floor draws its own conclusions about paragraph 3, mostly at the pantry sink, mostly while you are there.",
             "c": "The Permanent Secretary replies to all forty of you: \"Mine. Pls bin. Thanks for checking.\" It becomes the most forwarded email on the floor that year, and the friendliest.",
             "effects": {
-              "0": { "standing": -2 },
-              "1": { "standing": 1 }
+              "0": {
+                "standing": -2
+              },
+              "1": {
+                "standing": 1
+              }
             }
           },
           {
@@ -105,23 +132,37 @@
         ]
       },
       "body": "The pantry fridge is cleared at 5pm every Friday, under paragraph 3 of a circular, and this quarter the clearing falls to you. Behind the milk sits a yoghurt, eleven days past its date, labelled {owner}.",
-      "requires": { "minRank": 0, "maxRank": 1 },
+      "requires": {
+        "minRank": 0,
+        "maxRank": 1
+      },
       "weight": 5,
       "once": true,
       "choices": [
         {
           "text": "Bin it, as paragraph 3 says.",
-          "effects": { "integrity": 5, "competence": 2, "standing": -2 },
+          "effects": {
+            "integrity": 5,
+            "competence": 2,
+            "standing": -2
+          },
           "outcome": "{owner.a}"
         },
         {
           "text": "Clear everything else, and leave the yoghurt.",
-          "effects": { "standing": 5, "reputation": -2 },
+          "effects": {
+            "standing": 5,
+            "reputation": -2
+          },
           "outcome": "{owner.b}"
         },
         {
           "text": "Email the floor, asking the owner to claim it.",
-          "effects": { "reputation": 5, "standing": 1, "competence": -1 },
+          "effects": {
+            "reputation": 5,
+            "standing": 1,
+            "competence": -1
+          },
           "outcome": "{owner.c}"
         }
       ]
@@ -131,9 +172,21 @@
       "title": "And Team",
       "parts": {
         "doc": [
-          { "id": "deck", "text": "deck", "made": "built" },
-          { "id": "note", "text": "briefing note", "made": "drafted" },
-          { "id": "paper", "text": "budget paper", "made": "drafted" }
+          {
+            "id": "deck",
+            "text": "deck",
+            "made": "built"
+          },
+          {
+            "id": "note",
+            "text": "briefing note",
+            "made": "drafted"
+          },
+          {
+            "id": "paper",
+            "text": "budget paper",
+            "made": "drafted"
+          }
         ],
         "with": {
           "pick": "first",
@@ -143,7 +196,11 @@
               "text": "{peer}, whose half of the slides you once presented as your own,",
               "requires": {
                 "cast": {
-                  "peer": { "flagsAll": ["you_took_the_slides"] }
+                  "peer": {
+                    "flagsAll": [
+                      "you_took_the_slides"
+                    ]
+                  }
                 }
               }
             },
@@ -152,40 +209,74 @@
               "text": "{peer}, who once put \"agree\" beside your post-it,",
               "requires": {
                 "cast": {
-                  "peer": { "flagsAll": ["agreed_with_you"] }
+                  "peer": {
+                    "flagsAll": [
+                      "agreed_with_you"
+                    ]
+                  }
                 }
               }
             },
-            { "id": "intake", "text": "{peer}, from your intake," }
+            {
+              "id": "intake",
+              "text": "{peer}, from your intake,"
+            }
           ]
         }
       },
       "body": "The {doc} you {doc.made} with {with} goes up to the Deputy Secretary under your supervisor's name alone. The Deputy Secretary's reply thanks her \"and team\". {peer} forwards it to you without a word.",
-      "requires": { "minRank": 0, "maxRank": 1 },
+      "requires": {
+        "minRank": 0,
+        "maxRank": 1
+      },
       "weight": 6,
       "once": true,
       "choices": [
         {
           "text": "Ask her to put both your names on the next one.",
-          "effects": { "integrity": 5, "competence": 3, "standing": -2 },
+          "effects": {
+            "integrity": 5,
+            "competence": 3,
+            "standing": -2
+          },
           "cast": {
-            "peer": { "flags": ["you_spoke_up"] }
+            "peer": {
+              "flags": [
+                "you_spoke_up"
+              ]
+            }
           },
           "outcome": "She agrees at once, and seems surprised you had to ask. The next {doc} carries three names, and the Deputy Secretary's reply thanks \"the team\". You decide to count it."
         },
         {
           "text": "Reply to the Deputy Secretary, and name who did the work.",
-          "effects": { "reputation": 6, "integrity": 3, "standing": -5 },
+          "effects": {
+            "reputation": 6,
+            "integrity": 3,
+            "standing": -5
+          },
           "cast": {
-            "peer": { "flags": ["you_named_them"] }
+            "peer": {
+              "flags": [
+                "you_named_them"
+              ]
+            }
           },
           "outcome": "Your reply runs to two lines and names {peer} first. The Deputy Secretary answers \"Well done both.\" Your supervisor copies you on nothing for a quarter, then on everything."
         },
         {
           "text": "Say nothing. Papers go up under the name above yours.",
-          "effects": { "standing": 7, "competence": 2, "integrity": -3 },
+          "effects": {
+            "standing": 7,
+            "competence": 2,
+            "integrity": -3
+          },
           "cast": {
-            "peer": { "flags": ["you_said_nothing"] }
+            "peer": {
+              "flags": [
+                "you_said_nothing"
+              ]
+            }
           },
           "outcome": "You build the next {doc} too, and it also goes up under her name. In March she is promoted, and asks for you to come with her. {peer} is not asked."
         }
@@ -198,43 +289,84 @@
         "above": [
           {
             "id": "ds",
-            "text": "a Deputy Secretary's and two directors'",
+            "text": "a Deputy Secretary and two directors",
             "office": "The Deputy Secretary's office"
           },
-          { "id": "ceo", "text": "the HR director's and the Chief Information Officer's", "office": "The HR director's office" },
+          {
+            "id": "ceo",
+            "text": "the HR director and the Chief Information Officer",
+            "office": "The HR director's office"
+          },
           {
             "id": "ps",
-            "text": "a Permanent Secretary's, and nobody else's",
+            "text": "a Permanent Secretary, and nobody else",
             "office": "The Permanent Secretary's office"
           }
         ]
       },
-      "body": "An email arrives with your name in the cc line, beneath {above}. It is marked Official (Closed). It concerns next year's restructuring, and paragraph two abolishes the post of {peer}, from your intake.",
-      "requires": { "minRank": 0, "maxRank": 1 },
+      "body": "An email arrives that clearly wasn't meant for you. You're copied in, below {above}, on a confidential plan for next year's restructuring, marked Official (Closed). Paragraph two abolishes the job of {peer}, who joined the service with you. {peer} doesn't know yet.",
+      "requires": {
+        "minRank": 0,
+        "maxRank": 1
+      },
       "weight": 6,
       "once": true,
       "choices": [
         {
           "text": "Tell {peer}, quietly, after work.",
-          "effects": { "integrity": 4, "reputation": 4, "standing": -4, "heat": 5 },
-          "cast": {
-            "peer": { "flags": ["heard_it_from_you"] }
+          "effects": {
+            "integrity": 4,
+            "reputation": 4,
+            "standing": -4,
+            "heat": 5
           },
-          "schedule": [{ "eventId": "copied_in_repaid", "inYears": 4, "chance": 0.6 }],
-          "outcome": "Over kopi, in a sentence that mentions no email, you tell {peer} to look around. {peer} applies for two other posts that week, gets one, and never asks how you knew."
+          "cast": {
+            "peer": {
+              "flags": [
+                "heard_it_from_you"
+              ]
+            }
+          },
+          "schedule": [
+            {
+              "eventId": "copied_in_repaid",
+              "inYears": 4,
+              "chance": 0.6
+            }
+          ],
+          "outcome": "Over kopi, without mentioning any email, you tell {peer} it might be a good time to look around. {peer} applies for two other jobs that week, gets one, and never asks how you knew."
         },
         {
-          "text": "Say nothing. It was not sent to you to share.",
-          "effects": { "standing": 5, "competence": 3, "integrity": -3 },
-          "cast": {
-            "peer": { "flags": ["you_knew_first"] }
+          "text": "Say nothing. It wasn't sent to you to share.",
+          "effects": {
+            "standing": 5,
+            "competence": 3,
+            "integrity": -3
           },
-          "schedule": [{ "eventId": "copied_in_file", "inYears": 3, "chance": 0.6 }],
-          "outcome": "The restructuring is announced six weeks later, at a townhall. {peer} hears it with everyone else and is redeployed in good order. You say all the right things, slightly too fluently."
+          "cast": {
+            "peer": {
+              "flags": [
+                "you_knew_first"
+              ]
+            }
+          },
+          "schedule": [
+            {
+              "eventId": "copied_in_file",
+              "inYears": 3,
+              "chance": 0.6
+            }
+          ],
+          "outcome": "The restructuring is announced six weeks later at a townhall. {peer} hears it with everyone else and is moved to another job in good order. You say all the right things, a little too smoothly for someone hearing it for the first time."
         },
         {
-          "text": "Tell the sender you have been copied in error.",
-          "effects": { "integrity": 6, "competence": 3, "standing": -2, "reputation": -1 },
+          "text": "Tell the sender you were copied in by mistake.",
+          "effects": {
+            "integrity": 6,
+            "competence": 3,
+            "standing": -2,
+            "reputation": -1
+          },
           "outcome": "{above.office} thanks you in one line and takes you off the list. Nobody ever says who added you. For a while you open every email expecting to be on it."
         }
       ]
@@ -246,23 +378,41 @@
       "body": "{peer}, looking for something else in an old file, has found the email about the restructuring that abolished {peer.their} post. Your name is in its cc line, dated six weeks before anyone told {peer.them}.",
       "requires": {
         "cast": {
-          "peer": { "flagsAll": ["you_knew_first"] }
+          "peer": {
+            "flagsAll": [
+              "you_knew_first"
+            ]
+          }
         }
       },
       "choices": [
         {
           "text": "Explain, properly, over kopi.",
-          "effects": { "integrity": 6, "standing": -2 },
+          "effects": {
+            "integrity": 6,
+            "standing": -2
+          },
           "cast": {
-            "peer": { "flags": ["you_explained"] }
+            "peer": {
+              "flags": [
+                "you_explained"
+              ]
+            }
           },
           "outcome": "You explain the cc line, and Official (Closed), and the six weeks. {peer} hears you out and says {peer.they} would have done the same. Neither of you is sure that is true."
         },
         {
           "text": "Point out that it was marked Official (Closed).",
-          "effects": { "standing": 4, "integrity": -2 },
+          "effects": {
+            "standing": 4,
+            "integrity": -2
+          },
           "cast": {
-            "peer": { "flags": ["fell_out"] }
+            "peer": {
+              "flags": [
+                "fell_out"
+              ]
+            }
           },
           "outcome": "{peer} agrees that it was. The conversation is short and entirely correct. After it, {peer} is perfectly cordial to you in every meeting for years, and never once in the lift."
         }
@@ -276,20 +426,39 @@
       "requires": {
         "maxRank": 7,
         "cast": {
-          "peer": { "flagsAll": ["heard_it_from_you"], "flagsNone": ["fell_out"] }
+          "peer": {
+            "flagsAll": [
+              "heard_it_from_you"
+            ],
+            "flagsNone": [
+              "fell_out"
+            ]
+          }
         }
       },
       "choices": [
         {
           "text": "Turn it over.",
-          "effects": { "standing": 5, "competence": 3, "integrity": -3, "heat": 4 },
+          "effects": {
+            "standing": 5,
+            "competence": 3,
+            "integrity": -3,
+            "heat": 4
+          },
           "outcome": "You are going somewhere difficult, in April. You have three months to make it look like your idea, and you manage it. Nobody upstairs ever learns that you knew first."
         },
         {
           "text": "Leave it face down, and thank {peer}.",
-          "effects": { "integrity": 6, "standing": -2 },
+          "effects": {
+            "integrity": 6,
+            "standing": -2
+          },
           "cast": {
-            "peer": { "flags": ["you_left_it"] }
+            "peer": {
+              "flags": [
+                "you_left_it"
+              ]
+            }
           },
           "outcome": "{peer} takes the printout back without a word, and looks almost relieved. In April the postings come out. Yours is somewhere difficult, and you are the only person on the floor who is surprised."
         }
@@ -299,36 +468,90 @@
       "id": "for_the_record",
       "title": "For the Record",
       "parts": {
-        "speaker": [{ "id": "ceo", "text": "the Permanent Secretary" }, { "id": "senior", "text": "{senior}" }],
+        "speaker": [
+          {
+            "id": "ceo",
+            "text": "the Permanent Secretary",
+            "approver": "the Permanent Secretary's office"
+          },
+          {
+            "id": "senior",
+            "text": "{senior}",
+            "approver": "{senior}"
+          }
+        ],
         "line": [
-          { "id": "target", "text": "that the target will not be met this year or next" },
-          { "id": "launch", "text": "that the system will miss launch day, and launch day will not move" },
-          { "id": "vendor", "text": "that the vendor has done this to two other agencies" }
+          {
+            "id": "target",
+            "text": "that the project will not meet its target this year or next",
+            "why": "if it's in the minutes, someone will one day ask why nobody acted on it"
+          },
+          {
+            "id": "launch",
+            "text": "that the new system will miss its launch date, and that the date will not be moved",
+            "why": "if it's in the minutes, someone will one day ask why it launched anyway"
+          },
+          {
+            "id": "vendor",
+            "text": "that the vendor building it has already failed two other agencies the same way",
+            "why": "if it's in the minutes, someone will one day ask why the ministry hired them anyway"
+          }
         ]
       },
-      "body": "You are taking notes at a meeting between {speaker} and three agencies. Forty minutes in, {speaker} says, calmly, {line}. The notes are yours, and are cleared before they go out.",
-      "requires": { "minRank": 0, "maxRank": 1 },
+      "body": "You're taking the minutes at a meeting between {speaker} and three agencies about a project that is already behind. Forty minutes in, {speaker} says, calmly, {line}. Nobody wants that in writing: {line.why}. You write the draft, and {speaker.approver} approves it before it goes out.",
+      "requires": {
+        "minRank": 0,
+        "maxRank": 1
+      },
       "weight": 6,
       "once": true,
       "choices": [
         {
-          "text": "Write it down exactly as it was said.",
-          "effects": { "integrity": 7, "competence": 2, "standing": -4 },
-          "setFlags": ["notes_as_said"],
-          "schedule": [{ "eventId": "for_the_record_audit", "inYears": 6, "chance": 0.5 }],
-          "outcome": "The notes go out with the line in paragraph six, word for word. Nobody replies to them. A fortnight later you are taken off the meeting's distribution list, and then off the meeting."
+          "text": "Minute it exactly as it was said.",
+          "effects": {
+            "integrity": 7,
+            "competence": 2,
+            "standing": -4
+          },
+          "setFlags": [
+            "notes_as_said"
+          ],
+          "schedule": [
+            {
+              "eventId": "for_the_record_audit",
+              "inYears": 6,
+              "chance": 0.5
+            }
+          ],
+          "outcome": "The minutes go out with the line in paragraph six, word for word. Nobody replies. Two weeks later you're taken off the meeting's mailing list, and then off the meeting."
         },
         {
-          "text": "Write down what was meant, not what was said.",
-          "effects": { "standing": 6, "competence": 3, "integrity": -4 },
-          "outcome": "\"The meeting noted the challenges ahead.\" Cleared in one round, unchanged: the first sentence of yours to go upstairs exactly as you wrote it."
+          "text": "Leave it out, and minute only the decisions.",
+          "effects": {
+            "standing": 6,
+            "competence": 3,
+            "integrity": -4
+          },
+          "outcome": "Your minutes say \"The meeting noted the challenges ahead.\" They're approved in one round, unchanged: the first thing you've written that went upstairs without a single edit."
         },
         {
-          "text": "Write it down, and flag it when the draft goes up.",
-          "effects": { "competence": 6, "integrity": 3, "standing": -2 },
-          "setFlags": ["notes_struck"],
-          "schedule": [{ "eventId": "for_the_record_audit", "inYears": 6, "chance": 0.5 }],
-          "outcome": "The draft comes back with the line struck through and initialled. The struck draft is filed beside the cleared notes, as drafts are, where anyone who looks can read both."
+          "text": "Minute it, and point it out to {speaker.approver} when you send the draft.",
+          "effects": {
+            "competence": 6,
+            "integrity": 3,
+            "standing": -2
+          },
+          "setFlags": [
+            "notes_struck"
+          ],
+          "schedule": [
+            {
+              "eventId": "for_the_record_audit",
+              "inYears": 6,
+              "chance": 0.5
+            }
+          ],
+          "outcome": "The draft comes back with the line crossed out and initialled. The crossed-out draft is filed next to the final minutes, as drafts always are, where anyone who looks can read both."
         }
       ]
     },
@@ -342,28 +565,44 @@
           "options": [
             {
               "id": "said",
-              "text": "your notes of the meeting, line and all",
-              "requires": { "flagsAll": ["notes_as_said"] }
+              "text": "your minutes, with the warning in paragraph six",
+              "requires": {
+                "flagsAll": [
+                  "notes_as_said"
+                ]
+              }
             },
             {
               "id": "struck",
-              "text": "your draft of the notes, with the line struck through",
-              "requires": { "flagsAll": ["notes_struck"] }
+              "text": "your draft of the minutes, with the warning crossed out and initialled",
+              "requires": {
+                "flagsAll": [
+                  "notes_struck"
+                ]
+              }
             }
           ]
         }
       },
-      "body": "The Auditor-General's Office is auditing a scheme that went wrong exactly as someone predicted at a meeting. The only record of the prediction is {record}. The auditors would like a word with the note-taker.",
+      "body": "Years ago, in your first years in the service, you took the minutes at a meeting where someone senior warned, calmly, that a project would go wrong. It did. The Auditor-General's Office is now auditing it, and the only written record of that warning is {record}. The auditors would like to speak to whoever took the notes.",
       "choices": [
         {
           "text": "Confirm the record, and that you wrote it.",
-          "effects": { "integrity": 6, "standing": -3, "cep": 1 },
-          "outcome": "The audit report quotes it in a footnote, unattributed. Everyone who was at that meeting knows who took the notes, and two of them tell you so, in very different tones."
+          "effects": {
+            "integrity": 6,
+            "standing": -3,
+            "cep": 1
+          },
+          "outcome": "The audit report quotes your minutes in a footnote, without your name. Everyone who was at that meeting knows who took them, and two of them tell you so: one to thank you, and one not."
         },
         {
-          "text": "Confirm that it is accurate, and nothing more.",
-          "effects": { "standing": 4, "competence": 2, "integrity": 1 },
-          "outcome": "You confirm that it is an accurate record, and add nothing. The footnote appears anyway. What the people in the footnote remember is that you added nothing."
+          "text": "Confirm it's accurate, and say nothing more.",
+          "effects": {
+            "standing": 4,
+            "competence": 2,
+            "integrity": 1
+          },
+          "outcome": "You confirm the record is accurate and add nothing. The footnote appears anyway. What the people in it remember is that you didn't help them either."
         }
       ]
     },
@@ -372,35 +611,69 @@
       "title": "The Lucky Draw",
       "parts": {
         "theme": [
-          { "id": "hollywood", "text": "Old Hollywood" },
-          { "id": "kampong", "text": "Kampong Days" },
-          { "id": "nineties", "text": "Neon Nineties" }
+          {
+            "id": "hollywood",
+            "text": "Old Hollywood"
+          },
+          {
+            "id": "kampong",
+            "text": "Kampong Days"
+          },
+          {
+            "id": "nineties",
+            "text": "Neon Nineties"
+          }
         ],
         "prize": [
-          { "id": "tv", "text": "a 65-inch television" },
-          { "id": "staycation", "text": "a staycation on Sentosa" },
-          { "id": "airfryer", "text": "an air fryer, for the third year running" }
+          {
+            "id": "tv",
+            "text": "a 65-inch television"
+          },
+          {
+            "id": "staycation",
+            "text": "a staycation on Sentosa"
+          },
+          {
+            "id": "airfryer",
+            "text": "an air fryer, for the third year running"
+          }
         ]
       },
-      "body": "You are on the D&D committee, having missed the meeting at which the committee was chosen. The theme is {theme}. The top prize is {prize}, and the box holds every name in the division, directors included.",
-      "requires": { "minRank": 0, "maxRank": 1 },
+      "body": "You missed the meeting where the D&D committee was picked, so you're on it. The theme is {theme}. The top prize is {prize}, and the box for the lucky draw holds every name in the division, directors included.",
+      "requires": {
+        "minRank": 0,
+        "maxRank": 1
+      },
       "weight": 5,
       "once": true,
       "choices": [
         {
           "text": "Draw it straight, whoever comes out.",
-          "effects": { "integrity": 5, "standing": 2, "reputation": -2 },
-          "outcome": "The Permanent Secretary wins it, and gives it back, to applause. So does a director, and then another. By the fourth draw the prize has been on stage longer than the band."
+          "effects": {
+            "integrity": 5,
+            "standing": 2,
+            "reputation": -2
+          },
+          "outcome": "The Permanent Secretary wins it, and gives it back to be drawn again, to applause. So does a director, and then another. By the fourth draw, the prize has been on stage longer than the band."
         },
         {
-          "text": "Take the directors' names out before the top prize.",
-          "effects": { "reputation": 6, "standing": 2, "integrity": -3 },
-          "outcome": "An officer in her first month wins it and cries a little. The directors, spared the business of giving it back, are quietly grateful. Nobody ever checks the box."
+          "text": "Quietly take the directors' names out first.",
+          "effects": {
+            "reputation": 6,
+            "standing": 2,
+            "integrity": -3
+          },
+          "outcome": "An officer in her first month wins it, and cries a little. The directors, spared the business of giving it back, are quietly grateful. Nobody ever checks the box."
         },
         {
           "text": "Spend the prize money on the food instead.",
-          "effects": { "competence": 5, "integrity": 2, "reputation": -4, "standing": -1 },
-          "outcome": "The food is the best anyone can remember, and there is no lucky draw. Attendance the next year falls by a third. Nobody, it turns out, came for the food."
+          "effects": {
+            "competence": 5,
+            "integrity": 2,
+            "reputation": -4,
+            "standing": -1
+          },
+          "outcome": "The food is the best anyone can remember, and there's no lucky draw. Next year a third fewer people come. It turns out nobody came for the food."
         }
       ]
     },
@@ -409,29 +682,54 @@
       "title": "The Internet Laptop",
       "parts": {
         "file": [
-          { "id": "tender", "text": "the tender clarifications" },
-          { "id": "quote", "text": "a revised quotation" },
-          { "id": "summary", "text": "the consultant's six-page summary" }
+          {
+            "id": "tender",
+            "text": "the tender clarifications"
+          },
+          {
+            "id": "quote",
+            "text": "a revised quotation"
+          },
+          {
+            "id": "summary",
+            "text": "the consultant's six-page summary"
+          }
         ]
       },
       "body": "A vendor has sent {file} as a download link. Your work laptop is not on the internet, by design, and the division's internet laptop is booked until three. {senior} wants it at two.",
-      "requires": { "minRank": 0, "maxRank": 1 },
+      "requires": {
+        "minRank": 0,
+        "maxRank": 1
+      },
       "weight": 5,
       "once": true,
       "choices": [
         {
           "text": "Open it on your phone and email it to your work account.",
-          "effects": { "standing": 5, "competence": 3, "integrity": -4, "heat": 5 },
+          "effects": {
+            "standing": 5,
+            "competence": 3,
+            "integrity": -4,
+            "heat": 5
+          },
           "outcome": "{senior} has it at 1:52pm. The next quarter's IT security review reaches you: a forty-minute refresher on IM8, with a quiz at the end and a certificate."
         },
         {
           "text": "Ask the vendor to send it the long way.",
-          "effects": { "integrity": 5, "standing": -3, "competence": -1 },
+          "effects": {
+            "integrity": 5,
+            "standing": -3,
+            "competence": -1
+          },
           "outcome": "The vendor sends it as one attachment, which is too large, then as six, the fourth of which is quarantined. {senior} has it on Thursday, and asks what happened to Tuesday."
         },
         {
           "text": "Read it on your phone, and retype it.",
-          "effects": { "competence": 7, "integrity": 1, "standing": -1 },
+          "effects": {
+            "competence": 7,
+            "integrity": 1,
+            "standing": -1
+          },
           "outcome": "Six pages, retyped by 1:58pm, with two typos, both in the vendor's name. Every keystroke was compliant. When you explain how you did it, nobody believes you."
         }
       ]
@@ -441,30 +739,56 @@
       "title": "Station 4",
       "parts": {
         "exhibit": [
-          { "id": "poster", "text": "a poster of the new scheme" },
-          { "id": "app", "text": "a tablet running the new app" },
-          { "id": "counter", "text": "a service counter, repainted for the visit" }
+          {
+            "id": "poster",
+            "text": "a poster of the new scheme"
+          },
+          {
+            "id": "app",
+            "text": "a tablet running the new app"
+          },
+          {
+            "id": "counter",
+            "text": "a service counter, repainted for the visit"
+          }
         ]
       },
-      "body": "The Minister is visiting. The run-sheet puts you at Station 4, beside {exhibit}, from 10:42 to 10:45am, with {senior} two steps behind the Minister. At 10:43 the Minister turns and asks you whether it works.",
-      "requires": { "minRank": 0, "maxRank": 1 },
+      "body": "The Minister is visiting your division, and the visit is planned to the minute. You're at Station 4, beside {exhibit}, from 10:42 to 10:45am. Your reporting officer, {senior}, is two steps behind the Minister. At 10:43 the Minister turns to you and asks whether it actually works. It doesn't, yet.",
+      "requires": {
+        "minRank": 0,
+        "maxRank": 1
+      },
       "weight": 6,
       "once": true,
       "choices": [
         {
           "text": "Say \"not yet, Minister\", and why.",
-          "effects": { "integrity": 6, "reputation": 4, "standing": -4, "appraisal": -4 },
-          "outcome": "The Minister asks a second question, which is not on the run-sheet, and then a third. The visit leaves Station 4 at 10:49. {senior} never mentions it. It is noted."
+          "effects": {
+            "integrity": 6,
+            "reputation": 4,
+            "standing": -4,
+            "appraisal": -4
+          },
+          "outcome": "The Minister asks a second question that isn't on the plan, then a third. The visit leaves Station 4 four minutes late. {senior} never mentions it to you."
         },
         {
-          "text": "Give the line from the brief.",
-          "effects": { "standing": 5, "competence": 1, "integrity": -3 },
-          "outcome": "\"It is progressing well, Minister.\" The visit moves on to Station 5 at 10:45 exactly. That evening {senior} sends you a thumbs-up. You do not delete it."
+          "text": "Give the answer from the briefing notes.",
+          "effects": {
+            "standing": 5,
+            "competence": 1,
+            "integrity": -3
+          },
+          "outcome": "\"It's progressing well, Minister.\" The visit moves on to Station 5 at 10:45 exactly. That evening {senior} sends you a thumbs-up, the first one ever. You keep it."
         },
         {
           "text": "Say what would make it work, in ninety seconds.",
-          "effects": { "competence": 6, "reputation": 3, "integrity": 2, "standing": -2 },
-          "outcome": "The Minister's private secretary writes it down. Station 5 is dropped to make up the time, and the officer at Station 5, who rehearsed for a week, finds you at lunch to say so."
+          "effects": {
+            "competence": 6,
+            "reputation": 3,
+            "integrity": 2,
+            "standing": -2
+          },
+          "outcome": "The Minister's private secretary writes it down. To make up the time, Station 5 is dropped from the visit, and the officer at Station 5, who rehearsed for a week, finds you at lunch to tell you so."
         }
       ]
     },
@@ -472,29 +796,52 @@
       "id": "real_sop",
       "title": "Standard Operating Procedure",
       "body": "{junior} has joined your section and been given the standard operating procedures: forty-one pages, last revised two reorganisations ago. You keep your own version on one page of a notebook. Yours is the one that works.",
-      "requires": { "minRank": 1, "maxRank": 1 },
+      "requires": {
+        "minRank": 1,
+        "maxRank": 1
+      },
       "weight": 6,
       "once": true,
       "choices": [
         {
           "text": "Give {junior} your page.",
-          "effects": { "integrity": 5, "competence": 2, "standing": -1 },
+          "effects": {
+            "integrity": 5,
+            "competence": 2,
+            "standing": -1
+          },
           "cast": {
-            "junior": { "flags": ["has_your_page"] }
+            "junior": {
+              "flags": [
+                "has_your_page"
+              ]
+            }
           },
           "outcome": "Your page says which director reads only the first paragraph, which printer jams, and who in HR picks up before nine. {junior} is useful within a week, and photocopies it."
         },
         {
           "text": "Let {junior} learn it the way you did.",
-          "effects": { "standing": 5, "competence": 2, "integrity": -2 },
+          "effects": {
+            "standing": 5,
+            "competence": 2,
+            "integrity": -2
+          },
           "cast": {
-            "junior": { "flags": ["learnt_the_hard_way"] }
+            "junior": {
+              "flags": [
+                "learnt_the_hard_way"
+              ]
+            }
           },
           "outcome": "{junior} learns it by getting it wrong in front of the right people. It takes a year. Neither of you mentions it, and {junior} starts a notebook."
         },
         {
           "text": "Rewrite the forty-one pages around your one.",
-          "effects": { "competence": 7, "reputation": 2, "standing": -1 },
+          "effects": {
+            "competence": 7,
+            "reputation": 2,
+            "standing": -1
+          },
           "outcome": "Three months of evenings. The new procedures are adopted across the division, with your name in the version history and nowhere else, and {junior} reads them in a weekend."
         }
       ]
@@ -504,29 +851,52 @@
       "title": "Approved Leave",
       "parts": {
         "away": [
-          { "id": "seattle", "text": "a hotel lobby in Seattle, at 1:40am local time" },
-          { "id": "newyork", "text": "a hotel room in New York, at 4:40am local time" },
-          { "id": "honolulu", "text": "a beach bar in Honolulu, at 10:40pm the evening before" }
+          {
+            "id": "seattle",
+            "text": "a hotel lobby in Seattle, at 1:40am local time"
+          },
+          {
+            "id": "newyork",
+            "text": "a hotel room in New York, at 4:40am local time"
+          },
+          {
+            "id": "honolulu",
+            "text": "a beach bar in Honolulu, at 10:40pm the evening before"
+          }
         ]
       },
       "body": "Your leave was approved in January. In September the Work Plan Seminar is moved onto its second week by the person who approved it. This year's theme is Staff Well-being, and your section's slide has nobody else to present it.",
-      "requires": { "minRank": 0, "maxRank": 1 },
+      "requires": {
+        "minRank": 0,
+        "maxRank": 1
+      },
       "weight": 5,
       "once": true,
       "choices": [
         {
           "text": "Cancel the leave and present the slide.",
-          "effects": { "standing": 6, "competence": -1 },
+          "effects": {
+            "standing": 6,
+            "competence": -1
+          },
           "outcome": "Your slide, \"Rest as a Strategic Enabler\", is on at 4:40pm, and the Deputy Secretary leaves at 4:42. The airline turns your fare into a voucher, valid for a year, which you also never use."
         },
         {
           "text": "Go. Someone else can present it.",
-          "effects": { "integrity": 4, "competence": 4, "standing": -4 },
+          "effects": {
+            "integrity": 4,
+            "competence": 4,
+            "standing": -4
+          },
           "outcome": "In your absence your reporting officer presents it and tells the room you are \"role-modelling the theme\". Two directors write that down. You come back rested, and do the best work of your year."
         },
         {
           "text": "Present it by video, from the holiday.",
-          "effects": { "standing": 3, "reputation": 2, "competence": -2 },
+          "effects": {
+            "standing": 3,
+            "reputation": 2,
+            "competence": -2
+          },
           "outcome": "From {away}, you present the slide on Staff Well-being. The connection holds. Three directors say how good it was to see you. Nobody mentions the slide."
         }
       ]

@@ -1014,7 +1014,11 @@ const Engine = (() => {
     const base = 0.50 * s.competence + 0.30 * s.standing + 0.15 * s.reputation;
     const fromStats = gradeAt(base), withChoices = gradeAt(base + mod);
     const order = content.grades.map(g => g.code);   // best first
-    const parts = [`An appraisal is mostly Competence, then Standing, then a little Reputation. Yours (${s.competence}, ${s.standing}, ${s.reputation}) are ${fromStats.code} level`];
+    // the full sentence the first time; after that, the numbers
+    const parts = [s.whySeen
+      ? `Competence ${s.competence}, Standing ${s.standing}, Reputation ${s.reputation}: ${fromStats.code} level`
+      : `An appraisal is mostly Competence, then Standing, then a little Reputation. Yours (${s.competence}, ${s.standing}, ${s.reputation}) are ${fromStats.code} level`];
+    s.whySeen = true;
     if (mod < 0) parts.push(withChoices.code !== fromStats.code ? `a choice this year that counted against you took it to ${withChoices.code}` : "a choice this year counted against you");
     if (mod > 0) parts.push(withChoices.code !== fromStats.code ? `a choice this year that counted for you lifted it to ${withChoices.code}` : "a choice this year counted for you");
     if (grade.code !== withChoices.code) {
@@ -1099,8 +1103,8 @@ const Engine = (() => {
       s.consecutiveC = 0;
       s.competence = clamp(s.competence + 3, 0, 100);
       log.push({ kind: "warn", text: s.rank >= 8
-        ? "You are asked to chair a select committee nobody asked to sit on. The work is real, at least."
-        : "You are transferred sideways to a division nobody asked to join. The work is real, at least." });
+        ? "That's three Cs in a row, so the Whip moves you to chair a select committee nobody wanted to sit on. The work is real, at least."
+        : "That's three Cs in a row, so HR moves you sideways to another division, for a fresh start. Nobody there asked for you, but the work is real." });
     }
 
     // The last two steps are never given on "strong" alone.
