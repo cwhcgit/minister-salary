@@ -58,7 +58,11 @@ jobs:
           find "$RUNNER_TEMP/artifacts" -name manifest.json -print0 |
             while IFS= read -r -d '' m; do cp -r "$(dirname "$m")" reports/cohorts/; done
           ls reports/cohorts
-          # A content-audit run among them: show its table here, next to the findings.
+          # A content-audit run among them: show its table here, next to the findings, and keep it
+          # (it has no manifest.json, so the copy above skips it) so the publish step includes it.
+          mkdir -p reports/audit
+          find "$RUNNER_TEMP/artifacts" -path '*audit*' \( -name '*.md' -o -name '*.json' \) -print0 |
+            while IFS= read -r -d '' a; do cp "$a" reports/audit/; done
           find "$RUNNER_TEMP/artifacts" -path '*audit*' -name '*.md' -print0 |
             while IFS= read -r -d '' a; do cat "$a"; cat "$a" >> "$GITHUB_STEP_SUMMARY"; done
 
@@ -96,4 +100,4 @@ jobs:
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: .github/scripts/publish-results.sh "${{ inputs.publish_only && 'cohorts' || 'analysis' }}" reports/analysis reports/cohorts
+        run: .github/scripts/publish-results.sh "${{ inputs.publish_only && 'cohorts' || 'analysis' }}" reports/analysis reports/cohorts reports/audit
