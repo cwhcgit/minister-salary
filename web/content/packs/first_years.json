@@ -219,12 +219,12 @@
             },
             {
               "id": "intake",
-              "text": "{peer}, from your intake,"
+              "text": "{peer}"
             }
           ]
         }
       },
-      "body": "The {doc} you {doc.made} with {with} goes up to the Deputy Secretary under your supervisor's name alone. The Deputy Secretary's reply thanks her \"and team\". {peer} forwards it to you without a word.",
+      "body": "You and {with} spent a month on a {doc}. Your reporting officer, {senior}, sends it up to the Deputy Secretary under {senior.their} own name only. The Deputy Secretary's reply thanks {senior} \"and team\". {peer} forwards it to you without comment, clearly annoyed.",
       "requires": {
         "minRank": 0,
         "maxRank": 1
@@ -233,7 +233,7 @@
       "once": true,
       "choices": [
         {
-          "text": "Ask her to put both your names on the next one.",
+          "text": "Ask {senior} to put all three names on the next one.",
           "effects": {
             "integrity": 5,
             "competence": 3,
@@ -246,7 +246,7 @@
               ]
             }
           },
-          "outcome": "She agrees at once, and seems surprised you had to ask. The next {doc} carries three names, and the Deputy Secretary's reply thanks \"the team\". You decide to count it."
+          "outcome": "{senior} agrees at once, and seems surprised you had to ask. The next {doc} goes up with three names on it, and the Deputy Secretary's reply thanks \"the team\". You decide to count that."
         },
         {
           "text": "Reply to the Deputy Secretary, and name who did the work.",
@@ -262,10 +262,10 @@
               ]
             }
           },
-          "outcome": "Your reply runs to two lines and names {peer} first. The Deputy Secretary answers \"Well done both.\" Your supervisor copies you on nothing for a quarter, then on everything."
+          "outcome": "Your reply is two lines long and names {peer} first. The Deputy Secretary answers, \"Well done, both.\" {senior} leaves you off every email for three months, then copies you on everything."
         },
         {
-          "text": "Say nothing. Papers go up under the name above yours.",
+          "text": "Say nothing. Papers go up under your reporting officer's name.",
           "effects": {
             "standing": 7,
             "competence": 2,
@@ -276,9 +276,12 @@
               "flags": [
                 "you_said_nothing"
               ]
+            },
+            "senior": {
+              "promote": 1
             }
           },
-          "outcome": "You build the next {doc} too, and it also goes up under her name. In March she is promoted, and asks for you to come with her. {peer} is not asked."
+          "outcome": "You build the next {doc} too, and it also goes up under {senior}'s name. In March {senior} is promoted, and asks for you to move with {senior.them}. {peer} isn't asked."
         }
       ]
     },

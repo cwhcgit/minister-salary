@@ -286,7 +286,8 @@ const Engine = (() => {
       const target = Math.max(0, Math.min(s.rank - p.gap, ceil));
       if (p.rank < target && s.year - p.rankYear >= (cfg.catchUpEvery || 2)) { p.rank++; p.rankYear = s.year; }
     } else if (cfg.track === "above") {
-      if (p.rank < ceil && s.year - p.rankYear >= (cfg.promoteEvery || 4)) { p.rank++; p.rankYear = s.year; }
+      // never more than three grades above you: a reporting officer, not a distant name
+      if (p.rank < Math.min(ceil, s.rank + 3) && s.year - p.rankYear >= (cfg.promoteEvery || 4)) { p.rank++; p.rankYear = s.year; }
     }
   }
   // A line for an arrival or a departure nobody chose. Each kind has several versions, taken in
@@ -516,7 +517,8 @@ const Engine = (() => {
       return t;
     };
     const T = t => (typeof t === "string" ? sub(named(fillParts(t, ev, pick)), s, content) : t);
-    const out = { ...ev, title: T(ev.title), body: T(ev.body),
+    const B = t => (typeof t === "string" ? sub(named(introduce(content, s, fillParts(t, ev, pick))), s, content) : t);
+    const out = { ...ev, title: T(ev.title), body: B(ev.body),
       choices: ev.choices.map((c, k) => {
         const x = { ...c, text: T(c.text), outcome: T(c.outcome) };
         if (pick) x.effects = partEffects(c.effects, k, ev, pick);
@@ -532,6 +534,23 @@ const Engine = (() => {
       out.choices = out.order.map(i => out.choices[i]);
     }
     return out;
+  }
+  // The first card a person appears on says who they are: the first bare mention of them in the
+  // body gets their role's introduction ("Joanne, who joined the service the same week as you,").
+  // So does a person not seen for INTRO_AGAIN years. A mention the writer already followed with
+  // a comma (their own introduction) is left alone, as is a possessive.
+  const INTRO_AGAIN = 8;
+  function introduce(content, s, text) {
+    if (!content.cast || !s.cast || text.indexOf("{") < 0) return text;
+    const done = new Set();
+    return text.replace(/\{([A-Za-z]+)\}(?!'s|\u2019s)(?=(.?))/g, (m, name, next) => {
+      const role = name.toLowerCase(), cfg = content.cast.roles[role], p = s.cast.on[role];
+      if (!cfg || !cfg.intro || !p || done.has(role)) return m;
+      done.add(role);
+      if (next === "," || next === "(") return m;
+      if (p.met !== undefined && s.year - p.met < INTRO_AGAIN) return m;
+      return `${m}, ${cfg.intro},`.replace(/,,$/, ",");
+    }).replace(/,(\s*[.?!;:])/g, "$1");
   }
   // Only for a save made before a card's parts changed: the first option of every slot.
   function fallbackParts(ev) {
@@ -1490,6 +1509,7 @@ const Engine = (() => {
       (s.habits = s.habits || {})[ev.id] = ci;   // what habit years will repeat
     }
     s.cardsPlayed = (s.cardsPlayed || 0) + 1;
+    if (ev.who && s.cast) for (const r of Object.keys(ev.who)) if (s.cast.on[r]) s.cast.on[r].met = before.year;
     // A card with parts or cast keeps what it showed: the combination (freshness, the next
     // showing's rotation), who it named, and, when the Declassified file may quote an untaken
     // choice from it (one that raised the ceiling), its choices' words as read.

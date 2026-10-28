@@ -503,7 +503,7 @@
     "note": "The run's recurring people. See docs/CONTENT_PLAN.md section 8 for how cards use them. Names are invented; never add a real public figure, or a batchmate's name (rival.json).",
     "roles": {
       "peer": {
-        "about": "an officer from your intake who moves up alongside you; stays in the service if you leave it",
+        "about": "an officer who joined the service the same week as you who moves up alongside you; stays in the service if you leave it",
         "call": "given",
         "track": "alongside",
         "when": {},
@@ -521,7 +521,8 @@
           7
         ],
         "driftEvery": 3,
-        "retireAge": 65
+        "retireAge": 65,
+        "intro": "who joined the service the same week as you"
       },
       "junior": {
         "about": "an officer who reports to you, one or two grades below; only while you are in the service",
@@ -542,7 +543,8 @@
           2
         ],
         "catchUpEvery": 2,
-        "retireAge": 65
+        "retireAge": 65,
+        "intro": "{junior.aTitle} who reports to you"
       },
       "senior": {
         "about": "someone two or three grades above you: a mentor, a boss; moves on when you reach their grade",
@@ -561,7 +563,8 @@
           3
         ],
         "promoteEvery": 4,
-        "retireAge": 65
+        "retireAge": 65,
+        "intro": "{senior.aTitle} and your reporting officer"
       },
       "journalist": {
         "about": "a journalist who covers the public service, and later you",
@@ -587,7 +590,8 @@
             18,
             "political editor"
           ]
-        ]
+        ],
+        "intro": "{journalist.aTitle} who covers the public service for the Straits Times"
       },
       "grassroots": {
         "about": "a grassroots leader in your ward; only once you are in Parliament",
@@ -606,7 +610,8 @@
           "CCC chairman",
           "RC chairman",
           "CCMC chairman"
-        ]
+        ],
+        "intro": "{grassroots.aTitle} in your ward"
       },
       "mp": {
         "about": "a fellow Member of Parliament; only once you are in Parliament",
@@ -621,7 +626,8 @@
           -4,
           6
         ],
-        "retireAge": 70
+        "retireAge": 70,
+        "intro": "a fellow MP"
       }
     },
     "honorifics": {
@@ -921,14 +927,14 @@
     "lines": {
       "peer": {
         "retired": [
-          "{name}, from your intake, retires from the service as {title}. The farewell lunch is at the restaurant where your intake had its tenth anniversary, which nobody planned.",
+          "{name}, who joined the service with you, retires from the service as {title}. The farewell lunch is at the restaurant where your intake had its tenth anniversary, which nobody planned.",
           "{name} retires as {title}. Your intake's group chat, silent for years, produces forty messages in an hour, most of them photographs nobody remembers being taken.",
           "{name}, who joined the service the same year you did, retires as {title}. You are one of three people at the farewell who knew {them} in the first week.",
           "{name} retires as {title}, and sends the intake a long email about induction, in which you appear twice, both times kindly."
         ],
         "arrive": [
           "{name}, who joined the service the same year you did, is posted to your floor. You have been on the same circulation lists for years and never met.",
-          "{name}, from your intake, transfers into your ministry. You know the face from the induction photograph: back row, second from the left.",
+          "{name}, who joined the service with you, transfers into your ministry. You know the face from the induction photograph: back row, second from the left.",
           "A new face on your floor: {name}, who joined the service the year you did and has been, until now, a name on a cc line."
         ]
       },
