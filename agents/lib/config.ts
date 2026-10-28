@@ -139,7 +139,8 @@ export const DEFAULTS = {
   funTurnMaxTokens: 400,   // a fun turn's reply is ~35 tokens; thinking is off
   surveyMaxTokens: 400,
   drySessions: 2,          // a dry run of a session persona plays this many sessions
-  canaryCareers: 1         // canaries are planted in a session's first career only (calibration: all)
+  canaryCareers: 1,        // canaries are planted in a session's first career only (calibration: all)
+  canaryEvery: 4           // ...of every 4th session; the rest are clean, and retention and the survey read them
 };
 
 // Calibration: the Haiku players and the Sonnet critic on the same seeds, canaries in every

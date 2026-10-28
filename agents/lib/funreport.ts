@@ -66,6 +66,8 @@ export function summarizeSessions(dir: string) {
   const endingCounts: string[] = [];
   const tapsToQuit: number[] = [], tapsNoQuit: number[] = [], runsToQuit: string[] = [], quitCards: string[] = [];
   const quitReasons: string[] = [], best: string[] = [], worst: string[] = [];
+  const cleanReasons: string[] = [], cleanTaps: number[] = [];
+  let cleanSessions = 0, cleanNeverQuit = 0;
   const tok: Usage = { input: 0, output: 0, cacheWrite: 0, cacheRead: 0, thinking: 0 };
   const costBy = { turns: 0, survey: 0 };
   let cost = 0, sessionsDone = 0;
@@ -79,6 +81,8 @@ export function summarizeSessions(dir: string) {
       if (l.type === "survey") costBy.survey += l.cost || 0; else costBy.turns += l.cost || 0;
     }
     const seenHere = new Set<string>();
+    const clean = !lines.some(l => l.type === "career_start" && l.canaries);
+    if (clean && !sum.aborted) cleanSessions++;
     for (const l of lines) {
       if (l.type === "career_start") careersStarted++;
       if (l.type === "career_end") {
@@ -86,7 +90,7 @@ export function summarizeSessions(dir: string) {
         if (l.cut) careersCut++;
       }
       if (l.type === "survey" && l.answer) {
-        if (l.answer.quit_reason) quitReasons.push(l.answer.quit_reason);
+        if (l.answer.quit_reason) (clean ? cleanReasons : quitReasons).push(l.answer.quit_reason);
         if (l.answer.best_card) best.push(l.answer.best_card);
         if (l.answer.worst_card) worst.push(l.answer.worst_card);
       }
@@ -121,8 +125,9 @@ export function summarizeSessions(dir: string) {
     }
     if (sum.quit && sum.quitAt) {
       tapsToQuit.push(sum.quitAt.tap); runsToQuit.push(String(sum.quitAt.career)); quitCards.push(sum.quitAt.card);
+      if (clean) cleanTaps.push(sum.quitAt.tap);
       if (cards[sum.quitAt.card]) cards[sum.quitAt.card].quits++;
-    } else if (!sum.aborted) { tapsNoQuit.push(sum.taps ?? 0); runsToQuit.push("never"); }
+    } else if (!sum.aborted) { tapsNoQuit.push(sum.taps ?? 0); runsToQuit.push("never"); if (clean) cleanNeverQuit++; }
   }
 
   const overall = mean(allModel);
@@ -161,6 +166,9 @@ export function summarizeSessions(dir: string) {
       tapsToQuit: { median: quantile(tapsToQuit, 0.5), p25: quantile(tapsToQuit, 0.25), p75: quantile(tapsToQuit, 0.75),
         min: tapsToQuit.length ? Math.min(...tapsToQuit) : null, max: tapsToQuit.length ? Math.max(...tapsToQuit) : null, histogram: histogram(tapsToQuit, 10) },
       neverQuit: { sessions: tapsNoQuit.length, medianTaps: quantile(tapsNoQuit, 0.5) },
+      // sessions that never met a canary: the cleaner retention number
+      clean: { sessions: cleanSessions, quit: cleanTaps.length, neverQuit: cleanNeverQuit, tapsToQuitMedian: quantile(cleanTaps, 0.5),
+        p25: quantile(cleanTaps, 0.25), p75: quantile(cleanTaps, 0.75) },
       runsToQuit: { median: quantile(runsToQuit.filter(x => x !== "never").map(Number), 0.5), distribution: count(runsToQuit) },
       careers: { started: careersStarted, finished: careersFinished, finishedShare: pct(careersFinished, careersStarted), cutAtTurnCap: careersCut,
         perSession: r2(careersPerSession), endings: count(endingCounts) }
@@ -184,7 +192,7 @@ export function summarizeSessions(dir: string) {
         baseOffToneRate: pct(offToneTaps, replied), passed: winkOk },
       rules: CANARY_RULES, passed: blandOk && winkOk
     },
-    survey: { quitReasons: quitReasons.slice(0, 15), bestCard: count(best), worstCard: count(worst) },
+    survey: { quitReasons: [...cleanReasons, ...quitReasons].slice(0, 15), cleanQuitReasons: cleanReasons.length, bestCard: count(best), worstCard: count(worst) },
     cost: {
       total: usd(cost), perTap: tapsAll ? usd(cost / tapsAll) : null, perCareer: careersStarted ? usd(cost / careersStarted) : null,
       perSession: logs.length ? usd(cost / logs.length) : null, surveyShare: pct(costBy.survey, cost),
@@ -227,6 +235,7 @@ export function funMarkdown(s: FunSummary): string {
       `Quit line ${s.fun.quitLine}, repeats ×${s.fun.repeatMultiplier}, decay ${s.fun.decay} a tap, up to ${s.fun.careers} careers.${s.mock ? " **Mock run: scripted replies.**" : ""}`, "",
     "## Retention", "",
     `- Quit in ${R.quitSessions} of ${s.sessions - s.aborted} sessions (${R.quitShare ?? "-"}%). Taps to quit: median ${R.tapsToQuit.median ?? "-"}, p25-p75 ${R.tapsToQuit.p25 ?? "-"}-${R.tapsToQuit.p75 ?? "-"}, range ${R.tapsToQuit.min ?? "-"}-${R.tapsToQuit.max ?? "-"}.`,
+    `- Sessions without canaries: ${R.clean.sessions}, quit ${R.clean.quit}, taps to quit median ${R.clean.tapsToQuitMedian ?? "-"} (p25-p75 ${R.clean.p25 ?? "-"}-${R.clean.p75 ?? "-"}).`,
     `- Taps to quit, by tens: ${Object.entries(R.tapsToQuit.histogram).map(([k, v]) => `${k}: ${v}`).join(", ") || "-"}. Never quit: ${R.neverQuit.sessions} (median ${R.neverQuit.medianTaps ?? "-"} taps).`,
     `- Careers started before quitting: ${Object.entries(R.runsToQuit.distribution).map(([k, v]) => `${k}: ${v}`).join(", ") || "-"}.`,
     `- Careers finished: ${R.careers.finished} of ${R.careers.started} (${R.careers.finishedShare ?? "-"}%), ${R.careers.cutAtTurnCap} cut at the turn cap. Endings: ${Object.entries(R.careers.endings).map(([k, v]) => `${k} ${v}`).join(", ") || "-"}.`,
