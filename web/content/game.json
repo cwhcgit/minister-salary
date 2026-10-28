@@ -274,7 +274,101 @@
       "id": "retired",
       "title": "Retired, Honourably",
       "epitaph": "You served. The service continued. Both of these facts are entirely unremarkable and that is the highest compliment the system can pay."
+    },
+    {
+      "id": "consultancy",
+      "title": "The Consultancy",
+      "epitaph": "You now advise ministries on the problems you used to have. The decks are better designed than your minute papers were. They say the same things, and they cost $1.9 million."
+    },
+    {
+      "id": "withdrawn",
+      "title": "The Invitation Lapsed",
+      "epitaph": "Someone read your file and decided the country could wait. You were never told which page. You have narrowed it down to three."
     }
   ],
-  "politicalRetireAge": 72
+  "politicalRetireAge": 72,
+  "folder": [
+    {
+      "flag": "buried_figure",
+      "item": "a utilisation figure you presented as a range"
+    },
+    {
+      "flag": "raw_file_lost",
+      "item": "a raw data file that was \"not retained\""
+    },
+    {
+      "flag": "looked_him_up",
+      "item": "a Forum letter writer whose employer you telephoned"
+    },
+    {
+      "flag": "awarded_friend",
+      "item": "a tender won by a firm whose director calls you by your first name"
+    },
+    {
+      "flag": "hid_annex",
+      "item": "an annex your award does not appear in"
+    },
+    {
+      "flag": "was_leaker",
+      "item": "a Telegram channel, and a circulation list of eleven"
+    },
+    {
+      "flag": "leaked_deadlock",
+      "item": "an Inter-Ministry Committee deadlock that reached a journalist"
+    },
+    {
+      "flag": "friend_at_hdb",
+      "item": "a flat that came up after a phone call to a friend"
+    },
+    {
+      "flag": "grabbed_box",
+      "item": "a director-level box you secured before your team's postings"
+    },
+    {
+      "flag": "rebranded_scheme",
+      "item": "a scheme announced twice, under two names"
+    },
+    {
+      "flag": "smoothed_feedback",
+      "item": "eleven hundred citizens' feedback, redistributed across three pillars"
+    }
+  ],
+  "folderLimit": 3,
+  "legacyFlags": [
+    "mentored_ally",
+    "taught_scholar",
+    "protected_team",
+    "did_mps",
+    "recused",
+    "raw_feedback",
+    "team_recognised"
+  ],
+  "legacyTiers": [
+    {
+      "min": 130,
+      "text": "People you trained quote you in rooms you will never enter. Two of them say you are the reason they stayed."
+    },
+    {
+      "min": 105,
+      "text": "Remembered fondly in three divisions and one constituency. Your old minute papers are still forwarded, with your name taken off."
+    },
+    {
+      "min": 80,
+      "text": "Spoken of as \"very solid\". Nobody can remember an example, but everyone agrees."
+    },
+    {
+      "min": 55,
+      "text": "Your farewell lunch was well attended. The speeches were about the scheme, not about you."
+    },
+    {
+      "min": 0,
+      "text": "Your farewell card was signed by the whole division. Several signatures are in the same handwriting."
+    }
+  ],
+  "reElectionLines": [
+    "The team is returned with 58.6%. The swing against you is described as \"within the normal range\".",
+    "The team is returned with 61.2%. The result is described as \"a clear endorsement of the team's record\", which is how you know it was close somewhere else.",
+    "The team is returned with 55.9%. The result is described as \"a timely reminder\". Nobody specifies of what.",
+    "The team is returned with 63.0%. A newspaper calls your ward \"safe\", and the branch chairman asks you, quietly, never to say that word out loud."
+  ]
 }

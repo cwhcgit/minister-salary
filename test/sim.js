@@ -50,7 +50,7 @@ function play(origin, seed, score) {
     const S = run.S;
     if (cepEvents.some(e => build.engine.eligible(e, S)) || S.scheduled.some(x => cepEvents.some(e => e.id === x.eventId)))
       cepReachable.push(run.turn);
-    const ev = S.currentEvent === '__quiet' ? build.engine.QUIET : content.events.find(e => e.id === S.currentEvent);
+    const ev = H.currentEvent(build, S);
     const live = ev.choices.map((c, i) => [c, i]).filter(([c]) => build.engine.choiceAvailable(c, S));
     let pick;
     if (!score) pick = live[Math.floor(pickRandom() * live.length)][1];

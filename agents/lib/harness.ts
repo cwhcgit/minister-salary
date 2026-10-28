@@ -72,7 +72,7 @@ export function traceView(run: Run): string {
   if (last && last.appraisal)
     lines.push(`Last year: grade ${last.appraisal.grade} (score ${last.appraisal.score.toFixed(1)}, of which noise ${signed(+last.appraisal.noise.toFixed(1))}); promotion: ${last.promotion ? last.promotion.why : "n/a"}.`);
   if (run.phase === "event") {
-    const ev = S.currentEvent === "__quiet" ? b.engine.QUIET : C.events.find((e: any) => e.id === S.currentEvent);
+    const ev = b.engine.eventOf ? b.engine.eventOf(C, S) : S.currentEvent === "__quiet" ? b.engine.QUIET : C.events.find((e: any) => e.id === S.currentEvent);
     lines.push(`This event: ${ev.id}${ev.triggered ? " (a consequence of an earlier choice)" : ""}.`);
     ev.choices.forEach((c: any, i: number) => {
       const fx = Object.entries(c.effects || {}).map(([k, v]) => `${k} ${signed(v as number)}`).join(", ") || "no stat change";

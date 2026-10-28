@@ -79,6 +79,7 @@ function snapshot(S) {
 }
 
 function currentEvent(build, S) {
+  if (build.engine.eventOf) return build.engine.eventOf(build.content, S);   // quiet and montage years too
   if (S.currentEvent === "__quiet") return build.engine.QUIET;
   return build.content.events.find(e => e.id === S.currentEvent);
 }
@@ -162,7 +163,8 @@ function step(run, choiceId) {
     turn: run.turn, year: pre.year, age: pre.age,
     act: actOf(ev, pre),
     event: { id: ev.id, ...run.pendingDraw, once: !!ev.once, filler: ev.id !== "__quiet" && !ev.once && !ev.triggered,
-             repeat: run.turns.some(t => t.event.id === ev.id) },
+             montage: ev.id.startsWith("__montage:"),
+             repeat: ev.id.startsWith("__montage:") || run.turns.some(t => t.event.id === ev.id) },
     choice: { id: View.LETTERS[i], index: i, effects: ch.effects || {},
               available: ev.choices.map((_, j) => sibling(build, pre, ev, j)).filter(x => x.available).map(x => x.id) },
     siblings: ev.choices.map((_, j) => sibling(build, pre, ev, j)),
@@ -172,7 +174,7 @@ function step(run, choiceId) {
     scheduled: addedSched,
     scheduleMissed: (ch.schedule || []).filter(sc => !addedSched.some(a => a.eventId === sc.eventId)),
     election: r.trace.election || null,
-    appraisal: r.trace.appraisal ? { ...r.trace.appraisal, base: r.trace.appraisal.score - r.trace.appraisal.noise } : null,
+    appraisal: r.trace.appraisal ? { ...r.trace.appraisal, base: r.trace.appraisal.score - r.trace.appraisal.noise - (r.trace.appraisal.noted || 0) } : null,
     promotion: promo ? { ...promo, why: promotionWhy(promo, r.trace.appraisal, pre) } : null,
     log: r.log.map(l => l.kind),
     ending: S.ending || null
@@ -304,6 +306,6 @@ function endingCause(build, run) {
 }
 
 module.exports = {
-  loadBuild, getBuild, newRun, screen, screenText, choices, step, trace, replay, rng,
+  loadBuild, getBuild, newRun, screen, screenText, choices, step, trace, replay, rng, currentEvent,
   endingCause, STATS, APPRAISAL_WEIGHTS
 };
