@@ -509,7 +509,7 @@
           { "id": "honolulu", "text": "a beach bar in Honolulu, at 10:40pm the evening before" }
         ]
       },
-      "body": "Your leave was approved in January. In September the Workplan Seminar is moved onto its second week, by the person who approved it, and your section's slide has nobody else to present it.",
+      "body": "Your leave was approved in January. In September the Work Plan Seminar is moved onto its second week, by the person who approved it, and your section's slide has nobody else to present it.",
       "requires": { "minRank": 0, "maxRank": 1 },
       "weight": 5,
       "once": true,
