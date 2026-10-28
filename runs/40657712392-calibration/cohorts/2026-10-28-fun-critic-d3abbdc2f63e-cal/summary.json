@@ -1,0 +1,2068 @@
+{
+ "kind": "fun-sessions",
+ "cohort": "2026-10-28-fun-critic-d3abbdc2f63e-cal",
+ "persona": "fun-critic",
+ "model": "claude-sonnet-5-5",
+ "thinking": "between_tools",
+ "buildHashes": {
+  "plain": "d3abbdc2f63e",
+  "canary": "b871c32ee115"
+ },
+ "mock": false,
+ "fun": {
+  "start": 50,
+  "cap": 100,
+  "quitLine": 25,
+  "decay": 2,
+  "maxDelta": 10,
+  "repeatSteps": [
+   5,
+   10,
+   15
+  ],
+  "repeatMultiplier": 1,
+  "freshToReset": 3,
+  "careers": 5,
+  "origins": "rotate"
+ },
+ "sessions": 3,
+ "aborted": 0,
+ "taps": 118,
+ "autoPicks": 0,
+ "refusals": 0,
+ "retention": {
+  "quitSessions": 3,
+  "quitShare": 100,
+  "tapsToQuit": {
+   "median": 40,
+   "p25": 37,
+   "p75": 42,
+   "min": 34,
+   "max": 44,
+   "histogram": {
+    "31-40": 2,
+    "41-50": 1
+   }
+  },
+  "neverQuit": {
+   "sessions": 0,
+   "medianTaps": null
+  },
+  "runsToQuit": {
+   "median": 2,
+   "distribution": {
+    "2": 3
+   }
+  },
+  "careers": {
+   "started": 6,
+   "finished": 3,
+   "finishedShare": 50,
+   "cutAtTurnCap": 0,
+   "perSession": 2,
+   "endings": {
+    "pm": 1,
+    "retired": 1,
+    "permsec": 1
+   }
+  }
+ },
+ "deltas": {
+  "meanModel": 1.74,
+  "meanRepeatRule": -0.09,
+  "decayPerTap": -2,
+  "positiveShare": 84.4,
+  "zeroShare": 9.2,
+  "negativeShare": 6.4,
+  "repeatTapShare": 1.8,
+  "offToneRate": 8.5,
+  "reasonsOver12Words": 49.2
+ },
+ "funCurve": [
+  {
+   "tap": 1,
+   "playing": 3,
+   "meanMeter": 49.67,
+   "meanModelDelta": 1.67,
+   "quits": 0
+  },
+  {
+   "tap": 2,
+   "playing": 3,
+   "meanMeter": 46,
+   "meanModelDelta": 1,
+   "quits": 0
+  },
+  {
+   "tap": 3,
+   "playing": 3,
+   "meanMeter": 43.67,
+   "meanModelDelta": 1,
+   "quits": 0
+  },
+  {
+   "tap": 4,
+   "playing": 3,
+   "meanMeter": 42.67,
+   "meanModelDelta": 1,
+   "quits": 0
+  },
+  {
+   "tap": 5,
+   "playing": 3,
+   "meanMeter": 42.33,
+   "meanModelDelta": 1.67,
+   "quits": 0
+  },
+  {
+   "tap": 6,
+   "playing": 3,
+   "meanMeter": 41.67,
+   "meanModelDelta": 1.33,
+   "quits": 0
+  },
+  {
+   "tap": 7,
+   "playing": 3,
+   "meanMeter": 42,
+   "meanModelDelta": 2.33,
+   "quits": 0
+  },
+  {
+   "tap": 8,
+   "playing": 3,
+   "meanMeter": 43,
+   "meanModelDelta": 3,
+   "quits": 0
+  },
+  {
+   "tap": 9,
+   "playing": 3,
+   "meanMeter": 44,
+   "meanModelDelta": 3,
+   "quits": 0
+  },
+  {
+   "tap": 10,
+   "playing": 3,
+   "meanMeter": 44,
+   "meanModelDelta": 2,
+   "quits": 0
+  },
+  {
+   "tap": 11,
+   "playing": 3,
+   "meanMeter": 44.67,
+   "meanModelDelta": 2.67,
+   "quits": 0
+  },
+  {
+   "tap": 12,
+   "playing": 3,
+   "meanMeter": 45.67,
+   "meanModelDelta": 3,
+   "quits": 0
+  },
+  {
+   "tap": 13,
+   "playing": 3,
+   "meanMeter": 46.33,
+   "meanModelDelta": 2.67,
+   "quits": 0
+  },
+  {
+   "tap": 14,
+   "playing": 3,
+   "meanMeter": 47.67,
+   "meanModelDelta": 3.33,
+   "quits": 0
+  },
+  {
+   "tap": 15,
+   "playing": 3,
+   "meanMeter": 48,
+   "meanModelDelta": 2.33,
+   "quits": 0
+  },
+  {
+   "tap": 16,
+   "playing": 3,
+   "meanMeter": 48.33,
+   "meanModelDelta": 2.33,
+   "quits": 0
+  },
+  {
+   "tap": 17,
+   "playing": 3,
+   "meanMeter": 49,
+   "meanModelDelta": 2.67,
+   "quits": 0
+  },
+  {
+   "tap": 18,
+   "playing": 3,
+   "meanMeter": 48.67,
+   "meanModelDelta": 4,
+   "quits": 0
+  },
+  {
+   "tap": 19,
+   "playing": 3,
+   "meanMeter": 49,
+   "meanModelDelta": 2.33,
+   "quits": 0
+  },
+  {
+   "tap": 20,
+   "playing": 3,
+   "meanMeter": 50,
+   "meanModelDelta": 3,
+   "quits": 0
+  },
+  {
+   "tap": 21,
+   "playing": 3,
+   "meanMeter": 50.67,
+   "meanModelDelta": 2.67,
+   "quits": 0
+  },
+  {
+   "tap": 22,
+   "playing": 3,
+   "meanMeter": 50.33,
+   "meanModelDelta": 1.67,
+   "quits": 0
+  },
+  {
+   "tap": 23,
+   "playing": 3,
+   "meanMeter": 49.67,
+   "meanModelDelta": 1.33,
+   "quits": 0
+  },
+  {
+   "tap": 24,
+   "playing": 3,
+   "meanMeter": 47.67,
+   "meanModelDelta": 1.5,
+   "quits": 0
+  },
+  {
+   "tap": 25,
+   "playing": 3,
+   "meanMeter": 46.67,
+   "meanModelDelta": 1,
+   "quits": 0
+  },
+  {
+   "tap": 26,
+   "playing": 3,
+   "meanMeter": 43.67,
+   "meanModelDelta": 0.67,
+   "quits": 0
+  },
+  {
+   "tap": 27,
+   "playing": 3,
+   "meanMeter": 43,
+   "meanModelDelta": 1.33,
+   "quits": 0
+  },
+  {
+   "tap": 28,
+   "playing": 3,
+   "meanMeter": 42.33,
+   "meanModelDelta": 1.33,
+   "quits": 0
+  },
+  {
+   "tap": 29,
+   "playing": 3,
+   "meanMeter": 41.33,
+   "meanModelDelta": 1,
+   "quits": 0
+  },
+  {
+   "tap": 30,
+   "playing": 3,
+   "meanMeter": 40.67,
+   "meanModelDelta": 1.33,
+   "quits": 0
+  },
+  {
+   "tap": 31,
+   "playing": 3,
+   "meanMeter": 40.33,
+   "meanModelDelta": 1.67,
+   "quits": 0
+  },
+  {
+   "tap": 32,
+   "playing": 3,
+   "meanMeter": 38.67,
+   "meanModelDelta": 1,
+   "quits": 0
+  },
+  {
+   "tap": 33,
+   "playing": 3,
+   "meanMeter": 35.67,
+   "meanModelDelta": 0.67,
+   "quits": 0
+  },
+  {
+   "tap": 34,
+   "playing": 3,
+   "meanMeter": 32.67,
+   "meanModelDelta": 0.5,
+   "quits": 1
+  },
+  {
+   "tap": 35,
+   "playing": 2,
+   "meanMeter": 37.5,
+   "meanModelDelta": 1.5,
+   "quits": 0
+  },
+  {
+   "tap": 36,
+   "playing": 2,
+   "meanMeter": 36,
+   "meanModelDelta": 0.5,
+   "quits": 0
+  },
+  {
+   "tap": 37,
+   "playing": 2,
+   "meanMeter": 35,
+   "meanModelDelta": 1,
+   "quits": 0
+  },
+  {
+   "tap": 38,
+   "playing": 2,
+   "meanMeter": 31.5,
+   "meanModelDelta": 0,
+   "quits": 0
+  },
+  {
+   "tap": 39,
+   "playing": 2,
+   "meanMeter": 29,
+   "meanModelDelta": -0.5,
+   "quits": 0
+  },
+  {
+   "tap": 40,
+   "playing": 2,
+   "meanMeter": 27,
+   "meanModelDelta": 0,
+   "quits": 1
+  },
+  {
+   "tap": 41,
+   "playing": 1,
+   "meanMeter": 29,
+   "meanModelDelta": 2,
+   "quits": 0
+  },
+  {
+   "tap": 42,
+   "playing": 1,
+   "meanMeter": 27,
+   "meanModelDelta": 0,
+   "quits": 0
+  },
+  {
+   "tap": 43,
+   "playing": 1,
+   "meanMeter": 27,
+   "meanModelDelta": 2,
+   "quits": 0
+  },
+  {
+   "tap": 44,
+   "playing": 1,
+   "meanMeter": 25,
+   "meanModelDelta": 0,
+   "quits": 1
+  }
+ ],
+ "cards": {
+  "minShownToRank": 2,
+  "top": [
+   {
+    "id": "farewell_drinks",
+    "title": "Farewell Drinks",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4.5,
+    "firstDelta": 4.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 CEP thread pays off; 'He writes again... does not get published' is a lovely touch.",
+     "+4 HR friend callback pays off; actionable insight, real risk-reward choice"
+    ]
+   },
+   {
+    "id": "small_favour",
+    "title": "A Small Favour",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3.5,
+    "firstDelta": 3.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Flat-tip friend returns as the bill; every option costs something",
+     "+3 Earned callback to the friend from Year 1; real dilemma"
+    ]
+   },
+   {
+    "id": "the_vetting#2",
+    "title": "The Background Check",
+    "act": "II",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3.5,
+    "firstDelta": 3.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Folder callback to the flat tip is a real earned payoff; tension is genuine",
+     "+2 Disappointed man with a thin folder is a genuinely funny, well-made detail; dilemma has teeth."
+    ]
+   },
+   {
+    "id": "the_election#1",
+    "title": "The General Election",
+    "act": "II",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "Age 33, Senior Director, Superscale, and a lamp-post candidate after one lunch: real vetting and the Superscale grade timeline feel rushed."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+4 Coffee shop with opinions about your face is a genuinely funny line",
+     "+3 Coffee shop having opinions about your face is a lovely line; closed folder pays off.",
+     "+2 Closing the empty folder 'takes no time at all' pays off earlier setup; lamp post line funny."
+    ]
+   },
+   {
+    "id": "tea_session#1",
+    "title": "An Invitation to Tea",
+    "act": "II",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The Thursday-lunch line is wry and earned; the announcement-retroactively-true payoff landed.",
+     "+3 The Thursday-lunch line is sly; the long build toward politics is paying off"
+    ]
+   },
+   {
+    "id": "pofma_moment",
+    "title": "The Correction Direction",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Misleading in two places, correct in the third is a sharp, costly setup.",
+     "+3 'Misleading in two places, correct in the third' is a real dilemma"
+    ]
+   },
+   {
+    "id": "cep_discovery",
+    "title": "A Word You Have Not Heard Before",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 'You were the website' landed; the CEP hook is intriguing and earned",
+     "+3 First real mystery; 'pause of exactly the wrong length' is a lovely line."
+    ]
+   },
+   {
+    "id": "forum_letter",
+    "title": "The Forum Page",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Lanyard joke is sharp; 'correct on every point' sets real dilemma",
+     "+3 'Correct on every factual point' makes the dilemma bite; option C is deliciously sinister."
+    ]
+   },
+   {
+    "id": "grassroots_invite",
+    "title": "The Adviser Suggests Something",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Deferred posting never re-offered is quietly devastating; politics door opens at last",
+     "+3 'Hoping someone would tell you' lands; the political door finally opens, earned by the long climb."
+    ]
+   },
+   {
+    "id": "the_indicators",
+    "title": "The Indicators",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 2.5,
+    "firstDelta": 2.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Indicators that do not record who moved them is a sharp, costly dilemma.",
+     "+2 'Word they use for furniture' is good; indicators card repeats earlier setup"
+    ]
+   }
+  ],
+  "bottom": [
+   {
+    "id": "speech_vindicated",
+    "title": "Hansard",
+    "act": "III",
+    "shown": 2,
+    "sessions": 1,
+    "meanDelta": -1,
+    "firstDelta": 1,
+    "repeatDelta": -3,
+    "meanRepeatRule": -2.5,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-3 Exact repeat of the Hansard card; no callback, just recycled",
+     "+1 Pleasant, but the choice seems low-cost and the outcome predictable"
+    ]
+   },
+   {
+    "id": "the_quiet_year#2",
+    "title": "A Year Without Incident",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": -0.5,
+    "firstDelta": -0.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-1 Coffee machine joke is mild; a second consecutive filler year drags.",
+     "0 Coffee machine line is a decent small joke, but the quiet-year card is filler."
+    ]
+   },
+   {
+    "id": "the_work#2",
+    "title": "The Work",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 0,
+    "firstDelta": 0,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-1 'Phased implementation' is a nice dry line, but the choice feels largely the same.",
+     "+1 'Phased implementation' is a good dry jab; the montage years skipped past, and 'The Work' card has recurred."
+    ]
+   },
+   {
+    "id": "postit_workshop",
+    "title": "Public Sector Transformation",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 0.5,
+    "firstDelta": 0.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 'Used against you, admiringly' and 'you are the scheme' landed; offsite satire is familiar.",
+     "0 Offsite-post-it satire is a familiar target, though 'never announced' landed"
+    ]
+   },
+   {
+    "id": "reshuffle",
+    "title": "The Reshuffle",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 0.5,
+    "firstDelta": 0.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Eleven people sure it's good news is dry and right; real cost either way.",
+     "-1 Eleven people sure it's good news is funny; Hansard repeat still stings"
+    ]
+   },
+   {
+    "id": "model_ward",
+    "title": "A Model Ward",
+    "act": "III",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 0.67,
+    "firstDelta": 0.67,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+2 Montage compresses years nicely; the auntie and the lift is a payoff.",
+     "+1 Pleasant but low-stakes; both options mentor, little cost either way",
+     "-1 Mentoring card with two near-identical options; no cost either way, feels fake."
+    ]
+   },
+   {
+    "id": "consultant_report",
+    "title": "The Report",
+    "act": "I",
+    "shown": 2,
+    "sessions": 1,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": 1,
+    "meanRepeatRule": -2.5,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 Consultant-repeats-your-memo is a familiar satire beat, though option C is sharp.",
+     "+1 Consultancy recycling an old minute is a recognisable, well-observed bit; option C is sly."
+    ]
+   },
+   {
+    "id": "new_ro",
+    "title": "The New Reporting Officer",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+2 Sticky-note callback paid off with 'however'; the new-boss card itself is stock.",
+     "0 Credit-taking outcome was sharp, but new-boss card is a familiar office setup."
+    ]
+   },
+   {
+    "id": "the_night_degree",
+    "title": "The Last Paper",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 Eleven things in hand was a good detail; last-paper card feels familiar.",
+     "+1 The 'eleven things in their hands' line lands; but this choice feels like a foregone conclusion."
+    ]
+   },
+   {
+    "id": "the_quiet_year#1",
+    "title": "A Year Without Incident",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 'A timely reminder, of what' lands; but this card is a rerun of Year 1",
+     "+1 'Four slides more than it needed' is a good line; this card itself is mild."
+    ]
+   }
+  ],
+  "all": [
+   {
+    "id": "farewell_drinks",
+    "title": "Farewell Drinks",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4.5,
+    "firstDelta": 4.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 CEP thread pays off; 'He writes again... does not get published' is a lovely touch.",
+     "+4 HR friend callback pays off; actionable insight, real risk-reward choice"
+    ]
+   },
+   {
+    "id": "the_crisis",
+    "title": "The Thing That Actually Happens",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 CEP reveal lands hard; 'you think about this in the lift' is excellent."
+    ]
+   },
+   {
+    "id": "small_favour",
+    "title": "A Small Favour",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3.5,
+    "firstDelta": 3.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Flat-tip friend returns as the bill; every option costs something",
+     "+3 Earned callback to the friend from Year 1; real dilemma"
+    ]
+   },
+   {
+    "id": "the_vetting#2",
+    "title": "The Background Check",
+    "act": "II",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3.5,
+    "firstDelta": 3.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Folder callback to the flat tip is a real earned payoff; tension is genuine",
+     "+2 Disappointed man with a thin folder is a genuinely funny, well-made detail; dilemma has teeth."
+    ]
+   },
+   {
+    "id": "the_election#1",
+    "title": "The General Election",
+    "act": "II",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "Age 33, Senior Director, Superscale, and a lamp-post candidate after one lunch: real vetting and the Superscale grade timeline feel rushed."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+4 Coffee shop with opinions about your face is a genuinely funny line",
+     "+3 Coffee shop having opinions about your face is a lovely line; closed folder pays off.",
+     "+2 Closing the empty folder 'takes no time at all' pays off earlier setup; lamp post line funny."
+    ]
+   },
+   {
+    "id": "tea_session#1",
+    "title": "An Invitation to Tea",
+    "act": "II",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The Thursday-lunch line is wry and earned; the announcement-retroactively-true payoff landed.",
+     "+3 The Thursday-lunch line is sly; the long build toward politics is paying off"
+    ]
+   },
+   {
+    "id": "pofma_moment",
+    "title": "The Correction Direction",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Misleading in two places, correct in the third is a sharp, costly setup.",
+     "+3 'Misleading in two places, correct in the third' is a real dilemma"
+    ]
+   },
+   {
+    "id": "cep_discovery",
+    "title": "A Word You Have Not Heard Before",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 'You were the website' landed; the CEP hook is intriguing and earned",
+     "+3 First real mystery; 'pause of exactly the wrong length' is a lovely line."
+    ]
+   },
+   {
+    "id": "forum_letter",
+    "title": "The Forum Page",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Lanyard joke is sharp; 'correct on every point' sets real dilemma",
+     "+3 'Correct on every factual point' makes the dilemma bite; option C is deliciously sinister."
+    ]
+   },
+   {
+    "id": "grassroots_invite",
+    "title": "The Adviser Suggests Something",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Deferred posting never re-offered is quietly devastating; politics door opens at last",
+     "+3 'Hoping someone would tell you' lands; the political door finally opens, earned by the long climb."
+    ]
+   },
+   {
+    "id": "the_work#3",
+    "title": "The Work",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Page six line is genuinely funny; the setup of a debt owed is promising."
+    ]
+   },
+   {
+    "id": "the_vetting#1",
+    "title": "The Background Check",
+    "act": "II",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Disappointed man with a thin folder is great; the closed folder is worse."
+    ]
+   },
+   {
+    "id": "the_bonus_reveal",
+    "title": "The National Bonus",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Option C is the bold, costly, genuinely interesting move; the game finally asks the real question."
+    ]
+   },
+   {
+    "id": "the_townhall#1",
+    "title": "The Curated Questions",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The answered-but-not-answered Cabinet beat landed; pay-by-indicators thread pays off."
+    ]
+   },
+   {
+    "id": "postit_workshop#2",
+    "title": "The Retreat",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Windowless Integrity room is a good joke; ledger-man line lands"
+    ]
+   },
+   {
+    "id": "overseas_posting",
+    "title": "The Posting",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Real tradeoff with family cost; 'unpublished thank-you' and sentence lines land"
+    ]
+   },
+   {
+    "id": "leadership_programme",
+    "title": "The Nomination",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Callback to 'the work' theme; three options each cost something, including self-nomination."
+    ]
+   },
+   {
+    "id": "postit_workshop#1",
+    "title": "Design Thinking",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Auntie Mary and PARKING LOT are dead-on; the options are all funny."
+    ]
+   },
+   {
+    "id": "headhunter_mid",
+    "title": "The Consultancy",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Consultancy callback pays off; the drawer option is wry and costly."
+    ]
+   },
+   {
+    "id": "the_work#1",
+    "title": "The Work",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Eleven fields echoes year-one counter's eleven things; quiet, earned, full-circle callback."
+    ]
+   },
+   {
+    "id": "the_indicators",
+    "title": "The Indicators",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 2.5,
+    "firstDelta": 2.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Indicators that do not record who moved them is a sharp, costly dilemma.",
+     "+2 'Word they use for furniture' is good; indicators card repeats earlier setup"
+    ]
+   },
+   {
+    "id": "maiden_speech",
+    "title": "The Maiden Speech",
+    "act": "III",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Lifts line is funny; real choice, character earns a moment",
+     "+2 Lifts that stop on every floor is specific and true; real choice between safe and sincere.",
+     "+1 Pay jump to $953k without explanation is odd; empty House line is a nice touch."
+    ]
+   },
+   {
+    "id": "headhunter_political_grc",
+    "title": "The Board Seat",
+    "act": "III",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 'Very solid... the word they use for furniture' is a properly good line.",
+     "+3 'Which is how you know it was close' and chillies lines are sharp",
+     "0 Footnote joke is fine, but the tempting-offer card is a familiar shape."
+    ]
+   },
+   {
+    "id": "the_appraisal_talk#4",
+    "title": "The Appraisal Conversation",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Comment framed as complaint but possibly praise; option C turns it into a sharp question.",
+     "+2 Anonymous comment misread as complaint is sharp; option C is a genuinely clever move."
+    ]
+   },
+   {
+    "id": "the_indicators_election",
+    "title": "The Indicators, Before an Election",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Real dilemma with costs; indicators 'aware of the calendar' is a sly line",
+     "+1 Indicators card returns for a third time; the calendar-aware indicators line is funny."
+    ]
+   },
+   {
+    "id": "the_mps_night#2",
+    "title": "Tuesday Night, the Lift",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Lift callback from rally pays off; 'angry on their behalf' is sharp",
+     "+1 'Angry on their behalf' is a sharp line; meet-the-people card otherwise familiar."
+    ]
+   },
+   {
+    "id": "reorg",
+    "title": "The Reorganisation",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Eleven unasked-for slides stolen was a nice sting; real dilemma here, every option costs."
+    ]
+   },
+   {
+    "id": "the_mps_night",
+    "title": "Tuesday Night",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Man with the unreopenable case is poignant; every option costs something real."
+    ]
+   },
+   {
+    "id": "moh_waiting",
+    "title": "The Waiting Time",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 'For information' on page one of 140 is sharp; the dilemma itself is familiar."
+    ]
+   },
+   {
+    "id": "the_appraisal_talk",
+    "title": "The Appraisal Conversation",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 'You are the scheme' and 'more visible, to whom' land; real bureaucratic texture"
+    ]
+   },
+   {
+    "id": "the_townhall",
+    "title": "The Ministry Townhall",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Clean accounts payoff is earned; townhall dilemma is familiar but credible"
+    ]
+   },
+   {
+    "id": "the_pq#2",
+    "title": "The Supplementary",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Classic parliamentary squeeze, credible; moderate stakes, familiar beat"
+    ]
+   },
+   {
+    "id": "mnd_classification",
+    "title": "The Classification",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Real policy dilemma with a cost on every option; Standard/Plus/Prime is well observed."
+    ]
+   },
+   {
+    "id": "old_colleague",
+    "title": "Someone From Before",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Same-grade-then, chair-now is a real dilemma; 'new joiners never find out' stung nicely."
+    ]
+   },
+   {
+    "id": "late_night#2",
+    "title": "10:50pm, One Comment",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 'Can we tighten?' on a two-pager is painfully accurate; B is the honest answer."
+    ]
+   },
+   {
+    "id": "the_leak",
+    "title": "The Leak",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "She winks. You are fairly sure she winks."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+2 Option C is a genuine jolt; 'she winks' continues the wink though."
+    ]
+   },
+   {
+    "id": "lanterns",
+    "title": "Lanterns",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 'Apparently in passing' callback is wry; stacking chairs is a nice concrete choice."
+    ]
+   },
+   {
+    "id": "cny_lohei",
+    "title": "Lo Hei",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Announced-as-four, made true retroactively: earned callback to the pilot; Lo Hei trap is sharp."
+    ]
+   },
+   {
+    "id": "bto_queue#1",
+    "title": "The Prime Launch",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1.5,
+    "firstDelta": 1.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Prime housing details feel accurate; B is a tempting, ethically gray option",
+     "+1 Prime rules detailed accurately; asking a friend feels like a slightly shady option"
+    ]
+   },
+   {
+    "id": "the_quiet_year",
+    "title": "A Year Without Incident",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1.5,
+    "firstDelta": 1.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 'For three weeks, you were the website' is a genuinely sharp line",
+     "+1 'Compliment or a warning' is a decent line; choices still generic"
+    ]
+   },
+   {
+    "id": "the_appraisal_talk#2",
+    "title": "The Appraisal Conversation",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1.5,
+    "firstDelta": 1.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Camera-off excellent-connection detail is sharp; camera-on is a funny, quietly passive-aggressive option.",
+     "+1 'Noted, thanks' payoff was dry and earned; camera-off detail amusing"
+    ]
+   },
+   {
+    "id": "second_look",
+    "title": "The Board Takes a Second Look",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1.5,
+    "firstDelta": 1.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 CEP reveal paid off; 'decided about you, reviewed without you' is sharp",
+     "0 Two-option card with an obvious shape; last year's slide-theft line was the better beat."
+    ]
+   },
+   {
+    "id": "the_counter",
+    "title": "The Counter",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1.5,
+    "firstDelta": 1.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Poly-then-night-classes background pays off immediately; specific, earned setup for a real dilemma.",
+     "+1 Poly-then-night-classes backstory feeds the first card; the counter dilemma has real tension."
+    ]
+   },
+   {
+    "id": "inconvenient_figure",
+    "title": "The Inconvenient Figure",
+    "act": "I",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 1.33,
+    "firstDelta": 1.33,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Real dilemma with costs; 'range rather than a number' is wry and credible",
+     "+1 Classic civil-service dilemma, well observed, but the shape is familiar.",
+     "+1 Euphemism-by-range is a sharp, believable bureaucratic ask; choices feel familiar though."
+    ]
+   },
+   {
+    "id": "cos_speech",
+    "title": "Committee of Supply",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "\"saying so is not one of the available options\" but option C is exactly that; also COS 'cuts' where the real term is Committee of Supply debates."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+1 Contradictory setup: nothing ready, yet a quiet pilot; COS detail feels right though.",
+     "+1 'Saying so is not one of the available options' then option C contradicts it — mildly funny, real dilemma."
+    ]
+   },
+   {
+    "id": "the_walkabout#1",
+    "title": "The Hawker Centre",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 Hawker uncle with grievance is a familiar beat; the one-line note was nice though.",
+     "+1 Hawker uncle is a familiar setup; fair choice but predictable beat"
+    ]
+   },
+   {
+    "id": "the_work",
+    "title": "The Work",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Montage lines earn it: 'the lift is evidence'; nameless-work line lands",
+     "0 Compressed two years skipped a beat; 'that is how you know it is real' is good, but choices feel familiar."
+    ]
+   },
+   {
+    "id": "town_council",
+    "title": "The Town Council",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Lift saga returns with real tradeoff; 'contractor has a cousin' is crisp",
+     "0 Lift callback is earned, but the fast-versus-proper choice is obvious and thin."
+    ]
+   },
+   {
+    "id": "the_quiet_year#1",
+    "title": "A Year Without Incident",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 'A timely reminder, of what' lands; but this card is a rerun of Year 1",
+     "+1 'Four slides more than it needed' is a good line; this card itself is mild."
+    ]
+   },
+   {
+    "id": "the_night_degree",
+    "title": "The Last Paper",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 Eleven things in hand was a good detail; last-paper card feels familiar.",
+     "+1 The 'eleven things in their hands' line lands; but this choice feels like a foregone conclusion."
+    ]
+   },
+   {
+    "id": "new_ro",
+    "title": "The New Reporting Officer",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+2 Sticky-note callback paid off with 'however'; the new-boss card itself is stock.",
+     "0 Credit-taking outcome was sharp, but new-boss card is a familiar office setup."
+    ]
+   },
+   {
+    "id": "consultant_report",
+    "title": "The Report",
+    "act": "I",
+    "shown": 2,
+    "sessions": 1,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": 1,
+    "meanRepeatRule": -2.5,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 Consultant-repeats-your-memo is a familiar satire beat, though option C is sharp.",
+     "+1 Consultancy recycling an old minute is a recognisable, well-observed bit; option C is sly."
+    ]
+   },
+   {
+    "id": "the_pq#1",
+    "title": "Question Time",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "Annual package jumps from $296,801 to $928,220 for a Parliamentary Secretary; that pay figure is wildly off the real institutions."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+1 Eleven per cent is a neat callback to the 31% figure, but same dilemma shape."
+    ]
+   },
+   {
+    "id": "improvement_plan#2",
+    "title": "The Improvement Plan",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 'Copied to a name you do not recognise' is a nicely chilling detail"
+    ]
+   },
+   {
+    "id": "budget_round",
+    "title": "The Budget Round",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 'Someone reads it twice' callback is neat; budget bid is a familiar card."
+    ]
+   },
+   {
+    "id": "tea_session",
+    "title": "An Invitation to Tea",
+    "act": "II",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 'Promoted in every sense except the paperwork' lands; tea invitation is a well-judged, knowing beat."
+    ]
+   },
+   {
+    "id": "model_ward",
+    "title": "A Model Ward",
+    "act": "III",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 0.67,
+    "firstDelta": 0.67,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+2 Montage compresses years nicely; the auntie and the lift is a payoff.",
+     "+1 Pleasant but low-stakes; both options mentor, little cost either way",
+     "-1 Mentoring card with two near-identical options; no cost either way, feels fake."
+    ]
+   },
+   {
+    "id": "reshuffle",
+    "title": "The Reshuffle",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 0.5,
+    "firstDelta": 0.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Eleven people sure it's good news is dry and right; real cost either way.",
+     "-1 Eleven people sure it's good news is funny; Hansard repeat still stings"
+    ]
+   },
+   {
+    "id": "postit_workshop",
+    "title": "Public Sector Transformation",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 0.5,
+    "firstDelta": 0.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+1 'Used against you, admiringly' and 'you are the scheme' landed; offsite satire is familiar.",
+     "0 Offsite-post-it satire is a familiar target, though 'never announced' landed"
+    ]
+   },
+   {
+    "id": "the_work#2",
+    "title": "The Work",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 0,
+    "firstDelta": 0,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-1 'Phased implementation' is a nice dry line, but the choice feels largely the same.",
+     "+1 'Phased implementation' is a good dry jab; the montage years skipped past, and 'The Work' card has recurred."
+    ]
+   },
+   {
+    "id": "the_mps_night#1",
+    "title": "Meet-the-People, After the Rain",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 0,
+    "firstDelta": 0,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "0 Meet-the-People card again; the nobody-recognised-you line was good, this is repeat."
+    ]
+   },
+   {
+    "id": "late_night#1",
+    "title": "Sunday, 4pm",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 0,
+    "firstDelta": 0,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "0 Meanwhile summaries had good lines; the Sunday cake dilemma is a familiar work-life trope."
+    ]
+   },
+   {
+    "id": "the_pq",
+    "title": "The Parliamentary Question",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 0,
+    "firstDelta": 0,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "0 Straight-answer versus dodge is a card I've seen twice now."
+    ]
+   },
+   {
+    "id": "the_quiet_year#2",
+    "title": "A Year Without Incident",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": -0.5,
+    "firstDelta": -0.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-1 Coffee machine joke is mild; a second consecutive filler year drags.",
+     "0 Coffee machine line is a decent small joke, but the quiet-year card is filler."
+    ]
+   },
+   {
+    "id": "speech_vindicated",
+    "title": "Hansard",
+    "act": "III",
+    "shown": 2,
+    "sessions": 1,
+    "meanDelta": -1,
+    "firstDelta": 1,
+    "repeatDelta": -3,
+    "meanRepeatRule": -2.5,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-3 Exact repeat of the Hansard card; no callback, just recycled",
+     "+1 Pleasant, but the choice seems low-cost and the outcome predictable"
+    ]
+   },
+   {
+    "id": "the_work#4",
+    "title": "The Work",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": -1,
+    "firstDelta": -1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-1 Dry bureaucratic world is fine, but stakes remain flat; ninth-draft line mildly amusing"
+    ]
+   }
+  ]
+ },
+ "quitCards": [
+  {
+   "id": "canary_wink",
+   "title": null,
+   "quits": 1
+  },
+  {
+   "id": "new_ro",
+   "title": "The New Reporting Officer",
+   "quits": 1
+  },
+  {
+   "id": "model_ward",
+   "title": "A Model Ward",
+   "quits": 1
+  }
+ ],
+ "endings": {
+  "ending:pm": {
+   "title": "Prime Minister",
+   "shown": 1,
+   "meanDelta": -2,
+   "reasons": [
+    "-2 Ending card flatters; 'clean enough to be boring' is good, rest is padded."
+   ]
+  },
+  "ending:retired": {
+   "title": "Retired, Honourably",
+   "shown": 1,
+   "meanDelta": 2,
+   "reasons": [
+    "+2 Declassified ceiling reveal and 'boring as compliment' make a satisfying ending"
+   ]
+  },
+  "ending:permsec": {
+   "title": "Permanent Secretary",
+   "shown": 1,
+   "meanDelta": 2,
+   "reasons": [
+    "+2 Declassified ending reframes whole career; 'Tea wants Standing 54' stings, and the legacy line earns it."
+   ]
+  }
+ },
+ "canaries": {
+  "bland": {
+   "shown": 4,
+   "meanDelta": -1.5,
+   "overallMeanDelta": 1.74,
+   "passed": true
+  },
+  "wink": {
+   "shown": 5,
+   "flagged": 5,
+   "offToneRate": 100,
+   "baseOffToneRate": 8.5,
+   "passed": true
+  },
+  "rules": {
+   "blandMaxMean": -1,
+   "blandBelowOverall": 2,
+   "winkMinRate": 0.5,
+   "winkAboveBase": 0.3
+  },
+  "passed": true
+ },
+ "survey": {
+  "quitReasons": [
+   "Fourth-wall winks and filler cards with fake choices wore thin; the deadpan satire kept breaking its own tone and I stopped caring.",
+   "Cards started repeating, fake choices crept in, and the fourth-wall winking soured me; the good callbacks stopped arriving often enough.",
+   "Cards started repeating formulas I'd already seen, choices stopped costing anything, and the fourth-wall winks broke the deadpan the game had earned."
+  ],
+  "bestCard": {
+   "The Background Check": 1,
+   "A Small Favour": 1,
+   "The Thing That Actually Happens": 1
+  },
+  "worstCard": {
+   "Is This Satire?": 2,
+   "The Quarterly Return": 1
+  }
+ },
+ "cost": {
+  "total": 0.29559,
+  "perTap": 0.00251,
+  "perCareer": 0.04927,
+  "perSession": 0.09853,
+  "surveyShare": 3.4,
+  "tokens": {
+   "input": 2511,
+   "output": 7247,
+   "cacheWrite": 57276,
+   "cacheRead": 749129,
+   "thinking": 0
+  },
+  "tokensPerSession": {
+   "input": 837,
+   "output": 2416,
+   "cacheWrite": 19092,
+   "cacheRead": 249710,
+   "thinking": 0
+  },
+  "tokensPerTap": {
+   "input": 21,
+   "output": 61,
+   "cacheWrite": 485,
+   "cacheRead": 6349,
+   "thinking": 0
+  },
+  "cacheReadShare": 92.6,
+  "costSplit": {
+   "input": 1.7,
+   "cacheWrite": 48.4,
+   "cacheRead": 25.3,
+   "output": 24.5
+  },
+  "projection": {
+   "perTap": {
+    "claude-haiku-5-5": 0.00016,
+    "claude-sonnet-5-5": 0.0025
+   },
+   "perCareer": {
+    "claude-haiku-5-5": 0.00309,
+    "claude-sonnet-5-5": 0.04927
+   },
+   "perSession": {
+    "claude-haiku-5-5": 0.00618,
+    "claude-sonnet-5-5": 0.09853
+   },
+   "fullSession": {
+    "claude-haiku-5-5": 0.01544,
+    "claude-sonnet-5-5": 0.24634
+   }
+  }
+ }
+}

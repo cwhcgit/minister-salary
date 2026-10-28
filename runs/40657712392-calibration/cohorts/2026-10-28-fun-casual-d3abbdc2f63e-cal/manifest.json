@@ -1,0 +1,53 @@
+{
+ "cohort": "2026-10-28-fun-casual-d3abbdc2f63e-cal",
+ "kind": "fun-sessions",
+ "persona": {
+  "id": "fun-casual",
+  "name": "Jia Hui",
+  "file": "fun-casual.md",
+  "blind": true,
+  "model": "claude-haiku-5-5",
+  "effort": "low",
+  "thinking": "disabled",
+  "runs": 100,
+  "turnSchema": "fun",
+  "diarySchema": "fun",
+  "canaries": true,
+  "titleProbe": false,
+  "cohortCapUsd": 2,
+  "fun": {
+   "start": 50,
+   "cap": 100,
+   "quitLine": 35,
+   "decay": 2,
+   "maxDelta": 10,
+   "repeatSteps": [
+    5,
+    10,
+    15
+   ],
+   "repeatMultiplier": 1.5,
+   "freshToReset": 3,
+   "careers": 5,
+   "origins": "keep"
+  },
+  "answers": "How long does a casual mobile player keep tapping, and what makes them stop?"
+ },
+ "buildHash": "d3abbdc2f63e",
+ "canaryBuildHash": "b871c32ee115",
+ "buildRoot": "/home/runner/work/minister-salary/minister-salary/web",
+ "canaries": true,
+ "canaryCareers": "all",
+ "systemHash": "7bf9782daf9a",
+ "sessions": 3,
+ "plannedSessions": 3,
+ "careers": 5,
+ "capUsd": 1,
+ "maxTurns": 60,
+ "tags": "phone",
+ "concurrency": 4,
+ "dryRun": false,
+ "mock": false,
+ "calibration": true,
+ "createdAt": "2026-10-28T08:34:11.407Z"
+}
