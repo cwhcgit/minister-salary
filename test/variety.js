@@ -51,7 +51,7 @@ function career(origin, seed, recent, score) {
       }
     }
     run = H.step(run, pick);
-    for (const l of run.last.log) if (l.kind === 'meanwhile' && !/^Age \d+\. Nothing of consequence/.test(l.text)) meanwhile.push(l.text.replace(/^Age \d+\. /, ''));
+    for (const l of run.last.log) if (l.kind === 'meanwhile' && !/^(Age \d+\. )?Nothing of consequence/.test(l.text)) meanwhile.push(l.text.replace(/^Age \d+\. /, ''));
   }
   const t = H.trace(run);
   const indicators = id => /^the_indicators/.test(id);

@@ -435,7 +435,7 @@
   {
     "id": "forum_letter",
     "title": "The Forum Page",
-    "body": "A member of the public has written to the Straits Times Forum about your scheme. The letter is 340 words, deeply aggrieved, and correct on every factual point.",
+    "body": "A member of the public has written to the Straits Times Forum page about a scheme your division runs. His letter is 340 words long, very angry, and right about every fact. {senior} wants the ministry's reply drafted by Friday, and the paper will print whatever goes out.",
     "requires": {
       "minRank": 2,
       "maxRank": 5
@@ -444,31 +444,31 @@
     "once": true,
     "choices": [
       {
-        "text": "Draft a reply thanking him for his feedback.",
+        "text": "Draft the standard reply: thank him for his feedback.",
         "effects": {
           "standing": 6,
           "integrity": -5
         },
-        "outcome": "Your reply explains that the scheme is regularly reviewed. It is 310 words and says nothing. It is cleared in a single round, which tells you everything about what clears easily."
+        "outcome": "Your reply says the scheme \"is regularly reviewed\", in 310 words that commit to nothing. It's approved in a single round, which tells you exactly what gets approved easily here."
       },
       {
-        "text": "Draft a reply that concedes his point and says what you will change.",
+        "text": "Draft a reply that admits he's right, and says what will change.",
         "effects": {
           "integrity": 10,
           "reputation": 7,
           "standing": -6,
           "competence": 4
         },
-        "outcome": "It goes through nine rounds of clearance and emerges shorter but intact. He writes again, to thank you. That one does not get published."
+        "outcome": "It goes through nine rounds of approval and comes out shorter, but the admission survives. He writes in again, to thank you. That letter doesn't get published."
       },
       {
-        "text": "Find out who he is.",
+        "text": "Look him up in the ministry's records first.",
         "effects": {
           "standing": 7,
           "integrity": -14,
           "heat": 15
         },
-        "outcome": "He is a retired schoolteacher in Ang Mo Kio. You look at his address on your screen for a while and then close the window, but you did open it.",
+        "outcome": "He's a retired schoolteacher in Ang Mo Kio. You close the window without doing anything with it. But you did open his file, and the system logs who opens what.",
         "setFlags": [
           "looked_him_up"
         ],
@@ -797,7 +797,7 @@
   {
     "id": "cny_lohei",
     "title": "Lo Hei",
-    "body": "The divisional Chinese New Year lunch. The Permanent Secretary is at your table. There are eleven minutes of toss-and-auspicious-phrases and then a genuine, unhurried question directed at you: \"So — what do you actually think we're getting wrong?\"",
+    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of tossing yusheng and shouting good wishes, she turns to you and asks, properly: \"So, what do you actually think we're getting wrong?\"",
     "requires": {
       "minRank": 2,
       "maxRank": 6
@@ -806,31 +806,31 @@
     "once": true,
     "choices": [
       {
-        "text": "Tell her. Specifically. With an example.",
+        "text": "Tell her, specifically, with an example.",
         "effects": {
           "reputation": 8,
           "competence": 7,
           "cep": 2,
           "standing": -3
         },
-        "outcome": "You have about ninety seconds and you use all of them. She listens without eating. At the end she says \"say that again on Thursday, to the committee\", and you realise you have just been promoted in every sense except the paperwork.",
+        "outcome": "You have about ninety seconds, and you use all of them. She stops eating to listen. At the end she says, \"Say that again on Thursday, to the committee.\" The people who decide promotions will be in that room.",
         "standout": true
       },
       {
-        "text": "Something safe about communications.",
+        "text": "Say something safe about communications.",
         "effects": {
           "standing": 4,
           "competence": -2
         },
-        "outcome": "\"Mm,\" she says, and turns to the person on her left, and that is the whole of it."
+        "outcome": "\"Mm,\" she says, and turns to the person on her left. That's the end of it, and you both know it."
       },
       {
-        "text": "Deflect the question back to her.",
+        "text": "Turn the question back to her.",
         "effects": {
           "standing": 6,
           "reputation": -2
         },
-        "outcome": "She answers it at length and very well. You learn a great deal. She learns nothing about you, which was the question."
+        "outcome": "She answers it at length, and very well. You learn a great deal. She learns nothing about you, which is what she was asking."
       }
     ]
   },
@@ -2694,19 +2694,19 @@
     },
     "variants": [
       {
-        "body": "The appraisal form has been redesigned. It now has four competency domains instead of six, a section called \"Aspirations\", and a box for your reporting officer's overall impression that is larger than all the others put together.",
+        "body": "It's appraisal week. HR has redesigned the form: four areas instead of six, a new section called \"Aspirations\", and a box for your reporting officer's overall impression that's bigger than all the others put together. Everyone knows the big box is what decides your grade.",
         "choices": [
           {
-            "text": "Ask what the overall impression says.",
-            "outcome": "\"It's still being calibrated.\" The form is turned face down, gently, the way people close the door on a sleeping room."
+            "text": "Ask what your overall impression says.",
+            "outcome": "\"It's still being calibrated.\" Your reporting officer turns the form face down, gently. You'll find out with everyone else, when the grades come out."
           },
           {
             "text": "Fill in \"Aspirations\" with something ambitious.",
-            "outcome": "You write \"to lead a cross-agency effort\". Within the month you are put on one, as a member. It is a start, and it is minuted as one."
+            "outcome": "You write \"to lead a cross-agency effort\". A month later you're put on one, as an ordinary member. Your reporting officer calls it a good first step."
           },
           {
-            "text": "Ask which of the four domains actually counts.",
-            "outcome": "A pause, and then an honest answer: \"Ownership.\" You spend the year owning things. It shows."
+            "text": "Ask which of the four areas actually counts.",
+            "outcome": "After a pause, an honest answer: \"Ownership.\" So you spend the year taking charge of things nobody else wanted. It shows, and it's noticed."
           }
         ]
       },
@@ -3473,19 +3473,19 @@
         ]
       },
       {
-        "body": "A year so uneventful that the most discussed thing around you is the new coffee machine. It has nine settings. Everyone uses the same one.",
+        "body": "Nothing much happens to you this year. The most discussed thing on your floor is the new coffee machine, which has nine settings; everyone uses the same one. A quiet year is a chance to do something for yourself.",
         "choices": [
           {
-            "text": "Read every file you have been forwarded and never opened.",
-            "outcome": "You find two things that matter and one that should have mattered three years ago. You fix the two and write a note about the third that nobody will enjoy receiving."
+            "text": "Read every file you've been forwarded and never opened.",
+            "outcome": "In the unopened files you find two problems you can fix, and one that someone should have fixed three years ago. You fix the two, and write a note about the third that nobody will enjoy receiving."
           },
           {
             "text": "Make yourself useful to the people who decide things.",
-            "outcome": "You become the person who knows where things are. It is not a title, but it is the next best thing."
+            "outcome": "You become the person who knows where everything is and who to ask. It isn't a title, but it gets you into rooms."
           },
           {
             "text": "Take your leave, all of it.",
-            "outcome": "You take all of it. The building does not fall down, which is either reassuring or the opposite."
+            "outcome": "You take every day of leave you're owed. The office copes without you, which is either reassuring or not."
           }
         ]
       }
@@ -3494,7 +3494,7 @@
   {
     "id": "the_counter",
     "title": "The Counter",
-    "body": "{senior} has commissioned a redesign of the public-facing application process. The project team has never worked a counter. You worked one for four years.",
+    "body": "You're a Management Executive at the {ministry}, eight months in. Before this you spent four years working a public service counter, and you're still finishing a part-time degree at night. Your reporting officer, {senior}, has set up a team to redesign how the public applies for a scheme. You're the most junior person on it, and the only one who has ever worked a counter.",
     "requires": {
       "origin": [
         "poly"
@@ -3506,7 +3506,7 @@
     "once": true,
     "choices": [
       {
-        "text": "Tell them exactly why it will fail.",
+        "text": "Tell the team exactly why the new design will fail.",
         "effects": {
           "competence": 10,
           "reputation": 6,
@@ -3520,15 +3520,15 @@
             ]
           }
         },
-        "outcome": "You describe, from memory, the eleven things a person at that counter is actually holding in their hands. The room goes quiet. The design changes. {senior} asks where you worked before, and listens to the answer."
+        "outcome": "You describe, from memory, the eleven things a person at a counter is actually holding in their hands. The room goes quiet, and the design changes. {senior} asks where you worked before, and listens to the whole answer."
       },
       {
-        "text": "Let them learn it from the pilot.",
+        "text": "Say nothing, and let the pilot show them.",
         "effects": {
           "competence": 3,
           "standing": 3
         },
-        "outcome": "The pilot fails in precisely the way you knew it would. You are asked to fix it, which is a smaller job than being listened to would have been."
+        "outcome": "The pilot fails exactly the way you knew it would, and you're the one asked to fix it. Being listened to the first time would have been less work."
       }
     ],
     "priority": true
@@ -3536,7 +3536,7 @@
   {
     "id": "the_night_degree",
     "title": "The Last Paper",
-    "body": "Six years of Tuesday and Thursday evenings, and one Saturday exam left. {peer}, who joined the service the same year you did, finished {peer.their} degree at twenty-two, full-time, funded.",
+    "body": "Your part-time degree is down to one Saturday exam, after six years of evening classes. It's also the busiest month of the year at work. {peer}, who joined the service the same year as you, finished {peer.their} degree at twenty-two, full-time, on a scholarship. Finishing yours opens jobs a diploma doesn't.",
     "requires": {
       "origin": [
         "poly"
@@ -3547,23 +3547,23 @@
     "once": true,
     "choices": [
       {
-        "text": "Finish it.",
+        "text": "Sit the exam and finish it.",
         "effects": {
           "competence": 8,
           "cep": 2,
           "integrity": 5,
           "standing": 3
         },
-        "outcome": "Second Upper. Nobody at work marks the occasion because nobody at work knew. It changes what you are eligible for, and it changes, more slowly, what you think you are eligible for."
+        "outcome": "Second Upper. Nobody at work marks it, because nobody at work knew. But it changes which jobs you can apply for, and, more slowly, which ones you think you can."
       },
       {
-        "text": "Defer. Work is at a critical point.",
+        "text": "Defer it. Work needs you this month.",
         "effects": {
           "standing": 5,
           "competence": 2,
           "cep": -1
         },
-        "outcome": "The critical point passes and is replaced by another. You finish the degree four years later, by which time the eligibility it unlocks has moved."
+        "outcome": "The busy month is followed by another, and another. You finish the degree four years later, by which time the jobs it would have opened have gone to other people."
       }
     ],
     "priority": true
@@ -5377,115 +5377,115 @@
     "alternates": [
       "whip_word"
     ],
-    "body": "Your reporting officer has put you on a performance improvement plan. It has three objectives, a review in six months, and a line for your signature that is described, twice, as an acknowledgement rather than an agreement.",
+    "body": "Last year's D means an improvement plan: three targets, six months, then a review. Miss the targets, or get another D, and you'll be asked to leave. Your reporting officer asks you to sign it, and explains, twice, that signing means you've read it, not that you agree.",
     "choices": [
       {
-        "text": "Sign it, and do exactly what it says.",
+        "text": "Sign it, and meet every target.",
         "effects": {
           "competence": 3,
           "standing": 2,
           "appraisal": 10
         },
         "pip": true,
-        "outcome": "You meet all three objectives, two of them early. The six-month review lasts eleven minutes and ends with the word \"encouraging\".",
+        "outcome": "You meet all three targets, two of them early. The review takes eleven minutes and ends with the word \"encouraging\". The plan is closed, and so, for now, is the question of you leaving.",
         "stance": "comply"
       },
       {
-        "text": "Ask for a transfer before the review.",
+        "text": "Ask HR for a transfer before the review.",
         "effects": {
           "competence": 4,
           "standing": -3
         },
         "pip": true,
         "resetWarnings": true,
-        "outcome": "HR finds you a post in a division with a new director, who reads files from the most recent page backwards. You start, in effect, again.",
+        "outcome": "HR finds you a post in another division, under a director who has never read your file. The plan closes when you move. You start again, among people who don't know you yet.",
         "stance": "move"
       },
       {
-        "text": "Contest the assessment, in writing.",
+        "text": "Dispute the D, in writing.",
         "effects": {
           "integrity": 5,
           "standing": -4,
           "appraisal": 4
         },
         "pip": true,
-        "outcome": "Your reply runs to four pages and is filed with the plan. It changes nothing on paper and something in the room: your reporting officer now writes everything down.",
+        "outcome": "Your reply runs to four pages and is filed with the plan. It doesn't change the grade. It does change your reporting officer, who now keeps notes of every meeting with you.",
         "stance": "contest"
       }
     ],
     "variants": [
       {
-        "body": "The plan comes on version 4.1 of the template, which has itself been through an improvement plan. New this year: an \"Officer's Reflections\" box of 150 words, and a tick confirming the plan was co-created. It has been ticked for you.",
+        "body": "Last year's D means an improvement plan: targets to meet in six months, then a review, and if it goes badly you'll be asked to leave. The plan comes on version 4.1 of HR's template, which has a new 150-word box for \"Officer's Reflections\" and a tick saying you helped write the plan. Someone has ticked it for you.",
         "choices": [
           {
-            "text": "Reflect in 150 words, then meet every objective.",
-            "outcome": "Your reflections come to exactly 150 words; the box takes no more. You meet the objectives two months early, and version 4.2 of the template quotes your plan, anonymised, as an example."
+            "text": "Fill in the reflections, then meet every target.",
+            "outcome": "Your reflections come to exactly 150 words, because the box won't take more. You meet the targets two months early. Version 4.2 of the template uses your plan, without your name, as its example."
           },
           {
             "text": "Ask HR for a posting before the review.",
-            "outcome": "HR finds you a post in another division before the review can be scheduled. Your plan is closed with the status \"Officer Transferred\", which the system counts as a completion."
+            "outcome": "HR moves you to another division before the review is even scheduled. The plan closes as \"Officer Transferred\", which the HR system counts as a success."
           },
           {
             "text": "Use the reflections box to disagree, politely.",
-            "outcome": "You disagree in 150 words, politely, and the box is printed and filed. At the review your reporting officer has read it twice, and asks a question that is not on the template."
+            "outcome": "You disagree in 150 words, politely. At the review your reporting officer has clearly read them twice, and asks you something that isn't on the template: what would you change?"
           }
         ]
       },
       {
-        "body": "Your reporting officer would like to \"set some clear expectations\" for the next six months. There are six, numbered, and copied to a name you do not recognise.",
+        "body": "Last year's appraisal was a D, so your reporting officer is putting you on an improvement plan. It arrives by email: six targets for the next six months. An HR officer you've never met is copied in, because if you miss the targets, the next conversation is about you leaving. The email's subject line is \"Supporting your growth\".",
         "choices": [
           {
-            "text": "Meet every one of them, in writing.",
-            "outcome": "Six months, six expectations, six emails confirming each one met. The name you did not recognise replies to the last one: \"Noted, thanks.\""
+            "text": "Hit every target, and keep proof of each one in writing.",
+            "outcome": "Six months, six targets, six emails confirming each one was met. The HR officer replies to the last one, \"Noted, thanks\", and closes the plan. You have never been so well documented."
           },
           {
-            "text": "Ask for a fresh start somewhere else.",
-            "outcome": "HR agrees briskly, as if it had been waiting for you to ask. The new division has never heard of you, which is the point."
+            "text": "Ask HR for a transfer to another division.",
+            "outcome": "HR agrees so quickly it seems to have been expecting you. Your new division has never heard of you or your plan, which is exactly what you wanted."
           },
           {
-            "text": "Reply to each expectation, point by point.",
-            "outcome": "Your reply is longer than the expectations. It is read carefully by the name you did not recognise, who now knows exactly who you are."
+            "text": "Reply to each target, explaining why it's unfair.",
+            "outcome": "Your reply is longer than the plan. The HR officer reads all of it, carefully, and now knows exactly who you are. The plan stays as it was."
           }
         ]
       },
       {
-        "body": "The plan arrives as a form in the HR system, pre-filled. Your reporting officer has ticked four boxes and written one sentence. The system needs your acknowledgement within five working days, or it records one on your behalf.",
+        "body": "Last year's D means an improvement plan: targets to meet in six months, then a review, and if it goes badly you'll be asked to leave. It arrives as a form in the HR system. Your reporting officer has ticked four boxes and written one sentence. If you don't acknowledge it within five working days, the system acknowledges it for you.",
         "choices": [
           {
             "text": "Acknowledge it, and work through the four boxes.",
-            "outcome": "All four boxes are cleared by the review. The system marks the plan Completed, in green, and asks you to rate the experience out of five. You give it a four."
+            "outcome": "All four boxes are done by the review. The system marks the plan \"Completed\" in green, then asks you to rate the experience out of five. You give it a four."
           },
           {
-            "text": "Ask HR for a move before day five.",
-            "outcome": "HR moves faster than the system. By the time the plan acknowledges itself, you have been moved, and the plan is addressed to a post you no longer hold."
+            "text": "Ask HR for a transfer before day five.",
+            "outcome": "HR moves faster than the system. By the time the plan acknowledges itself, you've been moved, and it's addressed to a job you no longer have."
           },
           {
-            "text": "Use the comments box, all two thousand characters of it.",
-            "outcome": "Two thousand characters exactly; the box takes no more. Your reporting officer reads every one, books a meeting room, and, a year late, asks what you think."
+            "text": "Fill the comments box, all 2,000 characters of it.",
+            "outcome": "You use exactly 2,000 characters; the box won't take more. Your reporting officer reads every one, books a meeting room, and asks, for the first time, what you think is going wrong."
           }
         ]
       },
       {
-        "body": "The plan's three objectives are, in order: to improve; to demonstrate improvement; and to take ownership of the improvement journey. Your reporting officer says they come from a leadership course, and that the third is the important one.",
+        "body": "Last year's D means an improvement plan: three objectives for the next six months, then a review that decides whether you stay. The objectives are, in order: to improve, to show that you've improved, and to \"take ownership of your improvement journey\". Your reporting officer got them from a leadership course.",
         "choices": [
           {
-            "text": "Improve, demonstrably, and own the journey.",
-            "outcome": "You improve, report it in a monthly email, and own the journey in a slide. All three objectives are marked Met, and the leadership course asks if it may use the slide."
+            "text": "Improve, show it, and own the journey.",
+            "outcome": "You improve, report it in a monthly email, and own the journey in a slide. All three objectives are marked \"Met\", and the leadership course asks if it can use your slide."
           },
           {
-            "text": "Ask to take the journey to another division.",
-            "outcome": "HR arranges a posting within the month. Your new reporting officer has never heard of the improvement journey, and on your first day asks you to fix a spreadsheet instead."
+            "text": "Ask to continue the journey in another division.",
+            "outcome": "HR arranges a transfer within the month. Your new reporting officer has never heard of an improvement journey, and on your first day asks you to fix a spreadsheet instead."
           },
           {
-            "text": "Ask, in writing, where the journey ends.",
-            "outcome": "Your one-page question is filed with the plan and never answered. At the review the third objective has been quietly removed, and the first two are marked Met."
+            "text": "Ask, in writing, how you'll know the journey has ended.",
+            "outcome": "Your one-page question is filed with the plan and never answered. At the review, the third objective has quietly disappeared, and the first two are marked \"Met\"."
           }
         ]
       }
     ],
     "series": {
       "key": "plan",
-      "full": 1
+      "full": 99
     },
     "montageLines": {
       "comply": [
@@ -5521,45 +5521,45 @@
     "requires": {
       "minRank": 8
     },
-    "body": "The Party Whip would like a word, over kopi, about your attendance, your ward, and a speech the papers described as \"brief\". Nobody uses the word \"plan\". Everybody can see one.",
+    "body": "Last year your work as an MP was graded a D. So the Party Whip would like a word, over kopi, about your attendance, your ward, and a speech the papers called \"brief\". Nobody says \"improvement plan\", but everyone knows that's what this is: another D and your time in politics is over.",
     "choices": [
       {
-        "text": "Promise to do better, and then do better.",
+        "text": "Promise to do better, and then do it.",
         "effects": {
           "competence": 3,
           "reputation": 3,
           "appraisal": 10
         },
         "pip": true,
-        "outcome": "You speak in three debates and visit every block in your ward twice. The Whip's next note to you is one line long and says \"Good.\"",
+        "outcome": "You speak in three debates and visit every block in your ward twice. The Whip's next note to you is one line long. It says \"Good.\"",
         "stance": "comply"
       },
       {
-        "text": "Ask to move to a committee where you can be useful.",
+        "text": "Ask to move to a committee where you'd be useful.",
         "effects": {
           "competence": 4,
           "standing": -3
         },
         "pip": true,
         "resetWarnings": true,
-        "outcome": "You are moved to a Government Parliamentary Committee that meets at eight in the morning. You are, it turns out, a morning person now.",
+        "outcome": "You're moved to a Government Parliamentary Committee that meets at eight in the morning. It turns out you're a morning person now.",
         "stance": "move"
       },
       {
-        "text": "Explain, politely, that the ward comes first.",
+        "text": "Explain, politely, that your ward comes first.",
         "effects": {
           "reputation": 5,
           "standing": -4,
           "appraisal": 4
         },
         "pip": true,
-        "outcome": "The Whip agrees that the ward comes first, and notes that Parliament is also, technically, somewhere.",
+        "outcome": "The Whip agrees that the ward comes first, and points out that Parliament is also, technically, somewhere you're meant to be.",
         "stance": "contest"
       }
     ],
     "series": {
       "key": "plan",
-      "full": 1
+      "full": 99
     },
     "montageLines": {
       "comply": [

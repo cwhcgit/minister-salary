@@ -13,7 +13,7 @@ const STATKEYS = [
 const LETTERS = "ABCDEFGH";
 
 // same as ui.js: the CEP hint and the Heat rumour both read as RUMOUR
-const TAG_LABEL = { cep: "rumour", heat: "rumour", rival: "batchmate" };
+const TAG_LABEL = { cep: "rumour", heat: "rumour", rival: "batchmate", noted: "appraisal" };
 
 // same as ui.js
 const money = n =>
@@ -23,8 +23,8 @@ const money = n =>
 // Text the start screen shows around the origin picker (ui.js startScreen).
 const START = {
   title: "Minister Salary",
-  tagline: "You join the public service at the bottom. The formula that sets the Prime Minister's pay is published, and so is the distance between you and it.",
-  hint: "One tap is one year. Choices are permanent, and some of them come back."
+  tagline: "You join the public service. The formula that sets the Prime Minister's pay is published, and so is the distance between you and it.",
+  hint: "One tap is one year, and every year ends with an appraisal grade. A or B+ gets you considered for promotion; two Ds in a row and you are asked to leave. Choices are permanent, and some of them come back."
 };
 
 function header(build, S, prev) {
@@ -110,7 +110,7 @@ function toText(view, opts = {}) {
   }
   if (view.header) out.push(headerText(view.header));
   if (view.outcome) {
-    const lines = view.outcome.log.map(l => tags === "none" ? `  ${l.text}` : `  [${l.tag.toUpperCase()}] ${l.text}`);
+    const lines = view.outcome.log.map(l => l.tag === "year" ? `  ${l.text.toUpperCase()}` : tags === "none" ? `  ${l.text}` : `  [${l.tag.toUpperCase()}] ${l.text}`);
     out.push(`LAST YEAR\n${view.outcome.text}${lines.length ? "\n" + lines.join("\n") : ""}`);
   }
   if (view.event) {

@@ -96,6 +96,7 @@ const Engine = (() => {
   // filled first, then the cast, then the batchmate.
   function sub(text, s, content) {
     if (typeof text !== "string" || text.indexOf("{") < 0) return text;
+    if (s.ministry) text = text.replace(/\{ministry\}/g, s.ministry);
     if (content && s.cast) text = castSub(content, s, text);
     if (!s.rival) return text;
     const p = PRON[s.rival.pron] || PRON.f;
@@ -114,7 +115,7 @@ const Engine = (() => {
   // cannot be drawn, and a refill is a new person with no history. What the player did to or for
   // a person is kept on that person (their flags), so callbacks can never land on a stranger.
   const TOKEN = /\{([A-Za-z]+)(?:\.([A-Za-z]+))?\}/g;
-  const NOT_ROLES = new Set(["rival", "they", "them", "their", "title"]);
+  const NOT_ROLES = new Set(["rival", "they", "them", "their", "title", "ministry"]);
   const NAME_PARTICLES = new Set(["bin", "binte", "bte", "s/o", "d/o", "a/l", "a/p", "de", "da", "van"]);
   const lc1 = x => x.charAt(0).toLowerCase() + x.slice(1);
   const isUpper = x => !!x && x.charAt(0) !== x.charAt(0).toLowerCase();
@@ -850,7 +851,13 @@ const Engine = (() => {
     if (fx.heat) s.heat = clamp(s.heat + fx.heat, 0, 100);
     if (fx.cep) s.cep = clamp(s.cep + fx.cep, 0, 16);
     // "It is noted": a choice that embarrassed someone senior costs this year's appraisal.
-    if (fx.appraisal) s.appraisalMod += fx.appraisal;
+    if (fx.appraisal) {
+      s.appraisalMod += fx.appraisal;
+      // say so when it happens, not only at year-end
+      if (!opts.safe) log.push({ kind: "noted", text: fx.appraisal < 0
+        ? "This will count against you at this year's appraisal."
+        : "This will count in your favour at this year's appraisal." });
+    }
     // The minister's own policy choice sets next year's National Bonus, in months (0-6).
     if (ch.nationalBonus !== undefined) {
       s.nbMonths = clamp(ch.nationalBonus, 0, 6);
@@ -993,11 +1000,35 @@ const Engine = (() => {
   }
 
   function appraise(content, s) {
-    const noise = (roll(s) * 20) - 10;
+    const noise = (roll(s) * 10) - 5;
     const mod = s.appraisalMod;
     const score = 0.50 * s.competence + 0.30 * s.standing + 0.15 * s.reputation + noise + mod;
     s.appraisalMod = 0;
     return { grade: content.grades.find(g => score >= g.min), score, noise, mod };
+  }
+
+  // Why the grade came out as it did, in plain words: the stats behind it, any choice that
+  // counted, and whether the year's luck moved it a grade.
+  function appraisalWhy(content, s, grade, noise, mod) {
+    const gradeAt = x => content.grades.find(g => x >= g.min) || content.grades[content.grades.length - 1];
+    const base = 0.50 * s.competence + 0.30 * s.standing + 0.15 * s.reputation;
+    const fromStats = gradeAt(base), withChoices = gradeAt(base + mod);
+    const order = content.grades.map(g => g.code);   // best first
+    // the full sentence the first time; after that, the numbers
+    const parts = [s.whySeen
+      ? `Competence ${s.competence}, Standing ${s.standing}, Reputation ${s.reputation}: ${fromStats.code} level`
+      : `An appraisal is mostly Competence, then Standing, then a little Reputation. Yours (${s.competence}, ${s.standing}, ${s.reputation}) are ${fromStats.code} level`];
+    s.whySeen = true;
+    if (mod < 0) parts.push(withChoices.code !== fromStats.code ? `a choice this year that counted against you took it to ${withChoices.code}` : "a choice this year counted against you");
+    if (mod > 0) parts.push(withChoices.code !== fromStats.code ? `a choice this year that counted for you lifted it to ${withChoices.code}` : "a choice this year counted for you");
+    if (grade.code !== withChoices.code) {
+      const better = order.indexOf(grade.code) < order.indexOf(withChoices.code);
+      parts.push(s.year <= 1 && grade.code === "C" && withChoices.code === "D"
+        ? "a first appraisal never goes below C"
+        : better ? `a good year lifted it to ${grade.code}` : `a bad year took it down to ${grade.code}`);
+    }
+    const promo = s.rank < 8 && order.indexOf(grade.code) > order.indexOf("B+") ? " Promotion needs B+ or better." : "";
+    return parts.join("; ") + "." + promo;
   }
 
   // The words for a grade. A grade may list several (labels; label is the fallback): each time
@@ -1025,12 +1056,17 @@ const Engine = (() => {
       : `Annual package: $${pay.toLocaleString()}` });
 
     s.yearsInGrade++;
-    const { grade, score, noise, mod } = appraise(content, s);
+    let { grade, score, noise, mod } = appraise(content, s);
+    // The first appraisal comes after months in the job, not years: it can be middling, not a D.
+    if (s.year <= 1 && grade.code === "D") grade = content.grades.find(g => g.code === "C") || grade;
     t.appraisal = { grade: grade.code, score, noise, noted: mod };
     // A choice that was noted shows up here, in the one word that matters.
     const label = gradeLabel(s, grade);
-    log.push({ kind: "appraisal", text: mod < 0
-      ? `${label} The comments section includes the word "however".` : label });
+    // The letter goes first: the euphemism is the joke, the letter is what it means.
+    const whyLine = appraisalWhy(content, s, grade, noise, mod);
+    log.push({ kind: "appraisal", text: `Grade ${grade.code}. ${mod < 0
+      ? `${label} The comments section includes the word "however".` : label}` });
+    log.push({ kind: "why", text: whyLine });
 
     if (grade.code === "C") s.consecutiveC++; else s.consecutiveC = 0;
     if (grade.code === "D") s.consecutiveD++; else { s.consecutiveD = 0; s.pipDone = false; }
@@ -1050,8 +1086,14 @@ const Engine = (() => {
         : "Your reporting officer asks whether you have considered the private sector. It is phrased as concern."];
       const w = pickLine(s, key, lines.length, true);
       useLine(s, key, w);
-      log.push({ kind: "warn", text: lines[w] });
-      if (!s.pipDone && !s.scheduled.some(x => x.eventId === "improvement_plan") && content.events.some(e => e.id === "improvement_plan")) {
+      const planNext = !s.pipDone && !s.scheduled.some(x => x.eventId === "improvement_plan") && content.events.some(e => e.id === "improvement_plan");
+      const then = planNext
+        ? (pol ? " A D is a formal warning: next year the Whip will put you on notice, and another D after that ends your time in office."
+               : " A D is a formal warning: next year you will be put on an improvement plan, and another D after that and you will be asked to leave.")
+        : (pol ? " This is your second warning. Another D next year ends your time in office."
+               : " This is your second warning. Another D next year and you will be asked to leave.");
+      log.push({ kind: "warn", text: lines[w] + then });
+      if (planNext) {
         const e = { eventId: "improvement_plan", fireYear: s.year + 1 };
         s.scheduled.push(e);
         (t.added = t.added || []).push(e);
@@ -1061,8 +1103,8 @@ const Engine = (() => {
       s.consecutiveC = 0;
       s.competence = clamp(s.competence + 3, 0, 100);
       log.push({ kind: "warn", text: s.rank >= 8
-        ? "You are asked to chair a select committee nobody asked to sit on. The work is real, at least."
-        : "You are transferred sideways to a division nobody asked to join. The work is real, at least." });
+        ? "That's three Cs in a row, so the Whip moves you to chair a select committee nobody wanted to sit on. The work is real, at least."
+        : "That's three Cs in a row, so HR moves you sideways to another division, for a fresh start. Nobody there asked for you, but the work is real." });
     }
 
     // The last two steps are never given on "strong" alone.
@@ -1374,7 +1416,7 @@ const Engine = (() => {
         applyEffects(s, ch.effects);
         s.fillerSeen[ev.id]++;
         useLine(s, m.lineKey, m.line);
-        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${m.body}` });
+        lines.push({ kind: "year", text: `Age ${before.age} · A year without a decision` }, { kind: "meanwhile", text: m.body });
         ev = { ...ev, title: m.title };
       } else if (kind === "series") {
         // the habit, in full: the same choice the player made, with everything it does
@@ -1387,7 +1429,7 @@ const Engine = (() => {
         if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
         f.passed = (f.passed || 0) + 1;
         useLine(s, key, li);
-        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${pool[li]}` }, ...al);
+        lines.push({ kind: "year", text: `Age ${before.age} · A year without a decision` }, { kind: "meanwhile", text: pool[li] }, ...al);
       } else if (kind === "auto") {
         const vev = render(content, variantOf(ev, s), s);
         choice = ev.autoPlay.choice || 0; ch = vev.choices[choice];
@@ -1395,14 +1437,14 @@ const Engine = (() => {
         const line = autoLine(ev, s);
         const al = applyChoice(content, s, ev, ch, pt, { safe: true });
         if (line.key) useLine(s, line.key, line.i);
-        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${line.text || ch.outcome}` }, ...al);
+        lines.push({ kind: "year", text: `Age ${before.age} · A year without a decision` }, { kind: "meanwhile", text: line.text || ch.outcome }, ...al);
       } else {
         ch = QUIET_YEAR.choices[0];
         applyEffects(s, ch.effects);
-        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${QUIET_YEAR.body}` });
+        lines.push({ kind: "year", text: `Age ${before.age} · A year without a decision` }, { kind: "meanwhile", text: QUIET_YEAR.body });
       }
       const yl = s.ending ? [] : yearEnd(content, s, pt);
-      lines.push(...compress(yl));
+      lines.push(...yl);
       log.push(...lines);
       t.passed.push(pt);
       s.history.push({ ...before, ev: pt.ev, title: ev ? ev.title : QUIET_YEAR.title, choice, text: ch.text, passed: kind,
@@ -1436,7 +1478,10 @@ const Engine = (() => {
       const S = (s.series = s.series || {}), k = ev.series.key, cur = S[k] || { full: 0, passed: 0 };
       S[k] = { ...cur, stance: ch.stance !== undefined ? ch.stance : cur.stance, full: cur.full + 1 };
     }
-    if (!s.ending) log.push(...yearEnd(content, s, trace));
+    if (!s.ending) {
+      const ye = yearEnd(content, s, trace);
+      if (ye.length) log.push({ kind: "year", text: `Age ${before.age} · Year-end review` }, ...ye);
+    }
     if (ev.id.startsWith(MONTAGE)) {
       s.fillerSeen[ev.id.slice(MONTAGE.length)]++;
       if (ev.line !== null && ev.line !== undefined) useLine(s, ev.lineKey, ev.line);
@@ -1457,7 +1502,9 @@ const Engine = (() => {
       noted: ((ch.effects || {}).appraisal || 0) < 0,
       hints: log.filter(l => l.kind === "cep" || l.kind === "heat").map(l => l.kind + "|" + l.text) });
     s.currentEvent = null;
-    if (!s.ending) log.push(...passYears(content, s, trace));
+    if (!s.ending) {
+      log.push(...passYears(content, s, trace));
+    }
     return { state: s, outcome: trace.outcome ? sub(trace.outcome, s, content) : ch.outcome, log: capNotes(s, log), trace };
   }
 
