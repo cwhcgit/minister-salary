@@ -401,6 +401,18 @@
     {
       "flag": "quiet_word",
       "item": "a quiet word with a colleague about a Telegram channel"
+    },
+    {
+      "flag": "pilot_flattered",
+      "item": "a pilot's best number, sent up for a Minister's speech without its explanation"
+    },
+    {
+      "flag": "whistle_ignored",
+      "item": "forty-one purchases you were shown and did not report"
+    },
+    {
+      "flag": "protege_claimed",
+      "item": "a junior officer's objection, which you said you had asked for"
     }
   ],
   "folderLimit": 3,
@@ -411,7 +423,365 @@
     "did_mps",
     "recused",
     "raw_feedback",
-    "team_recognised"
+    "team_recognised",
+    "whistle_protected",
+    "protege_backed"
+  ],
+  "declassifiedFlags": [
+    {
+      "label": "The pilot",
+      "requires": {
+        "flagsAll": [
+          "pilot_told"
+        ]
+      },
+      "text": "Your number went into a Minister's speech. When the Auditor-General came for it, you said whose it was."
+    },
+    {
+      "label": "The pilot",
+      "requires": {
+        "flagsAll": [
+          "pilot_caveats"
+        ]
+      },
+      "text": "Your number went into a Minister's speech, and its caveats stayed in the evaluation. The Auditor-General found both, and accepted the caveats."
+    },
+    {
+      "label": "The pilot",
+      "requires": {
+        "flagsAll": [
+          "pilot_shared"
+        ]
+      },
+      "text": "The national scheme landed within two points of your evaluation. You sent the paragraph to the people who earned it."
+    },
+    {
+      "label": "The pilot",
+      "requires": {
+        "flagsAll": [
+          "pilot_noted"
+        ]
+      },
+      "text": "The national scheme landed within two points of your evaluation. You sent the paragraph upstairs, which also worked."
+    },
+    {
+      "label": "The pilot",
+      "requires": {
+        "flagsAll": [
+          "pilot_flattered"
+        ]
+      },
+      "text": "Your best number is in Hansard, in a Minister's speech. The paragraph that explained it is in a file."
+    },
+    {
+      "label": "The pilot",
+      "requires": {
+        "flagsAll": [
+          "pilot_honest"
+        ]
+      },
+      "text": "Your number went up with its explanation, and the speech used both. Neither was applauded. Neither was ever corrected."
+    },
+    {
+      "label": "The pilot",
+      "requires": {
+        "flagsAll": [
+          "pilot_waited"
+        ]
+      },
+      "text": "You asked for another year, and got it. The speech went ahead without your pilot, and the pilot without the speech."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_ignored",
+          "whistle_said_protect"
+        ]
+      },
+      "text": "Shown forty-one purchases, you did nothing. Asked years later what to do with a spreadsheet, you said: take it up yourself."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_ignored",
+          "whistle_said_leave"
+        ]
+      },
+      "text": "Shown forty-one purchases, you kept them to yourself. Years later you gave the same advice. It was not taken."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_said_protect"
+        ]
+      },
+      "text": "Asked years later what to do with a spreadsheet, you said: take it up yourself, and keep the name out."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_said_channel"
+        ]
+      },
+      "text": "Asked years later what to do with a spreadsheet, you said: use the channel, and put the name in the box."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_said_leave"
+        ]
+      },
+      "text": "Asked years later what to do with a spreadsheet, you said: leave it with me. It did not stay there."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_corrected"
+        ]
+      },
+      "text": "Told the night before that paragraph two was not true, you corrected it. The reply ran eleven seconds shorter."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_uncorrected"
+        ]
+      },
+      "text": "Told the night before that paragraph two was not true, you read it anyway. The file has the date."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_ignored"
+        ]
+      },
+      "text": "Forty-one purchases, shown to you three years before the Auditor-General found them."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_protected"
+        ]
+      },
+      "text": "Forty-one purchases, reported under your name. The spreadsheet's file properties still say whose it was."
+    },
+    {
+      "label": "The whistleblower",
+      "requires": {
+        "flagsAll": [
+          "whistle_reported"
+        ]
+      },
+      "text": "Forty-one purchases, reported through the channel, with a junior officer's name in the box marked Source."
+    },
+    {
+      "label": "The protégé",
+      "requires": {
+        "flagsAll": [
+          "protege_backed",
+          "protege_claimed"
+        ]
+      },
+      "text": "You took the credit for your protégé's best objection, and later backed the promotion. The panel minutes record only the second."
+    },
+    {
+      "label": "The protégé",
+      "requires": {
+        "flagsAll": [
+          "protege_backed"
+        ]
+      },
+      "text": "Your protégé was promoted on your word, and posted away within the month. The minutes call it succession planning."
+    },
+    {
+      "label": "The protégé",
+      "requires": {
+        "flagsAll": [
+          "protege_not_yet"
+        ]
+      },
+      "text": "Your protégé's file has one line in your words: \"not yet\". It is the line everyone remembers."
+    },
+    {
+      "label": "The protégé",
+      "requires": {
+        "flagsAll": [
+          "protege_conceded"
+        ]
+      },
+      "text": "Told by your protégé, in front of forty people, that your paper was wrong, you agreed. The story is still told, kindly, at your expense."
+    },
+    {
+      "label": "The protégé",
+      "requires": {
+        "flagsAll": [
+          "protege_held"
+        ]
+      },
+      "text": "Told by your protégé, in front of forty people, that your paper was wrong, you held your line, and conceded over kopi."
+    },
+    {
+      "label": "The protégé",
+      "requires": {
+        "flagsAll": [
+          "protege_claimed"
+        ]
+      },
+      "text": "Your protégé's best objection is in the minutes as a challenge you asked for."
+    },
+    {
+      "label": "The protégé",
+      "requires": {
+        "flagsAll": [
+          "protege_met"
+        ]
+      },
+      "text": "You gave someone an hour a fortnight, and the truth when it was needed. Nobody minuted it."
+    },
+    {
+      "label": "The U-turn",
+      "requires": {
+        "flagsAll": [
+          "uturn_wrong"
+        ]
+      },
+      "text": "Defended in the House, reversed two years later, and called wrong in a statement you shaped. Hansard keeps all three."
+    },
+    {
+      "label": "The U-turn",
+      "requires": {
+        "flagsAll": [
+          "uturn_position"
+        ]
+      },
+      "text": "\"The position at the time.\" Hansard keeps the position, the time, and the day it changed."
+    },
+    {
+      "label": "The U-turn",
+      "requires": {
+        "flagsAll": [
+          "uturn_cut"
+        ]
+      },
+      "text": "Your defence is in Hansard. So is the statement that reversed it, which never mentions it. Each is searchable alone."
+    },
+    {
+      "label": "The U-turn",
+      "requires": {
+        "flagsAll": [
+          "uturn_phased"
+        ]
+      },
+      "text": "Not reversed: phased out over six months, at your suggestion. The minutes say so."
+    },
+    {
+      "label": "The U-turn",
+      "requires": {
+        "flagsAll": [
+          "uturn_argued"
+        ]
+      },
+      "text": "You argued to keep it, from your own replies. The minutes say you \"raised considerations\"."
+    },
+    {
+      "label": "The U-turn",
+      "requires": {
+        "flagsAll": [
+          "uturn_agreed"
+        ]
+      },
+      "text": "You agreed it should go, quickly. Nobody mentioned your replies, which was a courtesy."
+    },
+    {
+      "label": "The U-turn",
+      "requires": {
+        "flagsAll": [
+          "uturn_met"
+        ]
+      },
+      "text": "Your reply is in Hansard: the policy is sound, or under review, or a set of figures. It is still the position, at the time."
+    },
+    {
+      "label": "The bond",
+      "requires": {
+        "flagsAll": [
+          "bond_bought"
+        ]
+      },
+      "text": "The bank called it a signing bonus. PSC called it liquidated damages. It was one cheque."
+    },
+    {
+      "label": "The bond",
+      "requires": {
+        "flagsAll": [
+          "bond_kept",
+          "bond_said_go"
+        ],
+        "notDuringBond": true
+      },
+      "text": "Served in full. Years later you told your own scholar to take the bank's money. PSC thanked you, in writing."
+    },
+    {
+      "label": "The bond",
+      "requires": {
+        "flagsAll": [
+          "bond_kept",
+          "bond_extended"
+        ],
+        "notDuringBond": true
+      },
+      "text": "Eight years in all: six for the degree, two for a master's, and one bank's offer declined in the middle."
+    },
+    {
+      "label": "The bond",
+      "requires": {
+        "flagsAll": [
+          "bond_kept",
+          "bond_own"
+        ],
+        "notDuringBond": true
+      },
+      "text": "Six years served in full, with a master's paid for at night so that they would not become eight."
+    },
+    {
+      "label": "The bond",
+      "requires": {
+        "flagsAll": [
+          "bond_kept"
+        ],
+        "notDuringBond": true
+      },
+      "text": "Six years served in full, with a master's declined and then a bank's offer. The deed is in a PSC file you have never asked to see."
+    },
+    {
+      "label": "The bond",
+      "requires": {
+        "flagsAll": [
+          "bond_extended"
+        ],
+        "notDuringBond": true
+      },
+      "text": "Eight years: six for the degree, two for a master's. Nobody counts that far, except you."
+    },
+    {
+      "label": "The bond",
+      "requires": {
+        "flagsAll": [
+          "bond_met"
+        ],
+        "notDuringBond": true
+      },
+      "text": "Six years, served in full. The deed is in a PSC file you have never asked to see."
+    }
   ],
   "legacyTiers": [
     {

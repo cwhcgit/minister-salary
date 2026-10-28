@@ -412,4 +412,35 @@ ok('Meanwhile lines: deterministic, and the next run prefers lines this one did 
   assert.strictEqual(build.engine.eventOf(build.content, S).body, ev.montageLines[0][n - 1]);
 });
 
+ok('story chains: Declassified names each story once, a bond can be extended, and a ministry move is remembered', () => {
+  const E = build.engine;
+  const card = (id, choice, requires) => ({ id, title: 'T', body: 'B', requires, once: true, choices: [{ text: 'Go.', outcome: 'Gone.', ...choice }] });
+  const C = { ...build.content, events: build.content.events.concat([
+    card('__t_bond', { bond: 2 }, { duringBond: true }), card('__t_move', { newMinistry: true })]) };
+  const S = H.newRun('scholar', 5, { build }).S;
+  // duringBond holds while the bond runs, and a bond choice adds its years after it
+  assert.ok(E.eligible(C.events.find(e => e.id === '__t_bond'), S));
+  const after = E.advance(C, { ...S, currentEvent: '__t_bond' }, 0).state;
+  assert.strictEqual(after.bondYears, S.bondYears + 2);
+  assert.ok(!E.eligible(C.events.find(e => e.id === '__t_bond'), { ...S, year: S.bondYears + 1 }));
+  // after the bond has ended, a new one starts from the year it is signed
+  const late = E.advance(C, { ...S, year: 9, currentEvent: '__t_bond' }, 0).state;
+  assert.strictEqual(late.bondYears, 11);
+  // a move to another ministry leaves a flag, once
+  const moved = E.advance(C, { ...S, currentEvent: '__t_move' }, 0).state;
+  assert.notStrictEqual(moved.ministry, S.ministry);
+  assert.deepStrictEqual(moved.flags.filter(f => f === 'moved_ministry'), ['moved_ministry']);
+  // the first matching line per label, after Exposure
+  const D = { ...C, declassifiedFlags: [
+    { label: 'The test', requires: { flagsAll: ['t_a'] }, text: 'first' },
+    { label: 'The test', text: 'fallback' },
+    { label: 'Another', requires: { flagsAll: ['t_b'] }, text: 'never' }] };
+  const lines = f => E.declassify(D, { ...S, flags: f, ending: 'level' });
+  const ours = f => lines(f).filter(l => ['The test', 'Another'].includes(l.label));
+  assert.deepStrictEqual(ours(['t_a']), [{ label: 'The test', text: 'first' }]);
+  assert.deepStrictEqual(ours([]), [{ label: 'The test', text: 'fallback' }]);
+  const L = lines(['t_a']).map(l => l.label);
+  assert.ok(L.indexOf('The test') > L.indexOf('Exposure'), 'story lines come after Exposure');
+});
+
 console.log(`\nAll ${passed} harness tests passed.`);

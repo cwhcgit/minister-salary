@@ -66,13 +66,14 @@ object to `events.json` — no code changes:
 
 | Field | Meaning |
 |---|---|
-| `requires` | `minRank`/`maxRank` (0-16), `minStats`/`maxStats`, `minAge`/`maxAge`, `flagsAll`/`flagsNone`, `origin`/`originNot`, `notDuringBond` |
+| `requires` | `minRank`/`maxRank` (0-16), `minStats`/`maxStats`, `minAge`/`maxAge`, `flagsAll`/`flagsNone`, `origin`/`originNot`, `notDuringBond`/`duringBond` |
 | `weight` | Relative chance of being drawn. Default 5. |
 | `once` | `true` = never repeats. `false` = filler, keeps the pool full. |
 | `priority` | Fires the moment it qualifies, ahead of the random pool. |
 | `triggered` | Never drawn randomly; only reachable via another choice's `schedule`. |
 | `effects` | `reputation` `standing` `integrity` `competence` (0-100), plus `wealth`, `heat`, `cep` |
 | `schedule` | Deferred consequences — the mechanism that makes choices matter |
+| `bond` | Years a choice adds to the bond (a sponsorship with a bond of its own), served after any bond still running |
 | `{peer}` `{junior.title}` … | The run's recurring people (peer, junior, senior, journalist, grassroots leader, fellow MP), named per run. `requires.cast` and a choice's `cast` read and change what each person remembers |
 | `parts` | Named slots of interchangeable options (`{asker}`, `{want.done}`), one combination per showing |
 
