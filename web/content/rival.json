@@ -1,0 +1,535 @@
+{
+  "names": [
+    {
+      "name": "Wei Ling",
+      "pron": "f"
+    },
+    {
+      "name": "Jun Hao",
+      "pron": "m"
+    },
+    {
+      "name": "Nur Aisyah",
+      "pron": "f"
+    },
+    {
+      "name": "Farhan",
+      "pron": "m"
+    },
+    {
+      "name": "Priya",
+      "pron": "f"
+    },
+    {
+      "name": "Arjun",
+      "pron": "m"
+    },
+    {
+      "name": "Hui Min",
+      "pron": "f"
+    },
+    {
+      "name": "Kelvin",
+      "pron": "m"
+    },
+    {
+      "name": "Shu Fen",
+      "pron": "f"
+    },
+    {
+      "name": "Hafiz",
+      "pron": "m"
+    },
+    {
+      "name": "Kavitha",
+      "pron": "f"
+    },
+    {
+      "name": "Zhi Wei",
+      "pron": "m"
+    }
+  ],
+  "edge": {
+    "scholar": [
+      1,
+      9
+    ],
+    "grad": [
+      0,
+      8
+    ],
+    "poly": [
+      -2,
+      6
+    ]
+  },
+  "lines": {
+    "promoted": [
+      "{rival} is promoted to {title}. The congratulatory email reaches you too, as a courtesy.",
+      "{rival} is now {title}. Your intake's group chat hears about it before you do.",
+      "{rival} makes {title}. {They} sent round a very nice message, which you have read twice."
+    ],
+    "winService": [
+      "There was one promotion slot at your grade this year. It went to you. {rival} sent congratulations within the minute, which is how you know the news reached {them} first.",
+      "The ranking exercise had room for one of you at this grade. It was you. {rival} took it well, in the sense that nobody saw {them} take it."
+    ],
+    "loseService": [
+      "There was one promotion slot at your grade this year. It went to {rival}. You are told it was \"very close\", which is what they tell everyone, including {rival}.",
+      "The ranking exercise had room for one of you at this grade. It was {rival}. Your reporting officer says you are \"next in line\", and does not say for what."
+    ],
+    "winPolitics": [
+      "There was one appointment at your level this year. It went to you. {rival} was the first to shake your hand at the swearing-in, and held it a beat longer than necessary."
+    ],
+    "losePolitics": [
+      "There was one appointment at your level this year. It went to {rival}. The Prime Minister's Office describes the decision as \"finely balanced\"."
+    ],
+    "pm": [
+      "{rival} is to be the next Prime Minister. {They} telephoned you before the announcement, or said {they} did."
+    ],
+    "pmBlocked": [
+      "The office above yours is occupied. {rival} is Prime Minister, and shows no sign of having considered the private sector.",
+      "The office above yours remains occupied. {rival} has announced a ten-year plan, which you are choosing to read as a policy document."
+    ],
+    "elected": [
+      "{rival} was introduced at a press conference as a new candidate, and won. Your batchmate is now a Member of Parliament."
+    ],
+    "lostSeat": [
+      "{rival} stood for Parliament and lost the ward. A month later {rival} was back in the service at the same grade, which everyone agreed to call a homecoming."
+    ],
+    "consultancy": [
+      "{rival} is leaving for the private sector. The farewell lunch is at a hotel, which is how you know the package is good."
+    ],
+    "scandal": [
+      "{rival} has resigned, for personal reasons. Everyone has a theory. Nobody says it in the lift."
+    ],
+    "rankedBelowService": [
+      "The ranking exercise put {rival} above you this year. Neither of you went up. The slot went to someone from another division whom you have never met.",
+      "You were ranked just below {rival} this year, which is the one comparison nobody needed to make out loud. Nobody made it out loud."
+    ],
+    "rankedBelowPolitics": [
+      "When the appointments were settled, {rival}'s name was ahead of yours on the list. Neither of you moved. Someone from the back bench did."
+    ],
+    "appointed": [
+      "{rival} is appointed {title}. The swearing-in photograph is on the front page, and you are in the background of it.",
+      "{rival} is now {title}. Your intake's group chat hears about it before you do."
+    ],
+    "promotedApart": [
+      "{rival} is now {title}. You hear about it at a dinner, from someone who assumes you already knew.",
+      "{rival} is now {title}. Your intake's group chat hears about it before you do."
+    ],
+    "electedTogether": [
+      "{rival} stood at the same general election, in another constituency, and won. Your batchmate is now a Member of Parliament too."
+    ],
+    "lostSeatTogether": [
+      "{rival} stood at the same general election, in another constituency, and lost. A month later {rival} was back in the service at the same grade, which everyone agreed to call a homecoming."
+    ],
+    "consultancyPolitics": [
+      "{rival} has resigned from Parliament for a board appointment. The papers call it an orderly transition, which is what they call all of them."
+    ],
+    "scandalPolitics": [
+      "{rival} has resigned from Parliament, for personal reasons. Everyone has a theory. Nobody says it in the lobby."
+    ],
+    "retired": [
+      "{rival} retires as {title}. There is a farewell lunch. You send a card, and mean it."
+    ]
+  },
+  "folder": [
+    {
+      "flag": "undercut_batchmate",
+      "item": "a peer assessment of {rival} that did you more good than it did {them}"
+    }
+  ],
+  "events": [
+    {
+      "id": "rival_360",
+      "title": "The 360",
+      "rivalCard": true,
+      "once": true,
+      "weight": 7,
+      "requires": {
+        "minRank": 0,
+        "maxRank": 5,
+        "rival": {
+          "sameRank": true
+        }
+      },
+      "body": "It is 360-degree feedback season. You have been asked to assess {rival}, who joined in your intake and turns up at every meeting that matters. The form promises anonymity. It has a free-text box headed \"Areas for development\".",
+      "choices": [
+        {
+          "text": "Write something true and useful.",
+          "effects": {
+            "integrity": 4,
+            "competence": 1
+          },
+          "rival": {
+            "rel": 1
+          },
+          "outcome": "Three sentences on stakeholder management, true and mildly painful. {rival} acts on all three within a year and never learns where they came from."
+        },
+        {
+          "text": "Write something true and damaging.",
+          "effects": {
+            "standing": 2,
+            "integrity": -6
+          },
+          "rival": {
+            "rel": -2,
+            "mod": -6
+          },
+          "setFlags": [
+            "undercut_batchmate"
+          ],
+          "outcome": "It is accurate. It is also the only peer comment the ranking panel quotes. {rival} is described that year as \"still developing\", which you did not write but did cause."
+        },
+        {
+          "text": "Write \"No comments\" and submit.",
+          "effects": {
+            "standing": 1,
+            "competence": -1
+          },
+          "rival": {},
+          "outcome": "The form accepts it. HR's report later notes \"limited peer input\" for your whole division, which is the one comment that applies to you."
+        }
+      ]
+    },
+    {
+      "id": "rival_annex",
+      "title": "Annex B",
+      "rivalCard": true,
+      "once": true,
+      "weight": 7,
+      "requires": {
+        "minRank": 1,
+        "maxRank": 6,
+        "rival": {
+          "minRank": 1,
+          "maxRank": 6,
+          "near": 1
+        }
+      },
+      "body": "{rival}'s paper for the Permanent Secretary goes up at nine tomorrow. You are copied for information. Annex B has the right numbers in the wrong columns, and the recommendation rests on them.",
+      "choices": [
+        {
+          "text": "Call {them} tonight.",
+          "effects": {
+            "integrity": 4,
+            "standing": 1,
+            "competence": -1
+          },
+          "rival": {
+            "rel": 2
+          },
+          "outcome": "{rival} fixes it at 11:50pm and says thank you twice, the second time in a voice you have not heard before."
+        },
+        {
+          "text": "Say nothing. It is not your paper.",
+          "effects": {
+            "standing": 2,
+            "integrity": -1
+          },
+          "rival": {
+            "mod": -8
+          },
+          "outcome": "The Permanent Secretary finds Annex B in four minutes. For the rest of the year {rival} is described as \"detail-light\". You are described as nothing at all, which this year is better."
+        },
+        {
+          "text": "Raise it at the meeting, helpfully.",
+          "effects": {
+            "standing": 4,
+            "competence": 2,
+            "integrity": -3
+          },
+          "rival": {
+            "rel": -3,
+            "mod": -10
+          },
+          "setFlags": [
+            "undercut_batchmate"
+          ],
+          "outcome": "You are thanked for your rigour. {rival} thanks you too, later, in the corridor, in a tone the minutes would not have captured."
+        }
+      ]
+    },
+    {
+      "id": "rival_posting",
+      "title": "One Posting",
+      "rivalCard": true,
+      "once": true,
+      "weight": 7,
+      "requires": {
+        "minRank": 1,
+        "maxRank": 3,
+        "rival": {
+          "sameRank": true
+        }
+      },
+      "body": "There is one two-year posting to the Budget Division at Finance this cycle, and your division has two nominees: you and {rival}. HR suggests the two of you \"have a conversation\" first, which in HR means one of you should withdraw.",
+      "choices": [
+        {
+          "text": "Withdraw, and say it was your idea.",
+          "effects": {
+            "integrity": 5,
+            "standing": -3
+          },
+          "rival": {
+            "rel": 3,
+            "mod": 6
+          },
+          "outcome": "{rival} goes to Finance. Three weeks later a photograph arrives of the view from {their} new office, which is, admittedly, a very good view."
+        },
+        {
+          "text": "Let HR decide on the files.",
+          "effects": {
+            "competence": 1
+          },
+          "rival": {
+            "contest": {
+              "bonus": 0,
+              "win": {
+                "cep": 1,
+                "standing": 3
+              },
+              "lose": {
+                "standing": -1
+              },
+              "winText": "The posting goes to you. {rival} says {they} had expected it to, which may even be true.",
+              "loseText": "The posting goes to {rival}. HR's email to you uses the phrase \"many strong candidates\". There were two."
+            }
+          },
+          "outcome": "HR decides on the files, which takes six weeks and a matrix."
+        },
+        {
+          "text": "Make your case to the Director, privately.",
+          "effects": {
+            "standing": 3,
+            "integrity": -4
+          },
+          "rival": {
+            "rel": -3,
+            "contest": {
+              "bonus": 8,
+              "win": {
+                "cep": 1,
+                "standing": 3
+              },
+              "lose": {
+                "standing": -3
+              },
+              "winText": "The posting goes to you. {rival} hears, eventually, how.",
+              "loseText": "The posting goes to {rival}. The Director mentions, in passing, that {rival} did not come to see her about it."
+            }
+          },
+          "outcome": "The Director listens, nods, and says she will \"bear it in mind\", which is the most anyone has ever got from her."
+        }
+      ]
+    },
+    {
+      "id": "rival_views",
+      "title": "Views Are Sought",
+      "rivalCard": true,
+      "once": true,
+      "weight": 7,
+      "requires": {
+        "minRank": 3,
+        "maxRank": 6,
+        "rival": {
+          "sameRank": true
+        }
+      },
+      "body": "{rival} has been shortlisted for a post one grade above you both. The panel has asked for views from {their} peers. Yours will be read, and filed, and remembered by someone.",
+      "choices": [
+        {
+          "text": "Back {them}, warmly and specifically.",
+          "effects": {
+            "integrity": 3,
+            "standing": 1
+          },
+          "rival": {
+            "rel": 3,
+            "mod": 8
+          },
+          "outcome": "You write half a page and mean all of it. Someone on the panel later shows it to {rival}, who never mentions it to you and never forgets it."
+        },
+        {
+          "text": "Back {them}, briefly.",
+          "effects": {
+            "standing": 2
+          },
+          "rival": {
+            "mod": 2
+          },
+          "outcome": "Two lines, both true, neither memorable. The panel files them with the others."
+        },
+        {
+          "text": "Suggest, carefully, that another year at grade might help {them}.",
+          "effects": {
+            "standing": 3,
+            "integrity": -6
+          },
+          "rival": {
+            "rel": -3,
+            "mod": -10
+          },
+          "setFlags": [
+            "undercut_batchmate"
+          ],
+          "outcome": "The panel finds your view \"balanced\". {rival} learns of it eventually, the way everyone here learns everything: from someone who was not supposed to say."
+        }
+      ]
+    },
+    {
+      "id": "rival_ward",
+      "title": "Saturday",
+      "rivalCard": true,
+      "once": true,
+      "weight": 7,
+      "requires": {
+        "minRank": 8,
+        "rival": {
+          "minRank": 8,
+          "maxRank": 14
+        }
+      },
+      "body": "{rival}'s ward has had a difficult year: a lift upgrading that overran, and a Forum letter a week. {They} asked whether you would walk the ward with {them} on Saturday morning. Your own ward has a walkabout planned for the same morning.",
+      "choices": [
+        {
+          "text": "Go. Walk {their} ward.",
+          "effects": {
+            "reputation": -3,
+            "standing": 3,
+            "integrity": 2
+          },
+          "rival": {
+            "rel": 3
+          },
+          "outcome": "Six blocks, two markets, and one auntie who assumes you are {rival}'s campaign manager and tells you exactly what she thinks of {them}. The letters to the Forum stop by March."
+        },
+        {
+          "text": "Send your volunteers instead.",
+          "effects": {
+            "standing": 1,
+            "reputation": 1
+          },
+          "rival": {
+            "rel": 1
+          },
+          "outcome": "Your volunteers are better at it than you are. {rival} thanks them by name, which you notice."
+        },
+        {
+          "text": "Stay in your own ward.",
+          "effects": {
+            "reputation": 3,
+            "standing": -1
+          },
+          "rival": {
+            "rel": -2
+          },
+          "outcome": "Your ward is pleased to see you. {rival} manages without you, and remembers the Saturday."
+        }
+      ]
+    },
+    {
+      "id": "rival_first",
+      "title": "First Among Equals",
+      "rivalCard": true,
+      "once": true,
+      "weight": 12,
+      "requires": {
+        "minRank": 14,
+        "maxAge": 64,
+        "minStats": {
+          "standing": 60
+        },
+        "flagsNone": [
+          "bid_for_top",
+          "kingmaker"
+        ],
+        "rival": {
+          "minRank": 13,
+          "maxRank": 15
+        }
+      },
+      "body": "The question of the next generation's first among equals is being settled, informally, by people in a room. It has come down, as your intake joked at its first dinner, to the two of you.",
+      "choices": [
+        {
+          "text": "Put yourself forward.",
+          "effects": {
+            "reputation": 4,
+            "standing": -2
+          },
+          "rival": {
+            "rel": -2
+          },
+          "outcome": "You say it plainly, to the people who need to hear it. {rival} says it too, in the next room. It will be decided the way these things are: slowly, and then all at once.",
+          "setFlags": [
+            "bid_for_top"
+          ],
+          "markSeen": [
+            "succession"
+          ]
+        },
+        {
+          "text": "Back {rival}. Ask for Finance.",
+          "effects": {
+            "standing": 6,
+            "integrity": 2,
+            "wealth": 150000
+          },
+          "rival": {
+            "rel": 4,
+            "cep": 1
+          },
+          "setFlags": [
+            "kingmaker",
+            "backed_batchmate"
+          ],
+          "outcome": "{rival} thanks you once, in private, and never again, which is how you know it was understood.",
+          "markSeen": [
+            "succession"
+          ]
+        }
+      ],
+      "priority": true
+    },
+    {
+      "id": "rival_name",
+      "title": "The Name Put Forward",
+      "rivalCard": true,
+      "once": true,
+      "weight": 12,
+      "requires": {
+        "maxRank": 6,
+        "rival": {
+          "ahead": true,
+          "relMin": 3,
+          "maxRank": 7
+        }
+      },
+      "body": "{rival}, senior to you now, has been asked for names for a cross-ministry task force that everyone understands to be a proving ground. {They} put yours first.",
+      "choices": [
+        {
+          "text": "Accept, and thank {them} properly.",
+          "effects": {
+            "cep": 1,
+            "standing": 4
+          },
+          "rival": {
+            "rel": 1
+          },
+          "outcome": "Lunch, on you, at a place {rival} chose. It was more expensive than {they} let on, and worth it."
+        },
+        {
+          "text": "Decline. You would rather go up on your own file.",
+          "effects": {
+            "integrity": 6,
+            "standing": -2
+          },
+          "rival": {
+            "rel": -1
+          },
+          "outcome": "{rival} says that is fair. It is, and it costs you a year."
+        }
+      ]
+    }
+  ]
+}

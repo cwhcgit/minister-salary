@@ -120,7 +120,8 @@ class Metrics {
     const end = tr.ending || "UNTERMINATED";
     o.endings[end] = (o.endings[end] || 0) + 1;
     o.wealth.push(tr.final.wealth);
-    o.turns.push(tr.turns.length);
+    o.turns.push(tr.turns.length);   // taps: cards the player decided
+    (o.years ||= []).push(tr.turns.length + tr.turns.reduce((n, t) => n + (t.yearsPassed || 0), 0));   // years lived
 
     const seen = new Set();
     let ceilingTurn = null, shownAfter = false, takenAfter = false;
@@ -133,7 +134,9 @@ class Metrics {
       if (quiet) a.quiet++;
       if (t.event.repeat) a.repeat++;
       if (t.event.repeat && t.event.filler) a.repeatFiller++;
-      if (quiet || (t.event.repeat && t.event.filler && !visibleChange)) a.dead++;
+      // a card with one available option is not a decision: count it as dead too
+      if (quiet || t.choice.available.length < 2 || (t.event.repeat && t.event.filler && !visibleChange)) a.dead++;
+      a.passed = (a.passed || 0) + (t.yearsPassed || 0);
 
       // reach + picks
       if (!quiet) {
@@ -151,11 +154,13 @@ class Metrics {
       // consequences
       for (const s of t.scheduled) this.cons(b, s.eventId).scheduled++;
       if (t.event.source === "scheduled") {
-        const c = this.cons(b, t.event.id);
+        const c = this.cons(b, t.event.fired ? t.event.fired.eventId : t.event.id);   // alternates count as their card
         c.fired++;
         if (t.event.late) { c.late++; c.lateYears += t.event.late; }
       }
       for (const d of t.event.dropped) this.cons(b, d.eventId).dropped++;
+      // a consequence can also fire in a year that passed by itself (a safe re-election)
+      for (const p of (t.passed || [])) if (p.source === "scheduled" && p.fired) this.cons(b, p.fired.eventId).fired++;
       // CEP safeguard
       if (this.cepEvents.has(t.event.id) && ceilingTurn !== null) {
         shownAfter = true;
@@ -197,10 +202,14 @@ class Metrics {
         if (!x.runs) continue;
         const pm = x.endings.pm || 0;
         const w = [...x.wealth].sort((a, c) => a - c), tu = [...x.turns].sort((a, c) => a - c);
+        const yr = [...(x.years || [])].sort((a, c) => a - c);
         r.origins[o] = {
           runs: x.runs, pmRate: pct(pm, x.runs), pmCI: wilson(pm, x.runs), pm,
           endings: x.endings, medianWealth: quantile(w, 0.5),
-          turns: { p10: quantile(tu, 0.1), median: quantile(tu, 0.5), p90: quantile(tu, 0.9), inRange35to50: pct(tu.filter(t => t >= 35 && t <= 50).length, tu.length) },
+          // taps (cards decided) and years lived: decision-free years pass without a tap
+          turns: { p10: quantile(tu, 0.1), median: quantile(tu, 0.5), p90: quantile(tu, 0.9), mean: +(tu.reduce((n, t) => n + t, 0) / tu.length).toFixed(1) },
+          years: { p10: quantile(yr, 0.1), median: quantile(yr, 0.5), p90: quantile(yr, 0.9), mean: +(yr.reduce((n, t) => n + t, 0) / yr.length).toFixed(1),
+                   inRange35to50: pct(yr.filter(t => t >= 35 && t <= 50).length, yr.length) },
           earlyLoss: { rate: pct(x.earlyLoss.n, x.runs), n: x.earlyLoss.n, byCause: x.earlyLoss.kinds,
                        notByChoice: pct((x.earlyLoss.kinds.luck || 0) + (x.earlyLoss.kinds.drift || 0), x.earlyLoss.n) },
           cepSafeguard: { ...x.cep,
@@ -212,6 +221,7 @@ class Metrics {
       }
       for (const [act, a] of Object.entries(b.acts)) {
         r.deadTurns[act] = { turnsPerRun: +(a.turns / b.runs).toFixed(2), deadPerRun: +(a.dead / b.runs).toFixed(2),
+          passedYearsPerRun: +((a.passed || 0) / b.runs).toFixed(2),
           quietShare: pct(a.quiet, a.turns), repeatShare: pct(a.repeat, a.turns), repeatFillerShare: pct(a.repeatFiller, a.turns), deadShare: pct(a.dead, a.turns) };
       }
       for (const k of ALL_FX) {
@@ -278,7 +288,7 @@ const RANDOM_PM_MAX = 15;   // % of first-timer runs. "Rare by accident": today'
 function regress(m, content) {
   const fails = [], warns = [];
   for (const e of validateContent(content)) fails.push("content: " + e);
-  for (const bot of ["first-timer", "knows the win"]) {
+  for (const bot of ["first-timer", "knows the win", "first-timer + batchmate", "knows the win + batchmate"]) {
     const r = m.bots[bot];
     if (!r) continue;
     for (const [hi, lo] of [["scholar", "grad"], ["grad", "poly"]]) {
@@ -289,9 +299,35 @@ function regress(m, content) {
       (z > 1.96 ? fails : warns).push("origin order inverted: " + msg);
     }
   }
-  const ft = m.bots["first-timer"];
-  if (ft) for (const o of ORIGINS) if (ft.origins[o] && ft.origins[o].pmRate > RANDOM_PM_MAX)
-    fails.push(`PM is common for first-timer ${o}: ${ft.origins[o].pmRate}% (max ${RANDOM_PM_MAX}%)`);
+  for (const bot of ["first-timer", "first-timer + batchmate"]) {
+    const ft = m.bots[bot];
+    if (ft) for (const o of ORIGINS) if (ft.origins[o] && ft.origins[o].pmRate > RANDOM_PM_MAX)
+      fails.push(`PM is common for ${bot} ${o}: ${ft.origins[o].pmRate}% (max ${RANDOM_PM_MAX}%)`);
+  }
+  // The batchmate is a harder mode: never easier than playing alone, and poly with a batchmate
+  // is the hardest of the six origin/batchmate combinations for a player who knows the win.
+  for (const bot of ["first-timer", "knows the win"]) {
+    const a = m.bots[bot], b = m.bots[`${bot} + batchmate`];
+    if (!a || !b) continue;
+    for (const o of ORIGINS) {
+      const x = a.origins[o], y = b.origins[o];
+      if (!x || !y || y.pm <= x.pm) continue;
+      // fails only when the 95% intervals do not overlap: these are small rates, and a few
+      // extra wins by chance should warn rather than reject
+      const msg = `${bot} ${o}: PM with a batchmate ${y.pmRate}% ${y.pmCI.join("-")} > without ${x.pmRate}% ${x.pmCI.join("-")}`;
+      (y.pmCI[0] > x.pmCI[1] ? fails : warns).push("batchmate made it easier: " + msg);
+    }
+  }
+  const kw = m.bots["knows the win"], kwb = m.bots["knows the win + batchmate"];
+  if (kw && kwb && kwb.origins.poly) {
+    const p = kwb.origins.poly;
+    const others = [...ORIGINS.map(o => [`${o}`, kw.origins[o]]), ...ORIGINS.filter(o => o !== "poly").map(o => [`${o} + batchmate`, kwb.origins[o]])];
+    for (const [label, x] of others) {
+      if (!x || p.pm <= x.pm) continue;
+      const msg = `knows the win: poly + batchmate ${p.pmRate}% ${p.pmCI.join("-")} > ${label} ${x.pmRate}% ${x.pmCI.join("-")}`;
+      (p.pmCI[0] > x.pmCI[1] ? fails : warns).push("poly + batchmate is not the hardest: " + msg);
+    }
+  }
   for (const [bot, r] of Object.entries(m.bots)) for (const [o, x] of Object.entries(r.origins))
     if (x.endings.UNTERMINATED) fails.push(`${bot} ${o}: ${x.endings.UNTERMINATED} runs never ended`);
   for (const [bot, r] of Object.entries(m.bots)) for (const [id, c] of Object.entries(r.consequences))

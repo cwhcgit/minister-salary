@@ -42,9 +42,9 @@ const build = H.loadBuild(contentDir ? { root: contentDir } : {});
 const content = build.content;
 const cepEvents = content.events.filter(e => cepRaisingEvents(content).includes(e.id));
 
-function play(origin, seed, score) {
+function play(origin, seed, score, rival = false) {
   const pickRandom = H.rng((seed * 2654435761) >>> 0);
-  let run = H.newRun(origin, seed, { build, name: "Sim" });
+  let run = H.newRun(origin, seed, { build, name: "Sim", rival });
   const cepReachable = [];
   for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
     const S = run.S;
@@ -68,7 +68,32 @@ for (const [name, score] of Object.entries(BOTS))
       const { trace, cepReachable } = play(origin, i*7+3, score);
       metrics.add(name, trace, { cepReachable });
     }
-const m = { build: build.hash, runsPerBotPerOrigin: N, ...metrics.result() };
+
+// The same seeds again with a batchmate (the start-screen option), for the bots the balance rule
+// checks. "+ batchmate" bots get their own entries in m.bots; m.batchmate counts the ranking exercise.
+const RIVAL_BOTS = content.rival ? ["first-timer", "knows the win"] : [];
+const rivalStats = {};
+for (const name of RIVAL_BOTS)
+  for (const origin of ORIGINS) {
+    const st = (rivalStats[`${name} + batchmate`] ||= {})[origin] = { runs: 0, rankings: 0, rankingsWon: 0, cards: 0, batchmatePM: 0, batchmateGone: 0 };
+    for (let i = 0; i < N; i++) {
+      const { trace, cepReachable } = play(origin, i*7+3, BOTS[name], true);
+      metrics.add(`${name} + batchmate`, trace, { cepReachable });
+      st.runs++;
+      for (const t of trace.turns) {
+        if (t.ranking) { st.rankings++; if (t.ranking.won) st.rankingsWon++; }
+        if (t.event.id.startsWith("rival_")) st.cards++;
+      }
+      if (trace.batchmate.rank === 16) st.batchmatePM++;
+      if (["consultancy", "scandal"].includes(trace.batchmate.status)) st.batchmateGone++;
+    }
+  }
+const batchmate = Object.fromEntries(Object.entries(rivalStats).map(([bot, per]) => [bot, Object.fromEntries(
+  Object.entries(per).map(([o, x]) => [o, { rankingsPerRun: +(x.rankings / x.runs).toFixed(2),
+    rankingWinRate: x.rankings ? +(100 * x.rankingsWon / x.rankings).toFixed(1) : null,
+    cardsPerRun: +(x.cards / x.runs).toFixed(2), batchmatePMRate: +(100 * x.batchmatePM / x.runs).toFixed(1),
+    batchmateLeftRate: +(100 * x.batchmateGone / x.runs).toFixed(1) }]))]));
+const m = { build: build.hash, runsPerBotPerOrigin: N, ...metrics.result(), batchmate };
 
 // --- report ----------------------------------------------------------------
 console.log(`build ${build.hash}${contentDir ? ` (${contentDir})` : ''}`);
@@ -79,16 +104,25 @@ for (const [name, r] of Object.entries(m.bots)) {
       + `median $${(x.medianWealth/1e6).toFixed(1)}M  ${JSON.stringify(x.endings)}`);
 }
 
+if (Object.keys(batchmate).length) {
+  console.log('\n=== batchmate (start-screen option) ===');
+  for (const [bot, per] of Object.entries(batchmate)) for (const [o, x] of Object.entries(per))
+    console.log(`  ${bot.padEnd(26)} ${o.padEnd(8)} ranking exercise ${x.rankingsPerRun}/run (player wins ${x.rankingWinRate ?? '-'}%), `
+      + `batchmate cards ${x.cardsPerRun}/run, batchmate becomes PM ${x.batchmatePMRate}%, leaves early ${x.batchmateLeftRate}%`);
+}
+
 const ft = m.bots['first-timer'], kw = m.bots['knows the win'];
 const line = (label, s) => console.log(`  ${label.padEnd(22)}${s}`);
 console.log('\n=== fun proxies ===');
 console.log('dead turns (first-timer | knows the win), per act: turns/run, repeat-filler share, dead/run');
 for (const act of ['I', 'II', 'III']) {
   const a = ft.deadTurns[act], b = kw.deadTurns[act];
-  line(`Act ${act}`, `${a.turnsPerRun} turns, ${a.repeatFillerShare ?? '-'}% repeat filler, ${a.deadPerRun} dead`
-    + `  |  ${b.turnsPerRun} turns, ${b.repeatFillerShare ?? '-'}% repeat filler, ${b.deadPerRun} dead`);
+  line(`Act ${act}`, `${a.turnsPerRun} taps + ${a.passedYearsPerRun} passed years, ${a.repeatFillerShare ?? '-'}% repeat filler, ${a.deadPerRun} dead`
+    + `  |  ${b.turnsPerRun} taps + ${b.passedYearsPerRun} passed, ${b.repeatFillerShare ?? '-'}% repeat filler, ${b.deadPerRun} dead`);
 }
-console.log('run length (first-timer): ' + ORIGINS.map(o => `${o} median ${ft.origins[o].turns.median} (p10 ${ft.origins[o].turns.p10}, p90 ${ft.origins[o].turns.p90}, ${ft.origins[o].turns.inRange35to50}% in 35-50)`).join('; '));
+console.log('run length (first-timer), taps / years: ' + ORIGINS.map(o => { const x = ft.origins[o];
+  return `${o} ${x.turns.mean} / ${x.years.mean} (median years ${x.years.median}, ${x.years.inRange35to50}% in 35-50)`; }).join('; '));
+console.log('run length (knows the win), taps / years: ' + ORIGINS.map(o => `${o} ${kw.origins[o].turns.mean} / ${kw.origins[o].years.mean}`).join('; '));
 
 console.log('stat direction (choices in the data that raise / lower):');
 for (const [k, d] of Object.entries(m.statDirection))

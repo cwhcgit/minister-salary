@@ -36,7 +36,8 @@
       "title": "Director",
       "grade": "MX9",
       "org": "ministry",
-      "pay": 168000
+      "pay": 168000,
+      "minAge": 28
     },
     {
       "id": 5,
@@ -50,77 +51,79 @@
       "title": "Deputy Secretary",
       "grade": "Superscale",
       "org": "ministry",
-      "pay": 420000
+      "pay": 420000,
+      "minAge": 35
     },
     {
       "id": 7,
       "title": "Permanent Secretary",
       "grade": "Staff Grade",
       "org": "ministry",
-      "pay": 1000000
+      "pay": 1000000,
+      "minAge": 38
     },
     {
       "id": 8,
       "title": "Member of Parliament",
       "grade": "MP",
       "org": "Parliament",
-      "pay": 192500
+      "pay": 259000
     },
     {
       "id": 9,
       "title": "Parliamentary Secretary",
       "grade": "PS",
       "org": "ministry",
-      "pay": 385000
+      "pay": 810000
     },
     {
       "id": 10,
       "title": "Senior Parliamentary Secretary",
       "grade": "SPS",
       "org": "ministry",
-      "pay": 500000
+      "pay": 810000
     },
     {
       "id": 11,
       "title": "Minister of State",
       "grade": "MOS",
       "org": "ministry",
-      "pay": 770000
+      "pay": 1260000
     },
     {
       "id": 12,
       "title": "Senior Minister of State",
       "grade": "SMS",
       "org": "ministry",
-      "pay": 935000
+      "pay": 1530000
     },
     {
       "id": 13,
       "title": "Minister",
       "grade": "MR4",
       "org": "Cabinet",
-      "pay": 1100000
+      "pay": 1800000
     },
     {
       "id": 14,
       "title": "Minister",
       "grade": "MR3",
       "org": "Cabinet",
-      "pay": 1320000
+      "pay": 2340000
     },
     {
       "id": 15,
       "title": "Deputy Prime Minister",
       "grade": "MR1",
       "org": "Cabinet",
-      "pay": 1760000
+      "pay": 2880000
     },
     {
       "id": 16,
       "title": "Prime Minister",
       "grade": "PM",
       "org": "Cabinet",
-      "pay": 2200000
+      "pay": 3600000
     }
   ],
   "ministries": [
@@ -139,9 +142,9 @@
     {
       "id": "scholar",
       "name": "President's Scholar",
-      "blurb": "Overseas degree, Administrative Service, bonded for six years. Everyone knows your name before you arrive.",
-      "startRank": 5,
-      "startAge": 26,
+      "blurb": "Overseas degree, Administrative Service, bonded for six years. You start as an Assistant Director, a year in each grade where others need two, until Director. Everyone knows your name before you arrive.",
+      "startRank": 2,
+      "startAge": 25,
       "cep": [
         9,
         13
@@ -153,7 +156,11 @@
         "integrity": 50,
         "competence": 55
       },
-      "difficulty": "Easy"
+      "difficulty": "Easy",
+      "fastLane": {
+        "untilRank": 4,
+        "yearsInGrade": 1
+      }
     },
     {
       "id": "grad",
@@ -243,17 +250,17 @@
     {
       "id": "level",
       "title": "You Found Your Level",
-      "epitaph": "Thirty years, a pewter plate, and a CPF balance that will comfortably outlast you. The scheme you designed in year nine is still running."
+      "epitaph": "Nearly forty years, a pewter plate, and a CPF balance that will comfortably outlast you. The scheme you designed in year nine is still running."
     },
     {
       "id": "declined",
       "title": "The Tea Was Declined",
-      "epitaph": "You said no. You are not sure, even now, whether it was principle or nerve. Your children think it was principle."
+      "epitaph": "You said no. You are not sure, even now, whether it was principle or nerve. Everyone who knows you thinks it was principle."
     },
     {
       "id": "lostward",
       "title": "Lost the Ward",
-      "epitaph": "Forty-eight point two percent. You shook every hand in that ward and it was not enough, and it was never going to be about you anyway."
+      "epitaph": "Forty-eight point two percent. You shook every hand in that ward and it was not enough. The concession speech was the best speech you ever gave."
     },
     {
       "id": "scandal",
@@ -298,7 +305,7 @@
     },
     {
       "flag": "looked_him_up",
-      "item": "a Forum letter writer whose employer you telephoned"
+      "item": "a Forum letter writer whose home address you looked up"
     },
     {
       "flag": "awarded_friend",
@@ -331,6 +338,14 @@
     {
       "flag": "smoothed_feedback",
       "item": "eleven hundred citizens' feedback, redistributed across three pillars"
+    },
+    {
+      "flag": "returned_favour",
+      "item": "a job application someone looked at because a friend asked"
+    },
+    {
+      "flag": "quiet_word",
+      "item": "a quiet word with a colleague about a Telegram channel"
     }
   ],
   "folderLimit": 3,
@@ -350,7 +365,7 @@
     },
     {
       "min": 105,
-      "text": "Remembered fondly in three divisions and one constituency. Your old minute papers are still forwarded, with your name taken off."
+      "text": "Remembered fondly, by name, in rooms you left years ago. Your old minute papers are still forwarded, with your name taken off."
     },
     {
       "min": 80,
@@ -370,5 +385,24 @@
     "The team is returned with 61.2%. The result is described as \"a clear endorsement of the team's record\", which is how you know it was close somewhere else.",
     "The team is returned with 55.9%. The result is described as \"a timely reminder\". Nobody specifies of what.",
     "The team is returned with 63.0%. A newspaper calls your ward \"safe\", and the branch chairman asks you, quietly, never to say that word out loud."
+  ],
+  "cepHintsPolitics": [
+    "The Prime Minister's office describes your work as \"very solid\". It is the word they use for furniture.",
+    "A reshuffle comes and goes. The commentary calls you \"a safe pair of hands\", which is what they call the hands that stay where they are.",
+    "You are not in the photograph from the Cabinet retreat. There is no reason you would be.",
+    "At the party conference you are seated in the second row, on the aisle.",
+    "A newer Member is asked to wind up the debate on the bill you led.",
+    "A newspaper lists possible successors. Your name is in the last paragraph."
+  ],
+  "ageFloorLines": [
+    "The board describes you as \"ready, in time\". Nobody says how much time.",
+    "You are told the next rung needs \"a little more seasoning\". The word does not appear in the competency framework.",
+    "Your file is marked \"strong; timing\". The second word does all the work.",
+    "Someone senior tells you, kindly, that nobody has ever regretted waiting. They say it as someone who waited."
+  ],
+  "topRungLines": [
+    "There is no rung above this one. The next step is not a promotion; it is a different life.",
+    "Your appraisal is outstanding again. The form has nowhere further to send it.",
+    "At a leadership retreat, a younger officer asks you what comes after this. You realise you had been hoping someone would tell you."
   ]
 }

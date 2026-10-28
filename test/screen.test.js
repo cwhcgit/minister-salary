@@ -50,6 +50,7 @@ server.listen(0, async () => {
     expect(where + ' sub', $('.sub').textContent, `Age ${h.age} · Year ${h.year} · ${h.ministry}`);
     expect(where + ' cash', $('.cash').textContent, h.wealth);
     expect(where + ' cash label', $('.cashlab').textContent, h.wealthLabel);
+    expect(where + ' batchmate', $('.mate') ? $('.mate').textContent : null, h.batchmate ? `Batchmate: ${h.batchmate}` : null);
     $$('.stat').forEach((el, i) => {
       const s = h.stats[i];
       expect(`${where} stat ${i} label`, el.querySelector('.k').textContent, s.label);
@@ -65,10 +66,14 @@ server.listen(0, async () => {
     expect('start hint', $('.hint').textContent, View.startCard(build, 'grad').hint);
     let screens = 0;
 
-    for (const origin of ['scholar', 'grad', 'poly', 'grad', 'poly', 'scholar']) {
+    // three careers without a batchmate, then three with one
+    for (const [origin, rival] of [['scholar', false], ['grad', false], ['poly', false], ['grad', true], ['poly', true], ['scholar', true]]) {
       if ($('#again')) { $('#again').click(); await wait(20); }
+      const tog = $('#rival');
+      if (!tog) throw new Error('no batchmate toggle on the start screen');
+      if (tog.checked !== rival) { tog.checked = rival; tog.dispatchEvent(new window.Event('change')); }
       $$('.origin').find(x => x.dataset.o === origin).click();
-      const o = View.startCard(build, origin).origin;
+      const o = View.startCard(build, origin, rival).origin;
       const card = $$('.origin').find(x => x.dataset.o === origin);
       expect('origin name', card.querySelector('.n span').textContent, o.name);
       expect('origin blurb', card.querySelector('.b').textContent, o.blurb);
@@ -129,7 +134,7 @@ server.listen(0, async () => {
         expect(`declassified ${i} text`, el.querySelector('.t').textContent, want.declassified[i].text);
       });
       screens++;
-      console.log(`✓ ${origin}: ${S.year - 1} years, ending "${want.title}", every screen matches`);
+      console.log(`✓ ${origin}${rival ? " + batchmate" : ""}: ${S.year - 1} years, ending "${want.title}", every screen matches`);
     }
 
     if (mismatches.length) {

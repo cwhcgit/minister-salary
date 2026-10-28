@@ -13,7 +13,7 @@ const STATKEYS = [
 const LETTERS = "ABCDEFGH";
 
 // same as ui.js: the CEP hint and the Heat rumour both read as RUMOUR
-const TAG_LABEL = { cep: "rumour", heat: "rumour" };
+const TAG_LABEL = { cep: "rumour", heat: "rumour", rival: "batchmate" };
 
 // same as ui.js
 const money = n =>
@@ -32,6 +32,8 @@ function header(build, S, prev) {
   return {
     rank: r.title, grade: r.grade,
     age: S.age, year: S.year, ministry: S.ministry,
+    // same as ui.js: the batchmate line appears only in a run with a batchmate
+    ...(S.rival ? { batchmate: build.engine.batchmate(build.content, S) } : {}),
     wealth: money(S.wealth), wealthLabel: "lifetime earnings",
     stats: STATKEYS.map(([key, label]) => ({
       key, label, value: S[key],
@@ -74,9 +76,9 @@ function endingCard(build, S) {
   };
 }
 
-function startCard(build, originId) {
+function startCard(build, originId, rival = false) {
   const o = build.content.origins.find(x => x.id === originId);
-  return { ...START, origin: { name: o.name, difficulty: o.difficulty, blurb: o.blurb } };
+  return { ...START, origin: { name: o.name, difficulty: o.difficulty + (rival ? " + batchmate" : ""), blurb: o.blurb } };
 }
 
 // --- plain text --------------------------------------------------------
@@ -86,7 +88,8 @@ function startCard(build, originId) {
 function headerText(h) {
   const stats = h.stats.map(s =>
     `${s.label.toUpperCase()} ${s.value}${s.delta ? ` (${s.delta > 0 ? "+" : ""}${s.delta})` : ""}`).join("   ");
-  return `${h.rank} [${h.grade}]   ${h.wealth} ${h.wealthLabel.toUpperCase()}\nAge ${h.age} · Year ${h.year} · ${h.ministry}\n${stats}`;
+  return `${h.rank} [${h.grade}]   ${h.wealth} ${h.wealthLabel.toUpperCase()}\nAge ${h.age} · Year ${h.year} · ${h.ministry}`
+    + (h.batchmate ? `\nBatchmate: ${h.batchmate}` : "") + `\n${stats}`;
 }
 
 function toText(view, opts = {}) {

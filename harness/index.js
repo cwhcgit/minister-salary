@@ -33,6 +33,9 @@ function loadBuild(opts = {}) {
   const engineSrc = fs.readFileSync(path.join(root, "engine.js"), "utf8");
   const content = JSON.parse(fs.readFileSync(path.join(root, "content/game.json"), "utf8"));
   content.events = JSON.parse(fs.readFileSync(path.join(root, "content/events.json"), "utf8"));
+  // the optional batchmate's cards and lines (absent in older builds and proposal copies)
+  const rivalFile = path.join(root, "content/rival.json");
+  if (fs.existsSync(rivalFile)) content.rival = JSON.parse(fs.readFileSync(rivalFile, "utf8"));
   if (opts.canaries) content.events.push(...JSON.parse(fs.readFileSync(CANARIES, "utf8")));
 
   const hash = crypto.createHash("sha256")
@@ -105,7 +108,11 @@ function draw(build, S) {
   let source = n.event.id === "__quiet" ? "quiet" : n.event.priority ? "priority" : "random";
   let fired = null, dropped = [];
   if (removed.length) {
-    if (removed[0].eventId === n.event.id) { source = "scheduled"; fired = removed[0]; dropped = removed.slice(1); }
+    // a scheduled card may fire as one of its alternates (the variant written for the player's rank)
+    const base = build.content.events.find(e => e.id === removed[0].eventId);
+    if (removed[0].eventId === n.event.id || (base && (base.alternates || []).includes(n.event.id))) {
+      source = "scheduled"; fired = removed[0]; dropped = removed.slice(1);
+    }
     else dropped = removed;
   }
   const deferred = n.state.scheduled.filter(x => x.fireYear <= S.year);   // due, waiting their turn
@@ -115,10 +122,10 @@ function draw(build, S) {
 function newRun(origin, seed, opts = {}) {
   const build = opts.build || getBuild(opts.buildHash);
   if (!build.content.origins.some(o => o.id === origin)) throw new Error(`unknown origin ${origin}`);
-  const S0 = build.engine.newGame(build.content, origin, opts.name || "You", seed >>> 0);
+  const S0 = build.engine.newGame(build.content, origin, opts.name || "You", seed >>> 0, { rival: !!opts.rival });
   const { S, draw: d } = draw(build, S0);
   return {
-    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name,
+    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name, rival: !!opts.rival,
     turn: 1, phase: S.ending ? "ending" : "event",
     S, pendingDraw: d,
     last: null,          // { outcome, log, prev } shown on the next screen
@@ -151,12 +158,24 @@ function step(run, choiceId) {
   const pre = run.S;
   const r = build.engine.advance(build.content, pre, i);
   let S = r.state, nextDraw = null;
-  if (!S.ending) ({ S, draw: nextDraw } = draw(build, S));
+  if (!S.ending && S.currentEvent && r.trace.nextDraw) {
+    // advance() passed any decision-free years and drew the next card itself
+    const d = r.trace.nextDraw;
+    nextDraw = { source: d.source, fired: d.fired || null, late: d.fired ? S.year - d.fired.fireYear : 0,
+                 dropped: [], deferred: S.scheduled.filter(x => x.fireYear <= S.year) };
+  } else if (!S.ending) ({ S, draw: nextDraw } = draw(build, S));
+  const passed = (r.trace.passed || []).map(p => ({ kind: p.kind, event: p.ev, source: p.source, fired: p.fired,
+    added: p.added || [], election: p.election || null, appraisal: p.appraisal ? p.appraisal.grade : null,
+    promotion: p.promotion ? p.promotion.result : null, probation: !!p.probation,
+    age: p.age, rank: p.rank, habit: p.habit }));
 
   const before = snapshot(pre), after = snapshot(S);
   const delta = {};
   for (const k of TRACKED) if (after[k] !== before[k]) delta[k] = after[k] - before[k];
-  const addedSched = minus(r.state.scheduled, pre.scheduled);
+  // what this turn scheduled, the chosen card and any years that passed after it
+  const addedSched = r.trace.added || r.trace.passed
+    ? [...(r.trace.added || []), ...passed.flatMap(p => p.added)]
+    : minus(r.state.scheduled, pre.scheduled);
   const promo = r.trace.promotion;
 
   const rec = {
@@ -174,6 +193,11 @@ function step(run, choiceId) {
     scheduled: addedSched,
     scheduleMissed: (ch.schedule || []).filter(sc => !addedSched.some(a => a.eventId === sc.eventId)),
     election: r.trace.election || null,
+    passed, yearsPassed: passed.length,                  // decision-free years after this card
+    passElection: passed.map(p => p.election).filter(Boolean).pop() || null,
+    bonusMissed: !!r.trace.bonusMissed, probation: !!r.trace.probation,
+    rivalContest: r.trace.rivalContest || null,   // a batchmate card decided on the spot
+    ranking: r.trace.ranking || null,             // the ranking exercise: one slot, two promotable officers
     appraisal: r.trace.appraisal ? { ...r.trace.appraisal, base: r.trace.appraisal.score - r.trace.appraisal.noise - (r.trace.appraisal.noted || 0) } : null,
     promotion: promo ? { ...promo, why: promotionWhy(promo, r.trace.appraisal, pre) } : null,
     log: r.log.map(l => l.kind),
@@ -217,7 +241,7 @@ function screen(run, opts = {}) {
   if (run.phase === "ending") return { phase: "ending", ending: View.endingCard(build, S) };
   const view = opts.view || "agent";
   const out = { phase: "event" };
-  if (run.turn === 1 && view === "agent") out.start = View.startCard(build, run.origin);
+  if (run.turn === 1 && view === "agent") out.start = View.startCard(build, run.origin, run.rival);
   const showOutcome = run.last && view !== "event";
   out.header = View.header(build, S, showOutcome ? run.last.prev : null);
   if (showOutcome) out.outcome = View.outcomeCard(run.last.outcome, run.last.log);
@@ -235,6 +259,7 @@ function trace(run) {
   const S = run.S;
   return {
     buildHash: run.buildHash, origin: run.origin, seed: run.seed, name: run.name,
+    rival: run.rival || false, batchmate: S.rival || null,   // the batchmate's hidden file, if any
     choices: run.choiceList,
     start: run.start,
     ending: S.ending || null,
@@ -248,7 +273,7 @@ function replay(spec, opts = {}) {
   const build = opts.build || getBuild(spec.buildHash);
   if (spec.buildHash && spec.buildHash !== build.hash)
     throw new Error(`run was recorded on build ${spec.buildHash}, this build is ${build.hash}`);
-  let run = newRun(spec.origin, spec.seed, { build, name: spec.name });
+  let run = newRun(spec.origin, spec.seed, { build, name: spec.name, rival: !!spec.rival });
   for (const c of spec.choices) run = step(run, c);
   return run;
 }
@@ -296,9 +321,10 @@ function endingCause(build, run) {
   }
   if (end === "lostward") {
     const el = turns[turns.length - 1];
-    const smc = el.election.kind === "smc" && el.choice.available.length > 1;
+    const e = el.election || el.passElection;   // a safe re-election can be lost in a year that passed by itself
+    const smc = e.kind === "smc" && el.choice.available.length > 1;
     return { kind: smc ? "choice+luck" : "luck", driver: "election",
-             chain: [{ turn: el.turn, event: el.event.id, choice: el.choice.id, kind: el.election.kind, chance: +el.election.chance.toFixed(3), risky: smc }] };
+             chain: [{ turn: el.turn, event: el.election ? el.event.id : "re_election", choice: el.election ? el.choice.id : "auto", kind: e.kind, chance: +e.chance.toFixed(3), risky: smc }] };
   }
   const chain = turns.filter(t => t.promotion && t.promotion.result.startsWith("promoted"))
     .map(t => ({ turn: t.turn, rank: t.after.rank }));

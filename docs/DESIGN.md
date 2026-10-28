@@ -102,9 +102,13 @@ buried things resurface at the worst time. Also invisible; telegraphed by flavou
 | 7 | Deputy Secretary | Superscale | $35k/mo | |
 | 8 | **Permanent Secretary** | Staff Grade | ~$1M/yr | Top of the civil service |
 
-**The Administrative Service fast lane.** Scholars enter the Admin Service and skip
-rungs 1-4 outright. This is the sharpest satirical point in the game and it is a
-*mechanic*, not a line of dialogue — see §7 Character creation.
+**The Administrative Service fast lane.** Scholars enter the Admin Service as Assistant
+Directors at 25, skipping the statutory-board rungs, and need one year in each grade
+instead of two until Director. The advantage is the clock and the ceiling, not a senior
+start: even the fastest real officers made Director around 29. This is the sharpest
+satirical point in the game and it is a *mechanic*, not a line of dialogue — see §7
+Character creation. Age floors (plausible, not official rules): Director 28, Deputy
+Secretary 35, Permanent Secretary 38.
 
 ### Act II — The Crossing
 
@@ -122,18 +126,23 @@ You cannot become PM as a civil servant. You must be **spotted**, then resign.
 
 | # | Office | Ballpark pay |
 |---|---|---|
-| 9 | Member of Parliament | $192k/yr allowance |
-| 10 | Parliamentary Secretary | |
-| 11 | Senior Parliamentary Secretary | |
-| 12 | Minister of State | |
-| 13 | Senior Minister of State | |
-| 14 | **Minister (MR4)** | **~$1.1M/yr** — the title drop |
-| 15 | Minister (MR3/MR2), or Second Minister | |
-| 16 | Deputy Prime Minister (MR1) | |
-| 17 | **PRIME MINISTER** | **~2× MR4** |
+| 9 | Member of Parliament | $259k/yr ($18,500/month allowance × 14) |
+| 10 | Parliamentary Secretary | ~$810k (0.45× MR4) |
+| 11 | Senior Parliamentary Secretary | ~$810k (same merged grade: a promotion with no pay rise) |
+| 12 | Minister of State | ~$1.26M (0.7×, derived) |
+| 13 | Senior Minister of State | ~$1.53M (0.85×, derived) |
+| 14 | **Minister (MR4)** | **~$1.8M/yr** — the title drop |
+| 15 | Minister (MR3/MR2 merged), or Second Minister | ~$2.34M (1.3×) |
+| 16 | Deputy Prime Minister (MR1) | ~$2.88M (1.6×, derived) |
+| 17 | **PRIME MINISTER** | **$3.6M, 2× MR4** |
 
-> Pay figures are ballpark, drawn from published salary-review material. **To be verified
-> against primary sources before ship** — accuracy here is part of the joke landing.
+> Pay figures follow the 2026 political salary review (accepted 8 Sep 2026, effective
+> 15 Oct 2026): MR4 is the median income of the top 1,000 earners less 40%. Mayors, Senior
+> Parliamentary Secretaries and Parliamentary Secretaries are one grade at 0.45× MR4. The
+> MOS, SMS and DPM figures are derived from the old multiples. National Bonus 0-6 months on
+> four equally weighted indicators; from 1 Jan 2027 the target bands are unemployment 3% to
+> below 3.5%, median real income growth 2.5% to below 3.5%, 20th-percentile real income
+> growth 3% to below 4%, real GDP growth 2% to 4%.
 
 ### Bonuses (the good part)
 Annual payout = base + **Performance Bonus** (from appraisal grade) + **National Bonus**
@@ -219,7 +228,7 @@ Three origins. This is where the meritocracy satire lives — as balance, not co
 
 | Origin | Start | Effect |
 |---|---|---|
-| **President's Scholar** | Admin Service, age 26, bonded | Starts at rung 5. High CEP. Bond = cannot resign for 6 years. *Easy mode.* |
+| **President's Scholar** | Admin Service, Assistant Director, age 25, bonded | One year in grade instead of two until Director. High CEP. Bond = cannot resign for 6 years. *Easy mode.* |
 | **Local graduate** | MX13, age 23 | Baseline. Median CEP. *Normal.* |
 | **Poly → night-class degree** | MX13, age 27, lower start | Low starting CEP, hardest climb. Unique events unavailable to the others. *Hard mode, best endings.* |
 

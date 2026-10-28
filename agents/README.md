@@ -25,7 +25,14 @@ Paid runs happen in GitHub Actions and authenticate with [workload identity fede
 
 **Running a cohort**
 
-Actions → **Agent cohort** → Run workflow, then choose a persona (or `content-audit`) and whether it is a dry run. One cohort per job. A dry run plays 3 runs and reports the projected cost of the full cohort in the job summary. The run logs, summaries and audit come back as an artifact named after the persona. Order for a month: `content-audit`, the three blind cohorts, `lineage` (diaries are coded in the same job), `breaker`, `veteran`.
+Actions → **Agent cohort** → Run workflow, then choose a persona (or `content-audit`) and whether it is a dry run. One cohort per job. A dry run plays 3 runs and reports the projected cost of the full cohort in the job summary. The run logs, summaries and audit come back as an artifact named after the persona.
+
+Two optional inputs, both ignored when left empty and both ignored by `content-audit`:
+
+- `runs`: a whole number of runs, passed to the runner's `--runs` in place of the persona's own count (`lib/config.ts`). A dry run still plays at most 3, and still projects the cost of the persona's default count.
+- `max_usd`: a dollar amount, passed to `--max-usd`. It caps this job's spend on top of the cohort's own cap; the lower of the two wins.
+
+Anything else (a word, a negative number, `0`) fails the job before the runner starts. The job log prints the exact runner command. Order for a month: `content-audit`, the three blind cohorts, `lineage` (diaries are coded in the same job), `breaker`, `veteran`.
 
 How the job authenticates (`.github/scripts/anthropic-wif.sh`):
 

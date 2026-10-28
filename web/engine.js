@@ -17,7 +17,7 @@ const Engine = (() => {
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   const STATS = ["reputation", "standing", "integrity", "competence"];
 
-  function newGame(content, originId, name, seed) {
+  function newGame(content, originId, name, seed, opts = {}) {
     const origin = content.origins.find(o => o.id === originId);
     const r = rng(seed);
     const g = {
@@ -51,7 +51,166 @@ const Engine = (() => {
       currentEvent: null
     };
     g.cepStart = g.cep;
+    if (opts.rival && content.rival) g.rival = newRival(content, origin, seed);
     return g;
+  }
+
+  // --- the batchmate ------------------------------------------------------
+  // Optional. Someone from the player's intake: same origin, same start, a hidden ceiling
+  // drawn the same way, and a simple seeded career of their own. A batch is ranked against
+  // itself, so the batchmate is as good as the player by construction: their yearly score is
+  // the player's own appraisal baseline plus a small hidden edge and their own luck. They
+  // compete with the player for the same slots in the ranking exercise. All their randomness
+  // comes from a separate stream (rivalRoll), so a game without a batchmate plays as before.
+  function newRival(content, origin, seed) {
+    const R = content.rival, r = rng((seed ^ 0x5bd1e995) >>> 0);
+    const who = R.names[Math.floor(r() * R.names.length)];
+    const ed = (R.edge || {})[origin.id] || [-3, 5];
+    const cep = origin.cep[0] + Math.floor(r() * (origin.cep[1] - origin.cep[0] + 1));
+    return { name: who.name, pron: who.pron, rank: origin.startRank, cep, cepStart: cep,
+      edge: ed[0] + Math.floor(r() * (ed[1] - ed[0] + 1)), yearsInGrade: 0,
+      bondYears: origin.bondYears || 0, political: false, triedPolitics: false,
+      status: "active", rel: 0, mod: 0, calls: 0, met: 0, wonMet: 0, ahead: 0, behind: 0 };
+  }
+
+  function rivalRoll(s) {
+    const r = rng((s.seed * 31 + 977 + s.rival.calls * 7919) >>> 0);
+    s.rival.calls++;
+    return r();
+  }
+
+  // {rival} is the name; pronouns only as object/possessive or before past-tense verbs.
+  const PRON = { f: { they: "she", them: "her", their: "her" }, m: { they: "he", them: "him", their: "his" } };
+  function sub(text, s) {
+    if (!s.rival || typeof text !== "string") return text;
+    const p = PRON[s.rival.pron] || PRON.f;
+    return text.replace(/\{rival\}/g, s.rival.name)
+      .replace(/\{(They|Them|Their)\}/g, (_, k) => cap(p[k.toLowerCase()]))
+      .replace(/\{(they|them|their)\}/g, (_, k) => p[k]);
+  }
+
+  const REL_WEIGHT = 1.2;   // each point of goodwill is worth this much in a close ranking call
+  function rivalScore(s) {
+    return 0.5 * s.competence + 0.3 * s.standing + 0.15 * s.reputation + s.rival.edge + (rivalRoll(s) * 20 - 10) + s.rival.mod;
+  }
+  function rivalLine(content, s, key, extra = {}) {
+    const lines = (content.rival.lines || {})[key] || [];
+    const n = (s.rival.lineN = (s.rival.lineN || 0) + 1);
+    let text = lines.length ? lines[(n - 1) % lines.length] : "";
+    for (const [k, v] of Object.entries(extra)) text = text.split("{" + k + "}").join(v);
+    // `at`: the state the line was written in (one outcome screen can span several years); the UI ignores it
+    return { kind: "rival", key, text: sub(text, s), at: { player: s.rank, batchmate: s.rival.rank, status: s.rival.status } };
+  }
+
+  // A head-to-head right now (one posting, one slot): the player's appraisal-style score,
+  // adjusted by goodwill, against the batchmate's hidden one.
+  function rivalContest(content, s, c, t) {
+    const v = s.rival;
+    const mine = 0.5 * s.competence + 0.3 * s.standing + 0.15 * s.reputation + (rivalRoll(s) * 20 - 10)
+      + (c.bonus || 0) + v.rel * REL_WEIGHT;
+    const theirs = rivalScore(s);
+    const won = mine >= theirs;
+    v.met++; if (won) v.wonMet++;
+    t.rivalContest = { mine: +mine.toFixed(1), theirs: +theirs.toFixed(1), won };
+    applyEffects(s, (won ? c.win : c.lose) || {});
+    return [{ kind: "rival", key: won ? "contestWon" : "contestLost", text: sub(won ? c.winText : c.loseText, s),
+      at: { player: s.rank, batchmate: v.rank, status: v.status } }];
+  }
+
+  function rivalChoice(content, s, rc, t) {
+    const v = s.rival;
+    if (!v || v.status !== "active") return [];
+    if (rc.rel) v.rel = clamp(v.rel + rc.rel, -5, 5);
+    if (rc.mod) v.mod += rc.mod;
+    if (rc.cep) v.cep = clamp(v.cep + rc.cep, 0, 16);
+    return rc.contest ? rivalContest(content, s, rc.contest, t) : [];
+  }
+
+  // The batchmate's year. Runs before the player's promotion is settled, because when both are
+  // promotable at the same grade there is one slot, and the ranking exercise decides who gets it.
+  // playerScore: the player's appraisal score when they would otherwise be promoted, else null.
+  function rivalYear(content, s, t, playerScore) {
+    const v = s.rival, out = { lost: false, log: [] };
+    if (!v || v.status !== "active") return out;
+    // Their last year is their last year: retirement comes first, so nobody is promoted,
+    // ranked or elected in the same breath as their farewell lunch.
+    if (s.age + 1 >= (v.rank >= 8 ? content.politicalRetireAge : content.retireAge) && v.rank !== 16) {
+      v.status = "retired";
+      out.log.push(rivalLine(content, s, "retired", { title: title(content, v.rank) }));
+      return out;
+    }
+    const politicalNow = v.rank >= 8;
+    // exits and crossings
+    if (s.year > Math.max(v.bondYears, 3) && !(v.rank === 16)) {   // nobody leaves in their first three years
+      const x = rivalRoll(s);
+      if (x < 0.0015 && v.rank >= 3) { v.status = "scandal"; out.log.push(rivalLine(content, s, v.rank >= 8 ? "scandalPolitics" : "scandal")); return out; }
+      if (x < 0.0065 && ((v.rank >= 2 && v.rank <= 7) || (v.rank >= 9 && v.rank <= 14))) {
+        v.status = "consultancy"; out.log.push(rivalLine(content, s, v.rank >= 8 ? "consultancyPolitics" : "consultancy")); return out;
+      }
+      // The party talent-spots batches, not individuals: once the player is in Parliament,
+      // their batchmate is far likelier to be asked to tea as well.
+      const ge = !!t.election;   // this turn was a general election the player stood in
+      const canCross = s.rank >= 8 ? ge : true;
+      if (!politicalNow && !v.triedPolitics && v.rank >= 4 && v.rank <= 7 && canCross
+          && rivalRoll(s) < (s.rank >= 8 ? 0.45 : 0.06)) {
+        v.triedPolitics = true;
+        if (rivalRoll(s) < 0.78) {
+          v.rank = 8; v.yearsInGrade = 0; v.political = true;
+          v.cep = clamp(11 + Math.floor(rivalRoll(s) * 6), 11, 16);
+          out.log.push(rivalLine(content, s, ge ? "electedTogether" : "elected"));
+        } else out.log.push(rivalLine(content, s, ge ? "lostSeatTogether" : "lostSeat"));
+        return out;
+      }
+    }
+    v.yearsInGrade++;
+    const score = rivalScore(s);
+    v.mod = 0;
+    const need = yearsNeeded(content, s.origin, v.rank);   // same intake, same fast lane
+    const gradeOk = score >= 72 || (score >= 58 && v.rank < 13);
+    // If the player backed someone else in the succession, that someone is Prime Minister, not the batchmate.
+    const pmTaken = s.rank === 16 || (s.flags.includes("kingmaker") && !s.flags.includes("backed_batchmate"));
+    // Same intake, same age: the service's age floors (ladder minAge) hold the batchmate too.
+    let promotable = gradeOk && v.yearsInGrade >= need && v.rank < v.cep && v.rank !== 7 && v.rank < 16
+      && !(v.rank === 15 && pmTaken) && (content.ladder[v.rank + 1].minAge || 0) <= s.age;
+    // The ranking exercise ranks everyone at a grade every year. When the player is up for
+    // promotion and the batchmate is at the same grade (and not at their own ceiling), the one
+    // ranked lower waits. The batchmate takes the slot only if they are eligible themselves.
+    if (playerScore !== null && v.rank === s.rank && v.rank < v.cep) {
+      const mine = playerScore + v.rel * REL_WEIGHT;
+      const won = mine >= score;
+      v.met++; if (won) v.wonMet++;
+      t.ranking = { mine: +mine.toFixed(1), theirs: +score.toFixed(1), won, theyWentUp: !won && promotable };
+      const pol = s.rank >= 8;
+      if (won) { promotable = false; out.log.push(rivalLine(content, s, pol ? "winPolitics" : "winService")); }
+      else {
+        out.lost = true;
+        out.log.push(rivalLine(content, s, promotable ? (pol ? "losePolitics" : "loseService") : (pol ? "rankedBelowPolitics" : "rankedBelowService")));
+      }
+    }
+    if (promotable) {
+      v.rank++; v.yearsInGrade = 0;
+      if (v.rank === 16) out.log.push(rivalLine(content, s, "pm"));
+      else if (!out.lost) {
+        const apart = (v.rank >= 8) !== (s.rank >= 8);   // one of you in Parliament, the other in the service
+        out.log.push(rivalLine(content, s, apart ? "promotedApart" : v.rank >= 9 ? "appointed" : "promoted", { title: title(content, v.rank) }));
+      }
+    }
+    // a Prime Minister batchmate is a closed door
+    if (playerScore !== null && s.rank === 15 && v.rank === 16 && !out.lost) {
+      out.lost = true; out.log.push(rivalLine(content, s, "pmBlocked"));
+    }
+    return out;
+  }
+
+  // What the header says about the batchmate: their name and where they are.
+  function batchmate(content, s) {
+    const v = s.rival;
+    if (!v) return null;
+    const where = v.status === "consultancy" ? "left for the private sector"
+      : v.status === "scandal" ? "resigned"
+      : v.status === "retired" ? `retired as ${title(content, v.rank)}`
+      : title(content, v.rank);
+    return `${v.name} · ${where}`;
   }
 
   // Deterministic: derive the stream position from state so saves resume identically.
@@ -65,7 +224,26 @@ const Engine = (() => {
   function eligible(ev, s) {
     if (ev.triggered) return false;
     if (ev.once && s.seen.includes(ev.id)) return false;
-    const q = ev.requires || {};
+    return meets(ev.requires || {}, s);
+  }
+
+  // A scheduled consequence waits, still scheduled, until its own requirements hold (a
+  // promotion-board callback never lands on a Minister). It is never silently dropped.
+  function fits(ev, s) {
+    return !!ev && !(ev.once && s.seen.includes(ev.id)) && meets(ev.requires || {}, s);
+  }
+
+  // A scheduled card may list alternates: written for wherever the player has got to by the
+  // time it falls due. The first of [card, ...alternates] whose requirements hold fires.
+  function resolve(content, id, s) {
+    const events = allEvents(content, s);
+    const ev = events.find(e => e.id === id);
+    if (!ev) return null;
+    const all = [ev, ...(ev.alternates || []).map(a => events.find(e => e.id === a))];
+    return all.find(x => fits(x, s)) || null;
+  }
+
+  function meets(q, s) {
     if (q.minRank !== undefined && s.rank < q.minRank) return false;
     if (q.maxRank !== undefined && s.rank > q.maxRank) return false;
     if (q.minAge !== undefined && s.age < q.minAge) return false;
@@ -77,25 +255,59 @@ const Engine = (() => {
     if (q.flagsNone && q.flagsNone.some(f => s.flags.includes(f))) return false;
     for (const k in (q.minStats || {})) if (s[k] < q.minStats[k]) return false;
     for (const k in (q.maxStats || {})) if (s[k] > q.maxStats[k]) return false;
+    if (q.economy !== undefined && economy(s) !== q.economy) return false;
+    if (q.electionDue !== undefined && electionDue(s) !== q.electionDue) return false;
+    if (q.cooldown) {   // a shared clock: e.g. one Budget-cycle card every three years
+      const last = (s.cooldowns || {})[q.cooldown.key];
+      if (last !== undefined && s.year - last < q.cooldown.years) return false;
+    }
+    if (q.rival) {   // batchmate cards: only with an active batchmate in the right position
+      const v = s.rival;
+      if (!v || v.status !== "active") return false;
+      if (q.rival.sameRank && v.rank !== s.rank) return false;
+      if (q.rival.ahead && !(v.rank > s.rank)) return false;
+      if (q.rival.minRank !== undefined && v.rank < q.rival.minRank) return false;
+      if (q.rival.maxRank !== undefined && v.rank > q.rival.maxRank) return false;
+      if (q.rival.relMin !== undefined && v.rel < q.rival.relMin) return false;
+      if (q.rival.near !== undefined && Math.abs(v.rank - s.rank) > q.rival.near) return false;
+    }
     return true;
   }
 
-  function pickEvent(content, s) {
+  // The economy, one draw per three-year cycle, derived from the seed so it never moves the
+  // run's own dice: most cycles are strong, about a third are a downturn.
+  function economy(s) {
+    return rng((s.seed * 131 + Math.floor(s.year / 3) * 7919 + 17) >>> 0)() < 0.35 ? "downturn" : "strong";
+  }
+  // A general election falls due within the year (the player's own re-election is scheduled).
+  function electionDue(s) {
+    return s.scheduled.some(x => x.eventId === "re_election" && x.fireYear - s.year <= 1);
+  }
+
+  // Every card the run can draw: the batchmate's only when there is one.
+  function allEvents(content, s) {
+    // batchmate cards first, so a batchmate priority card (First Among Equals) stands in for the generic one
+    return s && s.rival && content.rival ? (content.rival.events || []).concat(content.events) : content.events;
+  }
+
+  // info (optional) says where the card came from, for playtest traces.
+  function pickEvent(content, s, info = {}) {
     // 1. scheduled consequences pre-empt everything. One fires a year; when several fall
     //    due together, the rest carry over to the following years, earliest first.
-    const due = s.scheduled.filter(x => x.fireYear <= s.year);
+    const due = s.scheduled.filter(x => x.fireYear <= s.year && resolve(content, x.eventId, s));
     if (due.length) {
       const next = due.reduce((a, b) => (b.fireYear < a.fireYear ? b : a));
       s.scheduled.splice(s.scheduled.indexOf(next), 1);
-      const ev = content.events.find(e => e.id === next.eventId);
-      if (ev) return ev;
+      const ev = resolve(content, next.eventId, s);
+      if (ev) { info.source = "scheduled"; info.fired = next; return ev; }
     }
-    const pool = content.events.filter(e => eligible(e, s));
-    if (!pool.length) return null;
+    const pool = allEvents(content, s).filter(e => eligible(e, s));
+    if (!pool.length) { info.source = "quiet"; return null; }
     // 2. priority events (tea session, succession) fire the moment they qualify
     const pri = pool.filter(e => e.priority);
-    if (pri.length) return pri[0];
+    if (pri.length) { info.source = "priority"; return pri[0]; }
     // 3. weighted random
+    info.source = "random";
     const total = pool.reduce((n, e) => n + (e.weight || 5), 0);
     let x = roll(s) * total;
     for (const e of pool) { x -= (e.weight || 5); if (x <= 0) return e; }
@@ -111,7 +323,8 @@ const Engine = (() => {
   // content.folder lists the flags a vetting would find, each as a noun phrase.
   const cap = x => x.charAt(0).toUpperCase() + x.slice(1);
   function folderItems(content, s) {
-    return (content.folder || []).filter(f => s.flags.includes(f.flag)).map(f => f.item);
+    const list = (content.folder || []).concat(s.rival && content.rival ? content.rival.folder || [] : []);
+    return list.filter(f => s.flags.includes(f.flag)).map(f => sub(f.item, s));
   }
 
   function readFolder(content, s) {
@@ -128,7 +341,7 @@ const Engine = (() => {
       for (const i of items) {
         s.standing = clamp(s.standing - 5, 0, 100);
         s.integrity = clamp(s.integrity + 2, 0, 100);
-        log.push({ kind: "folder", text: `You disclose ${i}. He writes something down.` });
+        log.push({ kind: "folder", text: `You disclose ${i}. The interviewer writes something down.` });
       }
       if (items.length >= (content.folderLimit || 3)) {
         s.flags.push("tea_withdrawn");
@@ -139,7 +352,9 @@ const Engine = (() => {
     } else {
       s.concealed = items;   // each one may surface during the campaign
     }
-    s.scheduled.push({ eventId: "the_election", fireYear: s.year + 1 });
+    const e = { eventId: "the_election", fireYear: s.year + 1 };
+    s.scheduled.push(e);
+    (t.added = t.added || []).push(e);
     return log;
   }
 
@@ -158,8 +373,17 @@ const Engine = (() => {
     return log;
   }
 
+  function applyEffects(s, fx) {
+    for (const k of STATS) if (fx[k]) s[k] = clamp(s[k] + fx[k], 0, 100);
+    if (fx.wealth) s.wealth += fx.wealth;
+    if (fx.heat) s.heat = clamp(s.heat + fx.heat, 0, 100);
+    if (fx.cep) s.cep = clamp(s.cep + fx.cep, 0, 16);
+  }
+
   // --- applying a choice ----------------------------------------------
-  function applyChoice(content, s, ev, ch, t = {}) {
+  // opts.safe: a re-election that passed by itself (the seat was safe). It is won outright: a seat
+  // is only ever lost on a card the player saw.
+  function applyChoice(content, s, ev, ch, t = {}, opts = {}) {
     const log = [];
     const fx = ch.effects || {};
     for (const k of STATS) if (fx[k]) s[k] = clamp(s[k] + fx[k], 0, 100);
@@ -169,21 +393,36 @@ const Engine = (() => {
     // "It is noted": a choice that embarrassed someone senior costs this year's appraisal.
     if (fx.appraisal) s.appraisalMod += fx.appraisal;
     // The minister's own policy choice sets next year's National Bonus, in months (0-6).
-    if (ch.nationalBonus !== undefined) s.nbMonths = clamp(ch.nationalBonus, 0, 6);
+    if (ch.nationalBonus !== undefined) {
+      s.nbMonths = clamp(ch.nationalBonus, 0, 6);
+      // the plan can miss: then the bonus is what the indicators say, and so is the outcome
+      const risk = ch.nationalBonusRisk;
+      if (risk && roll(s) < risk.chance) {
+        s.nbMonths = clamp(risk.months, 0, 6);
+        t.outcome = risk.outcome;
+        t.bonusMissed = true;
+      }
+    }
 
     (ch.setFlags || []).forEach(f => { if (!s.flags.includes(f)) s.flags.push(f); });
+    (ch.markSeen || []).forEach(id => { if (!s.seen.includes(id)) s.seen.push(id); });
     (ch.clearFlags || []).forEach(f => { s.flags = s.flags.filter(x => x !== f); });
     if (ev.once && !s.seen.includes(ev.id)) s.seen.push(ev.id);
 
     for (const sc of (ch.schedule || [])) {
       if (roll(s) <= (sc.chance === undefined ? 1 : sc.chance)) {
-        s.scheduled.push({ eventId: sc.eventId, fireYear: s.year + sc.inYears });
+        const e = { eventId: sc.eventId, fireYear: s.year + sc.inYears };
+        s.scheduled.push(e);
+        (t.added = t.added || []).push(e);   // for traces: what this choice scheduled
       }
     }
     if (ch.setRank !== undefined) s.rank = ch.setRank;
+    // Batchmate cards: goodwill, their next score, their ceiling, or a head-to-head now.
+    if (ch.rival && s.rival) log.push(...rivalChoice(content, s, ch.rival, t));
     // A reshuffle moves the minister to a different ministry, and the header says so.
     if (ch.newMinistry) {
-      const others = content.ministries.filter(m => m !== s.ministry);
+      const pool = Array.isArray(ch.newMinistry) ? ch.newMinistry : content.ministries;
+      const others = pool.filter(m => m !== s.ministry).length ? pool.filter(m => m !== s.ministry) : content.ministries.filter(m => m !== s.ministry);
       s.ministry = others[Math.floor(roll(s) * others.length)];
       log.push({ kind: "note", text: `You are moved to the ${s.ministry}. The handover notes run to 140 pages, and the first one says "for information".` });
     }
@@ -205,8 +444,8 @@ const Engine = (() => {
     if (ch.election === "incumbent") {
       // Re-election every five years. Ministers anchor safe teams; Reputation is what keeps them safe.
       const chance = Math.min(0.98, 0.72 + s.reputation / 250);
-      const won = roll(s) < chance;
-      t.election = { kind: "incumbent", chance, won };
+      const won = opts.safe ? true : roll(s) < chance;
+      t.election = { kind: "incumbent", chance, won, safe: !!opts.safe };
       if (won && s.reputation >= 75 && !s.flags.includes("noticed_swing")) {
         // A strong personal vote is the one thing the party cannot estimate in advance. Once per career.
         s.cep = clamp(s.cep + 1, 0, 16);
@@ -254,6 +493,18 @@ const Engine = (() => {
     return total;
   }
 
+  // Years in grade before a promotion. Senior rungs cost time as well as stats: Cabinet does not
+  // turn over quickly. An origin's fast lane (the scholars' Administrative Service clock) halves
+  // the wait below a given rank; it starts nobody higher up.
+  function fastLane(content, originId, r) {
+    const o = content.origins.find(x => x.id === originId);
+    return !!(o && o.fastLane && r < o.fastLane.untilRank);
+  }
+  function yearsNeeded(content, originId, r) {
+    if (fastLane(content, originId, r)) return content.origins.find(x => x.id === originId).fastLane.yearsInGrade;
+    return content.minYearsInGrade + (r >= 10 ? 1 : 0) + (r >= 13 ? 1 : 0) + (r >= 15 ? 1 : 0);
+  }
+
   function appraise(content, s) {
     const noise = (roll(s) * 20) - 10;
     const mod = s.appraisalMod;
@@ -266,29 +517,37 @@ const Engine = (() => {
   function yearEnd(content, s, t = {}) {
     const log = [];
     const pay = payout(content, s);
+    const nb = s.nbMonths === 0 ? "no National Bonus" : `a National Bonus of ${s.nbMonths} month${s.nbMonths === 1 ? "" : "s"}`;
     log.push({ kind: "pay", text: s.rank >= 11
-      ? `Annual package: $${pay.toLocaleString()}, including a National Bonus of ${s.nbMonths} months`
+      ? `Annual package: $${pay.toLocaleString()}, including ${nb}`
       : `Annual package: $${pay.toLocaleString()}` });
 
     s.yearsInGrade++;
     const { grade, score, noise, mod } = appraise(content, s);
     t.appraisal = { grade: grade.code, score, noise, noted: mod };
-    log.push({ kind: "appraisal", text: grade.label });
+    // A choice that was noted shows up here, in the one word that matters.
+    log.push({ kind: "appraisal", text: mod < 0
+      ? `${grade.label} The comments section includes the word "however".` : grade.label });
 
     if (grade.code === "C") s.consecutiveC++; else s.consecutiveC = 0;
     if (grade.code === "D") s.consecutiveD++; else s.consecutiveD = 0;
+    // Probation: nobody is eased out in their first four years; a second D is a second warning.
+    if (s.consecutiveD >= 2 && s.year <= (content.probationYears || 4)) { s.consecutiveD = 1; t.probation = true; }
     if (s.consecutiveD >= 2) { s.ending = "quiet"; return log; }
-    if (s.consecutiveD === 1) log.push({ kind: "warn", text: "Your reporting officer asks whether you have considered the private sector. It is phrased as concern." });
+    if (s.consecutiveD === 1) log.push({ kind: "warn", text: s.rank >= 8
+      ? "The Whip asks, kindly, whether you have thought about spending more time in your ward. It is phrased as concern."
+      : "Your reporting officer asks whether you have considered the private sector. It is phrased as concern." });
     if (s.consecutiveC >= 3) {
       s.consecutiveC = 0;
       s.competence = clamp(s.competence + 3, 0, 100);
-      log.push({ kind: "warn", text: "You are transferred sideways to a division nobody asked to join. The work is real, at least." });
+      log.push({ kind: "warn", text: s.rank >= 8
+        ? "You are asked to chair a select committee nobody asked to sit on. The work is real, at least."
+        : "You are transferred sideways to a division nobody asked to join. The work is real, at least." });
     }
 
-    // Senior rungs cost time as well as stats: Cabinet does not turn over quickly,
-    // and the last two steps are never given on "strong" alone.
-    const needYears = content.minYearsInGrade
-      + (s.rank >= 10 ? 1 : 0) + (s.rank >= 13 ? 1 : 0) + (s.rank >= 15 ? 1 : 0);
+    // The last two steps are never given on "strong" alone.
+    const needYears = yearsNeeded(content, s.origin, s.rank);
+    const fast = fastLane(content, s.origin, s.rank);
     const topRungs = s.rank >= 13;
     const gradeOk = grade.code === "A" || (grade.code === "B+" && !topRungs);
     const promotable = gradeOk
@@ -297,14 +556,46 @@ const Engine = (() => {
     t.promotion = { rank: s.rank, yearsInGrade: s.yearsInGrade, needYears, gradeOk,
       result: !promotable ? "not_eligible" : s.rank >= s.cep ? "cep_ceiling" : s.rank === 7 ? "service_ceiling" : "promoted" };
 
+    // The batchmate's year runs first: at the same grade there is one slot. A player held by
+    // the age floor is not in that year's contest at all.
+    const ageFloored = s.rank < 16 && (content.ladder[s.rank + 1].minAge || 0) > s.age;
+    const pmGivenAway = s.rank === 15 && s.flags.includes("kingmaker");
+    const wouldPromote = promotable && s.rank < s.cep && s.rank !== 7 && !ageFloored && !pmGivenAway;
+    const rv = s.rival ? rivalYear(content, s, t, wouldPromote ? score : null) : { lost: false, log: [] };
+
     if (promotable && s.rank >= s.cep) {
-      log.push({ kind: "cep", text: content.cepHints[Math.floor(roll(s) * content.cepHints.length)] });
+      const hints = s.rank >= 8 && content.cepHintsPolitics ? content.cepHintsPolitics : content.cepHints;
+      log.push({ kind: "cep", text: hints[Math.floor(roll(s) * hints.length)] });
     } else if (promotable && s.rank === 7) {
-      log.push({ kind: "cep", text: "There is no rung above this one. The next step is not a promotion; it is a different life." });
+      // Said a few times, differently, then not again: a Permanent Secretary can be there for years.
+      const lines = content.topRungLines || ["There is no rung above this one. The next step is not a promotion; it is a different life."];
+      s.topRungTold = (s.topRungTold || 0) + 1;
+      if (s.topRungTold <= lines.length) log.push({ kind: "cep", text: lines[s.topRungTold - 1] });
+    } else if (promotable && ageFloored) {
+      // The top rungs of the service have an age floor (ladder minAge): a brilliant
+      // 29-year-old is told to wait, in the house style.
+      t.promotion.result = "age_floor";
+      const lines = content.ageFloorLines || ["The board describes you as \"ready, in time\"."];
+      // Said on the 1st, 3rd, 6th and 10th year of waiting, not every year: a wait is quiet.
+      s.ageFloorSeen = (s.ageFloorSeen || 0) + 1;
+      const k = [1, 3, 6, 10].indexOf(s.ageFloorSeen);
+      if (k >= 0) log.push({ kind: "note", text: lines[k % lines.length] });
+    } else if (promotable && rv.lost) {
+      t.promotion.result = "ranking_lost";
+    } else if (promotable && pmGivenAway) {
+      // You put someone else in the top job. It is theirs, not the next rung of yours.
+      t.promotion.result = "pm_taken";
+      if (!s.flags.includes("told_pm_taken")) {
+        s.flags.push("told_pm_taken");
+        log.push({ kind: "note", text: s.flags.includes("backed_batchmate")
+          ? "There is no rung above this one that is yours to take. You gave it away, in a room, and it was the right call, mostly."
+          : "There is no rung above this one that is yours to take. You know exactly who is standing on it, because you put him there." });
+      }
     } else if (promotable) {
       // A standout junior officer occasionally skips a grade. This is the only way
       // a late starter ever makes up the years a scholar was simply given.
-      const doubleJump = grade.code === "A" && s.rank <= 4 && score >= 84 && s.rank + 1 < s.cep;
+      const doubleJump = !fast && grade.code === "A" && s.rank <= 4 && score >= 84 && s.rank + 1 < s.cep
+        && (content.ladder[s.rank + 2].minAge || 0) <= s.age;
       s.rank += doubleJump ? 2 : 1;
       if (doubleJump) t.promotion.result = "promoted_two";
       s.yearsInGrade = 0;
@@ -312,7 +603,16 @@ const Engine = (() => {
       log.push({ kind: "promo", text: doubleJump
         ? `Promoted two grades: ${r.title} (${r.grade}). This does not normally happen.`
         : `Promoted: ${r.title} (${r.grade})` });
-      if (s.rank === 16) { s.ending = "pm"; return log; }
+      if (s.rank === 16) { log.push(...rv.log); s.ending = "pm"; return log; }
+    }
+    log.push(...rv.log);
+    if (s.rival) {   // years each outranked the other, and the batchmate's own retirement
+      const v = s.rival;
+      if (v.status === "active") {
+        // outranking only means something on the same ladder: a Permanent Secretary and a
+        // backbench MP are not above or below each other
+        if ((v.rank >= 8) === (s.rank >= 8)) { if (v.rank > s.rank) v.ahead++; else if (s.rank > v.rank) v.behind++; else v.level = (v.level || 0) + 1; }
+      }
     }
 
     if (s.heat >= 85) { s.ending = "scandal"; return log; }
@@ -346,7 +646,12 @@ const Engine = (() => {
   // A montage year repeats the player's habit: the effects of what they chose the first
   // time they played this card in full (without its "noted" hit or its consequences).
   function montageOf(src, s) {
-    const lines = src.montageLines || ["The year passes. Most of them do."];
+    // montageLines is either one list, or lists keyed by the habit's choice index, so a year
+    // of coasting never reads like a year of hard work.
+    const pool = src.montageLines, h = (s.habits || {})[src.id];
+    const lines = Array.isArray(pool) ? pool
+      : pool && pool[h] ? pool[h]
+      : pool ? Object.values(pool).flat() : ["The year passes. Most of them do."];
     const n = s.fillerSeen[src.id] || 1;
     const habit = src.choices[(s.habits || {})[src.id]];
     const effects = habit ? Object.fromEntries(Object.entries(habit.effects || {}).filter(([k]) => k !== "appraisal"))
@@ -361,11 +666,79 @@ const Engine = (() => {
     if (!id) return null;
     if (id === "__quiet") return QUIET_YEAR;
     if (id.startsWith(MONTAGE)) return montageOf(content.events.find(e => e.id === id.slice(MONTAGE.length)), s);
-    return content.events.find(e => e.id === id);
+    const ev = allEvents(content, s).find(e => e.id === id);
+    return ev && ev.rivalCard ? withNames(ev, s) : ev;
+  }
+
+  function withNames(ev, s) {
+    return { ...ev, title: sub(ev.title, s), body: sub(ev.body, s),
+      choices: ev.choices.map(c => ({ ...c, text: sub(c.text, s), outcome: sub(c.outcome, s) })) };
+  }
+
+  // --- years that pass by themselves ---------------------------------------
+  // A year with no decision in it is not a card. A habit year (a repeatable card already played
+  // in full, except every fifth time), a safe re-election (ev.autoPlay) or an empty pool passes
+  // on its own: pay, appraisal, promotion and the batchmate's year all still happen, and the
+  // outcome screen the player is already looking at shows it as a short Meanwhile entry.
+  function passKind(ev, s) {
+    if (!ev) return "quiet";
+    const n = s.fillerSeen[ev.id] || 0;
+    if (isFiller(ev) && n >= 1 && n % 4 !== 0 && (s.habits || {})[ev.id] !== undefined) return "habit";
+    if (ev.autoPlay && meets(ev.autoPlay.when || {}, s)) return "auto";
+    return null;
+  }
+
+  // pay + appraisal on one line; everything else (promotions, rumours, warnings) as it was
+  function compress(log) {
+    const pay = log.find(l => l.kind === "pay"), ap = log.find(l => l.kind === "appraisal");
+    const quote = ap && (ap.text.match(/"([^"]+)"/) || [])[1];
+    const out = [];
+    if (pay) out.push({ kind: "pay", text: `${pay.text}. Appraisal: ${quote ? `"${quote}"` : "noted"}.` });
+    return out.concat(log.filter(l => l !== pay && l !== ap));
+  }
+
+  function passYears(content, s, t) {
+    const log = [];
+    t.passed = [];
+    for (let k = 0; k < 60 && !s.ending; k++) {
+      const info = {};
+      const ev = pickEvent(content, s, info);
+      const kind = passKind(ev, s);
+      if (!kind) { s.currentEvent = ev.id; t.nextDraw = info; return log; }
+      const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
+      const pt = { kind, ev: ev ? ev.id : "__quiet", source: info.source, fired: info.fired || null, age: s.age, rank: s.rank, origin: s.origin };
+      let choice = 0, ch, lines = [];
+      if (kind === "habit") {
+        const m = montageOf(ev, s);
+        choice = s.habits[ev.id]; ch = m.choices[0]; pt.habit = choice; pt.line = m.body;
+        applyEffects(s, ch.effects);
+        s.fillerSeen[ev.id]++;
+        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${m.body}` });
+      } else if (kind === "auto") {
+        choice = ev.autoPlay.choice || 0; ch = ev.choices[choice];
+        const al = applyChoice(content, s, ev, ch, pt, { safe: true });
+        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${ev.autoPlay.line || ch.outcome}` }, ...al);
+      } else {
+        ch = QUIET_YEAR.choices[0];
+        applyEffects(s, ch.effects);
+        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${QUIET_YEAR.body}` });
+      }
+      const yl = s.ending ? [] : yearEnd(content, s, pt);
+      lines.push(...compress(yl));
+      log.push(...lines);
+      t.passed.push(pt);
+      s.history.push({ ...before, ev: pt.ev, title: ev ? ev.title : QUIET_YEAR.title, choice, text: ch.text, passed: kind,
+        cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation, noted: false,
+        hints: yl.filter(l => l.kind === "cep" || l.kind === "heat").map(l => l.kind + "|" + l.text) });
+    }
+    if (!s.ending) s.currentEvent = "__quiet";   // sixty empty years: show the safety-net card
+    return log;
   }
 
   // --- public turn API --------------------------------------------------
   // advance(content, state, choiceIndex) -> { state, outcome, log, trace }
+  // After the chosen card's year, any years with no decision in them pass by themselves, and
+  // the next card is drawn: state.currentEvent is set unless the run has ended.
   function advance(content, state, choiceIndex) {
     const s = JSON.parse(JSON.stringify(state));   // immutable in, new state out
     const ev = eventOf(content, s);
@@ -373,24 +746,30 @@ const Engine = (() => {
     const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
     const trace = {};
     const log = applyChoice(content, s, ev, ch, trace);
+    if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
     if (!s.ending) log.push(...yearEnd(content, s, trace));
     if (ev.id.startsWith(MONTAGE)) s.fillerSeen[ev.id.slice(MONTAGE.length)]++;
     else if (isFiller(ev)) {
       s.fillerSeen[ev.id] = (s.fillerSeen[ev.id] || 0) + 1;
-      (s.habits = s.habits || {})[ev.id] = choiceIndex;   // what montage years will repeat
+      (s.habits = s.habits || {})[ev.id] = choiceIndex;   // what habit years will repeat
     }
     s.history.push({ ...before, ev: ev.id, title: ev.title, choice: choiceIndex, text: ch.text,
-      cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank,
+      cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation,
+      noted: ((ch.effects || {}).appraisal || 0) < 0,
       hints: log.filter(l => l.kind === "cep" || l.kind === "heat").map(l => l.kind + "|" + l.text) });
     s.currentEvent = null;
-    return { state: s, outcome: ch.outcome, log, trace };
+    if (!s.ending) log.push(...passYears(content, s, trace));
+    return { state: s, outcome: trace.outcome || ch.outcome, log, trace };
   }
 
+  // The card for this year. advance() has normally drawn it already; this draws only for the
+  // first year of a run (and for saves from before years passed by themselves).
   function nextEvent(content, state) {
     const s = JSON.parse(JSON.stringify(state));
+    if (s.currentEvent) return { state: s, event: eventOf(content, s) };
     const ev = pickEvent(content, s);
     if (!ev) { s.currentEvent = "__quiet"; return { state: s, event: QUIET_YEAR }; }
-    // Every fifth time, the full card comes back, so a habit can be changed.
+    // An old save may still land on a habit year: show it as the one-line card it used to be.
     const seenN = s.fillerSeen[ev.id] || 0;
     if (isFiller(ev) && seenN >= 1 && seenN % 4 !== 0) {
       s.currentEvent = MONTAGE + ev.id;
@@ -415,6 +794,8 @@ const Engine = (() => {
   }
 
   // What was really going on, as a short list of lines for the ending screen.
+  const NUM = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+
   function declassify(content, s) {
     const out = [], H = s.history || [];
     // In the service a ceiling of 7 or more means no ceiling at all; in politics it is a rank.
@@ -427,35 +808,71 @@ const Engine = (() => {
     const won = H.find(h => h.ev === "the_election" && h.rankAfter === 8);
     if (won) out.push({ label: "The party's estimate", text: `When you won your seat, the party made its own: ${title(content, won.cepAfter)}. Nobody told you that either.` });
 
-    // Raises that mattered: in politics, or in the service while a ceiling still applied.
-    const raised = H.filter(h => h.cepAfter > h.cep && h.ev !== "the_election" && (h.rank >= 8 || h.cep < 8));
-    if (!raised.length && s.cepStart >= 8 && s.rank < 8) {
-      out.push({ label: "The year it changed", text: "It never needed to. That is what the scholarship was for." });
-    } else if (raised.length) {
-      const r = raised.reduce((a, b) => (b.cepAfter - b.cep > a.cepAfter - a.cep ? b : a));
+    // Raises that mattered: in the service while a ceiling below the top still applied; in
+    // politics, after the election that set the party's own estimate. A politician sees both.
+    const political = s.rank >= 8;
+    // A year that passed by itself was not a choice, so it is neither a raise you chose nor one you missed.
+    const raisesIn = pol => H.filter(h => !h.passed && h.cepAfter > h.cep && h.ev !== "the_election"
+      && (pol ? h.rank >= 8 : h.rank < 8 && h.cep < 7));
+    const best = xs => xs.reduce((a, b) => (b.cepAfter - b.cep > a.cepAfter - a.cep ? b : a));
+    const said = r => {
       const to = r.rank < 8 && r.cepAfter >= 8 ? "It removed your ceiling inside the service altogether."
         : `It raised your ceiling to ${ceiling(r.cepAfter, r.rank >= 8)}.`;
-      out.push({ label: "The year it changed", text: `At ${r.age}, in ${r.title}, you chose "${r.text}" ${to}` });
-    } else {
-      const missed = H.filter(h => {
-        const ev = content.events.find(e => e.id === h.ev);
-        return ev && ev.choices.some((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
-      }).slice(0, 2).map(h => {
-        const ev = content.events.find(e => e.id === h.ev);
-        const c = ev.choices.find((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
-        return `at ${h.age}, "${c.text}"`;
-      });
-      out.push({ label: "The year it changed", text: missed.length
-        ? `It never did. It could have: ${missed.join("; ")}`
+      return `At ${r.age}, in ${r.title}, you chose "${r.text}" ${to}`;
+    };
+    const missedIn = pol => H.filter(h => !h.passed && (pol ? h.rank >= 8 : h.rank < 8)).filter(h => {
+      const ev = content.events.find(e => e.id === h.ev);
+      return ev && ev.choices.some((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
+    }).slice(0, 2).map(h => {
+      const ev = content.events.find(e => e.id === h.ev);
+      const c = ev.choices.find((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
+      return `at ${h.age}, "${c.text}"`;
+    });
+    const service = raisesIn(false);
+    if (service.length) out.push({ label: "The year it changed", text: said(best(service)) });
+    else if (s.cepStart >= 7 && !political) out.push({ label: "The year it changed", text: s.origin === "scholar"
+      ? "It never needed to. That is what the scholarship was for."
+      : "It never needed to. Your file had expected this of you from the first day, and never said so." });
+    else if (!political) {
+      const m = missedIn(false);
+      out.push({ label: "The year it changed", text: m.length ? `It never did. It could have: ${m.join("; ")}`
         : "It never did. Nothing you were offered could have changed it." });
+    }
+    if (political) {
+      const pol = raisesIn(true);
+      const m = pol.length ? [] : missedIn(true);
+      // The choice that set your final ceiling, not merely the biggest step: a Prime Minister's
+      // story ends at the raise that made it possible.
+      const last = pol.length && pol.reduce((a, b) => (b.cepAfter >= a.cepAfter ? b : a));
+      const more = pol.length > 1 ? ` It was the last of ${NUM[pol.length] || pol.length} choices that raised it.` : "";
+      out.push({ label: "In politics", text: pol.length ? said(last) + more
+        : m.length ? `The party's estimate never moved. It could have: ${m.join("; ")}`
+        : "The party's estimate never moved. Nothing you were offered could have moved it." });
     }
 
     // Only the ceiling rumours (content.cepHints); the Perm Sec "no rung above" line is not one.
-    const isHint = x => x.startsWith("cep|") && content.cepHints.includes(x.slice(4));
+    const allHints = [...content.cepHints, ...(content.cepHintsPolitics || [])];
+    const isHint = x => x.startsWith("cep|") && allHints.includes(x.slice(4));
     const blocked = H.filter(h => h.hints.some(isHint));
     if (blocked.length) {
       const first = blocked[0].hints.find(isHint).slice(4);
       out.push({ label: "The rumours, translated", text: `"${first}" meant: your work had earned a promotion and your ceiling refused it. You were told this ${blocked.length} time${blocked.length > 1 ? "s" : ""}.` });
+    }
+
+    // Why the tea never came, for a career that stayed in the service and was never asked.
+    const asked = ["went_to_tea", "declined_tea", "tea_withdrawn"].some(f => s.flags.includes(f));
+    const tea = content.events.find(e => e.id === "tea_session");
+    if (!asked && tea && s.rank < 8 && s.ending && !["consultancy", "scandal"].includes(s.ending)) {
+      const q = tea.requires || {}, need = q.minStats || {};
+      const window = H.filter(h => h.rankAfter >= (q.minRank || 0) && h.rankAfter <= (q.maxRank ?? 7));
+      const noted = H.filter(h => h.noted).length;
+      const n = NUM[noted] || String(noted);
+      const notedText = !noted ? "" : ` ${n[0].toUpperCase() + n.slice(1)} of your choices had been noted along the way.`;
+      if (!window.length) out.push({ label: "The invitation", text: `It never came. The people who decide who is asked to tea look at officers of ${title(content, q.minRank || 0)}'s grade and above, and you never reached it.${notedText}` });
+      else {
+        const st = Math.max(...window.map(h => h.standing ?? 0)), rep = Math.max(...window.map(h => h.reputation ?? 0));
+        out.push({ label: "The invitation", text: `It never came. The people who decide who is asked to tea look for Standing of ${need.standing} and Reputation of ${need.reputation}. In those years your best was Standing ${st} and Reputation ${rep}.${notedText}` });
+      }
     }
 
     const peak = H.reduce((a, b) => (b.heatAfter > a.heatAfter ? b : a), { heatAfter: 0 });
@@ -463,11 +880,43 @@ const Engine = (() => {
       ? `Your scandal exposure peaked at ${peak.heatAfter} out of 100, after "${peak.title}" at age ${peak.age}. At 85, everything surfaces at once.`
       : "Your file is clean enough to be boring. In this building, that is a compliment." });
 
+    if (s.rival) out.push(...declassifyRival(content, s));
     out.push({ label: "Legacy", text: legacy(content, s) });
     return out;
   }
 
-  return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy,
+  function declassifyRival(content, s) {
+    const v = s.rival, p = PRON[v.pron] || PRON.f, out = [];
+    const t = title(content, v.rank);
+    const where = v.status === "consultancy" ? `${v.name} left for a consultancy as ${t}.`
+      : v.status === "scandal" ? `${v.name} resigned as ${t}, for personal reasons.`
+      : v.status === "retired" ? `${v.name} retired as ${t}.`
+      : v.rank === 16 ? `${v.name} became Prime Minister.`
+      : `When your career ended, ${v.name} was ${t}.`;
+    const est = v.cepStart >= 8 ? `${cap(p.their)} file put no ceiling on ${p.them} inside the service.`
+      : `${cap(p.their)} file estimated ${p.their} potential at ${v.cepStart === 7 ? "Permanent Secretary" : title(content, v.cepStart)}.`;
+    out.push({ label: "Your batchmate", text: `${where} ${est}` });
+    const yrs = n => `${n} year${n === 1 ? "" : "s"}`;
+    const level = v.level || 0;
+    const ranks = v.ahead + v.behind === 0 ? (level
+        ? `You were level for ${yrs(level)}, at the same grade, and neither of you ever outranked the other.`
+        : "You were never on the same ladder long enough to compare.")
+      : !v.behind ? `${v.name} outranked you for ${yrs(v.ahead)}; you never outranked ${p.them}.`
+      : !v.ahead ? `You outranked ${p.them} for ${yrs(v.behind)}; ${v.name} never outranked you.`
+      : `${v.name} outranked you for ${yrs(v.ahead)}; you outranked ${p.them} for ${yrs(v.behind)}.`;
+    out.push({ label: "Head to head", text: (v.met
+      ? `You were set against each other ${v.met === 1 ? "once" : v.met === 2 ? "twice" : `${NUM[v.met] || v.met} times`}${
+          v.wonMet === v.met ? (v.met === 1 ? " and came out ahead" : " and came out ahead every time")
+          : v.wonMet === 0 ? " and never came out ahead" : `, and came out ahead in ${NUM[v.wonMet] || v.wonMet}`}. `
+      : "You were never set against each other directly. ") + ranks });
+    const said = v.rel >= 3 ? `${v.name} still tells people you were the best colleague ${p.they} ever had, usually when you are not there to hear it.`
+      : v.rel <= -3 ? `${v.name} has never said anything about you in public, which in this building is its own kind of statement.`
+      : `${v.name} describes you as "a good colleague", which in this building is a complete sentence.`;
+    out.push({ label: `What ${v.name} says`, text: said });
+    return out;
+  }
+
+  return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
     STATS, QUIET: QUIET_YEAR };
 })();
 

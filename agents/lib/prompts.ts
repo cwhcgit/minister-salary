@@ -26,7 +26,7 @@ export function mechanicsAppendix(build: Build): string {
     return p.join(", ") || "any";
   };
   const lines = ["### Appendix, generated from this build", "", "Ladder: " + C.ladder.map((_: any, i: number) => rank(i)).join("; ") + ".", ""];
-  lines.push("Origins: " + C.origins.map((o: any) => `${o.id} starts at rank ${o.startRank}, age ${o.startAge}, CEP ${o.cep[0]}-${o.cep[1]}${o.bondYears ? `, bond ${o.bondYears} years` : ""}`).join("; ") + ".", "");
+  lines.push("Origins: " + C.origins.map((o: any) => `${o.id} starts at rank ${o.startRank}, age ${o.startAge}, CEP ${o.cep[0]}-${o.cep[1]}${o.bondYears ? `, bond ${o.bondYears} years` : ""}${o.fastLane ? `, ${o.fastLane.yearsInGrade} year in grade below rank ${o.fastLane.untilRank}` : ""}`).join("; ") + ".", "");
   for (const id of ["tea_session", "succession"]) {
     const e = C.events.find((x: any) => x.id === id);
     if (e) lines.push(`${e.title} (${id}) requires: ${req(e.requires)}.`);
