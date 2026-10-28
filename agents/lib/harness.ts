@@ -14,7 +14,7 @@ export interface Run {
 }
 export interface TurnRecord {
   turn: number; year: number; age: number; act: "I" | "II" | "III";
-  event: { id: string; source: string; repeat: boolean; filler: boolean; once: boolean };
+  event: { id: string; source: string; repeat: boolean; filler: boolean; once: boolean; variant?: number };
   choice: { id: string; effects: Record<string, number>; available: string[] };
   delta: Record<string, number>;
   before: Record<string, number>; after: Record<string, number>;
@@ -25,7 +25,7 @@ export interface TurnRecord {
 }
 export interface Trace {
   buildHash: string; origin: string; seed: number; name: string; choices: string[];
-  ending: string | null; endingCause: { kind: string; driver: string; chain: unknown[] } | null;
+  ending: string | null; endingCause: { kind: string; driver: string; chain: unknown[] } | null; recent?: string[];
   start: { cep: number; ministry: string; stats: Record<string, number> };
   final: Record<string, any>; turns: TurnRecord[];
 }
@@ -33,13 +33,13 @@ export interface Trace {
 interface HarnessModule {
   loadBuild(opts?: { root?: string; canaries?: boolean }): Build;
   getBuild(hash?: string): Build;
-  newRun(origin: string, seed: number, opts?: { build?: Build; name?: string }): Run;
+  newRun(origin: string, seed: number, opts?: { build?: Build; name?: string; recent?: string[] }): Run;
   screen(run: Run, opts?: { view?: string }): unknown;
   screenText(run: Run, opts?: { tags?: "phone" | "none"; view?: string }): string;
   choices(run: Run): ChoiceView[];
   step(run: Run, choiceId: string | number): Run;
   trace(run: Run): Trace;
-  replay(spec: { buildHash?: string; origin: string; seed: number; name?: string; choices: string[] }, opts?: { build?: Build }): Run;
+  replay(spec: { buildHash?: string; origin: string; seed: number; name?: string; choices: string[]; recent?: string[] }, opts?: { build?: Build }): Run;
   rng(seed: number): () => number;
 }
 interface LeakModule {

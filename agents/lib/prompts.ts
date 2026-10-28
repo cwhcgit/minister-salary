@@ -47,7 +47,7 @@ export const mechanics = (build: Build) => read("prompts/mechanics-brief.md") + 
 export function systemPrompt(p: Persona, build: Build): string {
   let persona = read(`personas/${p.file}`);
   if (!p.blind) persona = persona.replace("{{MECHANICS}}", mechanics(build));
-  const play = read(`prompts/play-${p.turnSchema}.md`);
+  const play = read(`prompts/play-${p.turnSchema}.md`).replaceAll("{{MAX}}", String(p.fun?.maxDelta ?? 10));
   return `${persona}\n\n## The game, as its store page describes it\n\n${read("prompts/store-page.md")}\n\n## How you play\n\n${play}`;
 }
 
@@ -71,6 +71,64 @@ export function turnBlocks(o: { lineageNotes?: string; memory: string; screen: s
   return blocks;
 }
 
+// --- fun-meter sessions: what the runner adds around the screen ----------------------
+// One conversation per career. Each user turn is the screen as the harness renders it, then
+// one line with the meter. Kept here so the leak gate checks every word the runner sends.
+
+export const meterLine = (v: number) => `Your fun: ${Math.round(v)}/100.`;
+
+export function funTurnText(o: { screen: string; meter: number; opener?: string | null; ending?: boolean }): string {
+  const tail = o.ending ? `The career is over. ${meterLine(o.meter)} Reply as usual, with choice A.` : meterLine(o.meter);
+  return (o.opener ? o.opener + "\n\n" : "") + wrap("screen", o.screen) + "\n" + tail;
+}
+
+// origin and ending are the names the start and ending cards show
+export interface CareerRecap { origin: string; ending: string | null; taps: number }
+const careerWords = (c: CareerRecap) =>
+  `${c.origin}, ${c.ending ? `ended "${c.ending}"` : "cut off before its end"} after ${c.taps} taps`;
+
+// The first message of career k > 1: which career this is, and how the earlier ones went.
+export function funOpener(k: number, earlier: CareerRecap[]): string | null {
+  if (k === 0) return null;
+  return `New career, number ${k + 1} this session. Earlier this session: ${earlier.map((c, i) => `${i + 1}) ${careerWords(c)}`).join("; ")}.`;
+}
+
+export interface RecapMoment { title: string; delta: number; reason: string }
+// The exit survey is its own short request: the session's careers and the screens that moved
+// the player most, in the player's own words at the time. (A new schema would invalidate the
+// career conversation's cache anyway, so re-sending the whole conversation buys nothing.)
+export function funSurveyText(o: { careers: CareerRecap[]; quit: boolean; tops: RecapMoment[]; bottoms: RecapMoment[]; last: RecapMoment[]; flagged: string[] }): string {
+  const m = (x: RecapMoment) => `"${x.title}" (${x.delta > 0 ? "+" : ""}${x.delta}: ${x.reason})`;
+  const lines = [
+    `Careers: ${o.careers.map((c, i) => `${i + 1}) ${careerWords(c)}`).join("; ")}.`,
+    `Screens that lifted you most: ${o.tops.length ? o.tops.map(m).join("; ") : "none"}.`,
+    `Screens that dragged most: ${o.bottoms.length ? o.bottoms.map(m).join("; ") : "none"}.`,
+    `Your last screens: ${o.last.map(m).join("; ") || "none"}.`
+  ];
+  if (o.flagged.length) lines.push(`Lines you flagged as off: ${o.flagged.map(x => `"${x}"`).join("; ")}.`);
+  const stop = o.quit ? "Your fun ran out, so you put the phone down." : "That was the last career this session; you are putting the phone down.";
+  return `${wrap("session", lines.join("\n"))}\n\n${stop}\n\n${read("prompts/diary-fun.md")}`;
+}
+
+// When a reply could not be used even after a retry, the runner picks for the player and says so.
+export const lostReplyText = (choice: string) => `(No reply could be read for that screen; choice ${choice} was made for you.)`;
+export const retryText = (problem: string, available: string[]) =>
+  `Your last reply could not be used: ${problem}. The available choices are ${available.join(", ")}. Reply again with one JSON object.`;
+
+// Everything the runner itself writes into a fun session, rendered with sample values.
+export function funTemplates(): string {
+  const careers: CareerRecap[] = [{ origin: "Sample Origin", ending: "Sample Ending", taps: 21 }, { origin: "Other Origin", ending: null, taps: 9 }];
+  const moment = { title: "Sample Card", delta: 3, reason: "sample reason" };
+  return [
+    funTurnText({ screen: "(screen)", meter: 47 }),
+    funTurnText({ screen: "(screen)", meter: 31, ending: true, opener: funOpener(2, careers) }),
+    funSurveyText({ careers, quit: true, tops: [moment], bottoms: [moment], last: [moment], flagged: ["sample line"] }),
+    funSurveyText({ careers, quit: false, tops: [], bottoms: [], last: [], flagged: [] }),
+    lostReplyText("B"),
+    retryText("choice D is not available", ["A", "B"])
+  ].join("\n\n");
+}
+
 // Fails a blind cohort before launch if any prompt it will send carries hidden terms or
 // copies the mechanics brief, the playtest brief or the design doc.
 export function leakGate(p: Persona, build: Build): Array<{ file: string; line: number | null; why: string; match: string }> {
@@ -86,5 +144,6 @@ export function leakGate(p: Persona, build: Build): Array<{ file: string; line: 
     [`prompts/diary-${p.diarySchema}.md`, diaryPrompt(p)]
   ];
   if (p.titleProbe) parts.push(["prompts/title-probe.md", titleProbePrompt(false)]);
+  if (p.fun) parts.push(["runner-written lines (meter, career opener, ending, exit survey)", funTemplates()]);
   return parts.flatMap(([file, text]) => Leak.checkPrompt(text, { secret, public: pub }).map(h => ({ file, ...h })));
 }

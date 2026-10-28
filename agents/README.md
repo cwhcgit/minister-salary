@@ -4,6 +4,8 @@ Scripted bots and Claude personas play the web build to answer one question befo
 
 Nothing here changes the game. Agents produce reports and proposals, and a proposal reaches `web/` only when you run `proposals.ts apply`.
 
+The default playtest is the **fun meter**: a Haiku 5.5 player plays careers back to back, reacting to each screen in one short line, until its fun runs out. What it measures is behaviour (how many taps and careers before it quits, and on which card), and what each card did to its fun. A career costs about $0.0015 on Haiku, and a five-career session under a cent. The original cohorts (1-5 interest ratings, notes and a diary per run, $0.25-0.31 a career on Sonnet) are still here for the questions only they answer.
+
 ## Setup
 
 Node 22.18 or later (TypeScript runs directly; there is no build step), then `cd agents && npm ci`. Everything free runs without the install: `node agents/leak-check.ts`, `node test/sim.js`, `node test/harness.test.js`, and any agent command with `--mock`.
@@ -25,14 +27,16 @@ Paid runs happen in GitHub Actions and authenticate with [workload identity fede
 
 **Running a cohort**
 
-Actions → **Agent cohort** → Run workflow, then choose a persona (or `content-audit`) and whether it is a dry run. One cohort per job. A dry run plays 3 runs and reports the projected cost of the full cohort in the job summary. The run logs, summaries and audit come back as an artifact named after the persona.
+Actions → **Agent cohort** → Run workflow, then choose a persona (or `calibration`, or `content-audit`) and whether it is a dry run. One cohort per job. A dry run plays 3 runs (2 sessions for a fun persona, 1 per persona for calibration) and reports the projected cost of the full cohort in the job summary, followed by each fun cohort's `report.md`. The logs, summaries and audit come back as an artifact named after the persona, and are committed to the `playtest-results` branch.
 
 Two optional inputs, both ignored when left empty and both ignored by `content-audit`:
 
-- `runs`: a whole number of runs, passed to the runner's `--runs` in place of the persona's own count (`lib/config.ts`). A dry run still plays at most 3, and still projects the cost of the persona's default count.
-- `max_usd`: a dollar amount, passed to `--max-usd`. It caps this job's spend on top of the cohort's own cap; the lower of the two wins.
+- `runs`: a whole number of runs (sessions, for a fun persona), passed to the runner's `--runs` in place of the persona's own count (`lib/config.ts`). A dry run still plays at most 3 (2 sessions), and still projects the cost of the persona's default count. Calibration ignores it.
+- `max_usd`: a dollar amount, passed to `--max-usd`. It caps this job's spend on top of the cohort's own cap; the lower of the two wins. Calibration is capped at $2 whatever it says.
 
-Anything else (a word, a negative number, `0`) fails the job before the runner starts. The job log prints the exact runner command. Order for a month: `content-audit`, the three blind cohorts, `lineage` (diaries are coded in the same job), `breaker`, `veteran`.
+Anything else (a word, a negative number, `0`) fails the job before the runner starts. The job log prints the exact runner command.
+
+Order for a round: `calibration` (dry run first; check that Haiku passes the canaries), then `fun-casual`, `fun-insider`, `fun-completionist`, and `fun-critic` when the Haiku scores need a second opinion. `content-audit` before a round on new content. The original cohorts (`blind-*`, `lineage`, `breaker`, `veteran`) answer their own questions and cost far more; run them only for those.
 
 How the job authenticates (`.github/scripts/anthropic-wif.sh`):
 
@@ -59,6 +63,20 @@ The analyst and designer still run locally. Without an API key, sign in with `an
 
 ## Personas
 
+Fun-meter personas (blind: the screen and the meter, nothing else; Haiku with thinking off unless stated). `runs` is sessions of up to 5 careers.
+
+| persona | who | quit line | repeats | model | sessions | answers |
+|---|---|---|---|---|---|---|
+| `fun-casual` | a 24-year-old who plays on the bus; three screens to hook her | 35 | ×1.5 | Haiku 5.5, low | 100 | How long does a casual player keep tapping, and what makes her stop? Keeps one origin. |
+| `fun-insider` | a Deputy Director; tone and accuracy matter | 25 | ×1 | Haiku 5.5, low | 100 | Does the satire hold an insider? Which lines break tone or get the service wrong? |
+| `fun-completionist` | plays every ending; loves a callback that pays off | 15 | ×1 | Haiku 5.5, low | 100 | Do callbacks and endings pull a patient player through several careers? |
+| `fun-critic` | a games critic, hard to impress | 25 | ×1 | Sonnet 5.5, low, thinking `between_tools` | 10 | Calibration: does a sharper (and dearer) reader agree with the Haiku players? |
+| `calibration` | `fun-casual` ×3, `fun-insider` ×3, `fun-completionist` ×2, `fun-critic` ×3, canaries in every career | | | | 11 | Does Haiku mark the bland canary down, flag the wink, and agree with the critic card by card? |
+
+Each personality is a block of config (`fun` in `lib/config.ts`: quit line, repeat multiplier, decay, maximum delta, careers per session, rotate or keep the origin) plus a short persona prompt in `personas/fun-*.md`. Adding one is a few lines.
+
+The original cohorts:
+
 | persona | sees | model | runs | answers |
 |---|---|---|---|---|
 | `blind-insider` | screen only; a Singapore public servant | Sonnet 5.5, low effort | 50 | Does the satire land for insiders? Is the jargon accurate? |
@@ -68,11 +86,31 @@ The analyst and designer still run locally. Without an API key, sign in with `an
 | `veteran` | the mechanics brief and the full trace | Haiku 5.5, low | 200 | Is the win reachable by skill from every origin? |
 | `breaker` | the mechanics brief and the full trace | Sonnet 5.5, medium | 30 | Heat farming, vetting and election exploits, degenerate loops |
 
-Prompts are plain files: `personas/*.md` and `prompts/*.md`. Models, effort, run counts and caps are in `lib/config.ts`. All cohorts share one seed set, with origins split evenly, so differences between cohorts come from the persona, not the dice. A lineage keeps one origin for all five lives.
+Prompts are plain files: `personas/*.md` and `prompts/*.md`. Models, effort, run counts and caps are in `lib/config.ts`. All cohorts share one seed set, with origins split evenly, so differences between cohorts come from the persona, not the dice. A lineage keeps one origin for all five lives. Fun personas share their own seed set: session s, career k gets the same seed in every fun cohort.
+
+## The fun meter
+
+A session is one player playing careers back to back, as someone would on the phone: up to 5 (`--careers`), each starting when the last one ends, with the next origin along or the same one again. The meter runs 0 to 100, starts at 50 once per session, and carries from career to career. Every tap moves it by three things:
+
+- **the player's delta**, -10 to +10: its own reaction to this screen. The prompt (`prompts/play-fun.md`) allows a rise only for something it can name (a laugh, a surprise, a callback paying off, a real dilemma), says most screens land between -3 and +3, and keeps +6 and above for a moment you would tell a friend about. It sees the meter's value on every turn.
+- **repeats**, applied by the runner: a card already played in full this session, in any career, costs 5. Repeats close together compound: 5, then 10, then 15 (and 15 after that), until three fresh cards in a row reset the streak. The persona's multiplier scales this (`fun-casual`: 8, 15, 23). "Meanwhile" lines (years that pass by themselves), the engine's one-line years and the canaries never count. A card is its version: a new version of a card (a different scene, same mechanics) is fresh.
+- **decay**, applied by the runner: 2 off every tap.
+
+At or below the persona's quit line, the player quits: the runner records the tap, the career and the card, and stops the session. The ending card is a tap too (the player reacts to it; no repeat cost). Between careers the session does what the phone does after each ending: the engine is given the cards of the last two finished careers (`recent`, as `ui.js` keeps them), so the next career prefers cards and versions the player has not just seen. A session therefore measures the variety players actually get.
+
+At the end (a quit, or the last career) comes a three-question exit survey: `quit_reason` (20 words or fewer), `best_card`, `worst_card`. It is its own short request: a recap of the session (each career's ending, the screens that moved the player most and its reasons at the time, the last three screens, any lines it flagged) rather than the whole conversation again.
 
 ## What an agent sees
 
-Blind personas get the screen and nothing else (see `harness/README.md`). Every request is ordered for caching:
+**Fun sessions.** One conversation per career. Each turn appends one user message (the screen exactly as the harness renders it, then `Your fun: 47/100.`) and the player's reply, which is the whole of its output:
+
+```json
+{"choice": "B", "delta": 2, "reason": "the appraisal euphemism for a C made me laugh", "off_tone": null}
+```
+
+`off_tone` is null unless a line broke the tone (a wink at the player, cruelty to a person rather than the system, a real politician, a wrong detail), in which case it quotes the line. No notes: the conversation is the memory. The request carries a cache breakpoint on the system prompt (shared by every career and session of the persona) and top-level automatic caching (`cache_control` on the request), which moves a breakpoint to the latest message, so each turn reads everything before it from the cache and pays full price only for the new screen and the last reply: about 250 tokens. Thinking is off (`disabled` on Haiku, `between_tools` on Sonnet). A new career opens with one line on how the earlier ones went. A reply that cannot be used is retried once with the available choices listed, then a choice is picked at random, flagged `autoPicked`, and the player is told so in its next message. Haiku has no refusal fallback; a refusal is handled the same way.
+
+**The original cohorts.** Blind personas get the screen and nothing else (see `harness/README.md`). Every request is ordered for caching:
 
 1. system prompt: persona, the store-page paragraph, how to reply. Identical for every turn of a cohort, so it is a cache hit after the first request.
 2. a lineage's notes from earlier lives (cached for the length of the life).
@@ -86,18 +124,36 @@ Each turn returns `choice`, `why`, `interest` (1-5, calibrated in the prompt), `
 ## Validity safeguards
 
 - **Leak gate.** A blind cohort will not launch if its system prompt, diary or title prompt names CEP or Heat, gives an effect number or a stat threshold, or copies seven words in a row from the mechanics brief, the playtest brief or the design doc. Every screen is checked for internal ids and render bugs before it is sent. `node agents/leak-check.ts` runs the gate on its own; CI runs it on every push.
-- **Canaries.** Blind and lineage cohorts play a build with two planted events (`harness/canaries.json`): a deliberately bland one and one that winks. A cohort passes only if it rates the bland one low (at most 2.5, and half a point under its own mean) and flags the wink in at least half the runs that saw it. A failed cohort's praise is discounted by the analyst. Canaries are held out of every other number.
+- **Canaries.** Blind and lineage cohorts play a build with two planted events (`harness/canaries.json`): a deliberately bland one and one that winks. A cohort passes only if it rates the bland one low (at most 2.5, and half a point under its own mean) and flags the wink in at least half the runs that saw it. A fun cohort passes only if the bland one's mean delta is -1 or lower and 2 points under the cohort's mean, and the wink is flagged `off_tone` in at least half its showings and 30 points above the cohort's base off-tone rate (so a player that flags everything fails). Fun sessions plant the canaries in the first career only, so they do not come back as repeats; calibration plants them in every career for more showings. A failed cohort's praise is discounted by the analyst. Canaries are held out of every other number.
+- **Calibration.** `calibration` plays 8 Haiku sessions (the three Haiku players) and 3 Sonnet critic sessions on the same seeds, then writes `calibration.md`: each model's canary results, and how far Haiku's per-card scores agree with the critic's (Pearson, mean gap, same sign, the biggest disagreements). Run it before trusting a round of Haiku cohorts.
 - **Behaviour over ratings.** The analyst weights skipped years, "start another run now?" and "which ending next" above 1-5 scores.
-- **Fresh context.** Blind runs never see other runs. Lineage lives carry only notes the agent wrote; `test.ts` checks that nothing else gets in.
+- **Fresh context.** Blind runs never see other runs. A fun session's careers see only a one-line recap of the earlier careers in the same session, written by the runner from what the ending cards showed. Lineage lives carry only notes the agent wrote; `test.ts` checks that nothing else gets in.
 - **Humans confirm.** CEP cruelty, the title, and anything that changes the core loop go to 3-5 real players before they are treated as settled.
 
 ## Outputs
+
+Fun cohorts: `reports/cohorts/<date>-<persona>-<build>/` holds `manifest.json`, `system-prompt.txt`, one JSONL per session in `sessions/`, `summary.json` and `report.md`. A session's JSONL has a `meta` line; per career a `career_start` (origin, seed, build, the freshness memory it started with, the meter) and a `career_end` (ending, choices, final state); one `turn` line per tap (the exact screen, the reply, the meter's before/model/repeat/decay/after, the card and whether it was a repeat, token usage and cost, the full trace); the `survey`; and a `summary` (quit, taps to quit, careers to quit, cost). Every career replays exactly from its build hash, origin, seed, `recent` and choices.
+
+`summary.json` and `report.md` give, in order: taps to quit and careers to quit (median and distribution, with sessions that never quit counted apart), the share of careers finished and their endings, the fun curve (mean meter and mean delta by tap, and how many are still playing), a score per card (mean model delta with the rule deltas left out, split into first showing and repeats, off-tone flags, the cards players quit on, top and bottom 10), the endings' scores, the canary check, the exit survey, and the cost: per tap, career and session, the token split (uncached input, cache writes, cache reads, output, thinking) and its cost share, and what the same token counts would cost on Haiku and on Sonnet. `node agents/runner.ts summarize <dir>` rebuilds both. A calibration run adds `<date>-calibration-<build>/calibration.{json,md}` beside its four cohorts.
+
+The original cohorts:
 
 `reports/cohorts/<date>-<persona>-<build>/`: `manifest.json`, `system-prompt.txt`, one JSONL per run, and `summary.json`. Each run's JSONL has a `meta` line, an optional `title_probe`, one `turn` line per year (the exact screen the agent saw, its reply, token usage and cost, and the full trace), the `diary`, and a `summary` (ending, why it ended, final stats, the choice list). A run replays exactly from its build hash, origin, seed and choices.
 
 `reports/analysis/<date>-<build>/report.md` is the ranked findings report; `reports/audit/<build>.md` is the tone audit.
 
 ## Spend
+
+**Fun sessions.** From mock runs of every fun persona, priced with the table in `lib/config.ts` (token counts from the real screens at about 4 characters a token, a 35-token reply, no thinking; the dry run measures the real ones):
+
+| | per tap | per career | per mock session (1-3 careers before the scripted player quits) | full 5-career session |
+|---|---|---|---|---|
+| Haiku 5.5 | ~$0.0001 | ~$0.0015 | ~$0.0015-0.003 | ~$0.006-0.008 |
+| Sonnet 5.5 | ~$0.0014 | ~$0.023 | ~$0.025-0.045 | ~$0.09-0.13 |
+
+Against the last Sonnet round ($0.25-0.31 a career, 58% of it per-turn output), that is about 12 times cheaper on Sonnet and about 200 times on Haiku. Nearly all input is a cache read; the cost is mostly cache writes (each new screen) and output. A Haiku cohort of 100 sessions comes to roughly $0.3-0.8 even if every session plays all five careers, so the $2 cap is a guard, not a budget; `calibration` is about $0.4, `fun-critic` about $1.2. A whole round (calibration, the three Haiku cohorts, the critic) is about $2-4, so $11.50 buys about three rounds, or many more Haiku cohorts on their own. Haiku 5.5 prices prompts over 100,000 tokens higher; a career's conversation stays under about 25,000 even at the 60-turn cap.
+
+**The original cohorts.**
 
 Estimates from the real prompt sizes (about 4 characters a token), before thinking tokens, which the dry run measures:
 
@@ -112,10 +168,10 @@ Estimates from the real prompt sizes (about 4 characters a token), before thinki
 The caps add up to $76, leaving room in the $100 credit to re-test approved changes. Controls:
 
 - A cohort stops launching runs once it has spent its cap (`lib/config.ts`); `--max-usd` caps a whole invocation.
-- Every run stops at 60 turns.
+- Every run, and every career in a session, stops at 60 turns.
 - `--dry-run` plays three runs per persona for real and prints the projected cohort cost before you commit to it.
 - Use a dedicated Console workspace with its own spend limit, and point the federation rule at it: every token the cohorts get is scoped to that workspace, so the monthly credit cannot be spent by anything else.
-- Play requests use the regular Messages API, one request per turn, with up to 4 games at once (`--concurrency`). The Batch API (half price) is used only where nothing waits on the answer: the content audit and diary coding.
+- Play requests use the regular Messages API, one request per turn, with up to 4 games (or sessions) at once (`--concurrency`). The Batch API (half price) is used only where nothing waits on the answer: the content audit and diary coding.
 - Sonnet and Opus requests opt into server-side refusal fallback (`fallbacks: "default"`), so a rare safety decline is retried on another model instead of failing the turn. Haiku has no fallback; a turn that cannot be used is retried once, then picked at random and flagged `autoPicked` so analysis can drop it.
 
 ## Answers to the plan's open questions
@@ -129,14 +185,15 @@ The caps add up to $76, leaving room in the $100 credit to re-test approved chan
 ## Files
 
 ```
-runner.ts        play cohorts; summarize and score them
+runner.ts        play cohorts, fun sessions and calibration; summarize and score them
 audit.ts         content auditor (Opus, Batch API)
 analyse.ts       analyst: bot metrics + cohorts → ranked findings
 design.ts        designer: findings → proposals, each regression-tested and audited
 proposals.ts     the approval gate: list, show, check, apply, reject
 leak-check.ts    the blind-prompt leak gate, on its own
 test.ts          offline tests of the whole pipeline (mock, no credits)
-lib/             config, harness bindings, prompts, schemas, API calls, play loop, reports
+lib/             config, harness bindings, prompts, schemas, API calls, play loop, reports;
+                 meter.ts (the fun meter's rules), session.ts (a fun session), funreport.ts (its report)
 personas/        one prompt per persona
 prompts/         store page, play and diary instructions, briefs, analysis prompts
 ```

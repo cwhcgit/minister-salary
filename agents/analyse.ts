@@ -11,6 +11,7 @@ import { H } from "./lib/harness.ts";
 import { mockLlm, realLlm } from "./lib/llm.ts";
 import { mechanics } from "./lib/prompts.ts";
 import { summarizeCohort } from "./lib/report.ts";
+import { funMarkdown, isSessionCohort, summarizeSessions } from "./lib/funreport.ts";
 import { analyse, analysisMarkdown } from "./lib/analysis.ts";
 import { botMetrics, readJson } from "./lib/proposals.ts";
 
@@ -37,7 +38,17 @@ else {
 // per-choice pick counts are for the designer; the analyst reads the aggregates
 for (const b of Object.values<any>(metrics.bots)) delete b.choicePicks;
 
-const cohorts = cohortDirs.map(d => {
+// A calibration folder has no runs of its own; its cohorts sit beside it.
+const cohorts = cohortDirs.filter(d => fs.existsSync(path.join(d, "manifest.json"))).map(d => {
+  if (isSessionCohort(d)) {
+    const f = summarizeSessions(d);
+    fs.writeFileSync(path.join(d, "summary.json"), JSON.stringify(f, null, 1) + "\n");
+    fs.writeFileSync(path.join(d, "report.md"), funMarkdown(f));
+    const hashes = Object.values<string>(f.buildHashes ?? {});
+    if (hashes.length && !hashes.some(h => current.has(h))) console.log(`  ! ${d} was played on build ${hashes.join("/")}, not the current content (${[...current].join(" or ")})`);
+    // the full per-card table is for the report; the analyst gets the ranked ends
+    return { ...f, cards: { ...f.cards, all: undefined } };
+  }
   const s = summarizeCohort(d);
   fs.writeFileSync(path.join(d, "summary.json"), JSON.stringify(s, null, 1) + "\n");
   if (s.buildHash && !current.has(s.buildHash)) console.log(`  ! ${d} was played on build ${s.buildHash}, not the current content (${[...current].join(" or ")})`);
@@ -49,8 +60,12 @@ const predictions = proposalIds.map(id => {
   return { id, title: p.title, prediction: p.prediction, botCheck: st.prediction ?? null, status: st.status };
 });
 
-for (const c of cohorts)
-  console.log(`  ${c.cohort}: ${c.runs} runs, $${c.cost.total}, canaries ${c.canaries.passed ? "passed" : "FAILED"} (bland ${c.canaries.bland.meanInterest ?? "-"} vs ${c.canaries.bland.cohortMeanInterest ?? "-"}, wink ${c.canaries.wink.flagged}/${c.canaries.wink.shown})`);
+for (const c of cohorts) {
+  if ("kind" in c && c.kind === "fun-sessions")
+    console.log(`  ${c.cohort}: ${c.sessions} sessions, $${c.cost.total}, canaries ${c.canaries.passed ? "passed" : "FAILED"} (bland delta ${c.canaries.bland.meanDelta ?? "-"} vs ${c.canaries.bland.overallMeanDelta ?? "-"}, wink ${c.canaries.wink.flagged}/${c.canaries.wink.shown}); taps to quit median ${c.retention.tapsToQuit.median ?? "-"}`);
+  else if ("runs" in c)
+    console.log(`  ${c.cohort}: ${c.runs} runs, $${c.cost.total}, canaries ${c.canaries.passed ? "passed" : "FAILED"} (bland ${c.canaries.bland.meanInterest ?? "-"} vs ${c.canaries.bland.cohortMeanInterest ?? "-"}, wink ${c.canaries.wink.flagged}/${c.canaries.wink.shown})`);
+}
 const llm = mock ? mockLlm(5) : realLlm();
 console.log(`analysing ${cohorts.length} cohorts${predictions.length ? ` and ${predictions.length} predictions` : ""}…`);
 const r = await analyse(llm, { metrics, cohorts, predictions, mechanics: mechanics(build) });
