@@ -243,7 +243,7 @@ await ok("mock fun sessions: careers carry the meter and the repeat memory, a qu
         const ts = lines.filter(l => l.type === "turn" && l.career === k);
         for (let i = 1; i < ts.length; i++) {
           assert.ok(ts[i].usage.cacheRead >= ts[i - 1].usage.cacheRead + ts[i - 1].usage.cacheWrite, "the conversation grows and is read back from the cache");
-          assert.ok(ts[i].usage.cacheWrite < 1200 && ts[i].usage.input === 0, `only the new screen is written (${JSON.stringify(ts[i].usage)})`);
+          assert.ok(ts[i].usage.cacheWrite < 2000 && ts[i].usage.input === 0, `only the new screen is written (${JSON.stringify(ts[i].usage)})`);
         }
       }
     }

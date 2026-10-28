@@ -316,7 +316,7 @@ ok('the trace shows which of the run\'s people and which part options a card use
   assert.ok(cast > 20 && parts > 10, `expected cast and parts in traces (${cast}, ${parts})`);
 });
 
-ok('series: the Indicators in full at most twice a career, the plan once; the years after keep the habit and set the bonus', () => {
+ok('series: the Indicators in full at most twice a career, the plan in full every time; the years after keep the habit and set the bonus', () => {
   const C = build.content;
   const fam = id => (C.events.find(e => e.id === id) || {}).series;
   const score = f => (f.cep||0)*60 + (f.standing||0)*1.5 + (f.competence||0)*1.4 + (f.reputation||0)*1.3 - (f.heat||0)*0.8;
@@ -354,7 +354,7 @@ ok('series: the Indicators in full at most twice a career, the plan once; the ye
         passedInd++;
         const src = C.events.find(e => e.id === p.event), ch = src.choices.find(c => c.stance === p.habit);
         assert.ok(ch, `${p.event}: no choice for the habit ${p.habit}`);
-        const i = log.findIndex(l => l.kind === 'meanwhile' && l.text.startsWith(`Age ${p.age}.`));
+        const i = log.findIndex(l => l.kind === 'year' && l.text === `Age ${p.age} · A year without a decision`);
         const pay = log.slice(i + 1).find(l => l.kind === 'pay');
         const m = pay && pay.text.match(/including (?:a National Bonus of (\d) months?|no National Bonus)/);
         assert.ok(m, `${p.event}: the pay line does not show the bonus: ${pay && pay.text}`);
@@ -363,9 +363,9 @@ ok('series: the Indicators in full at most twice a career, the plan once; the ye
       }
     }
     assert.ok((full.indicators || 0) <= 2, `${origin} ${seed}: the Indicators shown in full ${full.indicators} times`);
-    assert.ok((full.plan || 0) <= 1, `${origin} ${seed}: the improvement plan shown in full ${full.plan} times`);
+    // an improvement plan is never passed without a tap: it is shown in full every time it comes
   }
-  assert.ok(again > 30 && passedInd > 30 && passedPlan > 0 && office > 100, `expected second showings and passed series years (${again}, ${passedInd}, ${passedPlan})`);
+  assert.ok(again > 30 && passedInd > 30 && passedPlan === 0 && office > 100, `expected second showings and passed series years, and no plan passed silently (${again}, ${passedInd}, ${passedPlan})`);
 });
 
 ok('every second-showing scene renders whole, with the habit first and no dominated choice', () => {
