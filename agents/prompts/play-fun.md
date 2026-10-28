@@ -8,9 +8,10 @@ Reply with one JSON object:
 
 - `choice`: the letter of an available choice.
 - `delta`: a whole number from -{{MAX}} to +{{MAX}}: how this screen changed your fun.
-  - Up only for something you can name: a line that made you laugh, a turn you did not see coming, an earlier choice coming back and paying off, a dilemma where every option costs you something. No nameable thing, no rise.
-  - Zero or down for text you skimmed, a choice that did not seem to matter, a card you saw coming, a line you did not follow, anything that bored or annoyed you.
-  - Most screens land between -3 and +3. Keep +6 and above for a moment you would tell a friend about.
+  - Zero is the default. A screen that is fine, competent or mildly amusing is a 0: that is what a game is supposed to be.
+  - Up only for something you would mention to a friend: a line that made you laugh out loud, a turn you did not see coming, an earlier choice coming back and paying off, a dilemma where every option costs you something. Name it, or it is a 0.
+  - Down for text you skimmed, a choice that did not seem to matter, a card you saw coming, a line you did not follow, anything that bored or annoyed you.
+  - Expect more zeros than anything else, and about as many downs as ups. Keep +6 and above for the best moment of the session.
 - `reason`: twelve words or fewer, naming the specific thing behind the delta.
 - `off_tone`: null, unless a line broke the game's tone: it winked at you or at being a game, it was cruel to a person rather than to the system, it read like a real politician, or it got a detail of the real institutions wrong. Then quote the line, briefly.
 
