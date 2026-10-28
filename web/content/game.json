@@ -207,27 +207,75 @@
     {
       "min": 72,
       "code": "A",
-      "label": "Your performance is described as \"outstanding, with clear potential for wider responsibility\"."
+      "label": "Your performance is described as \"outstanding, with clear potential for wider responsibility\".",
+      "labels": [
+        "Your performance is described as \"outstanding, with clear potential for wider responsibility\".",
+        "Your performance is described as \"exceptional, and ready for larger responsibilities\".",
+        "Your performance is described as \"consistently outstanding, across every dimension assessed\".",
+        "Your performance is described as \"a clear standout this cycle\".",
+        "Your performance is described as \"of the highest calibre, with much more to give\".",
+        "Your performance is described as \"exemplary, and ready now\".",
+        "Your performance is described as \"outstanding, and noticed well beyond the immediate team\".",
+        "Your performance is described as \"a model of what the role can be\"."
+      ]
     },
     {
       "min": 58,
       "code": "B+",
-      "label": "Your performance is described as \"strong, consistently exceeding expectations\"."
+      "label": "Your performance is described as \"strong, consistently exceeding expectations\".",
+      "labels": [
+        "Your performance is described as \"strong, consistently exceeding expectations\".",
+        "Your performance is described as \"a strong contributor, often going beyond what was asked\".",
+        "Your performance is described as \"very good, with some areas of real distinction\".",
+        "Your performance is described as \"reliably above expectations\".",
+        "Your performance is described as \"highly effective, and well regarded by stakeholders\".",
+        "Your performance is described as \"a strong year, with clear evidence of impact\".",
+        "Your performance is described as \"above expectations in most areas, and well above in one\".",
+        "Your performance is described as \"strong, and increasingly sought out by others\"."
+      ]
     },
     {
       "min": 42,
       "code": "B",
-      "label": "Your performance is described as \"solid and dependable\"."
+      "label": "Your performance is described as \"solid and dependable\".",
+      "labels": [
+        "Your performance is described as \"solid and dependable\".",
+        "Your performance is described as \"fully meeting expectations\".",
+        "Your performance is described as \"good, with room to grow\".",
+        "Your performance is described as \"a valued and reliable contributor\".",
+        "Your performance is described as \"competent across the board\".",
+        "Your performance is described as \"consistent, and well within expectations\".",
+        "Your performance is described as \"sound, and much appreciated\".",
+        "Your performance is described as \"good, without qualification\"."
+      ]
     },
     {
       "min": 28,
       "code": "C",
-      "label": "Your performance is described as \"meeting requirements in most areas\"."
+      "label": "Your performance is described as \"meeting requirements in most areas\".",
+      "labels": [
+        "Your performance is described as \"meeting requirements in most areas\".",
+        "Your performance is described as \"adequate, with some areas for development\".",
+        "Your performance is described as \"satisfactory overall\".",
+        "Your performance is described as \"meeting most expectations, though not yet consistently\".",
+        "Your performance is described as \"acceptable, given the circumstances\".",
+        "Your performance is described as \"developing, and encouraged to take greater ownership\".",
+        "Your performance is described as \"on track in some respects\".",
+        "Your performance is described as \"broadly adequate, in a mixed year\"."
+      ]
     },
     {
       "min": 0,
       "code": "D",
-      "label": "Your performance is described as \"an area we would like to work on together\"."
+      "label": "Your performance is described as \"an area we would like to work on together\".",
+      "labels": [
+        "Your performance is described as \"an area we would like to work on together\".",
+        "Your performance is described as \"below expectations at present\".",
+        "Your performance is described as \"not yet where we would hope\".",
+        "Your performance is described as \"a concern, which we are confident can be addressed\".",
+        "Your performance is described as \"in need of closer support in the coming year\".",
+        "Your performance is described as \"a matter for a candid conversation\"."
+      ]
     }
   ],
   "cepHints": [
