@@ -126,7 +126,8 @@ server.listen(0, async () => {
       expect('ending title', $('.ending h1').textContent, want.title);
       expect('ending epitaph', $('.ending .ep').textContent, want.epitaph);
       const vals = $$('.final .v').map(v => v.textContent);
-      expect('ending values', vals.join(' | '), [want.retiredAs, want.age, want.lifetimeEarnings, want.integrity].join(' | '));
+      expect('ending values', vals.join(' | '), [want.position, want.age, want.lifetimeEarnings, want.integrity].join(' | '));
+      expect('ending labels', $$('.final .k').map(k => k.textContent).join(' | '), [want.positionLabel, want.ageLabel, 'Lifetime earnings', 'Integrity'].join(' | '));
       const dls = $$('.dl');
       expect('declassified count', dls.length, want.declassified.length);
       dls.forEach((el, i) => {

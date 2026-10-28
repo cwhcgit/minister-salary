@@ -50,16 +50,19 @@ The current web build is the M1 playtest harness. It exists to answer one questi
 | Local Graduate | bottom rung, age 23 | median | Normal |
 | Poly, then night classes | bottom rung, age 27, high integrity, has exclusive events | low | Hard |
 
-## Endings (9)
+## Endings (12)
 1. Prime Minister (the win)
 2. Permanent Secretary
-3. You Found Your Level (stuck at your ceiling)
+3. You Found Your Level (retired below Permanent Secretary)
 4. The Tea Was Declined
 5. Lost the Ward
 6. Everything Surfaced (scandal)
 7. The Quiet Conversation (eased out)
-8. Backbench Lifer
-9. Retired, Honourably
+8. Backbench Lifer (retired as an MP)
+9. Never Quite Cabinet (retired as a junior office-holder)
+10. Retired, Honourably (retired as a Minister or above)
+11. The Consultancy (left for the private sector)
+12. The Invitation Lapsed (invited into politics, then dropped)
 
 ## Content size
 - 49 events, 122 choices. Most events happen once per run. 9 repeatable filler events keep each year populated.

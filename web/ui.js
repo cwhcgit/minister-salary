@@ -23,6 +23,22 @@ const TAG_LABEL = { cep: "rumour", heat: "rumour", rival: "batchmate" };
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
+// Cards seen in the last two runs on this phone, so the next career does not replay the last one.
+// A convenience only: if storage is blocked, every run is simply drawn fresh.
+const RECENT = "ms.recent";
+function recentList() {
+  try { const r = JSON.parse(localStorage.getItem(RECENT)); return Array.isArray(r) ? r.flat().filter(x => typeof x === "string") : []; }
+  catch (e) { return []; }
+}
+function rememberRun() {
+  try {
+    const prev = JSON.parse(localStorage.getItem(RECENT) || "[]");
+    const runs = Array.isArray(prev) ? prev.filter(Array.isArray) : [];
+    runs.unshift(Engine.recentKeys(content, S));
+    localStorage.setItem(RECENT, JSON.stringify(runs.slice(0, 2)));
+  } catch (e) {}
+}
+
 // Storage can be blocked (private windows, embedded previews); the game must still play.
 function save()  { try { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log })); } catch (e) {} }
 function wipe()  { try { localStorage.removeItem(SAVE); } catch (e) {} }
@@ -98,7 +114,7 @@ function startScreen() {
   app.querySelector("#go").onclick = () => {
     const name = (app.querySelector("#nm").value || "").trim() || "You";
     try { localStorage.setItem("ms.name", name); } catch (e) {}
-    S = Engine.newGame(content, pickedOrigin, name, (Math.random() * 2 ** 31) | 0, { rival: rivalOn && !!content.rival });
+    S = Engine.newGame(content, pickedOrigin, name, (Math.random() * 2 ** 31) | 0, { rival: rivalOn && !!content.rival, recent: recentList() });
     prev = null;
     nextTurn();
   };
@@ -137,14 +153,15 @@ function outcomeScreen() {
 function endingScreen() {
   const e = content.endings.find(x => x.id === S.ending);
   const r = Engine.rank(content, S);
+  const L = Engine.finalLabels(content, S);
   app.innerHTML = `
     <div class="card ending">
       <div class="lab">${esc(S.name)} &middot; the final position</div>
       <h1 class="serif">${esc(e.title)}</h1>
       <div class="ep serif">${esc(e.epitaph)}</div>
       <div class="final">
-        <div><div class="k">Retired as</div><div class="v" style="font-size:15px">${esc(r.title)}</div></div>
-        <div><div class="k">At age</div><div class="v">${S.age}</div></div>
+        <div><div class="k">${esc(L.position)}</div><div class="v" style="font-size:15px">${esc(r.title)}</div></div>
+        <div><div class="k">${esc(L.age)}</div><div class="v">${S.age}</div></div>
         <div><div class="k">Lifetime earnings</div><div class="v" style="color:var(--cash)">${money(S.wealth)}</div></div>
         <div><div class="k">Integrity</div><div class="v">${S.integrity}</div></div>
       </div>
@@ -158,7 +175,7 @@ function endingScreen() {
     </div>`;
   app.querySelector("#again").onclick = () => { wipe(); S = null; phase = "start"; startScreen(); };
   app.querySelector("#share").onclick = () => {
-    const txt = `Minister Salary — ${e.title}\n${S.name} retired as ${r.title} at ${S.age}, having earned ${money(S.wealth)}.\n${location.href}`;
+    const txt = `Minister Salary — ${e.title}\n${S.name} ${L.share} ${S.ending === "pm" ? "" : r.title + " at "}${S.age}, having earned ${money(S.wealth)}.\n${location.href}`;
     if (navigator.share) navigator.share({ text: txt }).catch(() => {});
     else navigator.clipboard.writeText(txt).then(() => alert("Copied."));
   };
@@ -170,6 +187,7 @@ function choose(i) {
   const r = Engine.advance(content, S, i);
   S = r.state; outcome = r.outcome; log = r.log;
   phase = S.ending ? "ending" : "outcome";
+  if (S.ending) rememberRun();
   save(); render();
 }
 

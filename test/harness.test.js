@@ -84,7 +84,7 @@ ok('the screen view carries nothing hidden', () => {
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
     'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'batchmate', 'stats', 'key', 'label', 'value', 'delta',
     'outcome', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
-    'ending', 'epitaph', 'retiredAs', 'lifetimeEarnings', 'integrity',
+    'ending', 'epitaph', 'positionLabel', 'position', 'ageLabel', 'lifetimeEarnings', 'integrity',
     // the ending screen's Declassified file: the hidden values, revealed on purpose once the run is over
     'declassified']);
   const walk = (o, where) => {
@@ -143,7 +143,9 @@ ok('ladder pay and age floors match the published figures', () => {
   assert.strictEqual(L[8].pay, 18500 * 14, 'MP allowance, monthly x 14');
   const multiple = { 9: 0.45, 10: 0.45, 11: 0.7, 12: 0.85, 14: 1.3, 15: 1.6, 16: 2 };
   for (const [r, m] of Object.entries(multiple)) assert.strictEqual(L[r].pay, Math.round(mr4 * m), `${L[r].title} (${L[r].grade})`);
-  assert.strictEqual(L[4].minAge, 28); assert.strictEqual(L[6].minAge, 35); assert.strictEqual(L[7].minAge, 38);
+  assert.strictEqual(L[4].minAge, 28); assert.strictEqual(L[6].minAge, 35); assert.strictEqual(L[7].minAge, 40);
+  // an exceptional file (two standout moments) may go lower, and never below 38 for Permanent Secretary
+  assert.strictEqual(L[6].minAgeExceptional, 33); assert.strictEqual(L[7].minAgeExceptional, 38);
   const scholar = build.content.origins.find(o => o.id === 'scholar');
   assert.ok(scholar.startRank <= 2 && scholar.startAge === 25, 'scholars start as Assistant Directors at 25');
 });
