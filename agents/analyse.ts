@@ -49,6 +49,8 @@ const predictions = proposalIds.map(id => {
   return { id, title: p.title, prediction: p.prediction, botCheck: st.prediction ?? null, status: st.status };
 });
 
+for (const c of cohorts)
+  console.log(`  ${c.cohort}: ${c.runs} runs, $${c.cost.total}, canaries ${c.canaries.passed ? "passed" : "FAILED"} (bland ${c.canaries.bland.meanInterest ?? "-"} vs ${c.canaries.bland.cohortMeanInterest ?? "-"}, wink ${c.canaries.wink.flagged}/${c.canaries.wink.shown})`);
 const llm = mock ? mockLlm(5) : realLlm();
 console.log(`analysing ${cohorts.length} cohorts${predictions.length ? ` and ${predictions.length} predictions` : ""}…`);
 const r = await analyse(llm, { metrics, cohorts, predictions, mechanics: mechanics(build) });
@@ -56,3 +58,4 @@ if (!r.data) { console.error(`✗ no usable analysis (stop: ${r.stop})`); proces
 fs.writeFileSync(path.join(outDir, "analysis.json"), JSON.stringify(r.data, null, 1) + "\n");
 fs.writeFileSync(path.join(outDir, "report.md"), analysisMarkdown(r.data, { date, buildHash: build.hash, cohorts: cohorts.map(c => c.cohort), cost: r.cost }));
 console.log(`${r.data.findings.length} findings, $${r.cost.toFixed(2)} → ${path.relative(process.cwd(), path.join(outDir, "report.md"))}`);
+for (const f of r.data.findings.slice(0, 10)) console.log(`  ${f.id} [${f.severity}, ${f.confidence}${f.kind === "new" ? "" : ", known gap"}] ${f.title}`);

@@ -101,6 +101,7 @@ async function play() {
     const perRun = done.length ? done.reduce((n, r) => n + r.cost, 0) / done.length : 0;
     log(`  spent ${usd(spend.spent)} over ${spend.calls} requests; ${usd(perRun)} per completed run; cache reads ${summary.cost.cacheReadShare}% of input tokens`);
     log(`  ${done.length}/${runs.length} runs completed, ${results.filter(r => r?.aborted).length} aborted, ${summary.autoPicks} auto-picked turns, ${summary.refusals} refusals`);
+    for (const l of cohortLines(summary)) log(`  ${l}`);
     if (dry) {
       const projected = perRun * p.runs;
       log(`  projected full cohort: ${p.runs} runs × ${usd(perRun)} = ${usd(projected)} (cap ${usd(p.cohortCapUsd)})${projected > p.cohortCapUsd ? "  ← over the cap: the runner would stop early" : ""}`);
@@ -145,11 +146,23 @@ async function playLineages(ctx: Ctx, specs: Spec[], n: number): Promise<RunResu
   return out.flat();
 }
 
+// The lines worth reading in a job log: the validity check first, then behaviour.
+export function cohortLines(s: ReturnType<typeof summarizeCohort>): string[] {
+  const c = s.canaries, b = s.behaviour;
+  const acts = Object.entries(s.interest.byAct).map(([k, a]) => `${k} ${a.mean} (${a.lowShare}% low, ${a.skippedYears} skipped)`).join(", ");
+  return [
+    `canaries ${c.passed ? "PASSED" : "FAILED"}: bland shown ${c.bland.shown}, mean interest ${c.bland.meanInterest ?? "-"} vs cohort ${c.bland.cohortMeanInterest ?? "-"} (${c.bland.passed ? "pass" : "fail"}); wink flagged ${c.wink.flagged}/${c.wink.shown} (${c.wink.passed ? "pass" : "fail"})`,
+    `interest by act: ${acts}`,
+    `behaviour: play again now ${b.playAgainNow ?? "-"}%, ending fair ${b.endingFair ?? "-"}%, overall interest ${b.overallInterest ?? "-"}; title after play ${JSON.stringify(s.title.afterPlay)}`
+  ];
+}
+
 function summarize(dir: string) {
   if (!dir) throw new Error("usage: summarize <cohort dir>");
   const s = summarizeCohort(dir);
   fs.writeFileSync(path.join(dir, "summary.json"), JSON.stringify(s, null, 1) + "\n");
-  log(`${s.runs} runs, mean interest ${s.interest.mean}, canaries ${s.canaries.passed ? "passed" : "FAILED"} → ${path.join(dir, "summary.json")}`);
+  log(`${s.runs} runs, $${s.cost.total} → ${path.join(dir, "summary.json")}`);
+  for (const l of cohortLines(s)) log(`  ${l}`);
 }
 
 async function score() {
