@@ -1,0 +1,60 @@
+{
+ "cohort": "2026-10-28-fun-insider-102dfdb9c220",
+ "kind": "fun-sessions",
+ "persona": {
+  "id": "fun-insider",
+  "name": "Rachel Goh",
+  "file": "fun-insider.md",
+  "blind": true,
+  "model": "claude-haiku-5-5",
+  "effort": "low",
+  "thinking": "disabled",
+  "runs": 100,
+  "turnSchema": "fun",
+  "diarySchema": "fun",
+  "canaries": true,
+  "titleProbe": false,
+  "cohortCapUsd": 2,
+  "fun": {
+   "start": 50,
+   "cap": 100,
+   "quitLine": 25,
+   "decay": 1,
+   "maxDelta": 10,
+   "verdicts": {
+    "fine": 0,
+    "skimmed": -2,
+    "annoyed": -5,
+    "smiled": 2,
+    "tell_a_friend": 6
+   },
+   "repeatSteps": [
+    5,
+    10,
+    15
+   ],
+   "repeatMultiplier": 1,
+   "freshToReset": 3,
+   "careers": 5,
+   "origins": "rotate"
+  },
+  "answers": "Does the satire hold an insider, and which lines break tone or get the service wrong?"
+ },
+ "buildHash": "102dfdb9c220",
+ "canaryBuildHash": "3461af97dbc8",
+ "buildRoot": "/home/runner/work/minister-salary/minister-salary/web",
+ "canaries": true,
+ "canaryCareers": 1,
+ "systemHash": "46d7442a3074",
+ "sessions": 40,
+ "plannedSessions": 40,
+ "careers": 5,
+ "capUsd": 0.8,
+ "maxTurns": 60,
+ "tags": "phone",
+ "concurrency": 4,
+ "dryRun": false,
+ "mock": false,
+ "calibration": false,
+ "createdAt": "2026-10-28T14:06:27.358Z"
+}
