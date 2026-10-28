@@ -22,7 +22,17 @@ const SCALE = oneOf(1, 2, 3, 4, 5);
 // would make output tokens most of the bill.
 const NOTES = { remember: str, rewrite_notes: nullable(str) };
 
+// A fun-meter turn: the whole reply is ~35 tokens. The delta's range is an integer enum, since
+// the API does not enforce minimum/maximum.
+export const funTurnSchema = (max = 10): S => obj({
+  choice: CHOICE,
+  delta: oneOf(...Array.from({ length: 2 * max + 1 }, (_, i) => i - max)),
+  reason: str,
+  off_tone: nullable(str)
+});
+
 export const TURN: Record<TurnSchema, S> = {
+  fun: funTurnSchema(10),
   player: obj({
     choice: CHOICE,
     why: str,
@@ -61,6 +71,8 @@ const playerDiary = {
 };
 
 export const DIARY: Record<DiarySchema, S> = {
+  // the fun session's exit survey, asked once: when the player quits or the session ends
+  fun: obj({ quit_reason: str, best_card: str, worst_card: str }),
   player: obj(playerDiary),
   lineage: obj({ ...playerDiary, notes_for_next_life: str }),
   veteran: obj({

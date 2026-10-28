@@ -7,11 +7,16 @@ on:
   workflow_dispatch:
     inputs:
       persona:
-        description: Cohort to play (content-audit runs the content auditor instead)
+        description: Cohort to play (calibration plays the Haiku players and the Sonnet critic side by side; content-audit runs the content auditor instead)
         type: choice
         required: true
-        default: blind-insider
+        default: calibration
         options:
+          - calibration
+          - fun-casual
+          - fun-insider
+          - fun-completionist
+          - fun-critic
           - content-audit
           - blind-insider
           - blind-general
@@ -20,16 +25,16 @@ on:
           - veteran
           - breaker
       dry_run:
-        description: Dry run (3 runs, then the projected cost of the full cohort)
+        description: Dry run (3 runs, or 2 sessions for a fun persona, 1 per persona for calibration; then the projected cost of the full cohort)
         type: boolean
         default: true
       runs:
-        description: Number of runs (optional; empty = the persona's own count; ignored by content-audit)
+        description: Number of runs, or sessions for a fun persona (optional; empty = the persona's own count; ignored by calibration and content-audit)
         type: string
         required: false
         default: ''
       max_usd:
-        description: Spend cap in USD for this job, on top of the cohort's own cap (optional; empty = none; ignored by content-audit)
+        description: Spend cap in USD for this job, on top of the cohort's own cap (optional; empty = none; calibration is capped at $2 regardless; ignored by content-audit)
         type: string
         required: false
         default: ''
@@ -109,8 +114,12 @@ jobs:
           {
             echo "### $PERSONA$([ "$DRY_RUN" = true ] && echo ' (dry run)')"
             echo '```'
-            grep -E "credentials:|===|spent|projected|completed|canaries|interest by act|behaviour|findings|total spent|→" "$log" || true
+            grep -E "credentials:|===|spent|projected|completed|canaries|interest by act|behaviour|fun:|careers:|cost per tap|calibration|findings|total spent|→" "$log" || true
             echo '```'
+            # Fun-meter cohorts write a short report (and calibration a comparison): show them here too.
+            for f in reports/cohorts/*/calibration.md reports/cohorts/*/report.md; do
+              if [ -f "$f" ]; then echo; cat "$f"; fi
+            done
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Stop the token refresher

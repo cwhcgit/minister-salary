@@ -10,9 +10,12 @@ import { execFile, execFileSync } from "node:child_process";
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "playtest-"));
 process.env.PLAYTEST_REPORTS = path.join(tmp, "reports");
 process.env.PLAYTEST_PROPOSALS = path.join(tmp, "proposals");
-const { PERSONAS, runPlan } = await import("./lib/config.ts");
+const { PERSONAS, runPlan, sessionPlan, FUN_DEFAULTS } = await import("./lib/config.ts");
 const { H } = await import("./lib/harness.ts");
-const { leakGate, systemPrompt, mechanicsAppendix } = await import("./lib/prompts.ts");
+const { leakGate, systemPrompt, mechanicsAppendix, funTemplates } = await import("./lib/prompts.ts");
+const { Meter } = await import("./lib/meter.ts");
+const { buildParams } = await import("./lib/llm.ts");
+const { Leak } = await import("./lib/harness.ts");
 const { summarizeCohort, readRun, runFiles } = await import("./lib/report.ts");
 const { applyOps, loadContent } = await import("./lib/proposals.ts");
 const here = path.dirname(new URL(import.meta.url).pathname);
@@ -28,7 +31,8 @@ await ok("blind prompts pass the leak gate; full-knowledge prompts carry the mec
 });
 
 await ok("cohorts share seeds and split origins evenly", () => {
-  const a = runPlan(PERSONAS[0]), c = runPlan(PERSONAS[2]);
+  const byId = (id: string) => PERSONAS.find(p => p.id === id)!;
+  const a = runPlan(byId("blind-insider")), c = runPlan(byId("blind-international"));
   assert.deepStrictEqual(a.map(x => [x.origin, x.seed]), c.map(x => [x.origin, x.seed]));
   const n = (o: string) => a.filter(x => x.origin === o).length;
   assert.ok(Math.abs(n("scholar") - n("poly")) <= 1);
@@ -100,6 +104,203 @@ await ok("designer ops are validated before anything is built", () => {
   assert.deepStrictEqual(good.errors, []);
   assert.strictEqual(good.content.events.find((e: any) => e.id === "the_crisis").choices[1].effects.integrity, 8);
   assert.strictEqual(c.events.find((e: any) => e.id === "the_crisis").choices[1].effects.integrity, undefined, "the original is untouched");
+});
+
+// --- fun-meter sessions --------------------------------------------------------------
+
+const cfg = (o: Partial<typeof FUN_DEFAULTS> = {}) => ({ ...FUN_DEFAULTS, ...o });
+
+await ok("fun meter: decay every tap, the model's delta clamped, capped at 100, quits at the line", () => {
+  const m = new Meter(cfg({ start: 50, quitLine: 25 }));
+  let t = m.tap({ card: "a", model: 0 });
+  assert.deepStrictEqual([t.before, t.model, t.repeat, t.decay, t.after, t.quit], [50, 0, 0, -2, 48, false]);
+  t = m.tap({ card: "b", model: 40 });
+  assert.strictEqual(t.model, 10, "clamped to maxDelta");
+  assert.strictEqual(t.after, 56);
+  const hi = new Meter(cfg({ start: 98 }));
+  assert.strictEqual(hi.tap({ card: "x", model: 10 }).after, 100, "capped");
+  const lo = new Meter(cfg({ start: 30, quitLine: 25 }));
+  assert.strictEqual(lo.tap({ card: "x", model: -2 }).quit, false, "26 is above the line");
+  const q = lo.tap({ card: "y", model: -1 });
+  assert.strictEqual(q.after, 23); assert.strictEqual(q.quit, true, "at or below the line quits");
+  const floor = new Meter(cfg({ start: 3 }));
+  assert.strictEqual(floor.tap({ card: "x", model: -10 }).after, 0, "never below 0");
+});
+
+await ok("fun meter: repeats cost 5, 10, 15 when close together, and the streak resets after 3 fresh cards", () => {
+  const m = new Meter(cfg({ decay: 0 }));
+  for (const c of ["a", "b", "c", "d", "e"]) m.tap({ card: c, model: 0 });
+  const r = (card: string) => m.tap({ card, model: 0 });
+  assert.deepStrictEqual([r("a"), r("b"), r("c"), r("d")].map(t => t.repeat), [-5, -10, -15, -15], "compounds, then holds at the last step");
+  assert.ok(r("f").repeat === 0 && r("g").repeat === 0, "fresh cards cost nothing");
+  assert.strictEqual(r("e").repeat, -15, "two fresh cards do not reset the streak");
+  r("h"); r("i"); r("j");
+  assert.strictEqual(r("a").repeat, -5, "three fresh cards in a row reset it");
+  const casual = new Meter(cfg({ decay: 0, repeatMultiplier: 1.5 }));
+  for (const c of ["a", "b", "c"]) casual.tap({ card: c, model: 0 });
+  assert.deepStrictEqual(["a", "b", "c"].map(card => casual.tap({ card, model: 0 }).repeat), [-8, -15, -23], "×1.5, rounded");
+});
+
+await ok("fun meter: Meanwhile years, one-line cards, endings and canaries never count as repeats; a new card version is fresh", () => {
+  const m = new Meter(cfg({ decay: 0 }));
+  for (const card of ["__quiet", "__quiet", "__montage:the_work", "__montage:the_work", "canary_bland", "canary_bland", null, null])
+    assert.strictEqual(m.tap({ card, model: 0, canary: !!card?.startsWith("canary_") }).repeat, 0, String(card));
+  m.tap({ card: "the_work", model: 0 });
+  assert.strictEqual(m.tap({ card: "the_work#1", model: 0 }).repeat, 0, "another version");
+  assert.strictEqual(m.tap({ card: "the_work", model: 0 }).repeat, -5, "the same version again");
+});
+
+await ok("fun prompts: the meter instructions are filled in, and every runner-written line passes the leak gate", () => {
+  const b = H.loadBuild({ canaries: true });
+  for (const p of PERSONAS.filter(x => x.fun)) {
+    const sys = systemPrompt(p, b);
+    assert.ok(sys.includes(`from -${p.fun!.maxDelta} to +${p.fun!.maxDelta}`) && !sys.includes("{{"), p.id);
+    assert.ok(p.blind && p.canaries, `${p.id} is blind and plays with canaries`);
+    assert.deepStrictEqual(leakGate(p, b), [], p.id);
+  }
+  assert.deepStrictEqual(Leak.checkPrompt(funTemplates(), {}), []);
+  assert.ok(Leak.checkPrompt(funTemplates() + "\nYour heat is 50.", {}).length > 0, "the gate would catch a leak in them");
+  const ids = PERSONAS.filter(p => p.fun).map(p => p.id);
+  for (const id of ["fun-casual", "fun-insider", "fun-completionist", "fun-critic"]) assert.ok(ids.includes(id), id);
+  const casual = PERSONAS.find(p => p.id === "fun-casual")!;
+  assert.deepStrictEqual([casual.model, casual.fun!.quitLine, casual.fun!.repeatMultiplier], ["claude-haiku-5-5", 35, 1.5]);
+  assert.strictEqual(PERSONAS.find(p => p.id === "fun-completionist")!.fun!.quitLine, 15);
+  assert.strictEqual(PERSONAS.find(p => p.id === "fun-critic")!.model, "claude-sonnet-5-5");
+});
+
+await ok("a fun turn is one growing conversation with automatic caching and thinking off", () => {
+  const p = PERSONAS.find(x => x.id === "fun-insider")!;
+  const params: any = buildParams({ model: p.model, effort: p.effort, thinking: p.thinking, system: "sys", autoCache: true, schema: {}, maxTokens: 400,
+    messages: [{ role: "user", content: [{ text: "s1" }] }, { role: "assistant", content: [{ text: "{}" }] }, { role: "user", content: [{ text: "s2" }] }] });
+  assert.deepStrictEqual(params.cache_control, { type: "ephemeral" });
+  assert.deepStrictEqual(params.thinking, { type: "disabled" });
+  assert.deepStrictEqual(params.messages.map((m: any) => m.role), ["user", "assistant", "user"]);
+  assert.ok(!params.fallbacks, "Haiku has no refusal fallback");
+  const old: any = buildParams({ model: "claude-sonnet-5-5", effort: "low", system: "sys", user: [{ text: "x" }], schema: {}, maxTokens: 10 });
+  assert.ok(!("cache_control" in old) && !("thinking" in old) && old.fallbacks === "default", "single requests are unchanged");
+  const plan = sessionPlan(p, 4);
+  assert.deepStrictEqual(plan.map(s => s.careers[0].seed), sessionPlan(PERSONAS.find(x => x.id === "fun-casual")!, 4).map(s => s.careers[0].seed), "fun personas share seeds");
+  assert.deepStrictEqual(plan[0].careers.map(c => c.origin), ["scholar", "grad", "poly", "scholar", "grad"], "rotate");
+  assert.ok(sessionPlan(PERSONAS.find(x => x.id === "fun-casual")!, 2)[1].careers.every(c => c.origin === "grad"), "keep");
+});
+
+await ok("mock fun sessions: careers carry the meter and the repeat memory, a quit stops the session, every career replays", () => {
+  execFileSync(process.execPath, [path.join(here, "runner.ts"), "play", "fun-insider", "fun-casual", "--mock", "--runs", "8", "--careers", "4"], { env: process.env, stdio: "ignore" });
+  const dirs = fs.readdirSync(path.join(tmp, "reports/cohorts")).filter(d => d.includes("-fun-")).map(d => path.join(tmp, "reports/cohorts", d));
+  assert.strictEqual(dirs.length, 2);
+  let crossCareerRepeats = 0, quits = 0, endings = 0, versions = 0;
+  for (const d of dirs) {
+    const manifest = JSON.parse(fs.readFileSync(path.join(d, "manifest.json"), "utf8"));
+    const p = manifest.persona;
+    const files = fs.readdirSync(path.join(d, "sessions")).map(f => path.join(d, "sessions", f));
+    assert.strictEqual(files.length, 8);
+    for (const f of files) {
+      const lines = readRun(f);
+      assert.strictEqual(lines[0].type, "meta"); assert.strictEqual(lines.at(-1)!.type, "summary");
+      const sum = lines.at(-1)!;
+      assert.ok(!sum.aborted, String(sum.aborted));
+      const m = new Meter(p.fun);
+      const firstSeen = new Map<string, number>();
+      let career = 0, lastAfter = p.fun.start, quitSeen = false;
+      for (const l of lines) {
+        assert.ok(!quitSeen || ["career_end", "survey", "summary"].includes(l.type), "nothing is played after a quit");
+        if (l.type === "career_start") {
+          career = l.career;
+          assert.strictEqual(l.meter, lastAfter, "the meter carries into the next career");
+          if (career > 1 && lines.some(x => x.type === "career_end" && x.career === career - 1 && x.ending)) assert.ok(l.recent.length > 0, "the phone remembers the last career");
+          assert.strictEqual(l.canaries, career <= 1, "canaries in the first career only");
+        }
+        if (l.type === "turn") {
+          assert.strictEqual(l.meter.before, lastAfter);
+          const t = m.tap({ card: l.ending ? null : l.card.id, model: l.agent ? l.agent.delta : 0, canary: l.card.canary });
+          assert.deepStrictEqual(l.meter, t, `tap ${l.tap} matches the rules`);
+          if (l.card.repeat && firstSeen.has(l.card.id) && firstSeen.get(l.card.id)! < career) crossCareerRepeats++;
+          if (!firstSeen.has(l.card.id)) firstSeen.set(l.card.id, career);
+          if (l.ending) { endings++; assert.ok(l.card.id.startsWith("ending:") && l.choice === "A"); }
+          if (l.card.variant) versions++;
+          assert.ok(!/\bCEP \d|Heat \d|Pending consequences/.test(l.screen), "blind screen");
+          assert.ok(l.screen.length > 0 && l.agent && typeof l.agent.reason === "string");
+          lastAfter = t.after;
+          if (t.quit) { quitSeen = true; assert.ok(sum.quit && sum.quitAt.tap === l.tap && sum.tapsToQuit === l.tap && sum.runsToQuit === career); }
+        }
+        if (l.type === "career_end") {
+          const turns = lines.filter(x => x.type === "turn" && x.career === l.career && !x.ending);
+          const build = H.loadBuild({ canaries: l.career <= 1 });
+          assert.strictEqual(build.hash, l.buildHash);
+          const replay = H.replay({ buildHash: l.buildHash, origin: l.origin, seed: l.seed, choices: l.choices, recent: l.recent }, { build });
+          assert.deepStrictEqual(replay.turns.map(t => t.event.id), turns.map(t => t.trace.event.id), "a career replays from its choices and its freshness memory");
+        }
+      }
+      if (sum.quit) quits++;
+      else assert.strictEqual(sum.careersPlayed, 4, "a session that never quits plays every career");
+      assert.ok(lines.some(l => l.type === "survey" && l.answer && l.answer.quit_reason), "exit survey at the end");
+      // conversation: within a career, each turn reads the whole conversation so far from the cache and writes only what is new
+      for (let k = 1; k <= sum.careersPlayed; k++) {
+        const ts = lines.filter(l => l.type === "turn" && l.career === k);
+        for (let i = 1; i < ts.length; i++) {
+          assert.ok(ts[i].usage.cacheRead >= ts[i - 1].usage.cacheRead + ts[i - 1].usage.cacheWrite, "the conversation grows and is read back from the cache");
+          assert.ok(ts[i].usage.cacheWrite < 1200 && ts[i].usage.input === 0, `only the new screen is written (${JSON.stringify(ts[i].usage)})`);
+        }
+      }
+    }
+    const s = JSON.parse(fs.readFileSync(path.join(d, "summary.json"), "utf8"));
+    assert.strictEqual(s.kind, "fun-sessions");
+    assert.ok(fs.readFileSync(path.join(d, "report.md"), "utf8").includes("## Canaries"));
+    assert.strictEqual(s.sessions, 8);
+    assert.ok(s.funCurve.length > 0 && s.funCurve[0].playing === 8);
+    assert.ok(s.cards.top.length > 0 && s.cards.bottom.length > 0);
+    assert.ok(Object.keys(s.cards.all.reduce((m: any, c: any) => ((m[c.id] = 1), m), {})).every((id: string) => !id.startsWith("canary_")), "canaries are held out of the card scores");
+    assert.ok(s.canaries.bland.shown + s.canaries.wink.shown > 0 && typeof s.canaries.passed === "boolean");
+    for (const m of ["claude-haiku-5-5", "claude-sonnet-5-5"]) assert.ok(s.cost.projection.perSession[m] > 0 && s.cost.projection.fullSession[m] > 0, m);
+    assert.ok(s.cost.projection.perSession["claude-sonnet-5-5"] > 5 * s.cost.projection.perSession["claude-haiku-5-5"]);
+    assert.ok(s.cost.perTap > 0 && s.cost.perCareer > 0 && s.cost.perSession > 0 && s.cost.tokens.cacheRead > 0);
+  }
+  assert.ok(crossCareerRepeats > 0, "a card seen in an earlier career counts as a repeat");
+  assert.ok(quits > 0 && endings > 0 && versions > 0, `quits ${quits}, endings ${endings}, card versions ${versions}`);
+});
+
+await ok("an unusable reply is retried once, then picked at random; the conversation stays well formed", async () => {
+  const { playSession } = await import("./lib/session.ts");
+  const { mockLlm, Spend } = await import("./lib/llm.ts");
+  const p = { ...PERSONAS.find(x => x.id === "fun-casual")!, fun: cfg({ quitLine: 0, careers: 1 }) };
+  const inner = mockLlm(3);
+  const seen: any[] = [];
+  let n = 0;
+  const llm = { mock: true, async call<T>(o: any) {
+    seen.push(JSON.parse(JSON.stringify(o)));   // the session keeps appending to its arrays
+    const r = await inner.call<T>(o);
+    if (o.messages.length < 2) return r;
+    // a refusal rescued by the retry; ten calls later, a refusal and then a choice that does not exist
+    const k = ++n % 20;
+    if (k === 1 || k === 11) return { ...r, data: null, stop: "refusal" };
+    if (k === 12) return { ...r, data: { ...(r.data as any), choice: "Z" } as T };
+    return r;
+  } };
+  const outDir = path.join(tmp, "reports/cohorts/failing");
+  const builds = { plain: H.loadBuild(), canary: H.loadBuild({ canaries: true }) };
+  const r = await playSession({ cohort: "failing", persona: p, playerName: "X", builds, llm, spend: new Spend(1), outDir, maxTurns: 30, careers: 1,
+    canaryCareers: 0, tags: "phone", system: systemPrompt(p, builds.plain), systemHash: "x", log: () => {} }, sessionPlan(p, 1)[0]);
+  assert.ok(!r.aborted, String(r.aborted));
+  const turns = readRun(r.file).filter(l => l.type === "turn");
+  const picked = turns.filter(t => t.autoPicked);
+  assert.ok(picked.length > 0 && picked.every(t => t.meter.model === 0 && t.retried), "auto-picked taps carry no reaction");
+  assert.ok(turns.some(t => t.retried && !t.autoPicked), "a retry can rescue a turn");
+  for (const o of seen.filter(x => x.messages.length > 1 && x.schema.properties.delta)) {
+    const roles = o.messages.map((m: any) => m.role);
+    assert.ok(roles.every((x: string, i: number) => i === 0 || x !== roles[i - 1]), "user and assistant alternate");
+    assert.strictEqual(roles.at(-1), "user");
+  }
+  assert.ok(seen.some(o => o.messages.some((m: any) => m.content.some((b: any) => /was made for you/.test(b.text)))), "the player is told a choice was made for them");
+});
+
+await ok("calibration plays the Haiku players and the Sonnet critic, then compares them", () => {
+  const out = execFileSync(process.execPath, [path.join(here, "runner.ts"), "play", "calibration", "--mock", "--dry-run"], { env: process.env }).toString();
+  assert.ok(/projected full cohort: 3 sessions/.test(out), out);
+  const d = fs.readdirSync(path.join(tmp, "reports/cohorts")).find(x => x.includes("-calibration-"))!;
+  const c = JSON.parse(fs.readFileSync(path.join(tmp, "reports/cohorts", d, "calibration.json"), "utf8"));
+  assert.ok(c.models["claude-haiku-5-5"] && c.models["claude-sonnet-5-5"] && c.agreement && c.agreement.sharedCards > 0);
+  assert.ok(typeof c.models["claude-haiku-5-5"].bland.passed === "boolean" && typeof c.models["claude-haiku-5-5"].wink.passed === "boolean");
+  assert.strictEqual(c.cohorts.length, 4);
 });
 
 // --- workload identity federation, against fake GitHub and Anthropic endpoints -----------
