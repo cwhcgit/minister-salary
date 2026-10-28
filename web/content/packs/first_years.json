@@ -509,7 +509,7 @@
           { "id": "honolulu", "text": "a beach bar in Honolulu, at 10:40pm the evening before" }
         ]
       },
-      "body": "Your leave was approved in January. In September the Work Plan Seminar is moved onto its second week, by the person who approved it, and your section's slide has nobody else to present it.",
+      "body": "Your leave was approved in January. In September the Work Plan Seminar is moved onto its second week by the person who approved it. This year's theme is Staff Well-being, and your section's slide has nobody else to present it.",
       "requires": { "minRank": 0, "maxRank": 1 },
       "weight": 5,
       "once": true,
@@ -517,17 +517,17 @@
         {
           "text": "Cancel the leave and present the slide.",
           "effects": { "standing": 6, "competence": -1 },
-          "outcome": "Your slide is on at 4:40pm, to eleven people and a Deputy Secretary who leaves at 4:42. The airline turns your fare into a voucher, valid for a year. You never use that either."
+          "outcome": "Your slide, \"Rest as a Strategic Enabler\", is on at 4:40pm, and the Deputy Secretary leaves at 4:42. The airline turns your fare into a voucher, valid for a year, which you also never use."
         },
         {
           "text": "Go. Someone else can present it.",
           "effects": { "integrity": 4, "competence": 4, "standing": -4 },
-          "outcome": "Your slide is presented, competently, by your reporting officer, who credits you by name. You come back rested, and do the best work of your year in the month that follows."
+          "outcome": "In your absence your reporting officer presents it and tells the room you are \"role-modelling the theme\". Two directors write that down. You come back rested, and do the best work of your year."
         },
         {
           "text": "Present it by video, from the holiday.",
           "effects": { "standing": 3, "reputation": 2, "competence": -2 },
-          "outcome": "From {away}, you present the slide. The connection holds. Afterwards three directors tell you how good it was to see you. Nobody mentions the slide."
+          "outcome": "From {away}, you present the slide on Staff Well-being. The connection holds. Three directors say how good it was to see you. Nobody mentions the slide."
         }
       ]
     }
