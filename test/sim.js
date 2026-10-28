@@ -117,10 +117,12 @@ console.log('\n=== fun proxies ===');
 console.log('dead turns (first-timer | knows the win), per act: turns/run, repeat-filler share, dead/run');
 for (const act of ['I', 'II', 'III']) {
   const a = ft.deadTurns[act], b = kw.deadTurns[act];
-  line(`Act ${act}`, `${a.turnsPerRun} turns, ${a.repeatFillerShare ?? '-'}% repeat filler, ${a.deadPerRun} dead`
-    + `  |  ${b.turnsPerRun} turns, ${b.repeatFillerShare ?? '-'}% repeat filler, ${b.deadPerRun} dead`);
+  line(`Act ${act}`, `${a.turnsPerRun} taps + ${a.passedYearsPerRun} passed years, ${a.repeatFillerShare ?? '-'}% repeat filler, ${a.deadPerRun} dead`
+    + `  |  ${b.turnsPerRun} taps + ${b.passedYearsPerRun} passed, ${b.repeatFillerShare ?? '-'}% repeat filler, ${b.deadPerRun} dead`);
 }
-console.log('run length (first-timer): ' + ORIGINS.map(o => `${o} median ${ft.origins[o].turns.median} (p10 ${ft.origins[o].turns.p10}, p90 ${ft.origins[o].turns.p90}, ${ft.origins[o].turns.inRange35to50}% in 35-50)`).join('; '));
+console.log('run length (first-timer), taps / years: ' + ORIGINS.map(o => { const x = ft.origins[o];
+  return `${o} ${x.turns.mean} / ${x.years.mean} (median years ${x.years.median}, ${x.years.inRange35to50}% in 35-50)`; }).join('; '));
+console.log('run length (knows the win), taps / years: ' + ORIGINS.map(o => `${o} ${kw.origins[o].turns.mean} / ${kw.origins[o].years.mean}`).join('; '));
 
 console.log('stat direction (choices in the data that raise / lower):');
 for (const [k, d] of Object.entries(m.statDirection))

@@ -1561,6 +1561,9 @@
             "eventId": "re_election",
             "inYears": 5
           }
+        ],
+        "setFlags": [
+          "seat_grc"
         ]
       },
       {
@@ -1579,6 +1582,9 @@
             "eventId": "re_election",
             "inYears": 5
           }
+        ],
+        "setFlags": [
+          "seat_smc"
         ]
       }
     ]
@@ -1680,7 +1686,8 @@
           "reputation": 3,
           "integrity": -6
         },
-        "outcome": "Cleaner, faster, and it moves the largest indicator. The bonus is six months, the maximum. You do not look closely at the distributional annex."
+        "outcome": "Cleaner, faster, and it moves the one indicator everyone is watching. The bonus is six months, the maximum. You do not look closely at the distributional annex.",
+        "nationalBonus": 6
       },
       {
         "text": "Ask, in Cabinet, whether ministers should be paid on indicators they set.",
@@ -2519,7 +2526,7 @@
           "integrity": 4,
           "standing": 5
         },
-        "outcome": "He draws it. At the year-end ranking exercise he draws it again, in ink."
+        "outcome": "He draws it. When his Permanent Secretary next asks which divisions he rates, yours is the first he names, in front of the person who writes your ranking."
       }
     ],
     "requires": {
@@ -2688,7 +2695,7 @@
     "id": "re_election",
     "title": "Polling Day, Again",
     "triggered": true,
-    "body": "Parliament is dissolved on a Tuesday. Nobody is surprised; the tents went up in the void decks a fortnight ago. Your face is larger on the poster this time, which means the swing is, in some small part, about you.",
+    "body": "Parliament is dissolved on a Tuesday. Nobody is surprised; the tents went up in the void decks a fortnight ago. This time your branch chairman has started using the word \"swing\" in sentences about you.",
     "choices": [
       {
         "text": "Campaign on the record.",
@@ -2729,50 +2736,201 @@
         ],
         "outcome": "Nine nights, four hundred lift lobbies, one pair of shoes you will never wear again."
       }
-    ]
+    ],
+    "autoPlay": {
+      "choice": 0,
+      "when": {
+        "minStats": {
+          "reputation": 60
+        },
+        "maxStats": {
+          "heat": 39
+        }
+      },
+      "line": "Polling day. You stand on a lorry and read out numbers, some of them yours."
+    }
   },
   {
     "id": "the_indicators",
     "title": "The Indicators",
-    "weight": 16,
     "noMontage": true,
+    "cooldown": "budget",
     "requires": {
-      "minRank": 11
+      "minRank": 11,
+      "cooldown": {
+        "key": "budget",
+        "years": 3
+      },
+      "economy": "strong",
+      "electionDue": false
     },
-    "body": "The Budget is in February. Your ministry's levers move two of the four indicators the National Bonus is computed from. The indicators do not record who moved them, and neither does the bonus.",
+    "body": "Growth is strong and the forecasts are kind. Your ministry's plan for the next three Budgets has to be settled now, and with it two of the four indicators the National Bonus is computed from. The indicators do not record who moved them.",
     "choices": [
       {
         "text": "Push headline GDP.",
         "nationalBonus": 5,
         "effects": {
-          "standing": 4,
-          "competence": 2,
-          "integrity": -4,
-          "reputation": -2
+          "standing": 3,
+          "integrity": -4
         },
-        "outcome": "Growth comes in above forecast. The lowest quintile rises too, slightly, in the way a small boat rises when a larger one goes past."
+        "nationalBonusRisk": {
+          "chance": 0.25,
+          "months": 2,
+          "outcome": "Growth comes in a little under forecast, which in a strong year is noticed. The bonus is two months, which the newspapers describe as restraint."
+        },
+        "outcome": "Growth comes in above forecast. Incomes at the 20th percentile rise too, slightly, in the way a small boat rises when a larger one goes past. The bonus is five months."
       },
       {
-        "text": "Push the bottom 20th.",
-        "nationalBonus": 3,
+        "text": "Push incomes at the 20th percentile.",
+        "nationalBonus": 4,
         "effects": {
           "reputation": 4,
-          "competence": 2,
-          "integrity": 3,
-          "standing": -2
+          "integrity": 3
         },
-        "outcome": "The lowest quintile's income grows faster than the median for the first time in six years. It makes a good chart. Your bonus is, exactly, the target."
+        "nationalBonusRisk": {
+          "chance": 0.3,
+          "months": 0,
+          "outcome": "The 20th-percentile figure misses its target by a tenth of a point. No National Bonus is paid. The chart is still a good chart."
+        },
+        "outcome": "Incomes at the 20th percentile grow faster than the median for the first time in six years. It makes a good chart, and a four-month bonus."
       },
       {
-        "text": "Push employment, and hold everything else steady.",
-        "nationalBonus": 4,
+        "text": "Bank the targets. Change nothing that is working.",
+        "nationalBonus": 3,
         "effects": {
           "competence": 4,
           "standing": 1
         },
-        "outcome": "Unemployment falls a tenth of a point. Nobody notices except the people who found work, who were not going to be asked."
+        "outcome": "The targets are met, exactly, as planned. The bonus is three months, which is what three months is for."
       }
-    ]
+    ],
+    "weight": 16
+  },
+  {
+    "id": "the_indicators_downturn",
+    "title": "The Indicators, in a Downturn",
+    "noMontage": true,
+    "cooldown": "budget",
+    "requires": {
+      "minRank": 11,
+      "cooldown": {
+        "key": "budget",
+        "years": 3
+      },
+      "economy": "downturn",
+      "electionDue": false
+    },
+    "body": "The forecasts have turned. Exports are down for a third quarter and the word \"retrenchment\" is back in the papers. Your ministry's plan for the next three Budgets has to be settled now, and the National Bonus will be computed from whatever it achieves.",
+    "choices": [
+      {
+        "text": "Protect jobs first.",
+        "nationalBonus": 2,
+        "effects": {
+          "competence": 3,
+          "reputation": 3,
+          "integrity": 2,
+          "standing": -1
+        },
+        "nationalBonusRisk": {
+          "chance": 0.2,
+          "months": 0,
+          "outcome": "Unemployment rises anyway, by less than it would have. The indicator does not record the difference, and no bonus is paid."
+        },
+        "outcome": "Unemployment holds. Growth does not. The bonus is two months, and a great many people keep jobs they will never know were on a list."
+      },
+      {
+        "text": "Push growth through it.",
+        "nationalBonus": 4,
+        "effects": {
+          "standing": 4,
+          "integrity": -3
+        },
+        "nationalBonusRisk": {
+          "chance": 0.5,
+          "months": 0,
+          "outcome": "The push does not take. Growth is flat, the 20th percentile falls, and no National Bonus is paid. Nobody calls it a gamble, because it was a plan."
+        },
+        "outcome": "Growth recovers ahead of the region. The bonus is four months, and the speech about resilience writes itself."
+      },
+      {
+        "text": "Cushion incomes at the 20th percentile.",
+        "nationalBonus": 1,
+        "effects": {
+          "reputation": 5,
+          "integrity": 4,
+          "standing": -2
+        },
+        "nationalBonusRisk": {
+          "chance": 0.3,
+          "months": 0,
+          "outcome": "The cushion holds the 20th percentile steady, which is not the same as growing it. No bonus is paid."
+        },
+        "outcome": "The lowest incomes are protected through the downturn. The bonus is one month, which you mention to nobody."
+      }
+    ],
+    "weight": 16
+  },
+  {
+    "id": "the_indicators_election",
+    "title": "The Indicators, Before an Election",
+    "noMontage": true,
+    "cooldown": "budget",
+    "requires": {
+      "minRank": 11,
+      "cooldown": {
+        "key": "budget",
+        "years": 3
+      },
+      "electionDue": true
+    },
+    "body": "A general election is due within the year. Your ministry's plan for the next three Budgets has to be settled before it, and everyone in the room is aware of the calendar, including, somehow, the indicators.",
+    "choices": [
+      {
+        "text": "Spread the gains widely before polling day.",
+        "nationalBonus": 3,
+        "effects": {
+          "reputation": 6,
+          "integrity": -3,
+          "competence": -1
+        },
+        "nationalBonusRisk": {
+          "chance": 0.3,
+          "months": 1,
+          "outcome": "The measures land after the indicators are measured. The bonus is one month. The measures are popular anyway, which was most of the point."
+        },
+        "outcome": "The measures land in time and the indicators like them. The bonus is three months."
+      },
+      {
+        "text": "Hold the line on the targets.",
+        "nationalBonus": 4,
+        "effects": {
+          "standing": 3,
+          "competence": 3,
+          "reputation": -3
+        },
+        "nationalBonusRisk": {
+          "chance": 0.2,
+          "months": 2,
+          "outcome": "The targets are nearly met. The bonus is two months, and the campaign is a little quieter than your branch would like."
+        },
+        "outcome": "The targets are met. The bonus is four months, and your branch asks, politely, whether anything at all could be announced."
+      },
+      {
+        "text": "Push incomes at the 20th percentile.",
+        "nationalBonus": 3,
+        "effects": {
+          "reputation": 3,
+          "integrity": 3
+        },
+        "nationalBonusRisk": {
+          "chance": 0.35,
+          "months": 0,
+          "outcome": "The 20th-percentile figure misses by a tenth of a point, in an election year, which is the worst year to miss anything. No bonus is paid."
+        },
+        "outcome": "Incomes at the 20th percentile rise faster than the median. The bonus is three months, and the chart is on a campaign flyer by Friday."
+      }
+    ],
+    "weight": 16
   },
   {
     "id": "headhunter_early",
@@ -2854,15 +3012,49 @@
     "requires": {
       "minRank": 9,
       "maxRank": 14,
-      "notDuringBond": true
+      "notDuringBond": true,
+      "flagsAll": [
+        "seat_smc"
+      ]
     },
-    "body": "A conglomerate would like a director who has been in Cabinet, or near it. The role involves four meetings a year and pays more than the Prime Minister.",
+    "body": "A conglomerate would like a director who has been in Cabinet, or near it. The role involves four meetings a year and a fee the annual report lists in a footnote, which is the only modest thing about it.",
     "choices": [
       {
         "text": "Resign your seat and take it.",
         "privateSector": true,
         "effects": {},
         "outcome": "There is a by-election. It is described as a referendum on nothing in particular, and your successor wins it comfortably."
+      },
+      {
+        "text": "Decline.",
+        "effects": {
+          "integrity": 4,
+          "reputation": 3
+        },
+        "outcome": "You decline in writing, which you will later find was framed in the chairman's office as a curiosity."
+      }
+    ]
+  },
+  {
+    "id": "headhunter_political_grc",
+    "title": "The Board Seat",
+    "weight": 7,
+    "once": true,
+    "requires": {
+      "minRank": 9,
+      "maxRank": 14,
+      "notDuringBond": true,
+      "flagsAll": [
+        "seat_grc"
+      ]
+    },
+    "body": "A conglomerate would like a director who has been in Cabinet, or near it. The role involves four meetings a year and a fee the annual report lists in a footnote, which is the only modest thing about it.",
+    "choices": [
+      {
+        "text": "Resign your seat and take it.",
+        "privateSector": true,
+        "effects": {},
+        "outcome": "Your GRC colleagues divide your ward between them. No by-election is required, which a constitutional lawyer explains to a newspaper at some length."
       },
       {
         "text": "Decline.",

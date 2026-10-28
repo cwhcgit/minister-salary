@@ -68,23 +68,36 @@ function sample(build, n = 600, opts = {}) {
       run = H.step(run, id);
       const t = run.turns[run.turns.length - 1];
       for (const sc of t.scheduled) scheduledAt.push({ eventId: sc.eventId, fireYear: sc.fireYear, year });
+      // years that passed by themselves: their Meanwhile lines appear in these contexts too
+      for (const p of t.passed || []) {
+        if (p.event === '__quiet') continue;
+        const c2 = card(p.event);
+        c2.fires++; c2.montage++; if (rival) c2.rivalOn++;
+        if (p.habit !== undefined) c2.habits[p.habit] = (c2.habits[p.habit] || 0) + 1;
+        c2.ranks.add(p.rank); c2.ageMin = Math.min(c2.ageMin, p.age); c2.ageMax = Math.max(c2.ageMax, p.age);
+        c2.origins.add(origin); c2.acts.add(p.rank >= 8 ? 'III' : 'I');
+        if (p.rank >= 8) c2.politics++; else if (p.rank === 7) c2.permsec++; else c2.service++;
+      }
 
       // the batchmate's log lines, in the context they were shown
       const after = run.S;
       for (const l of (run.last ? run.last.log : [])) {
         if (l.kind !== 'rival') continue;
-        const x = line(l.key || '?'), v = after.rival;
+        // the state the line was written in (an outcome screen can span several years)
+        const at = l.at || { player: after.rank, batchmate: after.rival ? after.rival.rank : null, status: after.rival ? after.rival.status : null };
+        const x = line(l.key || '?');
         x.fires++;
-        if (after.rank >= 8) x.playerPolitics++; else x.playerService++;
-        if (v) {
-          x.batchmateStatus[v.status] = (x.batchmateStatus[v.status] || 0) + 1;
-          x.batchmateRanks.add(v.rank);
-          if ((v.rank >= 8) !== (after.rank >= 8)) x.apart++; else x.same++;
+        if (at.player >= 8) x.playerPolitics++; else x.playerService++;
+        if (at.batchmate !== null) {
+          x.batchmateStatus[at.status] = (x.batchmateStatus[at.status] || 0) + 1;
+          x.batchmateRanks.add(at.batchmate);
+          if ((at.batchmate >= 8) !== (at.player >= 8)) x.apart++; else x.same++;
         }
-        x.playerRanks.add(after.rank);
+        x.playerRanks.add(at.player);
       }
-      // the service's age floors hold for everyone in the same intake
+      // the service's age floors hold for everyone in the same intake, in passed years too
       if (after.rank < 8 && after.age < minAge(after.rank)) floors.push(`player ${build.content.ladder[after.rank].title} at ${after.age}`);
+      for (const p of t.passed || []) if (p.rank < 8 && p.age < minAge(p.rank)) floors.push(`player ${build.content.ladder[p.rank].title} at ${p.age}`);
       const v = after.rival;
       if (v && v.rank < 8 && after.age < minAge(v.rank)) floors.push(`batchmate ${build.content.ladder[v.rank].title} at ${after.age}`);
     }

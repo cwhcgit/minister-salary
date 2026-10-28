@@ -98,7 +98,8 @@ const Engine = (() => {
     const n = (s.rival.lineN = (s.rival.lineN || 0) + 1);
     let text = lines.length ? lines[(n - 1) % lines.length] : "";
     for (const [k, v] of Object.entries(extra)) text = text.split("{" + k + "}").join(v);
-    return { kind: "rival", key, text: sub(text, s) };
+    // `at`: the state the line was written in (one outcome screen can span several years); the UI ignores it
+    return { kind: "rival", key, text: sub(text, s), at: { player: s.rank, batchmate: s.rival.rank, status: s.rival.status } };
   }
 
   // A head-to-head right now (one posting, one slot): the player's appraisal-style score,
@@ -112,7 +113,8 @@ const Engine = (() => {
     v.met++; if (won) v.wonMet++;
     t.rivalContest = { mine: +mine.toFixed(1), theirs: +theirs.toFixed(1), won };
     applyEffects(s, (won ? c.win : c.lose) || {});
-    return [{ kind: "rival", key: won ? "contestWon" : "contestLost", text: sub(won ? c.winText : c.loseText, s) }];
+    return [{ kind: "rival", key: won ? "contestWon" : "contestLost", text: sub(won ? c.winText : c.loseText, s),
+      at: { player: s.rank, batchmate: v.rank, status: v.status } }];
   }
 
   function rivalChoice(content, s, rc, t) {
@@ -253,6 +255,12 @@ const Engine = (() => {
     if (q.flagsNone && q.flagsNone.some(f => s.flags.includes(f))) return false;
     for (const k in (q.minStats || {})) if (s[k] < q.minStats[k]) return false;
     for (const k in (q.maxStats || {})) if (s[k] > q.maxStats[k]) return false;
+    if (q.economy !== undefined && economy(s) !== q.economy) return false;
+    if (q.electionDue !== undefined && electionDue(s) !== q.electionDue) return false;
+    if (q.cooldown) {   // a shared clock: e.g. one Budget-cycle card every three years
+      const last = (s.cooldowns || {})[q.cooldown.key];
+      if (last !== undefined && s.year - last < q.cooldown.years) return false;
+    }
     if (q.rival) {   // batchmate cards: only with an active batchmate in the right position
       const v = s.rival;
       if (!v || v.status !== "active") return false;
@@ -266,13 +274,24 @@ const Engine = (() => {
     return true;
   }
 
+  // The economy, one draw per three-year cycle, derived from the seed so it never moves the
+  // run's own dice: most cycles are strong, about a third are a downturn.
+  function economy(s) {
+    return rng((s.seed * 131 + Math.floor(s.year / 3) * 7919 + 17) >>> 0)() < 0.35 ? "downturn" : "strong";
+  }
+  // A general election falls due within the year (the player's own re-election is scheduled).
+  function electionDue(s) {
+    return s.scheduled.some(x => x.eventId === "re_election" && x.fireYear - s.year <= 1);
+  }
+
   // Every card the run can draw: the batchmate's only when there is one.
   function allEvents(content, s) {
     // batchmate cards first, so a batchmate priority card (First Among Equals) stands in for the generic one
     return s && s.rival && content.rival ? (content.rival.events || []).concat(content.events) : content.events;
   }
 
-  function pickEvent(content, s) {
+  // info (optional) says where the card came from, for playtest traces.
+  function pickEvent(content, s, info = {}) {
     // 1. scheduled consequences pre-empt everything. One fires a year; when several fall
     //    due together, the rest carry over to the following years, earliest first.
     const due = s.scheduled.filter(x => x.fireYear <= s.year && resolve(content, x.eventId, s));
@@ -280,14 +299,15 @@ const Engine = (() => {
       const next = due.reduce((a, b) => (b.fireYear < a.fireYear ? b : a));
       s.scheduled.splice(s.scheduled.indexOf(next), 1);
       const ev = resolve(content, next.eventId, s);
-      if (ev) return ev;
+      if (ev) { info.source = "scheduled"; info.fired = next; return ev; }
     }
     const pool = allEvents(content, s).filter(e => eligible(e, s));
-    if (!pool.length) return null;
+    if (!pool.length) { info.source = "quiet"; return null; }
     // 2. priority events (tea session, succession) fire the moment they qualify
     const pri = pool.filter(e => e.priority);
-    if (pri.length) return pri[0];
+    if (pri.length) { info.source = "priority"; return pri[0]; }
     // 3. weighted random
+    info.source = "random";
     const total = pool.reduce((n, e) => n + (e.weight || 5), 0);
     let x = roll(s) * total;
     for (const e of pool) { x -= (e.weight || 5); if (x <= 0) return e; }
@@ -332,7 +352,9 @@ const Engine = (() => {
     } else {
       s.concealed = items;   // each one may surface during the campaign
     }
-    s.scheduled.push({ eventId: "the_election", fireYear: s.year + 1 });
+    const e = { eventId: "the_election", fireYear: s.year + 1 };
+    s.scheduled.push(e);
+    (t.added = t.added || []).push(e);
     return log;
   }
 
@@ -369,7 +391,16 @@ const Engine = (() => {
     // "It is noted": a choice that embarrassed someone senior costs this year's appraisal.
     if (fx.appraisal) s.appraisalMod += fx.appraisal;
     // The minister's own policy choice sets next year's National Bonus, in months (0-6).
-    if (ch.nationalBonus !== undefined) s.nbMonths = clamp(ch.nationalBonus, 0, 6);
+    if (ch.nationalBonus !== undefined) {
+      s.nbMonths = clamp(ch.nationalBonus, 0, 6);
+      // the plan can miss: then the bonus is what the indicators say, and so is the outcome
+      const risk = ch.nationalBonusRisk;
+      if (risk && roll(s) < risk.chance) {
+        s.nbMonths = clamp(risk.months, 0, 6);
+        t.outcome = risk.outcome;
+        t.bonusMissed = true;
+      }
+    }
 
     (ch.setFlags || []).forEach(f => { if (!s.flags.includes(f)) s.flags.push(f); });
     (ch.markSeen || []).forEach(id => { if (!s.seen.includes(id)) s.seen.push(id); });
@@ -378,7 +409,9 @@ const Engine = (() => {
 
     for (const sc of (ch.schedule || [])) {
       if (roll(s) <= (sc.chance === undefined ? 1 : sc.chance)) {
-        s.scheduled.push({ eventId: sc.eventId, fireYear: s.year + sc.inYears });
+        const e = { eventId: sc.eventId, fireYear: s.year + sc.inYears };
+        s.scheduled.push(e);
+        (t.added = t.added || []).push(e);   // for traces: what this choice scheduled
       }
     }
     if (ch.setRank !== undefined) s.rank = ch.setRank;
@@ -470,17 +503,22 @@ const Engine = (() => {
   function yearEnd(content, s, t = {}) {
     const log = [];
     const pay = payout(content, s);
+    const nb = s.nbMonths === 0 ? "no National Bonus" : `a National Bonus of ${s.nbMonths} month${s.nbMonths === 1 ? "" : "s"}`;
     log.push({ kind: "pay", text: s.rank >= 11
-      ? `Annual package: $${pay.toLocaleString()}, including a National Bonus of ${s.nbMonths} months`
+      ? `Annual package: $${pay.toLocaleString()}, including ${nb}`
       : `Annual package: $${pay.toLocaleString()}` });
 
     s.yearsInGrade++;
     const { grade, score, noise, mod } = appraise(content, s);
     t.appraisal = { grade: grade.code, score, noise, noted: mod };
-    log.push({ kind: "appraisal", text: grade.label });
+    // A choice that was noted shows up here, in the one word that matters.
+    log.push({ kind: "appraisal", text: mod < 0
+      ? `${grade.label} The comments section includes the word "however".` : grade.label });
 
     if (grade.code === "C") s.consecutiveC++; else s.consecutiveC = 0;
     if (grade.code === "D") s.consecutiveD++; else s.consecutiveD = 0;
+    // Probation: nobody is eased out in their first four years; a second D is a second warning.
+    if (s.consecutiveD >= 2 && s.year <= (content.probationYears || 4)) { s.consecutiveD = 1; t.probation = true; }
     if (s.consecutiveD >= 2) { s.ending = "quiet"; return log; }
     if (s.consecutiveD === 1) log.push({ kind: "warn", text: s.rank >= 8
       ? "The Whip asks, kindly, whether you have thought about spending more time in your ward. It is phrased as concern."
@@ -624,8 +662,70 @@ const Engine = (() => {
       choices: ev.choices.map(c => ({ ...c, text: sub(c.text, s), outcome: sub(c.outcome, s) })) };
   }
 
+  // --- years that pass by themselves ---------------------------------------
+  // A year with no decision in it is not a card. A habit year (a repeatable card already played
+  // in full, except every fifth time), a safe re-election (ev.autoPlay) or an empty pool passes
+  // on its own: pay, appraisal, promotion and the batchmate's year all still happen, and the
+  // outcome screen the player is already looking at shows it as a short Meanwhile entry.
+  function passKind(ev, s) {
+    if (!ev) return "quiet";
+    const n = s.fillerSeen[ev.id] || 0;
+    if (isFiller(ev) && n >= 1 && n % 4 !== 0 && (s.habits || {})[ev.id] !== undefined) return "habit";
+    if (ev.autoPlay && meets(ev.autoPlay.when || {}, s)) return "auto";
+    return null;
+  }
+
+  // pay + appraisal on one line; everything else (promotions, rumours, warnings) as it was
+  function compress(log) {
+    const pay = log.find(l => l.kind === "pay"), ap = log.find(l => l.kind === "appraisal");
+    const quote = ap && (ap.text.match(/"([^"]+)"/) || [])[1];
+    const out = [];
+    if (pay) out.push({ kind: "pay", text: `${pay.text}. Appraisal: ${quote ? `"${quote}"` : "noted"}.` });
+    return out.concat(log.filter(l => l !== pay && l !== ap));
+  }
+
+  function passYears(content, s, t) {
+    const log = [];
+    t.passed = [];
+    for (let k = 0; k < 60 && !s.ending; k++) {
+      const info = {};
+      const ev = pickEvent(content, s, info);
+      const kind = passKind(ev, s);
+      if (!kind) { s.currentEvent = ev.id; t.nextDraw = info; return log; }
+      const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
+      const pt = { kind, ev: ev ? ev.id : "__quiet", source: info.source, fired: info.fired || null, age: s.age, rank: s.rank, origin: s.origin };
+      let choice = 0, ch, lines = [];
+      if (kind === "habit") {
+        const m = montageOf(ev, s);
+        choice = s.habits[ev.id]; ch = m.choices[0]; pt.habit = choice; pt.line = m.body;
+        applyEffects(s, ch.effects);
+        s.fillerSeen[ev.id]++;
+        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${m.body}` });
+      } else if (kind === "auto") {
+        choice = ev.autoPlay.choice || 0; ch = ev.choices[choice];
+        const al = applyChoice(content, s, ev, ch, pt);
+        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${ev.autoPlay.line || ch.outcome}` }, ...al);
+      } else {
+        ch = QUIET_YEAR.choices[0];
+        applyEffects(s, ch.effects);
+        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${QUIET_YEAR.body}` });
+      }
+      const yl = s.ending ? [] : yearEnd(content, s, pt);
+      lines.push(...compress(yl));
+      log.push(...lines);
+      t.passed.push(pt);
+      s.history.push({ ...before, ev: pt.ev, title: ev ? ev.title : QUIET_YEAR.title, choice, text: ch.text, passed: kind,
+        cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation, noted: false,
+        hints: yl.filter(l => l.kind === "cep" || l.kind === "heat").map(l => l.kind + "|" + l.text) });
+    }
+    if (!s.ending) s.currentEvent = "__quiet";   // sixty empty years: show the safety-net card
+    return log;
+  }
+
   // --- public turn API --------------------------------------------------
   // advance(content, state, choiceIndex) -> { state, outcome, log, trace }
+  // After the chosen card's year, any years with no decision in them pass by themselves, and
+  // the next card is drawn: state.currentEvent is set unless the run has ended.
   function advance(content, state, choiceIndex) {
     const s = JSON.parse(JSON.stringify(state));   // immutable in, new state out
     const ev = eventOf(content, s);
@@ -633,24 +733,30 @@ const Engine = (() => {
     const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
     const trace = {};
     const log = applyChoice(content, s, ev, ch, trace);
+    if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
     if (!s.ending) log.push(...yearEnd(content, s, trace));
     if (ev.id.startsWith(MONTAGE)) s.fillerSeen[ev.id.slice(MONTAGE.length)]++;
     else if (isFiller(ev)) {
       s.fillerSeen[ev.id] = (s.fillerSeen[ev.id] || 0) + 1;
-      (s.habits = s.habits || {})[ev.id] = choiceIndex;   // what montage years will repeat
+      (s.habits = s.habits || {})[ev.id] = choiceIndex;   // what habit years will repeat
     }
     s.history.push({ ...before, ev: ev.id, title: ev.title, choice: choiceIndex, text: ch.text,
-      cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank,
+      cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation,
+      noted: ((ch.effects || {}).appraisal || 0) < 0,
       hints: log.filter(l => l.kind === "cep" || l.kind === "heat").map(l => l.kind + "|" + l.text) });
     s.currentEvent = null;
-    return { state: s, outcome: ch.outcome, log, trace };
+    if (!s.ending) log.push(...passYears(content, s, trace));
+    return { state: s, outcome: trace.outcome || ch.outcome, log, trace };
   }
 
+  // The card for this year. advance() has normally drawn it already; this draws only for the
+  // first year of a run (and for saves from before years passed by themselves).
   function nextEvent(content, state) {
     const s = JSON.parse(JSON.stringify(state));
+    if (s.currentEvent) return { state: s, event: eventOf(content, s) };
     const ev = pickEvent(content, s);
     if (!ev) { s.currentEvent = "__quiet"; return { state: s, event: QUIET_YEAR }; }
-    // Every fifth time, the full card comes back, so a habit can be changed.
+    // An old save may still land on a habit year: show it as the one-line card it used to be.
     const seenN = s.fillerSeen[ev.id] || 0;
     if (isFiller(ev) && seenN >= 1 && seenN % 4 !== 0) {
       s.currentEvent = MONTAGE + ev.id;
@@ -731,6 +837,21 @@ const Engine = (() => {
     if (blocked.length) {
       const first = blocked[0].hints.find(isHint).slice(4);
       out.push({ label: "The rumours, translated", text: `"${first}" meant: your work had earned a promotion and your ceiling refused it. You were told this ${blocked.length} time${blocked.length > 1 ? "s" : ""}.` });
+    }
+
+    // Why the tea never came, for a career that stayed in the service and was never asked.
+    const asked = ["went_to_tea", "declined_tea", "tea_withdrawn"].some(f => s.flags.includes(f));
+    const tea = content.events.find(e => e.id === "tea_session");
+    if (!asked && tea && s.rank < 8 && s.ending && !["consultancy", "scandal"].includes(s.ending)) {
+      const q = tea.requires || {}, need = q.minStats || {};
+      const window = H.filter(h => h.rankAfter >= (q.minRank || 0) && h.rankAfter <= (q.maxRank ?? 7));
+      const noted = H.filter(h => h.noted).length;
+      const notedText = noted ? ` ${noted} of your choices had been noted along the way.` : "";
+      if (!window.length) out.push({ label: "The invitation", text: `It never came. The people who decide who is asked to tea look at officers of ${title(content, q.minRank || 0)}'s grade and above, and you never reached it.${notedText}` });
+      else {
+        const st = Math.max(...window.map(h => h.standing ?? 0)), rep = Math.max(...window.map(h => h.reputation ?? 0));
+        out.push({ label: "The invitation", text: `It never came. The people who decide who is asked to tea look for Standing of ${need.standing} and Reputation of ${need.reputation}. In those years your best was Standing ${st} and Reputation ${rep}.${notedText}` });
+      }
     }
 
     const peak = H.reduce((a, b) => (b.heatAfter > a.heatAfter ? b : a), { heatAfter: 0 });
