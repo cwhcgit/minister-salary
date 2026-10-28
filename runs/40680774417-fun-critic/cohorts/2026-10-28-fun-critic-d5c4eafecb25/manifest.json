@@ -1,0 +1,60 @@
+{
+ "cohort": "2026-10-28-fun-critic-d5c4eafecb25",
+ "kind": "fun-sessions",
+ "persona": {
+  "id": "fun-critic",
+  "name": "Priya Nair",
+  "file": "fun-critic.md",
+  "blind": true,
+  "model": "claude-sonnet-5-5",
+  "effort": "low",
+  "thinking": "between_tools",
+  "runs": 15,
+  "turnSchema": "fun",
+  "diarySchema": "fun",
+  "canaries": true,
+  "titleProbe": false,
+  "cohortCapUsd": 4,
+  "fun": {
+   "start": 50,
+   "cap": 100,
+   "quitLine": 25,
+   "decay": 1,
+   "maxDelta": 10,
+   "verdicts": {
+    "fine": 0,
+    "skimmed": -2,
+    "annoyed": -5,
+    "smiled": 2,
+    "tell_a_friend": 6
+   },
+   "repeatSteps": [
+    5,
+    10,
+    15
+   ],
+   "repeatMultiplier": 1,
+   "freshToReset": 3,
+   "careers": 5,
+   "origins": "rotate"
+  },
+  "answers": "Calibration: does a sharper (and dearer) reader agree with the Haiku players card by card?"
+ },
+ "buildHash": "d5c4eafecb25",
+ "canaryBuildHash": "3bcc5b8d0461",
+ "buildRoot": "/home/runner/work/minister-salary/minister-salary/web",
+ "canaries": true,
+ "canaryCareers": 1,
+ "systemHash": "76428460b53a",
+ "sessions": 10,
+ "plannedSessions": 10,
+ "careers": 5,
+ "capUsd": 2,
+ "maxTurns": 60,
+ "tags": "phone",
+ "concurrency": 4,
+ "dryRun": false,
+ "mock": false,
+ "calibration": false,
+ "createdAt": "2026-10-28T11:33:05.844Z"
+}
