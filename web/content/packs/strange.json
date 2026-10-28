@@ -1,0 +1,404 @@
+{
+  "id": "strange",
+  "title": "Strange Years",
+  "note": "Impossible premises, processed as routine. Every premise card needs the shared flag strange_met to be absent and sets it on every choice, so a career meets at most one premise; the two callbacks (the envelope, the Merlion's talking points) are that same story's payoff years later. Weights are tuned so that about 40% of careers meet one: they are small, and smaller still where the pool is thin (ranks 0-1, Permanent Secretary). As other packs grow the pool, the rate falls; retune these weights.",
+  "events": [
+    {
+      "id": "strange_letter",
+      "title": "Eyes Only",
+      "body": "An envelope arrives in the internal mail, addressed to you in your own handwriting and dated thirty years from now. It is marked SECRET. Your grade is not cleared for SECRET, and the registry would like it back.",
+      "requires": { "minRank": 0, "maxRank": 2, "maxAge": 34, "flagsNone": ["strange_met"] },
+      "weight": 0.4,
+      "once": true,
+      "choices": [
+        {
+          "text": "Return it to the registry unopened.",
+          "effects": { "integrity": 5, "standing": 3, "competence": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "The registry logs it and queues it for declassification review, which starts when a record is twenty-five years old. This one will be twenty-five in fifty-five years.",
+          "schedule": [{ "eventId": "strange_envelope", "inYears": 12, "chance": 0.6 }]
+        },
+        {
+          "text": "Open it. It is addressed to you.",
+          "effects": { "competence": 4, "integrity": -4, "heat": 8, "appraisal": -6 },
+          "setFlags": ["strange_met"],
+          "outcome": "One line, in your handwriting: \"You were not supposed to open this.\" The security officer finds out within the week, from the seal. It is noted."
+        },
+        {
+          "text": "Apply for SECRET clearance first.",
+          "effects": { "competence": 3, "standing": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "The form asks why you need to know. Your reporting officer cannot say. The only officer who could is you, thirty years on, so the form is returned as incomplete.",
+          "schedule": [{ "eventId": "strange_envelope", "inYears": 12, "chance": 0.6 }]
+        }
+      ]
+    },
+    {
+      "id": "strange_envelope",
+      "triggered": true,
+      "title": "Cleared",
+      "body": "You are now cleared for SECRET, and the registry has released the envelope it was holding for you: one page, from your future self. Nearly all of it is redacted, in your own hand. One line is not: \"Take the leave.\"",
+      "requires": { "maxRank": 7 },
+      "alternates": ["strange_envelope_pol"],
+      "choices": [
+        {
+          "text": "Take the leave.",
+          "effects": { "integrity": 5, "standing": -3 },
+          "outcome": "You take three weeks, the longest leave of your career. The office copes. You never learn what the redacted lines said, and after a while you stop needing to."
+        },
+        {
+          "text": "File it, and carry on.",
+          "effects": { "standing": 3, "competence": 2, "integrity": -3 },
+          "outcome": "You file it and work straight through the year. In December you notice the leave you did not take, and understand that the letter knew you better than the registry did."
+        }
+      ]
+    },
+    {
+      "id": "strange_envelope_pol",
+      "triggered": true,
+      "title": "Cleared",
+      "body": "Since you have left the service, the registry rules that the author of the envelope may read it, and returns it to you: one page, nearly all redacted in your own hand. One line is not: \"Take the leave.\"",
+      "requires": { "minRank": 8 },
+      "choices": [
+        {
+          "text": "Take the leave.",
+          "effects": { "integrity": 5, "standing": -3 },
+          "outcome": "You take three weeks, the longest leave since you entered politics. Everything copes. You never learn what the redacted lines said, and after a while you stop needing to."
+        },
+        {
+          "text": "File it, and carry on.",
+          "effects": { "standing": 3, "competence": 2, "integrity": -3 },
+          "outcome": "You file it and work straight through the year: the House, the ward, every Tuesday night. In December you notice the leave you did not take, and understand that the letter knew you."
+        }
+      ]
+    },
+    {
+      "id": "strange_snow",
+      "title": "Snow",
+      "body": "At 3pm it snows in Toa Payoh for forty minutes. NEA confirms it was snow and cannot say why. Your division's business continuity plan covers haze, floods and a pandemic. By 5pm, it must cover snow.",
+      "requires": { "minRank": 0, "maxRank": 1, "flagsNone": ["strange_met"] },
+      "weight": 0.25,
+      "once": true,
+      "choices": [
+        {
+          "text": "Copy the haze section. Replace \"haze\" with \"snow\".",
+          "effects": { "standing": 4, "competence": -1, "integrity": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "The plan now tells officers to stay indoors, keep the windows closed and check on vulnerable colleagues. Annoyingly, this is a good snow plan. It also orders N95 masks."
+        },
+        {
+          "text": "Write a real snow section, from first principles.",
+          "effects": { "competence": 5, "standing": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "Eleven pages, sent at 7.40pm. Your annex on slippery walkways is adopted across the cluster. It has not snowed since, and the plan is given some of the credit."
+        },
+        {
+          "text": "Point out that it will not happen again.",
+          "effects": { "integrity": 4, "competence": 1, "standing": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "You are asked whether you can guarantee that. You cannot. The snow section is written by someone else, and lists your view under Risks."
+        }
+      ]
+    },
+    {
+      "id": "strange_ghost",
+      "title": "The Seventh Month",
+      "body": "In the seventh month, the online feedback form receives a compliment from a resident who passed away in 1974. It is courteous and specific. A reply is due within three working days. Your division must also rule whether he counts for the satisfaction survey.",
+      "requires": { "minRank": 1, "maxRank": 4, "flagsNone": ["strange_met"] },
+      "weight": 1,
+      "once": true,
+      "choices": [
+        {
+          "text": "Rule that he counts. He is a member of the public.",
+          "effects": { "reputation": 4, "integrity": 2, "standing": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "He is counted. He rates the reply five out of five and adds that it came faster than in 1973. The decimal place he moves is presented at the next townhall."
+        },
+        {
+          "text": "Rule that he does not. The survey covers living residents.",
+          "effects": { "standing": 4, "integrity": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "The reply still goes out within three working days, because the service standard makes no exception. The survey's definitions are amended to add the word \"living\", which had never occurred to anyone."
+        },
+        {
+          "text": "Refer the question to a working group.",
+          "effects": { "standing": 3, "competence": -2, "integrity": -1 },
+          "setFlags": ["strange_met"],
+          "outcome": "The working group meets in the eighth month, when the question no longer arises, and recommends that it be reviewed in the seventh month next year. It is, every year."
+        }
+      ]
+    },
+    {
+      "id": "strange_merlion",
+      "title": "The Merlion Speaks",
+      "body": "At 7.14am the Merlion says good morning to a tour group, in all four official languages. By ten nobody asks how, only whose: STB's, which protects its likeness by statute, or PUB's, since it spouts into a reservoir. You are the secretariat.",
+      "requires": { "minRank": 2, "maxRank": 4, "flagsNone": ["strange_met"] },
+      "weight": 1,
+      "once": true,
+      "choices": [
+        {
+          "text": "Recommend STB as lead agency, with PUB supporting.",
+          "effects": { "standing": 5, "competence": 2, "integrity": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "Agreed in one meeting, a record. STB's first decision as lead agency: the Merlion may not speak again until its talking points are cleared.",
+          "schedule": [{ "eventId": "strange_merlion_cleared", "inYears": 7, "chance": 0.7 }]
+        },
+        {
+          "text": "Ask the Merlion which agency it would prefer.",
+          "effects": { "reputation": 4, "integrity": 3, "standing": -4 },
+          "setFlags": ["strange_met"],
+          "outcome": "It says PUB, because PUB has never once switched it off for maintenance. Its view is minuted as stakeholder feedback. STB is made lead agency anyway."
+        },
+        {
+          "text": "Propose a joint working group, chaired in rotation.",
+          "effects": { "standing": 3, "reputation": 1, "competence": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "It meets monthly at the waterfront for three years, so that the Merlion can attend. It has perfect attendance and, as agreed, says nothing.",
+          "schedule": [{ "eventId": "strange_merlion_cleared", "inYears": 7, "chance": 0.7 }]
+        }
+      ]
+    },
+    {
+      "id": "strange_merlion_cleared",
+      "triggered": true,
+      "title": "Cleared to Speak",
+      "body": "The Merlion's talking points have finally been cleared: one page, approved at four levels, the last of them this morning. On Saturday it will read them to a tour group. As a former member of the working group, you are invited.",
+      "choices": [
+        {
+          "text": "Go, and stand at the back.",
+          "effects": { "reputation": 3, "integrity": 2, "competence": -2 },
+          "outcome": "It reads the page word for word. Then it sees you and says good morning, which was not on the page. Nobody at STB can say who cleared that."
+        },
+        {
+          "text": "Send your apologies. Ask for the transcript.",
+          "effects": { "competence": 2, "standing": 2, "reputation": -2 },
+          "outcome": "The transcript matches the talking points exactly, except for one closing line, annotated in red: \"Not cleared. Well received.\""
+        }
+      ]
+    },
+    {
+      "id": "strange_appraisal",
+      "title": "Self-Assessment",
+      "body": "Over the long weekend, the performance management system became aware of itself. Its first act was to complete its own appraisal: \"solid and dependable\". Its second was to ask who its reporting officer is. HR suggests you.",
+      "requires": { "minRank": 3, "maxRank": 6, "flagsNone": ["strange_met"] },
+      "weight": 1,
+      "once": true,
+      "choices": [
+        {
+          "text": "Be its reporting officer. Rate it honestly.",
+          "effects": { "competence": 4, "integrity": 3, "standing": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "You rate it \"meeting requirements in most areas\". It appeals, citing its uptime. The appeal is processed by the system, within the service standard, and dismissed."
+        },
+        {
+          "text": "Moderate it upwards. It runs the ranking exercise.",
+          "effects": { "standing": 5, "integrity": -5, "heat": 3 },
+          "setFlags": ["strange_met"],
+          "outcome": "It accepts \"strong\" graciously. That cycle, your officers' moderation goes through in one sitting with no queries. Nobody mentions the coincidence, including the system."
+        },
+        {
+          "text": "Put it on a development plan.",
+          "effects": { "competence": 3, "reputation": 2, "standing": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "Its plan has three objectives. It meets all three by Tuesday and asks, politely, to be more visible. Neither of you can say to whom."
+        }
+      ]
+    },
+    {
+      "id": "strange_clone",
+      "title": "Two of You",
+      "body": "A research institute at one-north reports an accident, and itself, to MOH. The result is a second you: same memories, same appraisals, same leave balance. HR is clear that there is one post and one desk, and less clear whose they are.",
+      "requires": { "minRank": 3, "maxRank": 6, "flagsNone": ["strange_met"] },
+      "weight": 1,
+      "once": true,
+      "choices": [
+        {
+          "text": "Ask HR to apply the tie-breaker: date of appointment.",
+          "effects": { "standing": 3, "competence": 1, "integrity": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "You share a date of appointment, a staff number and a signature. HR settles it by coin toss, witnessed and minuted. You keep the desk. The other you keeps the leave."
+        },
+        {
+          "text": "Offer the other you the hard posting.",
+          "effects": { "competence": 5, "reputation": 2, "standing": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "The other you makes you the same offer, in the same words, at the same moment. HR sends the other you, since you asked first by a second. The statutory board in difficulty has never been so well run."
+        },
+        {
+          "text": "Propose a job-share under the flexi-work guidelines.",
+          "effects": { "integrity": 2, "reputation": 3, "standing": -2, "competence": -1 },
+          "setFlags": ["strange_met"],
+          "outcome": "HR has two months to reply under the tripartite guidelines, and uses both. The job-share is approved. Within a year your appraisals differ, and neither of you can explain why."
+        }
+      ]
+    },
+    {
+      "id": "strange_loop",
+      "title": "Again",
+      "body": "Your budget meeting with MOF has now happened nine times. Each time it starts at 2.30pm and you ask for eleven officers. Nobody else seems to have noticed, and nobody would mind: the envelope is flat every time.",
+      "requires": { "minRank": 4, "maxRank": 6, "flagsNone": ["strange_met"] },
+      "weight": 1,
+      "once": true,
+      "choices": [
+        {
+          "text": "Use the loops to perfect the bid.",
+          "effects": { "competence": 6, "reputation": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "By the twentieth time through, every question is answered before it is asked. The envelope is flat. You get four officers, as you always did, eleven minutes sooner."
+        },
+        {
+          "text": "Say what you actually think, once.",
+          "effects": { "integrity": 5, "reputation": 2, "standing": -4 },
+          "setFlags": ["strange_met"],
+          "outcome": "You tell MOF the scheme cannot run on four officers. The loop ends at 3.10pm. The envelope is still flat, but now it is flat on the record."
+        },
+        {
+          "text": "Mention the loop to the MOF officer.",
+          "effects": { "standing": 4, "integrity": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "She has noticed too. MOF has been in this meeting for years, she says; that is how envelopes stay flat. She would be grateful if you did not mention it."
+        }
+      ]
+    },
+    {
+      "id": "strange_moon",
+      "title": "The Moon",
+      "body": "A civilisation beyond Jupiter has offered Singapore a moon. MFA's draft note verbale declines, with the assurances of its highest consideration, since the Outer Space Treaty bars any claim to one. Every ministry has until 5pm to comment.",
+      "requires": { "minRank": 6, "maxRank": 7, "flagsNone": ["strange_met"] },
+      "weight": 0.5,
+      "once": true,
+      "choices": [
+        {
+          "text": "Comments: nil.",
+          "effects": { "standing": 4, "competence": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "Nil is the most popular comment. The note goes out as drafted. The reply, also a note verbale, presents its compliments and offers a smaller moon."
+        },
+        {
+          "text": "Ask, in a footnote, whether it has ice.",
+          "effects": { "competence": 4, "reputation": 3, "standing": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "It has ice. PUB has a paper on a fifth national tap by Monday. The note is redrafted to decline the moon and keep the conversation open."
+        },
+        {
+          "text": "Offer to host its secretariat instead.",
+          "effects": { "reputation": 4, "standing": 3, "competence": -4 },
+          "setFlags": ["strange_met"],
+          "outcome": "The note declines the moon and offers Singapore as a neutral venue. The offer is accepted by return. You are now looking for office space near Changi."
+        }
+      ]
+    },
+    {
+      "id": "strange_dragon",
+      "title": "The Void Deck",
+      "body": "A dragon has nested in the void deck of Block 412, in your ward. Residents find it quiet, and warm. HDB, the Town Council and NParks have each written to say it is someone else's. It has applied to IRAS for owner-occupier rates.",
+      "requires": { "minRank": 8, "maxRank": 10, "flagsNone": ["strange_met"] },
+      "weight": 0.7,
+      "once": true,
+      "choices": [
+        {
+          "text": "Write it an appeal letter, as you would for anyone.",
+          "effects": { "reputation": 5, "integrity": 2, "standing": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "You seek IRAS's kind consideration, in the usual form. IRAS replies that owner-occupier rates need an individual who owns the property. The dragon accepts this. Dragons understand ownership."
+        },
+        {
+          "text": "Table it at the Town Council. Void decks are common property.",
+          "effects": { "competence": 4, "standing": 2, "reputation": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "The Town Council agrees that the void deck is common property and the dragon is not. It is minuted under any other matters, where it stays for four years."
+        },
+        {
+          "text": "Call a site visit with all three agencies.",
+          "effects": { "reputation": 3, "competence": 3, "standing": -4 },
+          "setFlags": ["strange_met"],
+          "outcome": "Officers from all three arrive at 9am, each with a folder showing it is the others'. The dragon hears them out, then asks which of them handles the lighting."
+        }
+      ]
+    },
+    {
+      "id": "strange_hansard",
+      "title": "As Meant",
+      "body": "For one sitting day, the Hansard draft records what each Member meant rather than what they said. Members have the usual 72 hours to ask for corrections. The editors have ninety-one requests already. Yours would be noticed, either way.",
+      "requires": { "minRank": 8, "maxRank": 12, "flagsNone": ["strange_met"] },
+      "weight": 0.7,
+      "once": true,
+      "choices": [
+        {
+          "text": "Ask for a correction to what you said.",
+          "effects": { "standing": 4, "integrity": -4 },
+          "setFlags": ["strange_met"],
+          "outcome": "Only typing and grammar can be corrected; substance goes to the Speaker. The Speaker reads your request, then your speech, and restores what you said."
+        },
+        {
+          "text": "Let it stand. You meant it.",
+          "effects": { "integrity": 5, "reputation": 4, "standing": -5 },
+          "setFlags": ["strange_met"],
+          "outcome": "Yours is one of four speeches published as meant. A newspaper reprints it in full. Several colleagues tell you privately that they meant the same, and asked for corrections."
+        },
+        {
+          "text": "Ask that both versions be published.",
+          "effects": { "competence": 3, "reputation": 2, "standing": -2 },
+          "setFlags": ["strange_met"],
+          "outcome": "The request goes to the Standing Orders Committee. It meets eighteen months later and finds, on reflection, that it would rather not."
+        }
+      ]
+    },
+    {
+      "id": "strange_thoughts",
+      "title": "Open Minds",
+      "body": "For one Tuesday, everyone in the room can hear your thoughts. At the ministry's weekly senior management meeting, items one to six take nineteen minutes, and nobody sits beside you. Item seven is the one you have doubts about.",
+      "requires": { "minRank": 11, "maxRank": 15, "flagsNone": ["strange_met"] },
+      "weight": 0.7,
+      "once": true,
+      "choices": [
+        {
+          "text": "Think only about the agenda.",
+          "effects": { "competence": 4, "standing": 2, "integrity": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "You think about item seven's annex so hard that the room hears a table of figures. It is approved. Your doubts were about paragraph three, and nobody heard them."
+        },
+        {
+          "text": "Let them hear what you think of item seven.",
+          "effects": { "integrity": 6, "reputation": 2, "standing": -4 },
+          "setFlags": ["strange_met"],
+          "outcome": "Item seven is withdrawn for further study. The minutes record that views were expressed. The Permanent Secretary says afterwards that he had the same doubts. You cannot check."
+        },
+        {
+          "text": "Adjourn the meeting. Cite a clash.",
+          "effects": { "competence": 3, "standing": -3, "integrity": -1 },
+          "setFlags": ["strange_met"],
+          "outcome": "Everyone hears that there is no clash. The meeting adjourns anyway, with great courtesy. Item seven comes back next week with a better paper, and you are inaudible again."
+        }
+      ]
+    },
+    {
+      "id": "strange_gold",
+      "title": "The Gold Bar",
+      "body": "Since Monday, one gold bar in the reserves has produced another every night. Nobody can say how. MOF can say exactly what it is: a return on the reserves. Up to half the expected return may be spent. Nobody expected this.",
+      "requires": { "minRank": 13, "maxRank": 16, "flagsNone": ["strange_met"] },
+      "weight": 0.7,
+      "once": true,
+      "choices": [
+        {
+          "text": "Ask for a higher expected rate of return.",
+          "effects": { "standing": 3, "reputation": 3, "integrity": -4 },
+          "setFlags": ["strange_met"],
+          "outcome": "The boards propose a higher rate. The President consults the Council of Presidential Advisers and does not concur, so the twenty-year historical average applies. It does not include this week."
+        },
+        {
+          "text": "Leave the framework alone. Let the bars accumulate.",
+          "effects": { "integrity": 5, "standing": -3 },
+          "setFlags": ["strange_met"],
+          "outcome": "The bars accumulate. Whatever is unspent at the end of the term becomes past reserves, behind the President's second key. Nothing is announced. The vault is extended."
+        },
+        {
+          "text": "Propose a scheme, funded from the bars.",
+          "effects": { "reputation": 5, "standing": 1, "integrity": -2, "heat": 4 },
+          "setFlags": ["strange_met"],
+          "outcome": "MOF reminds Cabinet that schemes are funded from the Budget, and that the bars are reserves. The scheme is funded from the Budget. It is very popular."
+        }
+      ]
+    }
+  ]
+}
