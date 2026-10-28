@@ -1,0 +1,349 @@
+{
+ "findings": [
+  {
+   "event_id": "the_bonus_reveal",
+   "field": "choices[1].outcome",
+   "line": "Cleaner, faster, and it moves the largest indicator. The bonus is six months, the maximum. You do not look closely at the distributional annex.",
+   "rule": "4_accuracy",
+   "problem": "The four National Bonus indicators are equally weighted under the 2012 framework, so GDP is not the 'largest indicator'. Pushing one indicator alone is also unlikely to deliver the six-month maximum, which needs strong outcomes across all four.",
+   "severity": "should_fix",
+   "suggested_fix": "Cleaner, faster, and it is the number the newspapers lead with. The National Bonus comes in above target. You do not look closely at the distributional annex."
+  },
+  {
+   "event_id": "cos_vindicated",
+   "field": "choices[1].outcome",
+   "line": "She draws it. At the year-end ranking exercise she draws it again, in ink.",
+   "rule": "4_accuracy",
+   "problem": "Ministers do not sit on civil service ranking panels. Officers are ranked by panels of senior officers chaired at Perm Sec or Deputy Secretary level, so a Minister ranking a division officer is implausible.",
+   "severity": "should_fix",
+   "suggested_fix": "She draws it. At the year-end ranking exercise, your Permanent Secretary appears to have drawn it too, in ink."
+  },
+  {
+   "event_id": "headhunter_political",
+   "field": "choices[0].outcome",
+   "line": "There is a by-election. It is described as a referendum on nothing in particular, and your successor wins it comfortably.",
+   "rule": "4_accuracy",
+   "problem": "A by-election follows only if the vacated seat is an SMC. One member resigning from a GRC does not trigger a by-election. The event does not know which kind of seat the player holds.",
+   "severity": "should_fix",
+   "suggested_fix": "You resign. Within the week your blocks are being looked after by someone else, and the conglomerate's annual report carries your photograph on page four."
+  },
+  {
+   "event_id": "headhunter_political",
+   "field": "body",
+   "line": "The role involves four meetings a year and pays more than the Prime Minister.",
+   "rule": "4_accuracy",
+   "problem": "A non-executive board seat paying more than $2.2m a year for four meetings is implausible. Even the largest Singapore boards pay independent directors far below that.",
+   "severity": "consider",
+   "suggested_fix": "The role involves four meetings a year and pays more than you earned as a Director."
+  },
+  {
+   "event_id": "mps_duty",
+   "field": "body",
+   "line": "You have been volunteered to help at an MP's Meet-the-People Session.",
+   "rule": "4_accuracy",
+   "problem": "MPS are run by the MP's party branch volunteers. The service does not assign or 'volunteer' officers to them, and doing so would breach political neutrality. Civil servants who help do so privately, with clearance where their grade requires it.",
+   "severity": "should_fix",
+   "suggested_fix": "A friend from your NS days asks whether you could help at his MP's Meet-the-People Session."
+  },
+  {
+   "event_id": "the_quiet_year",
+   "field": "choices[2].outcome",
+   "line": "You rest. It turns out you needed it more than the ministry needed the other two options.",
+   "rule": "3_deadpan",
+   "problem": "'The other two options' refers to the game's own choice menu. That breaks the fourth wall and winks at the player.",
+   "severity": "should_fix",
+   "suggested_fix": "You rest. Nothing breaks. You come back in January and find you had been more tired than the ministry had been busy."
+  },
+  {
+   "event_id": "forum_letter",
+   "field": "choices[0].outcome",
+   "line": "It is cleared in a single round, which tells you everything about what clears easily.",
+   "rule": "3_deadpan",
+   "problem": "The clause explains its own joke. The contrast with the nine-round option already lands without it.",
+   "severity": "should_fix",
+   "suggested_fix": "Your reply explains that the scheme is regularly reviewed. It is 310 words and says nothing. It is cleared in a single round, before lunch."
+  },
+  {
+   "event_id": "budget_round",
+   "field": "choices[1].outcome",
+   "line": "You get seventy percent of exactly what you needed, because the process assumes padding and punishes its absence.",
+   "rule": "3_deadpan",
+   "problem": "The 'because' clause spells out the joke instead of letting the outcome show it.",
+   "severity": "consider",
+   "suggested_fix": "You get seventy percent of exactly what you needed. Next year you bid for eleven."
+  },
+  {
+   "event_id": "cos_speech",
+   "field": "choices[1].outcome",
+   "line": "Nobody is harmed and nothing is gained and this is, you suspect, most of what happens here.",
+   "rule": "5_affection",
+   "problem": "The closing generalisation dismisses the whole service from outside and states the satire's thesis aloud.",
+   "severity": "consider",
+   "suggested_fix": "\"Enhanced\". It is enhanced by the word \"enhanced\". It is covered favourably, and the press release is filed beside last year's, which it closely resembles."
+  },
+  {
+   "event_id": "the_tender",
+   "field": "choices[2].outcome",
+   "line": "You were not wrong to worry about perception; you were wrong to let it decide.",
+   "rule": "3_deadpan",
+   "problem": "An authorial moral tells the player what to conclude, which breaks the deadpan.",
+   "severity": "consider",
+   "suggested_fix": "The project runs eleven months late. Nobody questions the award. Several people question the project."
+  },
+  {
+   "event_id": "inconvenient_figure",
+   "field": "choices[2].outcome",
+   "line": "The director presents them as his own.",
+   "rule": "2_machinery_not_persons",
+   "problem": "The joke rests on an individual director being credit-stealing, a personal failing, rather than on how authorship dissolves upward in the machinery.",
+   "severity": "consider",
+   "suggested_fix": "The director presents them at the next meeting, under the division's name. The scheme survives. So do you."
+  },
+  {
+   "event_id": "town_council",
+   "field": "body",
+   "line": "The residents' committee has views, the contractor has a cousin, and you have signing authority.",
+   "rule": "2_machinery_not_persons",
+   "problem": "'The contractor has a cousin' implies personal nepotism by unnamed residents or contractors, which punches at persons rather than at procurement process.",
+   "severity": "consider",
+   "suggested_fix": "The residents' committee has views, the contractor has been recommended by three separate people, and you have signing authority."
+  },
+  {
+   "event_id": "succession",
+   "field": "choices[1].outcome",
+   "line": "He wins, obviously, and he knows exactly who delivered it. You get everything you asked for, and you will retire as the most powerful Deputy Prime Minister anyone can remember, which is not the thing you wanted.",
+   "rule": "1_people_invented",
+   "problem": "The 'first among equals' room process, a runner-up backing the winner, and a superlative 'most powerful DPM anyone can remember' invite readers to map this onto specific real leadership-selection episodes and figures.",
+   "severity": "consider",
+   "suggested_fix": "He wins, and he knows exactly who delivered it. You get everything you asked for, and you retire as Deputy Prime Minister, which is a great deal, and is not the thing you wanted."
+  },
+  {
+   "event_id": "ally_returns",
+   "field": "choices[0].outcome",
+   "line": "because the whole point of the thing was that it was not a transaction, and it stays one by not being named",
+   "rule": "3_deadpan",
+   "problem": "The sentence explains its own point, and 'stays one' grammatically reads as 'stays a transaction', the opposite of what is meant.",
+   "severity": "consider",
+   "suggested_fix": "She puts your name in. Neither of you mentions the nomination from eleven years ago. It was not a transaction then, and nobody is going to make it one now."
+  },
+  {
+   "event_id": "cos_vindicated",
+   "field": "body",
+   "line": "Your Minister, who announced nothing, is the only one who is not. She has noticed.",
+   "rule": "4_accuracy",
+   "problem": "This is a continuity error. The Minister in the setup event cos_speech is 'He' ('He is annoyed for a day and grateful for a year'), and nothing indicates a reshuffle in between.",
+   "severity": "consider",
+   "suggested_fix": "Your Minister, who announced nothing, is the only one who is not. He has noticed. (Change 'her'/'She' to 'him'/'He' in both choices to match.)"
+  },
+  {
+   "event_id": "bto_queue",
+   "field": "body",
+   "line": "Fourth BTO application. Non-mature estate, four-room.",
+   "rule": "4_accuracy",
+   "problem": "Since the October 2024 BTO exercise HDB classifies flats as Standard, Plus and Prime, not mature or non-mature. The line is now dated.",
+   "severity": "consider",
+   "suggested_fix": "Fourth BTO application. Standard flat, four-room."
+  },
+  {
+   "event_id": "the_indicators",
+   "field": "choices[1].outcome",
+   "line": "The lowest quintile's income grows faster than the median for the first time in six years.",
+   "rule": "4_accuracy",
+   "problem": "The National Bonus indicator is real income growth at the 20th percentile, not the income of the lowest quintile as a group. Elsewhere the game uses the correct term.",
+   "severity": "consider",
+   "suggested_fix": "Income at the 20th percentile grows faster than the median for the first time in six years."
+  },
+  {
+   "event_id": "ladder",
+   "field": "ladder[0].org",
+   "line": "statutory board",
+   "rule": "4_accuracy",
+   "problem": "The MX (Management Executive) scheme belongs to the civil service proper. Statutory boards run their own grading and titles, so MX13/MX12 'at a statutory board' is implausible. 'Senior Management Executive' is also not a standard title.",
+   "severity": "consider",
+   "suggested_fix": "ministry"
+  }
+ ],
+ "accuracy_checks": [
+  {
+   "claim": "MP allowance of $192,500 a year",
+   "status": "accurate",
+   "note": "This is the figure set by the 2012 review of political salaries."
+  },
+  {
+   "claim": "Entry-grade Minister (MR4) annual salary $1.1m",
+   "status": "accurate",
+   "note": "This is the 2012 benchmark, inclusive of bonuses."
+  },
+  {
+   "claim": "Prime Minister $2.2m, twice MR4, formula published",
+   "status": "accurate",
+   "note": "The PM is paid 2x MR4 under the published 2012 White Paper."
+  },
+  {
+   "claim": "MR3 Minister $1.32m",
+   "status": "unverifiable",
+   "note": "It is plausible as a ratio of MR4, but I cannot confirm the exact figure."
+  },
+  {
+   "claim": "Deputy Prime Minister at MR1, $1.76m",
+   "status": "unverifiable",
+   "note": "I cannot confirm the DPM grade mapping or the exact figure."
+  },
+  {
+   "claim": "MOS $770k, SMS $935k, SPS $500k, PS $385k",
+   "status": "unverifiable",
+   "note": "These are plausible fractions of MR4, but I cannot confirm the published multiples."
+  },
+  {
+   "claim": "National Bonus computed from real median income growth, real 20th-percentile income growth, unemployment rate, real GDP growth",
+   "status": "accurate",
+   "note": "These match the four indicators in the 2012 White Paper."
+  },
+  {
+   "claim": "National Bonus maximum of six months, target three",
+   "status": "accurate",
+   "note": "The bonus ranges from 0 to 6 months, with 3 months at target."
+  },
+  {
+   "claim": "GDP is the 'largest' National Bonus indicator",
+   "status": "inaccurate",
+   "note": "The four indicators are equally weighted."
+  },
+  {
+   "claim": "CEP = Currently Estimated Potential, not disclosed to the officer",
+   "status": "accurate",
+   "note": "This reflects the long-standing practice. Disclosure has varied in recent years, but the line is fair."
+  },
+  {
+   "claim": "MX grade ladder MX13 to MX9 below Superscale",
+   "status": "accurate",
+   "note": "The MX scheme runs from MX15 to MX9, with Superscale above."
+  },
+  {
+   "claim": "Director at MX9, Senior Director at Superscale",
+   "status": "unverifiable",
+   "note": "This is plausible, as Directors usually sit at MX9 or low Superscale."
+  },
+  {
+   "claim": "MX grades used at a statutory board",
+   "status": "unverifiable",
+   "note": "This is implausible: statutory boards have their own schemes."
+  },
+  {
+   "claim": "Permanent Secretary at Staff Grade, about $1m",
+   "status": "unverifiable",
+   "note": "Perm Secs do sit at senior Superscale or Staff Grade, and the figure is plausible but I cannot confirm it."
+  },
+  {
+   "claim": "MX pay figures ($45.6k to $168k) and Superscale figures",
+   "status": "unverifiable",
+   "note": "These are plausible ranges, but the exact figures are not published."
+  },
+  {
+   "claim": "President's Scholar overseas, Administrative Service, six-year bond",
+   "status": "accurate",
+   "note": "PSC overseas scholarships carry a six-year bond."
+  },
+  {
+   "claim": "Careers@Gov as the application portal",
+   "status": "accurate",
+   "note": "It is the real portal."
+  },
+  {
+   "claim": "Public Service Leadership Programme",
+   "status": "accurate",
+   "note": "It is a real programme."
+  },
+  {
+   "claim": "Nine days of campaigning after Nomination Day",
+   "status": "accurate",
+   "note": "This matches recent general elections, with a cooling-off day before Polling Day."
+  },
+  {
+   "claim": "Resigning a seat triggers a by-election",
+   "status": "inaccurate",
+   "note": "That is true only for an SMC. A single resignation from a GRC does not trigger one."
+  },
+  {
+   "claim": "POFMA Correction Direction producing a correction notice",
+   "status": "accurate",
+   "note": "This is the correct terminology and mechanism. Any Minister may direct."
+  },
+  {
+   "claim": "Minister participating in civil service ranking exercise",
+   "status": "inaccurate",
+   "note": "Ranking is done by panels of senior officers."
+  },
+  {
+   "claim": "COS 'cuts'",
+   "status": "accurate",
+   "note": "MPs file cut motions under each ministry head."
+  },
+  {
+   "claim": "Minister has eight minutes at COS",
+   "status": "unverifiable",
+   "note": "Ministers' COS speeches usually run longer. The line is implausible but could be a sub-slot."
+  },
+  {
+   "claim": "PQ filed for oral answer, supplementaries, written answers",
+   "status": "accurate",
+   "note": "This is correct parliamentary procedure."
+  },
+  {
+   "claim": "Budget delivered in February",
+   "status": "accurate",
+   "note": "The Budget is usually delivered in mid-to-late February."
+  },
+  {
+   "claim": "BTO non-mature estate classification",
+   "status": "inaccurate",
+   "note": "It was replaced by Standard/Plus/Prime from October 2024."
+  },
+  {
+   "claim": "Cash-over-valuation on resale",
+   "status": "accurate",
+   "note": "COV must be paid in cash. The line does not claim otherwise."
+  },
+  {
+   "claim": "Town Councils Act; MP with signing authority; sinking fund",
+   "status": "accurate",
+   "note": "These are real legislation and a plausible role for a TC chairman."
+  },
+  {
+   "claim": "Straits Times Forum page",
+   "status": "accurate",
+   "note": "It is real, and ministry replies are routine."
+  },
+  {
+   "claim": "National Day Award with investiture and quotas",
+   "status": "accurate",
+   "note": "This is plausible and reflects actual practice."
+  },
+  {
+   "claim": "Civil servants 'volunteered' by the service for MPS",
+   "status": "inaccurate",
+   "note": "MPS are run by party branch volunteers, not assigned by the service."
+  },
+  {
+   "claim": "Board seat paying more than the PM for four meetings",
+   "status": "unverifiable",
+   "note": "This is implausible for Singapore board fees."
+  },
+  {
+   "claim": "Lost the Ward at 48.2%",
+   "status": "unverifiable",
+   "note": "I could not confirm whether this matches a specific real constituency result. Worth checking to avoid an accidental real-world match."
+  },
+  {
+   "claim": "Inter-Ministry Committee (IMC), Reporting Officer (RO)",
+   "status": "accurate",
+   "note": "Both are standard service terms."
+  },
+  {
+   "claim": "Harvard executive programme for high-CEP officers",
+   "status": "accurate",
+   "note": "This is a plausible and known practice."
+  }
+ ],
+ "summary": "No events carry a canary field in this batch, so no deliberate plants were present to confirm. The content is strong: institutions are real, people are invented, and the tone is largely deadpan and affectionate. No line clearly depicts a real politician. The succession outcome is the only mild Rule 1 risk, because of its 'most powerful DPM' superlative. Priority fixes are accuracy issues: GDP described as the 'largest' National Bonus indicator, a Minister in the ranking exercise, an unconditional by-election on resignation, and the service 'volunteering' officers for party-run MPS. Tone fixes are a fourth-wall wink ('the other two options') and a few self-explaining or moralising closers (forum_letter, budget_round, the_tender, cos_speech). Minor items are dated BTO terminology, a He/She continuity break between cos_speech and cos_vindicated, quintile versus 20th-percentile wording, and MX grades placed at statutory boards. Salary figures for MR4, PM and MP are correct. The other political office holder multiples could not be verified."
+}
