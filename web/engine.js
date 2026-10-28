@@ -17,7 +17,7 @@ const Engine = (() => {
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   const STATS = ["reputation", "standing", "integrity", "competence"];
 
-  function newGame(content, originId, name, seed) {
+  function newGame(content, originId, name, seed, opts = {}) {
     const origin = content.origins.find(o => o.id === originId);
     const r = rng(seed);
     const g = {
@@ -51,7 +51,154 @@ const Engine = (() => {
       currentEvent: null
     };
     g.cepStart = g.cep;
+    if (opts.rival && content.rival) g.rival = newRival(content, origin, seed);
     return g;
+  }
+
+  // --- the batchmate ------------------------------------------------------
+  // Optional. Someone from the player's intake: same origin, same start, a hidden ceiling
+  // drawn the same way, and a simple seeded career of their own. A batch is ranked against
+  // itself, so the batchmate is as good as the player by construction: their yearly score is
+  // the player's own appraisal baseline plus a small hidden edge and their own luck. They
+  // compete with the player for the same slots in the ranking exercise. All their randomness
+  // comes from a separate stream (rivalRoll), so a game without a batchmate plays as before.
+  function newRival(content, origin, seed) {
+    const R = content.rival, r = rng((seed ^ 0x5bd1e995) >>> 0);
+    const who = R.names[Math.floor(r() * R.names.length)];
+    const ed = (R.edge || {})[origin.id] || [-3, 5];
+    const cep = origin.cep[0] + Math.floor(r() * (origin.cep[1] - origin.cep[0] + 1));
+    return { name: who.name, pron: who.pron, rank: origin.startRank, cep, cepStart: cep,
+      edge: ed[0] + Math.floor(r() * (ed[1] - ed[0] + 1)), yearsInGrade: 0,
+      bondYears: origin.bondYears || 0, political: false, triedPolitics: false,
+      status: "active", rel: 0, mod: 0, calls: 0, met: 0, wonMet: 0, ahead: 0, behind: 0 };
+  }
+
+  function rivalRoll(s) {
+    const r = rng((s.seed * 31 + 977 + s.rival.calls * 7919) >>> 0);
+    s.rival.calls++;
+    return r();
+  }
+
+  // {rival} is the name; pronouns only as object/possessive or before past-tense verbs.
+  const PRON = { f: { they: "she", them: "her", their: "her" }, m: { they: "he", them: "him", their: "his" } };
+  function sub(text, s) {
+    if (!s.rival || typeof text !== "string") return text;
+    const p = PRON[s.rival.pron] || PRON.f;
+    return text.replace(/\{rival\}/g, s.rival.name)
+      .replace(/\{(They|Them|Their)\}/g, (_, k) => cap(p[k.toLowerCase()]))
+      .replace(/\{(they|them|their)\}/g, (_, k) => p[k]);
+  }
+
+  const REL_WEIGHT = 1.2;   // each point of goodwill is worth this much in a close ranking call
+  function rivalScore(s) {
+    return 0.5 * s.competence + 0.3 * s.standing + 0.15 * s.reputation + s.rival.edge + (rivalRoll(s) * 20 - 10) + s.rival.mod;
+  }
+  function rivalLine(content, s, key, extra = {}) {
+    const lines = (content.rival.lines || {})[key] || [];
+    const n = (s.rival.lineN = (s.rival.lineN || 0) + 1);
+    let text = lines.length ? lines[(n - 1) % lines.length] : "";
+    for (const [k, v] of Object.entries(extra)) text = text.split("{" + k + "}").join(v);
+    return { kind: "rival", key, text: sub(text, s) };
+  }
+
+  // A head-to-head right now (one posting, one slot): the player's appraisal-style score,
+  // adjusted by goodwill, against the batchmate's hidden one.
+  function rivalContest(content, s, c, t) {
+    const v = s.rival;
+    const mine = 0.5 * s.competence + 0.3 * s.standing + 0.15 * s.reputation + (rivalRoll(s) * 20 - 10)
+      + (c.bonus || 0) + v.rel * REL_WEIGHT;
+    const theirs = rivalScore(s);
+    const won = mine >= theirs;
+    v.met++; if (won) v.wonMet++;
+    t.rivalContest = { mine: +mine.toFixed(1), theirs: +theirs.toFixed(1), won };
+    applyEffects(s, (won ? c.win : c.lose) || {});
+    return [{ kind: "rival", key: won ? "contestWon" : "contestLost", text: sub(won ? c.winText : c.loseText, s) }];
+  }
+
+  function rivalChoice(content, s, rc, t) {
+    const v = s.rival;
+    if (!v || v.status !== "active") return [];
+    if (rc.rel) v.rel = clamp(v.rel + rc.rel, -5, 5);
+    if (rc.mod) v.mod += rc.mod;
+    if (rc.cep) v.cep = clamp(v.cep + rc.cep, 0, 16);
+    return rc.contest ? rivalContest(content, s, rc.contest, t) : [];
+  }
+
+  // The batchmate's year. Runs before the player's promotion is settled, because when both are
+  // promotable at the same grade there is one slot, and the ranking exercise decides who gets it.
+  // playerScore: the player's appraisal score when they would otherwise be promoted, else null.
+  function rivalYear(content, s, t, playerScore) {
+    const v = s.rival, out = { lost: false, log: [] };
+    if (!v || v.status !== "active") return out;
+    const politicalNow = v.rank >= 8;
+    // exits and crossings
+    if (s.year > Math.max(v.bondYears, 3) && !(v.rank === 16)) {   // nobody leaves in their first three years
+      const x = rivalRoll(s);
+      if (x < 0.0015 && v.rank >= 3) { v.status = "scandal"; out.log.push(rivalLine(content, s, v.rank >= 8 ? "scandalPolitics" : "scandal")); return out; }
+      if (x < 0.0065 && ((v.rank >= 2 && v.rank <= 7) || (v.rank >= 9 && v.rank <= 14))) {
+        v.status = "consultancy"; out.log.push(rivalLine(content, s, v.rank >= 8 ? "consultancyPolitics" : "consultancy")); return out;
+      }
+      // The party talent-spots batches, not individuals: once the player is in Parliament,
+      // their batchmate is far likelier to be asked to tea as well.
+      const ge = !!t.election;   // this turn was a general election the player stood in
+      const canCross = s.rank >= 8 ? ge : true;
+      if (!politicalNow && !v.triedPolitics && v.rank >= 4 && v.rank <= 7 && canCross
+          && rivalRoll(s) < (s.rank >= 8 ? 0.75 : 0.06)) {
+        v.triedPolitics = true;
+        if (rivalRoll(s) < 0.78) {
+          v.rank = 8; v.yearsInGrade = 0; v.political = true;
+          v.cep = clamp(11 + Math.floor(rivalRoll(s) * 6), 11, 16);
+          out.log.push(rivalLine(content, s, ge ? "electedTogether" : "elected"));
+        } else out.log.push(rivalLine(content, s, ge ? "lostSeatTogether" : "lostSeat"));
+        return out;
+      }
+    }
+    v.yearsInGrade++;
+    const score = rivalScore(s);
+    v.mod = 0;
+    const need = content.minYearsInGrade + (v.rank >= 10 ? 1 : 0) + (v.rank >= 13 ? 1 : 0) + (v.rank >= 15 ? 1 : 0);
+    const gradeOk = score >= 72 || (score >= 58 && v.rank < 13);
+    let promotable = gradeOk && v.yearsInGrade >= need && v.rank < v.cep && v.rank !== 7 && v.rank < 16
+      && !(v.rank === 15 && s.rank === 16);
+    // The ranking exercise ranks everyone at a grade every year. When the player is up for
+    // promotion and the batchmate is at the same grade (and not at their own ceiling), the one
+    // ranked lower waits. The batchmate takes the slot only if they are eligible themselves.
+    if (playerScore !== null && v.rank === s.rank && v.rank < v.cep) {
+      const mine = playerScore + v.rel * REL_WEIGHT;
+      const won = mine >= score;
+      v.met++; if (won) v.wonMet++;
+      t.ranking = { mine: +mine.toFixed(1), theirs: +score.toFixed(1), won, theyWentUp: !won && promotable };
+      const pol = s.rank >= 8;
+      if (won) { promotable = false; out.log.push(rivalLine(content, s, pol ? "winPolitics" : "winService")); }
+      else {
+        out.lost = true;
+        out.log.push(rivalLine(content, s, promotable ? (pol ? "losePolitics" : "loseService") : (pol ? "rankedBelowPolitics" : "rankedBelowService")));
+      }
+    }
+    if (promotable) {
+      v.rank++; v.yearsInGrade = 0;
+      if (v.rank === 16) out.log.push(rivalLine(content, s, "pm"));
+      else if (!out.lost) {
+        const apart = (v.rank >= 8) !== (s.rank >= 8);   // one of you in Parliament, the other in the service
+        out.log.push(rivalLine(content, s, apart ? "promotedApart" : v.rank >= 9 ? "appointed" : "promoted", { title: title(content, v.rank) }));
+      }
+    }
+    // a Prime Minister batchmate is a closed door
+    if (playerScore !== null && s.rank === 15 && v.rank === 16 && !out.lost) {
+      out.lost = true; out.log.push(rivalLine(content, s, "pmBlocked"));
+    }
+    return out;
+  }
+
+  // What the header says about the batchmate: their name and where they are.
+  function batchmate(content, s) {
+    const v = s.rival;
+    if (!v) return null;
+    const where = v.status === "consultancy" ? "left for the private sector"
+      : v.status === "scandal" ? "resigned"
+      : v.status === "retired" ? `retired as ${title(content, v.rank)}`
+      : title(content, v.rank);
+    return `${v.name} · ${where}`;
   }
 
   // Deterministic: derive the stream position from state so saves resume identically.
@@ -77,7 +224,23 @@ const Engine = (() => {
     if (q.flagsNone && q.flagsNone.some(f => s.flags.includes(f))) return false;
     for (const k in (q.minStats || {})) if (s[k] < q.minStats[k]) return false;
     for (const k in (q.maxStats || {})) if (s[k] > q.maxStats[k]) return false;
+    if (q.rival) {   // batchmate cards: only with an active batchmate in the right position
+      const v = s.rival;
+      if (!v || v.status !== "active") return false;
+      if (q.rival.sameRank && v.rank !== s.rank) return false;
+      if (q.rival.ahead && !(v.rank > s.rank)) return false;
+      if (q.rival.minRank !== undefined && v.rank < q.rival.minRank) return false;
+      if (q.rival.maxRank !== undefined && v.rank > q.rival.maxRank) return false;
+      if (q.rival.relMin !== undefined && v.rel < q.rival.relMin) return false;
+      if (q.rival.near !== undefined && Math.abs(v.rank - s.rank) > q.rival.near) return false;
+    }
     return true;
+  }
+
+  // Every card the run can draw: the batchmate's only when there is one.
+  function allEvents(content, s) {
+    // batchmate cards first, so a batchmate priority card (First Among Equals) stands in for the generic one
+    return s && s.rival && content.rival ? (content.rival.events || []).concat(content.events) : content.events;
   }
 
   function pickEvent(content, s) {
@@ -87,10 +250,10 @@ const Engine = (() => {
     if (due.length) {
       const next = due.reduce((a, b) => (b.fireYear < a.fireYear ? b : a));
       s.scheduled.splice(s.scheduled.indexOf(next), 1);
-      const ev = content.events.find(e => e.id === next.eventId);
+      const ev = allEvents(content, s).find(e => e.id === next.eventId);
       if (ev) return ev;
     }
-    const pool = content.events.filter(e => eligible(e, s));
+    const pool = allEvents(content, s).filter(e => eligible(e, s));
     if (!pool.length) return null;
     // 2. priority events (tea session, succession) fire the moment they qualify
     const pri = pool.filter(e => e.priority);
@@ -111,7 +274,8 @@ const Engine = (() => {
   // content.folder lists the flags a vetting would find, each as a noun phrase.
   const cap = x => x.charAt(0).toUpperCase() + x.slice(1);
   function folderItems(content, s) {
-    return (content.folder || []).filter(f => s.flags.includes(f.flag)).map(f => f.item);
+    const list = (content.folder || []).concat(s.rival && content.rival ? content.rival.folder || [] : []);
+    return list.filter(f => s.flags.includes(f.flag)).map(f => sub(f.item, s));
   }
 
   function readFolder(content, s) {
@@ -158,6 +322,13 @@ const Engine = (() => {
     return log;
   }
 
+  function applyEffects(s, fx) {
+    for (const k of STATS) if (fx[k]) s[k] = clamp(s[k] + fx[k], 0, 100);
+    if (fx.wealth) s.wealth += fx.wealth;
+    if (fx.heat) s.heat = clamp(s.heat + fx.heat, 0, 100);
+    if (fx.cep) s.cep = clamp(s.cep + fx.cep, 0, 16);
+  }
+
   // --- applying a choice ----------------------------------------------
   function applyChoice(content, s, ev, ch, t = {}) {
     const log = [];
@@ -172,6 +343,7 @@ const Engine = (() => {
     if (ch.nationalBonus !== undefined) s.nbMonths = clamp(ch.nationalBonus, 0, 6);
 
     (ch.setFlags || []).forEach(f => { if (!s.flags.includes(f)) s.flags.push(f); });
+    (ch.markSeen || []).forEach(id => { if (!s.seen.includes(id)) s.seen.push(id); });
     (ch.clearFlags || []).forEach(f => { s.flags = s.flags.filter(x => x !== f); });
     if (ev.once && !s.seen.includes(ev.id)) s.seen.push(ev.id);
 
@@ -181,6 +353,8 @@ const Engine = (() => {
       }
     }
     if (ch.setRank !== undefined) s.rank = ch.setRank;
+    // Batchmate cards: goodwill, their next score, their ceiling, or a head-to-head now.
+    if (ch.rival && s.rival) log.push(...rivalChoice(content, s, ch.rival, t));
     // A reshuffle moves the minister to a different ministry, and the header says so.
     if (ch.newMinistry) {
       const others = content.ministries.filter(m => m !== s.ministry);
@@ -297,10 +471,16 @@ const Engine = (() => {
     t.promotion = { rank: s.rank, yearsInGrade: s.yearsInGrade, needYears, gradeOk,
       result: !promotable ? "not_eligible" : s.rank >= s.cep ? "cep_ceiling" : s.rank === 7 ? "service_ceiling" : "promoted" };
 
+    // The batchmate's year runs first: at the same grade there is one slot.
+    const wouldPromote = promotable && s.rank < s.cep && s.rank !== 7;
+    const rv = s.rival ? rivalYear(content, s, t, wouldPromote ? score : null) : { lost: false, log: [] };
+
     if (promotable && s.rank >= s.cep) {
       log.push({ kind: "cep", text: content.cepHints[Math.floor(roll(s) * content.cepHints.length)] });
     } else if (promotable && s.rank === 7) {
       log.push({ kind: "cep", text: "There is no rung above this one. The next step is not a promotion; it is a different life." });
+    } else if (promotable && rv.lost) {
+      t.promotion.result = "ranking_lost";
     } else if (promotable) {
       // A standout junior officer occasionally skips a grade. This is the only way
       // a late starter ever makes up the years a scholar was simply given.
@@ -312,7 +492,20 @@ const Engine = (() => {
       log.push({ kind: "promo", text: doubleJump
         ? `Promoted two grades: ${r.title} (${r.grade}). This does not normally happen.`
         : `Promoted: ${r.title} (${r.grade})` });
-      if (s.rank === 16) { s.ending = "pm"; return log; }
+      if (s.rank === 16) { log.push(...rv.log); s.ending = "pm"; return log; }
+    }
+    log.push(...rv.log);
+    if (s.rival) {   // years each outranked the other, and the batchmate's own retirement
+      const v = s.rival;
+      if (v.status === "active") {
+        // outranking only means something on the same ladder: a Permanent Secretary and a
+        // backbench MP are not above or below each other
+        if ((v.rank >= 8) === (s.rank >= 8)) { if (v.rank > s.rank) v.ahead++; else if (s.rank > v.rank) v.behind++; }
+        if (s.age + 1 >= (v.rank >= 8 ? content.politicalRetireAge : content.retireAge) && v.rank !== 16 && !s.ending) {
+          v.status = "retired";
+          log.push(rivalLine(content, s, "retired", { title: title(content, v.rank) }));
+        }
+      }
     }
 
     if (s.heat >= 85) { s.ending = "scandal"; return log; }
@@ -361,7 +554,13 @@ const Engine = (() => {
     if (!id) return null;
     if (id === "__quiet") return QUIET_YEAR;
     if (id.startsWith(MONTAGE)) return montageOf(content.events.find(e => e.id === id.slice(MONTAGE.length)), s);
-    return content.events.find(e => e.id === id);
+    const ev = allEvents(content, s).find(e => e.id === id);
+    return ev && ev.rivalCard ? withNames(ev, s) : ev;
+  }
+
+  function withNames(ev, s) {
+    return { ...ev, title: sub(ev.title, s), body: sub(ev.body, s),
+      choices: ev.choices.map(c => ({ ...c, text: sub(c.text, s), outcome: sub(c.outcome, s) })) };
   }
 
   // --- public turn API --------------------------------------------------
@@ -463,11 +662,37 @@ const Engine = (() => {
       ? `Your scandal exposure peaked at ${peak.heatAfter} out of 100, after "${peak.title}" at age ${peak.age}. At 85, everything surfaces at once.`
       : "Your file is clean enough to be boring. In this building, that is a compliment." });
 
+    if (s.rival) out.push(...declassifyRival(content, s));
     out.push({ label: "Legacy", text: legacy(content, s) });
     return out;
   }
 
-  return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy,
+  function declassifyRival(content, s) {
+    const v = s.rival, p = PRON[v.pron] || PRON.f, out = [];
+    const t = title(content, v.rank);
+    const where = v.status === "consultancy" ? `${v.name} left for a consultancy as ${t}.`
+      : v.status === "scandal" ? `${v.name} resigned as ${t}, for personal reasons.`
+      : v.status === "retired" ? `${v.name} retired as ${t}.`
+      : v.rank === 16 ? `${v.name} became Prime Minister.`
+      : `When your career ended, ${v.name} was ${t}.`;
+    const est = v.cepStart >= 8 ? "no ceiling inside the service" : v.cepStart === 7 ? "Permanent Secretary" : title(content, v.cepStart);
+    out.push({ label: "Your batchmate", text: `${where} ${cap(p.their)} file estimated ${p.their} potential at ${est}.` });
+    const yrs = n => `${n} year${n === 1 ? "" : "s"}`;
+    const ranks = v.ahead + v.behind === 0 ? "You were never on the same ladder long enough to compare."
+      : !v.behind ? `${v.name} outranked you for ${yrs(v.ahead)}; you never outranked ${p.them}.`
+      : !v.ahead ? `You outranked ${p.them} for ${yrs(v.behind)}; ${v.name} never outranked you.`
+      : `${v.name} outranked you for ${yrs(v.ahead)}; you outranked ${p.them} for ${yrs(v.behind)}.`;
+    out.push({ label: "Head to head", text: (v.met
+      ? `You were set against each other ${v.met} time${v.met > 1 ? "s" : ""} and came out ahead in ${v.wonMet}. `
+      : "You were never set against each other directly. ") + ranks });
+    const said = v.rel >= 3 ? `${v.name} still tells people you were the best colleague ${p.they} ever had, usually when you are not there to hear it.`
+      : v.rel <= -3 ? `${v.name} has never said anything about you in public, which in this building is its own kind of statement.`
+      : `${v.name} describes you as "a good colleague", which in this building is a complete sentence.`;
+    out.push({ label: `What ${v.name} says`, text: said });
+    return out;
+  }
+
+  return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
     STATS, QUIET: QUIET_YEAR };
 })();
 

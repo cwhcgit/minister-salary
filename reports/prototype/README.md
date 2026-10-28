@@ -24,3 +24,18 @@ Notes:
   real players do is the first thing a cohort on this build should measure.
 - The stat-optimiser now favours scholars strongly (61% PM). Scholars are meant to be easy mode; worth
   watching rather than fixing until real players have played it.
+
+## The batchmate (start-screen option, branch `fun/rival`)
+
+`node test/sim.js` also plays the first-timer and knows-the-win bots with a batchmate, on the same seeds.
+`regress` checks the batchmate never makes the game easier (95% intervals must not separate upwards), the
+origin order holds with a batchmate, and poly + batchmate is the hardest of the six combinations.
+
+| PM rate, knows the win | scholar | grad | poly |
+| --- | --- | --- | --- |
+| alone | 51.1% | 49.9% | 24.5% |
+| with a batchmate | 43.8% | 31.6% | 11.6% |
+
+The ranking exercise decides about 2.1-2.4 promotions per skilled career (the player wins 36-47%), and
+1.1-1.4 for random first-timers. Scholars lose the least: they have so many spare years that a lost ranking
+rarely costs the top job.

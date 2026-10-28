@@ -278,7 +278,7 @@ const RANDOM_PM_MAX = 15;   // % of first-timer runs. "Rare by accident": today'
 function regress(m, content) {
   const fails = [], warns = [];
   for (const e of validateContent(content)) fails.push("content: " + e);
-  for (const bot of ["first-timer", "knows the win"]) {
+  for (const bot of ["first-timer", "knows the win", "first-timer + batchmate", "knows the win + batchmate"]) {
     const r = m.bots[bot];
     if (!r) continue;
     for (const [hi, lo] of [["scholar", "grad"], ["grad", "poly"]]) {
@@ -289,9 +289,35 @@ function regress(m, content) {
       (z > 1.96 ? fails : warns).push("origin order inverted: " + msg);
     }
   }
-  const ft = m.bots["first-timer"];
-  if (ft) for (const o of ORIGINS) if (ft.origins[o] && ft.origins[o].pmRate > RANDOM_PM_MAX)
-    fails.push(`PM is common for first-timer ${o}: ${ft.origins[o].pmRate}% (max ${RANDOM_PM_MAX}%)`);
+  for (const bot of ["first-timer", "first-timer + batchmate"]) {
+    const ft = m.bots[bot];
+    if (ft) for (const o of ORIGINS) if (ft.origins[o] && ft.origins[o].pmRate > RANDOM_PM_MAX)
+      fails.push(`PM is common for ${bot} ${o}: ${ft.origins[o].pmRate}% (max ${RANDOM_PM_MAX}%)`);
+  }
+  // The batchmate is a harder mode: never easier than playing alone, and poly with a batchmate
+  // is the hardest of the six origin/batchmate combinations for a player who knows the win.
+  for (const bot of ["first-timer", "knows the win"]) {
+    const a = m.bots[bot], b = m.bots[`${bot} + batchmate`];
+    if (!a || !b) continue;
+    for (const o of ORIGINS) {
+      const x = a.origins[o], y = b.origins[o];
+      if (!x || !y || y.pm <= x.pm) continue;
+      // fails only when the 95% intervals do not overlap: these are small rates, and a few
+      // extra wins by chance should warn rather than reject
+      const msg = `${bot} ${o}: PM with a batchmate ${y.pmRate}% ${y.pmCI.join("-")} > without ${x.pmRate}% ${x.pmCI.join("-")}`;
+      (y.pmCI[0] > x.pmCI[1] ? fails : warns).push("batchmate made it easier: " + msg);
+    }
+  }
+  const kw = m.bots["knows the win"], kwb = m.bots["knows the win + batchmate"];
+  if (kw && kwb && kwb.origins.poly) {
+    const p = kwb.origins.poly;
+    const others = [...ORIGINS.map(o => [`${o}`, kw.origins[o]]), ...ORIGINS.filter(o => o !== "poly").map(o => [`${o} + batchmate`, kwb.origins[o]])];
+    for (const [label, x] of others) {
+      if (!x || p.pm <= x.pm) continue;
+      const msg = `knows the win: poly + batchmate ${p.pmRate}% ${p.pmCI.join("-")} > ${label} ${x.pmRate}% ${x.pmCI.join("-")}`;
+      (p.pmCI[0] > x.pmCI[1] ? fails : warns).push("poly + batchmate is not the hardest: " + msg);
+    }
+  }
   for (const [bot, r] of Object.entries(m.bots)) for (const [o, x] of Object.entries(r.origins))
     if (x.endings.UNTERMINATED) fails.push(`${bot} ${o}: ${x.endings.UNTERMINATED} runs never ended`);
   for (const [bot, r] of Object.entries(m.bots)) for (const [id, c] of Object.entries(r.consequences))
