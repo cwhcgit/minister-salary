@@ -170,6 +170,14 @@ Declassified (a line naming the chain) at least once. Ten chains, 35 cards (the 
 | **The Boundary** | the Electoral Boundaries Review Committee redraws your seat → your team is formed (1y) → the campaign → the result | `asked_for_smc` / `stayed_in_grc` | Election odds; a seat-specific re-election card |
 | **The Bond** (scholar only) | the overseas master's offer (bond extended) → a bank offers to pay the bond (2y) → you sponsor the next cohort (10y) | `extended_bond` / `bought_out` / `stayed_bonded` | Scholar origin content (none exists today) |
 
+**Written so far** (`web/content/packs/chains.json`): The Pilot, The Whistleblower, The Protégé, The U-Turn
+and The Bond, with 25 cards in all, counting alternates. Changes from the table:
+- The Protégé's beats are at 3 and 4 years. Its last beat is the promotion panel that would put the protégé level with you.
+- The U-Turn starts with a Parliamentary Secretary or Senior Parliamentary Secretary answering questions. The Minister usually delivers the statement, and you decide what its paragraph four says about you. When the U-Turn started at any office holder's rank, its beats took the years in which the reshuffle is drawn, and the knows-the-win rate fell about 4 points.
+- The Bond's mentor beat is 8 years after the bank's offer.
+
+Measured over 400 runs per bot per origin, a chain is started in 4-17% of careers, and 50-67% of started chains reach their last beat. The Bond is started in about 20% of scholar careers.
+
 **Engine hooks for chains.**
 - **Declassified.** `declassifiedFlags` in `game.json` is a list of `{ "label", "requires", "text" }`. At the end of a run, for each label, the first entry whose `requires` hold adds one line, after Exposure. Order the entries from the furthest point a story can reach to the nearest, so a chain is named by where it finished.
 - **A move between ministries.** When a choice moves the player to another ministry (`newMinistry`), the engine sets `moved_ministry`. A chain that starts in a ministry can require it to be absent at its first beat. A later beat then knows whether the player is still there.

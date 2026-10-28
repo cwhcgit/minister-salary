@@ -1,0 +1,1902 @@
+{
+  "id": "chains",
+  "title": "Story Chains",
+  "note": "Five stories told across a career in three or four beats each, from CONTENT_PLAN.md section 3: The Pilot (pilot_*), The Whistleblower (whistle_*), The Protégé (protege_*), The U-Turn (uturn_*) and The Bond (bond_*, scholars only). Each starts with an ordinary card; its choices set the flags the next beat reads, and the next beat is scheduled with inYears and a chance. Beats that may fall due after the player has moved on have alternates (a promotion, a move into politics, a move between ministries), and a beat that names the junior, the peer or the fellow MP checks the flags on that person. The Pilot's and the U-Turn's subjects come from the player's ministry (parts keyed by requires.ministry); a U-Turn beat for a player who has since moved ministry names the policy without guessing. Folder items and Declassified lines for these flags are in game.json (folder, declassifiedFlags).",
+  "events": [
+    {
+      "id": "pilot_design",
+      "title": "Pick Three",
+      "parts": {
+        "scheme": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "a counter that answers questions about any government payout",
+              "place": "community clubs",
+              "short": "the payout counters",
+              "requires": { "ministry": "Ministry of Finance" }
+            },
+            {
+              "id": "mti",
+              "text": "advisers who walk into heartland shops and explain the grants",
+              "place": "towns",
+              "short": "the shop visits",
+              "requires": { "ministry": "Ministry of Trade and Industry" }
+            },
+            {
+              "id": "mom",
+              "text": "a Sunday counter for salary claims",
+              "place": "dormitories",
+              "short": "the Sunday counters",
+              "requires": { "ministry": "Ministry of Manpower" }
+            },
+            {
+              "id": "moe",
+              "text": "retired teachers reading with Primary 2 pupils after school",
+              "place": "schools",
+              "short": "the reading programme",
+              "requires": { "ministry": "Ministry of Education" }
+            },
+            {
+              "id": "moh",
+              "text": "nurses visiting seniors at home in the week after discharge",
+              "place": "towns",
+              "short": "the home visits",
+              "requires": { "ministry": "Ministry of Health" }
+            },
+            {
+              "id": "mha",
+              "text": "a scam hotline that calls victims back within the hour",
+              "place": "police divisions",
+              "short": "the call-backs",
+              "requires": { "ministry": "Ministry of Home Affairs" }
+            },
+            {
+              "id": "mnd",
+              "text": "an evening for new BTO neighbours to meet before key collection",
+              "place": "towns",
+              "short": "the neighbours' evenings",
+              "requires": { "ministry": "Ministry of National Development" }
+            },
+            {
+              "id": "mot",
+              "text": "late-night shuttle buses from MRT stations to the estates",
+              "place": "towns",
+              "short": "the night shuttles",
+              "requires": { "ministry": "Ministry of Transport" }
+            },
+            {
+              "id": "mse",
+              "text": "nightly collection of hawkers' food waste for composting",
+              "place": "hawker centres",
+              "short": "the food-waste collection",
+              "requires": { "ministry": "Ministry of Sustainability and the Environment" }
+            },
+            {
+              "id": "msf",
+              "text": "one application form for four assistance schemes",
+              "place": "Social Service Offices",
+              "short": "the single form",
+              "requires": { "ministry": "Ministry of Social and Family Development" }
+            }
+          ]
+        }
+      },
+      "body": "Your division has a year's money for a pilot: {scheme}, in three {scheme.place} of your choosing. Whatever it shows will be in the Minister's Committee of Supply speech in two years.",
+      "requires": { "minRank": 2, "maxRank": 3 },
+      "weight": 9,
+      "once": true,
+      "choices": [
+        {
+          "text": "Pick the three likeliest to make it work.",
+          "effects": { "standing": 5, "competence": 2, "integrity": -3 },
+          "setFlags": ["pilot_met", "pilot_easy"],
+          "schedule": [{ "eventId": "pilot_results", "inYears": 2, "chance": 0.85 }],
+          "outcome": "You pick three {scheme.place} with busy volunteers and short queues. The launch has a ribbon, a banner and a photographer, and the photograph goes upstairs captioned \"Good start.\""
+        },
+        {
+          "text": "Pick the three likeliest to make it fail.",
+          "effects": { "competence": 5, "integrity": 3, "standing": -4 },
+          "setFlags": ["pilot_met", "pilot_hard"],
+          "schedule": [{ "eventId": "pilot_results", "inYears": 2, "chance": 0.85 }],
+          "outcome": "You pick the three {scheme.place} where schemes go to struggle. The launch is quiet. Within a month you know more about why things fail than anyone else in the building."
+        },
+        {
+          "text": "Draw the sites by lottery, and hold half back as a control.",
+          "effects": { "competence": 6, "standing": -2, "reputation": -3 },
+          "setFlags": ["pilot_met", "pilot_control"],
+          "schedule": [{ "eventId": "pilot_results", "inYears": 2, "chance": 0.85 }],
+          "outcome": "Half the sites get the pilot, and half get a letter explaining why they do not. The letters draw more feedback than the pilot. Your evaluation, though, will be very hard to argue with."
+        }
+      ]
+    },
+    {
+      "id": "pilot_results",
+      "triggered": true,
+      "title": "One Number",
+      "parts": {
+        "scheme": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "a counter that answers questions about any government payout",
+              "place": "community clubs",
+              "short": "the payout counters",
+              "requires": { "ministry": "Ministry of Finance" }
+            },
+            {
+              "id": "mti",
+              "text": "advisers who walk into heartland shops and explain the grants",
+              "place": "towns",
+              "short": "the shop visits",
+              "requires": { "ministry": "Ministry of Trade and Industry" }
+            },
+            {
+              "id": "mom",
+              "text": "a Sunday counter for salary claims",
+              "place": "dormitories",
+              "short": "the Sunday counters",
+              "requires": { "ministry": "Ministry of Manpower" }
+            },
+            {
+              "id": "moe",
+              "text": "retired teachers reading with Primary 2 pupils after school",
+              "place": "schools",
+              "short": "the reading programme",
+              "requires": { "ministry": "Ministry of Education" }
+            },
+            {
+              "id": "moh",
+              "text": "nurses visiting seniors at home in the week after discharge",
+              "place": "towns",
+              "short": "the home visits",
+              "requires": { "ministry": "Ministry of Health" }
+            },
+            {
+              "id": "mha",
+              "text": "a scam hotline that calls victims back within the hour",
+              "place": "police divisions",
+              "short": "the call-backs",
+              "requires": { "ministry": "Ministry of Home Affairs" }
+            },
+            {
+              "id": "mnd",
+              "text": "an evening for new BTO neighbours to meet before key collection",
+              "place": "towns",
+              "short": "the neighbours' evenings",
+              "requires": { "ministry": "Ministry of National Development" }
+            },
+            {
+              "id": "mot",
+              "text": "late-night shuttle buses from MRT stations to the estates",
+              "place": "towns",
+              "short": "the night shuttles",
+              "requires": { "ministry": "Ministry of Transport" }
+            },
+            {
+              "id": "mse",
+              "text": "nightly collection of hawkers' food waste for composting",
+              "place": "hawker centres",
+              "short": "the food-waste collection",
+              "requires": { "ministry": "Ministry of Sustainability and the Environment" }
+            },
+            {
+              "id": "msf",
+              "text": "one application form for four assistance schemes",
+              "place": "Social Service Offices",
+              "short": "the single form",
+              "requires": { "ministry": "Ministry of Social and Family Development" }
+            }
+          ]
+        },
+        "result": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "easy",
+              "requires": { "flagsAll": ["pilot_easy"] },
+              "text": "In your three {scheme.place}, take-up was 71%. Page 40 of the evaluation notes that those three would have taken up almost anything.",
+              "a": "71% goes into the speech on its own, and the Minister reads it with feeling. Page 40 stays where it was, which is page 40.",
+              "b": "71% goes up with its paragraph from page 40, and the speech keeps both: \"in places that were already well served\". No other line in the speech gets less applause.",
+              "c": "The speech goes ahead without your pilot. You spend the year in places that were not picked to like it, and the number you get there is smaller, and yours."
+            },
+            {
+              "id": "hard",
+              "requires": { "flagsAll": ["pilot_hard"] },
+              "text": "In your three {scheme.place}, take-up was 23%. For those three, that is remarkable. Out of context, it is 23%.",
+              "a": "You send the take-up at the best of the three: 64%. It is true of that one. The speech does not say which one, and nobody asks.",
+              "b": "23% goes up with its context, and the speech uses both. The line gets no applause, and the Minister's office asks, kindly, whether there was a better number.",
+              "c": "The speech goes ahead without your pilot. A second year in the same three brings take-up to 31%, which nobody upstairs asks about, and which you believe."
+            },
+            {
+              "id": "control",
+              "requires": { "flagsAll": ["pilot_control"] },
+              "text": "Against the control group, the gain is four points: real, measured, and smaller than anyone had hoped.",
+              "a": "You send the gain in the pilot's best month: nineteen points. Every word is accurate. The speech says \"up to nineteen points\", and the Minister says it twice.",
+              "b": "Four points go up with the paragraph explaining why four is good. The speech uses it. A newspaper calls the result \"modest\", and quotes your paragraph correctly.",
+              "c": "The speech goes ahead without your pilot. A second year confirms the four points, and finds that they last. Nobody upstairs asks, and you write it up anyway."
+            }
+          ]
+        }
+      },
+      "body": "The evaluation is in, and the Minister's Committee of Supply speech needs one number from it by Friday. {result}",
+      "requires": { "maxRank": 7 },
+      "choices": [
+        {
+          "text": "Send the number that will go furthest.",
+          "effects": { "standing": 6, "reputation": 2, "integrity": -5, "heat": 4 },
+          "setFlags": ["pilot_flattered"],
+          "schedule": [{ "eventId": "pilot_national", "inYears": 2, "chance": 0.85 }],
+          "outcome": "{result.a}"
+        },
+        {
+          "text": "Send the number with the paragraph that explains it.",
+          "effects": { "integrity": 5, "competence": 3, "standing": -4 },
+          "setFlags": ["pilot_honest"],
+          "schedule": [{ "eventId": "pilot_national", "inYears": 2, "chance": 0.85 }],
+          "outcome": "{result.b}"
+        },
+        {
+          "text": "Ask for one more year before anything is announced.",
+          "effects": { "competence": 5, "integrity": 2, "standing": -5, "reputation": -1 },
+          "setFlags": ["pilot_waited"],
+          "schedule": [{ "eventId": "pilot_national", "inYears": 3, "chance": 0.85 }],
+          "outcome": "{result.c}"
+        }
+      ]
+    },
+    {
+      "id": "pilot_national",
+      "triggered": true,
+      "title": "Going National",
+      "parts": {
+        "scheme": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "a counter that answers questions about any government payout",
+              "place": "community clubs",
+              "short": "the payout counters",
+              "requires": { "ministry": "Ministry of Finance" }
+            },
+            {
+              "id": "mti",
+              "text": "advisers who walk into heartland shops and explain the grants",
+              "place": "towns",
+              "short": "the shop visits",
+              "requires": { "ministry": "Ministry of Trade and Industry" }
+            },
+            {
+              "id": "mom",
+              "text": "a Sunday counter for salary claims",
+              "place": "dormitories",
+              "short": "the Sunday counters",
+              "requires": { "ministry": "Ministry of Manpower" }
+            },
+            {
+              "id": "moe",
+              "text": "retired teachers reading with Primary 2 pupils after school",
+              "place": "schools",
+              "short": "the reading programme",
+              "requires": { "ministry": "Ministry of Education" }
+            },
+            {
+              "id": "moh",
+              "text": "nurses visiting seniors at home in the week after discharge",
+              "place": "towns",
+              "short": "the home visits",
+              "requires": { "ministry": "Ministry of Health" }
+            },
+            {
+              "id": "mha",
+              "text": "a scam hotline that calls victims back within the hour",
+              "place": "police divisions",
+              "short": "the call-backs",
+              "requires": { "ministry": "Ministry of Home Affairs" }
+            },
+            {
+              "id": "mnd",
+              "text": "an evening for new BTO neighbours to meet before key collection",
+              "place": "towns",
+              "short": "the neighbours' evenings",
+              "requires": { "ministry": "Ministry of National Development" }
+            },
+            {
+              "id": "mot",
+              "text": "late-night shuttle buses from MRT stations to the estates",
+              "place": "towns",
+              "short": "the night shuttles",
+              "requires": { "ministry": "Ministry of Transport" }
+            },
+            {
+              "id": "mse",
+              "text": "nightly collection of hawkers' food waste for composting",
+              "place": "hawker centres",
+              "short": "the food-waste collection",
+              "requires": { "ministry": "Ministry of Sustainability and the Environment" }
+            },
+            {
+              "id": "msf",
+              "text": "one application form for four assistance schemes",
+              "place": "Social Service Offices",
+              "short": "the single form",
+              "requires": { "ministry": "Ministry of Social and Family Development" }
+            }
+          ]
+        }
+      },
+      "body": "{Scheme.short} will go national next April, and the rollout needs an owner. {peer}'s side of the ministry runs operations, and has asked for it. So, you find, would you. The Deputy Secretary wants your view by Monday.",
+      "requires": { "maxRank": 5 },
+      "alternates": ["pilot_national_top", "pilot_national_pol"],
+      "choices": [
+        {
+          "text": "Ask to run it yourself.",
+          "effects": { "standing": 4, "competence": 3, "heat": 3 },
+          "setFlags": ["pilot_kept"],
+          "cast": { "peer": { "flags": ["lost_the_rollout"] } },
+          "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
+          "outcome": "The Deputy Secretary agrees, and {peer} takes it well, in public. You now own a national scheme, its hotline, and every complaint about it, by name."
+        },
+        {
+          "text": "Back {peer}'s team, and hand over every file.",
+          "effects": { "integrity": 4, "standing": -2, "competence": -1 },
+          "setFlags": ["pilot_handed"],
+          "cast": { "peer": { "flags": ["given_the_rollout"] } },
+          "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
+          "outcome": "{peer}'s team takes it, with your files, your caveats and your mobile number. {peer} calls twice in the first month, and then, as things settle, at Chinese New Year."
+        },
+        {
+          "text": "Back {peer}'s team, if the Minister's speech thanks yours.",
+          "effects": { "standing": 3, "reputation": 3, "integrity": -4 },
+          "setFlags": ["pilot_named"],
+          "cast": { "peer": { "flags": ["you_kept_the_credit"] } },
+          "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
+          "outcome": "The speech thanks your division for \"designing\" it and {peer}'s for \"supporting\" it. {peer} reads the transcript, and from then on copies you on everything, carefully."
+        }
+      ]
+    },
+    {
+      "id": "pilot_national_top",
+      "triggered": true,
+      "title": "Going National",
+      "parts": {
+        "scheme": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "a counter that answers questions about any government payout",
+              "place": "community clubs",
+              "short": "the payout counters",
+              "requires": { "ministry": "Ministry of Finance" }
+            },
+            {
+              "id": "mti",
+              "text": "advisers who walk into heartland shops and explain the grants",
+              "place": "towns",
+              "short": "the shop visits",
+              "requires": { "ministry": "Ministry of Trade and Industry" }
+            },
+            {
+              "id": "mom",
+              "text": "a Sunday counter for salary claims",
+              "place": "dormitories",
+              "short": "the Sunday counters",
+              "requires": { "ministry": "Ministry of Manpower" }
+            },
+            {
+              "id": "moe",
+              "text": "retired teachers reading with Primary 2 pupils after school",
+              "place": "schools",
+              "short": "the reading programme",
+              "requires": { "ministry": "Ministry of Education" }
+            },
+            {
+              "id": "moh",
+              "text": "nurses visiting seniors at home in the week after discharge",
+              "place": "towns",
+              "short": "the home visits",
+              "requires": { "ministry": "Ministry of Health" }
+            },
+            {
+              "id": "mha",
+              "text": "a scam hotline that calls victims back within the hour",
+              "place": "police divisions",
+              "short": "the call-backs",
+              "requires": { "ministry": "Ministry of Home Affairs" }
+            },
+            {
+              "id": "mnd",
+              "text": "an evening for new BTO neighbours to meet before key collection",
+              "place": "towns",
+              "short": "the neighbours' evenings",
+              "requires": { "ministry": "Ministry of National Development" }
+            },
+            {
+              "id": "mot",
+              "text": "late-night shuttle buses from MRT stations to the estates",
+              "place": "towns",
+              "short": "the night shuttles",
+              "requires": { "ministry": "Ministry of Transport" }
+            },
+            {
+              "id": "mse",
+              "text": "nightly collection of hawkers' food waste for composting",
+              "place": "hawker centres",
+              "short": "the food-waste collection",
+              "requires": { "ministry": "Ministry of Sustainability and the Environment" }
+            },
+            {
+              "id": "msf",
+              "text": "one application form for four assistance schemes",
+              "place": "Social Service Offices",
+              "short": "the single form",
+              "requires": { "ministry": "Ministry of Social and Family Development" }
+            }
+          ]
+        }
+      },
+      "body": "{Scheme.short} will go national next April, and the rollout needs an owner. {peer}'s side of the ministry runs operations, and has asked for it. You designed the pilot years ago. The decision, now, is yours.",
+      "requires": { "minRank": 6, "maxRank": 7 },
+      "choices": [
+        {
+          "text": "Keep it with your own people.",
+          "effects": { "standing": 4, "competence": 3, "heat": 3 },
+          "setFlags": ["pilot_kept"],
+          "cast": { "peer": { "flags": ["lost_the_rollout"] } },
+          "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
+          "outcome": "You keep it, and {peer} takes it well, in public. Your people now own a national scheme, its hotline, and every complaint about it, addressed to you."
+        },
+        {
+          "text": "Give it to {peer}'s team, with every file.",
+          "effects": { "integrity": 4, "standing": -2, "competence": -1 },
+          "setFlags": ["pilot_handed"],
+          "cast": { "peer": { "flags": ["given_the_rollout"] } },
+          "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
+          "outcome": "{peer}'s team takes it, with your files, your caveats and your old notebook. {peer} calls twice in the first month, and then, as things settle, at Chinese New Year."
+        },
+        {
+          "text": "Give it to {peer}'s team, and have the speech thank yours.",
+          "effects": { "standing": 3, "reputation": 3, "integrity": -4 },
+          "setFlags": ["pilot_named"],
+          "cast": { "peer": { "flags": ["you_kept_the_credit"] } },
+          "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
+          "outcome": "The speech thanks your people for \"designing\" it and {peer}'s for \"supporting\" it. {peer} reads the transcript, and from then on copies you on everything, carefully."
+        }
+      ]
+    },
+    {
+      "id": "pilot_national_pol",
+      "triggered": true,
+      "title": "Going National",
+      "parts": {
+        "scheme": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "a counter that answers questions about any government payout",
+              "place": "community clubs",
+              "short": "the payout counters",
+              "requires": { "ministry": "Ministry of Finance" }
+            },
+            {
+              "id": "mti",
+              "text": "advisers who walk into heartland shops and explain the grants",
+              "place": "towns",
+              "short": "the shop visits",
+              "requires": { "ministry": "Ministry of Trade and Industry" }
+            },
+            {
+              "id": "mom",
+              "text": "a Sunday counter for salary claims",
+              "place": "dormitories",
+              "short": "the Sunday counters",
+              "requires": { "ministry": "Ministry of Manpower" }
+            },
+            {
+              "id": "moe",
+              "text": "retired teachers reading with Primary 2 pupils after school",
+              "place": "schools",
+              "short": "the reading programme",
+              "requires": { "ministry": "Ministry of Education" }
+            },
+            {
+              "id": "moh",
+              "text": "nurses visiting seniors at home in the week after discharge",
+              "place": "towns",
+              "short": "the home visits",
+              "requires": { "ministry": "Ministry of Health" }
+            },
+            {
+              "id": "mha",
+              "text": "a scam hotline that calls victims back within the hour",
+              "place": "police divisions",
+              "short": "the call-backs",
+              "requires": { "ministry": "Ministry of Home Affairs" }
+            },
+            {
+              "id": "mnd",
+              "text": "an evening for new BTO neighbours to meet before key collection",
+              "place": "towns",
+              "short": "the neighbours' evenings",
+              "requires": { "ministry": "Ministry of National Development" }
+            },
+            {
+              "id": "mot",
+              "text": "late-night shuttle buses from MRT stations to the estates",
+              "place": "towns",
+              "short": "the night shuttles",
+              "requires": { "ministry": "Ministry of Transport" }
+            },
+            {
+              "id": "mse",
+              "text": "nightly collection of hawkers' food waste for composting",
+              "place": "hawker centres",
+              "short": "the food-waste collection",
+              "requires": { "ministry": "Ministry of Sustainability and the Environment" }
+            },
+            {
+              "id": "msf",
+              "text": "one application form for four assistance schemes",
+              "place": "Social Service Offices",
+              "short": "the single form",
+              "requires": { "ministry": "Ministry of Social and Family Development" }
+            }
+          ]
+        }
+      },
+      "body": "At the Committee of Supply, the Minister announces that {scheme.short} will go national. You designed the pilot as a civil servant, and nobody in the chamber knows it. Your own cut on the same head is due at four.",
+      "requires": { "minRank": 8, "maxRank": 10 },
+      "choices": [
+        {
+          "text": "Say, in your cut, that you designed it.",
+          "effects": { "reputation": 5, "standing": -2, "integrity": -1 },
+          "setFlags": ["pilot_claimed"],
+          "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
+          "outcome": "The chamber is briefly interested. Your old ministry's officials, in the gallery, write something down. In the wrap-up, the Minister thanks you for your \"long association\" with the scheme."
+        },
+        {
+          "text": "Say nothing about it. It is the ministry's now.",
+          "effects": { "integrity": 3, "standing": 2, "reputation": -1 },
+          "setFlags": ["pilot_unclaimed"],
+          "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
+          "outcome": "You speak to your cut and nothing else. In the gallery, an official who sat in your pilot meetings recognises you and nods. It is all the credit there is, and plenty."
+        },
+        {
+          "text": "Use your cut on its weak spot, which you know best.",
+          "effects": { "competence": 3, "reputation": 2, "standing": -4 },
+          "setFlags": ["pilot_warned"],
+          "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
+          "outcome": "You ask, politely, what happens in the {scheme.place} where it was always going to struggle. The Minister promises to look into it, and does, which costs your old ministry a month."
+        }
+      ]
+    },
+    {
+      "id": "pilot_audit",
+      "triggered": true,
+      "title": "The Paragraph",
+      "parts": {
+        "scheme": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "a counter that answers questions about any government payout",
+              "place": "community clubs",
+              "short": "the payout counters",
+              "requires": { "ministry": "Ministry of Finance" }
+            },
+            {
+              "id": "mti",
+              "text": "advisers who walk into heartland shops and explain the grants",
+              "place": "towns",
+              "short": "the shop visits",
+              "requires": { "ministry": "Ministry of Trade and Industry" }
+            },
+            {
+              "id": "mom",
+              "text": "a Sunday counter for salary claims",
+              "place": "dormitories",
+              "short": "the Sunday counters",
+              "requires": { "ministry": "Ministry of Manpower" }
+            },
+            {
+              "id": "moe",
+              "text": "retired teachers reading with Primary 2 pupils after school",
+              "place": "schools",
+              "short": "the reading programme",
+              "requires": { "ministry": "Ministry of Education" }
+            },
+            {
+              "id": "moh",
+              "text": "nurses visiting seniors at home in the week after discharge",
+              "place": "towns",
+              "short": "the home visits",
+              "requires": { "ministry": "Ministry of Health" }
+            },
+            {
+              "id": "mha",
+              "text": "a scam hotline that calls victims back within the hour",
+              "place": "police divisions",
+              "short": "the call-backs",
+              "requires": { "ministry": "Ministry of Home Affairs" }
+            },
+            {
+              "id": "mnd",
+              "text": "an evening for new BTO neighbours to meet before key collection",
+              "place": "towns",
+              "short": "the neighbours' evenings",
+              "requires": { "ministry": "Ministry of National Development" }
+            },
+            {
+              "id": "mot",
+              "text": "late-night shuttle buses from MRT stations to the estates",
+              "place": "towns",
+              "short": "the night shuttles",
+              "requires": { "ministry": "Ministry of Transport" }
+            },
+            {
+              "id": "mse",
+              "text": "nightly collection of hawkers' food waste for composting",
+              "place": "hawker centres",
+              "short": "the food-waste collection",
+              "requires": { "ministry": "Ministry of Sustainability and the Environment" }
+            },
+            {
+              "id": "msf",
+              "text": "one application form for four assistance schemes",
+              "place": "Social Service Offices",
+              "short": "the single form",
+              "requires": { "ministry": "Ministry of Social and Family Development" }
+            }
+          ]
+        },
+        "number": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "easy",
+              "requires": { "flagsAll": ["pilot_easy"] },
+              "text": "71%, from three {scheme.place} picked to like it",
+              "real": "24%"
+            },
+            {
+              "id": "hard",
+              "requires": { "flagsAll": ["pilot_hard"] },
+              "text": "64%, from the best of three {scheme.place}",
+              "real": "21%"
+            },
+            { "id": "control", "text": "nineteen points, from the pilot's best month", "real": "four" }
+          ]
+        },
+        "front": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "kept",
+              "requires": { "flagsAll": ["pilot_kept"] },
+              "text": "Your division ran it, so the ministry's reply is yours to draft.",
+              "a": "Tell the auditors how the number was chosen.",
+              "b": "Point the auditors to the evaluation's caveats.",
+              "aOut": "Your note to the auditors runs to one page and uses the word \"chose\" twice. The report blames the evaluation, not its author, and upstairs everyone knows who that is. Your next appraisal says \"candour\".",
+              "bOut": "The reply cites the caveats and the word \"indicative\". The auditors accept it, and add a sentence on indicative figures that every ministry will be quoted for years."
+            },
+            {
+              "id": "handed",
+              "requires": {
+                "flagsAll": ["pilot_handed"],
+                "cast": {
+                  "peer": {
+                    "flagsAll": ["given_the_rollout"],
+                    "flagsNone": ["lost_the_rollout", "you_kept_the_credit"]
+                  }
+                }
+              },
+              "text": "{peer}'s team ran it, and {peer} is drafting the ministry's reply.",
+              "a": "Tell the auditors the number was yours.",
+              "b": "Let {peer}'s reply rest on the evaluation's caveats.",
+              "aOut": "You write to the auditors that the number was yours, not {peer}'s. {peer} reads the copy, rings you, and says nothing for several seconds, which is thanks.",
+              "bOut": "{peer}'s reply cites the caveats, as you suggested. It works. {peer} does not ask whose number it was, and you notice that {peer} does not need to."
+            },
+            {
+              "id": "named",
+              "requires": {
+                "flagsAll": ["pilot_named"],
+                "cast": {
+                  "peer": {
+                    "flagsAll": ["you_kept_the_credit"],
+                    "flagsNone": ["lost_the_rollout", "given_the_rollout"]
+                  }
+                }
+              },
+              "text": "{peer}'s team ran it, though the speech thanked yours. {peer} drafts the reply.",
+              "a": "Tell the auditors the number was yours.",
+              "b": "Let {peer}'s reply rest on the evaluation's caveats.",
+              "aOut": "You write to the auditors that the number was yours, not {peer}'s. {peer} reads the copy, and that evening rings you about nothing much, which has not happened since the speech.",
+              "bOut": "{peer}'s reply cites the caveats, and thanks your division for the design. You have never received a more precisely worded thank-you."
+            },
+            {
+              "id": "team",
+              "text": "The team that ran it is drafting the ministry's reply.",
+              "a": "Tell the auditors the number was yours.",
+              "b": "Let the reply rest on the evaluation's caveats.",
+              "aOut": "You write to the auditors that the number was yours. The team that ran the rollout sends you a card, unsigned, which says only \"Thanks.\"",
+              "bOut": "The reply cites the caveats and the word \"indicative\". The auditors accept it, and nobody asks, out loud, who chose the number."
+            }
+          ]
+        }
+      },
+      "body": "The Auditor-General's report has a paragraph on {scheme.short}: budgeted on {number}, it delivered {number.real}, and the gap was paid for. {front}",
+      "requires": { "maxRank": 7, "flagsAll": ["pilot_flattered"] },
+      "alternates": ["pilot_audit_clean", "pilot_audit_pol", "pilot_audit_clean_pol"],
+      "choices": [
+        {
+          "text": "{front.a}",
+          "effects": { "integrity": 6, "standing": -5, "heat": -6, "cep": 1 },
+          "setFlags": ["pilot_told"],
+          "cast": { "peer": { "flags": ["you_owned_the_number"] } },
+          "outcome": "{front.aOut}"
+        },
+        {
+          "text": "{front.b}",
+          "effects": { "standing": 3, "integrity": -4, "heat": 5 },
+          "setFlags": ["pilot_caveats"],
+          "cast": { "peer": { "flags": ["left_with_the_number"] } },
+          "outcome": "{front.bOut}"
+        }
+      ]
+    },
+    {
+      "id": "pilot_audit_clean",
+      "triggered": true,
+      "title": "The Paragraph",
+      "parts": {
+        "scheme": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "a counter that answers questions about any government payout",
+              "place": "community clubs",
+              "short": "the payout counters",
+              "requires": { "ministry": "Ministry of Finance" }
+            },
+            {
+              "id": "mti",
+              "text": "advisers who walk into heartland shops and explain the grants",
+              "place": "towns",
+              "short": "the shop visits",
+              "requires": { "ministry": "Ministry of Trade and Industry" }
+            },
+            {
+              "id": "mom",
+              "text": "a Sunday counter for salary claims",
+              "place": "dormitories",
+              "short": "the Sunday counters",
+              "requires": { "ministry": "Ministry of Manpower" }
+            },
+            {
+              "id": "moe",
+              "text": "retired teachers reading with Primary 2 pupils after school",
+              "place": "schools",
+              "short": "the reading programme",
+              "requires": { "ministry": "Ministry of Education" }
+            },
+            {
+              "id": "moh",
+              "text": "nurses visiting seniors at home in the week after discharge",
+              "place": "towns",
+              "short": "the home visits",
+              "requires": { "ministry": "Ministry of Health" }
+            },
+            {
+              "id": "mha",
+              "text": "a scam hotline that calls victims back within the hour",
+              "place": "police divisions",
+              "short": "the call-backs",
+              "requires": { "ministry": "Ministry of Home Affairs" }
+            },
+            {
+              "id": "mnd",
+              "text": "an evening for new BTO neighbours to meet before key collection",
+              "place": "towns",
+              "short": "the neighbours' evenings",
+              "requires": { "ministry": "Ministry of National Development" }
+            },
+            {
+              "id": "mot",
+              "text": "late-night shuttle buses from MRT stations to the estates",
+              "place": "towns",
+              "short": "the night shuttles",
+              "requires": { "ministry": "Ministry of Transport" }
+            },
+            {
+              "id": "mse",
+              "text": "nightly collection of hawkers' food waste for composting",
+              "place": "hawker centres",
+              "short": "the food-waste collection",
+              "requires": { "ministry": "Ministry of Sustainability and the Environment" }
+            },
+            {
+              "id": "msf",
+              "text": "one application form for four assistance schemes",
+              "place": "Social Service Offices",
+              "short": "the single form",
+              "requires": { "ministry": "Ministry of Social and Family Development" }
+            }
+          ]
+        }
+      },
+      "body": "The Auditor-General's report has a paragraph on {scheme.short}: national take-up came within two points of the pilot's evaluation, \"which set realistic projections\". Nobody in the ministry remembers an audit paragraph without a recommendation.",
+      "requires": { "maxRank": 7, "flagsNone": ["pilot_flattered"] },
+      "choices": [
+        {
+          "text": "Send it to everyone who worked on the pilot, by name.",
+          "effects": { "integrity": 4, "reputation": 2, "standing": -1 },
+          "setFlags": ["pilot_shared"],
+          "outcome": "Eleven officers get the paragraph with their names above it. Two print it. One, years later, puts it on the first slide of a talk about evaluation, and credits you second."
+        },
+        {
+          "text": "Send it upstairs, with a short note of your own.",
+          "effects": { "standing": 4, "cep": 1, "integrity": -2 },
+          "setFlags": ["pilot_noted"],
+          "outcome": "Your note is three lines long and never uses the word \"I\". It does not need to. The paragraph comes up in the next ranking, and so do you."
+        }
+      ]
+    },
+    {
+      "id": "pilot_audit_pol",
+      "triggered": true,
+      "title": "The Paragraph",
+      "body": "The Auditor-General's report traces a costly shortfall in a national scheme to a number in its pilot evaluation, written before you left the service. {journalist} has found your name in the file, and wants a comment by six.",
+      "requires": { "minRank": 8, "flagsAll": ["pilot_flattered"] },
+      "choices": [
+        {
+          "text": "Say the number was yours, and so was the choice.",
+          "effects": { "integrity": 5, "reputation": 2, "standing": -4, "heat": -5, "cep": 1 },
+          "setFlags": ["pilot_told"],
+          "outcome": "The piece runs with your quote in the fourth paragraph. Your old ministry sends a short, slightly surprised thank-you. Someone in the party reads the piece twice, and writes something down."
+        },
+        {
+          "text": "Say the ministry will respond in due course.",
+          "effects": { "standing": 3, "reputation": -2, "heat": 4 },
+          "setFlags": ["pilot_caveats"],
+          "outcome": "The ministry responds in due course. The piece runs without your quote and with your name, as the author of the number, who did not comment."
+        }
+      ]
+    },
+    {
+      "id": "pilot_audit_clean_pol",
+      "triggered": true,
+      "title": "The Paragraph",
+      "body": "The Auditor-General's report praises the projections of a national scheme, and the pilot evaluation they came from, which you wrote before you left the service. {journalist} has found your name in the file, and is writing it up for Sunday.",
+      "requires": { "minRank": 8, "flagsNone": ["pilot_flattered"] },
+      "choices": [
+        {
+          "text": "Give a quote, and name the team that ran it.",
+          "effects": { "integrity": 3, "reputation": 3, "standing": -1 },
+          "setFlags": ["pilot_shared"],
+          "outcome": "The piece runs on Sunday with eleven officers' names in it, which the ministry's communications team would not have allowed, and cannot now undo."
+        },
+        {
+          "text": "Give a quote about what the evaluation taught you.",
+          "effects": { "reputation": 5, "standing": 1, "integrity": -2 },
+          "setFlags": ["pilot_noted"],
+          "outcome": "The piece runs on Sunday as a profile, with a photograph of you at a void deck that has nothing to do with the scheme. The officers who ran it read it on their phones."
+        }
+      ]
+    },
+    {
+      "id": "whistle_spreadsheet",
+      "title": "Forty-One Purchases",
+      "body": "{junior} closes your door and opens a spreadsheet: forty-one purchases from one vendor, every one between $5,900 and $5,999, just under the line for a quotation. All were approved two floors up.",
+      "requires": { "minRank": 3, "maxRank": 4, "cast": { "junior": { "flagsNone": ["protege"] } } },
+      "weight": 9,
+      "once": true,
+      "choices": [
+        {
+          "text": "Take it upstairs yourself, as your own finding.",
+          "effects": { "integrity": 5, "standing": -5, "competence": 1 },
+          "setFlags": ["whistle_met", "whistle_protected"],
+          "cast": { "junior": { "flags": ["brought_purchases", "kept_out"] } },
+          "schedule": [{ "eventId": "whistle_panel", "inYears": 3, "chance": 0.85 }],
+          "outcome": "You send it up under your own name, retyped so the formatting is yours. Two floors up, someone stops saying good morning to you. {junior} thanks you once, and never mentions it again."
+        },
+        {
+          "text": "Thank {junior}, and leave it where it is.",
+          "effects": { "standing": 5, "integrity": -6, "heat": 6 },
+          "setFlags": ["whistle_met", "whistle_ignored"],
+          "cast": { "junior": { "flags": ["brought_purchases", "left_with_you"] } },
+          "schedule": [{ "eventId": "whistle_panel", "inYears": 3, "chance": 0.85 }],
+          "outcome": "You thank {junior} for being thorough, and say you will keep an eye on it. {junior} watches you keeping an eye on it for about a month, then stops."
+        },
+        {
+          "text": "Report it through the proper channel, naming {junior} as the source.",
+          "effects": { "integrity": 3, "competence": 3, "standing": -2 },
+          "setFlags": ["whistle_met", "whistle_reported"],
+          "cast": { "junior": { "flags": ["brought_purchases", "named_as_source"] } },
+          "schedule": [{ "eventId": "whistle_panel", "inYears": 3, "chance": 0.85 }],
+          "outcome": "The form has a box marked \"Source\", and {junior}'s name goes in it, as the form requires. Within a week the whole floor knows about the box, and who was in it."
+        }
+      ]
+    },
+    {
+      "id": "whistle_panel",
+      "triggered": true,
+      "title": "The Review Panel",
+      "parts": {
+        "branch": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "protected",
+              "requires": { "flagsAll": ["whistle_protected"] },
+              "effects": { "0": { "standing": 2 } },
+              "text": "The audit you started has become a review panel, a barred vendor and a retirement nobody announced. The panel wants to commend whoever first found the pattern. {junior}, who did, is copied on the email.",
+              "a": "Give the panel {junior}'s name.",
+              "aOut": "The commendation goes to {junior}, in a paragraph that uses the word \"diligence\" twice. {junior} thanks you in the lift, and does not say whether {junior.they} wanted it.",
+              "b": "Keep {junior}'s name out, as you promised.",
+              "bOut": "The panel commends you, since the report went up under your name. {junior} replies all with congratulations, and is the first to clap at the townhall."
+            },
+            {
+              "id": "ignored",
+              "requires": { "flagsAll": ["whistle_ignored"] },
+              "effects": { "0": { "heat": -8, "standing": -2 }, "1": { "heat": 6 } },
+              "text": "The Auditor-General's report has found forty-one purchases, each just under $6,000, all from one vendor. A review panel wants to know when the ministry first knew. {junior} has been interviewed already, and kept the email.",
+              "a": "Tell the panel you were told, three years ago.",
+              "aOut": "The panel records the date, and the word \"candour\". Its paragraph on supervision is about you, without your name in it. {junior} is not called again.",
+              "b": "Tell the panel you do not recall.",
+              "bOut": "The panel records that you do not recall. It also has {junior}'s email, which recalls everything, with a timestamp. Nothing further is said to you in writing."
+            },
+            {
+              "id": "reported",
+              "text": "Your report led to a barred vendor and a quiet retirement two floors up. It also made {junior} the officer whose name was in the box. In this year's ranking, {junior} is in the middle again, for the third year.",
+              "a": "Argue for {junior} in the ranking.",
+              "aOut": "You argue for forty minutes and spend most of your goodwill. {junior} moves up four places and never learns why. Two floors up, someone notes who argued.",
+              "b": "Let the ranking be. It was never about the report.",
+              "bOut": "{junior} stays in the middle, where the ranking says the work is. You believe this. You would like to believe it slightly more than you do."
+            }
+          ]
+        }
+      },
+      "body": "{branch}",
+      "requires": { "maxRank": 7, "cast": { "junior": { "flagsAll": ["brought_purchases"] } } },
+      "alternates": ["whistle_panel_pol"],
+      "choices": [
+        {
+          "text": "{branch.a}",
+          "effects": { "integrity": 5, "standing": -4 },
+          "setFlags": ["whistle_stood_by"],
+          "cast": { "junior": { "flags": ["panel_heard", "you_stood_by"] } },
+          "schedule": [{ "eventId": "whistle_return", "inYears": 5, "chance": 0.85 }],
+          "outcome": "{branch.aOut}"
+        },
+        {
+          "text": "{branch.b}",
+          "effects": { "standing": 4, "integrity": -4 },
+          "setFlags": ["whistle_stepped_back"],
+          "cast": { "junior": { "flags": ["panel_heard", "you_stepped_back"] } },
+          "schedule": [{ "eventId": "whistle_return", "inYears": 5, "chance": 0.85 }],
+          "outcome": "{branch.bOut}"
+        }
+      ]
+    },
+    {
+      "id": "whistle_panel_pol",
+      "triggered": true,
+      "title": "The Review Panel",
+      "parts": {
+        "branch": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "protected",
+              "requires": { "flagsAll": ["whistle_protected"] },
+              "text": "A review panel at your old ministry is closing its file on forty-one purchases you once reported as your own finding. It would like to commend whoever first found the pattern, and has written to Parliament to ask if that was you.",
+              "a": "Give the panel the officer's name.",
+              "aOut": "The officer is commended in a paragraph that uses the word \"diligence\" twice. A card arrives at your Meet-the-People Session with no message in it, only a signature.",
+              "b": "Keep the name out, as you promised.",
+              "bOut": "The panel commends you instead, which in Parliament is worth a line in a newsletter. Somewhere in your old ministry, the officer reads the line, and does not write."
+            },
+            {
+              "id": "ignored",
+              "requires": { "flagsAll": ["whistle_ignored"] },
+              "effects": { "0": { "heat": -8 }, "1": { "heat": 6 } },
+              "text": "The Auditor-General has found forty-one purchases you were once shown and did not report. A review panel at your old ministry asks when you first knew. The officer who brought you the spreadsheet kept the email.",
+              "a": "Tell the panel you were told, three years ago.",
+              "aOut": "Your answer goes into the report with its date attached. The report's paragraph on supervision is about you, and does not need your name to be.",
+              "b": "Tell the panel you do not recall.",
+              "bOut": "Not recalling is minuted, politely. The officer's email, which recalls everything, is attached to the minute. Nothing further reaches you, except, once, a journalist."
+            },
+            {
+              "id": "reported",
+              "text": "A review panel at your old ministry is closing its file on forty-one purchases you once reported, with the officer who found them named as the source. Its report will thank \"an officer\". It asks whether you would like the officer named.",
+              "a": "Ask that the officer be named, and thanked.",
+              "aOut": "The officer is named and thanked, three years late, in a report nobody outside the ministry reads. Inside it, everybody does.",
+              "b": "Leave it as \"an officer\". It is safer.",
+              "bOut": "The report thanks \"an officer\". In your old ministry everyone knows which one, as they have for three years, and nobody says so."
+            }
+          ]
+        }
+      },
+      "body": "{branch}",
+      "requires": { "minRank": 8, "flagsAll": ["whistle_met"] },
+      "choices": [
+        {
+          "text": "{branch.a}",
+          "effects": { "integrity": 4, "standing": -3 },
+          "setFlags": ["whistle_stood_by"],
+          "schedule": [{ "eventId": "whistle_return", "inYears": 5, "chance": 0.85 }],
+          "outcome": "{branch.aOut}"
+        },
+        {
+          "text": "{branch.b}",
+          "effects": { "standing": 3, "integrity": -4 },
+          "setFlags": ["whistle_stepped_back"],
+          "schedule": [{ "eventId": "whistle_return", "inYears": 5, "chance": 0.85 }],
+          "outcome": "{branch.bOut}"
+        }
+      ]
+    },
+    {
+      "id": "whistle_return",
+      "triggered": true,
+      "title": "Another Spreadsheet",
+      "parts": {
+        "past": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "protected",
+              "requires": { "flagsAll": ["whistle_protected"] },
+              "a": "\"That is what you did,\" {junior} says. \"It was my spreadsheet.\" The next morning it goes upstairs under {junior}'s name, retyped so the formatting is {junior.their} own.",
+              "b": "{junior} looks at you for a moment, as if checking that you are the same person. Then {junior} fills in the form, and writes the officer's name in the box, slowly.",
+              "c": "{junior} takes the spreadsheet back. \"You did not leave mine with anyone,\" {junior} says, and sends it upstairs that afternoon, under {junior.their} own name."
+            },
+            {
+              "id": "ignored",
+              "requires": { "flagsAll": ["whistle_ignored"] },
+              "a": "{junior} hears you out, and says nothing about forty-one purchases. The spreadsheet goes upstairs that week, under {junior}'s name. It is exactly what you should have done.",
+              "b": "{junior} fills in the form in your office and puts the officer's name in the box. \"Better than an email nobody answers,\" {junior} says, and closes the door gently.",
+              "c": "{junior} looks at you for a long moment, then takes the spreadsheet back. It reaches the right desk by Friday, by another route, with a timestamp."
+            },
+            {
+              "id": "reported",
+              "a": "\"Not the box?\" {junior} asks. You say: not the box. {junior} takes it upstairs the next morning under {junior.their} own name, and the officer's appears nowhere.",
+              "b": "{junior} nods. \"I was in that box for three years.\" {junior} fills in the form, writes the officer's name in the box, and then, beside it, {junior.their} own.",
+              "c": "{junior} laughs, once, then sees that you meant it. The spreadsheet leaves with {junior}, and by Friday it is in the channel, with two names in the box, neither of them yours."
+            }
+          ]
+        }
+      },
+      "body": "{junior}, {junior.aTitle} now, asks for ten minutes and closes the door. An officer of {junior.their} own has brought {junior.them} a spreadsheet. {Junior} has not decided what to do, and would like to know what you would do.",
+      "requires": { "maxRank": 7, "cast": { "junior": { "flagsAll": ["panel_heard"], "minRank": 2 } } },
+      "alternates": ["whistle_return_pol"],
+      "choices": [
+        {
+          "text": "Take it up yourself, and keep the officer's name out.",
+          "effects": { "integrity": 4, "standing": -2 },
+          "setFlags": ["whistle_said_protect"],
+          "outcome": "{past.a}"
+        },
+        {
+          "text": "Use the channel, and name the officer, as the form says.",
+          "effects": { "integrity": 2, "competence": 3, "standing": -2 },
+          "setFlags": ["whistle_said_channel"],
+          "outcome": "{past.b}"
+        },
+        {
+          "text": "Leave it with me.",
+          "effects": { "standing": 3, "integrity": -5, "heat": 4 },
+          "setFlags": ["whistle_said_leave"],
+          "outcome": "{past.c}"
+        }
+      ]
+    },
+    {
+      "id": "whistle_return_pol",
+      "triggered": true,
+      "title": "Another Spreadsheet",
+      "parts": {
+        "how": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "protected",
+              "requires": { "flagsAll": ["whistle_protected"] },
+              "text": "At the briefing for tomorrow's Parliamentary Question, one director stays behind after the others have gone.",
+              "says": "the director says",
+              "b": "You read paragraph two as drafted, and nobody asks. In the gallery the director writes nothing down, and you find that worse than a note."
+            },
+            {
+              "id": "ignored",
+              "requires": { "flagsAll": ["whistle_ignored"] },
+              "text": "The night before tomorrow's Parliamentary Question, one director sends you a note, copied to the file.",
+              "says": "the note says",
+              "b": "You read paragraph two as drafted, and nobody asks. In the file, beside the reply, is a note dated the night before, which anyone may one day read."
+            },
+            {
+              "id": "reported",
+              "text": "The night before tomorrow's Parliamentary Question, a minute reaches you through the proper channel, from one director.",
+              "says": "the minute says",
+              "b": "You read paragraph two as drafted, and nobody asks. The minute is on the file, through the proper channel, with your name in the copy line."
+            }
+          ]
+        }
+      },
+      "body": "{how} Paragraph two of your reply, {how.says}, is not quite true. The director is the officer who once brought you forty-one purchases.",
+      "requires": { "minRank": 9, "flagsNone": ["moved_ministry"] },
+      "choices": [
+        {
+          "text": "Correct paragraph two, though the reply is due tomorrow.",
+          "effects": { "integrity": 5, "competence": 2, "standing": -4 },
+          "setFlags": ["whistle_corrected"],
+          "outcome": "Paragraph two is rewritten by midnight. The reply runs eleven seconds shorter, and the supplementary questions find nothing in it to supplement. The director's name appears nowhere."
+        },
+        {
+          "text": "Read it as drafted. Correct it later, if asked.",
+          "effects": { "standing": 3, "integrity": -4, "heat": 5 },
+          "setFlags": ["whistle_uncorrected"],
+          "outcome": "{how.b}"
+        }
+      ]
+    },
+    {
+      "id": "protege_ask",
+      "title": "An Hour a Fortnight",
+      "body": "At the end of a one-to-one, {junior} asks whether you would be {junior.their} mentor. Not the scheme with the forms and the lunch vouchers: the real thing, an hour a fortnight, and the truth when {junior} needs it.",
+      "requires": { "minRank": 4, "maxRank": 5, "cast": { "junior": { "flagsNone": ["brought_purchases"] } } },
+      "weight": 14,
+      "once": true,
+      "choices": [
+        {
+          "text": "Yes: an hour a fortnight, and the truth.",
+          "effects": { "integrity": 3, "standing": 2, "competence": -2 },
+          "setFlags": ["protege_met"],
+          "cast": { "junior": { "flags": ["protege", "told_the_truth"] } },
+          "schedule": [{ "eventId": "protege_dissent", "inYears": 3, "chance": 0.85 }],
+          "outcome": "The hours are mostly about other people's papers, and once about {junior}'s. You say the true thing twice in the first year. {junior} writes both down, and argues with one."
+        },
+        {
+          "text": "Yes, and give {junior} the hardest file in the division.",
+          "effects": { "integrity": 2, "reputation": 2, "standing": -4 },
+          "setFlags": ["protege_met"],
+          "cast": { "junior": { "flags": ["protege", "given_the_file"] } },
+          "schedule": [{ "eventId": "protege_dissent", "inYears": 3, "chance": 0.85 }],
+          "outcome": "You give {junior} the file nobody wants, and stand behind it. {junior} nearly drowns in it, then does not, and the people upstairs remember who chose {junior.them} for it."
+        },
+        {
+          "text": "Say no, kindly. You do not have the hours.",
+          "effects": { "competence": 4, "integrity": -2 },
+          "cast": { "junior": { "flags": ["no_mentor"] } },
+          "outcome": "{junior} says {junior.they} understood, and plainly did. The hours you kept go into a paper that is very good. {junior} finds a mentor on the next floor, who has the hours."
+        }
+      ]
+    },
+    {
+      "id": "protege_dissent",
+      "triggered": true,
+      "title": "In Front of Forty",
+      "body": "At the ministry's strategy retreat, {junior} stands up during your presentation and says, politely and with figures, that your paper's central assumption is wrong. {Junior} is mostly right. Forty people wait to see what you do.",
+      "requires": { "maxRank": 7, "cast": { "junior": { "flagsAll": ["protege"] } } },
+      "choices": [
+        {
+          "text": "Concede the point, there and then.",
+          "effects": { "integrity": 4, "reputation": 1, "standing": -4 },
+          "setFlags": ["protege_conceded"],
+          "cast": { "junior": { "flags": ["dissented", "you_conceded"] } },
+          "schedule": [{ "eventId": "protege_panel", "inYears": 4, "chance": 0.85 }],
+          "outcome": "You say {junior} is right, and say why. The room relaxes. The paper is rewritten, better, with {junior}'s figures in it and {junior}'s name on the slide."
+        },
+        {
+          "text": "Hold your line, and take it up with {junior} afterwards.",
+          "effects": { "standing": 4, "competence": 1, "integrity": -3 },
+          "setFlags": ["protege_held"],
+          "cast": { "junior": { "flags": ["dissented", "you_held"] } },
+          "schedule": [{ "eventId": "protege_panel", "inYears": 4, "chance": 0.85 }],
+          "outcome": "You hold your line, smoothly, and the room moves on. Over kopi afterwards you concede most of it. {junior} accepts, and notes, without saying so, where each was said."
+        },
+        {
+          "text": "Say you asked {junior} to make that point.",
+          "effects": { "standing": 3, "reputation": 2, "integrity": -5 },
+          "setFlags": ["protege_claimed"],
+          "cast": { "junior": { "flags": ["dissented", "you_claimed"] } },
+          "schedule": [{ "eventId": "protege_panel", "inYears": 4, "chance": 0.85 }],
+          "outcome": "\"Exactly the challenge I asked {junior} to bring,\" you say, and the room is impressed with you both. {junior} smiles, and brings nothing to the next one-to-one."
+        }
+      ]
+    },
+    {
+      "id": "protege_panel",
+      "triggered": true,
+      "title": "Ready Now",
+      "parts": {
+        "past": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "conceded",
+              "requires": { "cast": { "junior": { "flagsAll": ["you_conceded"] } } },
+              "a": "The panel takes your word. {junior} is promoted within the month and posted to a division elsewhere. At the farewell kopi, {junior} thanks you for the retreat, specifically.",
+              "b": "The minutes record your view: \"not yet\". {junior} hears about it within the day, as everyone does, and is at the next one-to-one on time, with questions."
+            },
+            {
+              "id": "held",
+              "requires": { "cast": { "junior": { "flagsAll": ["you_held"] } } },
+              "a": "The panel takes your word. {junior} is promoted within the month and posted elsewhere. At the farewell kopi, {junior} mentions the retreat, and the kopi after it, kindly.",
+              "b": "The minutes record \"not yet\". {junior} stays another year under you and does the best work of {junior.their} career so far, in a way that is hard to take as a compliment."
+            },
+            {
+              "id": "claimed",
+              "a": "The panel takes your word. {junior} is promoted within the month and posted elsewhere. At the farewell kopi, {junior} thanks you for the challenge you asked {junior.them} to bring.",
+              "b": "The minutes record \"not yet\". {junior} stays, and is very good, and stops bringing you anything but finished work."
+            }
+          ]
+        }
+      },
+      "body": "The promotion panel is considering {junior}, and wants your view first. {Junior} is younger than you were at the same point, and faster, and everyone at the table can do the arithmetic.",
+      "requires": { "maxRank": 7, "cast": { "junior": { "flagsAll": ["dissented"] } } },
+      "choices": [
+        {
+          "text": "Back {junior}, without reservation.",
+          "effects": { "integrity": 4, "reputation": 2, "standing": -3 },
+          "setFlags": ["protege_backed"],
+          "cast": { "junior": { "flags": ["you_backed"], "leave": "promoted" } },
+          "outcome": "{past.a}"
+        },
+        {
+          "text": "Say: not yet. One more year.",
+          "effects": { "standing": 4, "integrity": -4 },
+          "setFlags": ["protege_not_yet"],
+          "cast": { "junior": { "flags": ["held_back"] } },
+          "outcome": "{past.b}"
+        }
+      ]
+    },
+    {
+      "id": "uturn_questions",
+      "title": "Nine Questions",
+      "parts": {
+        "policy": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "counting a household's car in the means test for Budget payouts",
+              "short": "the car rule",
+              "requires": { "ministry": "Ministry of Finance", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mti",
+              "text": "ending grants for firms that miss their productivity targets two years running",
+              "short": "the two-year rule",
+              "requires": { "ministry": "Ministry of Trade and Industry", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mom",
+              "text": "making employers file every worker's hours online, every week",
+              "short": "the weekly hours returns",
+              "requires": { "ministry": "Ministry of Manpower", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moe",
+              "text": "capping co-curricular activities at two afternoons a week",
+              "short": "the CCA cap",
+              "requires": { "ministry": "Ministry of Education", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moh",
+              "text": "charging a fee for missed polyclinic appointments",
+              "short": "the no-show fee",
+              "requires": { "ministry": "Ministry of Health", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mha",
+              "text": "closing neighbourhood police centres' counters after 10pm",
+              "short": "the night closures",
+              "requires": { "ministry": "Ministry of Home Affairs", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mnd",
+              "text": "a levy on renting out a whole HDB flat",
+              "short": "the rental levy",
+              "requires": { "ministry": "Ministry of National Development", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mot",
+              "text": "charging ERP on three expressways at weekends",
+              "short": "weekend ERP",
+              "requires": { "ministry": "Ministry of Transport", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mse",
+              "text": "requiring hawkers to charge for every takeaway container",
+              "short": "the container charge",
+              "requires": {
+                "ministry": "Ministry of Sustainability and the Environment",
+                "flagsNone": ["moved_ministry"]
+              }
+            },
+            {
+              "id": "msf",
+              "text": "tying the Baby Bonus cash gift to a parenting course",
+              "short": "the parenting-course rule",
+              "requires": { "ministry": "Ministry of Social and Family Development", "flagsNone": ["moved_ministry"] }
+            }
+          ]
+        }
+      },
+      "body": "Nine Members have filed questions on {policy}, and the replies are yours. The draft ends by saying the policy \"remains under review\". Your officials have bracketed the phrase, and asked which you prefer.",
+      "requires": { "minRank": 9, "maxRank": 10, "flagsNone": ["moved_ministry"] },
+      "weight": 8,
+      "once": true,
+      "choices": [
+        {
+          "text": "Strike it. The policy is sound, and it stays.",
+          "effects": { "standing": 5, "reputation": -3 },
+          "setFlags": ["uturn_met", "uturn_firm"],
+          "schedule": [{ "eventId": "uturn_reversal", "inYears": 2, "chance": 0.85 }],
+          "outcome": "\"The policy is sound, and it will stay.\" Hansard records it, and two newspapers print it as a pull quote. Your officials file the bracketed phrase, in case."
+        },
+        {
+          "text": "Keep it. Say the policy remains under review.",
+          "effects": { "reputation": 3, "standing": -4 },
+          "setFlags": ["uturn_met", "uturn_review"],
+          "schedule": [{ "eventId": "uturn_reversal", "inYears": 2, "chance": 0.85 }],
+          "outcome": "\"Under review\" satisfies the House and worries the officials who designed the policy, who ask what exactly you are reviewing. By Friday, you find that you are."
+        },
+        {
+          "text": "Strike the adjectives too. Answer with figures only.",
+          "effects": { "competence": 4, "standing": 1, "reputation": -2 },
+          "setFlags": ["uturn_met", "uturn_figures"],
+          "schedule": [{ "eventId": "uturn_reversal", "inYears": 2, "chance": 0.85 }],
+          "outcome": "Your replies run to nine figures and no adjectives. Members find little to quote and less to supplement. Hansard records the most accurate answers of the sitting, unread."
+        }
+      ]
+    },
+    {
+      "id": "uturn_reversal",
+      "triggered": true,
+      "title": "In the Room",
+      "parts": {
+        "policy": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "counting a household's car in the means test for Budget payouts",
+              "short": "the car rule",
+              "requires": { "ministry": "Ministry of Finance", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mti",
+              "text": "ending grants for firms that miss their productivity targets two years running",
+              "short": "the two-year rule",
+              "requires": { "ministry": "Ministry of Trade and Industry", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mom",
+              "text": "making employers file every worker's hours online, every week",
+              "short": "the weekly hours returns",
+              "requires": { "ministry": "Ministry of Manpower", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moe",
+              "text": "capping co-curricular activities at two afternoons a week",
+              "short": "the CCA cap",
+              "requires": { "ministry": "Ministry of Education", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moh",
+              "text": "charging a fee for missed polyclinic appointments",
+              "short": "the no-show fee",
+              "requires": { "ministry": "Ministry of Health", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mha",
+              "text": "closing neighbourhood police centres' counters after 10pm",
+              "short": "the night closures",
+              "requires": { "ministry": "Ministry of Home Affairs", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mnd",
+              "text": "a levy on renting out a whole HDB flat",
+              "short": "the rental levy",
+              "requires": { "ministry": "Ministry of National Development", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mot",
+              "text": "charging ERP on three expressways at weekends",
+              "short": "weekend ERP",
+              "requires": { "ministry": "Ministry of Transport", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mse",
+              "text": "requiring hawkers to charge for every takeaway container",
+              "short": "the container charge",
+              "requires": {
+                "ministry": "Ministry of Sustainability and the Environment",
+                "flagsNone": ["moved_ministry"]
+              }
+            },
+            {
+              "id": "msf",
+              "text": "tying the Baby Bonus cash gift to a parenting course",
+              "short": "the parenting-course rule",
+              "requires": { "ministry": "Ministry of Social and Family Development", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moved",
+              "text": "a policy at your old ministry",
+              "short": "the policy you once defended",
+              "requires": { "flagsAll": ["moved_ministry"] }
+            }
+          ]
+        },
+        "room": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "minister",
+              "requires": { "minRank": 13, "flagsNone": ["moved_ministry"] },
+              "text": "It needs your signature to go in, and the Prime Minister has asked, kindly, when it will."
+            },
+            {
+              "id": "junior",
+              "requires": { "maxRank": 12, "flagsNone": ["moved_ministry"] },
+              "text": "The Minister would like your view before signing it, since the replies in Hansard are yours."
+            },
+            {
+              "id": "moved",
+              "text": "You have moved on, but the replies in Hansard are yours, and the Minister now responsible would like your view."
+            }
+          ]
+        }
+      },
+      "body": "Two years of feedback on {policy.short} have become one Cabinet paper, drafted by officials, recommending that it be reversed. {room}",
+      "requires": { "minRank": 8 },
+      "choices": [
+        {
+          "text": "Argue to keep it, from your own replies.",
+          "effects": { "integrity": 3, "standing": -4 },
+          "setFlags": ["uturn_argued"],
+          "schedule": [{ "eventId": "uturn_statement", "inYears": 1, "chance": 0.9 }],
+          "outcome": "You argue for twenty minutes, from your own replies, and are listened to carefully. The paper goes in anyway, with a line in the minutes: you \"raised considerations\"."
+        },
+        {
+          "text": "Agree, and say it should go quickly.",
+          "effects": { "standing": 4, "integrity": -2 },
+          "setFlags": ["uturn_agreed"],
+          "schedule": [{ "eventId": "uturn_statement", "inYears": 1, "chance": 0.9 }],
+          "outcome": "You agree, and say it should go before the next sitting. Everyone is relieved. Nobody mentions your replies, which is a courtesy, and is noticed."
+        },
+        {
+          "text": "Propose a phase-out, so nobody has to say \"reverse\".",
+          "effects": { "competence": 3, "standing": 2, "integrity": -3 },
+          "setFlags": ["uturn_phased"],
+          "schedule": [{ "eventId": "uturn_statement", "inYears": 1, "chance": 0.9 }],
+          "outcome": "The paper is amended: the policy will be \"phased out\" over six months, which is about how long reversing it would have taken. Everyone agrees this is different."
+        }
+      ]
+    },
+    {
+      "id": "uturn_statement",
+      "triggered": true,
+      "title": "The Statement",
+      "parts": {
+        "policy": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "counting a household's car in the means test for Budget payouts",
+              "short": "the car rule",
+              "requires": { "ministry": "Ministry of Finance", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mti",
+              "text": "ending grants for firms that miss their productivity targets two years running",
+              "short": "the two-year rule",
+              "requires": { "ministry": "Ministry of Trade and Industry", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mom",
+              "text": "making employers file every worker's hours online, every week",
+              "short": "the weekly hours returns",
+              "requires": { "ministry": "Ministry of Manpower", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moe",
+              "text": "capping co-curricular activities at two afternoons a week",
+              "short": "the CCA cap",
+              "requires": { "ministry": "Ministry of Education", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moh",
+              "text": "charging a fee for missed polyclinic appointments",
+              "short": "the no-show fee",
+              "requires": { "ministry": "Ministry of Health", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mha",
+              "text": "closing neighbourhood police centres' counters after 10pm",
+              "short": "the night closures",
+              "requires": { "ministry": "Ministry of Home Affairs", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mnd",
+              "text": "a levy on renting out a whole HDB flat",
+              "short": "the rental levy",
+              "requires": { "ministry": "Ministry of National Development", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mot",
+              "text": "charging ERP on three expressways at weekends",
+              "short": "weekend ERP",
+              "requires": { "ministry": "Ministry of Transport", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mse",
+              "text": "requiring hawkers to charge for every takeaway container",
+              "short": "the container charge",
+              "requires": {
+                "ministry": "Ministry of Sustainability and the Environment",
+                "flagsNone": ["moved_ministry"]
+              }
+            },
+            {
+              "id": "msf",
+              "text": "tying the Baby Bonus cash gift to a parenting course",
+              "short": "the parenting-course rule",
+              "requires": { "ministry": "Ministry of Social and Family Development", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moved",
+              "text": "a policy at your old ministry",
+              "short": "the policy you once defended",
+              "requires": { "flagsAll": ["moved_ministry"] }
+            }
+          ]
+        },
+        "word": {
+          "pick": "first",
+          "options": [
+            { "id": "phased", "requires": { "flagsAll": ["uturn_phased"] }, "text": "phasing out" },
+            { "id": "reversed", "text": "reversing" }
+          ]
+        },
+        "who": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "self",
+              "requires": { "minRank": 13, "flagsNone": ["moved_ministry"] },
+              "text": "You will deliver it.",
+              "a": "You read paragraph four as rewritten: \"We got this wrong.\" Members rise for clarifications and, for once, find little to clarify. The sentence is quoted for a week, mostly kindly.",
+              "b": "\"The position at the time\" gets you through Tuesday. In clarifications, a Member asks what the position is now. You say it is the position now, and sit down.",
+              "c": "Paragraph four goes. On Tuesday the first Member to seek clarification reads your old reply aloud from Hansard, in full, so that nobody is without a reminder."
+            },
+            {
+              "id": "minister",
+              "requires": { "maxRank": 12, "flagsNone": ["moved_ministry"] },
+              "text": "The Minister will deliver it, and has sent you the draft.",
+              "a": "The Minister reads paragraph four as you rewrote it: \"We got this wrong.\" Members rise for clarifications and find little to clarify. The sentence is attributed to the Minister, correctly.",
+              "b": "\"The position at the time\" is read out on Tuesday. In clarifications, a Member asks what the position was at the time. The Minister looks, briefly, in your direction.",
+              "c": "Paragraph four goes. On Tuesday the first Member to seek clarification reads your old reply aloud from Hansard, in full, and the Minister answers it for you."
+            },
+            {
+              "id": "successor",
+              "text": "The Minister now responsible will deliver it, and has sent you the draft.",
+              "a": "The Minister reads paragraph four as you rewrote it: \"We got this wrong.\" Members rise for clarifications and find little to clarify. The sentence is attributed to the Minister, correctly.",
+              "b": "\"The position at the time\" is read out on Tuesday. In clarifications, a Member asks what the position was at the time. The Minister looks, briefly, in your direction.",
+              "c": "Paragraph four goes. On Tuesday the first Member to seek clarification reads your old reply aloud from Hansard, in full, and the Minister answers it for you."
+            }
+          ]
+        }
+      },
+      "body": "The ministerial statement on {word} {policy.short} is set for Tuesday, after Question Time. {who} Paragraph four quotes your reply in Hansard as \"the position at the time\".",
+      "requires": { "minRank": 8 },
+      "choices": [
+        {
+          "text": "Paragraph four should say plainly that it was wrong.",
+          "effects": { "integrity": 5, "reputation": 3, "standing": -5 },
+          "setFlags": ["uturn_wrong"],
+          "schedule": [{ "eventId": "uturn_hansard", "inYears": 5, "chance": 0.85 }],
+          "outcome": "{who.a}"
+        },
+        {
+          "text": "Leave paragraph four as drafted.",
+          "effects": { "standing": 4, "integrity": -3 },
+          "setFlags": ["uturn_position"],
+          "schedule": [{ "eventId": "uturn_hansard", "inYears": 5, "chance": 0.85 }],
+          "outcome": "{who.b}"
+        },
+        {
+          "text": "Cut paragraph four. Nobody needs reminding.",
+          "effects": { "standing": 2, "competence": 1, "reputation": -3 },
+          "setFlags": ["uturn_cut"],
+          "schedule": [{ "eventId": "uturn_hansard", "inYears": 5, "chance": 0.85 }],
+          "outcome": "{who.c}"
+        }
+      ]
+    },
+    {
+      "id": "uturn_hansard",
+      "triggered": true,
+      "title": "Paragraph Three",
+      "parts": {
+        "policy": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mof",
+              "text": "counting a household's car in the means test for Budget payouts",
+              "short": "the car rule",
+              "requires": { "ministry": "Ministry of Finance", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mti",
+              "text": "ending grants for firms that miss their productivity targets two years running",
+              "short": "the two-year rule",
+              "requires": { "ministry": "Ministry of Trade and Industry", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mom",
+              "text": "making employers file every worker's hours online, every week",
+              "short": "the weekly hours returns",
+              "requires": { "ministry": "Ministry of Manpower", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moe",
+              "text": "capping co-curricular activities at two afternoons a week",
+              "short": "the CCA cap",
+              "requires": { "ministry": "Ministry of Education", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moh",
+              "text": "charging a fee for missed polyclinic appointments",
+              "short": "the no-show fee",
+              "requires": { "ministry": "Ministry of Health", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mha",
+              "text": "closing neighbourhood police centres' counters after 10pm",
+              "short": "the night closures",
+              "requires": { "ministry": "Ministry of Home Affairs", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mnd",
+              "text": "a levy on renting out a whole HDB flat",
+              "short": "the rental levy",
+              "requires": { "ministry": "Ministry of National Development", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mot",
+              "text": "charging ERP on three expressways at weekends",
+              "short": "weekend ERP",
+              "requires": { "ministry": "Ministry of Transport", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "mse",
+              "text": "requiring hawkers to charge for every takeaway container",
+              "short": "the container charge",
+              "requires": {
+                "ministry": "Ministry of Sustainability and the Environment",
+                "flagsNone": ["moved_ministry"]
+              }
+            },
+            {
+              "id": "msf",
+              "text": "tying the Baby Bonus cash gift to a parenting course",
+              "short": "the parenting-course rule",
+              "requires": { "ministry": "Ministry of Social and Family Development", "flagsNone": ["moved_ministry"] }
+            },
+            {
+              "id": "moved",
+              "text": "a policy at your old ministry",
+              "short": "the policy you once defended",
+              "requires": { "flagsAll": ["moved_ministry"] }
+            }
+          ]
+        },
+        "said": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "wrong",
+              "requires": { "flagsAll": ["uturn_wrong"] },
+              "a": "You send {mp} the statement too, with paragraph four marked. {mp} replaces paragraph three with it, as an example of a different kind of conviction, and it lands better.",
+              "b": "{mp} delivers paragraph three with feeling. A Member opposite rises and reads out the statement that called it wrong. {mp} sends you an emoji you have not seen before."
+            },
+            {
+              "id": "position",
+              "requires": { "flagsAll": ["uturn_position"] },
+              "a": "You send {mp} the statement. {mp} reads \"the position at the time\" twice, and replaces paragraph three with something about bus stops.",
+              "b": "{mp} delivers paragraph three with feeling, and nobody rises. Hansard now holds your reply twice, the statement once, and the position at the time, unchanged."
+            },
+            {
+              "id": "cut",
+              "a": "You send {mp} the statement, which does not mention your reply at all. {mp} reads both, and asks which one you would like quoted. You say neither.",
+              "b": "{mp} delivers paragraph three with feeling, and nobody rises. Hansard now holds your reply twice and its reversal once, in a statement that never mentions it."
+            }
+          ]
+        }
+      },
+      "body": "{mp} sends you a draft speech for tomorrow's debate, proud of paragraph three: your reply on {policy.short}, quoted in full from Hansard as an example of conviction. {mp} found it by searching. The search stopped there.",
+      "requires": { "minRank": 8 },
+      "choices": [
+        {
+          "text": "Tell {mp} about the statement.",
+          "effects": { "integrity": 3, "standing": 1, "reputation": -1 },
+          "setFlags": ["uturn_told_mp"],
+          "cast": { "mp": { "flags": ["you_told_them"] } },
+          "outcome": "{said.a}"
+        },
+        {
+          "text": "Let it stand. It was a good reply.",
+          "effects": { "reputation": 3, "integrity": -3 },
+          "setFlags": ["uturn_quoted"],
+          "cast": { "mp": { "flags": ["quoted_you"] } },
+          "outcome": "{said.b}"
+        }
+      ]
+    },
+    {
+      "id": "bond_masters",
+      "title": "A Year Away",
+      "parts": {
+        "school": [
+          { "id": "kennedy", "text": "the Kennedy School at Harvard" },
+          { "id": "blavatnik", "text": "the Blavatnik School at Oxford" }
+        ]
+      },
+      "body": "The Public Service Division would like to sponsor your master's: a year at {school}, fees and allowance paid. The sponsorship comes with a bond of its own, two years, served after the one you are already serving.",
+      "requires": { "origin": ["scholar"], "minRank": 2, "maxRank": 4, "minAge": 26, "maxAge": 28, "duringBond": true },
+      "weight": 12,
+      "once": true,
+      "choices": [
+        {
+          "text": "Go. Sign for the extra two years.",
+          "effects": { "competence": 6, "reputation": 1, "standing": -3 },
+          "bond": 2,
+          "setFlags": ["bond_met", "bond_extended"],
+          "schedule": [{ "eventId": "bond_bank", "inYears": 2, "chance": 0.85 }],
+          "outcome": "Twelve months, officials from forty countries, and a seminar in which you are asked to explain Singapore. You come back with a master's, a bond that ends at thirty-two, and someone else on your file."
+        },
+        {
+          "text": "Decline. Your division needs you this year.",
+          "effects": { "standing": 5, "integrity": 1, "competence": -2 },
+          "setFlags": ["bond_met", "bond_declined"],
+          "schedule": [{ "eventId": "bond_bank", "inYears": 2, "chance": 0.85 }],
+          "outcome": "Upstairs is grateful, in a way that lasts exactly one ranking cycle. The offer is not repeated. The division, it turns out, did need you, though not as much as it said."
+        },
+        {
+          "text": "Do a master's part-time, at night, on your own money.",
+          "effects": { "competence": 5, "integrity": 2, "standing": -1, "wealth": -40000 },
+          "setFlags": ["bond_met", "bond_own"],
+          "schedule": [{ "eventId": "bond_bank", "inYears": 2, "chance": 0.85 }],
+          "outcome": "Two years of evenings, $40,000 of your own, and not one year added to your bond. The degree is the same degree. Nobody at work asks about it, which was most of the point."
+        }
+      ]
+    },
+    {
+      "id": "bond_bank",
+      "triggered": true,
+      "title": "The Bank",
+      "parts": {
+        "left": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "extended",
+              "requires": { "flagsAll": ["bond_extended"] },
+              "text": "the two master's years included"
+            },
+            { "id": "left", "text": "for all the years left" }
+          ]
+        }
+      },
+      "body": "A bank wants you by March. It will pay your liquidated damages in full, {left}, and call the payment a signing bonus. The deed it would settle has two sureties' signatures on it, beside yours.",
+      "requires": { "origin": ["scholar"], "maxRank": 7, "duringBond": true },
+      "choices": [
+        {
+          "text": "Let the bank pay. Resign in March.",
+          "effects": { "heat": -3 },
+          "privateSector": true,
+          "setFlags": ["bond_bought"],
+          "outcome": "The bank's cheque matches the damages to the dollar. Your resignation is accepted in one line, and the farewell email from upstairs is warmer than you expected, and shorter."
+        },
+        {
+          "text": "Decline. A deed is a deed.",
+          "effects": { "integrity": 5, "standing": 2 },
+          "setFlags": ["bond_kept"],
+          "schedule": [{ "eventId": "bond_mentor", "inYears": 8, "chance": 0.85 }],
+          "outcome": "You decline in two lines. The bank replies that the offer stands, which it does, until a younger officer takes it in June. You hear about that at a wedding."
+        }
+      ]
+    },
+    {
+      "id": "bond_mentor",
+      "triggered": true,
+      "title": "Your Scholar",
+      "parts": {
+        "past": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "extended",
+              "requires": { "flagsAll": ["bond_extended"] },
+              "a": "You tell it plainly: the bank, the letter, the two years added for a master's, the eight in all. Your scholar listens, thanks you, and does not say which way that pointed.",
+              "b": "You make the case for staying, with your own master's as Exhibit A. Your scholar stays, and asks, a month later, how one applies for the sponsorship."
+            },
+            {
+              "id": "declined",
+              "requires": { "flagsAll": ["bond_declined"] },
+              "a": "You tell it plainly: the bank, the letter, the master's you turned down because your division needed you that year. Your scholar asks whether it did. You say: that year.",
+              "b": "You make the case for staying, and leave out the master's you turned down. Your scholar stays. The bank hires someone else by June, as banks do."
+            },
+            {
+              "id": "own",
+              "a": "You tell it plainly: the bank, the letter, the master's you paid for at night so the bond would not grow. Your scholar writes that down, and underlines it.",
+              "b": "You make the case for staying, with your night classes as proof it can be done. Your scholar stays, and enrols in the same programme, at the same hour."
+            }
+          ]
+        }
+      },
+      "body": "PSC made you a mentor to one of its scholars, now three years into a six-year bond. Your scholar asks to meet: a bank has offered to pay it off, and wants an answer by Friday. Your scholar wants to know what you did.",
+      "requires": { "origin": ["scholar"], "maxRank": 7, "flagsAll": ["bond_kept"] },
+      "alternates": ["bond_mentor_pol"],
+      "choices": [
+        {
+          "text": "Tell the truth about what you did, and stop there.",
+          "effects": { "integrity": 4, "standing": -1 },
+          "setFlags": ["bond_told"],
+          "outcome": "{past.a}"
+        },
+        {
+          "text": "Tell your scholar to stay.",
+          "effects": { "standing": 4, "integrity": -2 },
+          "setFlags": ["bond_said_stay"],
+          "outcome": "{past.b}"
+        },
+        {
+          "text": "Tell your scholar to take it.",
+          "effects": { "integrity": 1, "reputation": 2, "standing": -5 },
+          "setFlags": ["bond_said_go"],
+          "outcome": "You say what nobody at PSC says: it is a contract, and the bank is paying. Your scholar resigns in March. PSC thanks you for your time as a mentor, in writing."
+        }
+      ]
+    },
+    {
+      "id": "bond_mentor_pol",
+      "triggered": true,
+      "title": "Your Old School",
+      "body": "Your old school asks you to speak to its final-year students about scholarships, as a former student now in Parliament. The question they have sent in most often, the principal writes, is about the bond.",
+      "requires": { "origin": ["scholar"], "minRank": 8, "flagsAll": ["bond_kept"] },
+      "choices": [
+        {
+          "text": "Tell them about the bank's letter, and why you said no.",
+          "effects": { "reputation": 3, "integrity": 2, "standing": -1 },
+          "setFlags": ["bond_told"],
+          "outcome": "You tell them about the letter and the deed, and the hall goes quiet in the right way. Three students ask about the bank afterwards. One asks which bank."
+        },
+        {
+          "text": "Tell them the bond is the best deal they will ever sign.",
+          "effects": { "standing": 4, "reputation": 1, "integrity": -3 },
+          "setFlags": ["bond_said_stay"],
+          "outcome": "You make the case, and it is a good one. The principal thanks you warmly. A student in the front row writes \"best deal\" on the back of a hand."
+        },
+        {
+          "text": "Leave the bond out. Talk about the work.",
+          "effects": { "competence": 2, "integrity": 1, "reputation": -2 },
+          "setFlags": ["bond_said_work"],
+          "outcome": "You talk about budgets, lifts and a scheme that failed properly, for forty minutes. The question about the bond comes anyway, at the end, and you answer it in a sentence."
+        }
+      ]
+    }
+  ]
+}
