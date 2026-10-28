@@ -169,7 +169,14 @@
         "setFlags": [
           "knows_cep"
         ],
-        "outcome": "Currently Estimated Potential. The highest grade the service thinks you will ever reach. It is decided about you, reviewed without you, and never disclosed to you. You think about this in the lift, and then most days after that."
+        "outcome": "Currently Estimated Potential. The highest grade the service thinks you will ever reach. It is decided about you, reviewed without you, and never disclosed to you. You think about this in the lift, and then most days after that.",
+        "schedule": [
+          {
+            "eventId": "farewell_drinks",
+            "inYears": 3,
+            "chance": 0.8
+          }
+        ]
       },
       {
         "text": "Let it go.",
@@ -314,6 +321,13 @@
         "outcome": "He is a retired schoolteacher in Ang Mo Kio. You look at his address on your screen for a while and then close the window, but you did open it.",
         "setFlags": [
           "looked_him_up"
+        ],
+        "schedule": [
+          {
+            "eventId": "citizens_panel",
+            "inYears": 5,
+            "chance": 0.8
+          }
         ]
       }
     ]
@@ -397,6 +411,13 @@
         "outcome": "The panel proceeds without you and awards it to the same firm. Your recusal memo sits in the file, where, years later, it will be the only reason nobody asks you anything.",
         "setFlags": [
           "recused"
+        ],
+        "schedule": [
+          {
+            "eventId": "officer_a",
+            "inYears": 6,
+            "chance": 0.75
+          }
         ]
       },
       {
@@ -432,7 +453,14 @@
         "setFlags": [
           "did_mps"
         ],
-        "outcome": "Fifty-one Tuesdays. You learn more about how policy actually lands than in six years of writing it. The MP notices you, which is the part that will matter later."
+        "outcome": "Fifty-one Tuesdays. You learn more about how policy actually lands than in six years of writing it. The MP notices you, which is the part that will matter later.",
+        "schedule": [
+          {
+            "eventId": "block_party",
+            "inYears": 4,
+            "chance": 0.9
+          }
+        ]
       },
       {
         "text": "Go a few times, enough to be seen.",
@@ -537,7 +565,14 @@
         "setFlags": [
           "knows_leaker"
         ],
-        "outcome": "It took you a fortnight. It was the one you would not have guessed, for a reason you find you have some sympathy with. You keep it."
+        "outcome": "It took you a fortnight. It was the one you would not have guessed, for a reason you find you have some sympathy with. You keep it.",
+        "schedule": [
+          {
+            "eventId": "interview_panel",
+            "inYears": 5,
+            "chance": 0.7
+          }
+        ]
       },
       {
         "text": "It was you.",
@@ -726,6 +761,13 @@
         "outcome": "There is nothing improper in what he tells you — it is all public, three weeks early. That is the whole of the impropriety, and you both know its exact size.",
         "setFlags": [
           "friend_at_hdb"
+        ],
+        "schedule": [
+          {
+            "eventId": "small_favour",
+            "inYears": 6,
+            "chance": 0.75
+          }
         ]
       },
       {
@@ -770,6 +812,13 @@
         "outcome": "\"Enhanced\". It is enhanced by the word \"enhanced\". It is covered favourably. Nobody is harmed and nothing is gained and this is, you suspect, most of what happens here.",
         "setFlags": [
           "rebranded_scheme"
+        ],
+        "schedule": [
+          {
+            "eventId": "two_names",
+            "inYears": 3,
+            "chance": 0.7
+          }
         ]
       },
       {
@@ -813,7 +862,14 @@
         "setFlags": [
           "protected_team"
         ],
-        "outcome": "You place all nine of them before you place yourself. You end up in the worst of the remaining boxes. They know exactly what you did and one of them will be in a position to repay it."
+        "outcome": "You place all nine of them before you place yourself. You end up in the worst of the remaining boxes. They know exactly what you did and one of them will be in a position to repay it.",
+        "schedule": [
+          {
+            "eventId": "promotion_board",
+            "inYears": 6,
+            "chance": 0.85
+          }
+        ]
       },
       {
         "text": "Secure the good box for yourself first.",
@@ -825,6 +881,13 @@
         "outcome": "You get it. It is a good box. The nine of them are placed adequately, and something in the division's manner toward you changes in a way that is never once spoken aloud.",
         "setFlags": [
           "grabbed_box"
+        ],
+        "schedule": [
+          {
+            "eventId": "budget_committee",
+            "inYears": 5,
+            "chance": 0.75
+          }
         ]
       },
       {
@@ -868,6 +931,13 @@
         "outcome": "It fits beautifully. The launch is well received. Somewhere in a file there is a spreadsheet of what eleven hundred people actually said, and it is not the report.",
         "setFlags": [
           "smoothed_feedback"
+        ],
+        "schedule": [
+          {
+            "eventId": "raw_data",
+            "inYears": 4,
+            "chance": 0.7
+          }
         ]
       },
       {
@@ -1004,7 +1074,14 @@
         "setFlags": [
           "signalled_interest"
         ],
-        "outcome": "You have not said yes to anything. You have said the one thing that gets your name written on a different list."
+        "outcome": "You have not said yes to anything. You have said the one thing that gets your name written on a different list.",
+        "schedule": [
+          {
+            "eventId": "lanterns",
+            "inYears": 1,
+            "chance": 0.8
+          }
+        ]
       },
       {
         "text": "Laugh it off.",
@@ -1112,6 +1189,15 @@
           "reputation": 5
         },
         "outcome": "She puts your name in. She does not mention the nomination from eleven years ago and neither do you, because the whole point of the thing was that it was not a transaction, and it stays one by not being named."
+      },
+      {
+        "text": "Tell her, before she decides, that she owes you nothing.",
+        "effects": {
+          "cep": 2,
+          "standing": 6,
+          "integrity": 6
+        },
+        "outcome": "She says she knows. She puts your name in anyway, which is how you learn the difference between a debt and a judgement."
       }
     ]
   },
@@ -1129,6 +1215,15 @@
           "integrity": 5
         },
         "outcome": "He says he has put your name forward for something and that he did it on the strength of one afternoon eleven years ago. You go back to your desk and sit there for a while."
+      },
+      {
+        "text": "Tell him his paper was still bad.",
+        "effects": {
+          "cep": 2,
+          "standing": 8,
+          "reputation": 4
+        },
+        "outcome": "He laughs, for the first time in your presence, and agrees. He says it is the only performance review he has ever kept."
       }
     ]
   },
@@ -1176,7 +1271,14 @@
         "setFlags": [
           "declined_tea"
         ],
-        "outcome": "You write three sentences and delete two of them. The reply thanks you for your candour. You are not asked again, and you will think about this for the rest of your life."
+        "outcome": "You write three sentences and delete two of them. The reply thanks you for your candour. You are not asked again, and you will think about this for the rest of your life.",
+        "schedule": [
+          {
+            "eventId": "other_life",
+            "inYears": 6,
+            "chance": 0.9
+          }
+        ]
       }
     ]
   },
@@ -1193,7 +1295,13 @@
           "heat": -25
         },
         "folder": "disclose",
-        "outcome": "He listens without writing anything until you have finished, and then writes for a long time."
+        "outcome": "He listens without writing anything until you have finished, and then writes for a long time.",
+        "schedule": [
+          {
+            "eventId": "younger_officer",
+            "inYears": 3
+          }
+        ]
       },
       {
         "text": "Answer exactly what is asked and nothing more.",
@@ -1472,7 +1580,14 @@
         "setFlags": [
           "kingmaker"
         ],
-        "outcome": "He wins, obviously, and he knows exactly who delivered it. You get everything you asked for, and you will retire as the most powerful Deputy Prime Minister anyone can remember, which is not the thing you wanted."
+        "outcome": "He wins, obviously, and he knows exactly who delivered it. You get everything you asked for, and you will retire as the most powerful Deputy Prime Minister anyone can remember, which is not the thing you wanted.",
+        "schedule": [
+          {
+            "eventId": "first_cabinet",
+            "inYears": 1,
+            "chance": 0.9
+          }
+        ]
       }
     ]
   },
@@ -2262,6 +2377,11 @@
           {
             "eventId": "re_election",
             "inYears": 5
+          },
+          {
+            "eventId": "model_ward",
+            "inYears": 2,
+            "chance": 0.5
           }
         ],
         "outcome": "You stand on a lorry and read out numbers. Some of them are your numbers."
@@ -2277,6 +2397,11 @@
           {
             "eventId": "re_election",
             "inYears": 5
+          },
+          {
+            "eventId": "model_ward",
+            "inYears": 2,
+            "chance": 0.5
           }
         ],
         "outcome": "Nine nights, four hundred lift lobbies, one pair of shoes you will never wear again."
@@ -2423,6 +2548,454 @@
           "reputation": 3
         },
         "outcome": "You decline in writing, which you will later find was framed in the chairman's office as a curiosity."
+      }
+    ]
+  },
+  {
+    "id": "citizens_panel",
+    "title": "The Citizens' Panel",
+    "body": "The ministry has convened a citizens' panel to review a scheme you once ran: twelve members of the public, chosen at random, three Saturdays. One of them is a retired schoolteacher from Ang Mo Kio who once wrote 340 words about it to the Forum page. He has brought the cutting.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Tell him, privately, that you once looked up his address.",
+        "effects": {
+          "integrity": 10,
+          "standing": -4,
+          "heat": -12
+        },
+        "outcome": "He considers this for a long time. Then he says that in thirty years of teaching he looked up a great many addresses, and he hopes you were at least as worried as he usually was. The panel's report is fair. He wrote most of it."
+      },
+      {
+        "text": "Thank him for his letter, in front of the panel.",
+        "effects": {
+          "reputation": 5,
+          "standing": 2,
+          "integrity": -3
+        },
+        "outcome": "He accepts the thanks with the expression of a teacher accepting homework that has clearly been copied. The panel's report is fair, and has a section on responsiveness."
+      },
+      {
+        "text": "Leave the sessions to your deputy.",
+        "effects": {
+          "standing": 3,
+          "heat": 4,
+          "competence": -1
+        },
+        "outcome": "Your deputy reports that the panel was constructive, and that one member asked, twice, whether you would be attending."
+      }
+    ]
+  },
+  {
+    "id": "promotion_board",
+    "title": "The Promotion Board",
+    "body": "A promotion board is considering your case. One of its four members is an officer whose posting you fought for in the reorganisation, years ago, before you placed yourself. She is a Director now. She has not declared an interest, because there is no field on the form for gratitude.",
+    "triggered": true,
+    "requires": {
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Ask HR whether this needs declaring.",
+        "effects": {
+          "integrity": 8,
+          "standing": -2
+        },
+        "outcome": "HR consults its guidance, which covers family, finances and former employers but not gratitude, and to be safe replaces her with someone who has never heard of you. The board is very fair. You find this less comforting than you expected."
+      },
+      {
+        "text": "Say nothing. It is not a conflict; it is a memory.",
+        "effects": {
+          "cep": 1,
+          "standing": 5,
+          "integrity": -4
+        },
+        "outcome": "She says very little in the board itself. She does not need to: she said it at lunch beforehand, to the chair, in one sentence about a reorganisation."
+      }
+    ]
+  },
+  {
+    "id": "small_favour",
+    "title": "A Small Favour",
+    "body": "Your friend at the agency, the one who told you about the flat three weeks early, has been in touch. His nephew has applied for a position in your ministry. He is, your friend says, very hardworking, and wants no special treatment, only for someone to look at it.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Make sure someone looks at it.",
+        "effects": {
+          "standing": 3,
+          "integrity": -6,
+          "heat": 8
+        },
+        "setFlags": [
+          "returned_favour"
+        ],
+        "outcome": "Someone looks at it. The nephew is interviewed, is in fact very hardworking, and gets the job on merit, probably. The flat and the nephew are now one story, and it is yours."
+      },
+      {
+        "text": "Forward it to HR, declaring the connection.",
+        "effects": {
+          "integrity": 8,
+          "standing": -3
+        },
+        "outcome": "HR thanks you for the declaration and files it next to the application. The nephew is not shortlisted. Your friend says he understands, in the tone of a man updating a ledger."
+      },
+      {
+        "text": "Tell him you can't, and why.",
+        "effects": {
+          "integrity": 5,
+          "heat": -4,
+          "standing": -1
+        },
+        "outcome": "You mention the flat. There is a pause on the line, and then he laughs and says that was public information, three weeks early. You agree that it was. Neither of you mentions the nephew again."
+      }
+    ]
+  },
+  {
+    "id": "block_party",
+    "title": "The Block Party",
+    "body": "At a block party in your ward, a woman you do not recognise introduces you to forty of her neighbours. Years ago, on one of fifty-one Tuesday nights, a junior officer at a Meet-the-People Session wrote an appeal for her that actually argued her case. It was you. She has told everyone, in detail, more than once.",
+    "triggered": true,
+    "requires": {
+      "minRank": 8
+    },
+    "choices": [
+      {
+        "text": "Let her tell it again.",
+        "effects": {
+          "reputation": 8,
+          "standing": 2,
+          "integrity": -2
+        },
+        "outcome": "She tells it with improvements. By the end of the evening the appeal has overturned a decision, saved a business and possibly a marriage. Forty people will vote for the version with the marriage."
+      },
+      {
+        "text": "Tell them the appeal worked because her case was good.",
+        "effects": {
+          "integrity": 6,
+          "reputation": 4
+        },
+        "outcome": "This is true. She tells them you are being modest, and modesty is now part of the story, which is going round the block faster than you can walk it."
+      }
+    ]
+  },
+  {
+    "id": "budget_committee",
+    "title": "The Budget Committee",
+    "body": "The officer who would have had the good box in the reorganisation, before you secured it for yourself, has had a perfectly good career anyway. She now chairs the committee that decides your division's budget. She is scrupulously fair to you, which is somehow worse.",
+    "triggered": true,
+    "requires": {
+      "maxRank": 7
+    },
+    "choices": [
+      {
+        "text": "Apologise, properly, over coffee.",
+        "effects": {
+          "integrity": 8,
+          "standing": -3
+        },
+        "outcome": "She lets you finish. Then she says she stopped thinking about it years ago, which you both know is the kind of thing people say. Your budget is approved in full. You will never know whether the coffee had anything to do with it."
+      },
+      {
+        "text": "Make your bid on its merits and nothing else.",
+        "effects": {
+          "competence": 4,
+          "standing": 2,
+          "integrity": -2
+        },
+        "outcome": "It is a good bid. It receives exactly what a good bid receives from someone being scrupulously fair, which turns out to be four officers and half a system."
+      },
+      {
+        "text": "Find out who else sits on the committee.",
+        "effects": {
+          "standing": 5,
+          "integrity": -5,
+          "heat": 4
+        },
+        "outcome": "Two of the other four remember the reorganisation too. One of them owes you. You spend a week arranging to be owed slightly more, and the bid passes."
+      }
+    ]
+  },
+  {
+    "id": "farewell_drinks",
+    "title": "Farewell Drinks",
+    "body": "Your friend in HR, the one who once mentioned your CEP and then changed the subject, is leaving the service. At her farewell drinks, on her second glass, she tells you that a CEP is reviewed every year by people who mostly read your last two postings, and that the hard postings get read twice.",
+    "triggered": true,
+    "requires": {
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Ask for the hardest posting going.",
+        "effects": {
+          "cep": 1,
+          "standing": -3,
+          "competence": 3
+        },
+        "outcome": "You ask the next morning. HR says it will note your interest, and does, and eighteen months later you are sent somewhere difficult, and someone reads it twice."
+      },
+      {
+        "text": "Thank her, and let her enjoy her drinks.",
+        "effects": {
+          "standing": 3,
+          "integrity": 3
+        },
+        "outcome": "You talk about her new job instead. She is going to a bank. She says the salary is a number she read twice."
+      }
+    ]
+  },
+  {
+    "id": "interview_panel",
+    "title": "The Interview Panel",
+    "body": "The officer you quietly worked out was the source of the leak has done well since. She now sits on the interview panel for a post you want. She does not know that you know. You are almost sure of this.",
+    "triggered": true,
+    "requires": {
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Say nothing. Compete on the record.",
+        "effects": {
+          "competence": 4,
+          "integrity": 4,
+          "standing": -1
+        },
+        "outcome": "She asks you two fair questions and one hard one. You answer all three. Whether she knows remains, as far as you can tell, entirely your problem."
+      },
+      {
+        "text": "Let her understand, very quietly, that you know.",
+        "effects": {
+          "standing": 6,
+          "integrity": -10,
+          "heat": 10
+        },
+        "setFlags": [
+          "quiet_word"
+        ],
+        "outcome": "You mention, in passing, a Telegram channel. She does not react at all, which is how you know. The post is yours. So, now, is something else."
+      }
+    ]
+  },
+  {
+    "id": "two_names",
+    "title": "Two Names",
+    "body": "A journalist has noticed that the \"Enhanced\" scheme announced at Committee of Supply has the same budget line, the same eligibility criteria and the same hotline as the scheme it replaced. She would like to know which name people should use when they call.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Say both names are correct.",
+        "effects": {
+          "standing": 3,
+          "reputation": -4,
+          "integrity": -3
+        },
+        "outcome": "Both names are correct. She prints this. It reads exactly as well as it sounds."
+      },
+      {
+        "text": "Say it is the same scheme, renamed, and explain what changed.",
+        "effects": {
+          "integrity": 6,
+          "reputation": 3,
+          "standing": -5,
+          "heat": -6
+        },
+        "outcome": "What changed was the word \"Enhanced\". You say so. The piece runs with your quote in the headline and is, against all expectation, quite kind."
+      }
+    ]
+  },
+  {
+    "id": "raw_data",
+    "title": "The Raw Data",
+    "body": "A think tank has asked, with the usual courtesies, for the raw feedback from the national conversation you wrote up. The spreadsheet is still in a file. It is still eleven hundred people talking about the cost of living, and it still does not fit three pillars.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Release it.",
+        "effects": {
+          "integrity": 8,
+          "reputation": 3,
+          "standing": -6,
+          "heat": -6
+        },
+        "outcome": "The think tank's paper observes, politely, that the feedback and the report describe two different countries. Your Permanent Secretary asks why you released it. You say it was asked for. She says that is not usually the reason."
+      },
+      {
+        "text": "Send the report again, with a covering note.",
+        "effects": {
+          "standing": 4,
+          "integrity": -5,
+          "heat": 6
+        },
+        "outcome": "The covering note is very good. The think tank thanks you for the report, which it already had, and files a second request, which is a different kind of note."
+      }
+    ]
+  },
+  {
+    "id": "officer_a",
+    "title": "Officer A",
+    "body": "Your recusal memo from the tender evaluation is now slide 14 of the procurement module every new officer takes. It does not name you. It calls you Officer A. At lunch, two of your juniors discuss Officer A, approvingly, in front of you.",
+    "triggered": true,
+    "requires": {
+      "maxRank": 7
+    },
+    "choices": [
+      {
+        "text": "Tell them.",
+        "effects": {
+          "reputation": 4,
+          "standing": 2,
+          "integrity": -2
+        },
+        "outcome": "They are delighted, and then slightly disappointed, the way people are when a parable turns out to be someone they report to."
+      },
+      {
+        "text": "Say nothing, and finish your lunch.",
+        "effects": {
+          "integrity": 6
+        },
+        "outcome": "Officer A remains a better person than you, because Officer A never has to do anything else. You find you do not mind."
+      }
+    ]
+  },
+  {
+    "id": "lanterns",
+    "title": "Lanterns",
+    "body": "The grassroots adviser who mentioned, apparently in passing, that you handle yourself well with people would like to know if you are free on Saturday. It is a Mid-Autumn celebration at the community club. There will be lanterns, a lion dance and an MP, and the MP would like to meet you. This is also, apparently, in passing.",
+    "triggered": true,
+    "requires": {
+      "maxRank": 7
+    },
+    "choices": [
+      {
+        "text": "Go, and stay to stack the chairs.",
+        "effects": {
+          "reputation": 6,
+          "standing": 3,
+          "competence": -2
+        },
+        "outcome": "You carry lanterns, are photographed with a lion, and stack chairs until ten. The MP notices the chairs."
+      },
+      {
+        "text": "Send your apologies. You have a deadline.",
+        "effects": {
+          "competence": 4,
+          "reputation": -3,
+          "standing": -1
+        },
+        "outcome": "The deadline is met. The adviser says there will be other Saturdays, in the tone of someone who has written down which ones."
+      }
+    ]
+  },
+  {
+    "id": "first_cabinet",
+    "title": "The First Cabinet",
+    "body": "The colleague you backed in the succession is now Prime Minister. At his first Cabinet meeting he thanks everyone for their support, in general terms, and then looks at you for slightly longer than at anyone else.",
+    "triggered": true,
+    "choices": [
+      {
+        "text": "Ask for nothing.",
+        "effects": {
+          "standing": 8,
+          "integrity": 4
+        },
+        "outcome": "He gives you something anyway: the chair of a ministerial committee that meets on Saturday mornings. It is a mark of enormous trust, and you will never see a Saturday again."
+      },
+      {
+        "text": "Ask for the hard portfolio nobody wants.",
+        "effects": {
+          "reputation": 6,
+          "competence": 4,
+          "standing": -2
+        },
+        "outcome": "He agrees before you finish the sentence, which tells you he had been hoping someone would ask."
+      }
+    ]
+  },
+  {
+    "id": "other_life",
+    "title": "The Other Life",
+    "body": "Someone who went to tea in the year you declined is now a Minister. On the evening news she announces a scheme your division designed. She thanks the public service, in general terms, which is correct.",
+    "triggered": true,
+    "requires": {
+      "maxRank": 7
+    },
+    "choices": [
+      {
+        "text": "Send her a note of congratulations.",
+        "effects": {
+          "standing": 4,
+          "reputation": 2
+        },
+        "outcome": "She replies by hand. She remembers the year you were both invited, and says she has wondered since which of you made the right choice. She does not say which way she has decided."
+      },
+      {
+        "text": "Turn off the television and go back to the file.",
+        "effects": {
+          "integrity": 4,
+          "competence": 3
+        },
+        "outcome": "The file is better than the announcement. It usually is. That was, you remind yourself, more or less the reason."
+      }
+    ]
+  },
+  {
+    "id": "younger_officer",
+    "title": "The Younger Officer",
+    "body": "A younger officer asks you, over kopi, whether she should go to tea. She has been invited. She does not know that you were too, once, or what was in your folder, or that the next email never came.",
+    "triggered": true,
+    "requires": {
+      "maxRank": 7,
+      "flagsAll": [
+        "tea_withdrawn"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Tell her to go, and to keep her folder thin.",
+        "effects": {
+          "reputation": 3,
+          "standing": 3
+        },
+        "outcome": "She goes. Two years later she is a candidate. She tells a newspaper that an older colleague once gave her the best advice she ever had, and does not say what it was, which is the advice working."
+      },
+      {
+        "text": "Tell her about your folder.",
+        "effects": {
+          "integrity": 8,
+          "standing": -2
+        },
+        "outcome": "You tell her all of it. She listens the way you once listened at tea, thanks you, and you realise you have just been vetted by someone half your age."
+      }
+    ]
+  },
+  {
+    "id": "model_ward",
+    "title": "A Model Ward",
+    "body": "Your ward's swing has been written up in an internal party paper as a model. The organising secretary would like you to mentor three new candidates before the next election. They are young, earnest, and have each read the paper.",
+    "triggered": true,
+    "once": true,
+    "requires": {
+      "flagsAll": [
+        "noticed_swing"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Teach them the walkabout.",
+        "effects": {
+          "reputation": 4,
+          "standing": 6
+        },
+        "outcome": "You teach them how to listen to a stallholder about chillies on camera without looking like someone listening on camera. Two of them get it."
+      },
+      {
+        "text": "Teach them Meet-the-People.",
+        "effects": {
+          "integrity": 5,
+          "reputation": 5,
+          "standing": -1
+        },
+        "outcome": "You take them to a Tuesday night. One of them stays until midnight writing a letter that actually argues the case. You recognise the look."
       }
     ]
   }

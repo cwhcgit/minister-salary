@@ -65,7 +65,16 @@ const Engine = (() => {
   function eligible(ev, s) {
     if (ev.triggered) return false;
     if (ev.once && s.seen.includes(ev.id)) return false;
-    const q = ev.requires || {};
+    return meets(ev.requires || {}, s);
+  }
+
+  // A scheduled consequence waits, still scheduled, until its own requirements hold (a
+  // promotion-board callback never lands on a Minister). It is never silently dropped.
+  function fits(ev, s) {
+    return !!ev && !(ev.once && s.seen.includes(ev.id)) && meets(ev.requires || {}, s);
+  }
+
+  function meets(q, s) {
     if (q.minRank !== undefined && s.rank < q.minRank) return false;
     if (q.maxRank !== undefined && s.rank > q.maxRank) return false;
     if (q.minAge !== undefined && s.age < q.minAge) return false;
@@ -83,7 +92,7 @@ const Engine = (() => {
   function pickEvent(content, s) {
     // 1. scheduled consequences pre-empt everything. One fires a year; when several fall
     //    due together, the rest carry over to the following years, earliest first.
-    const due = s.scheduled.filter(x => x.fireYear <= s.year);
+    const due = s.scheduled.filter(x => x.fireYear <= s.year && fits(content.events.find(e => e.id === x.eventId), s));
     if (due.length) {
       const next = due.reduce((a, b) => (b.fireYear < a.fireYear ? b : a));
       s.scheduled.splice(s.scheduled.indexOf(next), 1);

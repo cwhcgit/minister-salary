@@ -298,7 +298,7 @@
     },
     {
       "flag": "looked_him_up",
-      "item": "a Forum letter writer whose employer you telephoned"
+      "item": "a Forum letter writer whose home address you looked up"
     },
     {
       "flag": "awarded_friend",
@@ -331,6 +331,14 @@
     {
       "flag": "smoothed_feedback",
       "item": "eleven hundred citizens' feedback, redistributed across three pillars"
+    },
+    {
+      "flag": "returned_favour",
+      "item": "a job application someone looked at because a friend asked"
+    },
+    {
+      "flag": "quiet_word",
+      "item": "a quiet word with a colleague about a Telegram channel"
     }
   ],
   "folderLimit": 3,
