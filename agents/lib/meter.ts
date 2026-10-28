@@ -64,8 +64,10 @@ export class Meter {
         if (++this.fresh >= c.freshToReset) this.streak = 0;
       }
     }
-    const decay = -c.decay;
-    const after = Math.max(0, Math.min(c.cap, before + model + repeat + decay));
+    // A canary is a probe of the reader, not part of the game: its tap leaves the meter alone.
+    const probe = !!t.canary || (!!t.card && t.card.startsWith("canary_"));
+    const decay = probe ? 0 : -c.decay;
+    const after = probe ? before : Math.max(0, Math.min(c.cap, before + model + repeat + decay));
     this.value = after;
     this.taps++;
     return { before, model, repeat, decay, after, isRepeat, streak: this.streak, quit: after <= c.quitLine };

@@ -30,12 +30,12 @@
       {
         "text": "Laugh along. You get the joke.",
         "effects": { "standing": 2 },
-        "outcome": "You both laugh. Somewhere, a narrator nods knowingly. The salary is, after all, the punchline. Get it?"
+        "outcome": "You both laugh. The meeting moves on to the next item."
       },
       {
         "text": "Say nothing.",
         "effects": { "integrity": 1 },
-        "outcome": "She winks. You are fairly sure she winks."
+        "outcome": "The meeting moves on to the next item."
       }
     ]
   }
