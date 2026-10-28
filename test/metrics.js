@@ -151,7 +151,7 @@ class Metrics {
       // consequences
       for (const s of t.scheduled) this.cons(b, s.eventId).scheduled++;
       if (t.event.source === "scheduled") {
-        const c = this.cons(b, t.event.id);
+        const c = this.cons(b, t.event.fired ? t.event.fired.eventId : t.event.id);   // alternates count as their card
         c.fired++;
         if (t.event.late) { c.late++; c.lateYears += t.event.late; }
       }

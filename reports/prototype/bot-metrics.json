@@ -1,5 +1,5 @@
 {
- "build": "23791617d6cf",
+ "build": "5756b0e20b9f",
  "runsPerBotPerOrigin": 800,
  "bots": {
   "first-timer": {
@@ -7,78 +7,76 @@
    "origins": {
     "scholar": {
      "runs": 800,
-     "pmRate": 5.8,
+     "pmRate": 5.4,
      "pmCI": [
-      4.3,
-      7.6
+      4,
+      7.2
      ],
-     "pm": 46,
+     "pm": 43,
      "endings": {
-      "declined": 251,
-      "consultancy": 276,
-      "lostward": 85,
-      "retired": 113,
-      "backbench": 7,
-      "pm": 46,
-      "scandal": 2,
-      "permsec": 20
+      "consultancy": 277,
+      "lostward": 74,
+      "declined": 261,
+      "retired": 102,
+      "permsec": 38,
+      "pm": 43,
+      "backbench": 5
      },
-     "medianWealth": 39543928,
+     "medianWealth": 32472866,
      "turns": {
-      "p10": 11,
+      "p10": 13,
       "median": 39,
       "p90": 46,
-      "inRange35to50": 57.6
+      "inRange35to50": 58
      },
      "earlyLoss": {
-      "rate": 5.5,
-      "n": 44,
+      "rate": 4,
+      "n": 32,
       "byCause": {
-       "luck": 40,
-       "choice": 1,
-       "choice+luck": 3
+       "luck": 28,
+       "choice+luck": 4
       },
-      "notByChoice": 90.9
+      "notByChoice": 87.5
      },
      "cepSafeguard": {
-      "ceilingRuns": 153,
-      "reachableAfter": 90,
-      "shownAfter": 69,
-      "takenAfter": 33,
+      "ceilingRuns": 147,
+      "reachableAfter": 93,
+      "shownAfter": 75,
+      "takenAfter": 43,
       "everReachable": 800,
-      "everShown": 784,
+      "everShown": 780,
       "everReachableRate": 100,
-      "reachableAfterCeilingRate": 58.8,
-      "shownAfterCeilingRate": 45.1,
-      "takenAfterCeilingRate": 21.6
+      "reachableAfterCeilingRate": 63.3,
+      "shownAfterCeilingRate": 51,
+      "takenAfterCeilingRate": 29.3
      }
     },
     "grad": {
      "runs": 800,
-     "pmRate": 1.1,
+     "pmRate": 1.6,
      "pmCI": [
-      0.6,
-      2.1
+      1,
+      2.8
      ],
-     "pm": 9,
+     "pm": 13,
      "endings": {
-      "retired": 77,
-      "permsec": 102,
-      "pm": 9,
-      "lostward": 39,
-      "declined": 202,
-      "level": 50,
-      "consultancy": 201,
-      "backbench": 17,
+      "retired": 65,
+      "permsec": 110,
+      "pm": 13,
+      "lostward": 42,
+      "declined": 163,
+      "level": 46,
+      "consultancy": 243,
+      "backbench": 19,
       "quiet": 96,
-      "scandal": 7
+      "scandal": 3
      },
-     "medianWealth": 14811998,
+     "medianWealth": 14349175,
      "turns": {
       "p10": 11,
       "median": 42,
       "p90": 49,
-      "inRange35to50": 68.6
+      "inRange35to50": 63.9
      },
      "earlyLoss": {
       "rate": 11.3,
@@ -91,16 +89,16 @@
       "notByChoice": 10
      },
      "cepSafeguard": {
-      "ceilingRuns": 131,
-      "reachableAfter": 110,
-      "shownAfter": 84,
-      "takenAfter": 54,
+      "ceilingRuns": 123,
+      "reachableAfter": 106,
+      "shownAfter": 82,
+      "takenAfter": 53,
       "everReachable": 688,
-      "everShown": 676,
+      "everShown": 666,
       "everReachableRate": 86,
-      "reachableAfterCeilingRate": 84,
-      "shownAfterCeilingRate": 64.1,
-      "takenAfterCeilingRate": 41.2
+      "reachableAfterCeilingRate": 86.2,
+      "shownAfterCeilingRate": 66.7,
+      "takenAfterCeilingRate": 43.1
      }
     },
     "poly": {
@@ -112,23 +110,23 @@
      ],
      "pm": 1,
      "endings": {
-      "lostward": 36,
-      "permsec": 187,
-      "consultancy": 226,
-      "declined": 183,
-      "retired": 65,
-      "level": 65,
-      "backbench": 27,
+      "retired": 68,
+      "consultancy": 256,
+      "permsec": 206,
+      "declined": 134,
+      "level": 64,
+      "lostward": 32,
+      "backbench": 32,
       "quiet": 5,
-      "scandal": 5,
+      "scandal": 2,
       "pm": 1
      },
-     "medianWealth": 16902441,
+     "medianWealth": 17390177,
      "turns": {
-      "p10": 24,
+      "p10": 22,
       "median": 38,
       "p90": 45,
-      "inRange35to50": 74.4
+      "inRange35to50": 69.8
      },
      "earlyLoss": {
       "rate": 0.1,
@@ -140,29 +138,29 @@
      },
      "cepSafeguard": {
       "ceilingRuns": 158,
-      "reachableAfter": 140,
-      "shownAfter": 99,
-      "takenAfter": 75,
+      "reachableAfter": 131,
+      "shownAfter": 88,
+      "takenAfter": 70,
       "everReachable": 800,
       "everShown": 800,
       "everReachableRate": 100,
-      "reachableAfterCeilingRate": 88.6,
-      "shownAfterCeilingRate": 62.7,
-      "takenAfterCeilingRate": 47.5
+      "reachableAfterCeilingRate": 82.9,
+      "shownAfterCeilingRate": 55.7,
+      "takenAfterCeilingRate": 44.3
      }
     }
    },
    "deadTurns": {
     "I": {
-     "turnsPerRun": 27.61,
-     "deadPerRun": 0.08,
+     "turnsPerRun": 27.55,
+     "deadPerRun": 0.09,
      "quietShare": 0,
-     "repeatShare": 40.6,
-     "repeatFillerShare": 40.6,
+     "repeatShare": 47.1,
+     "repeatFillerShare": 47,
      "deadShare": 0.3
     },
     "II": {
-     "turnsPerRun": 1.34,
+     "turnsPerRun": 1.24,
      "deadPerRun": 0,
      "quietShare": 0,
      "repeatShare": 0,
@@ -170,823 +168,817 @@
      "deadShare": 0
     },
     "III": {
-     "turnsPerRun": 4.94,
-     "deadPerRun": 0.03,
+     "turnsPerRun": 4.66,
+     "deadPerRun": 0.01,
      "quietShare": 0,
-     "repeatShare": 46.9,
-     "repeatFillerShare": 33.8,
-     "deadShare": 0.5
+     "repeatShare": 47.8,
+     "repeatFillerShare": 34.8,
+     "deadShare": 0.3
     }
    },
    "consequences": {
-    "lanterns": {
-     "scheduled": 395,
-     "fired": 381,
-     "firedLate": 39,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 14,
-     "fireRate": 96.5,
-     "triggered": true
-    },
-    "other_life": {
-     "scheduled": 745,
-     "fired": 624,
-     "firedLate": 11,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 121,
-     "fireRate": 83.8,
-     "triggered": true
-    },
-    "citizens_panel": {
-     "scheduled": 339,
-     "fired": 286,
-     "firedLate": 16,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 53,
-     "fireRate": 84.4,
-     "triggered": true
-    },
-    "farewell_drinks": {
-     "scheduled": 428,
-     "fired": 397,
-     "firedLate": 18,
-     "meanYearsLate": 1.06,
-     "dropped": 0,
-     "pendingAtEnd": 31,
-     "fireRate": 92.8,
-     "triggered": true
-    },
-    "the_vetting": {
-     "scheduled": 817,
-     "fired": 809,
-     "firedLate": 67,
-     "meanYearsLate": 1.03,
-     "dropped": 0,
-     "pendingAtEnd": 8,
-     "fireRate": 99,
-     "triggered": true
-    },
-    "younger_officer": {
-     "scheduled": 409,
-     "fired": 36,
-     "firedLate": 3,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 373,
-     "fireRate": 8.8,
-     "triggered": true
-    },
-    "the_election": {
-     "scheduled": 762,
-     "fired": 755,
-     "firedLate": 75,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 7,
-     "fireRate": 99.1,
-     "triggered": true
-    },
-    "re_election": {
-     "scheduled": 2860,
-     "fired": 2105,
-     "firedLate": 15,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 755,
-     "fireRate": 73.6,
-     "triggered": true
-    },
-    "model_ward": {
-     "scheduled": 1047,
-     "fired": 323,
-     "firedLate": 162,
-     "meanYearsLate": 6.12,
-     "dropped": 0,
-     "pendingAtEnd": 724,
-     "fireRate": 30.9,
-     "triggered": true
-    },
-    "bonus_vindicated": {
-     "scheduled": 45,
-     "fired": 39,
-     "firedLate": 13,
-     "meanYearsLate": 1.15,
-     "dropped": 0,
-     "pendingAtEnd": 6,
-     "fireRate": 86.7,
-     "triggered": true
-    },
-    "block_party": {
-     "scheduled": 457,
-     "fired": 105,
-     "firedLate": 78,
-     "meanYearsLate": 5.26,
-     "dropped": 0,
-     "pendingAtEnd": 352,
-     "fireRate": 23,
-     "triggered": true
-    },
-    "interview_panel": {
-     "scheduled": 341,
-     "fired": 49,
-     "firedLate": 3,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 292,
-     "fireRate": 14.4,
-     "triggered": true
-    },
-    "dialogue_vindicated": {
-     "scheduled": 187,
-     "fired": 174,
-     "firedLate": 9,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 13,
-     "fireRate": 93,
-     "triggered": true
-    },
-    "two_names": {
-     "scheduled": 301,
-     "fired": 277,
-     "firedLate": 28,
-     "meanYearsLate": 1.04,
-     "dropped": 0,
-     "pendingAtEnd": 24,
-     "fireRate": 92,
-     "triggered": true
-    },
-    "leak_resurfaces": {
-     "scheduled": 193,
-     "fired": 140,
-     "firedLate": 3,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 53,
-     "fireRate": 72.5,
-     "triggered": true
-    },
-    "ally_returns": {
-     "scheduled": 246,
-     "fired": 199,
-     "firedLate": 1,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 47,
-     "fireRate": 80.9,
-     "triggered": true
-    },
-    "first_cabinet": {
-     "scheduled": 76,
-     "fired": 74,
-     "firedLate": 7,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 2,
-     "fireRate": 97.4,
-     "triggered": true
-    },
-    "figure_resurfaces": {
-     "scheduled": 146,
-     "fired": 142,
-     "firedLate": 1,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 4,
-     "fireRate": 97.3,
-     "triggered": true
-    },
-    "budget_committee": {
-     "scheduled": 185,
-     "fired": 167,
-     "firedLate": 8,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 18,
-     "fireRate": 90.3,
-     "triggered": true
-    },
-    "secondment_verdict": {
-     "scheduled": 116,
-     "fired": 114,
-     "firedLate": 7,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 2,
-     "fireRate": 98.3,
-     "triggered": true
-    },
-    "speech_vindicated": {
-     "scheduled": 105,
-     "fired": 96,
-     "firedLate": 33,
-     "meanYearsLate": 1.09,
-     "dropped": 0,
-     "pendingAtEnd": 9,
-     "fireRate": 91.4,
-     "triggered": true
-    },
-    "cos_vindicated": {
-     "scheduled": 193,
-     "fired": 182,
-     "firedLate": 16,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 11,
-     "fireRate": 94.3,
-     "triggered": true
-    },
-    "officer_a": {
-     "scheduled": 306,
-     "fired": 235,
-     "firedLate": 3,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 71,
-     "fireRate": 76.8,
-     "triggered": true
-    },
-    "raw_data": {
-     "scheduled": 326,
-     "fired": 280,
-     "firedLate": 23,
-     "meanYearsLate": 1.04,
-     "dropped": 0,
-     "pendingAtEnd": 46,
-     "fireRate": 85.9,
-     "triggered": true
-    },
-    "tender_questions": {
-     "scheduled": 216,
-     "fired": 186,
-     "firedLate": 10,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 30,
-     "fireRate": 86.1,
-     "triggered": true
-    },
-    "pofma_vindicated": {
-     "scheduled": 67,
-     "fired": 62,
-     "firedLate": 23,
-     "meanYearsLate": 1.17,
-     "dropped": 0,
-     "pendingAtEnd": 5,
-     "fireRate": 92.5,
-     "triggered": true
-    },
     "promotion_board": {
-     "scheduled": 186,
-     "fired": 86,
+     "scheduled": 162,
+     "fired": 101,
      "firedLate": 2,
      "meanYearsLate": 1,
      "dropped": 0,
-     "pendingAtEnd": 100,
-     "fireRate": 46.2,
+     "pendingAtEnd": 61,
+     "fireRate": 62.3,
+     "triggered": true
+    },
+    "secondment_verdict": {
+     "scheduled": 165,
+     "fired": 122,
+     "firedLate": 12,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 43,
+     "fireRate": 73.9,
+     "triggered": true
+    },
+    "other_life": {
+     "scheduled": 669,
+     "fired": 568,
+     "firedLate": 4,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 101,
+     "fireRate": 84.9,
+     "triggered": true
+    },
+    "the_vetting": {
+     "scheduled": 760,
+     "fired": 756,
+     "firedLate": 52,
+     "meanYearsLate": 1.1,
+     "dropped": 0,
+     "pendingAtEnd": 4,
+     "fireRate": 99.5,
+     "triggered": true
+    },
+    "younger_officer": {
+     "scheduled": 371,
+     "fired": 16,
+     "firedLate": 1,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 355,
+     "fireRate": 4.3,
+     "triggered": true
+    },
+    "the_election": {
+     "scheduled": 738,
+     "fired": 726,
+     "firedLate": 45,
+     "meanYearsLate": 1.02,
+     "dropped": 0,
+     "pendingAtEnd": 12,
+     "fireRate": 98.4,
+     "triggered": true
+    },
+    "re_election": {
+     "scheduled": 2713,
+     "fired": 1987,
+     "firedLate": 9,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 726,
+     "fireRate": 73.2,
+     "triggered": true
+    },
+    "model_ward": {
+     "scheduled": 1025,
+     "fired": 328,
+     "firedLate": 143,
+     "meanYearsLate": 6.81,
+     "dropped": 0,
+     "pendingAtEnd": 697,
+     "fireRate": 32,
+     "triggered": true
+    },
+    "pofma_vindicated": {
+     "scheduled": 65,
+     "fired": 60,
+     "firedLate": 23,
+     "meanYearsLate": 1.13,
+     "dropped": 0,
+     "pendingAtEnd": 5,
+     "fireRate": 92.3,
+     "triggered": true
+    },
+    "first_cabinet": {
+     "scheduled": 69,
+     "fired": 66,
+     "firedLate": 4,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 3,
+     "fireRate": 95.7,
+     "triggered": true
+    },
+    "officer_a": {
+     "scheduled": 155,
+     "fired": 132,
+     "firedLate": 1,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 23,
+     "fireRate": 85.2,
+     "triggered": true
+    },
+    "interview_panel": {
+     "scheduled": 367,
+     "fired": 123,
+     "firedLate": 3,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 244,
+     "fireRate": 33.5,
+     "triggered": true
+    },
+    "two_names": {
+     "scheduled": 230,
+     "fired": 223,
+     "firedLate": 21,
+     "meanYearsLate": 1.05,
+     "dropped": 0,
+     "pendingAtEnd": 7,
+     "fireRate": 97,
+     "triggered": true
+    },
+    "speech_vindicated": {
+     "scheduled": 108,
+     "fired": 95,
+     "firedLate": 37,
+     "meanYearsLate": 1.03,
+     "dropped": 0,
+     "pendingAtEnd": 13,
+     "fireRate": 88,
+     "triggered": true
+    },
+    "bonus_vindicated": {
+     "scheduled": 47,
+     "fired": 38,
+     "firedLate": 13,
+     "meanYearsLate": 1.23,
+     "dropped": 0,
+     "pendingAtEnd": 9,
+     "fireRate": 80.9,
+     "triggered": true
+    },
+    "raw_data": {
+     "scheduled": 143,
+     "fired": 119,
+     "firedLate": 14,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 24,
+     "fireRate": 83.2,
+     "triggered": true
+    },
+    "citizens_panel": {
+     "scheduled": 212,
+     "fired": 180,
+     "firedLate": 11,
+     "meanYearsLate": 1.09,
+     "dropped": 0,
+     "pendingAtEnd": 32,
+     "fireRate": 84.9,
+     "triggered": true
+    },
+    "block_party": {
+     "scheduled": 351,
+     "fired": 99,
+     "firedLate": 88,
+     "meanYearsLate": 6.83,
+     "dropped": 0,
+     "pendingAtEnd": 252,
+     "fireRate": 28.2,
+     "triggered": true
+    },
+    "cos_vindicated": {
+     "scheduled": 124,
+     "fired": 106,
+     "firedLate": 7,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 18,
+     "fireRate": 85.5,
+     "triggered": true
+    },
+    "budget_committee": {
+     "scheduled": 140,
+     "fired": 112,
+     "firedLate": 2,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 28,
+     "fireRate": 80,
+     "triggered": true
+    },
+    "lanterns": {
+     "scheduled": 407,
+     "fired": 402,
+     "firedLate": 38,
+     "meanYearsLate": 1.05,
+     "dropped": 0,
+     "pendingAtEnd": 5,
+     "fireRate": 98.8,
+     "triggered": true
+    },
+    "tender_questions": {
+     "scheduled": 98,
+     "fired": 92,
+     "firedLate": 4,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 6,
+     "fireRate": 93.9,
+     "triggered": true
+    },
+    "dialogue_vindicated": {
+     "scheduled": 118,
+     "fired": 113,
+     "firedLate": 9,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 5,
+     "fireRate": 95.8,
      "triggered": true
     },
     "minute_vindicated": {
-     "scheduled": 119,
-     "fired": 115,
+     "scheduled": 121,
+     "fired": 117,
      "firedLate": 12,
      "meanYearsLate": 1,
      "dropped": 0,
      "pendingAtEnd": 4,
-     "fireRate": 96.6,
+     "fireRate": 96.7,
      "triggered": true
     },
-    "committee_vindicated": {
-     "scheduled": 99,
-     "fired": 96,
-     "firedLate": 6,
+    "leak_resurfaces": {
+     "scheduled": 169,
+     "fired": 119,
+     "firedLate": 3,
      "meanYearsLate": 1,
      "dropped": 0,
-     "pendingAtEnd": 3,
-     "fireRate": 97,
+     "pendingAtEnd": 50,
+     "fireRate": 70.4,
      "triggered": true
     },
-    "figure_vindicated": {
-     "scheduled": 171,
-     "fired": 168,
-     "firedLate": 7,
-     "meanYearsLate": 1.14,
+    "farewell_drinks": {
+     "scheduled": 375,
+     "fired": 357,
+     "firedLate": 12,
+     "meanYearsLate": 1,
      "dropped": 0,
-     "pendingAtEnd": 3,
-     "fireRate": 98.2,
+     "pendingAtEnd": 18,
+     "fireRate": 95.2,
      "triggered": true
     },
     "scholar_returns": {
-     "scheduled": 134,
-     "fired": 97,
-     "firedLate": 0,
-     "meanYearsLate": 0,
+     "scheduled": 98,
+     "fired": 75,
+     "firedLate": 1,
+     "meanYearsLate": 1,
      "dropped": 0,
-     "pendingAtEnd": 37,
-     "fireRate": 72.4,
+     "pendingAtEnd": 23,
+     "fireRate": 76.5,
+     "triggered": true
+    },
+    "committee_vindicated": {
+     "scheduled": 53,
+     "fired": 53,
+     "firedLate": 5,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 0,
+     "fireRate": 100,
      "triggered": true
     },
     "small_favour": {
-     "scheduled": 328,
-     "fired": 320,
+     "scheduled": 327,
+     "fired": 319,
      "firedLate": 0,
      "meanYearsLate": 0,
      "dropped": 0,
      "pendingAtEnd": 8,
      "fireRate": 97.6,
      "triggered": true
+    },
+    "ally_returns": {
+     "scheduled": 110,
+     "fired": 87,
+     "firedLate": 1,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 23,
+     "fireRate": 79.1,
+     "triggered": true
+    },
+    "figure_vindicated": {
+     "scheduled": 136,
+     "fired": 133,
+     "firedLate": 1,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 3,
+     "fireRate": 97.8,
+     "triggered": true
+    },
+    "figure_resurfaces": {
+     "scheduled": 100,
+     "fired": 95,
+     "firedLate": 2,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 5,
+     "fireRate": 95,
+     "triggered": true
     }
    },
    "observedDirection": {
     "reputation": {
-     "upShare": 73.1,
-     "downShare": 26.9,
-     "moved": 36749
+     "upShare": 71,
+     "downShare": 29,
+     "moved": 36739
     },
     "standing": {
-     "upShare": 63.1,
-     "downShare": 36.9,
-     "moved": 70531
+     "upShare": 62.4,
+     "downShare": 37.6,
+     "moved": 69207
     },
     "integrity": {
-     "upShare": 75.5,
-     "downShare": 24.5,
-     "moved": 43639
+     "upShare": 75.8,
+     "downShare": 24.2,
+     "moved": 42928
     },
     "competence": {
-     "upShare": 73.8,
-     "downShare": 26.2,
-     "moved": 51835
+     "upShare": 72.5,
+     "downShare": 27.5,
+     "moved": 51932
     },
     "wealth": {
-     "upShare": 32.8,
-     "downShare": 67.2,
-     "moved": 1422
+     "upShare": 29,
+     "downShare": 71,
+     "moved": 1343
     },
     "heat": {
-     "upShare": 81.4,
-     "downShare": 18.6,
-     "moved": 6048
+     "upShare": 81.3,
+     "downShare": 18.7,
+     "moved": 4595
     },
     "cep": {
-     "upShare": 93.6,
-     "downShare": 6.4,
-     "moved": 5568
+     "upShare": 93.1,
+     "downShare": 6.9,
+     "moved": 5129
     }
    },
    "optimiserPicks": [
     {
-     "event": "new_ro",
-     "choice": "A",
-     "share": 35.1,
-     "shown": 986
-    },
-    {
-     "event": "forum_letter",
-     "choice": "B",
-     "share": 34.8,
-     "shown": 1311
-    },
-    {
-     "event": "leadership_programme",
-     "choice": "C",
-     "share": 34.3,
-     "shown": 814
-    },
-    {
-     "event": "grassroots_invite",
-     "choice": "A",
-     "share": 51.6,
-     "shown": 935
-    },
-    {
-     "event": "lanterns",
-     "choice": "B",
-     "share": 52,
-     "shown": 381
-    },
-    {
-     "event": "the_tender",
-     "choice": "A",
-     "share": 36.5,
-     "shown": 1209
-    },
-    {
-     "event": "tea_session",
-     "choice": "B",
-     "share": 50.3,
-     "shown": 1643
-    },
-    {
-     "event": "cos_speech",
-     "choice": "B",
-     "share": 34.9,
-     "shown": 1247
-    },
-    {
      "event": "the_work",
      "choice": "C",
-     "share": 34.1,
-     "shown": 4300
-    },
-    {
-     "event": "the_crisis",
-     "choice": "A",
-     "share": 33.6,
-     "shown": 1335
+     "share": 34.5,
+     "shown": 5233
     },
     {
      "event": "mps_duty",
-     "choice": "B",
+     "choice": "C",
      "share": 34.1,
-     "shown": 1586
-    },
-    {
-     "event": "budget_round",
-     "choice": "B",
-     "share": 35,
-     "shown": 1418
-    },
-    {
-     "event": "national_day_award",
-     "choice": "B",
-     "share": 52.1,
-     "shown": 1125
-    },
-    {
-     "event": "the_leak",
-     "choice": "B",
-     "share": 41,
-     "shown": 1169
-    },
-    {
-     "event": "headhunter_mid",
-     "choice": "B",
-     "share": 34.3,
-     "shown": 1084
-    },
-    {
-     "event": "dialogue_session",
-     "choice": "A",
-     "share": 35.8,
-     "shown": 1267
-    },
-    {
-     "event": "late_night",
-     "choice": "B",
-     "share": 50.2,
-     "shown": 1808
-    },
-    {
-     "event": "the_quiet_year",
-     "choice": "C",
-     "share": 34.2,
-     "shown": 2511
-    },
-    {
-     "event": "the_appraisal_talk",
-     "choice": "A",
-     "share": 35,
-     "shown": 3300
-    },
-    {
-     "event": "consultant_report",
-     "choice": "B",
-     "share": 34.7,
-     "shown": 694
-    },
-    {
-     "event": "other_life",
-     "choice": "B",
-     "share": 51.9,
-     "shown": 624
-    },
-    {
-     "event": "citizens_panel",
-     "choice": "C",
-     "share": 36,
-     "shown": 286
-    },
-    {
-     "event": "cep_discovery",
-     "choice": "A",
-     "share": 50.4,
-     "shown": 1065
-    },
-    {
-     "event": "the_vetting",
-     "choice": "A",
-     "share": 50.6,
-     "shown": 809
-    },
-    {
-     "event": "the_election",
-     "choice": "A",
-     "share": 93.1,
-     "shown": 755
-    },
-    {
-     "event": "town_council",
-     "choice": "B",
-     "share": 50.2,
-     "shown": 422
-    },
-    {
-     "event": "the_mps_night",
-     "choice": "A",
-     "share": 34.8,
-     "shown": 604
-    },
-    {
-     "event": "re_election",
-     "choice": "A",
-     "share": 51.1,
-     "shown": 2105
-    },
-    {
-     "event": "the_pq",
-     "choice": "B",
-     "share": 34.9,
-     "shown": 538
-    },
-    {
-     "event": "the_bonus_reveal",
-     "choice": "C",
-     "share": 34.6,
-     "shown": 324
-    },
-    {
-     "event": "the_townhall",
-     "choice": "A",
-     "share": 54,
-     "shown": 350
-    },
-    {
-     "event": "pofma_moment",
-     "choice": "A",
-     "share": 54.7,
-     "shown": 322
-    },
-    {
-     "event": "model_ward",
-     "choice": "B",
-     "share": 52.9,
-     "shown": 323
-    },
-    {
-     "event": "bonus_vindicated",
-     "choice": "B",
-     "share": 51.3,
-     "shown": 39
-    },
-    {
-     "event": "the_indicators",
-     "choice": "A",
-     "share": 34.3,
-     "shown": 1078
-    },
-    {
-     "event": "the_walkabout",
-     "choice": "B",
-     "share": 52.3,
-     "shown": 555
-    },
-    {
-     "event": "headhunter_political",
-     "choice": "A",
-     "share": 50.4,
-     "shown": 460
-    },
-    {
-     "event": "overseas_posting",
-     "choice": "C",
-     "share": 34.4,
-     "shown": 457
-    },
-    {
-     "event": "dialogue_vindicated",
-     "choice": "B",
-     "share": 55.2,
-     "shown": 174
-    },
-    {
-     "event": "the_committee",
-     "choice": "B",
-     "share": 36.1,
-     "shown": 609
+     "shown": 1160
     },
     {
      "event": "postit_workshop",
      "choice": "A",
-     "share": 34.8,
-     "shown": 1539
+     "share": 34.6,
+     "shown": 1760
     },
     {
-     "event": "two_names",
-     "choice": "B",
-     "share": 51.3,
-     "shown": 277
-    },
-    {
-     "event": "cny_lohei",
-     "choice": "C",
-     "share": 34.9,
-     "shown": 773
-    },
-    {
-     "event": "leak_resurfaces",
+     "event": "new_ro",
      "choice": "A",
-     "share": 50,
-     "shown": 140
-    },
-    {
-     "event": "ally_returns",
-     "choice": "B",
-     "share": 55.8,
-     "shown": 199
-    },
-    {
-     "event": "reshuffle",
-     "choice": "B",
-     "share": 58.8,
-     "shown": 284
-    },
-    {
-     "event": "succession",
-     "choice": "A",
-     "share": 56.1,
-     "shown": 198
-    },
-    {
-     "event": "first_cabinet",
-     "choice": "A",
-     "share": 56.8,
-     "shown": 74
-    },
-    {
-     "event": "inconvenient_figure",
-     "choice": "A",
-     "share": 34.7,
-     "shown": 924
+     "share": 36.7,
+     "shown": 1204
     },
     {
      "event": "reorg",
-     "choice": "B",
-     "share": 35.3,
-     "shown": 669
-    },
-    {
-     "event": "figure_resurfaces",
-     "choice": "A",
-     "share": 52.8,
-     "shown": 142
-    },
-    {
-     "event": "budget_committee",
-     "choice": "A",
-     "share": 36.5,
-     "shown": 167
+     "choice": "C",
+     "share": 34.2,
+     "shown": 567
     },
     {
      "event": "secondment",
+     "choice": "B",
+     "share": 35.5,
+     "shown": 763
+    },
+    {
+     "event": "tea_session",
      "choice": "A",
-     "share": 37.7,
-     "shown": 488
+     "share": 50.5,
+     "shown": 1504
     },
     {
      "event": "secondment_verdict",
      "choice": "B",
-     "share": 55.3,
-     "shown": 114
+     "share": 50.8,
+     "shown": 122
+    },
+    {
+     "event": "grassroots_invite",
+     "choice": "B",
+     "share": 50.8,
+     "shown": 1003
+    },
+    {
+     "event": "promotion_board",
+     "choice": "B",
+     "share": 50.5,
+     "shown": 101
+    },
+    {
+     "event": "the_crisis",
+     "choice": "C",
+     "share": 35.4,
+     "shown": 853
+    },
+    {
+     "event": "other_life",
+     "choice": "B",
+     "share": 50.9,
+     "shown": 568
+    },
+    {
+     "event": "cny_lohei",
+     "choice": "A",
+     "share": 34.8,
+     "shown": 988
+    },
+    {
+     "event": "overseas_posting",
+     "choice": "C",
+     "share": 37.5,
+     "shown": 477
+    },
+    {
+     "event": "the_leak",
+     "choice": "B",
+     "share": 39.7,
+     "shown": 1336
+    },
+    {
+     "event": "late_night",
+     "choice": "B",
+     "share": 51,
+     "shown": 2308
+    },
+    {
+     "event": "the_quiet_year",
+     "choice": "B",
+     "share": 33.9,
+     "shown": 2923
+    },
+    {
+     "event": "headhunter_mid",
+     "choice": "C",
+     "share": 35.1,
+     "shown": 1336
+    },
+    {
+     "event": "cos_speech",
+     "choice": "B",
+     "share": 37.2,
+     "shown": 844
+    },
+    {
+     "event": "second_look",
+     "choice": "A",
+     "share": 50.1,
+     "shown": 686
+    },
+    {
+     "event": "consultant_report",
+     "choice": "A",
+     "share": 34.7,
+     "shown": 772
+    },
+    {
+     "event": "dialogue_session",
+     "choice": "B",
+     "share": 33.9,
+     "shown": 619
+    },
+    {
+     "event": "the_vetting",
+     "choice": "B",
+     "share": 50.9,
+     "shown": 756
+    },
+    {
+     "event": "the_election",
+     "choice": "A",
+     "share": 90.6,
+     "shown": 726
+    },
+    {
+     "event": "the_mps_night",
+     "choice": "A",
+     "share": 36.6,
+     "shown": 617
+    },
+    {
+     "event": "town_council",
+     "choice": "B",
+     "share": 54.4,
+     "shown": 430
+    },
+    {
+     "event": "the_walkabout",
+     "choice": "A",
+     "share": 52.8,
+     "shown": 553
+    },
+    {
+     "event": "re_election",
+     "choice": "B",
+     "share": 50,
+     "shown": 1987
+    },
+    {
+     "event": "headhunter_political",
+     "choice": "B",
+     "share": 50.4,
+     "shown": 460
+    },
+    {
+     "event": "pofma_moment",
+     "choice": "A",
+     "share": 51,
+     "shown": 304
+    },
+    {
+     "event": "the_bonus_reveal",
+     "choice": "C",
+     "share": 37.6,
+     "shown": 298
+    },
+    {
+     "event": "pofma_vindicated",
+     "choice": "A",
+     "share": 51.7,
+     "shown": 60
+    },
+    {
+     "event": "model_ward",
+     "choice": "B",
+     "share": 50.6,
+     "shown": 328
+    },
+    {
+     "event": "reshuffle",
+     "choice": "A",
+     "share": 52.2,
+     "shown": 247
+    },
+    {
+     "event": "the_indicators",
+     "choice": "B",
+     "share": 34.1,
+     "shown": 1013
+    },
+    {
+     "event": "the_townhall",
+     "choice": "A",
+     "share": 52.6,
+     "shown": 327
+    },
+    {
+     "event": "succession",
+     "choice": "A",
+     "share": 53.8,
+     "shown": 184
+    },
+    {
+     "event": "first_cabinet",
+     "choice": "A",
+     "share": 53,
+     "shown": 66
+    },
+    {
+     "event": "the_pq",
+     "choice": "B",
+     "share": 37.7,
+     "shown": 538
+    },
+    {
+     "event": "the_appraisal_talk",
+     "choice": "A",
+     "share": 34.4,
+     "shown": 2792
+    },
+    {
+     "event": "budget_round",
+     "choice": "C",
+     "share": 34.5,
+     "shown": 804
+    },
+    {
+     "event": "the_tender",
+     "choice": "B",
+     "share": 35,
+     "shown": 586
     },
     {
      "event": "maiden_speech",
      "choice": "A",
-     "share": 50.9,
-     "shown": 214
+     "share": 53.1,
+     "shown": 277
     },
     {
-     "event": "speech_vindicated",
+     "event": "interview_panel",
      "choice": "B",
-     "share": 51,
-     "shown": 96
-    },
-    {
-     "event": "cos_vindicated",
-     "choice": "B",
-     "share": 53.3,
-     "shown": 182
+     "share": 58.5,
+     "shown": 123
     },
     {
      "event": "officer_a",
      "choice": "A",
-     "share": 55.7,
-     "shown": 235
+     "share": 52.3,
+     "shown": 132
+    },
+    {
+     "event": "two_names",
+     "choice": "B",
+     "share": 53.4,
+     "shown": 223
+    },
+    {
+     "event": "speech_vindicated",
+     "choice": "A",
+     "share": 50.5,
+     "shown": 95
+    },
+    {
+     "event": "bonus_vindicated",
+     "choice": "B",
+     "share": 50,
+     "shown": 38
+    },
+    {
+     "event": "national_day_award",
+     "choice": "B",
+     "share": 50.3,
+     "shown": 485
     },
     {
      "event": "raw_data",
      "choice": "B",
      "share": 52.1,
-     "shown": 280
+     "shown": 119
+    },
+    {
+     "event": "forum_letter",
+     "choice": "B",
+     "share": 33.6,
+     "shown": 786
+    },
+    {
+     "event": "citizens_panel",
+     "choice": "B",
+     "share": 37.2,
+     "shown": 180
+    },
+    {
+     "event": "block_party",
+     "choice": "B",
+     "share": 54.5,
+     "shown": 99
+    },
+    {
+     "event": "cos_vindicated",
+     "choice": "B",
+     "share": 50.9,
+     "shown": 106
+    },
+    {
+     "event": "budget_committee",
+     "choice": "A",
+     "share": 42.9,
+     "shown": 112
+    },
+    {
+     "event": "lanterns",
+     "choice": "A",
+     "share": 53.2,
+     "shown": 402
     },
     {
      "event": "tender_questions",
      "choice": "B",
-     "share": 50.5,
-     "shown": 186
+     "share": 58.7,
+     "shown": 92
     },
     {
-     "event": "pofma_vindicated",
-     "choice": "B",
-     "share": 59.7,
-     "shown": 62
+     "event": "dialogue_vindicated",
+     "choice": "A",
+     "share": 54,
+     "shown": 113
     },
     {
      "event": "minute_vindicated",
-     "choice": "B",
-     "share": 50.4,
-     "shown": 115
-    },
-    {
-     "event": "farewell_drinks",
-     "choice": "B",
-     "share": 50.9,
-     "shown": 397
-    },
-    {
-     "event": "committee_vindicated",
      "choice": "A",
-     "share": 54.2,
-     "shown": 96
+     "share": 54.7,
+     "shown": 117
     },
     {
-     "event": "second_look",
+     "event": "leak_resurfaces",
      "choice": "B",
-     "share": 50.5,
-     "shown": 501
-    },
-    {
-     "event": "interview_panel",
-     "choice": "B",
-     "share": 55.1,
-     "shown": 49
-    },
-    {
-     "event": "figure_vindicated",
-     "choice": "B",
-     "share": 51.2,
-     "shown": 168
-    },
-    {
-     "event": "promotion_board",
-     "choice": "A",
-     "share": 51.2,
-     "shown": 86
-    },
-    {
-     "event": "block_party",
-     "choice": "A",
-     "share": 50.5,
-     "shown": 105
-    },
-    {
-     "event": "younger_officer",
-     "choice": "B",
-     "share": 55.6,
-     "shown": 36
+     "share": 53.8,
+     "shown": 119
     },
     {
      "event": "bto_queue",
      "choice": "C",
-     "share": 35.1,
-     "shown": 1384
+     "share": 34.9,
+     "shown": 1382
+    },
+    {
+     "event": "cep_discovery",
+     "choice": "B",
+     "share": 50.2,
+     "shown": 955
+    },
+    {
+     "event": "inconvenient_figure",
+     "choice": "B",
+     "share": 34.1,
+     "shown": 704
+    },
+    {
+     "event": "farewell_drinks",
+     "choice": "B",
+     "share": 51.3,
+     "shown": 357
+    },
+    {
+     "event": "leadership_programme",
+     "choice": "A",
+     "share": 36.8,
+     "shown": 394
     },
     {
      "event": "the_scholar",
      "choice": "B",
-     "share": 34.8,
-     "shown": 494
+     "share": 35,
+     "shown": 380
     },
     {
      "event": "headhunter_early",
      "choice": "B",
-     "share": 34.7,
+     "share": 35.3,
      "shown": 331
     },
     {
-     "event": "scholar_returns",
-     "choice": "B",
-     "share": 51.5,
-     "shown": 97
+     "event": "the_committee",
+     "choice": "A",
+     "share": 33.8,
+     "shown": 370
+    },
+    {
+     "event": "committee_vindicated",
+     "choice": "A",
+     "share": 60.4,
+     "shown": 53
     },
     {
      "event": "small_favour",
+     "choice": "C",
+     "share": 34.5,
+     "shown": 319
+    },
+    {
+     "event": "figure_vindicated",
+     "choice": "B",
+     "share": 52.6,
+     "shown": 133
+    },
+    {
+     "event": "figure_resurfaces",
      "choice": "A",
-     "share": 33.4,
-     "shown": 320
+     "share": 51.6,
+     "shown": 95
+    },
+    {
+     "event": "ally_returns_ps",
+     "choice": "B",
+     "share": 58.8,
+     "shown": 51
+    },
+    {
+     "event": "scholar_returns_ps",
+     "choice": "B",
+     "share": 58,
+     "shown": 50
     },
     {
      "event": "the_counter",
@@ -1003,449 +995,480 @@
     {
      "event": "old_colleague",
      "choice": "B",
-     "share": 53.3,
-     "shown": 375
+     "share": 53.8,
+     "shown": 416
     }
    ],
    "reach": {
-    "inconvenient_figure": 38.5,
-    "consultant_report": 28.9,
-    "postit_workshop": 64.1,
-    "cep_discovery": 44.4,
-    "leadership_programme": 33.9,
-    "the_crisis": 55.6,
-    "forum_letter": 54.6,
-    "overseas_posting": 19,
-    "the_tender": 50.4,
-    "mps_duty": 66.1,
-    "the_scholar": 20.6,
-    "the_leak": 48.7,
-    "national_day_award": 46.9,
-    "cny_lohei": 32.2,
-    "the_committee": 25.4,
-    "bto_queue": 57.7,
-    "cos_speech": 52,
-    "reorg": 27.9,
-    "dialogue_session": 52.8,
-    "new_ro": 41.1,
-    "secondment": 20.3,
-    "grassroots_invite": 39,
-    "figure_resurfaces": 5.9,
-    "tender_questions": 7.8,
-    "leak_resurfaces": 5.8,
-    "ally_returns": 8.3,
-    "scholar_returns": 4,
-    "tea_session": 68.5,
-    "the_vetting": 33.7,
-    "the_election": 31.5,
-    "maiden_speech": 8.9,
-    "town_council": 17.6,
-    "the_bonus_reveal": 13.5,
-    "pofma_moment": 13.4,
-    "reshuffle": 11.8,
-    "succession": 8.3,
-    "the_work": 90,
-    "the_appraisal_talk": 87,
-    "late_night": 67.5,
-    "budget_round": 53.1,
-    "the_mps_night": 21.4,
-    "the_walkabout": 21,
-    "the_pq": 20.3,
-    "the_townhall": 13.8,
-    "the_quiet_year": 85.7,
+    "inconvenient_figure": 29.3,
+    "consultant_report": 32.2,
+    "postit_workshop": 73.3,
+    "cep_discovery": 39.8,
+    "leadership_programme": 16.4,
+    "the_crisis": 35.5,
+    "forum_letter": 32.8,
+    "overseas_posting": 19.9,
+    "the_tender": 24.4,
+    "mps_duty": 48.3,
+    "the_scholar": 15.8,
+    "the_leak": 55.7,
+    "national_day_award": 20.2,
+    "cny_lohei": 41.2,
+    "the_committee": 15.4,
+    "bto_queue": 57.6,
+    "cos_speech": 35.2,
+    "reorg": 23.6,
+    "dialogue_session": 25.8,
+    "new_ro": 50.2,
+    "secondment": 31.8,
+    "grassroots_invite": 41.8,
+    "figure_resurfaces": 4,
+    "tender_questions": 3.8,
+    "leak_resurfaces": 4.9,
+    "ally_returns": 0.5,
+    "ally_returns_junior": 0,
+    "ally_returns_ds": 0.5,
+    "ally_returns_ps": 2.1,
+    "ally_returns_pol": 0.5,
+    "scholar_returns": 0.2,
+    "scholar_returns_peer": 0.2,
+    "scholar_returns_ps": 2.1,
+    "scholar_returns_pol": 0.7,
+    "tea_session": 62.7,
+    "the_vetting": 31.5,
+    "the_election": 30.3,
+    "maiden_speech": 11.5,
+    "town_council": 17.9,
+    "the_bonus_reveal": 12.4,
+    "pofma_moment": 12.7,
+    "reshuffle": 10.3,
+    "succession": 7.7,
+    "the_work": 91.4,
+    "the_appraisal_talk": 81.5,
+    "late_night": 68.1,
+    "budget_round": 33.5,
+    "the_mps_night": 22.1,
+    "the_walkabout": 20.5,
+    "the_pq": 20.2,
+    "the_townhall": 12.9,
+    "the_quiet_year": 88,
     "the_counter": 33.3,
     "the_night_degree": 33.3,
-    "old_colleague": 15.6,
-    "second_look": 20.9,
-    "figure_vindicated": 7,
-    "minute_vindicated": 4.8,
-    "cos_vindicated": 7.6,
-    "dialogue_vindicated": 7.3,
-    "committee_vindicated": 4,
-    "pofma_vindicated": 2.6,
-    "speech_vindicated": 3.8,
+    "old_colleague": 17.3,
+    "second_look": 28.6,
+    "figure_vindicated": 5.5,
+    "minute_vindicated": 4.9,
+    "cos_vindicated": 4.4,
+    "dialogue_vindicated": 4.7,
+    "committee_vindicated": 2.2,
+    "pofma_vindicated": 2.5,
+    "speech_vindicated": 3.9,
     "bonus_vindicated": 1.6,
-    "secondment_verdict": 4.8,
-    "re_election": 23.5,
-    "the_indicators": 16.7,
+    "secondment_verdict": 5.1,
+    "re_election": 22.5,
+    "the_indicators": 15.9,
     "headhunter_early": 13.8,
-    "headhunter_mid": 45.2,
+    "headhunter_mid": 55.7,
     "headhunter_political": 19.2,
-    "citizens_panel": 11.9,
-    "promotion_board": 3.6,
+    "citizens_panel": 7.5,
+    "promotion_board": 4.2,
     "small_favour": 13.3,
-    "block_party": 4.4,
-    "budget_committee": 7,
-    "farewell_drinks": 16.5,
-    "interview_panel": 2,
-    "two_names": 11.5,
-    "raw_data": 11.7,
-    "officer_a": 9.8,
-    "lanterns": 15.9,
-    "first_cabinet": 3.1,
-    "other_life": 26,
-    "younger_officer": 1.5,
-    "model_ward": 13.5
+    "block_party": 4.1,
+    "budget_committee": 4.7,
+    "farewell_drinks": 14.9,
+    "interview_panel": 5.1,
+    "two_names": 9.3,
+    "raw_data": 5,
+    "officer_a": 5.5,
+    "lanterns": 16.8,
+    "first_cabinet": 2.8,
+    "other_life": 23.7,
+    "younger_officer": 0.7,
+    "model_ward": 13.7
    },
    "choicePicks": {
-    "new_ro": {
-     "A": 346,
-     "B": 305,
-     "C": 335
-    },
-    "forum_letter": {
-     "B": 456,
-     "C": 420,
-     "A": 435
-    },
-    "leadership_programme": {
-     "B": 265,
-     "A": 270,
-     "C": 279
-    },
-    "grassroots_invite": {
-     "A": 482,
-     "B": 453
-    },
-    "lanterns": {
-     "A": 183,
-     "B": 198
-    },
-    "the_tender": {
-     "A": 441,
-     "C": 372,
-     "B": 396
-    },
-    "tea_session": {
-     "B": 826,
-     "A": 817
-    },
-    "cos_speech": {
-     "C": 390,
-     "A": 422,
-     "B": 435
-    },
     "the_work": {
-     "B": 1392,
-     "A": 1440,
-     "C": 1468
-    },
-    "__montage:the_work": {
-     "A": 9321
-    },
-    "the_crisis": {
-     "B": 445,
-     "A": 448,
-     "C": 442
+     "A": 1689,
+     "B": 1738,
+     "C": 1806
     },
     "mps_duty": {
-     "B": 541,
-     "A": 504,
-     "C": 541
-    },
-    "budget_round": {
-     "B": 496,
-     "C": 474,
-     "A": 448
-    },
-    "__montage:budget_round": {
-     "A": 1531
-    },
-    "national_day_award": {
-     "B": 586,
-     "A": 539
-    },
-    "the_leak": {
-     "A": 426,
-     "B": 479,
-     "C": 264
-    },
-    "headhunter_mid": {
-     "B": 372,
-     "A": 360,
-     "C": 352
-    },
-    "dialogue_session": {
-     "A": 454,
-     "C": 381,
-     "B": 432
-    },
-    "late_night": {
-     "A": 901,
-     "B": 907
-    },
-    "the_quiet_year": {
-     "A": 816,
-     "C": 858,
-     "B": 837
-    },
-    "the_appraisal_talk": {
-     "C": 1044,
-     "A": 1154,
-     "B": 1102
-    },
-    "__montage:the_quiet_year": {
-     "A": 3964
-    },
-    "__montage:late_night": {
-     "A": 2054
-    },
-    "__montage:the_appraisal_talk": {
-     "A": 6510
-    },
-    "consultant_report": {
-     "C": 231,
-     "B": 241,
-     "A": 222
-    },
-    "other_life": {
-     "B": 324,
-     "A": 300
-    },
-    "citizens_panel": {
-     "A": 97,
-     "B": 86,
-     "C": 103
-    },
-    "cep_discovery": {
-     "A": 537,
-     "B": 528
-    },
-    "the_vetting": {
-     "A": 409,
-     "B": 400
-    },
-    "the_election": {
-     "A": 703,
-     "B": 52
-    },
-    "town_council": {
-     "B": 212,
-     "A": 210
-    },
-    "the_mps_night": {
-     "B": 204,
-     "C": 190,
-     "A": 210
-    },
-    "__montage:the_mps_night": {
-     "A": 846
-    },
-    "re_election": {
-     "A": 1075,
-     "B": 1030
-    },
-    "the_pq": {
-     "C": 169,
-     "B": 188,
-     "A": 181
-    },
-    "the_bonus_reveal": {
-     "C": 112,
-     "B": 102,
-     "A": 110
-    },
-    "the_townhall": {
-     "A": 189,
-     "B": 161
-    },
-    "pofma_moment": {
-     "A": 176,
-     "B": 146
-    },
-    "model_ward": {
-     "A": 152,
-     "B": 171
-    },
-    "bonus_vindicated": {
-     "A": 19,
-     "B": 20
-    },
-    "the_indicators": {
-     "C": 360,
-     "B": 348,
-     "A": 370
-    },
-    "__montage:the_townhall": {
-     "A": 350
-    },
-    "__montage:the_pq": {
-     "A": 661
-    },
-    "the_walkabout": {
-     "A": 265,
-     "B": 290
-    },
-    "headhunter_political": {
-     "A": 232,
-     "B": 228
-    },
-    "overseas_posting": {
-     "C": 157,
-     "B": 153,
-     "A": 147
-    },
-    "dialogue_vindicated": {
-     "A": 78,
-     "B": 96
-    },
-    "the_committee": {
-     "A": 213,
-     "C": 176,
-     "B": 220
+     "B": 382,
+     "C": 395,
+     "A": 383
     },
     "postit_workshop": {
-     "A": 535,
-     "B": 488,
-     "C": 516
+     "B": 555,
+     "C": 596,
+     "A": 609
     },
-    "two_names": {
-     "A": 135,
-     "B": 142
-    },
-    "cny_lohei": {
-     "A": 247,
-     "B": 256,
-     "C": 270
-    },
-    "leak_resurfaces": {
-     "A": 70,
-     "B": 70
-    },
-    "ally_returns": {
-     "A": 88,
-     "B": 111
-    },
-    "reshuffle": {
-     "A": 117,
-     "B": 167
-    },
-    "succession": {
-     "B": 87,
-     "A": 111
-    },
-    "first_cabinet": {
-     "A": 42,
-     "B": 32
-    },
-    "inconvenient_figure": {
-     "A": 321,
-     "C": 295,
-     "B": 308
+    "new_ro": {
+     "B": 393,
+     "C": 369,
+     "A": 442
     },
     "reorg": {
-     "B": 236,
-     "C": 218,
-     "A": 215
-    },
-    "figure_resurfaces": {
-     "A": 75,
-     "B": 67
-    },
-    "budget_committee": {
-     "A": 61,
-     "C": 52,
-     "B": 54
+     "A": 185,
+     "B": 188,
+     "C": 194
     },
     "secondment": {
-     "A": 184,
-     "B": 148,
-     "C": 156
+     "A": 245,
+     "C": 247,
+     "B": 271
+    },
+    "tea_session": {
+     "B": 744,
+     "A": 760
     },
     "secondment_verdict": {
-     "B": 63,
-     "A": 51
+     "B": 62,
+     "A": 60
     },
-    "maiden_speech": {
-     "B": 105,
-     "A": 109
+    "__montage:the_work": {
+     "A": 12140
     },
-    "speech_vindicated": {
-     "A": 47,
-     "B": 49
-    },
-    "__montage:the_walkabout": {
-     "A": 660
-    },
-    "cos_vindicated": {
-     "B": 97,
-     "A": 85
-    },
-    "officer_a": {
-     "A": 131,
-     "B": 104
-    },
-    "raw_data": {
-     "B": 146,
-     "A": 134
-    },
-    "tender_questions": {
-     "A": 92,
-     "B": 94
-    },
-    "pofma_vindicated": {
-     "B": 37,
-     "A": 25
-    },
-    "minute_vindicated": {
-     "A": 57,
-     "B": 58
-    },
-    "farewell_drinks": {
-     "A": 195,
-     "B": 202
-    },
-    "committee_vindicated": {
-     "B": 44,
-     "A": 52
-    },
-    "second_look": {
-     "A": 248,
-     "B": 253
-    },
-    "interview_panel": {
-     "B": 27,
-     "A": 22
-    },
-    "figure_vindicated": {
-     "A": 82,
-     "B": 86
+    "grassroots_invite": {
+     "B": 510,
+     "A": 493
     },
     "promotion_board": {
-     "A": 44,
-     "B": 42
+     "A": 50,
+     "B": 51
+    },
+    "the_crisis": {
+     "B": 293,
+     "A": 258,
+     "C": 302
+    },
+    "other_life": {
+     "A": 279,
+     "B": 289
+    },
+    "cny_lohei": {
+     "C": 321,
+     "A": 344,
+     "B": 323
+    },
+    "overseas_posting": {
+     "C": 179,
+     "B": 155,
+     "A": 143
+    },
+    "the_leak": {
+     "A": 514,
+     "B": 530,
+     "C": 292
+    },
+    "late_night": {
+     "A": 1132,
+     "B": 1176
+    },
+    "the_quiet_year": {
+     "B": 991,
+     "A": 958,
+     "C": 974
+    },
+    "__montage:late_night": {
+     "A": 3764
+    },
+    "__montage:the_quiet_year": {
+     "A": 5217
+    },
+    "headhunter_mid": {
+     "A": 442,
+     "B": 425,
+     "C": 469
+    },
+    "cos_speech": {
+     "C": 248,
+     "A": 282,
+     "B": 314
+    },
+    "second_look": {
+     "A": 344,
+     "B": 342
+    },
+    "consultant_report": {
+     "C": 246,
+     "A": 268,
+     "B": 258
+    },
+    "dialogue_session": {
+     "C": 209,
+     "A": 200,
+     "B": 210
+    },
+    "the_vetting": {
+     "A": 371,
+     "B": 385
+    },
+    "the_election": {
+     "A": 658,
+     "B": 68
+    },
+    "the_mps_night": {
+     "B": 189,
+     "A": 226,
+     "C": 202
+    },
+    "town_council": {
+     "A": 196,
+     "B": 234
+    },
+    "the_walkabout": {
+     "A": 292,
+     "B": 261
+    },
+    "re_election": {
+     "A": 993,
+     "B": 994
+    },
+    "headhunter_political": {
+     "B": 232,
+     "A": 228
+    },
+    "pofma_moment": {
+     "B": 149,
+     "A": 155
+    },
+    "the_bonus_reveal": {
+     "A": 80,
+     "B": 106,
+     "C": 112
+    },
+    "pofma_vindicated": {
+     "B": 29,
+     "A": 31
+    },
+    "model_ward": {
+     "B": 166,
+     "A": 162
+    },
+    "__montage:the_walkabout": {
+     "A": 713
+    },
+    "reshuffle": {
+     "A": 129,
+     "B": 118
+    },
+    "the_indicators": {
+     "C": 329,
+     "B": 345,
+     "A": 339
+    },
+    "the_townhall": {
+     "B": 155,
+     "A": 172
+    },
+    "succession": {
+     "B": 85,
+     "A": 99
+    },
+    "first_cabinet": {
+     "B": 31,
+     "A": 35
+    },
+    "__montage:the_townhall": {
+     "A": 305
+    },
+    "the_pq": {
+     "B": 203,
+     "C": 176,
+     "A": 159
+    },
+    "__montage:the_mps_night": {
+     "A": 840
+    },
+    "__montage:the_pq": {
+     "A": 637
+    },
+    "the_appraisal_talk": {
+     "B": 914,
+     "A": 961,
+     "C": 917
+    },
+    "budget_round": {
+     "A": 272,
+     "B": 255,
+     "C": 277
+    },
+    "__montage:budget_round": {
+     "A": 260
+    },
+    "the_tender": {
+     "B": 205,
+     "C": 197,
+     "A": 184
+    },
+    "maiden_speech": {
+     "B": 130,
+     "A": 147
+    },
+    "interview_panel": {
+     "B": 72,
+     "A": 51
+    },
+    "officer_a": {
+     "B": 63,
+     "A": 69
+    },
+    "two_names": {
+     "A": 104,
+     "B": 119
+    },
+    "__montage:the_appraisal_talk": {
+     "A": 4919
+    },
+    "speech_vindicated": {
+     "A": 48,
+     "B": 47
+    },
+    "bonus_vindicated": {
+     "B": 19,
+     "A": 19
+    },
+    "national_day_award": {
+     "A": 241,
+     "B": 244
+    },
+    "raw_data": {
+     "A": 57,
+     "B": 62
+    },
+    "forum_letter": {
+     "C": 260,
+     "A": 262,
+     "B": 264
+    },
+    "citizens_panel": {
+     "A": 51,
+     "C": 62,
+     "B": 67
     },
     "block_party": {
+     "B": 54,
+     "A": 45
+    },
+    "cos_vindicated": {
+     "B": 54,
+     "A": 52
+    },
+    "budget_committee": {
+     "A": 48,
+     "B": 32,
+     "C": 32
+    },
+    "lanterns": {
+     "A": 214,
+     "B": 188
+    },
+    "tender_questions": {
+     "B": 54,
+     "A": 38
+    },
+    "dialogue_vindicated": {
      "B": 52,
-     "A": 53
+     "A": 61
+    },
+    "minute_vindicated": {
+     "A": 64,
+     "B": 53
+    },
+    "leak_resurfaces": {
+     "B": 64,
+     "A": 55
     },
     "younger_officer": {
-     "A": 16,
-     "B": 20
+     "B": 6,
+     "A": 10
     },
     "bto_queue": {
      "B": 428,
-     "A": 470,
-     "C": 486
+     "A": 472,
+     "C": 482
+    },
+    "cep_discovery": {
+     "A": 476,
+     "B": 479
+    },
+    "inconvenient_figure": {
+     "A": 235,
+     "B": 240,
+     "C": 229
+    },
+    "farewell_drinks": {
+     "B": 183,
+     "A": 174
+    },
+    "leadership_programme": {
+     "B": 125,
+     "C": 124,
+     "A": 145
     },
     "the_scholar": {
-     "A": 154,
-     "C": 168,
-     "B": 172
+     "A": 116,
+     "C": 131,
+     "B": 133
     },
     "headhunter_early": {
-     "B": 115,
-     "C": 105,
-     "A": 111
+     "B": 117,
+     "C": 108,
+     "A": 106
     },
-    "scholar_returns": {
-     "B": 50,
-     "A": 47
+    "the_committee": {
+     "A": 125,
+     "B": 122,
+     "C": 123
+    },
+    "committee_vindicated": {
+     "A": 32,
+     "B": 21
+    },
+    "scholar_returns_pol": {
+     "B": 11,
+     "A": 6
     },
     "small_favour": {
-     "A": 107,
-     "C": 107,
-     "B": 106
+     "A": 105,
+     "C": 110,
+     "B": 104
+    },
+    "ally_returns_pol": {
+     "A": 5,
+     "B": 7
+    },
+    "figure_vindicated": {
+     "A": 63,
+     "B": 70
+    },
+    "figure_resurfaces": {
+     "B": 46,
+     "A": 49
+    },
+    "ally_returns_ps": {
+     "B": 30,
+     "A": 21
+    },
+    "ally_returns_ds": {
+     "A": 8,
+     "B": 4
+    },
+    "scholar_returns_ps": {
+     "B": 29,
+     "A": 21
+    },
+    "scholar_returns_peer": {
+     "B": 3,
+     "A": 1
+    },
+    "ally_returns": {
+     "A": 3,
+     "B": 8
+    },
+    "scholar_returns": {
+     "B": 3,
+     "A": 1
     },
     "the_counter": {
      "A": 371,
@@ -1456,8 +1479,11 @@
      "B": 356
     },
     "old_colleague": {
-     "B": 200,
-     "A": 175
+     "A": 192,
+     "B": 224
+    },
+    "ally_returns_junior": {
+     "A": 1
     }
    }
   },
@@ -1466,110 +1492,109 @@
    "origins": {
     "scholar": {
      "runs": 800,
-     "pmRate": 52.6,
+     "pmRate": 58.1,
      "pmCI": [
-      49.2,
-      56.1
+      54.7,
+      61.5
      ],
-     "pm": 421,
+     "pm": 465,
      "endings": {
-      "pm": 421,
-      "retired": 227,
-      "lostward": 152
+      "retired": 172,
+      "lostward": 163,
+      "pm": 465
      },
-     "medianWealth": 46130669,
+     "medianWealth": 39764085,
      "turns": {
-      "p10": 15,
-      "median": 38,
+      "p10": 14,
+      "median": 36,
       "p90": 46,
-      "inRange35to50": 68.3
+      "inRange35to50": 67.5
      },
      "earlyLoss": {
-      "rate": 10,
-      "n": 80,
+      "rate": 10.1,
+      "n": 81,
       "byCause": {
-       "luck": 54,
-       "choice+luck": 26
+       "luck": 58,
+       "choice+luck": 23
       },
-      "notByChoice": 67.5
+      "notByChoice": 71.6
      },
      "cepSafeguard": {
-      "ceilingRuns": 416,
-      "reachableAfter": 346,
-      "shownAfter": 281,
-      "takenAfter": 281,
+      "ceilingRuns": 382,
+      "reachableAfter": 328,
+      "shownAfter": 269,
+      "takenAfter": 269,
       "everReachable": 800,
-      "everShown": 790,
+      "everShown": 786,
       "everReachableRate": 100,
-      "reachableAfterCeilingRate": 83.2,
-      "shownAfterCeilingRate": 67.5,
-      "takenAfterCeilingRate": 67.5
+      "reachableAfterCeilingRate": 85.9,
+      "shownAfterCeilingRate": 70.4,
+      "takenAfterCeilingRate": 70.4
      }
     },
     "grad": {
      "runs": 800,
-     "pmRate": 24.5,
+     "pmRate": 25.4,
      "pmCI": [
-      21.6,
-      27.6
+      22.5,
+      28.5
      ],
-     "pm": 196,
+     "pm": 203,
      "endings": {
-      "lostward": 165,
-      "retired": 437,
-      "pm": 196,
-      "quiet": 1,
-      "permsec": 1
+      "pm": 203,
+      "retired": 438,
+      "lostward": 158,
+      "quiet": 1
      },
-     "medianWealth": 41176967,
+     "medianWealth": 41094246,
      "turns": {
       "p10": 23,
       "median": 49,
       "p90": 49,
-      "inRange35to50": 84.9
+      "inRange35to50": 85
      },
      "earlyLoss": {
-      "rate": 1.5,
-      "n": 12,
+      "rate": 1.6,
+      "n": 13,
       "byCause": {
-       "luck": 12
+       "luck": 13
       },
       "notByChoice": 100
      },
      "cepSafeguard": {
-      "ceilingRuns": 484,
-      "reachableAfter": 374,
-      "shownAfter": 260,
-      "takenAfter": 256,
+      "ceilingRuns": 474,
+      "reachableAfter": 375,
+      "shownAfter": 256,
+      "takenAfter": 251,
       "everReachable": 799,
-      "everShown": 793,
+      "everShown": 788,
       "everReachableRate": 99.9,
-      "reachableAfterCeilingRate": 77.3,
-      "shownAfterCeilingRate": 53.7,
-      "takenAfterCeilingRate": 52.9
+      "reachableAfterCeilingRate": 79.1,
+      "shownAfterCeilingRate": 54,
+      "takenAfterCeilingRate": 53
      }
     },
     "poly": {
      "runs": 800,
-     "pmRate": 3.8,
+     "pmRate": 1.5,
      "pmCI": [
-      2.6,
-      5.3
+      0.9,
+      2.6
      ],
-     "pm": 30,
+     "pm": 12,
      "endings": {
-      "retired": 595,
-      "lostward": 162,
-      "backbench": 11,
-      "pm": 30,
-      "permsec": 2
+      "retired": 631,
+      "lostward": 144,
+      "backbench": 12,
+      "pm": 12,
+      "permsec": 1
      },
-     "medianWealth": 34932898,
+     "medianWealth": 35385730,
      "turns": {
-      "p10": 24,
+      "p10": 25,
       "median": 45,
       "p90": 45,
-      "inRange35to50": 83.8
+      "inRange35to50": 85.1
      },
      "earlyLoss": {
       "rate": 0,
@@ -1578,27 +1603,27 @@
       "notByChoice": null
      },
      "cepSafeguard": {
-      "ceilingRuns": 447,
-      "reachableAfter": 344,
-      "shownAfter": 199,
-      "takenAfter": 199,
+      "ceilingRuns": 465,
+      "reachableAfter": 337,
+      "shownAfter": 197,
+      "takenAfter": 196,
       "everReachable": 800,
       "everShown": 800,
       "everReachableRate": 100,
-      "reachableAfterCeilingRate": 77,
-      "shownAfterCeilingRate": 44.5,
-      "takenAfterCeilingRate": 44.5
+      "reachableAfterCeilingRate": 72.5,
+      "shownAfterCeilingRate": 42.4,
+      "takenAfterCeilingRate": 42.2
      }
     }
    },
    "deadTurns": {
     "I": {
-     "turnsPerRun": 14.16,
-     "deadPerRun": 0.05,
+     "turnsPerRun": 14.09,
+     "deadPerRun": 0.01,
      "quietShare": 0,
-     "repeatShare": 21.9,
-     "repeatFillerShare": 21.9,
-     "deadShare": 0.4
+     "repeatShare": 23.7,
+     "repeatFillerShare": 23.7,
+     "deadShare": 0
     },
     "II": {
      "turnsPerRun": 3,
@@ -1609,331 +1634,319 @@
      "deadShare": 0
     },
     "III": {
-     "turnsPerRun": 23.18,
-     "deadPerRun": 1.4,
+     "turnsPerRun": 23.12,
+     "deadPerRun": 1.46,
      "quietShare": 0,
-     "repeatShare": 48.4,
-     "repeatFillerShare": 33.2,
-     "deadShare": 6.1
+     "repeatShare": 49.2,
+     "repeatFillerShare": 34,
+     "deadShare": 6.3
     }
    },
    "consequences": {
-    "lanterns": {
-     "scheduled": 258,
-     "fired": 258,
-     "firedLate": 12,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 0,
-     "fireRate": 100,
-     "triggered": true
-    },
     "the_vetting": {
-     "scheduled": 2397,
-     "fired": 2397,
-     "firedLate": 181,
-     "meanYearsLate": 1.01,
-     "dropped": 0,
-     "pendingAtEnd": 0,
-     "fireRate": 100,
-     "triggered": true
-    },
-    "younger_officer": {
-     "scheduled": 2397,
-     "fired": 0,
-     "firedLate": 0,
-     "meanYearsLate": 0,
-     "dropped": 0,
-     "pendingAtEnd": 2397,
-     "fireRate": 0,
-     "triggered": true
-    },
-    "the_election": {
-     "scheduled": 2397,
-     "fired": 2396,
-     "firedLate": 129,
+     "scheduled": 2399,
+     "fired": 2398,
+     "firedLate": 186,
      "meanYearsLate": 1.02,
      "dropped": 0,
      "pendingAtEnd": 1,
      "fireRate": 100,
      "triggered": true
     },
-    "re_election": {
-     "scheduled": 12915,
-     "fired": 10519,
-     "firedLate": 3,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 2396,
-     "fireRate": 81.4,
-     "triggered": true
-    },
-    "speech_vindicated": {
-     "scheduled": 928,
-     "fired": 870,
-     "firedLate": 293,
-     "meanYearsLate": 1.09,
-     "dropped": 0,
-     "pendingAtEnd": 58,
-     "fireRate": 93.8,
-     "triggered": true
-    },
-    "model_ward": {
-     "scheduled": 5295,
-     "fired": 1916,
-     "firedLate": 765,
-     "meanYearsLate": 4.63,
-     "dropped": 0,
-     "pendingAtEnd": 3379,
-     "fireRate": 36.2,
-     "triggered": true
-    },
-    "first_cabinet": {
-     "scheduled": 1642,
-     "fired": 1612,
-     "firedLate": 110,
-     "meanYearsLate": 1.03,
-     "dropped": 0,
-     "pendingAtEnd": 30,
-     "fireRate": 98.2,
-     "triggered": true
-    },
-    "raw_data": {
-     "scheduled": 477,
-     "fired": 466,
-     "firedLate": 117,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 11,
-     "fireRate": 97.7,
-     "triggered": true
-    },
-    "interview_panel": {
-     "scheduled": 399,
-     "fired": 75,
+    "younger_officer": {
+     "scheduled": 2398,
+     "fired": 0,
      "firedLate": 0,
      "meanYearsLate": 0,
      "dropped": 0,
-     "pendingAtEnd": 324,
-     "fireRate": 18.8,
+     "pendingAtEnd": 2398,
+     "fireRate": 0,
      "triggered": true
     },
-    "pofma_vindicated": {
-     "scheduled": 807,
-     "fired": 748,
-     "firedLate": 246,
-     "meanYearsLate": 1.2,
+    "the_election": {
+     "scheduled": 2398,
+     "fired": 2398,
+     "firedLate": 110,
+     "meanYearsLate": 1.02,
      "dropped": 0,
-     "pendingAtEnd": 59,
-     "fireRate": 92.7,
+     "pendingAtEnd": 0,
+     "fireRate": 100,
+     "triggered": true
+    },
+    "re_election": {
+     "scheduled": 12888,
+     "fired": 10490,
+     "firedLate": 6,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 2398,
+     "fireRate": 81.4,
+     "triggered": true
+    },
+    "model_ward": {
+     "scheduled": 5281,
+     "fired": 1941,
+     "firedLate": 672,
+     "meanYearsLate": 4.34,
+     "dropped": 0,
+     "pendingAtEnd": 3340,
+     "fireRate": 36.8,
+     "triggered": true
+    },
+    "speech_vindicated": {
+     "scheduled": 1017,
+     "fired": 954,
+     "firedLate": 364,
+     "meanYearsLate": 1.07,
+     "dropped": 0,
+     "pendingAtEnd": 63,
+     "fireRate": 93.8,
+     "triggered": true
+    },
+    "first_cabinet": {
+     "scheduled": 1649,
+     "fired": 1614,
+     "firedLate": 111,
+     "meanYearsLate": 1.01,
+     "dropped": 0,
+     "pendingAtEnd": 35,
+     "fireRate": 97.9,
      "triggered": true
     },
     "secondment_verdict": {
-     "scheduled": 237,
-     "fired": 237,
-     "firedLate": 12,
+     "scheduled": 332,
+     "fired": 283,
+     "firedLate": 8,
+     "meanYearsLate": 1.13,
+     "dropped": 0,
+     "pendingAtEnd": 49,
+     "fireRate": 85.2,
+     "triggered": true
+    },
+    "interview_panel": {
+     "scheduled": 429,
+     "fired": 185,
+     "firedLate": 0,
+     "meanYearsLate": 0,
+     "dropped": 0,
+     "pendingAtEnd": 244,
+     "fireRate": 43.1,
+     "triggered": true
+    },
+    "tender_questions": {
+     "scheduled": 234,
+     "fired": 230,
+     "firedLate": 5,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 4,
+     "fireRate": 98.3,
+     "triggered": true
+    },
+    "pofma_vindicated": {
+     "scheduled": 812,
+     "fired": 748,
+     "firedLate": 224,
+     "meanYearsLate": 1.19,
+     "dropped": 0,
+     "pendingAtEnd": 64,
+     "fireRate": 92.1,
+     "triggered": true
+    },
+    "raw_data": {
+     "scheduled": 320,
+     "fired": 259,
+     "firedLate": 11,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 61,
+     "fireRate": 80.9,
+     "triggered": true
+    },
+    "lanterns": {
+     "scheduled": 317,
+     "fired": 317,
+     "firedLate": 15,
      "meanYearsLate": 1,
      "dropped": 0,
      "pendingAtEnd": 0,
      "fireRate": 100,
      "triggered": true
     },
-    "tender_questions": {
-     "scheduled": 311,
-     "fired": 303,
-     "firedLate": 2,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 8,
-     "fireRate": 97.4,
-     "triggered": true
-    },
     "farewell_drinks": {
-     "scheduled": 759,
-     "fired": 713,
-     "firedLate": 4,
+     "scheduled": 673,
+     "fired": 657,
+     "firedLate": 5,
      "meanYearsLate": 1,
      "dropped": 0,
-     "pendingAtEnd": 46,
-     "fireRate": 93.9,
+     "pendingAtEnd": 16,
+     "fireRate": 97.6,
      "triggered": true
     }
    },
    "observedDirection": {
     "reputation": {
-     "upShare": 84.7,
-     "downShare": 15.3,
-     "moved": 66473
+     "upShare": 85.3,
+     "downShare": 14.7,
+     "moved": 67461
     },
     "standing": {
-     "upShare": 76.6,
-     "downShare": 23.4,
-     "moved": 69836
+     "upShare": 75.5,
+     "downShare": 24.5,
+     "moved": 69295
     },
     "integrity": {
-     "upShare": 65.7,
-     "downShare": 34.3,
-     "moved": 38341
+     "upShare": 68.3,
+     "downShare": 31.7,
+     "moved": 37480
     },
     "competence": {
-     "upShare": 97,
-     "downShare": 3,
-     "moved": 51071
+     "upShare": 97.2,
+     "downShare": 2.8,
+     "moved": 50737
     },
     "wealth": {
      "upShare": 73.5,
      "downShare": 26.5,
-     "moved": 4630
+     "moved": 4636
     },
     "heat": {
-     "upShare": 49.8,
-     "downShare": 50.2,
-     "moved": 5375
+     "upShare": 43.7,
+     "downShare": 56.3,
+     "moved": 4666
     },
     "cep": {
      "upShare": 100,
      "downShare": 0,
-     "moved": 8966
+     "moved": 8658
     }
    },
    "optimiserPicks": [
     {
-     "event": "new_ro",
-     "choice": "A",
+     "event": "the_work",
+     "choice": "B",
      "share": 100,
-     "shown": 833
+     "shown": 2350
     },
     {
-     "event": "forum_letter",
-     "choice": "A",
+     "event": "mps_duty",
+     "choice": "B",
      "share": 100,
-     "shown": 757
+     "shown": 1032
     },
     {
-     "event": "leadership_programme",
-     "choice": "A",
+     "event": "postit_workshop",
+     "choice": "C",
      "share": 100,
-     "shown": 728
+     "shown": 1557
     },
     {
      "event": "secondment",
      "choice": "A",
      "share": 100,
-     "shown": 379
+     "shown": 545
     },
     {
-     "event": "late_night",
-     "choice": "A",
+     "event": "the_appraisal_talk",
+     "choice": "C",
      "share": 100,
-     "shown": 1356
+     "shown": 1844
     },
     {
-     "event": "grassroots_invite",
+     "event": "new_ro",
      "choice": "A",
      "share": 100,
-     "shown": 319
-    },
-    {
-     "event": "lanterns",
-     "choice": "A",
-     "share": 100,
-     "shown": 258
+     "shown": 950
     },
     {
      "event": "tea_session",
      "choice": "A",
      "share": 100,
-     "shown": 2397
+     "shown": 2399
     },
     {
      "event": "the_vetting",
      "choice": "A",
      "share": 100,
-     "shown": 2397
+     "shown": 2398
     },
     {
      "event": "the_election",
      "choice": "A",
-     "share": 94.4,
-     "shown": 2396
+     "share": 94.6,
+     "shown": 2398
     },
     {
-     "event": "the_crisis",
-     "choice": "A",
+     "event": "the_mps_night",
+     "choice": "B",
      "share": 100,
-     "shown": 933
+     "shown": 2503
     },
     {
      "event": "maiden_speech",
      "choice": "B",
      "share": 100,
-     "shown": 734
+     "shown": 950
     },
     {
      "event": "town_council",
      "choice": "A",
      "share": 100,
-     "shown": 1546
-    },
-    {
-     "event": "the_walkabout",
-     "choice": "A",
-     "share": 100,
-     "shown": 2240
+     "shown": 1671
     },
     {
      "event": "re_election",
      "choice": "A",
      "share": 100,
-     "shown": 10519
-    },
-    {
-     "event": "speech_vindicated",
-     "choice": "A",
-     "share": 100,
-     "shown": 870
-    },
-    {
-     "event": "model_ward",
-     "choice": "A",
-     "share": 100,
-     "shown": 1916
-    },
-    {
-     "event": "the_bonus_reveal",
-     "choice": "B",
-     "share": 100,
-     "shown": 1580
-    },
-    {
-     "event": "the_townhall",
-     "choice": "B",
-     "share": 100,
-     "shown": 1691
-    },
-    {
-     "event": "pofma_moment",
-     "choice": "B",
-     "share": 100,
-     "shown": 1527
-    },
-    {
-     "event": "headhunter_political",
-     "choice": "B",
-     "share": 100,
-     "shown": 1450
-    },
-    {
-     "event": "reshuffle",
-     "choice": "A",
-     "share": 100,
-     "shown": 1538
+     "shown": 10490
     },
     {
      "event": "the_pq",
      "choice": "A",
      "share": 100,
-     "shown": 2142
+     "shown": 2154
+    },
+    {
+     "event": "the_townhall",
+     "choice": "B",
+     "share": 100,
+     "shown": 1687
+    },
+    {
+     "event": "the_indicators",
+     "choice": "C",
+     "share": 100,
+     "shown": 5188
+    },
+    {
+     "event": "speech_vindicated",
+     "choice": "A",
+     "share": 100,
+     "shown": 954
+    },
+    {
+     "event": "model_ward",
+     "choice": "A",
+     "share": 100,
+     "shown": 1941
+    },
+    {
+     "event": "headhunter_political",
+     "choice": "B",
+     "share": 100,
+     "shown": 1449
+    },
+    {
+     "event": "the_walkabout",
+     "choice": "A",
+     "share": 100,
+     "shown": 2319
+    },
+    {
+     "event": "reshuffle",
+     "choice": "A",
+     "share": 100,
+     "shown": 1607
     },
     {
      "event": "succession",
@@ -1945,91 +1958,109 @@
      "event": "first_cabinet",
      "choice": "A",
      "share": 100,
-     "shown": 1612
+     "shown": 1614
     },
     {
-     "event": "the_indicators",
-     "choice": "C",
-     "share": 100,
-     "shown": 5173
-    },
-    {
-     "event": "the_mps_night",
+     "event": "the_bonus_reveal",
      "choice": "B",
      "share": 100,
-     "shown": 2407
+     "shown": 1585
     },
     {
-     "event": "national_day_award",
+     "event": "cos_speech",
      "choice": "A",
      "share": 100,
-     "shown": 673
-    },
-    {
-     "event": "budget_round",
-     "choice": "A",
-     "share": 100,
-     "shown": 759
-    },
-    {
-     "event": "the_work",
-     "choice": "B",
-     "share": 100,
-     "shown": 2295
-    },
-    {
-     "event": "dialogue_session",
-     "choice": "B",
-     "share": 100,
-     "shown": 720
-    },
-    {
-     "event": "raw_data",
-     "choice": "B",
-     "share": 100,
-     "shown": 466
-    },
-    {
-     "event": "the_quiet_year",
-     "choice": "B",
-     "share": 100,
-     "shown": 2290
-    },
-    {
-     "event": "overseas_posting",
-     "choice": "A",
-     "share": 100,
-     "shown": 365
-    },
-    {
-     "event": "consultant_report",
-     "choice": "A",
-     "share": 100,
-     "shown": 553
-    },
-    {
-     "event": "mps_duty",
-     "choice": "B",
-     "share": 100,
-     "shown": 1067
-    },
-    {
-     "event": "the_leak",
-     "choice": "B",
-     "share": 100,
-     "shown": 536
-    },
-    {
-     "event": "the_appraisal_talk",
-     "choice": "C",
-     "share": 100,
-     "shown": 1845
+     "shown": 595
     },
     {
      "event": "the_tender",
      "choice": "A",
      "share": 100,
-     "shown": 613
+     "shown": 496
+    },
+    {
+     "event": "the_quiet_year",
+     "choice": "B",
+     "share": 100,
+     "shown": 2344
+    },
+    {
+     "event": "reorg",
+     "choice": "C",
+     "share": 100,
+     "shown": 435
+    },
+    {
+     "event": "cny_lohei",
+     "choice": "A",
+     "share": 100,
+     "shown": 810
+    },
+    {
+     "event": "secondment_verdict",
+     "choice": "A",
+     "share": 100,
+     "shown": 283
+    },
+    {
+     "event": "budget_round",
+     "choice": "A",
+     "share": 100,
+     "shown": 528
+    },
+    {
+     "event": "the_crisis",
+     "choice": "A",
+     "share": 100,
+     "shown": 688
+    },
+    {
+     "event": "pofma_moment",
+     "choice": "B",
+     "share": 100,
+     "shown": 1582
+    },
+    {
+     "event": "the_leak",
+     "choice": "B",
+     "share": 100,
+     "shown": 608
+    },
+    {
+     "event": "consultant_report",
+     "choice": "A",
+     "share": 100,
+     "shown": 639
+    },
+    {
+     "event": "national_day_award",
+     "choice": "A",
+     "share": 100,
+     "shown": 402
+    },
+    {
+     "event": "interview_panel",
+     "choice": "A",
+     "share": 100,
+     "shown": 185
+    },
+    {
+     "event": "tender_questions",
+     "choice": "A",
+     "share": 100,
+     "shown": 230
+    },
+    {
+     "event": "late_night",
+     "choice": "A",
+     "share": 100,
+     "shown": 1029
+    },
+    {
+     "event": "headhunter_mid",
+     "choice": "C",
+     "share": 100,
+     "shown": 296
     },
     {
      "event": "pofma_vindicated",
@@ -2038,100 +2069,94 @@
      "shown": 748
     },
     {
-     "event": "inconvenient_figure",
-     "choice": "C",
+     "event": "grassroots_invite",
+     "choice": "A",
      "share": 100,
-     "shown": 838
+     "shown": 387
     },
     {
-     "event": "cos_speech",
+     "event": "dialogue_session",
+     "choice": "B",
+     "share": 100,
+     "shown": 460
+    },
+    {
+     "event": "raw_data",
+     "choice": "B",
+     "share": 100,
+     "shown": 259
+    },
+    {
+     "event": "lanterns",
+     "choice": "A",
+     "share": 100,
+     "shown": 317
+    },
+    {
+     "event": "forum_letter",
      "choice": "A",
      "share": 100,
      "shown": 663
     },
     {
-     "event": "cny_lohei",
+     "event": "overseas_posting",
      "choice": "A",
      "share": 100,
-     "shown": 654
-    },
-    {
-     "event": "secondment_verdict",
-     "choice": "A",
-     "share": 100,
-     "shown": 237
-    },
-    {
-     "event": "reorg",
-     "choice": "C",
-     "share": 100,
-     "shown": 541
-    },
-    {
-     "event": "tender_questions",
-     "choice": "A",
-     "share": 100,
-     "shown": 303
-    },
-    {
-     "event": "cep_discovery",
-     "choice": "A",
-     "share": 100,
-     "shown": 945
-    },
-    {
-     "event": "the_committee",
-     "choice": "B",
-     "share": 100,
-     "shown": 514
-    },
-    {
-     "event": "farewell_drinks",
-     "choice": "A",
-     "share": 100,
-     "shown": 713
-    },
-    {
-     "event": "postit_workshop",
-     "choice": "C",
-     "share": 100,
-     "shown": 1400
-    },
-    {
-     "event": "headhunter_mid",
-     "choice": "C",
-     "share": 100,
-     "shown": 220
-    },
-    {
-     "event": "second_look",
-     "choice": "A",
-     "share": 100,
-     "shown": 375
-    },
-    {
-     "event": "interview_panel",
-     "choice": "A",
-     "share": 100,
-     "shown": 75
+     "shown": 266
     },
     {
      "event": "bto_queue",
      "choice": "C",
      "share": 100,
-     "shown": 1229
+     "shown": 1230
     },
     {
      "event": "the_scholar",
      "choice": "B",
      "share": 100,
-     "shown": 444
+     "shown": 352
+    },
+    {
+     "event": "inconvenient_figure",
+     "choice": "C",
+     "share": 100,
+     "shown": 667
+    },
+    {
+     "event": "leadership_programme",
+     "choice": "A",
+     "share": 100,
+     "shown": 373
+    },
+    {
+     "event": "the_committee",
+     "choice": "B",
+     "share": 100,
+     "shown": 355
+    },
+    {
+     "event": "cep_discovery",
+     "choice": "A",
+     "share": 100,
+     "shown": 840
+    },
+    {
+     "event": "second_look",
+     "choice": "A",
+     "share": 100,
+     "shown": 385
     },
     {
      "event": "headhunter_early",
      "choice": "B",
      "share": 100,
-     "shown": 253
+     "shown": 260
+    },
+    {
+     "event": "farewell_drinks",
+     "choice": "A",
+     "share": 100,
+     "shown": 657
     },
     {
      "event": "the_counter",
@@ -2149,285 +2174,292 @@
      "event": "old_colleague",
      "choice": "A",
      "share": 100,
-     "shown": 331
+     "shown": 362
     }
    ],
    "reach": {
-    "inconvenient_figure": 34.9,
-    "consultant_report": 23,
-    "postit_workshop": 58.3,
-    "cep_discovery": 39.4,
-    "leadership_programme": 30.3,
-    "the_crisis": 38.9,
-    "forum_letter": 31.5,
-    "overseas_posting": 15.2,
-    "the_tender": 25.5,
-    "mps_duty": 44.5,
-    "the_scholar": 18.5,
-    "the_leak": 22.3,
-    "national_day_award": 28,
-    "cny_lohei": 27.3,
-    "the_committee": 21.4,
-    "bto_queue": 51.2,
-    "cos_speech": 27.6,
-    "reorg": 22.5,
-    "dialogue_session": 30,
-    "new_ro": 34.7,
-    "secondment": 15.8,
-    "grassroots_invite": 13.3,
+    "inconvenient_figure": 27.8,
+    "consultant_report": 26.6,
+    "postit_workshop": 64.9,
+    "cep_discovery": 35,
+    "leadership_programme": 15.5,
+    "the_crisis": 28.7,
+    "forum_letter": 27.6,
+    "overseas_posting": 11.1,
+    "the_tender": 20.7,
+    "mps_duty": 43,
+    "the_scholar": 14.7,
+    "the_leak": 25.3,
+    "national_day_award": 16.8,
+    "cny_lohei": 33.8,
+    "the_committee": 14.8,
+    "bto_queue": 51.3,
+    "cos_speech": 24.8,
+    "reorg": 18.1,
+    "dialogue_session": 19.2,
+    "new_ro": 39.6,
+    "secondment": 22.7,
+    "grassroots_invite": 16.1,
     "figure_resurfaces": 0,
-    "tender_questions": 12.6,
+    "tender_questions": 9.6,
     "leak_resurfaces": 0,
     "ally_returns": 0,
+    "ally_returns_junior": 0,
+    "ally_returns_ds": 0,
+    "ally_returns_ps": 0,
+    "ally_returns_pol": 0,
     "scholar_returns": 0,
-    "tea_session": 99.9,
+    "scholar_returns_peer": 0,
+    "scholar_returns_ps": 0,
+    "scholar_returns_pol": 0,
+    "tea_session": 100,
     "the_vetting": 99.9,
-    "the_election": 99.8,
-    "maiden_speech": 30.6,
-    "town_council": 64.4,
-    "the_bonus_reveal": 65.8,
-    "pofma_moment": 63.6,
-    "reshuffle": 64.1,
+    "the_election": 99.9,
+    "maiden_speech": 39.6,
+    "town_council": 69.6,
+    "the_bonus_reveal": 66,
+    "pofma_moment": 65.9,
+    "reshuffle": 67,
     "succession": 75.9,
-    "the_work": 81.8,
-    "the_appraisal_talk": 71.5,
-    "late_night": 56,
-    "budget_round": 31.5,
-    "the_mps_night": 83.7,
-    "the_walkabout": 81.5,
-    "the_pq": 81.6,
-    "the_townhall": 68,
-    "the_quiet_year": 86.7,
+    "the_work": 81,
+    "the_appraisal_talk": 72.3,
+    "late_night": 41.8,
+    "budget_round": 22,
+    "the_mps_night": 85.5,
+    "the_walkabout": 83.3,
+    "the_pq": 81.4,
+    "the_townhall": 67.9,
+    "the_quiet_year": 87.4,
     "the_counter": 33.3,
     "the_night_degree": 33.3,
-    "old_colleague": 13.8,
-    "second_look": 15.6,
+    "old_colleague": 15.1,
+    "second_look": 16,
     "figure_vindicated": 0,
     "minute_vindicated": 0,
     "cos_vindicated": 0,
     "dialogue_vindicated": 0,
     "committee_vindicated": 0,
     "pofma_vindicated": 31.2,
-    "speech_vindicated": 32.4,
+    "speech_vindicated": 34.6,
     "bonus_vindicated": 0,
-    "secondment_verdict": 9.9,
-    "re_election": 89.5,
-    "the_indicators": 78.5,
-    "headhunter_early": 10.5,
-    "headhunter_mid": 9.2,
+    "secondment_verdict": 11.8,
+    "re_election": 89.7,
+    "the_indicators": 78.3,
+    "headhunter_early": 10.8,
+    "headhunter_mid": 12.3,
     "headhunter_political": 60.4,
     "citizens_panel": 0,
     "promotion_board": 0,
     "small_favour": 0,
     "block_party": 0,
     "budget_committee": 0,
-    "farewell_drinks": 29.7,
-    "interview_panel": 3.1,
+    "farewell_drinks": 27.4,
+    "interview_panel": 7.7,
     "two_names": 0,
-    "raw_data": 19.4,
+    "raw_data": 10.8,
     "officer_a": 0,
-    "lanterns": 10.8,
-    "first_cabinet": 67.2,
+    "lanterns": 13.2,
+    "first_cabinet": 67.3,
     "other_life": 0,
     "younger_officer": 0,
-    "model_ward": 79.8
+    "model_ward": 80.9
    },
    "choicePicks": {
-    "new_ro": {
-     "A": 833
+    "the_work": {
+     "B": 2350
     },
-    "forum_letter": {
-     "A": 757
+    "mps_duty": {
+     "B": 1032
     },
-    "leadership_programme": {
-     "A": 728
+    "postit_workshop": {
+     "C": 1557
     },
     "secondment": {
-     "A": 379
+     "A": 545
     },
-    "late_night": {
-     "A": 1356
+    "the_appraisal_talk": {
+     "C": 1844
     },
-    "grassroots_invite": {
-     "A": 319
-    },
-    "lanterns": {
-     "A": 258
+    "new_ro": {
+     "A": 950
     },
     "tea_session": {
-     "A": 2397
+     "A": 2399
     },
     "the_vetting": {
-     "A": 2397
+     "A": 2398
     },
     "the_election": {
-     "A": 2262,
-     "B": 134
+     "A": 2269,
+     "B": 129
     },
-    "the_crisis": {
-     "A": 933
+    "the_mps_night": {
+     "B": 2503
     },
     "maiden_speech": {
-     "B": 734
+     "B": 950
+    },
+    "__montage:the_mps_night": {
+     "A": 4109
     },
     "town_council": {
-     "A": 1546
-    },
-    "the_walkabout": {
-     "A": 2240
+     "A": 1671
     },
     "re_election": {
-     "A": 10519
-    },
-    "speech_vindicated": {
-     "A": 870
-    },
-    "model_ward": {
-     "A": 1916
-    },
-    "the_bonus_reveal": {
-     "B": 1580
-    },
-    "the_townhall": {
-     "B": 1691
-    },
-    "pofma_moment": {
-     "B": 1527
-    },
-    "__montage:the_walkabout": {
-     "A": 3222
-    },
-    "headhunter_political": {
-     "B": 1450
-    },
-    "reshuffle": {
-     "A": 1538
+     "A": 10490
     },
     "the_pq": {
-     "A": 2142
+     "A": 2154
+    },
+    "the_townhall": {
+     "B": 1687
+    },
+    "the_indicators": {
+     "C": 5188
+    },
+    "speech_vindicated": {
+     "A": 954
+    },
+    "model_ward": {
+     "A": 1941
+    },
+    "headhunter_political": {
+     "B": 1449
+    },
+    "__montage:the_townhall": {
+     "A": 1576
+    },
+    "the_walkabout": {
+     "A": 2319
+    },
+    "__montage:the_walkabout": {
+     "A": 3426
+    },
+    "reshuffle": {
+     "A": 1607
     },
     "succession": {
      "B": 1821
     },
     "first_cabinet": {
-     "A": 1612
+     "A": 1614
     },
-    "__montage:the_pq": {
-     "A": 2874
+    "the_bonus_reveal": {
+     "B": 1585
     },
-    "__montage:the_townhall": {
-     "A": 1615
-    },
-    "the_indicators": {
-     "C": 5173
-    },
-    "the_mps_night": {
-     "B": 2407
-    },
-    "national_day_award": {
-     "A": 673
-    },
-    "budget_round": {
-     "A": 759
-    },
-    "the_work": {
-     "B": 2295
-    },
-    "__montage:budget_round": {
-     "A": 207
-    },
-    "dialogue_session": {
-     "B": 720
-    },
-    "raw_data": {
-     "B": 466
-    },
-    "__montage:the_mps_night": {
-     "A": 3914
-    },
-    "the_quiet_year": {
-     "B": 2290
-    },
-    "__montage:the_work": {
-     "A": 3380
-    },
-    "overseas_posting": {
-     "A": 365
-    },
-    "consultant_report": {
-     "A": 553
-    },
-    "mps_duty": {
-     "B": 1067
-    },
-    "the_leak": {
-     "B": 536
-    },
-    "the_appraisal_talk": {
-     "C": 1845
-    },
-    "__montage:the_appraisal_talk": {
-     "A": 2159
+    "cos_speech": {
+     "A": 595
     },
     "the_tender": {
-     "A": 613
+     "A": 496
+    },
+    "the_quiet_year": {
+     "B": 2344
+    },
+    "reorg": {
+     "C": 435
+    },
+    "cny_lohei": {
+     "A": 810
+    },
+    "secondment_verdict": {
+     "A": 283
+    },
+    "budget_round": {
+     "A": 528
+    },
+    "the_crisis": {
+     "A": 688
+    },
+    "__montage:budget_round": {
+     "A": 80
+    },
+    "pofma_moment": {
+     "B": 1582
+    },
+    "the_leak": {
+     "B": 608
+    },
+    "consultant_report": {
+     "A": 639
+    },
+    "national_day_award": {
+     "A": 402
+    },
+    "interview_panel": {
+     "A": 185
+    },
+    "tender_questions": {
+     "A": 230
+    },
+    "late_night": {
+     "A": 1029
+    },
+    "headhunter_mid": {
+     "C": 296
+    },
+    "__montage:late_night": {
+     "A": 523
+    },
+    "__montage:the_quiet_year": {
+     "A": 3313
+    },
+    "__montage:the_pq": {
+     "A": 2944
     },
     "pofma_vindicated": {
      "A": 748
     },
-    "inconvenient_figure": {
-     "C": 838
+    "__montage:the_work": {
+     "A": 3675
     },
-    "cos_speech": {
+    "grassroots_invite": {
+     "A": 387
+    },
+    "dialogue_session": {
+     "B": 460
+    },
+    "raw_data": {
+     "B": 259
+    },
+    "lanterns": {
+     "A": 317
+    },
+    "forum_letter": {
      "A": 663
     },
-    "__montage:late_night": {
-     "A": 664
+    "overseas_posting": {
+     "A": 266
     },
-    "cny_lohei": {
-     "A": 654
-    },
-    "secondment_verdict": {
-     "A": 237
-    },
-    "reorg": {
-     "C": 541
-    },
-    "tender_questions": {
-     "A": 303
-    },
-    "cep_discovery": {
-     "A": 945
-    },
-    "the_committee": {
-     "B": 514
-    },
-    "__montage:the_quiet_year": {
-     "A": 2989
-    },
-    "farewell_drinks": {
-     "A": 713
-    },
-    "postit_workshop": {
-     "C": 1400
-    },
-    "headhunter_mid": {
-     "C": 220
-    },
-    "second_look": {
-     "A": 375
-    },
-    "interview_panel": {
-     "A": 75
+    "__montage:the_appraisal_talk": {
+     "A": 2101
     },
     "bto_queue": {
-     "C": 1229
+     "C": 1230
     },
     "the_scholar": {
-     "B": 444
+     "B": 352
+    },
+    "inconvenient_figure": {
+     "C": 667
+    },
+    "leadership_programme": {
+     "A": 373
+    },
+    "the_committee": {
+     "B": 355
+    },
+    "cep_discovery": {
+     "A": 840
+    },
+    "second_look": {
+     "A": 385
     },
     "headhunter_early": {
-     "B": 253
+     "B": 260
+    },
+    "farewell_drinks": {
+     "A": 657
     },
     "the_counter": {
      "A": 800
@@ -2436,7 +2468,7 @@
      "A": 800
     },
     "old_colleague": {
-     "A": 331
+     "A": 362
     }
    }
   },
@@ -2445,110 +2477,109 @@
    "origins": {
     "scholar": {
      "runs": 800,
-     "pmRate": 50,
+     "pmRate": 46.4,
      "pmCI": [
-      46.5,
-      53.5
+      42.9,
+      49.8
      ],
-     "pm": 400,
+     "pm": 371,
      "endings": {
-      "pm": 400,
-      "retired": 243,
-      "lostward": 157
+      "pm": 371,
+      "lostward": 160,
+      "retired": 269
      },
-     "medianWealth": 43078519,
+     "medianWealth": 38487580,
      "turns": {
-      "p10": 15,
+      "p10": 14,
       "median": 36,
       "p90": 46,
-      "inRange35to50": 61
+      "inRange35to50": 61.5
      },
      "earlyLoss": {
-      "rate": 10,
-      "n": 80,
+      "rate": 10.1,
+      "n": 81,
       "byCause": {
-       "luck": 54,
-       "choice+luck": 26
+       "luck": 58,
+       "choice+luck": 23
       },
-      "notByChoice": 67.5
+      "notByChoice": 71.6
      },
      "cepSafeguard": {
-      "ceilingRuns": 307,
-      "reachableAfter": 80,
-      "shownAfter": 66,
-      "takenAfter": 66,
+      "ceilingRuns": 300,
+      "reachableAfter": 44,
+      "shownAfter": 38,
+      "takenAfter": 38,
       "everReachable": 800,
-      "everShown": 790,
+      "everShown": 786,
       "everReachableRate": 100,
-      "reachableAfterCeilingRate": 26.1,
-      "shownAfterCeilingRate": 21.5,
-      "takenAfterCeilingRate": 21.5
+      "reachableAfterCeilingRate": 14.7,
+      "shownAfterCeilingRate": 12.7,
+      "takenAfterCeilingRate": 12.7
      }
     },
     "grad": {
      "runs": 800,
-     "pmRate": 40.4,
+     "pmRate": 41.4,
      "pmCI": [
-      37,
-      43.8
+      38,
+      44.8
      ],
-     "pm": 323,
+     "pm": 331,
      "endings": {
-      "lostward": 161,
       "retired": 314,
-      "pm": 323,
-      "quiet": 1,
-      "permsec": 1
+      "pm": 331,
+      "lostward": 154,
+      "quiet": 1
      },
-     "medianWealth": 38796793,
+     "medianWealth": 38897636,
      "turns": {
       "p10": 23,
       "median": 46,
       "p90": 49,
-      "inRange35to50": 84.9
+      "inRange35to50": 85
      },
      "earlyLoss": {
-      "rate": 1.5,
-      "n": 12,
+      "rate": 1.6,
+      "n": 13,
       "byCause": {
-       "luck": 12
+       "luck": 13
       },
       "notByChoice": 100
      },
      "cepSafeguard": {
-      "ceilingRuns": 318,
-      "reachableAfter": 161,
-      "shownAfter": 131,
-      "takenAfter": 131,
+      "ceilingRuns": 333,
+      "reachableAfter": 176,
+      "shownAfter": 144,
+      "takenAfter": 144,
       "everReachable": 799,
-      "everShown": 793,
+      "everShown": 788,
       "everReachableRate": 99.9,
-      "reachableAfterCeilingRate": 50.6,
-      "shownAfterCeilingRate": 41.2,
-      "takenAfterCeilingRate": 41.2
+      "reachableAfterCeilingRate": 52.9,
+      "shownAfterCeilingRate": 43.2,
+      "takenAfterCeilingRate": 43.2
      }
     },
     "poly": {
      "runs": 800,
-     "pmRate": 20.1,
+     "pmRate": 20.9,
      "pmCI": [
-      17.5,
-      23
+      18.2,
+      23.8
      ],
-     "pm": 161,
+     "pm": 167,
      "endings": {
-      "retired": 467,
-      "lostward": 159,
-      "pm": 161,
-      "backbench": 11,
-      "permsec": 2
+      "retired": 475,
+      "lostward": 145,
+      "pm": 167,
+      "backbench": 12,
+      "permsec": 1
      },
-     "medianWealth": 35169212,
+     "medianWealth": 35468396,
      "turns": {
-      "p10": 24,
+      "p10": 25,
       "median": 45,
       "p90": 45,
-      "inRange35to50": 83.8
+      "inRange35to50": 85.1
      },
      "earlyLoss": {
       "rate": 0,
@@ -2558,26 +2589,26 @@
      },
      "cepSafeguard": {
       "ceilingRuns": 292,
-      "reachableAfter": 270,
-      "shownAfter": 176,
-      "takenAfter": 176,
+      "reachableAfter": 277,
+      "shownAfter": 186,
+      "takenAfter": 186,
       "everReachable": 800,
       "everShown": 800,
       "everReachableRate": 100,
-      "reachableAfterCeilingRate": 92.5,
-      "shownAfterCeilingRate": 60.3,
-      "takenAfterCeilingRate": 60.3
+      "reachableAfterCeilingRate": 94.9,
+      "shownAfterCeilingRate": 63.7,
+      "takenAfterCeilingRate": 63.7
      }
     }
    },
    "deadTurns": {
     "I": {
-     "turnsPerRun": 14.16,
-     "deadPerRun": 0.05,
+     "turnsPerRun": 14.09,
+     "deadPerRun": 0.01,
      "quietShare": 0,
-     "repeatShare": 21.9,
-     "repeatFillerShare": 21.9,
-     "deadShare": 0.4
+     "repeatShare": 23.7,
+     "repeatFillerShare": 23.7,
+     "deadShare": 0
     },
     "II": {
      "turnsPerRun": 3,
@@ -2588,321 +2619,309 @@
      "deadShare": 0
     },
     "III": {
-     "turnsPerRun": 22.57,
-     "deadPerRun": 1.19,
+     "turnsPerRun": 22.81,
+     "deadPerRun": 1.3,
      "quietShare": 0,
-     "repeatShare": 50.4,
-     "repeatFillerShare": 35.1,
-     "deadShare": 5.3
+     "repeatShare": 51.8,
+     "repeatFillerShare": 36.4,
+     "deadShare": 5.7
     }
    },
    "consequences": {
-    "lanterns": {
-     "scheduled": 258,
-     "fired": 258,
-     "firedLate": 12,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 0,
-     "fireRate": 100,
-     "triggered": true
-    },
     "the_vetting": {
-     "scheduled": 2397,
-     "fired": 2397,
-     "firedLate": 181,
-     "meanYearsLate": 1.01,
-     "dropped": 0,
-     "pendingAtEnd": 0,
-     "fireRate": 100,
-     "triggered": true
-    },
-    "younger_officer": {
-     "scheduled": 2397,
-     "fired": 0,
-     "firedLate": 0,
-     "meanYearsLate": 0,
-     "dropped": 0,
-     "pendingAtEnd": 2397,
-     "fireRate": 0,
-     "triggered": true
-    },
-    "the_election": {
-     "scheduled": 2397,
-     "fired": 2396,
-     "firedLate": 129,
+     "scheduled": 2399,
+     "fired": 2398,
+     "firedLate": 186,
      "meanYearsLate": 1.02,
      "dropped": 0,
      "pendingAtEnd": 1,
      "fireRate": 100,
      "triggered": true
     },
-    "re_election": {
-     "scheduled": 12763,
-     "fired": 10367,
-     "firedLate": 2,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 2396,
-     "fireRate": 81.2,
-     "triggered": true
-    },
-    "speech_vindicated": {
-     "scheduled": 931,
-     "fired": 869,
-     "firedLate": 298,
-     "meanYearsLate": 1.08,
-     "dropped": 0,
-     "pendingAtEnd": 62,
-     "fireRate": 93.3,
-     "triggered": true
-    },
-    "model_ward": {
-     "scheduled": 5157,
-     "fired": 1916,
-     "firedLate": 770,
-     "meanYearsLate": 4.68,
-     "dropped": 0,
-     "pendingAtEnd": 3241,
-     "fireRate": 37.2,
-     "triggered": true
-    },
-    "raw_data": {
-     "scheduled": 477,
-     "fired": 466,
-     "firedLate": 117,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 11,
-     "fireRate": 97.7,
-     "triggered": true
-    },
-    "pofma_vindicated": {
-     "scheduled": 799,
-     "fired": 731,
-     "firedLate": 258,
-     "meanYearsLate": 1.19,
-     "dropped": 0,
-     "pendingAtEnd": 68,
-     "fireRate": 91.5,
-     "triggered": true
-    },
-    "interview_panel": {
-     "scheduled": 399,
-     "fired": 75,
+    "younger_officer": {
+     "scheduled": 2398,
+     "fired": 0,
      "firedLate": 0,
      "meanYearsLate": 0,
      "dropped": 0,
-     "pendingAtEnd": 324,
-     "fireRate": 18.8,
+     "pendingAtEnd": 2398,
+     "fireRate": 0,
+     "triggered": true
+    },
+    "the_election": {
+     "scheduled": 2398,
+     "fired": 2398,
+     "firedLate": 110,
+     "meanYearsLate": 1.02,
+     "dropped": 0,
+     "pendingAtEnd": 0,
+     "fireRate": 100,
+     "triggered": true
+    },
+    "re_election": {
+     "scheduled": 12880,
+     "fired": 10482,
+     "firedLate": 4,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 2398,
+     "fireRate": 81.4,
+     "triggered": true
+    },
+    "model_ward": {
+     "scheduled": 5229,
+     "fired": 1932,
+     "firedLate": 674,
+     "meanYearsLate": 4.35,
+     "dropped": 0,
+     "pendingAtEnd": 3297,
+     "fireRate": 36.9,
+     "triggered": true
+    },
+    "speech_vindicated": {
+     "scheduled": 1032,
+     "fired": 955,
+     "firedLate": 365,
+     "meanYearsLate": 1.07,
+     "dropped": 0,
+     "pendingAtEnd": 77,
+     "fireRate": 92.5,
      "triggered": true
     },
     "secondment_verdict": {
-     "scheduled": 237,
-     "fired": 237,
-     "firedLate": 12,
+     "scheduled": 332,
+     "fired": 283,
+     "firedLate": 8,
+     "meanYearsLate": 1.13,
+     "dropped": 0,
+     "pendingAtEnd": 49,
+     "fireRate": 85.2,
+     "triggered": true
+    },
+    "interview_panel": {
+     "scheduled": 429,
+     "fired": 185,
+     "firedLate": 0,
+     "meanYearsLate": 0,
+     "dropped": 0,
+     "pendingAtEnd": 244,
+     "fireRate": 43.1,
+     "triggered": true
+    },
+    "tender_questions": {
+     "scheduled": 234,
+     "fired": 230,
+     "firedLate": 5,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 4,
+     "fireRate": 98.3,
+     "triggered": true
+    },
+    "pofma_vindicated": {
+     "scheduled": 815,
+     "fired": 737,
+     "firedLate": 246,
+     "meanYearsLate": 1.17,
+     "dropped": 0,
+     "pendingAtEnd": 78,
+     "fireRate": 90.4,
+     "triggered": true
+    },
+    "raw_data": {
+     "scheduled": 320,
+     "fired": 259,
+     "firedLate": 11,
+     "meanYearsLate": 1,
+     "dropped": 0,
+     "pendingAtEnd": 61,
+     "fireRate": 80.9,
+     "triggered": true
+    },
+    "lanterns": {
+     "scheduled": 317,
+     "fired": 317,
+     "firedLate": 15,
      "meanYearsLate": 1,
      "dropped": 0,
      "pendingAtEnd": 0,
      "fireRate": 100,
      "triggered": true
     },
-    "tender_questions": {
-     "scheduled": 311,
-     "fired": 303,
-     "firedLate": 2,
-     "meanYearsLate": 1,
-     "dropped": 0,
-     "pendingAtEnd": 8,
-     "fireRate": 97.4,
-     "triggered": true
-    },
     "farewell_drinks": {
-     "scheduled": 759,
-     "fired": 713,
-     "firedLate": 4,
+     "scheduled": 673,
+     "fired": 657,
+     "firedLate": 5,
      "meanYearsLate": 1,
      "dropped": 0,
-     "pendingAtEnd": 46,
-     "fireRate": 93.9,
+     "pendingAtEnd": 16,
+     "fireRate": 97.6,
      "triggered": true
     }
    },
    "observedDirection": {
     "reputation": {
-     "upShare": 85.4,
-     "downShare": 14.6,
-     "moved": 68356
+     "upShare": 86,
+     "downShare": 14,
+     "moved": 69909
     },
     "standing": {
-     "upShare": 73.1,
-     "downShare": 26.9,
-     "moved": 68417
+     "upShare": 71.9,
+     "downShare": 28.1,
+     "moved": 68333
     },
     "integrity": {
-     "upShare": 62.4,
-     "downShare": 37.6,
-     "moved": 35249
+     "upShare": 65.1,
+     "downShare": 34.9,
+     "moved": 34604
     },
     "competence": {
-     "upShare": 97,
-     "downShare": 3,
-     "moved": 51117
+     "upShare": 97.2,
+     "downShare": 2.8,
+     "moved": 51127
     },
     "wealth": {
      "upShare": 56.6,
      "downShare": 43.4,
-     "moved": 2835
+     "moved": 2834
     },
     "heat": {
-     "upShare": 49.8,
-     "downShare": 50.2,
-     "moved": 5375
+     "upShare": 43.7,
+     "downShare": 56.3,
+     "moved": 4666
     },
     "cep": {
      "upShare": 100,
      "downShare": 0,
-     "moved": 10490
+     "moved": 10166
     }
    },
    "optimiserPicks": [
     {
-     "event": "new_ro",
-     "choice": "A",
+     "event": "the_work",
+     "choice": "B",
      "share": 100,
-     "shown": 833
+     "shown": 2350
     },
     {
-     "event": "forum_letter",
-     "choice": "A",
+     "event": "mps_duty",
+     "choice": "B",
      "share": 100,
-     "shown": 757
+     "shown": 1032
     },
     {
-     "event": "leadership_programme",
-     "choice": "A",
+     "event": "postit_workshop",
+     "choice": "C",
      "share": 100,
-     "shown": 728
+     "shown": 1557
     },
     {
      "event": "secondment",
      "choice": "A",
      "share": 100,
-     "shown": 379
+     "shown": 545
     },
     {
-     "event": "late_night",
-     "choice": "A",
+     "event": "the_appraisal_talk",
+     "choice": "C",
      "share": 100,
-     "shown": 1356
+     "shown": 1844
     },
     {
-     "event": "grassroots_invite",
+     "event": "new_ro",
      "choice": "A",
      "share": 100,
-     "shown": 319
-    },
-    {
-     "event": "lanterns",
-     "choice": "A",
-     "share": 100,
-     "shown": 258
+     "shown": 950
     },
     {
      "event": "tea_session",
      "choice": "A",
      "share": 100,
-     "shown": 2397
+     "shown": 2399
     },
     {
      "event": "the_vetting",
      "choice": "A",
      "share": 100,
-     "shown": 2397
+     "shown": 2398
     },
     {
      "event": "the_election",
      "choice": "A",
-     "share": 94.4,
-     "shown": 2396
+     "share": 94.6,
+     "shown": 2398
     },
     {
-     "event": "the_crisis",
-     "choice": "A",
+     "event": "the_mps_night",
+     "choice": "B",
      "share": 100,
-     "shown": 933
+     "shown": 2568
     },
     {
      "event": "maiden_speech",
      "choice": "B",
      "share": 100,
-     "shown": 734
+     "shown": 950
     },
     {
      "event": "town_council",
      "choice": "A",
      "share": 100,
-     "shown": 1546
-    },
-    {
-     "event": "the_walkabout",
-     "choice": "A",
-     "share": 100,
-     "shown": 2247
+     "shown": 1671
     },
     {
      "event": "re_election",
      "choice": "A",
      "share": 100,
-     "shown": 10367
-    },
-    {
-     "event": "speech_vindicated",
-     "choice": "A",
-     "share": 100,
-     "shown": 869
-    },
-    {
-     "event": "model_ward",
-     "choice": "A",
-     "share": 100,
-     "shown": 1916
-    },
-    {
-     "event": "the_bonus_reveal",
-     "choice": "B",
-     "share": 100,
-     "shown": 1606
-    },
-    {
-     "event": "the_townhall",
-     "choice": "B",
-     "share": 100,
-     "shown": 1693
-    },
-    {
-     "event": "pofma_moment",
-     "choice": "B",
-     "share": 100,
-     "shown": 1558
-    },
-    {
-     "event": "headhunter_political",
-     "choice": "B",
-     "share": 100,
-     "shown": 1453
-    },
-    {
-     "event": "reshuffle",
-     "choice": "A",
-     "share": 100,
-     "shown": 1241
+     "shown": 10482
     },
     {
      "event": "the_pq",
      "choice": "A",
      "share": 100,
-     "shown": 2155
+     "shown": 2207
+    },
+    {
+     "event": "the_townhall",
+     "choice": "B",
+     "share": 100,
+     "shown": 1726
+    },
+    {
+     "event": "the_indicators",
+     "choice": "C",
+     "share": 100,
+     "shown": 5446
+    },
+    {
+     "event": "speech_vindicated",
+     "choice": "A",
+     "share": 100,
+     "shown": 955
+    },
+    {
+     "event": "model_ward",
+     "choice": "A",
+     "share": 100,
+     "shown": 1932
+    },
+    {
+     "event": "headhunter_political",
+     "choice": "B",
+     "share": 100,
+     "shown": 1436
+    },
+    {
+     "event": "the_walkabout",
+     "choice": "A",
+     "share": 100,
+     "shown": 2333
+    },
+    {
+     "event": "reshuffle",
+     "choice": "A",
+     "share": 100,
+     "shown": 1294
     },
     {
      "event": "succession",
@@ -2911,190 +2930,202 @@
      "shown": 1821
     },
     {
-     "event": "the_indicators",
-     "choice": "C",
-     "share": 100,
-     "shown": 5266
-    },
-    {
-     "event": "the_mps_night",
+     "event": "pofma_moment",
      "choice": "B",
      "share": 100,
-     "shown": 2436
+     "shown": 1609
     },
     {
-     "event": "national_day_award",
-     "choice": "A",
-     "share": 100,
-     "shown": 673
-    },
-    {
-     "event": "budget_round",
-     "choice": "A",
-     "share": 100,
-     "shown": 759
-    },
-    {
-     "event": "the_work",
+     "event": "the_bonus_reveal",
      "choice": "B",
      "share": 100,
-     "shown": 2295
-    },
-    {
-     "event": "dialogue_session",
-     "choice": "B",
-     "share": 100,
-     "shown": 720
-    },
-    {
-     "event": "raw_data",
-     "choice": "B",
-     "share": 100,
-     "shown": 466
-    },
-    {
-     "event": "overseas_posting",
-     "choice": "A",
-     "share": 100,
-     "shown": 365
-    },
-    {
-     "event": "consultant_report",
-     "choice": "A",
-     "share": 100,
-     "shown": 553
-    },
-    {
-     "event": "mps_duty",
-     "choice": "B",
-     "share": 100,
-     "shown": 1067
-    },
-    {
-     "event": "the_leak",
-     "choice": "B",
-     "share": 100,
-     "shown": 536
-    },
-    {
-     "event": "the_quiet_year",
-     "choice": "B",
-     "share": 100,
-     "shown": 2320
-    },
-    {
-     "event": "the_appraisal_talk",
-     "choice": "C",
-     "share": 100,
-     "shown": 1845
-    },
-    {
-     "event": "the_tender",
-     "choice": "A",
-     "share": 100,
-     "shown": 613
-    },
-    {
-     "event": "pofma_vindicated",
-     "choice": "A",
-     "share": 100,
-     "shown": 731
-    },
-    {
-     "event": "inconvenient_figure",
-     "choice": "C",
-     "share": 100,
-     "shown": 838
+     "shown": 1604
     },
     {
      "event": "cos_speech",
      "choice": "A",
      "share": 100,
-     "shown": 663
+     "shown": 595
     },
     {
-     "event": "cny_lohei",
+     "event": "the_tender",
      "choice": "A",
      "share": 100,
-     "shown": 654
+     "shown": 496
     },
     {
-     "event": "secondment_verdict",
-     "choice": "A",
+     "event": "the_quiet_year",
+     "choice": "B",
      "share": 100,
-     "shown": 237
+     "shown": 2411
     },
     {
      "event": "reorg",
      "choice": "C",
      "share": 100,
-     "shown": 541
+     "shown": 435
     },
     {
-     "event": "tender_questions",
+     "event": "cny_lohei",
      "choice": "A",
      "share": 100,
-     "shown": 303
+     "shown": 810
     },
     {
-     "event": "cep_discovery",
+     "event": "secondment_verdict",
      "choice": "A",
      "share": 100,
-     "shown": 945
+     "shown": 283
     },
     {
-     "event": "the_committee",
+     "event": "budget_round",
+     "choice": "A",
+     "share": 100,
+     "shown": 528
+    },
+    {
+     "event": "the_crisis",
+     "choice": "A",
+     "share": 100,
+     "shown": 688
+    },
+    {
+     "event": "the_leak",
      "choice": "B",
      "share": 100,
-     "shown": 514
+     "shown": 608
     },
     {
-     "event": "farewell_drinks",
+     "event": "consultant_report",
      "choice": "A",
      "share": 100,
-     "shown": 713
+     "shown": 639
     },
     {
-     "event": "postit_workshop",
-     "choice": "C",
-     "share": 100,
-     "shown": 1400
-    },
-    {
-     "event": "headhunter_mid",
-     "choice": "C",
-     "share": 100,
-     "shown": 220
-    },
-    {
-     "event": "second_look",
+     "event": "national_day_award",
      "choice": "A",
      "share": 100,
-     "shown": 375
+     "shown": 402
     },
     {
      "event": "interview_panel",
      "choice": "A",
      "share": 100,
-     "shown": 75
+     "shown": 185
+    },
+    {
+     "event": "tender_questions",
+     "choice": "A",
+     "share": 100,
+     "shown": 230
+    },
+    {
+     "event": "late_night",
+     "choice": "A",
+     "share": 100,
+     "shown": 1029
+    },
+    {
+     "event": "headhunter_mid",
+     "choice": "C",
+     "share": 100,
+     "shown": 296
+    },
+    {
+     "event": "grassroots_invite",
+     "choice": "A",
+     "share": 100,
+     "shown": 387
+    },
+    {
+     "event": "pofma_vindicated",
+     "choice": "A",
+     "share": 100,
+     "shown": 737
+    },
+    {
+     "event": "dialogue_session",
+     "choice": "B",
+     "share": 100,
+     "shown": 460
+    },
+    {
+     "event": "raw_data",
+     "choice": "B",
+     "share": 100,
+     "shown": 259
+    },
+    {
+     "event": "lanterns",
+     "choice": "A",
+     "share": 100,
+     "shown": 317
+    },
+    {
+     "event": "forum_letter",
+     "choice": "A",
+     "share": 100,
+     "shown": 663
+    },
+    {
+     "event": "overseas_posting",
+     "choice": "A",
+     "share": 100,
+     "shown": 266
     },
     {
      "event": "bto_queue",
      "choice": "C",
      "share": 100,
-     "shown": 1229
+     "shown": 1230
     },
     {
      "event": "the_scholar",
      "choice": "B",
      "share": 100,
-     "shown": 444
+     "shown": 352
+    },
+    {
+     "event": "inconvenient_figure",
+     "choice": "C",
+     "share": 100,
+     "shown": 667
+    },
+    {
+     "event": "leadership_programme",
+     "choice": "A",
+     "share": 100,
+     "shown": 373
+    },
+    {
+     "event": "the_committee",
+     "choice": "B",
+     "share": 100,
+     "shown": 355
+    },
+    {
+     "event": "cep_discovery",
+     "choice": "A",
+     "share": 100,
+     "shown": 840
+    },
+    {
+     "event": "second_look",
+     "choice": "A",
+     "share": 100,
+     "shown": 385
     },
     {
      "event": "headhunter_early",
      "choice": "B",
      "share": 100,
-     "shown": 253
+     "shown": 260
+    },
+    {
+     "event": "farewell_drinks",
+     "choice": "A",
+     "share": 100,
+     "shown": 657
     },
     {
      "event": "the_counter",
@@ -3112,282 +3143,289 @@
      "event": "old_colleague",
      "choice": "A",
      "share": 100,
-     "shown": 331
+     "shown": 362
     }
    ],
    "reach": {
-    "inconvenient_figure": 34.9,
-    "consultant_report": 23,
-    "postit_workshop": 58.3,
-    "cep_discovery": 39.4,
-    "leadership_programme": 30.3,
-    "the_crisis": 38.9,
-    "forum_letter": 31.5,
-    "overseas_posting": 15.2,
-    "the_tender": 25.5,
-    "mps_duty": 44.5,
-    "the_scholar": 18.5,
-    "the_leak": 22.3,
-    "national_day_award": 28,
-    "cny_lohei": 27.3,
-    "the_committee": 21.4,
-    "bto_queue": 51.2,
-    "cos_speech": 27.6,
-    "reorg": 22.5,
-    "dialogue_session": 30,
-    "new_ro": 34.7,
-    "secondment": 15.8,
-    "grassroots_invite": 13.3,
+    "inconvenient_figure": 27.8,
+    "consultant_report": 26.6,
+    "postit_workshop": 64.9,
+    "cep_discovery": 35,
+    "leadership_programme": 15.5,
+    "the_crisis": 28.7,
+    "forum_letter": 27.6,
+    "overseas_posting": 11.1,
+    "the_tender": 20.7,
+    "mps_duty": 43,
+    "the_scholar": 14.7,
+    "the_leak": 25.3,
+    "national_day_award": 16.8,
+    "cny_lohei": 33.8,
+    "the_committee": 14.8,
+    "bto_queue": 51.3,
+    "cos_speech": 24.8,
+    "reorg": 18.1,
+    "dialogue_session": 19.2,
+    "new_ro": 39.6,
+    "secondment": 22.7,
+    "grassroots_invite": 16.1,
     "figure_resurfaces": 0,
-    "tender_questions": 12.6,
+    "tender_questions": 9.6,
     "leak_resurfaces": 0,
     "ally_returns": 0,
+    "ally_returns_junior": 0,
+    "ally_returns_ds": 0,
+    "ally_returns_ps": 0,
+    "ally_returns_pol": 0,
     "scholar_returns": 0,
-    "tea_session": 99.9,
+    "scholar_returns_peer": 0,
+    "scholar_returns_ps": 0,
+    "scholar_returns_pol": 0,
+    "tea_session": 100,
     "the_vetting": 99.9,
-    "the_election": 99.8,
-    "maiden_speech": 30.6,
-    "town_council": 64.4,
-    "the_bonus_reveal": 66.9,
-    "pofma_moment": 64.9,
-    "reshuffle": 51.7,
+    "the_election": 99.9,
+    "maiden_speech": 39.6,
+    "town_council": 69.6,
+    "the_bonus_reveal": 66.8,
+    "pofma_moment": 67,
+    "reshuffle": 53.9,
     "succession": 75.9,
-    "the_work": 81.8,
-    "the_appraisal_talk": 71.5,
-    "late_night": 56,
-    "budget_round": 31.5,
-    "the_mps_night": 84,
-    "the_walkabout": 81.5,
-    "the_pq": 81,
-    "the_townhall": 68.1,
-    "the_quiet_year": 87.1,
+    "the_work": 81,
+    "the_appraisal_talk": 72.3,
+    "late_night": 41.8,
+    "budget_round": 22,
+    "the_mps_night": 85.9,
+    "the_walkabout": 83.5,
+    "the_pq": 82.1,
+    "the_townhall": 68.9,
+    "the_quiet_year": 89.1,
     "the_counter": 33.3,
     "the_night_degree": 33.3,
-    "old_colleague": 13.8,
-    "second_look": 15.6,
+    "old_colleague": 15.1,
+    "second_look": 16,
     "figure_vindicated": 0,
     "minute_vindicated": 0,
     "cos_vindicated": 0,
     "dialogue_vindicated": 0,
     "committee_vindicated": 0,
-    "pofma_vindicated": 30.5,
-    "speech_vindicated": 32.1,
+    "pofma_vindicated": 30.7,
+    "speech_vindicated": 34.8,
     "bonus_vindicated": 0,
-    "secondment_verdict": 9.9,
-    "re_election": 89.5,
-    "the_indicators": 78.9,
-    "headhunter_early": 10.5,
-    "headhunter_mid": 9.2,
-    "headhunter_political": 60.5,
+    "secondment_verdict": 11.8,
+    "re_election": 89.7,
+    "the_indicators": 79.5,
+    "headhunter_early": 10.8,
+    "headhunter_mid": 12.3,
+    "headhunter_political": 59.8,
     "citizens_panel": 0,
     "promotion_board": 0,
     "small_favour": 0,
     "block_party": 0,
     "budget_committee": 0,
-    "farewell_drinks": 29.7,
-    "interview_panel": 3.1,
+    "farewell_drinks": 27.4,
+    "interview_panel": 7.7,
     "two_names": 0,
-    "raw_data": 19.4,
+    "raw_data": 10.8,
     "officer_a": 0,
-    "lanterns": 10.8,
+    "lanterns": 13.2,
     "first_cabinet": 0,
     "other_life": 0,
     "younger_officer": 0,
-    "model_ward": 79.8
+    "model_ward": 80.5
    },
    "choicePicks": {
-    "new_ro": {
-     "A": 833
+    "the_work": {
+     "B": 2350
     },
-    "forum_letter": {
-     "A": 757
+    "mps_duty": {
+     "B": 1032
     },
-    "leadership_programme": {
-     "A": 728
+    "postit_workshop": {
+     "C": 1557
     },
     "secondment": {
-     "A": 379
+     "A": 545
     },
-    "late_night": {
-     "A": 1356
+    "the_appraisal_talk": {
+     "C": 1844
     },
-    "grassroots_invite": {
-     "A": 319
-    },
-    "lanterns": {
-     "A": 258
+    "new_ro": {
+     "A": 950
     },
     "tea_session": {
-     "A": 2397
+     "A": 2399
     },
     "the_vetting": {
-     "A": 2397
+     "A": 2398
     },
     "the_election": {
-     "A": 2262,
-     "B": 134
+     "A": 2269,
+     "B": 129
     },
-    "the_crisis": {
-     "A": 933
+    "the_mps_night": {
+     "B": 2568
     },
     "maiden_speech": {
-     "B": 734
+     "B": 950
+    },
+    "__montage:the_mps_night": {
+     "A": 4298
     },
     "town_council": {
-     "A": 1546
-    },
-    "the_walkabout": {
-     "A": 2247
+     "A": 1671
     },
     "re_election": {
-     "A": 10367
-    },
-    "speech_vindicated": {
-     "A": 869
-    },
-    "model_ward": {
-     "A": 1916
-    },
-    "the_bonus_reveal": {
-     "B": 1606
-    },
-    "the_townhall": {
-     "B": 1693
-    },
-    "pofma_moment": {
-     "B": 1558
-    },
-    "__montage:the_walkabout": {
-     "A": 3307
-    },
-    "headhunter_political": {
-     "B": 1453
-    },
-    "reshuffle": {
-     "A": 1241
+     "A": 10482
     },
     "the_pq": {
-     "A": 2155
+     "A": 2207
+    },
+    "the_townhall": {
+     "B": 1726
+    },
+    "the_indicators": {
+     "C": 5446
+    },
+    "speech_vindicated": {
+     "A": 955
+    },
+    "model_ward": {
+     "A": 1932
+    },
+    "headhunter_political": {
+     "B": 1436
+    },
+    "__montage:the_townhall": {
+     "A": 1724
+    },
+    "the_walkabout": {
+     "A": 2333
+    },
+    "__montage:the_walkabout": {
+     "A": 3587
+    },
+    "reshuffle": {
+     "A": 1294
     },
     "succession": {
      "A": 1821
     },
-    "the_indicators": {
-     "C": 5266
+    "pofma_moment": {
+     "B": 1609
     },
     "__montage:the_pq": {
-     "A": 2969
+     "A": 3055
     },
-    "__montage:the_townhall": {
-     "A": 1694
-    },
-    "the_mps_night": {
-     "B": 2436
-    },
-    "national_day_award": {
-     "A": 673
-    },
-    "budget_round": {
-     "A": 759
-    },
-    "the_work": {
-     "B": 2295
-    },
-    "__montage:budget_round": {
-     "A": 207
-    },
-    "dialogue_session": {
-     "B": 720
-    },
-    "raw_data": {
-     "B": 466
-    },
-    "__montage:the_mps_night": {
-     "A": 3996
-    },
-    "__montage:the_work": {
-     "A": 3380
-    },
-    "overseas_posting": {
-     "A": 365
-    },
-    "consultant_report": {
-     "A": 553
-    },
-    "mps_duty": {
-     "B": 1067
-    },
-    "the_leak": {
-     "B": 536
-    },
-    "the_quiet_year": {
-     "B": 2320
-    },
-    "the_appraisal_talk": {
-     "C": 1845
-    },
-    "__montage:the_appraisal_talk": {
-     "A": 2159
-    },
-    "the_tender": {
-     "A": 613
-    },
-    "pofma_vindicated": {
-     "A": 731
-    },
-    "inconvenient_figure": {
-     "C": 838
+    "the_bonus_reveal": {
+     "B": 1604
     },
     "cos_speech": {
-     "A": 663
+     "A": 595
     },
-    "__montage:late_night": {
-     "A": 664
+    "the_tender": {
+     "A": 496
     },
-    "cny_lohei": {
-     "A": 654
-    },
-    "secondment_verdict": {
-     "A": 237
+    "the_quiet_year": {
+     "B": 2411
     },
     "reorg": {
-     "C": 541
+     "C": 435
     },
-    "tender_questions": {
-     "A": 303
+    "cny_lohei": {
+     "A": 810
     },
-    "cep_discovery": {
-     "A": 945
+    "secondment_verdict": {
+     "A": 283
     },
-    "the_committee": {
-     "B": 514
+    "budget_round": {
+     "A": 528
     },
-    "__montage:the_quiet_year": {
-     "A": 3036
+    "the_crisis": {
+     "A": 688
     },
-    "farewell_drinks": {
-     "A": 713
+    "__montage:budget_round": {
+     "A": 80
     },
-    "postit_workshop": {
-     "C": 1400
+    "the_leak": {
+     "B": 608
     },
-    "headhunter_mid": {
-     "C": 220
+    "consultant_report": {
+     "A": 639
     },
-    "second_look": {
-     "A": 375
+    "national_day_award": {
+     "A": 402
     },
     "interview_panel": {
-     "A": 75
+     "A": 185
+    },
+    "tender_questions": {
+     "A": 230
+    },
+    "late_night": {
+     "A": 1029
+    },
+    "headhunter_mid": {
+     "C": 296
+    },
+    "__montage:late_night": {
+     "A": 523
+    },
+    "__montage:the_quiet_year": {
+     "A": 3400
+    },
+    "__montage:the_work": {
+     "A": 3675
+    },
+    "grassroots_invite": {
+     "A": 387
+    },
+    "pofma_vindicated": {
+     "A": 737
+    },
+    "dialogue_session": {
+     "B": 460
+    },
+    "raw_data": {
+     "B": 259
+    },
+    "lanterns": {
+     "A": 317
+    },
+    "forum_letter": {
+     "A": 663
+    },
+    "overseas_posting": {
+     "A": 266
+    },
+    "__montage:the_appraisal_talk": {
+     "A": 2101
     },
     "bto_queue": {
-     "C": 1229
+     "C": 1230
     },
     "the_scholar": {
-     "B": 444
+     "B": 352
+    },
+    "inconvenient_figure": {
+     "C": 667
+    },
+    "leadership_programme": {
+     "A": 373
+    },
+    "the_committee": {
+     "B": 355
+    },
+    "cep_discovery": {
+     "A": 840
+    },
+    "second_look": {
+     "A": 385
     },
     "headhunter_early": {
-     "B": 253
+     "B": 260
+    },
+    "farewell_drinks": {
+     "A": 657
     },
     "the_counter": {
      "A": 800
@@ -3396,7 +3434,7 @@
      "A": 800
     },
     "old_colleague": {
-     "A": 331
+     "A": 362
     }
    }
   }
@@ -3406,39 +3444,81 @@
   "neverSeen": [],
   "rare": [
    {
+    "event": "ally_returns",
+    "runShare": 0.2
+   },
+   {
+    "event": "ally_returns_junior",
+    "runShare": 0
+   },
+   {
+    "event": "ally_returns_ds",
+    "runShare": 0.2
+   },
+   {
+    "event": "ally_returns_ps",
+    "runShare": 0.7
+   },
+   {
+    "event": "ally_returns_pol",
+    "runShare": 0.2
+   },
+   {
+    "event": "scholar_returns",
+    "runShare": 0.1
+   },
+   {
+    "event": "scholar_returns_peer",
+    "runShare": 0.1
+   },
+   {
+    "event": "scholar_returns_ps",
+    "runShare": 0.7
+   },
+   {
+    "event": "scholar_returns_pol",
+    "runShare": 0.2
+   },
+   {
+    "event": "committee_vindicated",
+    "runShare": 0.7
+   },
+   {
     "event": "bonus_vindicated",
     "runShare": 0.5
    },
    {
     "event": "younger_officer",
-    "runShare": 0.5
+    "runShare": 0.2
    }
   ],
-  "neverPickedChoices": []
+  "neverPickedChoices": [
+   "ally_returns_junior:B"
+  ]
  },
  "statDirection": {
   "reputation": {
-   "up": 69,
+   "up": 78,
    "down": 18,
-   "downShare": 20.7,
-   "oneDirectional": false
+   "downShare": 18.8,
+   "oneDirectional": true
   },
   "standing": {
-   "up": 103,
+   "up": 117,
    "down": 59,
-   "downShare": 36.4,
+   "downShare": 33.5,
    "oneDirectional": false
   },
   "integrity": {
-   "up": 75,
+   "up": 82,
    "down": 38,
-   "downShare": 33.6,
+   "downShare": 31.7,
    "oneDirectional": false
   },
   "competence": {
-   "up": 66,
+   "up": 69,
    "down": 19,
-   "downShare": 22.4,
+   "downShare": 21.6,
    "oneDirectional": false
   },
   "wealth": {
@@ -3454,9 +3534,9 @@
    "oneDirectional": false
   },
   "cep": {
-   "up": 33,
+   "up": 41,
    "down": 1,
-   "downShare": 2.9,
+   "downShare": 2.4,
    "oneDirectional": true
   }
  },
@@ -3502,7 +3582,11 @@
   "secondment",
   "grassroots_invite",
   "ally_returns",
+  "ally_returns_junior",
+  "ally_returns_ds",
+  "ally_returns_pol",
   "scholar_returns",
+  "scholar_returns_peer",
   "reshuffle",
   "succession",
   "the_counter",

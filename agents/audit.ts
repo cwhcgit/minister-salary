@@ -1,12 +1,13 @@
 // Content auditor: one pass over every player-visible line against the five tone rules.
 // Run once per content version, before the first cohort.
 //
-//   node agents/audit.ts [--no-batch] [--mock] [--canaries] [--build DIR]
+//   node agents/audit.ts [--no-batch] [--mock] [--canaries] [--build DIR] [--context-runs N]
 //
 // Batch API by default (half price; usually done within the hour). --canaries includes the
 // two planted canary events, to confirm the auditor catches the winking one.
 import fs from "node:fs";
 import path from "node:path";
+import { createRequire } from "node:module";
 import { REPORTS } from "./lib/config.ts";
 import { H } from "./lib/harness.ts";
 import { credentialSource, mockLlm, realLlm } from "./lib/llm.ts";
@@ -21,8 +22,12 @@ const llm = has("--mock") ? mockLlm(11) : realLlm();
 if (!llm.mock) console.log(`credentials: ${credentialSource()}`);
 const { events, ...game } = build.content;
 const engineSrc = fs.readFileSync(path.join(build.root, "engine.js"), "utf8");
+// Where every card actually fires (rank, age, origin, years since its cause), from seeded bot
+// careers, so the auditor can check immersion: each line against each context it appears in.
+const { contexts } = createRequire(import.meta.url)("../test/contexts.js");
+const fires = contexts(build, +(opt("--context-runs") ?? 150));
 console.log(`auditing ${events.length} events on build ${build.hash}${has("--no-batch") ? "" : " via the Batch API"}…`);
-const r = await audit(llm, game, events, { batch: !has("--no-batch"), log: console.log, engineSrc });
+const r = await audit(llm, game, events, { batch: !has("--no-batch"), log: console.log, engineSrc, fires });
 if (!r?.data) { console.error(`✗ no usable audit (stop: ${r?.stop})`); process.exit(1); }
 const dir = path.join(REPORTS, "audit");
 fs.mkdirSync(dir, { recursive: true });

@@ -11,11 +11,16 @@ const wrap = (tag: string, body: string) => `<${tag}>\n${body}\n</${tag}>`;
 
 // What a player can read, plus ids to point at. Effects and requirements are left out:
 // the audit is about the words.
-export function playerVisibleContent(game: any, events: any[], engineSrc?: string) {
+// `fires` (from test/contexts.js) says where each card actually appears in sampled careers,
+// so the auditor can check every line against every context it is shown in (rule 6).
+export function playerVisibleContent(game: any, events: any[], engineSrc?: string, fires?: Record<string, any>) {
   return {
     events: events.map(e => ({
       id: e.id, ...(e.canary ? { canary: e.canary } : {}), title: e.title, body: e.body,
-      choices: e.choices.map((c: any) => ({ text: c.text, outcome: c.outcome }))
+      choices: e.choices.map((c: any) => ({ text: c.text, outcome: c.outcome })),
+      ...(e.montageLines ? { montageLines: e.montageLines } : {}),
+      ...(e.alternates ? { alternates: e.alternates } : {}),
+      ...(fires ? { fires: fires[e.id] ? firesSummary(fires[e.id]) : "never seen in sampled careers" } : {})
     })),
     game: {
       ladder: game.ladder.map((r: any) => ({ title: r.title, grade: r.grade, org: r.org, pay: r.pay })),
@@ -23,6 +28,12 @@ export function playerVisibleContent(game: any, events: any[], engineSrc?: strin
       origins: game.origins.map((o: any) => ({ id: o.id, name: o.name, blurb: o.blurb, difficulty: o.difficulty })),
       appraisalEuphemisms: game.grades.map((g: any) => g.label),
       cepHints: game.cepHints,
+      cepHintsPolitics: game.cepHintsPolitics,
+      topRungLines: game.topRungLines,
+      ageFloorLines: game.ageFloorLines,
+      reElectionLines: game.reElectionLines,
+      folderItems: (game.folder || []).map((f: any) => f.item),
+      legacyLines: (game.legacyTiers || []).map((t: any) => t.text),
       endings: game.endings.map((e: any) => ({ id: e.id, title: e.title, epitaph: e.epitaph })),
       // lines the engine writes itself (log lines, the empty-year card)
       engineLines: engineSrc ? [...engineSrc.matchAll(/"([A-Z][^"\n]{24,})"/g)].map(m => m[1]) : []
@@ -30,9 +41,15 @@ export function playerVisibleContent(game: any, events: any[], engineSrc?: strin
   };
 }
 
-export async function audit(llm: Llm, game: any, events: any[], o: { batch: boolean; log: (s: string) => void; context?: string; model?: ModelId; engineSrc?: string }) {
+function firesSummary(c: any) {
+  return { ranks: c.ranks, inService: c.inService, atPermanentSecretary: c.atPermSec, inPolitics: c.inPolitics,
+    playerAges: c.ages, origins: c.origins, ...(c.yearsSinceScheduled ? { yearsSinceTheChoiceThatScheduledIt: c.yearsSinceScheduled } : {}),
+    timesSeen: c.fires, ...(c.montage ? { asMontageYear: c.montage } : {}) };
+}
+
+export async function audit(llm: Llm, game: any, events: any[], o: { batch: boolean; log: (s: string) => void; context?: string; model?: ModelId; engineSrc?: string; fires?: Record<string, any> }) {
   const model = o.model ?? ANALYSIS.auditor.model;
-  const content = JSON.stringify(playerVisibleContent(game, events, o.engineSrc), null, 1);
+  const content = JSON.stringify(playerVisibleContent(game, events, o.engineSrc, o.fires), null, 1);
   const user = [{ text: (o.context ? wrap("context", o.context) + "\n\n" : "") + wrap("content", content) }];
   const opts = { model, effort: ANALYSIS.auditor.effort, system: read("prompts/auditor.md"), user, schema: S(AUDIT), maxTokens: 32000, stream: true };
   const res = await runBatch<any>(llm, [{ id: "audit", opts }], o.log, o.batch);

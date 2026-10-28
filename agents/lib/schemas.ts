@@ -105,7 +105,7 @@ export const AUDIT: S = obj({
     event_id: str,
     field: str,             // e.g. "body", "choices[1].outcome", "endings.quiet.epitaph"
     line: str,              // the exact text
-    rule: oneOf("1_people_invented", "2_machinery_not_persons", "3_deadpan", "4_accuracy", "5_affection"),
+    rule: oneOf("1_people_invented", "2_machinery_not_persons", "3_deadpan", "4_accuracy", "5_affection", "6_immersion"),
     problem: str,
     severity: oneOf("must_fix", "should_fix", "consider"),
     suggested_fix: str

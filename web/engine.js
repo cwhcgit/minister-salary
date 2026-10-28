@@ -74,6 +74,15 @@ const Engine = (() => {
     return !!ev && !(ev.once && s.seen.includes(ev.id)) && meets(ev.requires || {}, s);
   }
 
+  // A scheduled card may list alternates: written for wherever the player has got to by the
+  // time it falls due. The first of [card, ...alternates] whose requirements hold fires.
+  function resolve(content, id, s) {
+    const ev = content.events.find(e => e.id === id);
+    if (!ev) return null;
+    const all = [ev, ...(ev.alternates || []).map(a => content.events.find(e => e.id === a))];
+    return all.find(x => fits(x, s)) || null;
+  }
+
   function meets(q, s) {
     if (q.minRank !== undefined && s.rank < q.minRank) return false;
     if (q.maxRank !== undefined && s.rank > q.maxRank) return false;
@@ -92,11 +101,11 @@ const Engine = (() => {
   function pickEvent(content, s) {
     // 1. scheduled consequences pre-empt everything. One fires a year; when several fall
     //    due together, the rest carry over to the following years, earliest first.
-    const due = s.scheduled.filter(x => x.fireYear <= s.year && fits(content.events.find(e => e.id === x.eventId), s));
+    const due = s.scheduled.filter(x => x.fireYear <= s.year && resolve(content, x.eventId, s));
     if (due.length) {
       const next = due.reduce((a, b) => (b.fireYear < a.fireYear ? b : a));
       s.scheduled.splice(s.scheduled.indexOf(next), 1);
-      const ev = content.events.find(e => e.id === next.eventId);
+      const ev = resolve(content, next.eventId, s);
       if (ev) return ev;
     }
     const pool = content.events.filter(e => eligible(e, s));
@@ -192,7 +201,8 @@ const Engine = (() => {
     if (ch.setRank !== undefined) s.rank = ch.setRank;
     // A reshuffle moves the minister to a different ministry, and the header says so.
     if (ch.newMinistry) {
-      const others = content.ministries.filter(m => m !== s.ministry);
+      const pool = Array.isArray(ch.newMinistry) ? ch.newMinistry : content.ministries;
+      const others = pool.filter(m => m !== s.ministry).length ? pool.filter(m => m !== s.ministry) : content.ministries.filter(m => m !== s.ministry);
       s.ministry = others[Math.floor(roll(s) * others.length)];
       log.push({ kind: "note", text: `You are moved to the ${s.ministry}. The handover notes run to 140 pages, and the first one says "for information".` });
     }
@@ -287,11 +297,15 @@ const Engine = (() => {
     if (grade.code === "C") s.consecutiveC++; else s.consecutiveC = 0;
     if (grade.code === "D") s.consecutiveD++; else s.consecutiveD = 0;
     if (s.consecutiveD >= 2) { s.ending = "quiet"; return log; }
-    if (s.consecutiveD === 1) log.push({ kind: "warn", text: "Your reporting officer asks whether you have considered the private sector. It is phrased as concern." });
+    if (s.consecutiveD === 1) log.push({ kind: "warn", text: s.rank >= 8
+      ? "The Whip asks, kindly, whether you have thought about spending more time in your ward. It is phrased as concern."
+      : "Your reporting officer asks whether you have considered the private sector. It is phrased as concern." });
     if (s.consecutiveC >= 3) {
       s.consecutiveC = 0;
       s.competence = clamp(s.competence + 3, 0, 100);
-      log.push({ kind: "warn", text: "You are transferred sideways to a division nobody asked to join. The work is real, at least." });
+      log.push({ kind: "warn", text: s.rank >= 8
+        ? "You are asked to chair a select committee nobody asked to sit on. The work is real, at least."
+        : "You are transferred sideways to a division nobody asked to join. The work is real, at least." });
     }
 
     // Senior rungs cost time as well as stats: Cabinet does not turn over quickly,
@@ -307,13 +321,25 @@ const Engine = (() => {
       result: !promotable ? "not_eligible" : s.rank >= s.cep ? "cep_ceiling" : s.rank === 7 ? "service_ceiling" : "promoted" };
 
     if (promotable && s.rank >= s.cep) {
-      log.push({ kind: "cep", text: content.cepHints[Math.floor(roll(s) * content.cepHints.length)] });
+      const hints = s.rank >= 8 && content.cepHintsPolitics ? content.cepHintsPolitics : content.cepHints;
+      log.push({ kind: "cep", text: hints[Math.floor(roll(s) * hints.length)] });
     } else if (promotable && s.rank === 7) {
-      log.push({ kind: "cep", text: "There is no rung above this one. The next step is not a promotion; it is a different life." });
+      // Said a few times, differently, then not again: a Permanent Secretary can be there for years.
+      const lines = content.topRungLines || ["There is no rung above this one. The next step is not a promotion; it is a different life."];
+      s.topRungTold = (s.topRungTold || 0) + 1;
+      if (s.topRungTold <= lines.length) log.push({ kind: "cep", text: lines[s.topRungTold - 1] });
+    } else if (promotable && (content.ladder[s.rank + 1].minAge || 0) > s.age) {
+      // The top rungs of the service have an age floor (ladder minAge): a brilliant
+      // 29-year-old is told to wait, in the house style.
+      t.promotion.result = "age_floor";
+      const lines = content.ageFloorLines || ["The board describes you as \"ready, in time\"."];
+      s.ageFloorSeen = (s.ageFloorSeen || 0) + 1;
+      log.push({ kind: "note", text: lines[(s.ageFloorSeen - 1) % lines.length] });
     } else if (promotable) {
       // A standout junior officer occasionally skips a grade. This is the only way
       // a late starter ever makes up the years a scholar was simply given.
-      const doubleJump = grade.code === "A" && s.rank <= 4 && score >= 84 && s.rank + 1 < s.cep;
+      const doubleJump = grade.code === "A" && s.rank <= 4 && score >= 84 && s.rank + 1 < s.cep
+        && (content.ladder[s.rank + 2].minAge || 0) <= s.age;
       s.rank += doubleJump ? 2 : 1;
       if (doubleJump) t.promotion.result = "promoted_two";
       s.yearsInGrade = 0;
@@ -436,17 +462,22 @@ const Engine = (() => {
     const won = H.find(h => h.ev === "the_election" && h.rankAfter === 8);
     if (won) out.push({ label: "The party's estimate", text: `When you won your seat, the party made its own: ${title(content, won.cepAfter)}. Nobody told you that either.` });
 
-    // Raises that mattered: in politics, or in the service while a ceiling still applied.
-    const raised = H.filter(h => h.cepAfter > h.cep && h.ev !== "the_election" && (h.rank >= 8 || h.cep < 8));
+    // Raises that mattered: in the service while a ceiling still applied, or, for a politician,
+    // only after the election, which set a new ceiling and made the old one irrelevant.
+    const political = s.rank >= 8;
+    const counted = h => political ? h.rank >= 8 : (h.rank < 8 && h.cep < 8);
+    const raised = H.filter(h => h.cepAfter > h.cep && h.ev !== "the_election" && counted(h));
     if (!raised.length && s.cepStart >= 8 && s.rank < 8) {
-      out.push({ label: "The year it changed", text: "It never needed to. That is what the scholarship was for." });
+      out.push({ label: "The year it changed", text: s.origin === "scholar"
+        ? "It never needed to. That is what the scholarship was for."
+        : "It never needed to. Your file had expected this of you from the first day, and never said so." });
     } else if (raised.length) {
       const r = raised.reduce((a, b) => (b.cepAfter - b.cep > a.cepAfter - a.cep ? b : a));
       const to = r.rank < 8 && r.cepAfter >= 8 ? "It removed your ceiling inside the service altogether."
         : `It raised your ceiling to ${ceiling(r.cepAfter, r.rank >= 8)}.`;
       out.push({ label: "The year it changed", text: `At ${r.age}, in ${r.title}, you chose "${r.text}" ${to}` });
     } else {
-      const missed = H.filter(h => {
+      const missed = H.filter(h => (political ? h.rank >= 8 : h.rank < 8)).filter(h => {
         const ev = content.events.find(e => e.id === h.ev);
         return ev && ev.choices.some((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
       }).slice(0, 2).map(h => {
@@ -460,7 +491,8 @@ const Engine = (() => {
     }
 
     // Only the ceiling rumours (content.cepHints); the Perm Sec "no rung above" line is not one.
-    const isHint = x => x.startsWith("cep|") && content.cepHints.includes(x.slice(4));
+    const allHints = [...content.cepHints, ...(content.cepHintsPolitics || [])];
+    const isHint = x => x.startsWith("cep|") && allHints.includes(x.slice(4));
     const blocked = H.filter(h => h.hints.some(isHint));
     if (blocked.length) {
       const first = blocked[0].hints.find(isHint).slice(4);

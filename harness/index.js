@@ -105,7 +105,11 @@ function draw(build, S) {
   let source = n.event.id === "__quiet" ? "quiet" : n.event.priority ? "priority" : "random";
   let fired = null, dropped = [];
   if (removed.length) {
-    if (removed[0].eventId === n.event.id) { source = "scheduled"; fired = removed[0]; dropped = removed.slice(1); }
+    // a scheduled card may fire as one of its alternates (the variant written for the player's rank)
+    const base = build.content.events.find(e => e.id === removed[0].eventId);
+    if (removed[0].eventId === n.event.id || (base && (base.alternates || []).includes(n.event.id))) {
+      source = "scheduled"; fired = removed[0]; dropped = removed.slice(1);
+    }
     else dropped = removed;
   }
   const deferred = n.state.scheduled.filter(x => x.fireYear <= S.year);   // due, waiting their turn

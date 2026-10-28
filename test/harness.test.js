@@ -82,6 +82,14 @@ ok('the screen view carries nothing hidden', () => {
   }
 });
 
+ok('every alternate exists and only fires through its card', () => {
+  for (const e of build.content.events) for (const a of (e.alternates || [])) {
+    const x = build.content.events.find(y => y.id === a);
+    assert.ok(x, `${e.id} names a missing alternate ${a}`);
+    assert.ok(x.triggered, `alternate ${a} must be triggered, or it would also fire at random`);
+  }
+});
+
 ok('the trace agrees with the engine (appraisal weights, consequences, flags)', () => {
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 60; seed++) {
     const t = H.trace(playRandom(origin, seed).run);
@@ -94,7 +102,7 @@ ok('the trace agrees with the engine (appraisal weights, consequences, flags)', 
         assert.ok(Math.abs(base - turn.appraisal.base) < 1e-9, `APPRAISAL_WEIGHTS no longer match engine.js: ${base} vs ${turn.appraisal.base}`);
       }
       if (turn.event.source === 'scheduled')
-        assert.ok(t.turns.some(x => x.turn < turn.turn && x.scheduled.some(s => s.eventId === turn.event.id && s.fireYear === turn.event.fired.fireYear)),
+        assert.ok(t.turns.some(x => x.turn < turn.turn && x.scheduled.some(s => s.eventId === turn.event.fired.eventId && s.fireYear === turn.event.fired.fireYear)),
           `${turn.event.id} fired in year ${turn.year} but no earlier turn scheduled it`);
       for (const f of turn.flagsSet) assert.ok(t.final.flags.includes(f) || t.turns.some(x => x.flagsCleared.includes(f)));
     }

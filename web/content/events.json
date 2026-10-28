@@ -5,7 +5,7 @@
     "body": "The utilisation rate for your division's flagship scheme came in at 31%. Your director asks, mildly, whether it might be \"presented as a range rather than a number\".",
     "requires": {
       "minRank": 1,
-      "maxRank": 5
+      "maxRank": 3
     },
     "weight": 10,
     "once": true,
@@ -66,7 +66,7 @@
     "body": "A consultancy has been engaged for $1.9 million to study the problem. Their final deck recommends, in different words, the thing you wrote in a minute paper two years ago.",
     "requires": {
       "minRank": 2,
-      "maxRank": 6
+      "maxRank": 5
     },
     "weight": 9,
     "once": true,
@@ -155,7 +155,10 @@
     "body": "Over lunch, a friend in HR mentions your CEP. You ask what that is. There is a pause of exactly the wrong length, and then a change of subject.",
     "requires": {
       "minRank": 1,
-      "maxRank": 5
+      "maxRank": 5,
+      "originNot": [
+        "scholar"
+      ]
     },
     "weight": 12,
     "once": true,
@@ -183,7 +186,7 @@
         "effects": {
           "standing": 3
         },
-        "outcome": "You let it go. You will hear the term again in nine years, in a sentence that begins \"well, realistically\"."
+        "outcome": "You let it go. You will hear the term again, years from now, in a sentence that begins \"well, realistically\"."
       }
     ]
   },
@@ -193,7 +196,7 @@
     "body": "Two names from your division go forward for the Public Service Leadership Programme. Your director asks for your view on who should be put up.",
     "requires": {
       "minRank": 2,
-      "maxRank": 6
+      "maxRank": 3
     },
     "weight": 11,
     "once": true,
@@ -223,7 +226,7 @@
           "standing": -3,
           "competence": 3
         },
-        "outcome": "She is astonished. She goes. Eleven years later she is a Deputy Secretary and she has never once forgotten who put her name in.",
+        "outcome": "She is astonished. She goes. She rises faster than you do, and she never once forgets who put her name in.",
         "setFlags": [
           "mentored_ally"
         ],
@@ -243,7 +246,7 @@
     "body": "It begins at 4am on a Saturday. By Monday there are three ministries, a task force, and a press conference scheduled for 6pm that somebody has to prepare a holding statement for.",
     "requires": {
       "minRank": 3,
-      "maxRank": 8,
+      "maxRank": 6,
       "minStats": {
         "competence": 40
       }
@@ -288,7 +291,7 @@
     "body": "A member of the public has written to the Straits Times Forum about your scheme. The letter is 340 words, deeply aggrieved, and correct on every factual point.",
     "requires": {
       "minRank": 2,
-      "maxRank": 7
+      "maxRank": 5
     },
     "weight": 9,
     "once": true,
@@ -338,7 +341,9 @@
     "body": "Three years in Washington, or Beijing, or Brussels. It is a good posting. Your daughter is nine and has just settled into a school she loves.",
     "requires": {
       "minRank": 3,
-      "maxRank": 6
+      "maxRank": 6,
+      "minAge": 33,
+      "maxAge": 50
     },
     "weight": 8,
     "once": true,
@@ -377,7 +382,7 @@
     "body": "The evaluation is finely balanced between two vendors. The stronger proposal is from a firm whose director left your ministry eighteen months ago and still calls you by your first name.",
     "requires": {
       "minRank": 3,
-      "maxRank": 7
+      "maxRank": 5
     },
     "weight": 9,
     "once": true,
@@ -437,7 +442,7 @@
     "body": "You have been volunteered to help at an MP's Meet-the-People Session. Tuesday nights, writing appeal letters for people whose cases have, in almost every instance, already been correctly decided.",
     "requires": {
       "minRank": 1,
-      "maxRank": 7
+      "maxRank": 5
     },
     "weight": 10,
     "once": true,
@@ -453,7 +458,7 @@
         "setFlags": [
           "did_mps"
         ],
-        "outcome": "Fifty-one Tuesdays. You learn more about how policy actually lands than in six years of writing it. The MP notices you, which is the part that will matter later.",
+        "outcome": "Fifty-one Tuesdays. You learn more about how policy actually lands than in all your years of writing it. The MP notices you, which is the part that will matter later.",
         "schedule": [
           {
             "eventId": "block_party",
@@ -473,7 +478,7 @@
         "outcome": "Enough to mention. Not enough to change your mind about anything."
       },
       {
-        "text": "Decline. You have a young family.",
+        "text": "Decline. Your Tuesday nights are already spoken for.",
         "effects": {
           "integrity": 3,
           "standing": -4,
@@ -489,7 +494,7 @@
     "body": "He is twenty-six, extremely clever, on the Administrative Service, and will outrank you in about four years. He has asked you to review his paper. It is not good.",
     "requires": {
       "minRank": 2,
-      "maxRank": 6,
+      "maxRank": 4,
       "originNot": [
         "scholar"
       ]
@@ -507,7 +512,7 @@
         "setFlags": [
           "taught_scholar"
         ],
-        "outcome": "He takes it well, rewrites it twice, and becomes rather good. He also becomes your Deputy Secretary in eleven years, and he remembers.",
+        "outcome": "He takes it well, rewrites it twice, and becomes rather good. He will outrank you soon, and he will remember.",
         "schedule": [
           {
             "eventId": "scholar_returns",
@@ -588,7 +593,7 @@
         "requiresStat": {
           "integrity": 70
         },
-        "outcome": "It was you, and you had what you still believe were good reasons. The inquiry does not find you. You wait eleven years to find out whether that holds.",
+        "outcome": "It was you, and you had what you still believe were good reasons. The inquiry does not find you. You wait years to find out whether that holds.",
         "schedule": [
           {
             "eventId": "leak_resurfaces",
@@ -605,7 +610,7 @@
     "body": "You are on the list for a National Day Award. It is the entry-level one. Your mother will be extremely proud and will not understand which one it is.",
     "requires": {
       "minRank": 3,
-      "maxRank": 8
+      "maxRank": 5
     },
     "weight": 7,
     "once": true,
@@ -617,7 +622,7 @@
           "standing": 4,
           "integrity": 3
         },
-        "outcome": "She wears the good kebaya and photographs everything including the carpet. It is, you realise afterwards, the single best day of her life, and it cost you nothing."
+        "outcome": "She dresses as if for a wedding and photographs everything, including the carpet. It is, you realise afterwards, the single best day of her life, and it cost you nothing."
       },
       {
         "text": "Accept, and ask that your team be recognised too.",
@@ -636,7 +641,7 @@
   {
     "id": "cny_lohei",
     "title": "Lo Hei",
-    "body": "The divisional Chinese New Year lunch. The Permanent Secretary is at your table. There are eleven minutes of toss-and-auspicious-phrases and then a genuine, unhurried question directed at you: \"So — what do you actually think we're getting wrong?\"",
+    "body": "The divisional Chinese New Year lunch. The Permanent Secretary is at your table. There are eleven minutes of toss-and-auspicious-phrases and then a genuine, unhurried question directed at you: \"So \u2014 what do you actually think we're getting wrong?\"",
     "requires": {
       "minRank": 2,
       "maxRank": 6
@@ -678,7 +683,7 @@
     "body": "An IMC has been convened. It has met eleven times. Its interim finding is that further study is warranted. You are the secretariat.",
     "requires": {
       "minRank": 2,
-      "maxRank": 6
+      "maxRank": 4
     },
     "weight": 8,
     "once": true,
@@ -758,7 +763,7 @@
           "heat": 10,
           "standing": 2
         },
-        "outcome": "There is nothing improper in what he tells you — it is all public, three weeks early. That is the whole of the impropriety, and you both know its exact size.",
+        "outcome": "There is nothing improper in what he tells you \u2014 it is all public, three weeks early. That is the whole of the impropriety, and you both know its exact size.",
         "setFlags": [
           "friend_at_hdb"
         ],
@@ -777,7 +782,7 @@
           "competence": 3,
           "integrity": 3
         },
-        "outcome": "Done by Thursday. The cash-over-valuation hurts for eleven years, and you never once have to explain a queue number to your wife again."
+        "outcome": "Done by Thursday. The cash-over-valuation hurts for eleven years, and you never again have to explain a queue number at a family dinner."
       }
     ]
   },
@@ -787,7 +792,7 @@
     "body": "The COS cuts. Your Minister has eight minutes and needs one announceable thing. Your division has nothing ready, and saying so is not one of the available options.",
     "requires": {
       "minRank": 3,
-      "maxRank": 7
+      "maxRank": 6
     },
     "weight": 9,
     "once": true,
@@ -845,8 +850,8 @@
     "title": "The Reorganisation",
     "body": "Your division is being moved to another ministry. The rationale runs to forty slides. Nobody in your division was consulted, and the new org chart has one fewer director-level box than the old one.",
     "requires": {
-      "minRank": 2,
-      "maxRank": 6
+      "minRank": 3,
+      "maxRank": 5
     },
     "weight": 8,
     "once": true,
@@ -907,7 +912,7 @@
     "body": "A national conversation. Eleven hundred citizens across forty sessions. You are writing the synthesis report. The feedback is overwhelmingly about cost of living and it does not fit the three pillars the report was designed around.",
     "requires": {
       "minRank": 3,
-      "maxRank": 8
+      "maxRank": 5
     },
     "weight": 9,
     "once": true,
@@ -966,7 +971,7 @@
   {
     "id": "new_ro",
     "title": "The New Reporting Officer",
-    "body": "Your RO of six years has moved on. The new one arrives from a different ministry, knows nothing about you, and has brought two people she trusts from her old division.",
+    "body": "Your reporting officer has moved on. The new one arrives from a different ministry, knows nothing about you, and has brought two people she trusts from her old division.",
     "requires": {
       "minRank": 1,
       "maxRank": 6
@@ -1053,7 +1058,7 @@
   {
     "id": "grassroots_invite",
     "title": "The Adviser Suggests Something",
-    "body": "After a community event, the constituency's grassroots adviser mentions — apparently in passing, definitely not in passing — that you handle yourself well with people.",
+    "body": "After a community event, the constituency's grassroots adviser mentions \u2014 apparently in passing, definitely not in passing \u2014 that you handle yourself well with people.",
     "requires": {
       "minRank": 4,
       "maxRank": 7,
@@ -1115,7 +1120,7 @@
           "integrity": -10,
           "standing": 2
         },
-        "outcome": "The file was retained. It is retained in three places. You have now told an auditor something untrue in writing, which is a different category of thing from what you did four years ago.",
+        "outcome": "The file was retained. It is retained in three places. You have now told an auditor something untrue in writing, which is a different category of thing from what you did years ago.",
         "setFlags": [
           "raw_file_lost"
         ]
@@ -1165,13 +1170,13 @@
         "outcome": "The story runs without you in it, this time. You spend a fortnight discovering exactly how much of your composure was borrowed against never being asked."
       },
       {
-        "text": "Tell your Perm Sec everything, first, yourself.",
+        "text": "Go to the most senior person you answer to, and tell them everything first, yourself.",
         "effects": {
           "heat": -30,
           "integrity": 12,
           "standing": -8
         },
-        "outcome": "It is the worst forty minutes of your career and it ends the matter permanently. She says only: \"Thank you for coming to me.\" She means it, and she also never forgets it."
+        "outcome": "It is the worst forty minutes of your career and it ends the matter permanently. You are thanked for coming forward. It is meant, and it is also never forgotten."
       }
     ]
   },
@@ -1188,7 +1193,7 @@
           "standing": 10,
           "reputation": 5
         },
-        "outcome": "She puts your name in. She does not mention the nomination from eleven years ago and neither do you, because the whole point of the thing was that it was not a transaction, and it stays one by not being named."
+        "outcome": "She puts your name in. She does not mention the nomination from years ago and neither do you, because the whole point of the thing was that it was not a transaction, and it stays one by not being named."
       },
       {
         "text": "Tell her, before she decides, that she owes you nothing.",
@@ -1198,6 +1203,133 @@
           "integrity": 6
         },
         "outcome": "She says she knows. She puts your name in anyway, which is how you learn the difference between a debt and a judgement."
+      }
+    ],
+    "requires": {
+      "minRank": 4,
+      "maxRank": 5
+    },
+    "alternates": [
+      "ally_returns_junior",
+      "ally_returns_ds",
+      "ally_returns_ps",
+      "ally_returns_pol"
+    ]
+  },
+  {
+    "id": "ally_returns_junior",
+    "title": "The Officer You Nominated",
+    "body": "She is a Deputy Secretary now, several rungs above you, and she has a post to fill in her division. She asks for you by name.",
+    "triggered": true,
+    "requires": {
+      "maxRank": 3
+    },
+    "choices": [
+      {
+        "text": "Take it.",
+        "effects": {
+          "cep": 2,
+          "standing": 6,
+          "competence": 3
+        },
+        "outcome": "She does not mention the nomination from years ago and neither do you. She simply gives you the hardest file in the division and reads your work twice."
+      },
+      {
+        "text": "Tell her, first, that she owes you nothing.",
+        "effects": {
+          "cep": 1,
+          "integrity": 6,
+          "standing": 4
+        },
+        "outcome": "She says she knows. She asks for you anyway, which is how you learn the difference between a debt and a judgement."
+      }
+    ]
+  },
+  {
+    "id": "ally_returns_ds",
+    "title": "The Officer You Nominated",
+    "body": "She is a Permanent Secretary now, younger than you and faster. She has been asked for names for a Permanent Secretary post, which everyone understands is the last rung there is.",
+    "triggered": true,
+    "requires": {
+      "minRank": 6,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Let her decide without hearing from you.",
+        "effects": {
+          "cep": 3,
+          "standing": 10,
+          "reputation": 5
+        },
+        "outcome": "She puts your name in. She does not mention the nomination from years ago and neither do you, because the whole point of the thing was that it was not a transaction."
+      },
+      {
+        "text": "Tell her, before she decides, that she owes you nothing.",
+        "effects": {
+          "cep": 2,
+          "standing": 6,
+          "integrity": 6
+        },
+        "outcome": "She says she knows. She puts your name in anyway, which is how you learn the difference between a debt and a judgement."
+      }
+    ]
+  },
+  {
+    "id": "ally_returns_ps",
+    "title": "The Officer You Nominated",
+    "body": "She is a Permanent Secretary now too, and the two of you sit on the same committees. She has been asked, quietly, which of her colleagues might one day be invited to tea.",
+    "triggered": true,
+    "requires": {
+      "minRank": 7,
+      "maxRank": 7
+    },
+    "choices": [
+      {
+        "text": "Let her answer without hearing from you.",
+        "effects": {
+          "standing": 10,
+          "reputation": 6
+        },
+        "outcome": "She gives one name. You find out which only by the way certain people start greeting you in lifts."
+      },
+      {
+        "text": "Tell her, before she answers, that she owes you nothing.",
+        "effects": {
+          "standing": 6,
+          "integrity": 6,
+          "reputation": 3
+        },
+        "outcome": "She says she knows. She gives your name anyway, which is how you learn the difference between a debt and a judgement."
+      }
+    ]
+  },
+  {
+    "id": "ally_returns_pol",
+    "title": "The Officer You Nominated",
+    "body": "She is a Permanent Secretary now. The Prime Minister's office asks Permanent Secretaries, from time to time, for a frank view of the political office holders and Members they work with. She has been asked about you.",
+    "triggered": true,
+    "requires": {
+      "minRank": 8
+    },
+    "choices": [
+      {
+        "text": "Let her give it without hearing from you.",
+        "effects": {
+          "cep": 2,
+          "standing": 6,
+          "reputation": 3
+        },
+        "outcome": "She gives it. You never see it. At the next reshuffle, the commentary describes you as someone the civil service rates, which is the one review a politician never gets to read."
+      },
+      {
+        "text": "Tell her, before she is asked, that she owes you nothing.",
+        "effects": {
+          "cep": 1,
+          "standing": 4,
+          "integrity": 6
+        },
+        "outcome": "She says she knows. She gives her view anyway, which is how you learn the difference between a debt and a judgement."
       }
     ]
   },
@@ -1214,7 +1346,7 @@
           "standing": 12,
           "integrity": 5
         },
-        "outcome": "He says he has put your name forward for something and that he did it on the strength of one afternoon eleven years ago. You go back to your desk and sit there for a while."
+        "outcome": "He says he has put your name forward for something and that he did it on the strength of one afternoon, years ago. You go back to your desk and sit there for a while."
       },
       {
         "text": "Tell him his paper was still bad.",
@@ -1224,6 +1356,103 @@
           "reputation": 4
         },
         "outcome": "He laughs, for the first time in your presence, and agrees. He says it is the only performance review he has ever kept."
+      }
+    ],
+    "requires": {
+      "maxRank": 5
+    },
+    "alternates": [
+      "scholar_returns_peer",
+      "scholar_returns_ps",
+      "scholar_returns_pol"
+    ]
+  },
+  {
+    "id": "scholar_returns_peer",
+    "title": "The Officer You Taught",
+    "body": "He is a Deputy Secretary too now, on your corridor, at an age you will not ask about. At the end of a joint meeting he stays behind and says, without preamble, \"You were the only person who ever told me my work was bad.\"",
+    "triggered": true,
+    "requires": {
+      "minRank": 6,
+      "maxRank": 6
+    },
+    "choices": [
+      {
+        "text": "Tell him he was worth the trouble.",
+        "effects": {
+          "cep": 3,
+          "standing": 12,
+          "integrity": 5
+        },
+        "outcome": "He says he has put your name forward for something, on the strength of one afternoon, years ago. You go back to your office and sit there for a while."
+      },
+      {
+        "text": "Tell him his paper was still bad.",
+        "effects": {
+          "cep": 2,
+          "standing": 8,
+          "reputation": 4
+        },
+        "outcome": "He laughs, for the first time in your presence, and agrees. He says it is the only performance review he has ever kept."
+      }
+    ]
+  },
+  {
+    "id": "scholar_returns_ps",
+    "title": "The Officer You Taught",
+    "body": "He is one of your Deputy Secretaries now. At the end of a routine meeting he stays behind and says, without preamble, \"You were the only person who ever told me my work was bad.\"",
+    "triggered": true,
+    "requires": {
+      "minRank": 7,
+      "maxRank": 7
+    },
+    "choices": [
+      {
+        "text": "Tell him he was worth the trouble.",
+        "effects": {
+          "standing": 10,
+          "integrity": 5,
+          "reputation": 3
+        },
+        "outcome": "He says he tells his own officers the same things now, in the same words, and that they dislike it as much as he did. He says it as though this were the point. It was."
+      },
+      {
+        "text": "Tell him his paper was still bad.",
+        "effects": {
+          "standing": 6,
+          "competence": 4,
+          "reputation": 4
+        },
+        "outcome": "He laughs, for the first time in your presence, and agrees. He says it is the only performance review he has ever kept."
+      }
+    ]
+  },
+  {
+    "id": "scholar_returns_pol",
+    "title": "The Officer You Taught",
+    "body": "He is a Permanent Secretary now. After he briefs a group of Members on a bill, he waits until the room is empty and says, without preamble, \"You were the only person who ever told me my work was bad.\"",
+    "triggered": true,
+    "requires": {
+      "minRank": 8
+    },
+    "choices": [
+      {
+        "text": "Tell him he was worth the trouble.",
+        "effects": {
+          "standing": 6,
+          "reputation": 6,
+          "integrity": 4
+        },
+        "outcome": "He says he will return the favour, and tell you when your speeches are bad. He does. They get better, and the newspapers notice before the party does."
+      },
+      {
+        "text": "Tell him his paper was still bad.",
+        "effects": {
+          "competence": 6,
+          "standing": 6,
+          "reputation": 2
+        },
+        "outcome": "He laughs, and says that is why he writes your briefs himself now. They are very good. They are also eleven pages long, and he would like you to read all of them."
       }
     ]
   },
@@ -1374,7 +1603,7 @@
         "outcome": "Warm, local, unobjectionable, forgotten by dinner. Three colleagues tell you it was lovely."
       },
       {
-        "text": "The one thing from thirty years in the service that you actually believe.",
+        "text": "The one thing from your years in the service that you actually believe.",
         "effects": {
           "reputation": 12,
           "integrity": 10,
@@ -1530,17 +1759,20 @@
           "reputation": -4
         },
         "outcome": "Housing, or health, or transport. Something with a queue and a waiting list and a headline every week. You are given it immediately, and the speed of the agreement tells you what it was going to be anyway.",
-        "newMinistry": true
+        "newMinistry": [
+          "Ministry of National Development",
+          "Ministry of Health",
+          "Ministry of Transport"
+        ]
       },
       {
-        "text": "Ask for the comfortable one.",
+        "text": "Ask to stay where you are.",
         "effects": {
           "standing": 3,
           "wealth": 100000,
           "competence": -4
         },
-        "outcome": "You get it. It is pleasant and important and nobody will ever find out whether you were any good, including you.",
-        "newMinistry": true
+        "outcome": "You stay. It is pleasant and important and nobody will ever find out whether you were any good, including you."
       }
     ]
   },
@@ -1580,7 +1812,7 @@
         "setFlags": [
           "kingmaker"
         ],
-        "outcome": "He wins, obviously, and he knows exactly who delivered it. You get everything you asked for, and you will retire as the most powerful Deputy Prime Minister anyone can remember, which is not the thing you wanted.",
+        "outcome": "He wins, obviously, and he knows exactly who delivered it. You get everything you asked for, and you will spend the rest of your career as the most powerful person in the room who is not him, which is not the thing you wanted.",
         "schedule": [
           {
             "eventId": "first_cabinet",
@@ -1626,7 +1858,7 @@
           "standing": -1,
           "integrity": 1
         },
-        "outcome": "You leave at six every day for a year, see your children awake, and it costs you exactly what you thought it would."
+        "outcome": "You leave at six every day for a year, eat dinner at a normal hour, and it costs you exactly what you thought it would."
       }
     ],
     "montageEffects": {
@@ -1646,7 +1878,7 @@
     "body": "Forty minutes, a form with six competency domains, and a reporting officer who says \"I'd like you to be more visible\" without specifying to whom.",
     "requires": {
       "minRank": 0,
-      "maxRank": 7
+      "maxRank": 6
     },
     "weight": 10,
     "once": false,
@@ -1691,10 +1923,10 @@
   {
     "id": "late_night",
     "title": "11:40pm, Level 9",
-    "body": "The clearance has come back with comments for the fourth time. Your daughter's concert was at eight.",
+    "body": "The clearance has come back with comments for the fourth time. The dinner you promised to be home for was at eight.",
     "requires": {
       "minRank": 1,
-      "maxRank": 9
+      "maxRank": 7
     },
     "weight": 9,
     "once": false,
@@ -1707,7 +1939,7 @@
           "integrity": -2,
           "reputation": -1
         },
-        "outcome": "Cleared at 1:20am. You are thanked in a one-word email. You watch the concert on someone else's phone video, twice."
+        "outcome": "Cleared at 1:20am. You are thanked in a one-word email. Dinner is in the fridge, with a note that is mostly punctuation."
       },
       {
         "text": "Go. Send it in the morning.",
@@ -1715,7 +1947,7 @@
           "integrity": 6,
           "standing": -3
         },
-        "outcome": "You make the second half. It goes in at 8:40am and the world does not end, and you note carefully that the world did not end."
+        "outcome": "You make it home for dessert. It goes in at 8:40am and the world does not end, and you note carefully that the world did not end."
       }
     ],
     "montageEffects": {
@@ -1724,7 +1956,7 @@
     },
     "montageLines": [
       "Level 9 at 11pm becomes a habit, then a reputation.",
-      "You miss a school concert and make a deadline. Both are forgotten by March, by different people.",
+      "You miss a birthday dinner and make a deadline. Both are forgotten by March, by different people.",
       "The cleaner on your floor now says goodnight to you by name."
     ]
   },
@@ -1734,7 +1966,7 @@
     "body": "Your bid is for eleven officers and a system. Finance has indicated that the envelope is flat.",
     "requires": {
       "minRank": 3,
-      "maxRank": 8
+      "maxRank": 6
     },
     "weight": 9,
     "once": false,
@@ -1956,7 +2188,7 @@
   {
     "id": "the_quiet_year",
     "title": "A Year Without Incident",
-    "body": "The ministry runs. The schemes run. You go to Bintan in June and nothing breaks while you are gone, which is either a compliment or a warning.",
+    "body": "Everything runs. The schemes run. You go to Bintan in June and nothing breaks while you are gone, which is either a compliment or a warning.",
     "requires": {},
     "weight": 6,
     "once": false,
@@ -1968,7 +2200,7 @@
           "integrity": 3,
           "standing": -1
         },
-        "outcome": "You rewrite a process that has annoyed eleven thousand people since 2014. It takes a year and it is never announced."
+        "outcome": "You get a process fixed that has annoyed eleven thousand people for a decade. It takes a year and it is never announced."
       },
       {
         "text": "Use it to build your network.",
@@ -1995,7 +2227,7 @@
     "montageLines": [
       "Nothing breaks. You suspect this is not a coincidence and cannot prove it.",
       "Bintan in June. You check your email twice, which is progress.",
-      "A quiet year. Somewhere a reporting officer writes \"steady\" and means it kindly."
+      "A quiet year. Somewhere, someone writes \"steady\" about you and means it kindly."
     ]
   },
   {
@@ -2071,7 +2303,7 @@
   {
     "id": "old_colleague",
     "title": "Someone From Before",
-    "body": "At an inter-agency meeting you recognise the chair. Eleven years ago you sat two desks apart at the same statutory board, on the same grade.",
+    "body": "At an inter-agency meeting you recognise the chair. Years ago, before the degree, you sat two desks apart at the same statutory board, on the same grade.",
     "requires": {
       "origin": [
         "poly"
@@ -2138,7 +2370,7 @@
   {
     "id": "figure_vindicated",
     "title": "The Figure, Cited",
-    "body": "A review of the scheme's design cites a utilisation rate of 31%, attributed to a slide from your division. Your new director asks, carefully, who presented it.",
+    "body": "A review of the scheme's design cites a utilisation rate of 31%, attributed to a slide from your division. Someone senior asks, carefully, who presented it.",
     "triggered": true,
     "choices": [
       {
@@ -2159,7 +2391,10 @@
         },
         "outcome": "It was not, entirely. Your team knows that, and it does you more good with them than the other answer would have done upstairs."
       }
-    ]
+    ],
+    "requires": {
+      "maxRank": 6
+    }
   },
   {
     "id": "minute_vindicated",
@@ -2189,28 +2424,31 @@
   {
     "id": "cos_vindicated",
     "title": "The Thing Nobody Announced",
-    "body": "Every ministry that announced something at COS is now explaining delays. Your Minister, who announced nothing, is the only one who is not. She has noticed.",
+    "body": "Every ministry that announced something at COS is now explaining delays. Your Minister, who announced nothing, is the only one who is not. He has noticed.",
     "triggered": true,
     "choices": [
       {
-        "text": "Bring her the pilot, now that it is ready.",
+        "text": "Bring him the pilot, now that it is ready.",
         "effects": {
           "cep": 2,
           "standing": 8,
           "competence": 3
         },
-        "outcome": "She announces it at the next COS, on time and as described. She mentions your division by name, which Ministers do not do."
+        "outcome": "He announces it at the next COS, on time and as described. He mentions your division by name, which Ministers do not do."
       },
       {
-        "text": "Say nothing. Let her draw the conclusion.",
+        "text": "Say nothing. Let him draw the conclusion.",
         "effects": {
           "cep": 1,
           "integrity": 4,
           "standing": 5
         },
-        "outcome": "She draws it. At the year-end ranking exercise she draws it again, in ink."
+        "outcome": "He draws it. At the year-end ranking exercise he draws it again, in ink."
       }
-    ]
+    ],
+    "requires": {
+      "maxRank": 6
+    }
   },
   {
     "id": "dialogue_vindicated",
@@ -2235,7 +2473,10 @@
         },
         "outcome": "It becomes the template for the next national conversation, which uses four pillars."
       }
-    ]
+    ],
+    "requires": {
+      "maxRank": 6
+    }
   },
   {
     "id": "committee_vindicated",
@@ -2260,7 +2501,10 @@
         },
         "outcome": "It circulates anonymously, which in this building is how people find out who wrote it."
       }
-    ]
+    ],
+    "requires": {
+      "maxRank": 6
+    }
   },
   {
     "id": "pofma_vindicated",
@@ -2359,7 +2603,10 @@
         },
         "outcome": "You stay. The board becomes the case study on the leadership programme, taught by someone who was never there."
       }
-    ]
+    ],
+    "requires": {
+      "maxRank": 6
+    }
   },
   {
     "id": "re_election",
@@ -2584,7 +2831,10 @@
         },
         "outcome": "Your deputy reports that the panel was constructive, and that one member asked, twice, whether you would be attending."
       }
-    ]
+    ],
+    "requires": {
+      "maxRank": 7
+    }
   },
   {
     "id": "promotion_board",
@@ -2654,7 +2904,7 @@
   {
     "id": "block_party",
     "title": "The Block Party",
-    "body": "At a block party in your ward, a woman you do not recognise introduces you to forty of her neighbours. Years ago, on one of fifty-one Tuesday nights, a junior officer at a Meet-the-People Session wrote an appeal for her that actually argued her case. It was you. She has told everyone, in detail, more than once.",
+    "body": "At a block party in your ward, a woman you do not recognise introduces you to forty of her neighbours. Years ago, on one of fifty-one Tuesday nights, an officer volunteering at a Meet-the-People Session wrote an appeal for her that actually argued her case. It was you. She has told everyone, in detail, more than once.",
     "triggered": true,
     "requires": {
       "minRank": 8
@@ -2685,7 +2935,7 @@
     "body": "The officer who would have had the good box in the reorganisation, before you secured it for yourself, has had a perfectly good career anyway. She now chairs the committee that decides your division's budget. She is scrupulously fair to you, which is somehow worse.",
     "triggered": true,
     "requires": {
-      "maxRank": 7
+      "maxRank": 6
     },
     "choices": [
       {
@@ -2828,7 +3078,10 @@
         },
         "outcome": "The covering note is very good. The think tank thanks you for the report, which it already had, and files a second request, which is a different kind of note."
       }
-    ]
+    ],
+    "requires": {
+      "maxRank": 6
+    }
   },
   {
     "id": "officer_a",
@@ -2914,7 +3167,7 @@
   {
     "id": "other_life",
     "title": "The Other Life",
-    "body": "Someone who went to tea in the year you declined is now a Minister. On the evening news she announces a scheme your division designed. She thanks the public service, in general terms, which is correct.",
+    "body": "Someone who went to tea in the year you declined is now a Minister. On the evening news she announces a scheme your people designed. She thanks the public service, in general terms, which is correct.",
     "triggered": true,
     "requires": {
       "maxRank": 7

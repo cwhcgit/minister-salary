@@ -6,9 +6,9 @@ The full proposal and reasoning live in the "Making It Fun" doc; this file only 
 
 | Measure (800 seeded runs per bot per origin) | Current game | Prototype |
 | --- | --- | --- |
-| PM rate, first-timer (scholar / grad / poly) | 6.4% / 2% / 0% | 5.8% / 1.1% / 0.1% |
-| PM rate, knows the win | 82.3% / 69.3% / 24% | 50% / 40.4% / 20.1% |
-| PM rate, stat-optimiser | 15.1% / 22.1% / 11.3% | 52.6% / 24.5% / 3.8% |
+| PM rate, first-timer (scholar / grad / poly) | 6.4% / 2% / 0% | 5.4% / 1.6% / 0.1% |
+| PM rate, knows the win | 82.3% / 69.3% / 24% | 46.4% / 41.4% / 20.9% |
+| PM rate, stat-optimiser | 15.1% / 22.1% / 11.3% | 58.1% / 25.4% / 1.5% |
 | Choices worse on every stat | 13 | 4 |
 | Act I / II / III turns per run (first-timer) | 31.12 / 1.58 / 7.8 | 27.24 / 1.35 / 4.91 |
 | CEP-raising event reachable after hitting the ceiling (scholar / grad / poly) | 49% / 71.3% / 83.8% | 61% / 80.1% / 86.8% |
@@ -31,3 +31,10 @@ least one), against 0.3 of the old consequence cards. Scheduled consequences now
 `requires` hold (a promotion-board callback never lands on a Minister) and are never dropped. Knows-the-win
 PM rates move by about as much as the merged game moves between seed sets (grad 49% vs 43% on two seed
 sets for the same build); poly holds at about 20%.
+
+Immersion sweep (also on `fun/callbacks`): `node test/contexts.js` plays seeded careers and lists, for
+every card, the ranks, ages, origins and years-since-cause it actually fires in; the content auditor now
+receives that table and checks a sixth rule, immersion. Cards were narrowed to the ranks their text fits,
+`ally_returns` and `scholar_returns` gained rank variants (`alternates`), the player no longer has an
+assumed gender, partner, children or ethnicity, and Deputy and Permanent Secretary have age floors
+(35 and 40, set conservatively; confirm against real careers). Numbers above are after the sweep.
