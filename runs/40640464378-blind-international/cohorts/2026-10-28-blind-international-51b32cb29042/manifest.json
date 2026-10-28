@@ -1,0 +1,31 @@
+{
+ "cohort": "2026-10-28-blind-international-51b32cb29042",
+ "persona": {
+  "id": "blind-international",
+  "name": "Maya Torres",
+  "file": "blind-international.md",
+  "blind": true,
+  "model": "claude-sonnet-5-5",
+  "effort": "low",
+  "runs": 50,
+  "turnSchema": "player",
+  "diarySchema": "player",
+  "canaries": true,
+  "titleProbe": true,
+  "cohortCapUsd": 14,
+  "answers": "Does it work abroad? Is the title opaque?"
+ },
+ "buildHash": "51b32cb29042",
+ "buildRoot": "/home/runner/work/minister-salary/minister-salary/web",
+ "canaries": true,
+ "systemHash": "23d1e93b2924",
+ "runs": 50,
+ "plannedRuns": 50,
+ "capUsd": 14,
+ "maxTurns": 60,
+ "tags": "phone",
+ "concurrency": 4,
+ "dryRun": false,
+ "mock": false,
+ "createdAt": "2026-10-28T05:52:19.974Z"
+}
