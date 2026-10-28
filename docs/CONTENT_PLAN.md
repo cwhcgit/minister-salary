@@ -180,8 +180,11 @@ A card gets two or three alternate scenes when it appears in more than about 40%
 - **Different scene, same decision.** A different room, person, weather or document, not a reworded
   sentence. Sibling scenes should stay below 0.35 on the similarity check's 4-gram measure. The
   check exempts families from worn-phrase counts but not from this.
-- **Fixed per run.** The scene is picked deterministically per run (seeded), so a replay shows the same
-  scene. Rank variants (the existing `alternates` field) still pick by state.
+- **Deterministic.** Scenes live in a card's `variants` list. The first showing in a run is picked from
+  the seed, preferring a scene the phone has not shown in its last two runs; a card shown again in the
+  same run (a repeat card, an improvement plan) moves on to its next scene. The freshness memory is part
+  of the replay key, so a replay shows the same scenes. Rank variants (the existing `alternates` field)
+  still pick by state.
 
 ## 5. The quality bar (every card, every pack)
 

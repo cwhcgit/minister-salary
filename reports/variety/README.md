@@ -1,6 +1,6 @@
 # Variety, endings and age floors (branch `fun/variety`)
 
-Builds on `fun/next` (PR #10, now merged). Build `cf8a49a474d5`; the comparison column is
+Builds on `fun/next` (PR #10, now merged). Build `d3abbdc2f63e`; the comparison column is
 `fun/next` at `09a28e5`. Regenerate with
 
 - `node test/sim.js regress 800 --json reports/variety/bot-metrics.json --baseline reports/baseline/bot-metrics.json`
