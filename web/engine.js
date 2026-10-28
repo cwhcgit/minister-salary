@@ -158,8 +158,10 @@ const Engine = (() => {
     v.mod = 0;
     const need = content.minYearsInGrade + (v.rank >= 10 ? 1 : 0) + (v.rank >= 13 ? 1 : 0) + (v.rank >= 15 ? 1 : 0);
     const gradeOk = score >= 72 || (score >= 58 && v.rank < 13);
+    // If the player backed someone else in the succession, that someone is Prime Minister, not the batchmate.
+    const pmTaken = s.rank === 16 || (s.flags.includes("kingmaker") && !s.flags.includes("backed_batchmate"));
     let promotable = gradeOk && v.yearsInGrade >= need && v.rank < v.cep && v.rank !== 7 && v.rank < 16
-      && !(v.rank === 15 && s.rank === 16);
+      && !(v.rank === 15 && pmTaken);
     // The ranking exercise ranks everyone at a grade every year. When the player is up for
     // promotion and the batchmate is at the same grade (and not at their own ceiling), the one
     // ranked lower waits. The batchmate takes the slot only if they are eligible themselves.
