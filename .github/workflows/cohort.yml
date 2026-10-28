@@ -23,6 +23,16 @@ on:
         description: Dry run (3 runs, then the projected cost of the full cohort)
         type: boolean
         default: true
+      runs:
+        description: Number of runs (optional; empty = the persona's own count; ignored by content-audit)
+        type: string
+        required: false
+        default: ''
+      max_usd:
+        description: Spend cap in USD for this job, on top of the cohort's own cap (optional; empty = none; ignored by content-audit)
+        type: string
+        required: false
+        default: ''
 
 permissions:
   id-token: write
@@ -53,6 +63,8 @@ jobs:
       PLAYTEST_REQUIRE_WIF: "1"
       PERSONA: ${{ inputs.persona }}
       DRY_RUN: ${{ inputs.dry_run }}
+      RUNS: ${{ inputs.runs }}
+      MAX_USD: ${{ inputs.max_usd }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -76,6 +88,16 @@ jobs:
           else
             args=(play "$PERSONA")
             if [ "$DRY_RUN" = true ]; then args+=(--dry-run); fi
+            # Optional overrides, passed through only when set. Validated so a typo fails here, not mid-cohort.
+            if [ -n "$RUNS" ]; then
+              [[ "$RUNS" =~ ^[1-9][0-9]*$ ]] || { echo "::error::runs must be a whole number above 0, got '$RUNS'"; exit 1; }
+              args+=(--runs "$RUNS")
+            fi
+            if [ -n "$MAX_USD" ]; then
+              [[ "$MAX_USD" =~ ^[0-9]+(\.[0-9]+)?$ ]] && [[ ! "$MAX_USD" =~ ^0+(\.0+)?$ ]] || { echo "::error::max_usd must be a dollar amount above 0, got '$MAX_USD'"; exit 1; }
+              args+=(--max-usd "$MAX_USD")
+            fi
+            echo "runner: node agents/runner.ts ${args[*]}"
             node agents/runner.ts "${args[@]}" | tee "$log"
             if [ "$PERSONA" = lineage ] && [ "$DRY_RUN" != true ]; then
               # A new process makes its own first exchange, so give it a token nobody has used.

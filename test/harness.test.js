@@ -143,9 +143,28 @@ ok('ladder pay and age floors match the published figures', () => {
   assert.strictEqual(L[8].pay, 18500 * 14, 'MP allowance, monthly x 14');
   const multiple = { 9: 0.45, 10: 0.45, 11: 0.7, 12: 0.85, 14: 1.3, 15: 1.6, 16: 2 };
   for (const [r, m] of Object.entries(multiple)) assert.strictEqual(L[r].pay, Math.round(mr4 * m), `${L[r].title} (${L[r].grade})`);
-  assert.strictEqual(L[6].minAge, 35); assert.strictEqual(L[7].minAge, 38);
+  assert.strictEqual(L[4].minAge, 28); assert.strictEqual(L[6].minAge, 35); assert.strictEqual(L[7].minAge, 38);
   const scholar = build.content.origins.find(o => o.id === 'scholar');
   assert.ok(scholar.startRank <= 2 && scholar.startAge === 25, 'scholars start as Assistant Directors at 25');
+});
+
+ok('a seat is only lost on a card the player saw', () => {
+  // A re-election passes by itself only when the seat is safe, and a safe seat is never lost.
+  let passedElections = 0;
+  const score = f => (f.cep||0)*60 + (f.standing||0)*1.5 + (f.competence||0)*1.4 + (f.reputation||0)*1.3;
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 150; seed++) {
+    let run = H.newRun(origin, seed, { build, name: 'T' });
+    while (run.phase !== 'ending' && run.turn < 95) {
+      const ev = H.currentEvent(build, run.S);
+      const live = ev.choices.map((c, i) => [c, i]).filter(([c]) => build.engine.choiceAvailable(c, run.S));
+      run = H.step(run, live.reduce((a, b) => score(b[0].effects || {}) > score(a[0].effects || {}) ? b : a)[1]);
+    }
+    for (const turn of H.trace(run).turns) for (const p of turn.passed) if (p.election) {
+      passedElections++;
+      assert.ok(p.election.won && p.election.safe, `${origin} ${seed}: a re-election that passed by itself was lost`);
+    }
+  }
+  assert.ok(passedElections > 100, 'expected safe re-elections to pass by themselves');
 });
 
 ok('ending causes classify losses', () => {

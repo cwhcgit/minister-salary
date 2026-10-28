@@ -381,7 +381,9 @@ const Engine = (() => {
   }
 
   // --- applying a choice ----------------------------------------------
-  function applyChoice(content, s, ev, ch, t = {}) {
+  // opts.safe: a re-election that passed by itself (the seat was safe). It is won outright: a seat
+  // is only ever lost on a card the player saw.
+  function applyChoice(content, s, ev, ch, t = {}, opts = {}) {
     const log = [];
     const fx = ch.effects || {};
     for (const k of STATS) if (fx[k]) s[k] = clamp(s[k] + fx[k], 0, 100);
@@ -442,8 +444,8 @@ const Engine = (() => {
     if (ch.election === "incumbent") {
       // Re-election every five years. Ministers anchor safe teams; Reputation is what keeps them safe.
       const chance = Math.min(0.98, 0.72 + s.reputation / 250);
-      const won = roll(s) < chance;
-      t.election = { kind: "incumbent", chance, won };
+      const won = opts.safe ? true : roll(s) < chance;
+      t.election = { kind: "incumbent", chance, won, safe: !!opts.safe };
       if (won && s.reputation >= 75 && !s.flags.includes("noticed_swing")) {
         // A strong personal vote is the one thing the party cannot estimate in advance. Once per career.
         s.cep = clamp(s.cep + 1, 0, 16);
@@ -714,7 +716,7 @@ const Engine = (() => {
         lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${m.body}` });
       } else if (kind === "auto") {
         choice = ev.autoPlay.choice || 0; ch = ev.choices[choice];
-        const al = applyChoice(content, s, ev, ch, pt);
+        const al = applyChoice(content, s, ev, ch, pt, { safe: true });
         lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${ev.autoPlay.line || ch.outcome}` }, ...al);
       } else {
         ch = QUIET_YEAR.choices[0];

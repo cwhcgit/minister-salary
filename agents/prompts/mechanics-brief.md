@@ -6,7 +6,7 @@ One event per year. The chosen option's effects apply at once: the four stats cl
 
 Pay is base salary for the rank, plus a performance bonus of 10% to 45% of base scaled by Competence, plus from rank 11 a National Bonus of base/16 per month for 0 to 6 months (3 unless a Budget choice set it otherwise; the riskier choices can pay less, or nothing), all times 0.82 for tax and CPF. Wealth is the score; it gates nothing.
 
-A year with no decision in it passes without a card: a repeat filler the player has already answered replays their habit, a safe re-election (Reputation 60 or more, Heat under 40) is a log line, and its pay and appraisal are compressed into the next outcome screen. A choice that is noted shows in that year's appraisal line.
+A year with no decision in it passes without a card: a repeat filler the player has already answered replays their habit, a safe re-election (Reputation 60 or more, Heat under 40) is won outright and is a log line (a seat is only lost on a re-election card), and its pay and appraisal are compressed into the next outcome screen. A choice that is noted shows in that year's appraisal line.
 
 ### Appraisal
 
@@ -21,7 +21,7 @@ Promoted at year end when all of these hold:
 
 - grade A, or grade B+ below rank 13 (Cabinet rungs need an A);
 - years in grade at least 2, plus 1 from rank 10, plus 1 more from 13, plus 1 more from 15 (the scholar's fast lane: 1 below rank 4);
-- age at least the next rung's floor: 35 for Deputy Secretary, 38 for Permanent Secretary;
+- age at least the next rung's floor: 28 for Director, 35 for Deputy Secretary, 38 for Permanent Secretary;
 - rank below CEP. At or above CEP the player gets a rumour line instead (the CEP hint), and the promotion never comes until CEP rises.
 
 Rank 7 (Permanent Secretary) is the top of the civil service: there is no promotion from it. The only way further is politics.

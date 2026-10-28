@@ -36,7 +36,8 @@
       "title": "Director",
       "grade": "MX9",
       "org": "ministry",
-      "pay": 168000
+      "pay": 168000,
+      "minAge": 28
     },
     {
       "id": 5,

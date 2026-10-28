@@ -107,8 +107,8 @@ Directors at 25, skipping the statutory-board rungs, and need one year in each g
 instead of two until Director. The advantage is the clock and the ceiling, not a senior
 start: even the fastest real officers made Director around 29. This is the sharpest
 satirical point in the game and it is a *mechanic*, not a line of dialogue — see §7
-Character creation. Age floors (plausible, not official rules): Deputy Secretary 35,
-Permanent Secretary 38.
+Character creation. Age floors (plausible, not official rules): Director 28, Deputy
+Secretary 35, Permanent Secretary 38.
 
 ### Act II — The Crossing
 
