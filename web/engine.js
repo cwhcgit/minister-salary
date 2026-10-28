@@ -1586,6 +1586,31 @@ const Engine = (() => {
   // What was really going on, as a short list of lines for the ending screen.
   const NUM = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
 
+  // The day-one ceiling only ever applied to the service, so its line says which story the run
+  // told: reached the top, left for politics, stopped by it, or simply never told. A ceiling a
+  // choice later raised (The move) was only the first day's plan, and the line says so.
+  function serviceCeilingLine(content, s, H, ceiling) {
+    const day1 = ceiling(Math.min(s.cepStart, 7), false);
+    const reachedPS = s.rank === 7 || H.some(h => h.rank === 7 || h.rankAfter === 7);
+    // the ceiling as it stood when the player last served (it can be raised by a choice)
+    const served = H.filter(h => h.rank < 8);
+    const lastCep = s.rank < 8 ? s.cep : served.length ? served[served.length - 1].cepAfter : s.cepStart;
+    const raised = Math.min(lastCep, 7) > Math.min(s.cepStart, 7);
+    if (s.cepStart >= 7 && reachedPS)
+      return "There wasn't one. On your first day the service marked you as able to reach Permanent Secretary, the top grade. You did.";
+    if (s.rank >= 8) return raised
+      ? `${day1}, the highest grade the service would have given you, as set on your first day. It did not apply in politics.`
+      : `${day1}, the highest grade the service would ever have given you. Set on your first day. It did not apply in politics.`;
+    if (raised) return `On your first day, the service decided the highest grade it would give you: ${day1}. Never mentioned.`;
+    // sat at it: reached the day-one ceiling, stayed there 3 years or more, and heard a ceiling rumour there
+    const hints = [...content.cepHints, ...(content.cepHintsPolitics || [])];
+    const up = H.find(h => h.rankAfter === s.cepStart && h.rank < s.cepStart);
+    const stuck = s.cepStart < 7 && s.rank === s.cepStart && up && s.age - (up.age + 1) >= 3
+      && H.some(h => h.rank === s.cepStart && h.hints.some(x => x.startsWith("cep|") && hints.includes(x.slice(4))));
+    if (stuck) return `${day1}, decided on your first day. You reached it at ${up.age}. That is why the promotions stopped.`;
+    return `The highest grade the service would ever give you: ${day1}. Decided on your first day. Never mentioned.`;
+  }
+
   // Each line is one idea, short enough to read at a glance: the label names it, the text says it.
   function declassify(content, s) {
     const out = [], H = s.history || [];
@@ -1593,9 +1618,7 @@ const Engine = (() => {
     // In the service a ceiling of 7 is the top rung and 8 or more is none at all; in politics it is a rank.
     const ceiling = (r, political) => political ? title(content, r)
       : r === 7 ? "Permanent Secretary" : r >= 8 ? "none" : title(content, r);
-    out.push({ label: "Your ceiling", text: s.cepStart >= 8
-      ? "None inside the service. Most people have one. Not mentioned."
-      : `${ceiling(s.cepStart, false)}. Decided on day one. Not mentioned.` });
+    out.push({ label: "Your civil service ceiling", text: serviceCeilingLine(content, s, H, ceiling) });
     const won = H.find(h => h.ev === "the_election" && h.rankAfter === 8);
     if (won) out.push({ label: "The party's estimate", text: `${title(content, won.cepAfter)}. Also not mentioned.` });
 
