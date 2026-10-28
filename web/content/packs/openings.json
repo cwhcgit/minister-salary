@@ -1,0 +1,91 @@
+{
+  "id": "openings",
+  "title": "Openings",
+  "note": "One opening card per origin: it fires in year 1 and says where you are, who you report to and what you do, so the first year starts with context. Written to the plain-English rule: what is happening, why it matters to you, then the joke.",
+  "events": [
+    {
+      "id": "opening_scholar",
+      "title": "Four Months In",
+      "body": "You came back from your overseas degree four months ago and were posted to the {ministry} as an Assistant Director. Your reporting officer is {senior}, {senior.aTitle}. Today {senior} hands you your first real job: a paper for the Minister, due in two weeks, on a scheme whose numbers are bad. A scholar's first paper gets read closely.",
+      "requires": {
+        "origin": [
+          "scholar"
+        ],
+        "maxAge": 25
+      },
+      "priority": true,
+      "once": true,
+      "weight": 1,
+      "choices": [
+        {
+          "text": "Write that the scheme isn't working, and show the numbers.",
+          "effects": {
+            "integrity": 5,
+            "competence": 4,
+            "standing": -3
+          },
+          "outcome": "Your paper says plainly that the scheme isn't working, and shows why. {senior} sends it up unchanged. The Minister's office asks who wrote it: half of them want to meet you, and half want to know why nobody stopped you."
+        },
+        {
+          "text": "Write it the way the Minister's office will want to read it.",
+          "effects": {
+            "standing": 5,
+            "integrity": -4
+          },
+          "outcome": "Your paper says the scheme is \"gaining traction\", which is true of its two good months. It goes up on time and comes back with a tick. {senior} says nothing, and doesn't give you a difficult file again for a year."
+        },
+        {
+          "text": "Ask {senior} what the Minister already thinks, first.",
+          "effects": {
+            "standing": 3,
+            "competence": 2,
+            "integrity": -2
+          },
+          "outcome": "{senior} tells you what the Minister thinks, and which numbers to lead with. The paper lands well. You've learned how papers get written here, and you're not sure you like it."
+        }
+      ]
+    },
+    {
+      "id": "opening_grad",
+      "title": "Eight Months In",
+      "body": "You've been a Management Executive at the {ministry} for eight months, mostly drafting replies to letters from the public. Your reporting officer is {senior}, {senior.aTitle}. {peer}, who joined the same week as you, already gets sent to meetings you don't. Your first appraisal is in four months.",
+      "requires": {
+        "origin": [
+          "grad"
+        ],
+        "maxAge": 23
+      },
+      "priority": true,
+      "once": true,
+      "weight": 1,
+      "choices": [
+        {
+          "text": "Ask {senior} for harder work.",
+          "effects": {
+            "competence": 6,
+            "standing": -1
+          },
+          "outcome": "{senior} gives you a briefing note for a Deputy Secretary, due Friday. It's harder than anything you've done. It goes in on time, with one mistake that {senior} catches before anyone upstairs sees it."
+        },
+        {
+          "text": "Ask {peer} how to get into those meetings.",
+          "effects": {
+            "standing": 4,
+            "reputation": 2,
+            "competence": -2
+          },
+          "outcome": "{peer} says you just ask to sit in. So you ask. The meetings are mostly about scheduling other meetings, but people upstairs now know your face."
+        },
+        {
+          "text": "Keep your head down and clear the letters.",
+          "effects": {
+            "competence": 3,
+            "integrity": 4,
+            "standing": -3
+          },
+          "outcome": "You clear a hundred and forty replies by December, each one checked twice. Nobody upstairs counts them. {senior} does, and starts sending you the letters nobody else wants to answer."
+        }
+      ]
+    }
+  ]
+}

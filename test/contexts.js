@@ -301,6 +301,8 @@ function castStatic(build) {
         for (const o of slots.get(low).options) if (typeof (field ? o[field] : o.text) !== 'string') out.push(`${e.id}: ${raw} but option "${o.id}" of "${low}" has no ${field || 'text'}`);
       } else if (roles.has(name.toLowerCase())) {
         if (field && !['name', 'full', 'given', 'formal', 'title', 'atitle', 'they', 'them', 'their', 'years'].includes(field.toLowerCase())) out.push(`${e.id}: unknown cast field ${raw}`);
+      } else if (name === 'ministry' && !field) {
+        // the player's ministry, as the header names it
       } else if (!(rivalCard && rivalTok.has(name))) out.push(`${e.id}: unknown token ${raw}`);
       // the pronoun convention: a subject pronoun never comes before a present-tense verb
     }

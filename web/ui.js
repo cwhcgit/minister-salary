@@ -19,7 +19,7 @@ const STATKEYS = [
 
 // Log tags as the player reads them. CEP hints and Heat rumours are both just rumours on
 // screen: naming the hidden values would give away what the player is meant to infer.
-const TAG_LABEL = { cep: "rumour", heat: "rumour", rival: "batchmate" };
+const TAG_LABEL = { cep: "rumour", heat: "rumour", rival: "batchmate", noted: "appraisal" };
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
@@ -80,7 +80,7 @@ function header() {
 function startScreen() {
   app.innerHTML = `
     <div class="title serif">Minister<br>Salary</div>
-    <div class="tag-line">You join the public service at the bottom. The formula that sets the Prime Minister's pay is published, and so is the distance between you and it.</div>
+    <div class="tag-line">You join the public service. The formula that sets the Prime Minister's pay is published, and so is the distance between you and it.</div>
     <input id="nm" placeholder="Your name" maxlength="28" value="${esc((() => { try { return localStorage.getItem("ms.name") || ""; } catch (e) { return ""; } })())}">
     ${content.origins.map(o => `
       <div class="origin" role="radio" tabindex="0" data-o="${o.id}" aria-checked="${o.id === pickedOrigin}">
@@ -93,7 +93,7 @@ function startScreen() {
       <span class="mn">Someone from your intake, on the same ladder, competing for the same promotion slots. Harder.</span></span>
     </label>` : ""}
     <button class="primary" id="go">Begin</button>
-    <div class="hint">One tap is one year. Choices are permanent, and some of them come back.</div>`;
+    <div class="hint">One tap is one year, and every year ends with an appraisal grade. A or B+ gets you considered for promotion; two Ds in a row and you are asked to leave. Choices are permanent, and some of them come back.</div>`;
 
   app.querySelectorAll(".origin").forEach(el =>
     el.onclick = () => {
@@ -138,14 +138,25 @@ function eventScreen() {
 }
 
 function outcomeScreen() {
-  app.innerHTML = header() + `
-    <div class="card">
-      <div class="outcome serif">${esc(outcome)}</div>
-      <div class="log">${log.map(l => `
-        <div class="li"><span class="tag t-${l.kind}">${TAG_LABEL[l.kind] || l.kind}</span>
+  // One screen per event: the card's outcome first, then each year's review on its own page.
+  // Every page is in the document (one shown at a time), so the log reads the same as before.
+  const pages = [[]];
+  log.forEach(l => { if (l.kind === "year") pages.push([l]); else pages[pages.length - 1].push(l); });
+  const last = pages.length - 1;
+  app.innerHTML = header() + pages.map((pg, k) => `
+    <div class="card page" data-p="${k}"${k ? " hidden" : ""}>
+      ${k === 0 ? `<div class="outcome serif">${esc(outcome)}</div>` : ""}
+      <div class="log">${pg.map(l => `
+        <div class="li${l.kind === "year" ? " yr" : ""}"><span class="tag t-${l.kind}">${TAG_LABEL[l.kind] || l.kind}</span>
         <span>${esc(l.text)}</span></div>`).join("")}</div>
-      <button class="primary" id="next">Confirm Another Year</button>
-    </div>`;
+      ${k === last ? `<button class="primary" id="next">Confirm Another Year</button>` : `<button class="primary more">Continue</button>`}
+    </div>`).join("");
+  app.querySelectorAll(".more").forEach(b => b.onclick = () => {
+    const page = b.closest(".page"), k = +page.dataset.p;
+    page.hidden = true;
+    app.querySelector(`.page[data-p="${k + 1}"]`).hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
   app.querySelector("#next").onclick = nextTurn;
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
