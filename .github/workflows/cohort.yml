@@ -17,6 +17,7 @@ on:
           - fun-insider
           - fun-completionist
           - fun-critic
+          - fun-critic-haiku
           - content-audit
           - blind-insider
           - blind-general
