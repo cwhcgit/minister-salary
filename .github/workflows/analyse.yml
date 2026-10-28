@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       runs:
-        description: Agent cohort run IDs to analyse, comma-separated (full cohorts, not dry runs)
+        description: Agent cohort run IDs to analyse, comma-separated (full cohorts, not dry runs; a content-audit run is shown alongside)
         type: string
         required: true
 
@@ -54,6 +54,9 @@ jobs:
           find "$RUNNER_TEMP/artifacts" -name manifest.json -print0 |
             while IFS= read -r -d '' m; do cp -r "$(dirname "$m")" reports/cohorts/; done
           ls reports/cohorts
+          # A content-audit run among them: show its table here, next to the findings.
+          find "$RUNNER_TEMP/artifacts" -path '*audit*' -name '*.md' -print0 |
+            while IFS= read -r -d '' a; do cat "$a"; cat "$a" >> "$GITHUB_STEP_SUMMARY"; done
 
       - name: No API key in this job
         run: .github/scripts/anthropic-wif.sh check
