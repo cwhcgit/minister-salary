@@ -96,7 +96,7 @@ Estimates from the real prompt sizes (about 4 characters a token), before thinki
 
 | cohort | per run | runs | cohort | cap |
 |---|---|---|---|---|
-| blind, each | ~$0.16 | 50 | ~$8 | $12 |
+| blind, each | $0.25-0.31 (measured in the first dry runs) | 50 | $13-15 | $20 |
 | lineage | ~$0.16 | 100 | ~$16 | $25 |
 | veteran | ~$0.02 | 200 | ~$4 | $5 |
 | breaker | ~$0.17 | 30 | ~$5 | $10 |
