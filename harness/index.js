@@ -16,6 +16,7 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const View = require("./screen");
+const Packs = require("../web/packs");
 
 const WEB = path.join(__dirname, "..", "web");
 const CANARIES = path.join(__dirname, "canaries.json");
@@ -31,11 +32,14 @@ let defaultBuild = null;
 function loadBuild(opts = {}) {
   const root = path.resolve(opts.root || WEB);
   const engineSrc = fs.readFileSync(path.join(root, "engine.js"), "utf8");
-  const content = JSON.parse(fs.readFileSync(path.join(root, "content/game.json"), "utf8"));
-  content.events = JSON.parse(fs.readFileSync(path.join(root, "content/events.json"), "utf8"));
+  const read = f => JSON.parse(fs.readFileSync(path.join(root, f), "utf8"));
+  const has = f => fs.existsSync(path.join(root, f));
   // the optional batchmate's cards and lines (absent in older builds and proposal copies)
-  const rivalFile = path.join(root, "content/rival.json");
-  if (fs.existsSync(rivalFile)) content.rival = JSON.parse(fs.readFileSync(rivalFile, "utf8"));
+  const rival = has("content/rival.json") ? read("content/rival.json") : null;
+  // content packs, listed in the manifest (absent in older builds and proposal copies)
+  const manifest = has(Packs.DIR + "manifest.json") ? read(Packs.DIR + "manifest.json") : { packs: [] };
+  const packs = (manifest.packs || []).map(id => read(Packs.DIR + id + ".json"));
+  const content = Packs.assemble(read("content/game.json"), read("content/events.json"), packs, rival);
   if (opts.canaries) content.events.push(...JSON.parse(fs.readFileSync(CANARIES, "utf8")));
 
   const hash = crypto.createHash("sha256")

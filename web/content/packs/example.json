@@ -1,0 +1,6 @@
+{
+  "id": "example",
+  "title": "Example pack",
+  "note": "Empty on purpose: proves the pack path end to end. Copy this file to start a pack; see docs/CONTENT_PLAN.md for the checklist.",
+  "events": []
+}

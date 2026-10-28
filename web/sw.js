@@ -1,11 +1,16 @@
 // Cache-first so the game is fully playable with no signal.
 // Bump VERSION whenever content or code changes, or phones will keep the old copy.
-const VERSION = "ms-v7";
+const VERSION = "ms-v9";
 const ASSETS = ["./", "./index.html", "./engine.js", "./ui.js", "./icon.svg",
-  "./manifest.webmanifest", "./content/game.json", "./content/events.json", "./content/rival.json"];
+  "./manifest.webmanifest", "./content/game.json", "./content/events.json", "./content/rival.json",
+  "./packs.js", "./content/packs/manifest.json"];
 
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  // the packs the manifest lists are cached too, so every pack plays offline
+  e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS)
+    .then(() => fetch("./content/packs/manifest.json")).then(r => r.json())
+    .then(m => c.addAll((m.packs || []).map(id => `./content/packs/${id}.json`))).catch(() => {}))
+    .then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", e => {
   e.waitUntil(caches.keys()

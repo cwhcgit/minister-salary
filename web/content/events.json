@@ -4096,11 +4096,11 @@
         ]
       },
       {
-        "body": "Your reporting officer would like to \"set some clear expectations\" for the next six months. There are six, numbered, and copied to someone you have never met.",
+        "body": "Your reporting officer would like to \"set some clear expectations\" for the next six months. There are six, numbered, and copied to a name you do not recognise.",
         "choices": [
           {
             "text": "Meet every one of them, in writing.",
-            "outcome": "Six months, six expectations, six emails confirming each one met. The person you have never met replies to the last one: \"Noted, thanks.\""
+            "outcome": "Six months, six expectations, six emails confirming each one met. The name you did not recognise replies to the last one: \"Noted, thanks.\""
           },
           {
             "text": "Ask for a fresh start somewhere else.",
@@ -4108,7 +4108,7 @@
           },
           {
             "text": "Reply to each expectation, point by point.",
-            "outcome": "Your reply is longer than the expectations. It is read carefully by the person you have never met, who now knows exactly who you are."
+            "outcome": "Your reply is longer than the expectations. It is read carefully by the name you did not recognise, who now knows exactly who you are."
           }
         ]
       }
