@@ -154,7 +154,7 @@ await ok("fun prompts: the meter instructions are filled in, and every runner-wr
   const b = H.loadBuild({ canaries: true });
   for (const p of PERSONAS.filter(x => x.fun)) {
     const sys = systemPrompt(p, b);
-    assert.ok(sys.includes(`from -${p.fun!.maxDelta} to +${p.fun!.maxDelta}`) && !sys.includes("{{"), p.id);
+    assert.ok(Object.keys(p.fun!.verdicts).every(v => sys.includes("`" + v + "`")) && !sys.includes("{{"), p.id);
     assert.ok(p.blind && p.canaries, `${p.id} is blind and plays with canaries`);
     assert.deepStrictEqual(leakGate(p, b), [], p.id);
   }

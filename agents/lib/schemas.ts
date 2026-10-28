@@ -22,17 +22,19 @@ const SCALE = oneOf(1, 2, 3, 4, 5);
 // would make output tokens most of the bill.
 const NOTES = { remember: str, rewrite_notes: nullable(str) };
 
-// A fun-meter turn: the whole reply is ~35 tokens. The delta's range is an integer enum, since
-// the API does not enforce minimum/maximum.
-export const funTurnSchema = (max = 10): S => obj({
-  choice: CHOICE,
-  delta: oneOf(...Array.from({ length: 2 * max + 1 }, (_, i) => i - max)),
+// A fun-meter turn: the whole reply is ~35 tokens. The model names what it reacted to, then
+// picks a verdict (the runner maps it to a delta: small models gave a numeric scale ~90% ups),
+// then its choice. Properties are generated in this order.
+export const FUN_VERDICTS = ["fine", "skimmed", "annoyed", "smiled", "tell_a_friend"] as const;
+export const funTurnSchema = (verdicts: readonly string[] = FUN_VERDICTS): S => obj({
   reason: str,
+  verdict: oneOf(...verdicts),
+  choice: CHOICE,
   off_tone: nullable(str)
 });
 
 export const TURN: Record<TurnSchema, S> = {
-  fun: funTurnSchema(10),
+  fun: funTurnSchema(),
   player: obj({
     choice: CHOICE,
     why: str,
