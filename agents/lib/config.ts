@@ -48,13 +48,13 @@ export interface Persona {
 
 export const PERSONAS: Persona[] = [
   { id: "blind-insider", name: "Rachel Goh", file: "blind-insider.md", blind: true, model: "claude-sonnet-5-5", effort: "low",
-    runs: 50, turnSchema: "player", diarySchema: "player", canaries: true, titleProbe: true, cohortCapUsd: 12,
+    runs: 50, turnSchema: "player", diarySchema: "player", canaries: true, titleProbe: true, cohortCapUsd: 20,
     answers: "Does the satire land for insiders? Is the jargon accurate?" },
   { id: "blind-general", name: "Darren Lim", file: "blind-general.md", blind: true, model: "claude-sonnet-5-5", effort: "low",
-    runs: 50, turnSchema: "player", diarySchema: "player", canaries: true, titleProbe: true, cohortCapUsd: 12,
+    runs: 50, turnSchema: "player", diarySchema: "player", canaries: true, titleProbe: true, cohortCapUsd: 20,
     answers: "Is it funny and followable without insider knowledge?" },
   { id: "blind-international", name: "Maya Torres", file: "blind-international.md", blind: true, model: "claude-sonnet-5-5", effort: "low",
-    runs: 50, turnSchema: "player", diarySchema: "player", canaries: true, titleProbe: true, cohortCapUsd: 12,
+    runs: 50, turnSchema: "player", diarySchema: "player", canaries: true, titleProbe: true, cohortCapUsd: 20,
     answers: "Does it work abroad? Is the title opaque?" },
   { id: "lineage", name: "Sam Ong", file: "lineage.md", blind: true, model: "claude-sonnet-5-5", effort: "medium",
     runs: 100, lineage: { lineages: 20, runsEach: 5 }, turnSchema: "player", diarySchema: "lineage",
