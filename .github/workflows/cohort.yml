@@ -87,7 +87,7 @@ jobs:
           {
             echo "### $PERSONA$([ "$DRY_RUN" = true ] && echo ' (dry run)')"
             echo '```'
-            grep -E "credentials:|===|spent|projected|completed|findings|total spent|→" "$log" || true
+            grep -E "credentials:|===|spent|projected|completed|canaries|interest by act|behaviour|findings|total spent|→" "$log" || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 

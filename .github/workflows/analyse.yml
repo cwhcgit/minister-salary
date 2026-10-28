@@ -1,0 +1,83 @@
+name: Analyst
+
+# Paid (about a dollar): the analyst reads the bot metrics and the cohorts from earlier
+# Agent cohort runs, and writes the ranked findings report. Same workload identity
+# federation as the cohorts: no API key anywhere.
+on:
+  workflow_dispatch:
+    inputs:
+      runs:
+        description: Agent cohort run IDs to analyse, comma-separated (full cohorts, not dry runs)
+        type: string
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+  actions: read   # to download the cohort artifacts
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  analyse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      ANTHROPIC_FEDERATION_RULE_ID: fdrl_01CYm8iJcdD1ZtSrR1gKpdMM
+      ANTHROPIC_ORGANIZATION_ID: 2f3a39e4-5a60-4ee0-9db1-1634ed555743
+      ANTHROPIC_SERVICE_ACCOUNT_ID: svac_012M6HPUHTmfwquraMjux41T
+      ANTHROPIC_WORKSPACE_ID: wrkspc_014M7AmfQuPoyQccxD9agdEB
+      ANTHROPIC_IDENTITY_TOKEN_FILE: /tmp/anthropic-wif/github-oidc.jwt
+      PLAYTEST_REQUIRE_WIF: "1"
+      RUNS: ${{ inputs.runs }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+
+      - name: Install the agent runner
+        working-directory: agents
+        run: npm ci --no-fund --no-audit
+
+      - name: Download the cohorts
+        run: |
+          mkdir -p reports/cohorts
+          IFS=', ' read -ra ids <<< "$RUNS"
+          for id in "${ids[@]}"; do
+            [[ "$id" =~ ^[0-9]+$ ]] || { echo "::error::not a run ID: $id"; exit 1; }
+            gh run download "$id" --repo "$GITHUB_REPOSITORY" --dir "$RUNNER_TEMP/artifacts/$id"
+          done
+          # Every cohort directory carries a manifest.json, wherever the artifact's root fell.
+          find "$RUNNER_TEMP/artifacts" -name manifest.json -print0 |
+            while IFS= read -r -d '' m; do cp -r "$(dirname "$m")" reports/cohorts/; done
+          ls reports/cohorts
+
+      - name: No API key in this job
+        run: .github/scripts/anthropic-wif.sh check
+
+      - name: Fetch the GitHub OIDC token and keep it fresh
+        run: .github/scripts/anthropic-wif.sh start
+
+      - name: Analyse
+        run: |
+          node agents/analyse.ts reports/cohorts/*/
+          cat reports/analysis/*/report.md
+          cat reports/analysis/*/report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Stop the token refresher
+        if: always()
+        run: .github/scripts/anthropic-wif.sh stop
+
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: analysis-${{ github.run_id }}
+          path: |
+            reports/analysis/
+            reports/cohorts/*/summary.json
+          if-no-files-found: warn
+          retention-days: 90
