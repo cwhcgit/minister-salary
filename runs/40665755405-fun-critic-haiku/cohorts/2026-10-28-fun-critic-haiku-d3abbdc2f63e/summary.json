@@ -1,0 +1,3751 @@
+{
+ "kind": "fun-sessions",
+ "cohort": "2026-10-28-fun-critic-haiku-d3abbdc2f63e",
+ "persona": "fun-critic-haiku",
+ "model": "claude-haiku-5-5",
+ "thinking": "disabled",
+ "buildHashes": {
+  "plain": "d3abbdc2f63e",
+  "canary": "b871c32ee115"
+ },
+ "mock": false,
+ "fun": {
+  "start": 50,
+  "cap": 100,
+  "quitLine": 25,
+  "decay": 2,
+  "maxDelta": 10,
+  "repeatSteps": [
+   5,
+   10,
+   15
+  ],
+  "repeatMultiplier": 1,
+  "freshToReset": 3,
+  "careers": 5,
+  "origins": "rotate"
+ },
+ "sessions": 40,
+ "aborted": 0,
+ "taps": 2292,
+ "autoPicks": 0,
+ "refusals": 0,
+ "retention": {
+  "quitSessions": 40,
+  "quitShare": 100,
+  "tapsToQuit": {
+   "median": 60,
+   "p25": 43.75,
+   "p75": 71.25,
+   "min": 11,
+   "max": 80,
+   "histogram": {
+    "11-20": 1,
+    "21-30": 3,
+    "31-40": 4,
+    "41-50": 5,
+    "51-60": 8,
+    "61-70": 7,
+    "71-80": 12
+   }
+  },
+  "neverQuit": {
+   "sessions": 0,
+   "medianTaps": null
+  },
+  "runsToQuit": {
+   "median": 3,
+   "distribution": {
+    "1": 5,
+    "2": 14,
+    "3": 20,
+    "4": 1
+   }
+  },
+  "careers": {
+   "started": 97,
+   "finished": 62,
+   "finishedShare": 63.9,
+   "cutAtTurnCap": 0,
+   "perSession": 2.42,
+   "endings": {
+    "retired": 28,
+    "permsec": 21,
+    "office": 4,
+    "lostward": 4,
+    "consultancy": 3,
+    "level": 2
+   }
+  }
+ },
+ "deltas": {
+  "meanModel": 2.3,
+  "meanRepeatRule": -0.69,
+  "decayPerTap": -2,
+  "positiveShare": 91.9,
+  "zeroShare": 2,
+  "negativeShare": 6.1,
+  "repeatTapShare": 8.5,
+  "offToneRate": 3.8,
+  "reasonsOver12Words": 90.7
+ },
+ "funCurve": [
+  {
+   "tap": 1,
+   "playing": 40,
+   "meanMeter": 49.35,
+   "meanModelDelta": 1.59,
+   "quits": 0
+  },
+  {
+   "tap": 2,
+   "playing": 40,
+   "meanMeter": 48.85,
+   "meanModelDelta": 2.48,
+   "quits": 0
+  },
+  {
+   "tap": 3,
+   "playing": 40,
+   "meanMeter": 48.15,
+   "meanModelDelta": 2.07,
+   "quits": 0
+  },
+  {
+   "tap": 4,
+   "playing": 40,
+   "meanMeter": 47.48,
+   "meanModelDelta": 1.88,
+   "quits": 0
+  },
+  {
+   "tap": 5,
+   "playing": 40,
+   "meanMeter": 46.8,
+   "meanModelDelta": 2.32,
+   "quits": 0
+  },
+  {
+   "tap": 6,
+   "playing": 40,
+   "meanMeter": 46.52,
+   "meanModelDelta": 2.03,
+   "quits": 0
+  },
+  {
+   "tap": 7,
+   "playing": 40,
+   "meanMeter": 46.15,
+   "meanModelDelta": 2.11,
+   "quits": 0
+  },
+  {
+   "tap": 8,
+   "playing": 40,
+   "meanMeter": 46.02,
+   "meanModelDelta": 2.3,
+   "quits": 0
+  },
+  {
+   "tap": 9,
+   "playing": 40,
+   "meanMeter": 45.67,
+   "meanModelDelta": 1.97,
+   "quits": 0
+  },
+  {
+   "tap": 10,
+   "playing": 40,
+   "meanMeter": 46,
+   "meanModelDelta": 2.5,
+   "quits": 0
+  },
+  {
+   "tap": 11,
+   "playing": 40,
+   "meanMeter": 45.65,
+   "meanModelDelta": 2,
+   "quits": 1
+  },
+  {
+   "tap": 12,
+   "playing": 39,
+   "meanMeter": 46.64,
+   "meanModelDelta": 2.69,
+   "quits": 0
+  },
+  {
+   "tap": 13,
+   "playing": 39,
+   "meanMeter": 47.23,
+   "meanModelDelta": 2.59,
+   "quits": 0
+  },
+  {
+   "tap": 14,
+   "playing": 39,
+   "meanMeter": 47.59,
+   "meanModelDelta": 2.61,
+   "quits": 0
+  },
+  {
+   "tap": 15,
+   "playing": 39,
+   "meanMeter": 47.56,
+   "meanModelDelta": 2.31,
+   "quits": 0
+  },
+  {
+   "tap": 16,
+   "playing": 39,
+   "meanMeter": 48.23,
+   "meanModelDelta": 2.67,
+   "quits": 0
+  },
+  {
+   "tap": 17,
+   "playing": 39,
+   "meanMeter": 48.85,
+   "meanModelDelta": 2.62,
+   "quits": 0
+  },
+  {
+   "tap": 18,
+   "playing": 39,
+   "meanMeter": 49.26,
+   "meanModelDelta": 2.54,
+   "quits": 0
+  },
+  {
+   "tap": 19,
+   "playing": 39,
+   "meanMeter": 49.82,
+   "meanModelDelta": 2.74,
+   "quits": 0
+  },
+  {
+   "tap": 20,
+   "playing": 39,
+   "meanMeter": 50.59,
+   "meanModelDelta": 2.77,
+   "quits": 0
+  },
+  {
+   "tap": 21,
+   "playing": 39,
+   "meanMeter": 51.05,
+   "meanModelDelta": 2.46,
+   "quits": 0
+  },
+  {
+   "tap": 22,
+   "playing": 39,
+   "meanMeter": 51.26,
+   "meanModelDelta": 2.65,
+   "quits": 0
+  },
+  {
+   "tap": 23,
+   "playing": 39,
+   "meanMeter": 51.54,
+   "meanModelDelta": 2.54,
+   "quits": 0
+  },
+  {
+   "tap": 24,
+   "playing": 39,
+   "meanMeter": 51.49,
+   "meanModelDelta": 2.32,
+   "quits": 0
+  },
+  {
+   "tap": 25,
+   "playing": 39,
+   "meanMeter": 51.23,
+   "meanModelDelta": 2.03,
+   "quits": 0
+  },
+  {
+   "tap": 26,
+   "playing": 39,
+   "meanMeter": 51.23,
+   "meanModelDelta": 2.3,
+   "quits": 1
+  },
+  {
+   "tap": 27,
+   "playing": 38,
+   "meanMeter": 52.34,
+   "meanModelDelta": 2.55,
+   "quits": 0
+  },
+  {
+   "tap": 28,
+   "playing": 38,
+   "meanMeter": 51.68,
+   "meanModelDelta": 2,
+   "quits": 1
+  },
+  {
+   "tap": 29,
+   "playing": 37,
+   "meanMeter": 52.46,
+   "meanModelDelta": 2.43,
+   "quits": 1
+  },
+  {
+   "tap": 30,
+   "playing": 36,
+   "meanMeter": 53.14,
+   "meanModelDelta": 2.51,
+   "quits": 0
+  },
+  {
+   "tap": 31,
+   "playing": 36,
+   "meanMeter": 52.69,
+   "meanModelDelta": 2.25,
+   "quits": 2
+  },
+  {
+   "tap": 32,
+   "playing": 34,
+   "meanMeter": 54.38,
+   "meanModelDelta": 2.74,
+   "quits": 0
+  },
+  {
+   "tap": 33,
+   "playing": 34,
+   "meanMeter": 55.12,
+   "meanModelDelta": 2.74,
+   "quits": 0
+  },
+  {
+   "tap": 34,
+   "playing": 34,
+   "meanMeter": 55.26,
+   "meanModelDelta": 2.59,
+   "quits": 0
+  },
+  {
+   "tap": 35,
+   "playing": 34,
+   "meanMeter": 55.18,
+   "meanModelDelta": 2.65,
+   "quits": 0
+  },
+  {
+   "tap": 36,
+   "playing": 34,
+   "meanMeter": 54.97,
+   "meanModelDelta": 2.53,
+   "quits": 1
+  },
+  {
+   "tap": 37,
+   "playing": 33,
+   "meanMeter": 56.33,
+   "meanModelDelta": 2.42,
+   "quits": 0
+  },
+  {
+   "tap": 38,
+   "playing": 33,
+   "meanMeter": 55.97,
+   "meanModelDelta": 2.61,
+   "quits": 0
+  },
+  {
+   "tap": 39,
+   "playing": 33,
+   "meanMeter": 56.03,
+   "meanModelDelta": 2.7,
+   "quits": 1
+  },
+  {
+   "tap": 40,
+   "playing": 32,
+   "meanMeter": 57,
+   "meanModelDelta": 2.59,
+   "quits": 0
+  },
+  {
+   "tap": 41,
+   "playing": 32,
+   "meanMeter": 56.69,
+   "meanModelDelta": 2.47,
+   "quits": 0
+  },
+  {
+   "tap": 42,
+   "playing": 32,
+   "meanMeter": 57.31,
+   "meanModelDelta": 2.66,
+   "quits": 0
+  },
+  {
+   "tap": 43,
+   "playing": 32,
+   "meanMeter": 56.5,
+   "meanModelDelta": 2.78,
+   "quits": 2
+  },
+  {
+   "tap": 44,
+   "playing": 30,
+   "meanMeter": 58.4,
+   "meanModelDelta": 2.27,
+   "quits": 1
+  },
+  {
+   "tap": 45,
+   "playing": 29,
+   "meanMeter": 59.07,
+   "meanModelDelta": 2.76,
+   "quits": 0
+  },
+  {
+   "tap": 46,
+   "playing": 29,
+   "meanMeter": 58.03,
+   "meanModelDelta": 2.34,
+   "quits": 1
+  },
+  {
+   "tap": 47,
+   "playing": 28,
+   "meanMeter": 58.93,
+   "meanModelDelta": 1.89,
+   "quits": 1
+  },
+  {
+   "tap": 48,
+   "playing": 27,
+   "meanMeter": 60.52,
+   "meanModelDelta": 2.3,
+   "quits": 0
+  },
+  {
+   "tap": 49,
+   "playing": 27,
+   "meanMeter": 60.7,
+   "meanModelDelta": 2.63,
+   "quits": 0
+  },
+  {
+   "tap": 50,
+   "playing": 27,
+   "meanMeter": 60.67,
+   "meanModelDelta": 2.59,
+   "quits": 0
+  },
+  {
+   "tap": 51,
+   "playing": 27,
+   "meanMeter": 59.93,
+   "meanModelDelta": 2.22,
+   "quits": 0
+  },
+  {
+   "tap": 52,
+   "playing": 27,
+   "meanMeter": 59.07,
+   "meanModelDelta": 2.11,
+   "quits": 0
+  },
+  {
+   "tap": 53,
+   "playing": 27,
+   "meanMeter": 57.67,
+   "meanModelDelta": 1.96,
+   "quits": 1
+  },
+  {
+   "tap": 54,
+   "playing": 26,
+   "meanMeter": 57.73,
+   "meanModelDelta": 1.81,
+   "quits": 1
+  },
+  {
+   "tap": 55,
+   "playing": 25,
+   "meanMeter": 57.56,
+   "meanModelDelta": 2.2,
+   "quits": 2
+  },
+  {
+   "tap": 56,
+   "playing": 23,
+   "meanMeter": 59.3,
+   "meanModelDelta": 2.13,
+   "quits": 0
+  },
+  {
+   "tap": 57,
+   "playing": 23,
+   "meanMeter": 59,
+   "meanModelDelta": 2.35,
+   "quits": 0
+  },
+  {
+   "tap": 58,
+   "playing": 23,
+   "meanMeter": 58.04,
+   "meanModelDelta": 2.17,
+   "quits": 1
+  },
+  {
+   "tap": 59,
+   "playing": 22,
+   "meanMeter": 57.68,
+   "meanModelDelta": 1.5,
+   "quits": 1
+  },
+  {
+   "tap": 60,
+   "playing": 21,
+   "meanMeter": 59.33,
+   "meanModelDelta": 2.14,
+   "quits": 2
+  },
+  {
+   "tap": 61,
+   "playing": 19,
+   "meanMeter": 62.11,
+   "meanModelDelta": 2.16,
+   "quits": 0
+  },
+  {
+   "tap": 62,
+   "playing": 19,
+   "meanMeter": 60.26,
+   "meanModelDelta": 1.74,
+   "quits": 0
+  },
+  {
+   "tap": 63,
+   "playing": 19,
+   "meanMeter": 57.74,
+   "meanModelDelta": 1.84,
+   "quits": 1
+  },
+  {
+   "tap": 64,
+   "playing": 18,
+   "meanMeter": 58.56,
+   "meanModelDelta": 2.17,
+   "quits": 0
+  },
+  {
+   "tap": 65,
+   "playing": 18,
+   "meanMeter": 57.39,
+   "meanModelDelta": 2.78,
+   "quits": 0
+  },
+  {
+   "tap": 66,
+   "playing": 18,
+   "meanMeter": 53,
+   "meanModelDelta": 1.5,
+   "quits": 3
+  },
+  {
+   "tap": 67,
+   "playing": 15,
+   "meanMeter": 59.13,
+   "meanModelDelta": 2.2,
+   "quits": 0
+  },
+  {
+   "tap": 68,
+   "playing": 15,
+   "meanMeter": 55.93,
+   "meanModelDelta": 2.13,
+   "quits": 1
+  },
+  {
+   "tap": 69,
+   "playing": 14,
+   "meanMeter": 54.43,
+   "meanModelDelta": 1.5,
+   "quits": 1
+  },
+  {
+   "tap": 70,
+   "playing": 13,
+   "meanMeter": 53.62,
+   "meanModelDelta": 1.54,
+   "quits": 1
+  },
+  {
+   "tap": 71,
+   "playing": 12,
+   "meanMeter": 52.5,
+   "meanModelDelta": 1.67,
+   "quits": 2
+  },
+  {
+   "tap": 72,
+   "playing": 10,
+   "meanMeter": 56,
+   "meanModelDelta": 2.5,
+   "quits": 1
+  },
+  {
+   "tap": 73,
+   "playing": 9,
+   "meanMeter": 53.78,
+   "meanModelDelta": 1.78,
+   "quits": 1
+  },
+  {
+   "tap": 74,
+   "playing": 8,
+   "meanMeter": 53.5,
+   "meanModelDelta": 0.25,
+   "quits": 0
+  },
+  {
+   "tap": 75,
+   "playing": 8,
+   "meanMeter": 48.25,
+   "meanModelDelta": 1.13,
+   "quits": 0
+  },
+  {
+   "tap": 76,
+   "playing": 8,
+   "meanMeter": 41.13,
+   "meanModelDelta": -0.13,
+   "quits": 1
+  },
+  {
+   "tap": 77,
+   "playing": 7,
+   "meanMeter": 38.29,
+   "meanModelDelta": 0.71,
+   "quits": 1
+  },
+  {
+   "tap": 78,
+   "playing": 6,
+   "meanMeter": 33.5,
+   "meanModelDelta": 1.17,
+   "quits": 1
+  },
+  {
+   "tap": 79,
+   "playing": 5,
+   "meanMeter": 27,
+   "meanModelDelta": -0.2,
+   "quits": 2
+  },
+  {
+   "tap": 80,
+   "playing": 3,
+   "meanMeter": 22,
+   "meanModelDelta": -3,
+   "quits": 3
+  }
+ ],
+ "cards": {
+  "minShownToRank": 2,
+  "top": [
+   {
+    "id": "officer_a",
+    "title": "Officer A",
+    "act": "I",
+    "shown": 12,
+    "sessions": 12,
+    "meanDelta": 4.25,
+    "firstDelta": 4.25,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Officer A is a wry, earned callback; the juniors praising you unawares is a genuinely good payoff.",
+     "+5 Recusal memo becoming anonymous training slide 'Officer A' is a genuinely funny, earned callback.",
+     "+5 Recusal memo becoming anonymous Officer A is a witty, earned callback with a dry ending."
+    ]
+   },
+   {
+    "id": "minute_vindicated",
+    "title": "Paragraph Four",
+    "act": "I",
+    "shown": 12,
+    "sessions": 11,
+    "meanDelta": 4,
+    "firstDelta": 4.09,
+    "repeatDelta": 3,
+    "meanRepeatRule": -0.83,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+6 Paragraph four paying off the minute paper, plus the deputy secretary's 'Noted' email, is the session's best callback.",
+     "+5 Paragraph four vindication lets the earlier minute return with quiet, earned irony.",
+     "+5 Paragraph four finally resurfacing and vindicating the old minute paper is a strong, well-earned payoff."
+    ]
+   },
+   {
+    "id": "scholar_returns_ps",
+    "title": "The Officer You Taught",
+    "act": "I",
+    "shown": 4,
+    "sessions": 4,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Telling him his paper was still bad is a sharp, earned callback to the honest-feedback thread.",
+     "+4 The mentee callback to the early honest feedback is earned and emotionally sharp; \"never quite the same\" lands well too.",
+     "+4 The mentee callback is earned and funny; 'his paper was still bad' lands with real warmth and wit."
+    ]
+   },
+   {
+    "id": "scholar_returns_peer",
+    "title": "The Officer You Taught",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The mentee callback from year 18 pays off warmly, and 'worth the trouble' feels earned.",
+     "+4 The mentee callback is earned; 'the only person who ever told me my work was bad' closes the arc well."
+    ]
+   },
+   {
+    "id": "moe_psle",
+    "title": "The PSLE Question",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The twelve-year-old asking why the exam exists is a sharp, earned moment of irony.",
+     "+4 Answering the twelve-year-old first is a warm, unexpected turn that lands well after the cold Cabinet exchange."
+    ]
+   },
+   {
+    "id": "ally_returns_ds",
+    "title": "The Officer You Nominated",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The leak confession pays off with real weight, and telling the former nominee she owes you nothing is a moving, well-earned turn.",
+     "+3 Callback to the nominated officer pays off with a moving, unsentimental line about owing nothing."
+    ]
+   },
+   {
+    "id": "ally_returns_pol",
+    "title": "The Officer You Nominated",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The nominated officer's frank review is a well-earned callback, and telling her she owes you nothing is a graceful, characterful beat.",
+     "+4 The nominee now a Permanent Secretary being asked for a frank view of you closes the nomination thread with real weight."
+    ]
+   },
+   {
+    "id": "the_bonus_reveal",
+    "title": "The National Bonus",
+    "act": "III",
+    "shown": 30,
+    "sessions": 28,
+    "meanDelta": 3.77,
+    "firstDelta": 3.79,
+    "repeatDelta": 3.5,
+    "meanRepeatRule": -0.83,
+    "offTone": 2,
+    "offToneLines": [
+     "'Ask, in Cabinet, whether ministers should be paid on indicators they set' reads like the game flagging its own moral point.",
+     "The ramp fix with the photograph and the 'cannot prove it' line are nicely turned, but the repeated RUMOUR photograph line is recycled a few times too often."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+5 The bonus-on-indicators-you-set question lands the whole game's theme; a genuinely sharp, earned turn.",
+     "+5 Asking whether ministers should be paid on indicators they set is a sharp, pointed turn that lands the career's satire of the pay formula.",
+     "+5 Asking whether ministers should be paid on indicators they set is a sharp, pointed turn that earns its keep."
+    ]
+   },
+   {
+    "id": "bonus_vindicated",
+    "title": "Terms of Reference",
+    "act": "III",
+    "shown": 10,
+    "sessions": 10,
+    "meanDelta": 3.6,
+    "firstDelta": 3.6,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Your Cabinet question returning unattributed as item three is a real, well-earned payoff.",
+     "+5 Your old Cabinet question resurfacing unattributed as item three is a satisfying, earned callback; 'nobody will ever find out whether you were any good' is wry.",
+     "+4 Item three of the terms of reference is a quietly satisfying payoff of the earlier question, unattributed and dry."
+    ]
+   },
+   {
+    "id": "moe_banding",
+    "title": "The Banding",
+    "act": "I",
+    "shown": 4,
+    "sessions": 4,
+    "meanDelta": 3.5,
+    "firstDelta": 3.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Spending a week in the school is a satisfying payoff; the air traffic controller line is a real laugh.",
+     "+4 Real CEP texture and a sharp Banding detail; the air traffic controllers line lands and the week in school feels earned.",
+     "+3 The 'nobody thanks you' beat and the list callback are earned; choosing to visit the school feels like a real player's choice."
+    ]
+   }
+  ],
+  "bottom": [
+   {
+    "id": "improvement_plan#1",
+    "title": "The Improvement Plan",
+    "act": "I",
+    "shown": 5,
+    "sessions": 4,
+    "meanDelta": 0.2,
+    "firstDelta": 1.25,
+    "repeatDelta": -4,
+    "meanRepeatRule": -2,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "-4 Same development-conversation card, with the silent note-taker, seen twice now; it has worn thin.",
+     "+3 The silent note-taker HR officer is a sharp image; the recurring 'private sector' line lands as a callback.",
+     "+2 The silent note-taking HR officer and the deleted post-it are sharp, fair observations."
+    ]
+   },
+   {
+    "id": "mnd_million",
+    "title": "The Million-Dollar Flat",
+    "act": "III",
+    "shown": 11,
+    "sessions": 11,
+    "meanDelta": 0.45,
+    "firstDelta": 0.45,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "Option B and C read like real ministerial press-release boilerplate."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+3 The 'you recognise the look' callback is earned, and the million-dollar flat dilemma is pointed and fair.",
+     "-2 Generic policy-speak card; the three options blur into the same non-answer.",
+     "-2 The million-dollar flat is a real, timely issue, but the three choices read like press-release stock answers, not a sharp dilemma."
+    ]
+   },
+   {
+    "id": "budget_round",
+    "title": "The Budget Round",
+    "act": "I",
+    "shown": 18,
+    "sessions": 16,
+    "meanDelta": 0.78,
+    "firstDelta": 0.63,
+    "repeatDelta": 2,
+    "meanRepeatRule": -0.83,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-4 The 'family reasons' accepted-and-filed beat was nicely wry, but the budget round is flat and familiar.",
+     "+3 The consultant payoff and promotion are satisfying, and a flat envelope makes the big bid a real gamble.",
+     "+2 The deferred-not-reoffered line is quietly devastating, and the flat-envelope bid trade-off is a fair choice."
+    ]
+   },
+   {
+    "id": "new_ro",
+    "title": "The New Reporting Officer",
+    "act": "I",
+    "shown": 42,
+    "sessions": 33,
+    "meanDelta": 0.98,
+    "firstDelta": 1.03,
+    "repeatDelta": 0.78,
+    "meanRepeatRule": -1.79,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The branch secretary remembering the refusal is a fair, earned consequence; the new officer setup is a reasonable next hook.",
+     "+3 Placing your people first pays off with a debt that can come back; this card builds on it.",
+     "-3 Career is now a predictable run of promotions and tidy payoffs; the new-boss setup feels familiar."
+    ]
+   },
+   {
+    "id": "late_night#2",
+    "title": "10:50pm, One Comment",
+    "act": "I",
+    "shown": 21,
+    "sessions": 21,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+3 The 10:50pm \"Can we tighten?\" on a two-page paper is a sharp, lived-in beat, and the promotion finally pays off the long build.",
+     "+3 The 'Can we tighten?' comment at 10:50pm is a sharp, relatable jab, and the bed-going reply feels earned after decades of quiet competence.",
+     "+3 Promotion and the 'not a helpful way to think about it' line pay off earlier ceiling question; the 10:50pm comment is a sharp, familiar bit."
+    ]
+   },
+   {
+    "id": "the_indicators",
+    "title": "The Indicators",
+    "act": "III",
+    "shown": 42,
+    "sessions": 25,
+    "meanDelta": 1.14,
+    "firstDelta": 2.68,
+    "repeatDelta": -1.12,
+    "meanRepeatRule": -3.1,
+    "offTone": 2,
+    "offToneLines": [
+     "The Indicators card reappears word for word from Year 36, which reads like padding or a glitch rather than new material.",
+     "The game keeps replaying identical montage lines and the same indicators card, which reads like a scripted loop rather than a life."
+    ],
+    "quits": 4,
+    "reasons": [
+     "-6 The same indicators card returns again, and the recycled montage of earlier beats has become a tired loop.",
+     "+5 Choosing the 20th-percentile incomes over the GDP headline pays off the earlier Cabinet question about ministers paid on indicators they set.",
+     "-4 Same indicators card recycled from earlier; the 'furniture' line is good but the repeats wear thin."
+    ]
+   },
+   {
+    "id": "the_quiet_year#2",
+    "title": "A Year Without Incident",
+    "act": "III",
+    "shown": 29,
+    "sessions": 28,
+    "meanDelta": 1.17,
+    "firstDelta": 1.18,
+    "repeatDelta": 1,
+    "meanRepeatRule": -0.17,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The 'nine settings, everyone uses the same one' joke is a neat, understated observation.",
+     "+3 The nine-setting coffee machine with everyone on the same one is a sly, earned joke about the system.",
+     "+3 The queue-number joke and the out-of-office line are dry and well-timed, and taking all the leave is a fitting quiet choice."
+    ]
+   },
+   {
+    "id": "late_night",
+    "title": "11:40pm, Level 9",
+    "act": "I",
+    "shown": 20,
+    "sessions": 18,
+    "meanDelta": 1.2,
+    "firstDelta": 1.44,
+    "repeatDelta": -1,
+    "meanRepeatRule": -1,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "-4 Padded repeats of pay and appraisal, and the late-night clearance feels like a rerun of earlier cards.",
+     "+3 The CEP reveal lands with real weight, and the missed dinner makes the cost of the job concrete.",
+     "+3 The unnamed question and the minute quoted back as policy are quietly sharp; the 11:40pm dinner dilemma feels personal."
+    ]
+   },
+   {
+    "id": "the_indicators_election",
+    "title": "The Indicators, Before an Election",
+    "act": "III",
+    "shown": 27,
+    "sessions": 19,
+    "meanDelta": 1.22,
+    "firstDelta": 2.11,
+    "repeatDelta": -0.88,
+    "meanRepeatRule": -2.04,
+    "offTone": 2,
+    "offToneLines": [
+     "\"The question is received with great seriousness and complete stillness. It is minuted.\" reads a touch like a formula, but it works.",
+     "\"everyone in the room is aware of the calendar, including, somehow, the indicators\" winks at the game's own mechanics and reads as slightly self-aware."
+    ],
+    "quits": 1,
+    "reasons": [
+     "-4 The same Indicators card returns almost verbatim, a repeat that reads as a lazy loop.",
+     "-4 This recycles the earlier election-budget card almost word for word; the 'somehow' joke is now stale.",
+     "+4 Pushing 20th-percentile incomes follows the Cabinet question, and the election-calendar bind has real stakes."
+    ]
+   },
+   {
+    "id": "moh_premiums",
+    "title": "The Premiums",
+    "act": "I",
+    "shown": 4,
+    "sessions": 4,
+    "meanDelta": 1.25,
+    "firstDelta": 1.25,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+2 The cake with no message is a warm, well-judged beat; the promotion feels earned after the callbacks.",
+     "+2 Asking actuaries for assumptions is sensible, though the card reads as a familiar fork rather than a fresh dilemma.",
+     "+1 Plausible, careful policy dilemma; asking for assumptions is the engaged player's pick."
+    ]
+   }
+  ],
+  "all": [
+   {
+    "id": "scholar_returns",
+    "title": "The Officer You Taught",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 5,
+    "firstDelta": 5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Callback to the mentor thread lands with dry wit; 'his paper was still bad' is a perfect, earned punchline."
+    ]
+   },
+   {
+    "id": "officer_a",
+    "title": "Officer A",
+    "act": "I",
+    "shown": 12,
+    "sessions": 12,
+    "meanDelta": 4.25,
+    "firstDelta": 4.25,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Officer A is a wry, earned callback; the juniors praising you unawares is a genuinely good payoff.",
+     "+5 Recusal memo becoming anonymous training slide 'Officer A' is a genuinely funny, earned callback.",
+     "+5 Recusal memo becoming anonymous Officer A is a witty, earned callback with a dry ending."
+    ]
+   },
+   {
+    "id": "minute_vindicated",
+    "title": "Paragraph Four",
+    "act": "I",
+    "shown": 12,
+    "sessions": 11,
+    "meanDelta": 4,
+    "firstDelta": 4.09,
+    "repeatDelta": 3,
+    "meanRepeatRule": -0.83,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+6 Paragraph four paying off the minute paper, plus the deputy secretary's 'Noted' email, is the session's best callback.",
+     "+5 Paragraph four vindication lets the earlier minute return with quiet, earned irony.",
+     "+5 Paragraph four finally resurfacing and vindicating the old minute paper is a strong, well-earned payoff."
+    ]
+   },
+   {
+    "id": "scholar_returns_ps",
+    "title": "The Officer You Taught",
+    "act": "I",
+    "shown": 4,
+    "sessions": 4,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Telling him his paper was still bad is a sharp, earned callback to the honest-feedback thread.",
+     "+4 The mentee callback to the early honest feedback is earned and emotionally sharp; \"never quite the same\" lands well too.",
+     "+4 The mentee callback is earned and funny; 'his paper was still bad' lands with real warmth and wit."
+    ]
+   },
+   {
+    "id": "scholar_returns_peer",
+    "title": "The Officer You Taught",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The mentee callback from year 18 pays off warmly, and 'worth the trouble' feels earned.",
+     "+4 The mentee callback is earned; 'the only person who ever told me my work was bad' closes the arc well."
+    ]
+   },
+   {
+    "id": "moe_psle",
+    "title": "The PSLE Question",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The twelve-year-old asking why the exam exists is a sharp, earned moment of irony.",
+     "+4 Answering the twelve-year-old first is a warm, unexpected turn that lands well after the cold Cabinet exchange."
+    ]
+   },
+   {
+    "id": "ally_returns_ds",
+    "title": "The Officer You Nominated",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The leak confession pays off with real weight, and telling the former nominee she owes you nothing is a moving, well-earned turn.",
+     "+3 Callback to the nominated officer pays off with a moving, unsentimental line about owing nothing."
+    ]
+   },
+   {
+    "id": "ally_returns_pol",
+    "title": "The Officer You Nominated",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The nominated officer's frank review is a well-earned callback, and telling her she owes you nothing is a graceful, characterful beat.",
+     "+4 The nominee now a Permanent Secretary being asked for a frank view of you closes the nomination thread with real weight."
+    ]
+   },
+   {
+    "id": "scholar_returns_pol",
+    "title": "The Officer You Taught",
+    "act": "III",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 4,
+    "firstDelta": 4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The 'only person who ever told me my work was bad' callback to the protégé lands with warmth and a wry, earned punchline."
+    ]
+   },
+   {
+    "id": "the_bonus_reveal",
+    "title": "The National Bonus",
+    "act": "III",
+    "shown": 30,
+    "sessions": 28,
+    "meanDelta": 3.77,
+    "firstDelta": 3.79,
+    "repeatDelta": 3.5,
+    "meanRepeatRule": -0.83,
+    "offTone": 2,
+    "offToneLines": [
+     "'Ask, in Cabinet, whether ministers should be paid on indicators they set' reads like the game flagging its own moral point.",
+     "The ramp fix with the photograph and the 'cannot prove it' line are nicely turned, but the repeated RUMOUR photograph line is recycled a few times too often."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+5 The bonus-on-indicators-you-set question lands the whole game's theme; a genuinely sharp, earned turn.",
+     "+5 Asking whether ministers should be paid on indicators they set is a sharp, pointed turn that lands the career's satire of the pay formula.",
+     "+5 Asking whether ministers should be paid on indicators they set is a sharp, pointed turn that earns its keep."
+    ]
+   },
+   {
+    "id": "bonus_vindicated",
+    "title": "Terms of Reference",
+    "act": "III",
+    "shown": 10,
+    "sessions": 10,
+    "meanDelta": 3.6,
+    "firstDelta": 3.6,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Your Cabinet question returning unattributed as item three is a real, well-earned payoff.",
+     "+5 Your old Cabinet question resurfacing unattributed as item three is a satisfying, earned callback; 'nobody will ever find out whether you were any good' is wry.",
+     "+4 Item three of the terms of reference is a quietly satisfying payoff of the earlier question, unattributed and dry."
+    ]
+   },
+   {
+    "id": "moe_banding",
+    "title": "The Banding",
+    "act": "I",
+    "shown": 4,
+    "sessions": 4,
+    "meanDelta": 3.5,
+    "firstDelta": 3.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Spending a week in the school is a satisfying payoff; the air traffic controller line is a real laugh.",
+     "+4 Real CEP texture and a sharp Banding detail; the air traffic controllers line lands and the week in school feels earned.",
+     "+3 The 'nobody thanks you' beat and the list callback are earned; choosing to visit the school feels like a real player's choice."
+    ]
+   },
+   {
+    "id": "moe_mergers",
+    "title": "The Merger List",
+    "act": "I",
+    "shown": 4,
+    "sessions": 4,
+    "meanDelta": 3.5,
+    "firstDelta": 3.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Both-names compromise is a clever, humane option; the CEP reveal has bite.",
+     "+4 Promotion via a real, earned moment; the merger dilemma is grounded and interesting.",
+     "+3 Merger dilemma with real emotional stakes; the alumni-letter detail and 'both names' option feel fresh."
+    ]
+   },
+   {
+    "id": "mom_retirement",
+    "title": "The Retirement Age",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3.5,
+    "firstDelta": 3.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The Tuesday-night callback to Year 1 pays off well, and the cleaner's question is a real moment.",
+     "+3 Cleaner's off-slide question is a grounded moment; the 'accounts are clean' line lands well."
+    ]
+   },
+   {
+    "id": "figure_vindicated",
+    "title": "The Figure, Cited",
+    "act": "I",
+    "shown": 19,
+    "sessions": 16,
+    "meanDelta": 3.47,
+    "firstDelta": 3.38,
+    "repeatDelta": 4,
+    "meanRepeatRule": -1.84,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+5 Strong callback to the 31% figure; owning it gives a real moral payoff and a clean turn.",
+     "+5 A real payoff: the 31% slide from year 11 comes back and she owns it; earned callback.",
+     "+4 The 31% slide callback is earned, and owning it is a real cost with stakes."
+    ]
+   },
+   {
+    "id": "cny_lohei",
+    "title": "Lo Hei",
+    "act": "I",
+    "shown": 34,
+    "sessions": 26,
+    "meanDelta": 3.44,
+    "firstDelta": 3.38,
+    "repeatDelta": 3.63,
+    "meanRepeatRule": -1.76,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+5 The bid-for-eleven trick is a clever, earned payoff, and the PS's direct question is a strong turn.",
+     "+5 A real, risky moment with the Permanent Secretary; the post-it callback is earned and the stakes feel genuine.",
+     "+4 A real, pointed question from the Permanent Secretary makes for a genuinely engaging dilemma."
+    ]
+   },
+   {
+    "id": "the_pq#1",
+    "title": "Question Time",
+    "act": "III",
+    "shown": 14,
+    "sessions": 13,
+    "meanDelta": 3.43,
+    "firstDelta": 3.62,
+    "repeatDelta": 1,
+    "meanRepeatRule": -1.07,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+5 The 'eleven per cent' reveal and the man returning for nine more years make a sharp, earned payoff.",
+     "+5 Giving the eleven per cent honestly, with a plan, is a principled payoff of the whole arc; the second-row-on-the-aisle and furniture lines are the session's best.",
+     "+5 Honest number plus action at Question Time is a strong, earned payoff to the ramp and process-fix callbacks."
+    ]
+   },
+   {
+    "id": "first_cabinet",
+    "title": "The First Cabinet",
+    "act": "III",
+    "shown": 10,
+    "sessions": 10,
+    "meanDelta": 3.4,
+    "firstDelta": 3.4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The 'most powerful person in the room who is not him' line is a sharp turn, and asking for the hard portfolio pays off the integrity thread.",
+     "+4 The 'looks at you for slightly longer' beat and the bittersweet 'not the thing you wanted' land well.",
+     "+4 The 'most powerful person in the room who is not him' line is a strong, bittersweet payoff, and the longer look is well judged."
+    ]
+   },
+   {
+    "id": "small_favour",
+    "title": "A Small Favour",
+    "act": "I",
+    "shown": 33,
+    "sessions": 27,
+    "meanDelta": 3.39,
+    "firstDelta": 3.37,
+    "repeatDelta": 3.5,
+    "meanRepeatRule": -1.06,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Callback to the early-tip friend turns the first choice into a real dilemma with a sharp ethical sting.",
+     "+5 Declaring the connection is a real dilemma with a costly, honest option; the cake line earns its keep.",
+     "+4 The 'you were the website' payoff and a real ethical dilemma with a clean declaring option."
+    ]
+   },
+   {
+    "id": "moh_beds",
+    "title": "The Bed Crunch",
+    "act": "I",
+    "shown": 6,
+    "sessions": 6,
+    "meanDelta": 3.33,
+    "firstDelta": 3.33,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Asking where the nurses come from is a real, grounded policy dilemma with a cost.",
+     "+4 The recusal payoff and the nurse-staffing question make this card feel substantive and real.",
+     "+3 Promotion and the hard-posting payoff land well; the bed crunch is a grounded, real-feeling dilemma."
+    ]
+   },
+   {
+    "id": "consultant_report",
+    "title": "The Report",
+    "act": "I",
+    "shown": 33,
+    "sessions": 30,
+    "meanDelta": 3.27,
+    "firstDelta": 3.23,
+    "repeatDelta": 3.67,
+    "meanRepeatRule": -0.76,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 2,
+    "reasons": [
+     "+5 Circulating the old minute pays off the earlier 'quoted back' beat and lands a sharp irony.",
+     "+5 Sharp satire of consultancy rebranding; the Q&A question is a clever, pointed payoff.",
+     "+5 The consultants repackaging your two-year-old minute paper is a sharp, earned payoff on the whole career's theme."
+    ]
+   },
+   {
+    "id": "dialogue_vindicated",
+    "title": "The Raw Feedback",
+    "act": "I",
+    "shown": 8,
+    "sessions": 8,
+    "meanDelta": 3.25,
+    "firstDelta": 3.25,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The think-tank paper cited by both sides and the PS's wordless forward are a warm, understated payoff; one line fits her.",
+     "+4 The unannounced Permanent Secretary forward and the 'great deal of comment' line are earned, dry and well-judged.",
+     "+4 Permanent Secretary's no-comment forward as 'a great deal of comment' is a crisp, earned payoff of the raw-feedback choice."
+    ]
+   },
+   {
+    "id": "maiden_speech",
+    "title": "The Maiden Speech",
+    "act": "III",
+    "shown": 18,
+    "sessions": 16,
+    "meanDelta": 3.17,
+    "firstDelta": 3.13,
+    "repeatDelta": 3.5,
+    "meanRepeatRule": -0.56,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The GRC win and 'almost none of this is about you' land well, and the maiden-speech dilemma pays off the career's honest arc.",
+     "+4 The lifts line is sharp and specific; choosing the belief over safety makes a real turn.",
+     "+4 The lifts-over-rallies line is a good, specific detail, and the maiden speech dilemma pays off the career's themes."
+    ]
+   },
+   {
+    "id": "the_appraisal_talk#4",
+    "title": "The Appraisal Conversation",
+    "act": "I",
+    "shown": 18,
+    "sessions": 18,
+    "meanDelta": 3.11,
+    "firstDelta": 3.11,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Dry workplace line about the anonymous 360 comment; the question has a sharp edge.",
+     "+4 Sharp, dry writing; the anonymous 360 comment reads like a real complaint.",
+     "+4 The 'never say no to anything from upstairs' comment is a neat, pointed callback to the earlier favour."
+    ]
+   },
+   {
+    "id": "leadership_programme",
+    "title": "The Nomination",
+    "act": "I",
+    "shown": 18,
+    "sessions": 18,
+    "meanDelta": 3.11,
+    "firstDelta": 3.11,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The quiet officer option pays off the recurring theme of unseen work, a nice thematic return.",
+     "+4 The director's plain-speaking payoff and the quiet-officer option make the career feel like it is finally paying off.",
+     "+4 The 'new list' beat and the quiet-officer nomination pay off the earlier threads nicely."
+    ]
+   },
+   {
+    "id": "the_counter",
+    "title": "The Counter",
+    "act": "I",
+    "shown": 32,
+    "sessions": 32,
+    "meanDelta": 3.06,
+    "firstDelta": 3.06,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+6 Counter experience pays off; the game respects the earned knowledge.",
+     "+6 Poly-to-degree backstory pays off in a sharp, earned counter-experience hook.",
+     "+4 Poly-to-degree backstory pays off: real counter experience gives a sharp, earned in-character edge."
+    ]
+   },
+   {
+    "id": "the_vetting#1",
+    "title": "The Background Check",
+    "act": "II",
+    "shown": 19,
+    "sessions": 19,
+    "meanDelta": 3.05,
+    "firstDelta": 3.05,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+6 The folder callbacks to the leak and the flat pay off the whole career, and the closed folder is a sharp, earned dread.",
+     "+5 The flat returns as a folder, the closed folder is a sharp image, and the choice carries real risk.",
+     "+4 The closed folder and the window that does not open make the vetting tense, with the flat callback paying off."
+    ]
+   },
+   {
+    "id": "the_mps_night#1",
+    "title": "Meet-the-People, After the Rain",
+    "act": "III",
+    "shown": 13,
+    "sessions": 13,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Writing the family's appeal yourself closes the Tuesday-session arc; the 'safe pair of hands' and 'furniture' lines are sharp.",
+     "+4 Rain-delayed queue and the family's twice-refused appeal earn the callback to the earlier appeal letters; the void-deck request is a sly, human touch.",
+     "+4 Writing the family's appeal yourself is a warm, human turn that pays off the career's service theme."
+    ]
+   },
+   {
+    "id": "the_pq#2",
+    "title": "The Supplementary",
+    "act": "III",
+    "shown": 12,
+    "sessions": 12,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The ramp fix and her photo is a warm, earned payoff, and answering off-brief is a real gamble.",
+     "+4 The chillies-as-career-metric line and the volunteer credited for the typed appeal are earned, dry payoffs.",
+     "+4 'A timely reminder. Nobody specifies of what' is a crisp deadpan line, and the unbriefed supplementary is a genuine turn."
+    ]
+   },
+   {
+    "id": "the_townhall",
+    "title": "The Ministry Townhall",
+    "act": "III",
+    "shown": 9,
+    "sessions": 9,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Reading out the rude, upvoted question and answering it echoes the earlier townhall beat; a satisfying callback.",
+     "+4 Reading the upvoted workload question out loud is a genuinely risky, honest turn that pays off the officers' voices from earlier.",
+     "+4 Reading out the impolite upvoted question and answering it fits the arc's honesty; the 'safe' word callback is a good touch."
+    ]
+   },
+   {
+    "id": "re_election",
+    "title": "Polling Day, Again",
+    "act": "III",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The 'steady... means it kindly' line and the compressed years are sharp; the 'swing' detail is a fresh turn.",
+     "+3 The 'That needed saying' note and the repeated 'nothing breaks' line are sharp; nine days of walking is a fitting cost.",
+     "+3 Nine nights of walking every block is a grounded choice, and the 'swing' line about the branch chairman lands."
+    ]
+   },
+   {
+    "id": "promotion_board",
+    "title": "The Promotion Board",
+    "act": "I",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The 'no field on the form for gratitude' line is a sharp observation, and the board conflict is a genuine ethical stake that pays off earlier choices.",
+     "+2 The 'no field on the form for gratitude' line is a sharp callback to the reorganisation, and the dilemma is real."
+    ]
+   },
+   {
+    "id": "leak_resurfaces",
+    "title": "A Journalist Has Been Asking",
+    "act": "I",
+    "shown": 1,
+    "sessions": 1,
+    "meanDelta": 3,
+    "firstDelta": 3,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Getting ahead of the journalist by confessing first is a strong, consequential choice that pays off the folder."
+    ]
+   },
+   {
+    "id": "farewell_drinks",
+    "title": "Farewell Drinks",
+    "act": "I",
+    "shown": 25,
+    "sessions": 22,
+    "meanDelta": 2.96,
+    "firstDelta": 3.23,
+    "repeatDelta": 1,
+    "meanRepeatRule": -1.6,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+5 The payoff on the CEP hook is earned: the friend's reveal that hard postings are read twice is a satisfying turn.",
+     "+5 The farewell reveal about CEP reviews finally pays off the earlier slip, and a sharp reply.",
+     "+4 The 'hard postings get read twice' reveal pays off the CEP thread and gives a real choice."
+    ]
+   },
+   {
+    "id": "the_tender",
+    "title": "The Tender",
+    "act": "I",
+    "shown": 25,
+    "sessions": 23,
+    "meanDelta": 2.96,
+    "firstDelta": 2.96,
+    "repeatDelta": 3,
+    "meanRepeatRule": -0.8,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 A real conflict-of-interest dilemma with cost either way; recusal is the principled, interesting pick.",
+     "+4 A real conflict-of-interest dilemma, and recusal costs you something while the ninth draft payoff lands.",
+     "+4 Recusal dilemma is a real conflict-of-interest choice with a cost either way; the first-name detail stings."
+    ]
+   },
+   {
+    "id": "speech_vindicated",
+    "title": "Hansard",
+    "act": "III",
+    "shown": 15,
+    "sessions": 12,
+    "meanDelta": 2.93,
+    "firstDelta": 2.92,
+    "repeatDelta": 3,
+    "meanRepeatRule": -1,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The Hansard quote and the kueh callback feel earned, and the note is a warm, understated payoff.",
+     "+4 A newer Member quoting you word for word is a quiet, earned payoff of the career's integrity thread.",
+     "+4 The Hansard callback to your own quoted answer feels earned, and sending the note is a warm, understated payoff."
+    ]
+   },
+   {
+    "id": "the_walkabout#1",
+    "title": "The Hawker Centre",
+    "act": "III",
+    "shown": 14,
+    "sessions": 14,
+    "meanDelta": 2.93,
+    "firstDelta": 2.93,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "The 'chillies' line is repeated verbatim from age 40, which reads as a recycled joke rather than a new one."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+4 The uncle and rent detail is grounded and humane; hearing him out is a real, earned payoff after the career arc.",
+     "+4 Sitting down to hear the drinks-stall uncle out is a warm, unpretentious beat that rewards the story's recurring theme of listening.",
+     "+4 Cabinet answer that 'is noted' lands well, and the uncle at the drinks stall is a warm, grounded beat."
+    ]
+   },
+   {
+    "id": "postit_workshop#2",
+    "title": "The Retreat",
+    "act": "I",
+    "shown": 20,
+    "sessions": 20,
+    "meanDelta": 2.9,
+    "firstDelta": 2.9,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "\"She winks. You are fairly sure she winks.\""
+    ],
+    "quits": 0,
+    "reasons": [
+     "+5 The windowless Integrity room is a sharp, self-aware gag, and the choice to say what the room is for has real bite.",
+     "+4 Witty, pointed satire of windowless values rooms; the window joke landed well.",
+     "+4 The windowless Integrity room is a sharp, funny jab at retreat theatre."
+    ]
+   },
+   {
+    "id": "national_day_award",
+    "title": "The Pingat",
+    "act": "I",
+    "shown": 10,
+    "sessions": 10,
+    "meanDelta": 2.9,
+    "firstDelta": 2.9,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The line about family not understanding which award it is is wry, and the team-recognition choice echoes the quiet-officer thread.",
+     "+4 The 'announced as though it is four' line is sharp, and the Pingat family joke lands with real warmth.",
+     "+3 'Your family will not understand which one it is' is a warm, wry line, and asking for the team is a fair choice."
+    ]
+   },
+   {
+    "id": "the_walkabout#2",
+    "title": "The Estate Visit",
+    "act": "III",
+    "shown": 18,
+    "sessions": 18,
+    "meanDelta": 2.89,
+    "firstDelta": 2.89,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The mobility-scooter ramp is a grounded, human payoff to the whole arc; going to look is the right earned choice.",
+     "+4 The ramp that doesn't reach the kerb is a quiet, concrete image that earns the political stakes.",
+     "+4 The mobility-scooter ramp is a small, concrete moment that makes the political career feel real rather than announced."
+    ]
+   },
+   {
+    "id": "ally_returns_ps",
+    "title": "The Officer You Nominated",
+    "act": "I",
+    "shown": 9,
+    "sessions": 9,
+    "meanDelta": 2.89,
+    "firstDelta": 2.89,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+4 The nominated officer returning as a peer and the 'owes you nothing' beat close the quiet-officer thread well.",
+     "+4 Nominee callback pays off; telling her she owes nothing is a graceful, earned turn.",
+     "+4 The 'nominated officer' callback pays off, and the 'owes you nothing' beat is a genuinely moving reversal of the earlier debt."
+    ]
+   },
+   {
+    "id": "committee_vindicated",
+    "title": "The Decision Paper",
+    "act": "I",
+    "shown": 8,
+    "sessions": 8,
+    "meanDelta": 2.88,
+    "firstDelta": 2.88,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The footer callback to the IMC paper is earned, and the recusal memo payoff is sharp.",
+     "+4 The footer callback to the IMC paper pays off well, with a real choice about credit.",
+     "+4 The footer callback to the paper is an earned, well-timed payoff, and the nominee's loyalty closes a thread neatly."
+    ]
+   },
+   {
+    "id": "tea_session#1",
+    "title": "An Invitation to Tea",
+    "act": "II",
+    "shown": 13,
+    "sessions": 13,
+    "meanDelta": 2.85,
+    "firstDelta": 2.85,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The unnamed caller and the 'free for lunch on a Thursday' line build a sharp, well-earned political hook.",
+     "+4 The unnamed caller and 'free for lunch on Thursday' is a tense, well-written political hook.",
+     "+3 Mysterious lunch invitation builds nicely; the phrasing about Thursday is a quiet, well-made line."
+    ]
+   },
+   {
+    "id": "the_vetting#2",
+    "title": "The Background Check",
+    "act": "II",
+    "shown": 13,
+    "sessions": 13,
+    "meanDelta": 2.85,
+    "firstDelta": 2.85,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "Forty-two questions, three about companies you've never heard of, reads a little like a parody of vetting."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+4 The folder-and-flat callback to the friend's tip is well-earned, and the choice to disclose the unknown company adds real tension.",
+     "+4 Folder callback to the earlier flat tip is well-built; the background-check dread feels earned.",
+     "+4 The tea room folder and the thin file are tense, well-paced; going through question thirty-one is a real gamble."
+    ]
+   },
+   {
+    "id": "tea_session",
+    "title": "An Invitation to Tea",
+    "act": "II",
+    "shown": 16,
+    "sessions": 16,
+    "meanDelta": 2.81,
+    "firstDelta": 2.81,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 2,
+    "offToneLines": [
+     "Everyone in the country knows what this is. It reads like a wink at the reader about real Singapore politics.",
+     "Everyone in the country knows what this is."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+4 The 'no agenda, everyone knows what this is' invitation is a sly, well-earned climax.",
+     "+4 The tea invitation is a well-judged payoff: no agenda, everyone knows, and the stakes feel earned.",
+     "+4 The unexplained tea invitation with no agenda is a sharp, earned escalation after the delete-undelete beat."
+    ]
+   },
+   {
+    "id": "the_townhall#1",
+    "title": "The Curated Questions",
+    "act": "III",
+    "shown": 12,
+    "sessions": 12,
+    "meanDelta": 2.75,
+    "firstDelta": 2.75,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "The 20th-percentile miss is a verbatim repeat of an earlier card, which reads as the game looping on itself."
+    ],
+    "quits": 0,
+    "reasons": [
+     "-5 Same recycled 20th-percentile miss and montage; the officer's raised hand is the only fresh beat, and it's small.",
+     "+5 The kueh-bringing man returns, the 'not in the photograph' beat is quietly devastating, and the unscripted hand at the back is a real payoff.",
+     "+4 The unscripted officer at the back is a sharp, earned payoff to the curated-questions irony, and taking her question is a clear turn."
+    ]
+   },
+   {
+    "id": "improvement_plan#2",
+    "title": "The Improvement Plan",
+    "act": "I",
+    "shown": 8,
+    "sessions": 8,
+    "meanDelta": 2.75,
+    "firstDelta": 2.75,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Dry bureaucratic menace; the 'however' and copied-in stranger feel earned and real.",
+     "+3 The copied-in stranger and numbered expectations feel tense and realistic; the reply has teeth.",
+     "+3 Point-by-point reply to six numbered expectations is a sharp, bureaucratic-satire moment."
+    ]
+   },
+   {
+    "id": "the_mps_night#2",
+    "title": "Tuesday Night, the Lift",
+    "act": "III",
+    "shown": 22,
+    "sessions": 22,
+    "meanDelta": 2.73,
+    "firstDelta": 2.73,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The 'angry on their behalf' line and the eleven-per-cent answer in the Chamber are the session's best moments.",
+     "+4 'Nobody is angry with you. Everybody would like you to be angry on their behalf' is a sharp, humane line; seeing each resident is a real choice.",
+     "+4 'Nobody is angry with you; everybody would like you to be angry on their behalf' is a sharp, humane line tied to the lift thread."
+    ]
+   },
+   {
+    "id": "the_night_degree",
+    "title": "The Last Paper",
+    "act": "I",
+    "shown": 32,
+    "sessions": 32,
+    "meanDelta": 2.72,
+    "firstDelta": 2.72,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The eleven-items callback lands; the Last Paper cost feels earned, not announced.",
+     "+4 Earned callback to the counter, and the cohort comparison lands with real weight.",
+     "+3 Earned callback to the counter answer, and the cohort comparison lands with some bite."
+    ]
+   },
+   {
+    "id": "cep_discovery",
+    "title": "A Word You Have Not Heard Before",
+    "act": "I",
+    "shown": 35,
+    "sessions": 27,
+    "meanDelta": 2.71,
+    "firstDelta": 3,
+    "repeatDelta": 1.75,
+    "meanRepeatRule": -1.71,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The CEP hook is a real mystery, and the wrong-length pause makes pressing for it feel like a genuine turn.",
+     "+4 The 'word for word' website callback and the CEP pause build real intrigue.",
+     "+4 The unexplained 'CEP' and the awkward pause create real intrigue, a fresh hook."
+    ]
+   },
+   {
+    "id": "mnd_classification",
+    "title": "The Classification",
+    "act": "I",
+    "shown": 6,
+    "sessions": 6,
+    "meanDelta": 2.67,
+    "firstDelta": 2.67,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Earned callback to the drafts and the Perm Sec's name; the three-blocks dilemma is pointed and plausible.",
+     "+3 The three identical blocks and the 'lift is evidence' line sharpen a dilemma; a note upward is the honest-but-noticed path.",
+     "+3 Placing nine people before yourself pays off with a quiet debt; the three-identical-blocks classification dilemma is pointed."
+    ]
+   },
+   {
+    "id": "mom_wages",
+    "title": "The Wage Ladder",
+    "act": "I",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 2.67,
+    "firstDelta": 2.67,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Going back to the workers to ask is a satisfying turn, and the 'remembers' payoff from the branch secretary earned its keep.",
+     "+3 Taking both versions back to workers is a fresh, humane choice, and the promotion lands after the long grind.",
+     "+2 Good 'Noted. Good paper' beat, though the wage ladder dilemma leans on a predictable civil-service sincerity."
+    ]
+   },
+   {
+    "id": "interview_panel",
+    "title": "The Interview Panel",
+    "act": "I",
+    "shown": 3,
+    "sessions": 3,
+    "meanDelta": 2.67,
+    "firstDelta": 2.67,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The 'not a helpful way to think about it' line and the leak-source callback make a sharp, earned payoff.",
+     "+2 The leak payoff returns as a sharp moral dilemma, though the automated-email beat was flat.",
+     "+2 The ironic HR replacement is neat, and the leaker on the panel is a fair callback; competing on the record is a clean, principled choice."
+    ]
+   },
+   {
+    "id": "headhunter_mid",
+    "title": "The Consultancy",
+    "act": "I",
+    "shown": 31,
+    "sessions": 27,
+    "meanDelta": 2.65,
+    "firstDelta": 2.81,
+    "repeatDelta": 1.5,
+    "meanRepeatRule": -1.13,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+4 The consultancy offer closing the loop on the $1.9m deck is a satisfying callback, and declining with reasons suits her character.",
+     "+4 The 'very good paper' detail is a sharp satirical touch, and declining with reasons gives a meaningful, character-driven choice.",
+     "+4 Declining the consultancy with a stated reason closes the $1.9M deck thread with pointed irony."
+    ]
+   },
+   {
+    "id": "the_pq",
+    "title": "The Parliamentary Question",
+    "act": "III",
+    "shown": 16,
+    "sessions": 16,
+    "meanDelta": 2.56,
+    "firstDelta": 2.56,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Honest answer to a sharp question pays off the whole arc; the lorry and 'writes it down' callbacks land well.",
+     "+4 The 'needed saying' note and the honest-answer dilemma keep the late-career arc satisfying and earned.",
+     "+4 The maiden-speech payoff and the 'That needed saying' note are earned and genuinely satisfying."
+    ]
+   },
+   {
+    "id": "postit_workshop#1",
+    "title": "Design Thinking",
+    "act": "I",
+    "shown": 15,
+    "sessions": 15,
+    "meanDelta": 2.53,
+    "firstDelta": 2.53,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The 'Auntie Mary' persona and PARKING LOT satire is sharp and recognisably true of workshops.",
+     "+4 Parking Lot and Auntie Mary are sharp satire of workshop jargon, though the joke is familiar.",
+     "+4 'Auntie Mary' and the PARKING LOT box are sharp, specific satire of workshop culture that landed well."
+    ]
+   },
+   {
+    "id": "the_election#2",
+    "title": "The General Election",
+    "act": "II",
+    "shown": 12,
+    "sessions": 12,
+    "meanDelta": 2.5,
+    "firstDelta": 2.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The closed folder paying off later and the cheerful opposition wave are good, earned beats.",
+     "+3 Good election-day texture; the seminar-rival wave adds a nice, earned touch of humanity.",
+     "+3 'Nobody mentions the folder again, which is how you know it is still there' is a sharp line, and the hall-and-seminar-friend image lands."
+    ]
+   },
+   {
+    "id": "the_vetting",
+    "title": "The Background Check",
+    "act": "II",
+    "shown": 15,
+    "sessions": 15,
+    "meanDelta": 2.47,
+    "firstDelta": 2.47,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 Folder callbacks to the leak and flat land as an earned, tense payoff; the dilemma is sharp.",
+     "+4 The 'public information, three weeks early' exchange is a sharp, earned callback with real tension.",
+     "+4 The folder callback to the flat tip is well-earned, and full disclosure is a genuinely costly, tense choice."
+    ]
+   },
+   {
+    "id": "the_townhall#2",
+    "title": "The Survey Results",
+    "act": "III",
+    "shown": 15,
+    "sessions": 15,
+    "meanDelta": 2.47,
+    "firstDelta": 2.47,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Choosing to lead with the bad number is a sharp, earned moral beat, and the 'within the normal range' line is pointed.",
+     "+4 The 'nobody thanks you' lift story and the survey dilemma are sharp, honest beats.",
+     "+4 Putting the one number that fell on the first slide is a pointed, honest choice that echoes the career's integrity thread."
+    ]
+   },
+   {
+    "id": "old_colleague",
+    "title": "Someone From Before",
+    "act": "I",
+    "shown": 24,
+    "sessions": 24,
+    "meanDelta": 2.46,
+    "firstDelta": 2.46,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The callback to the two-desks-apart past is earned, and the post-it that vanishes from the deck pays off the earlier joke.",
+     "+4 The 'someone from before' callback to the two-desks-apart past feels earned and quietly moving.",
+     "-4 Fun is sliding; the callback to the old board is a decent idea, but the thin dialogue and repeated 'understands' beats feel flat."
+    ]
+   },
+   {
+    "id": "reshuffle",
+    "title": "The Reshuffle",
+    "act": "III",
+    "shown": 29,
+    "sessions": 27,
+    "meanDelta": 2.45,
+    "firstDelta": 2.41,
+    "repeatDelta": 3,
+    "meanRepeatRule": -0.52,
+    "offTone": 1,
+    "offToneLines": [
+     "An auntie saying you looked thinner on television is a familiar Singaporean stock joke, a little too neatly placed."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+4 The 'understanding is a start' line and the reshuffle choice feel like a real arc, with the lorry callback doing the work.",
+     "+4 'A timely reminder. Nobody specifies of what' is a sharp line, and 'eleven people sure it is good news' is a nice dry sting.",
+     "+3 Asking for the hard ministry is a clean character choice; the 'eleven people sure it is good news' line is a fair, dry touch."
+    ]
+   },
+   {
+    "id": "the_appraisal_talk#3",
+    "title": "The Appraisal Conversation",
+    "act": "I",
+    "shown": 20,
+    "sessions": 20,
+    "meanDelta": 2.45,
+    "firstDelta": 2.45,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The sticky-note parking lot and the form carried by mistake are sharp, earned callbacks.",
+     "+4 Recurring ceiling question pays off with the carried-over form detail; a well-earned callback.",
+     "+4 The carried-wrong-form detail is sharp, and asking about the ceiling feels earned."
+    ]
+   },
+   {
+    "id": "second_look",
+    "title": "The Board Takes a Second Look",
+    "act": "I",
+    "shown": 28,
+    "sessions": 25,
+    "meanDelta": 2.43,
+    "firstDelta": 2.72,
+    "repeatDelta": 0,
+    "meanRepeatRule": -0.89,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "-5 Flat, predictable beats; the board twist is a tired device and the year offered little surprise.",
+     "+4 The proving-ground payoff pays off well, and having the board revisit your own record is a tense, fresh hook.",
+     "+4 The CEP explanation lands well, and a self-written case for your own record is a sharp dilemma."
+    ]
+   },
+   {
+    "id": "inconvenient_figure",
+    "title": "The Inconvenient Figure",
+    "act": "I",
+    "shown": 36,
+    "sessions": 27,
+    "meanDelta": 2.42,
+    "firstDelta": 2.37,
+    "repeatDelta": 2.56,
+    "meanRepeatRule": -1.81,
+    "offTone": 2,
+    "offToneLines": [
+     "She winks. You are fairly sure she winks.",
+     "\"She winks. You are fairly sure she winks.\""
+    ],
+    "quits": 0,
+    "reasons": [
+     "+4 Sharp integrity dilemma; 'presented as a range rather than a number' is a well-observed line.",
+     "+3 Real dilemma about spin versus candor; the recovery-plan option feels plausibly bureaucratic.",
+     "+3 The 31% versus 'a range' dilemma is sharp and grounded in how the service really talks."
+    ]
+   },
+   {
+    "id": "the_work#4",
+    "title": "The Work",
+    "act": "I",
+    "shown": 27,
+    "sessions": 25,
+    "meanDelta": 2.41,
+    "firstDelta": 2.36,
+    "repeatDelta": 3,
+    "meanRepeatRule": -0.37,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+5 The ninth-draft detail and the 'nobody knew' line land with real wit; a sharp, earned turn.",
+     "+3 The ninth-draft line is sharp and bureaucratic-true, and the choice has a real cost in time.",
+     "+3 The ninth draft as the first intelligible one is a sharp line, and briefing the agencies yourself pays off the career's patient arc."
+    ]
+   },
+   {
+    "id": "tea_session#2",
+    "title": "An Invitation to Tea",
+    "act": "II",
+    "shown": 20,
+    "sessions": 20,
+    "meanDelta": 2.4,
+    "firstDelta": 2.4,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "'an invitation to tea' and the unnamed envelope lean on a familiar political-recruitment trope."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+4 Strong payoff: the chairs callback and the younger officer's question make the invitation feel earned.",
+     "+4 The anonymous invitation to tea is a tantalising hook; the forum callback earned its place.",
+     "+3 The old-colleague payoff is earned and the anonymous tea invitation is a real hook, though my fun is still low."
+    ]
+   },
+   {
+    "id": "the_work",
+    "title": "The Work",
+    "act": "I",
+    "shown": 31,
+    "sessions": 30,
+    "meanDelta": 2.39,
+    "firstDelta": 2.37,
+    "repeatDelta": 3,
+    "meanRepeatRule": -0.32,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The lift-as-evidence line and the unnamed scheme are well-made, earned payoffs of earlier beats.",
+     "+5 The 'lift is evidence' line and the unwritten question are sharp, earned, and genuinely funny.",
+     "+4 The 'Fine is good' silence and 'not a helpful way to think about it' are sharp, precise, earned."
+    ]
+   },
+   {
+    "id": "the_work#2",
+    "title": "The Work",
+    "act": "I",
+    "shown": 25,
+    "sessions": 24,
+    "meanDelta": 2.36,
+    "firstDelta": 2.38,
+    "repeatDelta": 2,
+    "meanRepeatRule": -0.2,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Writing it straight and presenting it yourself pays off the paragraph-four thread with real stakes.",
+     "+4 'Lost the BTO, and now explains the scheme better' is a dry, earned payoff; 'phased implementation' lands well.",
+     "+4 The 'however' in the comments and the post-it that vanished from the deck are sharp, earned callbacks."
+    ]
+   },
+   {
+    "id": "dialogue_session",
+    "title": "The Engagement Exercise",
+    "act": "I",
+    "shown": 17,
+    "sessions": 15,
+    "meanDelta": 2.35,
+    "firstDelta": 2.4,
+    "repeatDelta": 2,
+    "meanRepeatRule": -0.88,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+4 Publishing the raw feedback beside the three-pillar report is a sharp, earned move; the pillar-fitting detail rings true.",
+     "+4 Publishing raw citizen feedback that defies the pre-set pillars is a sharp, honest turn with real consequence.",
+     "+3 The engagement exercise squeezing citizen feedback into fixed pillars is a fair, pointed satire of consultation theatre."
+    ]
+   },
+   {
+    "id": "forum_letter",
+    "title": "The Forum Page",
+    "act": "I",
+    "shown": 29,
+    "sessions": 25,
+    "meanDelta": 2.34,
+    "firstDelta": 2.36,
+    "repeatDelta": 2.25,
+    "meanRepeatRule": -0.86,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Good moral choice; the 'correct on every factual point' letter makes conceding meaningful.",
+     "+3 Correct-on-every-point aggrieved letter is a fresh, sharp dilemma; concession option feels right.",
+     "+3 The 'admiringly' twist and a correct-on-every-point letter make a real, earned dilemma."
+    ]
+   },
+   {
+    "id": "the_scholar",
+    "title": "The Officer You Are Supervising",
+    "act": "I",
+    "shown": 12,
+    "sessions": 12,
+    "meanDelta": 2.33,
+    "firstDelta": 2.33,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Mentorship beat with the CEP mystery echoing; the Administrative Service detail rings true.",
+     "+3 The thumbs-up as 'a concession' and the mentoring dilemma both land with real character.",
+     "+3 The void-deck scene is affecting, and 'tell him plainly, and teach him' is a real moral choice without an obvious right answer."
+    ]
+   },
+   {
+    "id": "the_leak",
+    "title": "The Leak",
+    "act": "I",
+    "shown": 41,
+    "sessions": 35,
+    "meanDelta": 2.22,
+    "firstDelta": 2.54,
+    "repeatDelta": 0.33,
+    "meanRepeatRule": -1.22,
+    "offTone": 1,
+    "offToneLines": [
+     "The screen's repeated lines (duplicate PAY and RUMOUR entries) read like padding, and the 'It was you' option is a fine game-y wink."
+    ],
+    "quits": 1,
+    "reasons": [
+     "+5 'It was you' is a genuine twist on the career's arc, a sharp reversal the card sets up well.",
+     "+5 Option C is a daring, darkly funny twist that breaks the expected loyal-officer pattern.",
+     "+4 The chair-stacking callback to the MP lands, and the leak dilemma has real stakes."
+    ]
+   },
+   {
+    "id": "the_committee",
+    "title": "The Inter-Ministry Committee",
+    "act": "I",
+    "shown": 24,
+    "sessions": 23,
+    "meanDelta": 2.21,
+    "firstDelta": 2.22,
+    "repeatDelta": 2,
+    "meanRepeatRule": -0.21,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+6 Dry bureaucratic satire lands; forcing a decision on an endless committee is a fun, plausible move.",
+     "+4 The 'further study is warranted' deadlock is sharply observed, and forcing a decision is a real, costly choice.",
+     "+4 \"further study is warranted\" and being the secretariat is a sharp, earned bureaucratic satire beat."
+    ]
+   },
+   {
+    "id": "the_election#1",
+    "title": "The General Election",
+    "act": "II",
+    "shown": 19,
+    "sessions": 19,
+    "meanDelta": 2.21,
+    "firstDelta": 2.21,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "\"the coffee shop has opinions about your face\""
+    ],
+    "quits": 0,
+    "reasons": [
+     "+3 The lamp-post and coffee-shop gag is sharp, and standing with the team fits the career's long theme of collective work over solo credit.",
+     "+3 Standing with the team in the GRC is a sensible pick, and the lamp-post-coffee-shop line is genuinely funny.",
+     "+3 The ledger line and the lamp post with opinions are sharp, well-made details."
+    ]
+   },
+   {
+    "id": "improvement_plan",
+    "title": "The Improvement Plan",
+    "act": "I",
+    "shown": 10,
+    "sessions": 9,
+    "meanDelta": 2.2,
+    "firstDelta": 2.78,
+    "repeatDelta": -3,
+    "meanRepeatRule": -0.5,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 Sharp bureaucratic detail: the acknowledgement-not-agreement line; contesting it in writing feels earned.",
+     "+3 The acknowledgement-versus-agreement wording is a sharp, true-to-life detail; contesting it in writing is a meaningful stand.",
+     "+3 The sticky-note callback pays off, and the 'acknowledgement, not agreement' bureaucratic irony lands well."
+    ]
+   },
+   {
+    "id": "pofma_vindicated",
+    "title": "The Third Point",
+    "act": "III",
+    "shown": 10,
+    "sessions": 10,
+    "meanDelta": 2.2,
+    "firstDelta": 2.2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The third point, quietly amended and then owned on the record, pays off a thread from the correction card.",
+     "+4 The 11pm post shared most by people who dislike you, and the third point paying off, feel earned.",
+     "+3 The third point returning as an amended scheme is a neat, earned payoff of the correction callback."
+    ]
+   },
+   {
+    "id": "the_election",
+    "title": "The General Election",
+    "act": "II",
+    "shown": 16,
+    "sessions": 16,
+    "meanDelta": 2.19,
+    "firstDelta": 2.19,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 'Very complete' as the highest praise allowed is dry and sharp, and the GRC choice has real weight.",
+     "+4 The closed folder reappearing and the election setup tie the career threads together nicely.",
+     "+3 Running in the GRC is a fair, character-true choice, and the 'different life' rumour is a sharp framing."
+    ]
+   },
+   {
+    "id": "the_walkabout",
+    "title": "The Walkabout",
+    "act": "III",
+    "shown": 16,
+    "sessions": 16,
+    "meanDelta": 2.19,
+    "firstDelta": 2.19,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The stallholder's chilli rant on camera is a warm, well-observed beat that rewards listening over schedule.",
+     "+4 The 'which one you are' coffee-shop beat and the chilli-price stallholder feel grounded and warm.",
+     "+4 The stallholder's chilli rant on camera feels like a warm, grounded callback to the constituency work."
+    ]
+   },
+   {
+    "id": "mnd_lease",
+    "title": "Ninety-Nine Years",
+    "act": "I",
+    "shown": 6,
+    "sessions": 6,
+    "meanDelta": 2.17,
+    "firstDelta": 2.17,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The 'promoted in every sense except the paperwork' line is a genuinely good turn, and meeting the residents feels like the right test.",
+     "+3 The CEP reveal and the residents' letter, which they've read the policy for, make a grounded, well-observed turn.",
+     "+2 The CEP reveal and the residents' letter about lease expiry are grounded, humane material."
+    ]
+   },
+   {
+    "id": "the_quiet_year#1",
+    "title": "A Year Without Incident",
+    "act": "I",
+    "shown": 29,
+    "sessions": 28,
+    "meanDelta": 2.1,
+    "firstDelta": 2.11,
+    "repeatDelta": 2,
+    "meanRepeatRule": -0.34,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The quiet year is a nice inversion of the usual crisis card; the 'pretending not to' line lands.",
+     "+3 Quiet, observant card; the postponed lunches feel like a real small payoff for a life of deferrals.",
+     "+3 Honest RO payoff and a quiet, earned card; the white-space framing is nicely observed."
+    ]
+   },
+   {
+    "id": "lanterns",
+    "title": "Lanterns",
+    "act": "I",
+    "shown": 23,
+    "sessions": 19,
+    "meanDelta": 2.09,
+    "firstDelta": 2.58,
+    "repeatDelta": -0.25,
+    "meanRepeatRule": -2.39,
+    "offTone": 4,
+    "offToneLines": [
+     "The repeated 'apparently, in passing' gag is leaning on itself; it read like the game nudging me to notice the joke.",
+     "'this is also, apparently, in passing' and 'in passing, definitely not in passing' wink at the game's own pattern of hints.",
+     "\"apparently in passing\" repeated a third time reads as the writers winking at their own gag."
+    ],
+    "quits": 2,
+    "reasons": [
+     "+4 The 'apparently in passing' motif lands again, and staying to stack chairs is a warm, earned choice.",
+     "+4 Staying to stack chairs is a warm, understated beat that captures her character and the 'in passing' running gag.",
+     "+3 The 'apparently in passing' callback lands, and staying to stack chairs is a nicely human choice."
+    ]
+   },
+   {
+    "id": "succession",
+    "title": "The Succession",
+    "act": "III",
+    "shown": 11,
+    "sessions": 11,
+    "meanDelta": 2.09,
+    "firstDelta": 2.09,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The 'entirely decided by people in a room' succession is a wry, well-judged payoff for the career.",
+     "+3 Backing the other candidate for a senior portfolio is a fair, unshowy choice, and 'informal means decided by people in a room' is a sharp line.",
+     "+3 The 'for information' handover note and 'the speed of the agreement' are sharp; backing another candidate for a portfolio feels earned."
+    ]
+   },
+   {
+    "id": "cos_speech",
+    "title": "Committee of Supply",
+    "act": "I",
+    "shown": 25,
+    "sessions": 20,
+    "meanDelta": 2.08,
+    "firstDelta": 2.3,
+    "repeatDelta": 1.2,
+    "meanRepeatRule": -2,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 2,
+    "reasons": [
+     "+4 The cake with no message is a genuinely funny, earned bit; the pilot choice feels like a real payoff.",
+     "+4 The 'promoted in every sense except the paperwork' payoff is earned, and the COS dilemma sharpens it.",
+     "+4 The 'saying so is not one of the available options' line is sharp, and the quiet pilot payoff feels earned."
+    ]
+   },
+   {
+    "id": "town_council",
+    "title": "The Town Council",
+    "act": "III",
+    "shown": 30,
+    "sessions": 24,
+    "meanDelta": 2.07,
+    "firstDelta": 2,
+    "repeatDelta": 2.33,
+    "meanRepeatRule": -1.5,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The lift contract and cousin dilemma ties back to the lift thread, and doing it properly with an explanation is a fair, character-consistent choice.",
+     "+4 The uncle's rent follow-up paying off a year later is a real callback; the lift dilemma has teeth.",
+     "+4 The 'within the normal range' swing line and the contractor's cousin land well; a real, earned payoff."
+    ]
+   },
+   {
+    "id": "the_quiet_year",
+    "title": "A Year Without Incident",
+    "act": "I",
+    "shown": 33,
+    "sessions": 32,
+    "meanDelta": 2.06,
+    "firstDelta": 2.06,
+    "repeatDelta": 2,
+    "meanRepeatRule": -0.15,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 'Compliment or a warning' and the 'exact size' line are sharp, earned wit.",
+     "+3 The 'compliment or a warning' line is sharp; the choice to fix something unasked is a good character beat.",
+     "+3 The 'compliment or a warning' line is a sharp touch, and fixing the unasked-for problem suits her character."
+    ]
+   },
+   {
+    "id": "the_mps_night",
+    "title": "Tuesday Night",
+    "act": "III",
+    "shown": 20,
+    "sessions": 20,
+    "meanDelta": 2.05,
+    "firstDelta": 2.05,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 3,
+    "offToneLines": [
+     "A man who has come every week for two years about a case that cannot be reopened is a sentimental stock figure.",
+     "\"It is the word they use for furniture.\" is a good line, though it reads a little like the game winking at its own wit.",
+     "\"It is the word they use for furniture.\""
+    ],
+    "quits": 1,
+    "reasons": [
+     "+5 The man returning for two years with an unreopenable case brings the Tuesday-night thread full circle, and seeing every last one is a moving payoff.",
+     "+4 The man who has come every week for two years, and the 'can answer' coffee-shop beat, carry real emotional weight.",
+     "+4 The 'almost none of this is about you' line and the man who cannot be helped feel honest and earned."
+    ]
+   },
+   {
+    "id": "the_crisis",
+    "title": "The Thing That Actually Happens",
+    "act": "I",
+    "shown": 35,
+    "sessions": 30,
+    "meanDelta": 2.03,
+    "firstDelta": 2.1,
+    "repeatDelta": 1.6,
+    "meanRepeatRule": -1.43,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 2,
+    "reasons": [
+     "+4 The leadership-programme irony lands, and the 4am crisis is a strong, concrete hook with real stakes.",
+     "+4 The chairs noticed by the MP is a quiet payoff, and the 4am crisis raises the stakes well.",
+     "+4 The payoff of placing staff first returns as a repayable debt, and the 4am crisis has real momentum."
+    ]
+   },
+   {
+    "id": "grassroots_invite",
+    "title": "The Adviser Suggests Something",
+    "act": "I",
+    "shown": 35,
+    "sessions": 27,
+    "meanDelta": 2,
+    "firstDelta": 2.19,
+    "repeatDelta": 1.38,
+    "meanRepeatRule": -2.29,
+    "offTone": 8,
+    "offToneLines": [
+     "The grassroots-adviser nudge reads like a real political recruitment pitch rather than a fresh beat.",
+     "Apparently in passing, definitely not in passing, reads like the game winking at the reader about how politics works.",
+     "\"definitely not in passing\" winks at the reader a little, but it lands as a joke rather than a breach."
+    ],
+    "quits": 1,
+    "reasons": [
+     "+4 The 'definitely not in passing' line is a crisp, knowing bit, and the political-invitation hook is a real turn.",
+     "+4 The political-invitation turn is a satisfying payoff of the career arc, and the adviser's wink is well observed.",
+     "+4 The 'placed nine before yourself' payoff and the adviser's 'not in passing' line are sharp, earned turns."
+    ]
+   },
+   {
+    "id": "postit_workshop",
+    "title": "Public Sector Transformation",
+    "act": "I",
+    "shown": 20,
+    "sessions": 20,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "\"more agile, more citizen-centric, and more data-driven\" reads like a parody of real public-sector buzzwords, a bit on the nose."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+4 The offsite satire is familiar, but writing what everyone thinks is a satisfying turn.",
+     "+3 The post-it buzzword satire is sharp and recognisable; writing what people think is a real choice.",
+     "+3 The offsite satire is sharp and specific, and writing down what everyone thinks is a fitting choice."
+    ]
+   },
+   {
+    "id": "secondment",
+    "title": "The Secondment",
+    "act": "I",
+    "shown": 20,
+    "sessions": 18,
+    "meanDelta": 2,
+    "firstDelta": 2.06,
+    "repeatDelta": 1.5,
+    "meanRepeatRule": -0.5,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+5 The ninety-seconds payoff lands well, and the proving-ground-or-siding secondment is a genuinely sharp dilemma.",
+     "+4 Proving-ground versus siding is a sharp, unannounced ambiguity; the recusal memo payoff landed well.",
+     "+3 The payoff of the hardest-posting ask is earned; \"proving ground or a siding\" is a sharp, real dilemma."
+    ]
+   },
+   {
+    "id": "mom_dorms",
+    "title": "The Dormitory Standards",
+    "act": "I",
+    "shown": 4,
+    "sessions": 4,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 Dormitory standards are a real moral dilemma, but the choice feels like a tidy bureaucratic beat.",
+     "+2 The workers' steeper-ladder choice paying off in the paper trail is a satisfying callback, and the dormitory dilemma has real weight.",
+     "+2 The cake with no message is a warm, specific touch; holding both standards and deadline is a real moral stake on a serious issue."
+    ]
+   },
+   {
+    "id": "headhunter_political",
+    "title": "The Board Seat",
+    "act": "III",
+    "shown": 2,
+    "sessions": 2,
+    "meanDelta": 2,
+    "firstDelta": 2,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+2 The footnote-fee line and the auntie's 'thinner on television' beat are sharp, though the board-seat temptation is familiar.",
+     "+2 The footnoted board fee is a sharp, pointed jab at revolving-door pay; declining keeps the moral thread alive."
+    ]
+   },
+   {
+    "id": "bto_queue#1",
+    "title": "The Prime Launch",
+    "act": "I",
+    "shown": 21,
+    "sessions": 21,
+    "meanDelta": 1.95,
+    "firstDelta": 1.95,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 'Not a helpful way to think about it' and 'remember thirty of them' are sharp, earned lines.",
+     "+3 The Prime launch hits a real Singapore nerve; the clawback and queue details are sharp and accurate.",
+     "+3 The housing-lottery framing is pointed and the queue joke lands well."
+    ]
+   },
+   {
+    "id": "secondment_verdict",
+    "title": "The Annual Report",
+    "act": "I",
+    "shown": 11,
+    "sessions": 11,
+    "meanDelta": 1.91,
+    "firstDelta": 1.91,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The Perm Sec writing your name down pays off the crisis; wanting to finish the job feels earned.",
+     "+3 The one-page auditors' letter is a quietly satisfying payoff, and staying to finish the job feels earned.",
+     "+3 The honest reporting officer and the one-page auditors' letter are a quietly satisfying payoff for the secondment."
+    ]
+   },
+   {
+    "id": "model_ward",
+    "title": "A Model Ward",
+    "act": "III",
+    "shown": 38,
+    "sessions": 29,
+    "meanDelta": 1.89,
+    "firstDelta": 2.03,
+    "repeatDelta": 1.44,
+    "meanRepeatRule": -1.71,
+    "offTone": 2,
+    "offToneLines": [
+     "Earnest young candidates who have each read the paper is a bit of a stock figure.",
+     "The screen repeats the 20th-percentile chart line from Year 37 and duplicates the same PAY and APPRAISAL entries several times, which reads as padding."
+    ],
+    "quits": 1,
+    "reasons": [
+     "-4 Recycled lorry and chillies beats again; the mentoring card feels like a summary, not a new turn.",
+     "+4 The kueh callback and the 'read the paper' detail land warmly; Meet-the-People choice pays off the earlier branch dilemma.",
+     "+4 The kueh-bringing man and volunteers bringing their own chairs pay off the long Meet-the-People thread nicely."
+    ]
+   },
+   {
+    "id": "the_appraisal_talk",
+    "title": "The Appraisal Conversation",
+    "act": "I",
+    "shown": 17,
+    "sessions": 17,
+    "meanDelta": 1.82,
+    "firstDelta": 1.82,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The 'more visible, to whom' appraisal line is pointed, and the callback to the briefings pays off.",
+     "+4 Footnote payoff and 'you are the scheme' land; asking the ceiling question directly is a real beat.",
+     "+3 The 'more visible' line is a sharp, believable bit of workplace vagueness."
+    ]
+   },
+   {
+    "id": "the_appraisal_talk#1",
+    "title": "The Appraisal Conversation",
+    "act": "I",
+    "shown": 14,
+    "sessions": 14,
+    "meanDelta": 1.79,
+    "firstDelta": 1.79,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+3 The appraisal form satire is pointed and the sticky-note callback to the parking lot is earned.",
+     "+3 The oversized 'overall impression' box is a sharp satirical detail, and the recap beats are dry and earned.",
+     "+3 The oversized impression box is a sharp, believable jab at appraisal theatre."
+    ]
+   },
+   {
+    "id": "headhunter_political_grc",
+    "title": "The Board Seat",
+    "act": "III",
+    "shown": 26,
+    "sessions": 23,
+    "meanDelta": 1.77,
+    "firstDelta": 1.78,
+    "repeatDelta": 1.67,
+    "meanRepeatRule": -1.15,
+    "offTone": 2,
+    "offToneLines": [
+     "A footnote fee joke reads as a dig at revolving-door appointments, which is fair satire rather than a tone break.",
+     "A conglomerate director role with a footnoted fee is an apt jab at revolving-door politics, but 'noted' repeated throughout the run is starting to feel like a tic."
+    ],
+    "quits": 2,
+    "reasons": [
+     "+3 The footnote-as-only-modest-thing line is a sharp gag, and declining a seat you could resign to take is a real dilemma.",
+     "+3 The footnote-sized fee is a sharp, dryly funny detail that makes the decline feel earned.",
+     "+3 The footnoted fee is a nice dry touch, and declining fits the career's steady, principled arc."
+    ]
+   },
+   {
+    "id": "mps_duty",
+    "title": "Meet-the-People Session",
+    "act": "I",
+    "shown": 45,
+    "sessions": 31,
+    "meanDelta": 1.76,
+    "firstDelta": 1.97,
+    "repeatDelta": 1.29,
+    "meanRepeatRule": -2.44,
+    "offTone": 6,
+    "offToneLines": [
+     "The Currently Estimated Potential line reads like a real civil service lift-thought, but the Meet-the-People premise is only lightly disguised political commentary.",
+     "The line 'you would like to stay a neutral one' reads like a nudge toward the moral the game wants me to take, not a real choice.",
+     "The pay jump from $52,517 to $77,148 with no promotion or explanation looks like a number error."
+    ],
+    "quits": 1,
+    "reasons": [
+     "+4 Neutrality dilemma is sharp, and the CEP-as-secret-verdict line lands; declining is a real cost.",
+     "+4 A sharp, real dilemma on civil service neutrality; the party-branch detail rings true.",
+     "+4 Neutrality dilemma is grounded in real rules; the memo-in-the-file line is well-observed."
+    ]
+   },
+   {
+    "id": "headhunter_early",
+    "title": "The Recruiter",
+    "act": "I",
+    "shown": 17,
+    "sessions": 16,
+    "meanDelta": 1.76,
+    "firstDelta": 1.75,
+    "repeatDelta": 2,
+    "meanRepeatRule": -0.29,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Honest RO callback and the LinkedIn offer give a fair, satisfying turn toward ambition.",
+     "+2 The 'you did not know you were still on LinkedIn' line is a light, well-judged touch.",
+     "+2 The LinkedIn recruiter and the twice-read salary are well-observed; declining with \"not finished here\" is a satisfying, earned turn."
+    ]
+   },
+   {
+    "id": "late_night#1",
+    "title": "Sunday, 4pm",
+    "act": "I",
+    "shown": 22,
+    "sessions": 22,
+    "meanDelta": 1.64,
+    "firstDelta": 1.64,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The 'difference between a debt and a judgement' line and the stopped-apologising beat give the career a fitting, earned close.",
+     "+3 The 'noted' beat and the niece's cake make a small, human dilemma that works.",
+     "+3 The 'placed nine before yourself' payoff is earned, and the niece's party versus the brief is a sharp work-life beat."
+    ]
+   },
+   {
+    "id": "reorg",
+    "title": "The Reorganisation",
+    "act": "I",
+    "shown": 19,
+    "sessions": 18,
+    "meanDelta": 1.63,
+    "firstDelta": 1.67,
+    "repeatDelta": 1,
+    "meanRepeatRule": -0.53,
+    "offTone": 1,
+    "offToneLines": [
+     "\"She winks. You are fairly sure she winks.\""
+    ],
+    "quits": 0,
+    "reasons": [
+     "+3 The 'fewer boxes' reorg with a real moral pull; choosing your people over yourself feels like an earned dilemma.",
+     "+3 The two-committees payoff and 'tells you which one to care about' are sharp; the reorg dilemma has real cost.",
+     "-3 The reorganisation feels like a familiar beat, and the choices don't obviously differ in cost."
+    ]
+   },
+   {
+    "id": "pofma_moment",
+    "title": "The Correction Direction",
+    "act": "III",
+    "shown": 28,
+    "sessions": 27,
+    "meanDelta": 1.57,
+    "firstDelta": 1.56,
+    "repeatDelta": 2,
+    "meanRepeatRule": -0.18,
+    "offTone": 1,
+    "offToneLines": [
+     "The 'auntie says you looked thinner' beat is cute, but the 'stand on a lorry' card has now repeated four times, and the correction direction reads like a real ministry notice rather than a game-world beat."
+    ],
+    "quits": 0,
+    "reasons": [
+     "-5 A recycled 'good chart, four-month bonus' line and a flat, repetitive card that felt like filler.",
+     "+3 The 'correct in the third' dilemma is a sharp, plausible wrinkle, and answering the true point fits the career's honesty thread.",
+     "+3 Answering the one correct point while the rest is misleading is a sharp, honest choice that pays off the 'not in the photograph' running gag."
+    ]
+   },
+   {
+    "id": "the_work#1",
+    "title": "The Work",
+    "act": "I",
+    "shown": 27,
+    "sessions": 26,
+    "meanDelta": 1.56,
+    "firstDelta": 1.85,
+    "repeatDelta": -6,
+    "meanRepeatRule": -0.56,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-6 Dry, familiar workload; the form joke is fine but the year offers nothing new.",
+     "+4 The 'kopi' and 'minute quoted back' beats land well; recap is tight and earned.",
+     "+4 Sharp satire on redundant forms, and the leaked-tip callback stings well."
+    ]
+   },
+   {
+    "id": "bto_queue#2",
+    "title": "The Fifth Ballot",
+    "act": "I",
+    "shown": 18,
+    "sessions": 18,
+    "meanDelta": 1.5,
+    "firstDelta": 1.5,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 Fifth-ballot framing is sharp and the 'queue numbers' line lands well.",
+     "+3 The queue-numbers line is a good wry image; the callback to the branch secretary lands.",
+     "+3 The flat pay and remembered ballot numbers land well; asking a friend feels like a real move."
+    ]
+   },
+   {
+    "id": "the_work#3",
+    "title": "The Work",
+    "act": "I",
+    "shown": 28,
+    "sessions": 26,
+    "meanDelta": 1.43,
+    "firstDelta": 1.46,
+    "repeatDelta": 1,
+    "meanRepeatRule": -0.36,
+    "offTone": 1,
+    "offToneLines": [
+     "The 'comments on the fourth draft wait until morning' and 'leaving on time' beats repeat earlier lines verbatim, which reads like padding."
+    ],
+    "quits": 0,
+    "reasons": [
+     "-6 Dull, low-stakes card; 'page six' is a flat setup and the choices barely differ.",
+     "+4 The 'you are the scheme' and 'the lift is evidence' lines are genuinely sharp; the post-it payoff is earned.",
+     "+3 Dry, specific bureaucratic detail; the callers-or-page-six line is genuinely well-written."
+    ]
+   },
+   {
+    "id": "moh_waiting",
+    "title": "The Waiting Time",
+    "act": "III",
+    "shown": 7,
+    "sessions": 6,
+    "meanDelta": 1.43,
+    "firstDelta": 1.5,
+    "repeatDelta": 1,
+    "meanRepeatRule": -2.14,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-4 Recycled townhall and bonus beats; the unannounced visit is a predictable hero move, and the fun meter is slipping.",
+     "+3 Unannounced ED visit is a strong, grounded choice that pays off the ramp callback and the honest-accountability thread.",
+     "+3 The unannounced Saturday night visit to the ED is a grounded, human response with real stakes."
+    ]
+   },
+   {
+    "id": "the_appraisal_talk#2",
+    "title": "The Appraisal Conversation",
+    "act": "I",
+    "shown": 17,
+    "sessions": 16,
+    "meanDelta": 1.41,
+    "firstDelta": 1.44,
+    "repeatDelta": 1,
+    "meanRepeatRule": -0.29,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+4 The website line landed well; the camera-off appraisal is a sharp, believable image.",
+     "+3 The camera-off appraisal is a sharp, true-feeling detail, though the choices feel thin.",
+     "+3 Dry detail about the camera-off officer; asking plainly suits the sharp, grounded tone."
+    ]
+   },
+   {
+    "id": "overseas_posting",
+    "title": "The Posting",
+    "act": "I",
+    "shown": 9,
+    "sessions": 9,
+    "meanDelta": 1.33,
+    "firstDelta": 1.33,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-6 Dull, predictable family-versus-career posting with no real surprise; felt like a stock dilemma.",
+     "+4 The daughter detail makes the posting a real cost, and deferral is a believable, thoughtful middle path.",
+     "+3 Strong personal stakes with the daughter's school; the deferral option feels like a real, costly compromise."
+    ]
+   },
+   {
+    "id": "bto_queue",
+    "title": "The Ballot",
+    "act": "I",
+    "shown": 22,
+    "sessions": 22,
+    "meanDelta": 1.27,
+    "firstDelta": 1.27,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+4 Post-it erased from the deck and 'however' in the comments are sharp; the BTO ballot irony is well observed.",
+     "+4 The ballot joke about working in the agency lands, and the 'correct no one' beat earns its keep.",
+     "+3 Asking a friend in the agency is a sharp, realistic dilemma with a satirical edge."
+    ]
+   },
+   {
+    "id": "the_indicators_downturn",
+    "title": "The Indicators, in a Downturn",
+    "act": "III",
+    "shown": 23,
+    "sessions": 18,
+    "meanDelta": 1.26,
+    "firstDelta": 2,
+    "repeatDelta": -1.4,
+    "meanRepeatRule": -1.52,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "-6 Third near-identical indicators card in a row; the same tired fork and the bonus-formula gag have worn thin.",
+     "-5 Same downturn budget card returns verbatim, and the run keeps repeating its own beats.",
+     "+4 Protecting jobs first in a downturn is a grounded, humane choice that ties back to the bonus-indicator thread."
+    ]
+   },
+   {
+    "id": "moh_premiums",
+    "title": "The Premiums",
+    "act": "I",
+    "shown": 4,
+    "sessions": 4,
+    "meanDelta": 1.25,
+    "firstDelta": 1.25,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+2 The cake with no message is a warm, well-judged beat; the promotion feels earned after the callbacks.",
+     "+2 Asking actuaries for assumptions is sensible, though the card reads as a familiar fork rather than a fresh dilemma.",
+     "+1 Plausible, careful policy dilemma; asking for assumptions is the engaged player's pick."
+    ]
+   },
+   {
+    "id": "the_indicators_election",
+    "title": "The Indicators, Before an Election",
+    "act": "III",
+    "shown": 27,
+    "sessions": 19,
+    "meanDelta": 1.22,
+    "firstDelta": 2.11,
+    "repeatDelta": -0.88,
+    "meanRepeatRule": -2.04,
+    "offTone": 2,
+    "offToneLines": [
+     "\"The question is received with great seriousness and complete stillness. It is minuted.\" reads a touch like a formula, but it works.",
+     "\"everyone in the room is aware of the calendar, including, somehow, the indicators\" winks at the game's own mechanics and reads as slightly self-aware."
+    ],
+    "quits": 1,
+    "reasons": [
+     "-4 The same Indicators card returns almost verbatim, a repeat that reads as a lazy loop.",
+     "-4 This recycles the earlier election-budget card almost word for word; the 'somehow' joke is now stale.",
+     "+4 Pushing 20th-percentile incomes follows the Cabinet question, and the election-calendar bind has real stakes."
+    ]
+   },
+   {
+    "id": "late_night",
+    "title": "11:40pm, Level 9",
+    "act": "I",
+    "shown": 20,
+    "sessions": 18,
+    "meanDelta": 1.2,
+    "firstDelta": 1.44,
+    "repeatDelta": -1,
+    "meanRepeatRule": -1,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "-4 Padded repeats of pay and appraisal, and the late-night clearance feels like a rerun of earlier cards.",
+     "+3 The CEP reveal lands with real weight, and the missed dinner makes the cost of the job concrete.",
+     "+3 The unnamed question and the minute quoted back as policy are quietly sharp; the 11:40pm dinner dilemma feels personal."
+    ]
+   },
+   {
+    "id": "the_quiet_year#2",
+    "title": "A Year Without Incident",
+    "act": "III",
+    "shown": 29,
+    "sessions": 28,
+    "meanDelta": 1.17,
+    "firstDelta": 1.18,
+    "repeatDelta": 1,
+    "meanRepeatRule": -0.17,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The 'nine settings, everyone uses the same one' joke is a neat, understated observation.",
+     "+3 The nine-setting coffee machine with everyone on the same one is a sly, earned joke about the system.",
+     "+3 The queue-number joke and the out-of-office line are dry and well-timed, and taking all the leave is a fitting quiet choice."
+    ]
+   },
+   {
+    "id": "the_indicators",
+    "title": "The Indicators",
+    "act": "III",
+    "shown": 42,
+    "sessions": 25,
+    "meanDelta": 1.14,
+    "firstDelta": 2.68,
+    "repeatDelta": -1.12,
+    "meanRepeatRule": -3.1,
+    "offTone": 2,
+    "offToneLines": [
+     "The Indicators card reappears word for word from Year 36, which reads like padding or a glitch rather than new material.",
+     "The game keeps replaying identical montage lines and the same indicators card, which reads like a scripted loop rather than a life."
+    ],
+    "quits": 4,
+    "reasons": [
+     "-6 The same indicators card returns again, and the recycled montage of earlier beats has become a tired loop.",
+     "+5 Choosing the 20th-percentile incomes over the GDP headline pays off the earlier Cabinet question about ministers paid on indicators they set.",
+     "-4 Same indicators card recycled from earlier; the 'furniture' line is good but the repeats wear thin."
+    ]
+   },
+   {
+    "id": "late_night#2",
+    "title": "10:50pm, One Comment",
+    "act": "I",
+    "shown": 21,
+    "sessions": 21,
+    "meanDelta": 1,
+    "firstDelta": 1,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "+3 The 10:50pm \"Can we tighten?\" on a two-page paper is a sharp, lived-in beat, and the promotion finally pays off the long build.",
+     "+3 The 'Can we tighten?' comment at 10:50pm is a sharp, relatable jab, and the bed-going reply feels earned after decades of quiet competence.",
+     "+3 Promotion and the 'not a helpful way to think about it' line pay off earlier ceiling question; the 10:50pm comment is a sharp, familiar bit."
+    ]
+   },
+   {
+    "id": "new_ro",
+    "title": "The New Reporting Officer",
+    "act": "I",
+    "shown": 42,
+    "sessions": 33,
+    "meanDelta": 0.98,
+    "firstDelta": 1.03,
+    "repeatDelta": 0.78,
+    "meanRepeatRule": -1.79,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "+3 The branch secretary remembering the refusal is a fair, earned consequence; the new officer setup is a reasonable next hook.",
+     "+3 Placing your people first pays off with a debt that can come back; this card builds on it.",
+     "-3 Career is now a predictable run of promotions and tidy payoffs; the new-boss setup feels familiar."
+    ]
+   },
+   {
+    "id": "budget_round",
+    "title": "The Budget Round",
+    "act": "I",
+    "shown": 18,
+    "sessions": 16,
+    "meanDelta": 0.78,
+    "firstDelta": 0.63,
+    "repeatDelta": 2,
+    "meanRepeatRule": -0.83,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 0,
+    "reasons": [
+     "-4 The 'family reasons' accepted-and-filed beat was nicely wry, but the budget round is flat and familiar.",
+     "+3 The consultant payoff and promotion are satisfying, and a flat envelope makes the big bid a real gamble.",
+     "+2 The deferred-not-reoffered line is quietly devastating, and the flat-envelope bid trade-off is a fair choice."
+    ]
+   },
+   {
+    "id": "mnd_million",
+    "title": "The Million-Dollar Flat",
+    "act": "III",
+    "shown": 11,
+    "sessions": 11,
+    "meanDelta": 0.45,
+    "firstDelta": 0.45,
+    "repeatDelta": null,
+    "meanRepeatRule": 0,
+    "offTone": 1,
+    "offToneLines": [
+     "Option B and C read like real ministerial press-release boilerplate."
+    ],
+    "quits": 0,
+    "reasons": [
+     "+3 The 'you recognise the look' callback is earned, and the million-dollar flat dilemma is pointed and fair.",
+     "-2 Generic policy-speak card; the three options blur into the same non-answer.",
+     "-2 The million-dollar flat is a real, timely issue, but the three choices read like press-release stock answers, not a sharp dilemma."
+    ]
+   },
+   {
+    "id": "improvement_plan#1",
+    "title": "The Improvement Plan",
+    "act": "I",
+    "shown": 5,
+    "sessions": 4,
+    "meanDelta": 0.2,
+    "firstDelta": 1.25,
+    "repeatDelta": -4,
+    "meanRepeatRule": -2,
+    "offTone": 0,
+    "offToneLines": [],
+    "quits": 1,
+    "reasons": [
+     "-4 Same development-conversation card, with the silent note-taker, seen twice now; it has worn thin.",
+     "+3 The silent note-taker HR officer is a sharp image; the recurring 'private sector' line lands as a callback.",
+     "+2 The silent note-taking HR officer and the deleted post-it are sharp, fair observations."
+    ]
+   }
+  ]
+ },
+ "quitCards": [
+  {
+   "id": "the_indicators",
+   "title": "The Indicators",
+   "quits": 4
+  },
+  {
+   "id": "ending:retired",
+   "title": "Retired, Honourably",
+   "quits": 3
+  },
+  {
+   "id": "cos_speech",
+   "title": "Committee of Supply",
+   "quits": 2
+  },
+  {
+   "id": "headhunter_political_grc",
+   "title": "The Board Seat",
+   "quits": 2
+  },
+  {
+   "id": "lanterns",
+   "title": "Lanterns",
+   "quits": 2
+  },
+  {
+   "id": "the_crisis",
+   "title": "The Thing That Actually Happens",
+   "quits": 2
+  },
+  {
+   "id": "consultant_report",
+   "title": "The Report",
+   "quits": 2
+  },
+  {
+   "id": "moh_premiums",
+   "title": "The Premiums",
+   "quits": 1
+  },
+  {
+   "id": "grassroots_invite",
+   "title": "The Adviser Suggests Something",
+   "quits": 1
+  },
+  {
+   "id": "dialogue_session",
+   "title": "The Engagement Exercise",
+   "quits": 1
+  },
+  {
+   "id": "the_work#4",
+   "title": "The Work",
+   "quits": 1
+  },
+  {
+   "id": "improvement_plan#1",
+   "title": "The Improvement Plan",
+   "quits": 1
+  },
+  {
+   "id": "cny_lohei",
+   "title": "Lo Hei",
+   "quits": 1
+  },
+  {
+   "id": "model_ward",
+   "title": "A Model Ward",
+   "quits": 1
+  },
+  {
+   "id": "mps_duty",
+   "title": "Meet-the-People Session",
+   "quits": 1
+  },
+  {
+   "id": "the_indicators_election",
+   "title": "The Indicators, Before an Election",
+   "quits": 1
+  },
+  {
+   "id": "bto_queue",
+   "title": "The Ballot",
+   "quits": 1
+  },
+  {
+   "id": "figure_vindicated",
+   "title": "The Figure, Cited",
+   "quits": 1
+  },
+  {
+   "id": "the_pq#1",
+   "title": "Question Time",
+   "quits": 1
+  },
+  {
+   "id": "late_night#2",
+   "title": "10:50pm, One Comment",
+   "quits": 1
+  },
+  {
+   "id": "the_indicators_downturn",
+   "title": "The Indicators, in a Downturn",
+   "quits": 1
+  },
+  {
+   "id": "headhunter_mid",
+   "title": "The Consultancy",
+   "quits": 1
+  },
+  {
+   "id": "the_mps_night",
+   "title": "Tuesday Night",
+   "quits": 1
+  },
+  {
+   "id": "the_appraisal_talk#1",
+   "title": "The Appraisal Conversation",
+   "quits": 1
+  },
+  {
+   "id": "ally_returns_ps",
+   "title": "The Officer You Nominated",
+   "quits": 1
+  },
+  {
+   "id": "late_night",
+   "title": "11:40pm, Level 9",
+   "quits": 1
+  },
+  {
+   "id": "the_leak",
+   "title": "The Leak",
+   "quits": 1
+  },
+  {
+   "id": "second_look",
+   "title": "The Board Takes a Second Look",
+   "quits": 1
+  },
+  {
+   "id": "canary_wink",
+   "title": null,
+   "quits": 1
+  },
+  {
+   "id": "farewell_drinks",
+   "title": "Farewell Drinks",
+   "quits": 1
+  }
+ ],
+ "endings": {
+  "ending:retired": {
+   "title": "Retired, Honourably",
+   "shown": 26,
+   "meanDelta": 1.58,
+   "reasons": [
+    "+2 Ending card is a tidy, wry wrap-up; the 'ceiling said no' and 'compliment' lines land well.",
+    "+4 A strong, resonant ending that pays off the career's long threads, from the lift and the kueh to the unseen work.",
+    "0 Ending card; the 'entirely unremarkable' framing lands as a fitting close to the career.",
+    "-2 Ending card is a tidy wrap-up, but the closing reveal leans on rumours that mostly repeated earlier beats."
+   ]
+  },
+  "ending:permsec": {
+   "title": "Permanent Secretary",
+   "shown": 21,
+   "meanDelta": 2.19,
+   "reasons": [
+    "+5 The declassified ending ties the ceiling, Lo Hei, and the politics invitation together neatly; a satisfying close.",
+    "+2 The declassified file is a neat, dry closing, with \"a compliment\" and \"the exception\" landing well.",
+    "+2 A satisfying final card: the Standing-versus-Tea note and the 'noted' motif land with dry wit.",
+    "+4 The ending card is a satisfying payoff: the counter callback, the 'Tea wants Standing 54' line, and the 'compliment' twist all land."
+   ]
+  },
+  "ending:consultancy": {
+   "title": "The Consultancy",
+   "shown": 3,
+   "meanDelta": 3.33,
+   "reasons": [
+    "+3 The ending card's wry notes, especially 'In this building, a compliment,' land as a fitting close.",
+    "+5 The ending card neatly closes the deck, ceiling, and Board threads; a satisfying conclusion.",
+    "+2 The ending card's 'in this building, a compliment' and the unbilled old team are a fitting, understated close."
+   ]
+  },
+  "ending:office": {
+   "title": "Never Quite Cabinet",
+   "shown": 4,
+   "meanDelta": 3.75,
+   "reasons": [
+    "+6 The declassified ending pays off the counter callback and the appraisal ceiling with real wit and emotional weight.",
+    "+3 Ending card ties the Counter opener and recusal-era callbacks together neatly, with a satisfying final twist.",
+    "+2 A tidy, earned ending: the Counter callback and 'a compliment' payoff close the arc neatly.",
+    "+4 The declassified ending lands well: the counter callback closes the loop, and 'a compliment' is a dry, earned final line."
+   ]
+  },
+  "ending:lostward": {
+   "title": "Lost the Ward",
+   "shown": 4,
+   "meanDelta": 3.25,
+   "reasons": [
+    "+4 The ending card's wry, specific lines land well, especially 'a compliment' and the 'Not mentioned' ceiling.",
+    "+4 A satisfying ending: the declassified ceiling and the forwarded minutes with your name removed land well.",
+    "+2 Ending card is a fitting, dry close; the 'name taken off' legacy line lands well.",
+    "+3 The declassified ending lands well: the ceiling reveal and the 'compliment' line are sharp, earned payoffs."
+   ]
+  },
+  "ending:level": {
+   "title": "You Found Your Level",
+   "shown": 2,
+   "meanDelta": 3,
+   "reasons": [
+    "+2 Declassified ending lands its jokes, especially 'Tea wants Standing 54' and 'a compliment' as exposure, a satisfying close.",
+    "+4 The declassified ending tallies the career's threads with dry precision, and 'a compliment' in this building is a sharp close."
+   ]
+  }
+ },
+ "canaries": {
+  "bland": {
+   "shown": 37,
+   "meanDelta": -0.65,
+   "overallMeanDelta": 2.3,
+   "passed": false
+  },
+  "wink": {
+   "shown": 39,
+   "flagged": 39,
+   "offToneRate": 100,
+   "baseOffToneRate": 3.8,
+   "passed": true
+  },
+  "rules": {
+   "blandMaxMean": -1,
+   "blandBelowOverall": 2,
+   "winkMinRate": 0.5,
+   "winkAboveBase": 0.3
+  },
+  "passed": false
+ },
+ "survey": {
+  "quitReasons": [
+   "The career turned into a predictable ladder of promotions, and the repeated indicator and form cards wore my patience thin until I put the phone down.",
+   "The repeated self-referential gags and flat, low-stakes cards wore thin; fun ran out after too many familiar beats.",
+   "The repeated chilli stallholder, recycled lorry beats and a too-neat moral question wore my patience thin; the fresh bits became too rare.",
+   "Repeated cards and winking at the game itself wore down my patience; the sharp moments were too few between flat form-filling loops.",
+   "The game kept winking at the reader about real politics and the cards felt pre-decided, so I lost interest and put it down.",
+   "The repeated stock figures and familiar satire, plus bureaucracy slogs like The Work, wore down my patience until I put it down.",
+   "Fun ran out: recycled callbacks, flat dialogue, and a winking director broke the fiction, so I put the phone down.",
+   "The Improvement Plan keeps resurfacing nearly verbatim, and the recycled development-conversation padding wore my patience thin until I stopped.",
+   "The 'apparently in passing' tic wore thin, and the fourth wink at the phone broke the fiction. My fun ran out after the Lanterns repeat.",
+   "The recycled cards and repeated lines made the later careers feel padded, and the fourth-wall wink broke the fiction.",
+   "The satire felt repetitive and the fourth-wall winks broke immersion; padded scenes and near-identical choices wore my patience down.",
+   "Too many recycled beats: the lorry, the chillies, the election-budget joke repeated. The fun meter ran dry before the career ended.",
+   "Repeated meta winks and a dull neutrality lecture wore down my patience; the fiction kept breaking and the choices felt pre-decided.",
+   "The Indicators cards kept recycling near-identical text, and the padded pay and appraisal entries made each year feel like a replay.",
+   "The indicators card kept repeating earlier beats, and the winks at the game and at my phone made me feel nudged rather than immersed. Padding and self-awareness wore my patience down."
+  ],
+  "bestCard": {
+   "The Report": 5,
+   "The National Bonus": 4,
+   "The Figure, Cited": 4,
+   "The Background Check": 4,
+   "A Small Favour": 3,
+   "Officer A": 3,
+   "Paragraph Four": 2,
+   "The Parliamentary Question": 2,
+   "The Counter": 2,
+   "The Retreat": 1,
+   "The Appraisal Conversation": 1,
+   "The Supplementary": 1,
+   "An Invitation to Tea": 1,
+   "Tuesday Night, the Lift": 1,
+   "The Curated Questions": 1,
+   "Someone From Before": 1,
+   "Terms of Reference": 1,
+   "Farewell Drinks": 1,
+   "The Officer You Nominated": 1,
+   "Question Time": 1
+  },
+  "worstCard": {
+   "Is This Satire?": 14,
+   "The Indicators": 4,
+   "The Work": 4,
+   "The Quarterly Return": 3,
+   "The Indicators, Before an Election": 2,
+   "The Indicators, in a Downturn": 2,
+   "The Walkabout": 1,
+   "The Improvement Plan": 1,
+   "Lanterns": 1,
+   "A Model Ward": 1,
+   "Meet-the-People Session": 1,
+   "The Curated Questions": 1,
+   "The Posting": 1,
+   "The Correction Direction": 1,
+   "The Officer You Nominated": 1,
+   "The Leak": 1,
+   "Farewell Drinks": 1
+  }
+ },
+ "cost": {
+  "total": 0.37192,
+  "perTap": 0.00016,
+  "perCareer": 0.00383,
+  "perSession": 0.0093,
+  "surveyShare": 1.4,
+  "tokens": {
+   "input": 38582,
+   "output": 149334,
+   "cacheWrite": 1046425,
+   "cacheRead": 16259210,
+   "thinking": 0
+  },
+  "tokensPerSession": {
+   "input": 965,
+   "output": 3733,
+   "cacheWrite": 26161,
+   "cacheRead": 406480,
+   "thinking": 0
+  },
+  "tokensPerTap": {
+   "input": 17,
+   "output": 65,
+   "cacheWrite": 457,
+   "cacheRead": 7094,
+   "thinking": 0
+  },
+  "cacheReadShare": 93.7,
+  "costSplit": {
+   "input": 1,
+   "cacheWrite": 35.2,
+   "cacheRead": 43.7,
+   "output": 20.1
+  },
+  "projection": {
+   "perTap": {
+    "claude-haiku-5-5": 0.00016,
+    "claude-sonnet-5-5": 0.00254
+   },
+   "perCareer": {
+    "claude-haiku-5-5": 0.00383,
+    "claude-sonnet-5-5": 0.05993
+   },
+   "perSession": {
+    "claude-haiku-5-5": 0.0093,
+    "claude-sonnet-5-5": 0.14531
+   },
+   "fullSession": {
+    "claude-haiku-5-5": 0.01917,
+    "claude-sonnet-5-5": 0.29964
+   }
+  }
+ }
+}
