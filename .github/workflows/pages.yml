@@ -31,6 +31,13 @@ jobs:
             const fs=require('fs');
             const g=JSON.parse(fs.readFileSync('web/content/game.json'));
             const ev=JSON.parse(fs.readFileSync('web/content/events.json'));
+            // content packs listed in the manifest are part of the game too
+            const mf='web/content/packs/manifest.json';
+            for(const id of (fs.existsSync(mf)?JSON.parse(fs.readFileSync(mf)).packs:[])){
+              const p=JSON.parse(fs.readFileSync('web/content/packs/'+id+'.json'));
+              if(p.id!==id||!Array.isArray(p.events)) throw new Error('malformed pack '+id);
+              ev.push(...p.events);
+            }
             const ids=ev.map(e=>e.id);
             const dup=ids.filter((x,i)=>ids.indexOf(x)!==i);
             if(dup.length) throw new Error('duplicate event ids: '+dup);
