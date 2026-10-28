@@ -79,10 +79,10 @@
         "owner": [
           {
             "id": "ceo",
-            "text": "with the CEO's name",
-            "a": "On Monday the CEO's PA writes to ask, politely, about a yoghurt. Your reply quotes paragraph 3. The circular is reissued the following week, with a new paragraph 4, on exemptions.",
+            "text": "with the Permanent Secretary's name",
+            "a": "On Monday the Permanent Secretary's PA writes to ask, politely, about a yoghurt. Your reply quotes paragraph 3. The circular is reissued the following week, with a new paragraph 4, on exemptions.",
             "b": "The yoghurt survives six more Fridays. Nothing else in the fridge does, and the floor draws its own conclusions about paragraph 3, mostly at the pantry sink, mostly while you are there.",
-            "c": "The CEO replies to all forty of you: \"Mine. Pls bin. Thanks for checking.\" It becomes the most forwarded email on the floor that year, and the friendliest.",
+            "c": "The Permanent Secretary replies to all forty of you: \"Mine. Pls bin. Thanks for checking.\" It becomes the most forwarded email on the floor that year, and the friendliest.",
             "effects": {
               "0": { "standing": -2 },
               "1": { "standing": 1 }
@@ -160,7 +160,7 @@
           ]
         }
       },
-      "body": "The {doc} you {doc.made} with {with} goes up to the CEO under your supervisor's name alone. The CEO's reply thanks her \"and team\". {peer} forwards it to you without a word.",
+      "body": "The {doc} you {doc.made} with {with} goes up to the Deputy Secretary under your supervisor's name alone. The Deputy Secretary's reply thanks her \"and team\". {peer} forwards it to you without a word.",
       "requires": { "minRank": 0, "maxRank": 1 },
       "weight": 6,
       "once": true,
@@ -171,15 +171,15 @@
           "cast": {
             "peer": { "flags": ["you_spoke_up"] }
           },
-          "outcome": "She agrees at once, and seems surprised you had to ask. The next {doc} carries three names, and the CEO's reply thanks \"the team\". You decide to count it."
+          "outcome": "She agrees at once, and seems surprised you had to ask. The next {doc} carries three names, and the Deputy Secretary's reply thanks \"the team\". You decide to count it."
         },
         {
-          "text": "Reply to the CEO, and name who did the work.",
+          "text": "Reply to the Deputy Secretary, and name who did the work.",
           "effects": { "reputation": 6, "integrity": 3, "standing": -5 },
           "cast": {
             "peer": { "flags": ["you_named_them"] }
           },
-          "outcome": "Your reply runs to two lines and names {peer} first. The CEO answers \"Well done both.\" Your supervisor copies you on nothing for a quarter, then on everything."
+          "outcome": "Your reply runs to two lines and names {peer} first. The Deputy Secretary answers \"Well done both.\" Your supervisor copies you on nothing for a quarter, then on everything."
         },
         {
           "text": "Say nothing. Papers go up under the name above yours.",
@@ -201,7 +201,7 @@
             "text": "a Deputy Secretary's and two directors'",
             "office": "The Deputy Secretary's office"
           },
-          { "id": "ceo", "text": "the CEO's and the HR director's", "office": "The CEO's office" },
+          { "id": "ceo", "text": "the HR director's and the Chief Information Officer's", "office": "The HR director's office" },
           {
             "id": "ps",
             "text": "a Permanent Secretary's, and nobody else's",
@@ -299,7 +299,7 @@
       "id": "for_the_record",
       "title": "For the Record",
       "parts": {
-        "speaker": [{ "id": "ceo", "text": "the CEO" }, { "id": "senior", "text": "{senior}" }],
+        "speaker": [{ "id": "ceo", "text": "the Permanent Secretary" }, { "id": "senior", "text": "{senior}" }],
         "line": [
           { "id": "target", "text": "that the target will not be met this year or next" },
           { "id": "launch", "text": "that the system will miss launch day, and launch day will not move" },
@@ -390,7 +390,7 @@
         {
           "text": "Draw it straight, whoever comes out.",
           "effects": { "integrity": 5, "standing": 2, "reputation": -2 },
-          "outcome": "The CEO wins it, and gives it back, to applause. So does a director, and then another. By the fourth draw the prize has been on stage longer than the band."
+          "outcome": "The Permanent Secretary wins it, and gives it back, to applause. So does a director, and then another. By the fourth draw the prize has been on stage longer than the band."
         },
         {
           "text": "Take the directors' names out before the top prize.",
