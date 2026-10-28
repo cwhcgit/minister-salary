@@ -75,7 +75,7 @@
     {
       "id": "strange_snow",
       "title": "Snow",
-      "body": "At 3pm it snows in Toa Payoh for forty minutes. NEA confirms it was snow and cannot say why. Your statutory board's business continuity plan covers haze, floods and a pandemic. By 5pm, it must cover snow.",
+      "body": "At 3pm it snows in Toa Payoh for forty minutes. NEA confirms it was snow and cannot say why. Your division's business continuity plan covers haze, floods and a pandemic. By 5pm, it must cover snow.",
       "requires": { "minRank": 0, "maxRank": 1, "flagsNone": ["strange_met"] },
       "weight": 0.25,
       "once": true,
