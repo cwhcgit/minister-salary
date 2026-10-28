@@ -706,6 +706,7 @@ const Engine = (() => {
     if (q.originNot && q.originNot.includes(s.origin)) return false;
     if (q.origin && !q.origin.includes(s.origin)) return false;
     if (q.notDuringBond && s.year <= s.bondYears) return false;
+    if (q.duringBond && s.year > s.bondYears) return false;   // a beat about the bond itself
     if (q.flagsAll && !q.flagsAll.every(f => s.flags.includes(f))) return false;
     if (q.flagsNone && q.flagsNone.some(f => s.flags.includes(f))) return false;
     for (const k in (q.minStats || {})) if (s[k] < q.minStats[k]) return false;
@@ -891,6 +892,9 @@ const Engine = (() => {
       }
     }
     if (ch.setRank !== undefined) s.rank = ch.setRank;
+    // A sponsorship that comes with a bond of its own: the years are served after any bond
+    // still running, and the bond keeps its usual teeth (notDuringBond cards wait for it).
+    if (ch.bond) s.bondYears = Math.max(s.bondYears || 0, s.year) + ch.bond;
     // Batchmate cards: goodwill, their next score, their ceiling, or a head-to-head now.
     if (ch.rival && s.rival) log.push(...rivalChoice(content, s, ch.rival, t));
     // A reshuffle moves the minister to a different ministry, and the header says so.
@@ -898,6 +902,8 @@ const Engine = (() => {
       const pool = Array.isArray(ch.newMinistry) ? ch.newMinistry : content.ministries;
       const others = pool.filter(m => m !== s.ministry).length ? pool.filter(m => m !== s.ministry) : content.ministries.filter(m => m !== s.ministry);
       s.ministry = others[Math.floor(roll(s) * others.length)];
+      // a story that began in the old ministry must not carry on as if it were in this one
+      if (!s.flags.includes("moved_ministry")) s.flags.push("moved_ministry");
       log.push({ kind: "note", text: `You are moved to the ${s.ministry}. The handover notes run to 140 pages, and the first one says "for information".` });
     }
 
@@ -1616,6 +1622,15 @@ const Engine = (() => {
     out.push({ label: "Exposure", text: peak.heatAfter >= 20
       ? `Peaked at ${peak.heatAfter}, after "${peak.title}". At 85, it all comes out.`
       : "Clean enough to be boring. In this building, a compliment." });
+
+    // Stories that ran across a career (content.declassifiedFlags): one line per label, the first
+    // entry whose requires hold at the end, so a chain is named by where it finished.
+    const told = new Set();
+    for (const d of content.declassifiedFlags || []) {
+      if (told.has(d.label) || !meets(d.requires || {}, s)) continue;
+      told.add(d.label);
+      out.push({ label: d.label, text: d.text });
+    }
 
     if (s.rival) out.push(...declassifyRival(content, s));
     out.push({ label: "Legacy", text: legacy(content, s) });

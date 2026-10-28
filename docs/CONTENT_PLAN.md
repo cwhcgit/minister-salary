@@ -170,6 +170,11 @@ Declassified (a line naming the chain) at least once. Ten chains, 35 cards (the 
 | **The Boundary** | the Electoral Boundaries Review Committee redraws your seat → your team is formed (1y) → the campaign → the result | `asked_for_smc` / `stayed_in_grc` | Election odds; a seat-specific re-election card |
 | **The Bond** (scholar only) | the overseas master's offer (bond extended) → a bank offers to pay the bond (2y) → you sponsor the next cohort (10y) | `extended_bond` / `bought_out` / `stayed_bonded` | Scholar origin content (none exists today) |
 
+**Engine hooks for chains.**
+- **Declassified.** `declassifiedFlags` in `game.json` is a list of `{ "label", "requires", "text" }`. At the end of a run, for each label, the first entry whose `requires` hold adds one line, after Exposure. Order the entries from the furthest point a story can reach to the nearest, so a chain is named by where it finished.
+- **A move between ministries.** When a choice moves the player to another ministry (`newMinistry`), the engine sets `moved_ministry`. A chain that starts in a ministry can require it to be absent at its first beat. A later beat then knows whether the player is still there.
+- **The bond.** A choice's `bond: N` adds N years to the bond, served after any bond still running, and `notDuringBond` cards wait for them. `requires.duringBond` holds only while a bond runs.
+
 ## 4. Rules for alternate scenes
 
 A card gets two or three alternate scenes when it appears in more than about 40% of runs
