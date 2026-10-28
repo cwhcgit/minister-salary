@@ -3,6 +3,8 @@
 const app = document.getElementById("app");
 const SAVE = "ministerSalary.v1";
 let content, S = null, phase = "start", outcome = "", log = [], prev = null, pickedOrigin = "grad";
+// Play with a batchmate: remembered between runs as a convenience, saved inside each run as S.rival.
+let rivalOn = (() => { try { return localStorage.getItem("ms.rival") === "1"; } catch (e) { return false; } })();
 
 const money = n =>
   Math.abs(n) >= 1e6 ? "$" + (n / 1e6).toFixed(2).replace(/\.?0+$/, "") + "M"
@@ -17,7 +19,7 @@ const STATKEYS = [
 
 // Log tags as the player reads them. CEP hints and Heat rumours are both just rumours on
 // screen: naming the hidden values would give away what the player is meant to infer.
-const TAG_LABEL = { cep: "rumour", heat: "rumour" };
+const TAG_LABEL = { cep: "rumour", heat: "rumour", rival: "batchmate" };
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
@@ -45,6 +47,7 @@ function header() {
       <div>
         <div class="rank">${esc(r.title)}<span class="grade">${esc(r.grade)}</span></div>
         <div class="sub">Age ${S.age} &middot; Year ${S.year} &middot; ${esc(S.ministry)}</div>
+        ${S.rival ? `<div class="mate">Batchmate: ${esc(Engine.batchmate(content, S))}</div>` : ""}
       </div>
       <div class="cashbox"><div class="cash">${money(S.wealth)}</div><div class="cashlab">lifetime earnings</div></div>
     </div>
@@ -65,9 +68,14 @@ function startScreen() {
     <input id="nm" placeholder="Your name" maxlength="28" value="${esc((() => { try { return localStorage.getItem("ms.name") || ""; } catch (e) { return ""; } })())}">
     ${content.origins.map(o => `
       <div class="origin" role="radio" tabindex="0" data-o="${o.id}" aria-checked="${o.id === pickedOrigin}">
-        <div class="n"><span>${esc(o.name)}</span><span class="diff">${esc(o.difficulty)}</span></div>
+        <div class="n"><span>${esc(o.name)}</span><span class="diff">${esc(o.difficulty + (rivalOn ? " + batchmate" : ""))}</span></div>
         <div class="b">${esc(o.blurb)}</div>
       </div>`).join("")}
+    ${content.rival ? `<label class="mate-toggle" for="rival">
+      <input type="checkbox" id="rival" ${rivalOn ? "checked" : ""}>
+      <span><span class="mt">Join with a batchmate</span>
+      <span class="mn">Someone from your intake, on the same ladder, competing for the same promotion slots. Harder.</span></span>
+    </label>` : ""}
     <button class="primary" id="go">Begin</button>
     <div class="hint">One tap is one year. Choices are permanent, and some of them come back.</div>`;
 
@@ -77,10 +85,20 @@ function startScreen() {
       app.querySelectorAll(".origin").forEach(x => x.setAttribute("aria-checked", x === el));
     });
 
+  const toggle = app.querySelector("#rival");
+  if (toggle) toggle.onchange = () => {
+    rivalOn = toggle.checked;
+    try { localStorage.setItem("ms.rival", rivalOn ? "1" : "0"); } catch (e) {}
+    app.querySelectorAll(".origin").forEach(el => {
+      const o = content.origins.find(x => x.id === el.dataset.o);
+      el.querySelector(".diff").textContent = o.difficulty + (rivalOn ? " + batchmate" : "");
+    });
+  };
+
   app.querySelector("#go").onclick = () => {
     const name = (app.querySelector("#nm").value || "").trim() || "You";
     try { localStorage.setItem("ms.name", name); } catch (e) {}
-    S = Engine.newGame(content, pickedOrigin, name, (Math.random() * 2 ** 31) | 0);
+    S = Engine.newGame(content, pickedOrigin, name, (Math.random() * 2 ** 31) | 0, { rival: rivalOn && !!content.rival });
     prev = null;
     nextTurn();
   };
@@ -174,9 +192,12 @@ function render() {
 // ---------- boot ----------
 Promise.all([
   fetch("content/game.json").then(r => r.json()),
-  fetch("content/events.json").then(r => r.json())
-]).then(([g, ev]) => {
+  fetch("content/events.json").then(r => r.json()),
+  // the batchmate's cards; optional, so an old cached copy without them still plays
+  fetch("content/rival.json").then(r => (r.ok ? r.json() : null)).catch(() => null)
+]).then(([g, ev, rv]) => {
   content = g; content.events = ev;
+  if (rv) content.rival = rv;
   if (load() && S) render(); else startScreen();
 }).catch(err => {
   app.innerHTML = `<div class="card"><h2>Could not load content</h2>

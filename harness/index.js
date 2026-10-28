@@ -33,6 +33,9 @@ function loadBuild(opts = {}) {
   const engineSrc = fs.readFileSync(path.join(root, "engine.js"), "utf8");
   const content = JSON.parse(fs.readFileSync(path.join(root, "content/game.json"), "utf8"));
   content.events = JSON.parse(fs.readFileSync(path.join(root, "content/events.json"), "utf8"));
+  // the optional batchmate's cards and lines (absent in older builds and proposal copies)
+  const rivalFile = path.join(root, "content/rival.json");
+  if (fs.existsSync(rivalFile)) content.rival = JSON.parse(fs.readFileSync(rivalFile, "utf8"));
   if (opts.canaries) content.events.push(...JSON.parse(fs.readFileSync(CANARIES, "utf8")));
 
   const hash = crypto.createHash("sha256")
@@ -119,10 +122,10 @@ function draw(build, S) {
 function newRun(origin, seed, opts = {}) {
   const build = opts.build || getBuild(opts.buildHash);
   if (!build.content.origins.some(o => o.id === origin)) throw new Error(`unknown origin ${origin}`);
-  const S0 = build.engine.newGame(build.content, origin, opts.name || "You", seed >>> 0);
+  const S0 = build.engine.newGame(build.content, origin, opts.name || "You", seed >>> 0, { rival: !!opts.rival });
   const { S, draw: d } = draw(build, S0);
   return {
-    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name,
+    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name, rival: !!opts.rival,
     turn: 1, phase: S.ending ? "ending" : "event",
     S, pendingDraw: d,
     last: null,          // { outcome, log, prev } shown on the next screen
@@ -178,6 +181,8 @@ function step(run, choiceId) {
     scheduled: addedSched,
     scheduleMissed: (ch.schedule || []).filter(sc => !addedSched.some(a => a.eventId === sc.eventId)),
     election: r.trace.election || null,
+    rivalContest: r.trace.rivalContest || null,   // a batchmate card decided on the spot
+    ranking: r.trace.ranking || null,             // the ranking exercise: one slot, two promotable officers
     appraisal: r.trace.appraisal ? { ...r.trace.appraisal, base: r.trace.appraisal.score - r.trace.appraisal.noise - (r.trace.appraisal.noted || 0) } : null,
     promotion: promo ? { ...promo, why: promotionWhy(promo, r.trace.appraisal, pre) } : null,
     log: r.log.map(l => l.kind),
@@ -221,7 +226,7 @@ function screen(run, opts = {}) {
   if (run.phase === "ending") return { phase: "ending", ending: View.endingCard(build, S) };
   const view = opts.view || "agent";
   const out = { phase: "event" };
-  if (run.turn === 1 && view === "agent") out.start = View.startCard(build, run.origin);
+  if (run.turn === 1 && view === "agent") out.start = View.startCard(build, run.origin, run.rival);
   const showOutcome = run.last && view !== "event";
   out.header = View.header(build, S, showOutcome ? run.last.prev : null);
   if (showOutcome) out.outcome = View.outcomeCard(run.last.outcome, run.last.log);
@@ -239,6 +244,7 @@ function trace(run) {
   const S = run.S;
   return {
     buildHash: run.buildHash, origin: run.origin, seed: run.seed, name: run.name,
+    rival: run.rival || false, batchmate: S.rival || null,   // the batchmate's hidden file, if any
     choices: run.choiceList,
     start: run.start,
     ending: S.ending || null,
@@ -252,7 +258,7 @@ function replay(spec, opts = {}) {
   const build = opts.build || getBuild(spec.buildHash);
   if (spec.buildHash && spec.buildHash !== build.hash)
     throw new Error(`run was recorded on build ${spec.buildHash}, this build is ${build.hash}`);
-  let run = newRun(spec.origin, spec.seed, { build, name: spec.name });
+  let run = newRun(spec.origin, spec.seed, { build, name: spec.name, rival: !!spec.rival });
   for (const c of spec.choices) run = step(run, c);
   return run;
 }

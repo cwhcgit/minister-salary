@@ -10,7 +10,7 @@ const ok = (name, fn) => { fn(); passed++; console.log('✓ ' + name); };
 
 function playRandom(origin, seed, opts = {}) {
   const r = H.rng(seed + 1);
-  let run = H.newRun(origin, seed, { build: opts.build || build });
+  let run = H.newRun(origin, seed, { build: opts.build || build, rival: !!opts.rival });
   const screens = [];
   for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
     if (opts.screens) screens.push({ view: H.screen(run), text: H.screenText(run) });
@@ -29,6 +29,30 @@ ok('a run replays exactly from (build, origin, seed, choices)', () => {
     assert.deepStrictEqual(H.trace(again), t);
     assert.strictEqual(H.screenText(again), H.screenText(run));
   }
+  for (const origin of ['grad', 'poly']) for (const seed of [7, 4242]) {   // with a batchmate too
+    const { run } = playRandom(origin, seed, { rival: true });
+    const t = H.trace(run);
+    assert.ok(t.batchmate && t.rival);
+    const again = H.replay({ buildHash: t.buildHash, origin, seed, name: t.name, rival: true, choices: t.choices });
+    assert.deepStrictEqual(H.trace(again), t);
+  }
+});
+
+ok('a game has no batchmate unless asked for, and the batchmate stays hidden until the end', () => {
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 20; seed++) {
+    const S = build.engine.newGame(build.content, origin, 'X', seed);
+    assert.ok(!('rival' in S), 'no batchmate unless asked for');
+    const { screens } = playRandom(origin, seed, { rival: true, screens: true });
+    for (const sc of screens.slice(0, -1)) {
+      assert.ok(!/\bability\b|cepStart|"rel"|\{rival\}|\{the(y|m|ir)\}/i.test(sc.text), 'batchmate internals or placeholders on screen: ' + sc.text.slice(0, 200));
+    }
+  }
+  // batchmate cards: every schedule target exists, every choice has text and outcome, no dominated choices
+  const { dominatedChoices } = require('./metrics');
+  const rc = build.content.rival;
+  assert.ok(rc && rc.events.length >= 4);
+  for (const e of rc.events) for (const c of e.choices) assert.ok(c.text && c.outcome, e.id);
+  assert.deepStrictEqual(dominatedChoices({ events: rc.events }), [], 'a batchmate card has a choice worse than a sibling on every stat');
 });
 
 ok('build hash is stable, and changes when the content does', () => {
@@ -58,7 +82,7 @@ ok('locked and unknown choices are refused', () => {
 ok('the screen view carries nothing hidden', () => {
   // Every key that may appear in a screen object. Anything else is a leak by construction.
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
-    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'stats', 'key', 'label', 'value', 'delta',
+    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'batchmate', 'stats', 'key', 'label', 'value', 'delta',
     'outcome', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
     'ending', 'epitaph', 'retiredAs', 'lifetimeEarnings', 'integrity',
     // the ending screen's Declassified file: the hidden values, revealed on purpose once the run is over
@@ -73,7 +97,7 @@ ok('the screen view carries nothing hidden', () => {
   const statKeys = new Set(H.STATS);
   const terms = screenTerms(build);
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
-    for (const s of playRandom(origin, seed, { screens: true }).screens) {
+    for (const s of playRandom(origin, seed, { screens: true, rival: seed % 2 === 0 }).screens) {
       walk(s.view, 'screen');
       if (s.view.header) for (const st of s.view.header.stats) assert.ok(statKeys.has(st.key), 'only the four visible stats');
       assert.deepStrictEqual(checkScreen(s.text, build, terms), [], s.text);
@@ -92,10 +116,10 @@ ok('every alternate exists and only fires through its card', () => {
 
 ok('the trace agrees with the engine (appraisal weights, consequences, flags)', () => {
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 60; seed++) {
-    const t = H.trace(playRandom(origin, seed).run);
+    const t = H.trace(playRandom(origin, seed, { rival: seed % 3 === 0 }).run);
     for (const turn of t.turns) {
       // (the vetting's folder and the campaign move stats outside choice effects, so skip those turns)
-      if (turn.appraisal && !['the_vetting', 'the_election'].includes(turn.event.id)) {
+      if (turn.appraisal && !['the_vetting', 'the_election'].includes(turn.event.id) && !turn.rivalContest) {
         // stats as they stood at appraisal: before + the choice's effects, clamped
         const at = k => Math.max(0, Math.min(100, turn.before[k] + (turn.choice.effects[k] || 0)));
         const base = Object.entries(H.APPRAISAL_WEIGHTS).reduce((n, [k, w]) => n + w * at(k), 0);

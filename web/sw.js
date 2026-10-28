@@ -1,8 +1,8 @@
 // Cache-first so the game is fully playable with no signal.
 // Bump VERSION whenever content or code changes, or phones will keep the old copy.
-const VERSION = "ms-v6";
+const VERSION = "ms-v7";
 const ASSETS = ["./", "./index.html", "./engine.js", "./ui.js", "./icon.svg",
-  "./manifest.webmanifest", "./content/game.json", "./content/events.json"];
+  "./manifest.webmanifest", "./content/game.json", "./content/events.json", "./content/rival.json"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
