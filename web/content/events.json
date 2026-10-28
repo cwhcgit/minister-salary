@@ -782,7 +782,7 @@
   {
     "id": "bto_queue",
     "title": "The Ballot",
-    "body": "Fourth BTO application. Non-mature estate, four-room. You work in the building that runs the scheme.",
+    "body": "Fourth BTO application. Non-mature estate, four-room. At work you are, technically, the government.",
     "requires": {
       "minRank": 0,
       "maxRank": 4,
@@ -797,10 +797,10 @@
           "integrity": 8,
           "wealth": -8000
         },
-        "outcome": "Queue number 2,847 of 610 units. You laugh in the lift. On Monday you are noticeably better at explaining the scheme to the public, because now you have also lost."
+        "outcome": "Queue number 2,847 of 610 units. You laugh in the lift. At the next family dinner you are noticeably better at explaining the scheme, because now you have also lost."
       },
       {
-        "text": "Ask a friend in the agency whether there is anything coming up.",
+        "text": "Ask a friend at HDB whether anything is coming up.",
         "effects": {
           "integrity": -10,
           "heat": 10,
@@ -838,7 +838,7 @@
             "outcome": "Queue number 1,206 for 290 units. You do the arithmetic once, and then decide not to do it again."
           },
           {
-            "text": "Ask a friend in the agency how the next launch looks.",
+            "text": "Ask a friend at HDB how the next launch looks.",
             "outcome": "He tells you which launch next quarter will have the shorter queue. It is on the website three weeks later, word for word. For three weeks, you were the website."
           },
           {
@@ -856,7 +856,7 @@
             "outcome": "Queue number 3,104. You screenshot it for a group chat that has become, over five years, mainly a support group."
           },
           {
-            "text": "Ask a friend in the agency what is coming up.",
+            "text": "Ask a friend at HDB what is coming up.",
             "outcome": "He walks you through next quarter's launches over kopi. Every word of it goes on the website three weeks later. You have, technically, only had your kopi early."
           },
           {
@@ -870,7 +870,7 @@
   {
     "id": "cos_speech",
     "title": "Committee of Supply",
-    "body": "The COS cuts. Your Minister has eight minutes and needs one announceable thing. Your division has nothing ready, and saying so is not one of the available options.",
+    "body": "The COS cuts. Your Minister has eight minutes and needs one announceable thing. Your division has nothing ready, and nobody in the room wants to be the one who says so.",
     "requires": {
       "minRank": 3,
       "maxRank": 6
