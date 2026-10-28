@@ -1,8 +1,4 @@
 {
   "note": "Content packs, loaded in this order after events.json. One file per pack: content/packs/<id>.json. See docs/CONTENT_PLAN.md.",
-  "packs": [
-    "example",
-    "strange",
-    "backbench"
-  ]
+  "packs": ["example", "strange", "first_years", "backbench"]
 }

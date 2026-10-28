@@ -38,6 +38,7 @@ const Engine = (() => {
       heat: 0,
       nbMonths: 3,       // National Bonus months, set each year by the minister's own policy choice
       appraisalMod: 0,   // one-year hit from a choice that was "noted"
+      gradeSeen: {},     // appraisal quotes used so far this run, per grade (see gradeLabel)
       fillerSeen: {},    // repeatable events already played in full, for montage years
       habits: {},        // the choice made on each of them, which montage years repeat
       history: [],       // one entry per year, for the Declassified screen
@@ -988,6 +989,21 @@ const Engine = (() => {
     return { grade: content.grades.find(g => score >= g.min), score, noise, mod };
   }
 
+  // The words for a grade. A grade may list several (labels; label is the fallback): each time
+  // the grade comes round in a run it takes the next one, in an order drawn from the seed on its
+  // own stream, so the run's dice never move and a quote only returns after the whole list has
+  // been used. Every label quotes its phrase once, in double quotes, for compress().
+  function gradeLabel(s, grade) {
+    const list = grade.labels && grade.labels.length ? grade.labels : [grade.label];
+    const seen = s.gradeSeen || (s.gradeSeen = {});   // a save from before the labels starts at zero
+    const n = seen[grade.code] || 0;
+    seen[grade.code] = n + 1;
+    const r = rng((s.seed ^ hashStr("grade:" + grade.code)) >>> 0);
+    const order = list.map((_, i) => i);
+    for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+    return list[order[n % order.length]];
+  }
+
   // `t` collects what the year-end decided and why, for playtest traces. The UI ignores it.
   function yearEnd(content, s, t = {}) {
     const log = [];
@@ -1001,8 +1017,9 @@ const Engine = (() => {
     const { grade, score, noise, mod } = appraise(content, s);
     t.appraisal = { grade: grade.code, score, noise, noted: mod };
     // A choice that was noted shows up here, in the one word that matters.
+    const label = gradeLabel(s, grade);
     log.push({ kind: "appraisal", text: mod < 0
-      ? `${grade.label} The comments section includes the word "however".` : grade.label });
+      ? `${label} The comments section includes the word "however".` : label });
 
     if (grade.code === "C") s.consecutiveC++; else s.consecutiveC = 0;
     if (grade.code === "D") s.consecutiveD++; else { s.consecutiveD = 0; s.pipDone = false; }

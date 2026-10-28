@@ -135,6 +135,39 @@ ok('the trace agrees with the engine (appraisal weights, consequences, flags)', 
   }
 });
 
+ok('appraisal quotes: one quoted phrase each, kept on Meanwhile lines, and none repeats before its grade has used them all', () => {
+  const grade = new Map();
+  for (const g of build.content.grades) for (const l of (g.labels || [g.label])) {
+    const q = l.match(/"[^"]+"/g) || [];
+    assert.strictEqual(q.length, 1, `${g.code}: a label quotes exactly one phrase (${l})`);
+    assert.ok(!grade.has(q[0].slice(1, -1)), `two labels quote the same phrase: ${q[0]}`);
+    grade.set(q[0].slice(1, -1), g);
+  }
+  let shown = 0;
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 20; seed++) {
+    const r = H.rng(seed + 1), byGrade = {};
+    let run = H.newRun(origin, seed, { build });
+    for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
+      const live = H.choices(run).filter(c => c.available);
+      run = H.step(run, live[Math.floor(r() * live.length)].id);
+      for (const l of run.last.log) {
+        assert.ok(!/Appraisal: noted/.test(l.text), `a Meanwhile line lost its quote: ${l.text}`);
+        const m = l.kind === 'appraisal' ? l.text.match(/described as "([^"]+)"/) : l.kind === 'pay' ? l.text.match(/Appraisal: "([^"]+)"/) : null;
+        if (!m) continue;
+        const q = m[1], g = grade.get(q);
+        assert.ok(g, `an appraisal quote that is in no label: ${q}`);
+        (byGrade[g.code] ||= []).push(q);
+        shown++;
+      }
+    }
+    for (const [code, qs] of Object.entries(byGrade)) {
+      const n = (build.content.grades.find(g => g.code === code).labels || [0]).length;
+      qs.forEach((q, i) => { for (let j = i + 1; j < Math.min(qs.length, i + n); j++) assert.notStrictEqual(qs[j], q, `${origin} ${seed}: "${q}" again after ${j - i} ${code} grades`); });
+    }
+  }
+  assert.ok(shown > 500, `expected appraisal quotes on screen (${shown})`);
+});
+
 ok('ladder pay and age floors match the published figures', () => {
   // 2026 political salary review (accepted 8 Sep 2026, effective 15 Oct 2026): MR4 is the
   // benchmark; the rest are multiples of it. MOS, SMS and DPM keep the old multiples.
