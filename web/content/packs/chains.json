@@ -1703,13 +1703,25 @@
             }
           ]
         },
+        "quote": {
+          "pick": "first",
+          "options": [
+            { "id": "firm", "requires": { "flagsAll": ["uturn_firm"] }, "text": "conviction" },
+            {
+              "id": "review",
+              "requires": { "flagsAll": ["uturn_review"] },
+              "text": "a Government that listens"
+            },
+            { "id": "figures", "text": "precision" }
+          ]
+        },
         "said": {
           "pick": "first",
           "options": [
             {
               "id": "wrong",
               "requires": { "flagsAll": ["uturn_wrong"] },
-              "a": "You send {mp} the statement too, with paragraph four marked. {mp} replaces paragraph three with it, as an example of a different kind of conviction, and it lands better.",
+              "a": "You send {mp} the statement too, with paragraph four marked. {mp} quotes paragraph four instead, and it makes the point better than your reply ever did.",
               "b": "{mp} delivers paragraph three with feeling. A Member opposite rises and reads out the statement that called it wrong. {mp} sends you an emoji you have not seen before."
             },
             {
@@ -1726,7 +1738,7 @@
           ]
         }
       },
-      "body": "{mp} sends you a draft speech for tomorrow's debate, proud of paragraph three: your reply on {policy.short}, quoted in full from Hansard as an example of conviction. {mp} found it by searching. The search stopped there.",
+      "body": "{mp} sends you a draft speech for tomorrow's debate, proud of paragraph three: your reply on {policy.short}, quoted in full from Hansard as an example of {quote}. {mp} found it by searching. The search stopped there.",
       "requires": { "minRank": 8 },
       "choices": [
         {
