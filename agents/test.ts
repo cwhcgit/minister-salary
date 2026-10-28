@@ -111,7 +111,7 @@ await ok("designer ops are validated before anything is built", () => {
 const cfg = (o: Partial<typeof FUN_DEFAULTS> = {}) => ({ ...FUN_DEFAULTS, ...o });
 
 await ok("fun meter: decay every tap, the model's delta clamped, capped at 100, quits at the line", () => {
-  const m = new Meter(cfg({ start: 50, quitLine: 25 }));
+  const m = new Meter(cfg({ start: 50, quitLine: 25, decay: 2 }));
   let t = m.tap({ card: "a", model: 0 });
   assert.deepStrictEqual([t.before, t.model, t.repeat, t.decay, t.after, t.quit], [50, 0, 0, -2, 48, false]);
   t = m.tap({ card: "b", model: 40 });
@@ -119,12 +119,15 @@ await ok("fun meter: decay every tap, the model's delta clamped, capped at 100, 
   assert.strictEqual(t.after, 56);
   const hi = new Meter(cfg({ start: 98 }));
   assert.strictEqual(hi.tap({ card: "x", model: 10 }).after, 100, "capped");
-  const lo = new Meter(cfg({ start: 30, quitLine: 25 }));
+  const lo = new Meter(cfg({ start: 30, quitLine: 25, decay: 2 }));
   assert.strictEqual(lo.tap({ card: "x", model: -2 }).quit, false, "26 is above the line");
   const q = lo.tap({ card: "y", model: -1 });
   assert.strictEqual(q.after, 23); assert.strictEqual(q.quit, true, "at or below the line quits");
   const floor = new Meter(cfg({ start: 3 }));
   assert.strictEqual(floor.tap({ card: "x", model: -10 }).after, 0, "never below 0");
+  const probe = new Meter(cfg({ start: 50, decay: 2 }));
+  const c = probe.tap({ card: "canary_wink", model: -5, canary: true });
+  assert.deepStrictEqual([c.decay, c.after], [0, 50], "a canary tap leaves the meter alone");
 });
 
 await ok("fun meter: repeats cost 5, 10, 15 when close together, and the streak resets after 3 fresh cards", () => {

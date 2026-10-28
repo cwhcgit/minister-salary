@@ -49,7 +49,7 @@ export interface FunConfig {
   origins: "rotate" | "keep"; // the next career's origin: the next one along, or the same again
 }
 export const FUN_DEFAULTS: FunConfig = {
-  start: 50, cap: 100, quitLine: 25, decay: 2, maxDelta: 10,
+  start: 50, cap: 100, quitLine: 25, decay: 1, maxDelta: 10,
   verdicts: { fine: 0, skimmed: -2, annoyed: -5, smiled: 2, tell_a_friend: 6 },
   repeatSteps: [5, 10, 15], repeatMultiplier: 1,
   freshToReset: 3, careers: 5, origins: "rotate"
