@@ -58,7 +58,7 @@ ok('locked and unknown choices are refused', () => {
 ok('the screen view carries nothing hidden', () => {
   // Every key that may appear in a screen object. Anything else is a leak by construction.
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
-    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'stats', 'key', 'label', 'value', 'delta',
+    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'stats', 'key', 'label', 'value', 'delta',
     'outcome', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
     'ending', 'epitaph', 'retiredAs', 'lifetimeEarnings', 'integrity',
     // the ending screen's Declassified file: the hidden values, revealed on purpose once the run is over

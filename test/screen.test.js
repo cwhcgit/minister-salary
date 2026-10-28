@@ -49,6 +49,7 @@ server.listen(0, async () => {
     expect(where + ' grade', $('.grade').textContent, h.grade);
     expect(where + ' sub', $('.sub').textContent, `Age ${h.age} · Year ${h.year} · ${h.ministry}`);
     expect(where + ' cash', $('.cash').textContent, h.wealth);
+    expect(where + ' cash label', $('.cashlab').textContent, h.wealthLabel);
     $$('.stat').forEach((el, i) => {
       const s = h.stats[i];
       expect(`${where} stat ${i} label`, el.querySelector('.k').textContent, s.label);

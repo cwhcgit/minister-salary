@@ -46,7 +46,7 @@ function header() {
         <div class="rank">${esc(r.title)}<span class="grade">${esc(r.grade)}</span></div>
         <div class="sub">Age ${S.age} &middot; Year ${S.year} &middot; ${esc(S.ministry)}</div>
       </div>
-      <div class="cash">${money(S.wealth)}</div>
+      <div class="cashbox"><div class="cash">${money(S.wealth)}</div><div class="cashlab">lifetime earnings</div></div>
     </div>
     <div class="stats">${STATKEYS.map(([k, label, col]) => `
       <div class="stat">

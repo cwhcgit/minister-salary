@@ -576,7 +576,7 @@
     "once": true,
     "choices": [
       {
-        "text": "Accept, and bring your mother to the Istana.",
+        "text": "Accept, and bring your mother to the investiture.",
         "effects": {
           "reputation": 6,
           "standing": 4,
@@ -1128,7 +1128,7 @@
           "standing": 12,
           "integrity": 5
         },
-        "outcome": "He says he has put your name forward for something and that he did it on the strength of one afternoon in 2019. You go back to your desk and sit there for a while."
+        "outcome": "He says he has put your name forward for something and that he did it on the strength of one afternoon eleven years ago. You go back to your desk and sit there for a while."
       }
     ]
   },
@@ -1421,7 +1421,8 @@
           "cep": 2,
           "reputation": -4
         },
-        "outcome": "Housing, or health, or transport. Something with a queue and a waiting list and a headline every week. You are given it immediately, and the speed of the agreement tells you what it was going to be anyway."
+        "outcome": "Housing, or health, or transport. Something with a queue and a waiting list and a headline every week. You are given it immediately, and the speed of the agreement tells you what it was going to be anyway.",
+        "newMinistry": true
       },
       {
         "text": "Ask for the comfortable one.",
@@ -1430,7 +1431,8 @@
           "wealth": 100000,
           "competence": -4
         },
-        "outcome": "You get it. It is pleasant and important and nobody will ever find out whether you were any good, including you."
+        "outcome": "You get it. It is pleasant and important and nobody will ever find out whether you were any good, including you.",
+        "newMinistry": true
       }
     ]
   },
@@ -1779,7 +1781,7 @@
         "outcome": "Technically responsive, substantively not. It is a skill and you are good at it and the clip is on the internet forever."
       },
       {
-        "text": "Take it on notice.",
+        "text": "Answer briefly, and promise the figures in writing.",
         "effects": {
           "standing": 2,
           "competence": -2
@@ -1919,7 +1921,7 @@
   {
     "id": "the_night_degree",
     "title": "The Last Paper",
-    "body": "Six years of Tuesday and Thursday evenings, and one Saturday exam left. You are thirty-one. Half your cohort at work finished theirs at twenty-two, full-time, funded.",
+    "body": "Six years of Tuesday and Thursday evenings, and one Saturday exam left. Half your cohort at work finished theirs at twenty-two, full-time, funded.",
     "requires": {
       "origin": [
         "poly"

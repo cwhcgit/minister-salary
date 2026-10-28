@@ -181,6 +181,12 @@ const Engine = (() => {
       }
     }
     if (ch.setRank !== undefined) s.rank = ch.setRank;
+    // A reshuffle moves the minister to a different ministry, and the header says so.
+    if (ch.newMinistry) {
+      const others = content.ministries.filter(m => m !== s.ministry);
+      s.ministry = others[Math.floor(roll(s) * others.length)];
+      log.push({ kind: "note", text: `You are moved to the ${s.ministry}. The handover notes run to 140 pages, and the first one says "for information".` });
+    }
 
     // The Folder: the vetting reads back every compromise the player made.
     if (ch.readFolder) log.push(...readFolder(content, s));

@@ -32,7 +32,7 @@ function header(build, S, prev) {
   return {
     rank: r.title, grade: r.grade,
     age: S.age, year: S.year, ministry: S.ministry,
-    wealth: money(S.wealth),
+    wealth: money(S.wealth), wealthLabel: "lifetime earnings",
     stats: STATKEYS.map(([key, label]) => ({
       key, label, value: S[key],
       delta: prev && prev[key] !== S[key] ? S[key] - prev[key] : 0
@@ -86,7 +86,7 @@ function startCard(build, originId) {
 function headerText(h) {
   const stats = h.stats.map(s =>
     `${s.label.toUpperCase()} ${s.value}${s.delta ? ` (${s.delta > 0 ? "+" : ""}${s.delta})` : ""}`).join("   ");
-  return `${h.rank} [${h.grade}]   ${h.wealth}\nAge ${h.age} · Year ${h.year} · ${h.ministry}\n${stats}`;
+  return `${h.rank} [${h.grade}]   ${h.wealth} ${h.wealthLabel.toUpperCase()}\nAge ${h.age} · Year ${h.year} · ${h.ministry}\n${stats}`;
 }
 
 function toText(view, opts = {}) {
