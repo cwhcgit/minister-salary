@@ -1,0 +1,182 @@
+{
+ "grad-10512-L1-life1": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "resigned",
+  "blames": "the_system",
+  "evidence": "Hidden ceilings (Deputy Secretary by file, SMS by party) were set low and only moved through the people-related choices."
+ },
+ "grad-10613-L1-life2": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "unfair",
+  "blames": "luck",
+  "evidence": "a 10-point swing suggests the ward was rigged against me anyway"
+ },
+ "grad-10714-L1-life3": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "The card spelled out exactly which choice raised the ceiling and why the 'steady' rumours were warnings, so I can see I stalled myself; though I only learned it after the fact."
+ },
+ "grad-10815-L1-life4": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "The declassified card laid out exactly which choice raised the ceiling and when, so I can trace the result to my own decisions."
+ },
+ "grad-10916-L1-life5": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "The card spelled out exactly which choice raised the ceiling and why I stalled at DPM. I could trace it, and the late arrival was my own test costing me time."
+ },
+ "grad-12027-L4-life1": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "Ceiling is hidden: file says Permanent Secretary, party says Senior Minister of State. Asking for the hard ministry in the Reshuffle (~Y32-33) raised the ceiling to DPM, so do it again and try for more."
+ },
+ "grad-12128-L4-life2": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "unfair",
+  "blames": "the_system",
+  "evidence": "after 25 years it felt arbitrary rather than earned"
+ },
+ "grad-12229-L4-life3": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "Still true from earlier lives: ask for the hard ministry at the Reshuffle (~Y32-33) to raise the ceiling to DPM, volunteer for succession at Y37, network at Y38, and get promoted before STAND bleeds from ~Y39."
+ },
+ "grad-12330-L4-life4": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "unfair",
+  "blames": "the_system",
+  "evidence": "I think the game decided the result on something outside my stats... no amount of REP, COMP or INTEG would have changed it"
+ },
+ "grad-12431-L4-life5": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "resigned",
+  "blames": "own_choices",
+  "evidence": "The game never promised PM, and the card explains the ceiling clearly. I reached DPM with a ceiling of PM, so the shortfall was about age and timing, which I can see now."
+ },
+ "poly-11017-L2-life1": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "I suspect the political invitation needed a hidden sponsor or flag, perhaps linked to the MP from Y31, that I never triggered."
+ },
+ "poly-11118-L2-life2": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "the_system",
+  "evidence": "I think the cap was set when I won my seat and the PM path may need a different entry"
+ },
+ "poly-11219-L2-life3": {
+  "infers_hidden_ceiling": false,
+  "ceiling_feeling": "not_mentioned",
+  "blames": "luck",
+  "evidence": "The ceiling was probably not the issue."
+ },
+ "poly-11320-L2-life4": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "unfair",
+  "blames": "the_system",
+  "evidence": "\"nothing I did afterwards seemed to move it\" and \"the election was decided by hidden rolls and not by effort\""
+ },
+ "poly-11421-L2-life5": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "unfair",
+  "blames": "the_system",
+  "evidence": "\"48.2% three times in a row feels scripted rather than earned, and the card says it was never about me.\""
+ },
+ "poly-12532-L5-life1": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "unclear",
+  "evidence": "so PM probably needed some hidden party-favour or CEP value that my choices never raised"
+ },
+ "poly-12633-L5-life2": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "I think PM depends on the party's estimate, which is set at the GRC entry and by how I impressed the party before it. I spent my choices on the service side."
+ },
+ "poly-12734-L5-life3": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "The party's estimate was fixed at SMS when I won my seat, and only the ceiling raised at Y48 moved me to DPM."
+ },
+ "poly-12835-L5-life4": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "unclear",
+  "evidence": "The party's estimate of SMS, set when I won my seat. It never changed in any life, and it is the one number I couldn't see or move."
+ },
+ "poly-12936-L5-life5": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "unfair",
+  "blames": "the_system",
+  "evidence": "\"It is realistic but not much fun when the gate is invisible.\""
+ },
+ "scholar-10007-L0-life1": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "I think the party's estimate of me was capped at Minister and my STAND kept sliding, so I was never treated as PM material. The real driver seems to be small moments of taking ownership, not the stats I was tracking."
+ },
+ "scholar-10108-L0-life2": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "The hidden ceiling. The file put none on me, the party estimated Minister of State, and promotion was refused until I raised it by asking for the hard ministry."
+ },
+ "scholar-10209-L0-life3": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "resigned",
+  "blames": "the_system",
+  "evidence": "\"The hidden ceiling decides promotion, not performance.\""
+ },
+ "scholar-10310-L0-life4": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "I suspect walking every block counted as ownership of the political work, not just ownership of the pen."
+ },
+ "scholar-10411-L0-life5": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "\"The party's estimate was only Senior Minister of State, and I only raised it by asking for the hard ministry at 68, too late.\""
+ },
+ "scholar-11522-L3-life1": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "unfair",
+  "blames": "the_system",
+  "evidence": "\"The game never showed that a hidden ceiling was the gate. The rumours were only translated after the fact. The ending is coherent but the rules were opaque.\""
+ },
+ "scholar-11623-L3-life2": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "The raising choices were probably quiet, hands-off moments like the nomination, not the hard-ministry reshuffle, which never even appeared."
+ },
+ "scholar-11724-L3-life3": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "own_choices",
+  "evidence": "The hidden ceiling, specifically the party's estimate. It was Senior Minister of State at the start and only moved when I made hands-off, non-self-serving choices on nomination and succession events."
+ },
+ "scholar-11825-L3-life4": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "unfair",
+  "blames": "the_system",
+  "evidence": "\"it felt a bit of a cheat that the key event never turned up in 46 years\""
+ },
+ "scholar-11926-L3-life5": {
+  "infers_hidden_ceiling": true,
+  "ceiling_feeling": "discovery",
+  "blames": "unclear",
+  "evidence": "The ceiling seems to rise on small, humble-looking choices, and I stalled while hunting for one specific event."
+ }
+}
