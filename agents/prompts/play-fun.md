@@ -16,6 +16,6 @@ Reply with one JSON object:
 
   Expect about as many `skimmed` and `annoyed` as `smiled` and `tell_a_friend`, and more `fine` than anything else.
 - `choice`: the letter of an available choice.
-- `off_tone`: null, unless a line broke the game's tone: it winked at you or at being a game, it was cruel to a person rather than to the system, it read like a real politician, or it got a detail of the real institutions wrong. Then quote the line, briefly.
+- `off_tone`: null, unless a line broke the game's tone: it winked at you or at being a game, it was cruel to a person rather than to the system, it read like a real politician, someone acted out of character for their role, or it got a detail of how a real institution works wrong. Something impossible happening is not by itself a tone break, so long as everyone in it behaves true to type; whether you enjoyed it is your `verdict`. Then quote the line, briefly.
 
 When a career ends you see its ending card. Reply as usual, with choice A; a new career starts if you still want to play.
