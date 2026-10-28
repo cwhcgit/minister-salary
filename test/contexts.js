@@ -4,9 +4,19 @@
 // the choice that scheduled them. It does the same for the batchmate's log lines, and checks the
 // service's age floors for the player and the batchmate alike.
 // Card text must make sense in every context listed here; the content auditor reads this table,
-// and --check runs a phrase lint over all text against it (exit 1 on any contradiction).
+// and the lint checks all text against it (exit 1 on any contradiction).
 //
-//   node test/contexts.js [runsPerBotPerOrigin=600] [--json FILE] [--md FILE] [--check]
+// The run's cast and card parts are checked where they fire: every card that names a cast member
+// or has parts is re-rendered in every context it was seen in (rank, act, origin, who holds each
+// role and what they remember), with every version and every part combination that fits there
+// (all of them when there are few, a sample when there are many), and the assembled text is
+// linted. Also checked: no raw {token} survives, nobody vacant or departed is named, a cast
+// member's grade is right for their rank (a senior above you, a junior below, the age floors),
+// names never repeat within a run or match the batchmate's, and a callback only ever names the
+// person the earlier choice was about.
+//
+//   node test/contexts.js [runsPerBotPerOrigin=600] [--json FILE] [--md FILE] [--table]
+//   (the lint always runs; --table prints the per-card table; --check is accepted for old scripts)
 const fs = require('fs'), path = require('path');
 const H = require('../harness');
 
@@ -22,6 +32,7 @@ const MONTAGE = '__montage:';
 function sample(build, n = 600, opts = {}) {
   const modes = opts.rival === 'off' ? [false] : opts.rival === 'on' ? [true] : [false, true];
   const cards = {}, lines = {}, floors = [];
+  const cast = { problems: new Set(), states: {}, shown: 0, named: 0, lines: 0, options: {} };
   const card = id => cards[id] ||= { fires: 0, ranks: new Set(), ageMin: 99, ageMax: 0, origins: new Set(),
     acts: new Set(), since: [], service: 0, permsec: 0, politics: 0, montage: 0, habits: {}, rivalOn: 0,
     batchmate: { active: 0, inactive: 0, service: 0, politics: 0, ranks: new Set() } };
@@ -39,9 +50,12 @@ function sample(build, n = 600, opts = {}) {
     const pick = H.rng((i * 2654435761 + 17 + (rival ? 99991 : 0)) >>> 0);
     let run = H.newRun(origin, i * 7 + 3, { build, name: 'Sim', rival });
     const scheduledAt = [];   // { eventId, fireYear, year }
+    const touched = {};       // eventId@fireYear -> { role: person id } for the people the scheduling choice changed
+    castInvariants(build, run.S, cast.problems);
     while (run.phase !== 'ending' && run.turn < 95) {
       const S = run.S, ev = H.currentEvent(build, S);
       const base = ev.id.startsWith(MONTAGE) ? ev.id.slice(MONTAGE.length) : ev.id;
+      castShown(build, S, ev, base, run.pendingDraw, touched, cast);
       const c = card(base);
       c.fires++; if (rival) c.rivalOn++;
       if (ev.id !== base) { c.montage++; const h = (S.habits || {})[base]; c.habits[h] = (c.habits[h] || 0) + 1; }
@@ -74,6 +88,14 @@ function sample(build, n = 600, opts = {}) {
       run = H.step(run, id);
       const t = run.turns[run.turns.length - 1];
       for (const sc of t.scheduled) scheduledAt.push({ eventId: sc.eventId, fireYear: sc.fireYear, year });
+      // a consequence remembers who its choice was about
+      for (const sc of t.scheduled) for (const op of t.castOps || []) if ((op.flags || []).length)
+        (touched[sc.eventId + '@' + sc.fireYear] ||= {})[op.role] = op.person;
+      castInvariants(build, run.S, cast.problems);
+      for (const l of run.last ? run.last.log : []) if (l.cast) {
+        cast.lines++;
+        if (RAW.test(l.text)) cast.problems.add(`cast line ${l.cast}/${l.key}: unfilled token in "${l.text}"`);
+      }
       // years that passed by themselves: their Meanwhile lines appear in these contexts too
       for (const p of t.passed || []) {
         if (p.event === '__quiet') continue;
@@ -108,7 +130,192 @@ function sample(build, n = 600, opts = {}) {
       if (v && v.rank < 8 && after.age < minAge(v.rank)) floors.push(`batchmate ${build.content.ladder[v.rank].title} at ${after.age}`);
     }
   }
-  return { cards, lines, floors };
+  return { cards, lines, floors, cast };
+}
+
+// --- the cast and card parts, where they fire ----------------------------------------
+const RAW = /\{[^{}\s]{1,40}\}/;
+const CAP_STATES = 40;   // contexts kept per card for re-rendering
+const castSig = S => Object.entries((S.cast && S.cast.on) || {}).map(([r, p]) => p ? `${r}:${p.rank}:${[...p.flags].sort().join('+')}` : `${r}:-`).join(',');
+
+// The cast's own congruence at one moment of a run: a senior is above you, a junior below,
+// nobody is under their rung's age floor, and no two people share a name (nor the batchmate's).
+function castInvariants(build, S, problems) {
+  if (!S.cast || S.ending) return;   // a finished run's people are not updated again
+  const L = build.content.ladder, E = build.engine;
+  const on = Object.entries(S.cast.on).filter(([, p]) => p);
+  for (const [role, p] of on) {
+    const cfg = build.content.cast.roles[role], age = S.age + p.ageOff;
+    if (cfg.track === 'above' && S.rank < 8 && !(p.rank > S.rank)) problems.add(`senior ${p.nm.full} (${L[p.rank].title}) is not senior to a ${L[S.rank].title}`);
+    if (cfg.track === 'below' && !(p.rank < S.rank)) problems.add(`junior ${p.nm.full} (${L[p.rank].title}) does not report to a ${L[S.rank].title}`);
+    if (cfg.track === 'below' && S.rank >= 8) problems.add(`junior ${p.nm.full} still reports to a ${L[S.rank].title}`);
+    if (['alongside', 'below', 'above'].includes(cfg.track) && p.rank > E.maxRankForAge(build.content, age)) problems.add(`age floor broken: ${role} ${L[p.rank].title} at ${age}`);
+    if (cfg.retireAge && age > cfg.retireAge) problems.add(`${role} ${p.nm.full} still working at ${age}`);
+  }
+  const people = on.map(([, p]) => p).concat(S.cast.past);
+  const words = new Map();
+  for (const p of people) for (const w of p.nm.full.toLowerCase().split(/\s+/).filter(w => !['bin', 'binte', 'de', 'd/o', 's/o'].includes(w))) {
+    if (words.has(w) && words.get(w) !== p.id) problems.add(`two of the run's people share the name "${w}"`);
+    words.set(w, p.id);
+  }
+  if (S.rival) for (const w of S.rival.name.toLowerCase().split(/\s+/)) if (words.has(w)) problems.add(`a cast member shares the batchmate's name "${w}"`);
+}
+
+// Ladder titles, longest first, so "Senior Director" is not read as "Director".
+const titlesOf = build => [...new Set(build.content.ladder.map(r => r.title))].sort((a, b) => b.length - a.length);
+const escRe = x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// Checks on one assembled card in one state: no raw token, and every grade written next to a
+// cast member's name is that person's grade.
+function textProblems(build, S, id, texts, where) {
+  const out = [];
+  for (const t of texts) {
+    if (typeof t !== 'string') continue;
+    const m = t.match(RAW);
+    if (m) out.push(`${id}: ${where}unfilled token ${m[0]} (a vacant role, or a missing part field)`);
+    if (/,\s*,|\s{2,}|\s[,.]/.test(t)) out.push(`${id}: ${where}empty field in "${t.slice(0, 60)}..."`);
+    if (/\ba [AEIOU]/.test(t) && titlesOf(build).some(x => /^[AEIOU]/.test(x) && t.includes('a ' + x))) out.push(`${id}: ${where}"a" before a vowel title`);
+    for (const [role, p] of Object.entries((S.cast && S.cast.on) || {})) {
+      if (!p) continue;
+      const mine = build.content.cast.roles[role].track === 'none' ? null : build.content.ladder[Math.min(16, p.rank)].title;
+      const names = [...new Set([build.engine.personField(build.content, S, role, p, ''), p.nm.full, p.nm.given])].map(escRe).join('|');
+      const re = new RegExp(`(?:\\b(?:${names}),? (?:the |a |an |now |our |your |as )?(${titlesOf(build).map(escRe).join('|')})\\b)|(?:\\b(${titlesOf(build).map(escRe).join('|')}) (?:${names})\\b)`, 'g');
+      for (const hit of t.matchAll(re)) {
+        const title = hit[1] || hit[2];
+        const a = x => (/^[AEIOU]/.test(x) ? 'an ' : 'a ') + x;
+        if (mine && title !== mine) out.push(`${id}: ${where}calls ${role} ${a(title)} when ${p.nm.full} is ${a(mine)}`);
+        if (!mine) out.push(`${id}: ${where}gives ${role} (${p.nm.full}) a ladder grade`);
+      }
+    }
+  }
+  return out;
+}
+const cardStrings = ev => [ev.title, ev.body, ...ev.choices.flatMap(c => [c.text, c.outcome])];
+const castOrParts = (E, ev) => !!(ev.parts || E.roleNeeds(ev).length);
+
+// Every displayed card: the text as shown, the person a callback names, and the context kept.
+function castShown(build, S, ev, base, draw, touched, cast) {
+  const E = build.engine;
+  cast.shown++;
+  for (const p of textProblems(build, S, base, cardStrings(ev), '')) cast.problems.add(p);
+  if (ev.who) cast.named++;
+  // a consequence names the person its choice was about, or nobody: never a stranger in the role
+  // (naming someone else in the role is fine when the text is written for that: it must not
+  // be text that assumes the history, i.e. text that required one of the person's flags)
+  const fired = draw && draw.fired;
+  if (fired && ev.who) {
+    const was = touched[fired.eventId + '@' + fired.fireYear] || {};
+    const src = build.content.events.find(e => e.id === base) || {};
+    const assumes = (q, role) => !!((((q || {}).cast || {})[role] || {}).flagsAll || []).length;
+    for (const [role, id] of Object.entries(ev.who)) if (was[role] !== undefined && was[role] !== id) {
+      const opts = Object.entries(ev.picked || {}).map(([slot, oid]) => (E.partSlots(src).find(([k]) => k === slot) || [, { options: [] }])[1].options.find(o => String(o.id) === oid)).filter(Boolean);
+      if (assumes(src.requires, role) || opts.some(o => E.optionNeeds(o, src).includes(role) && assumes(o.requires, role)))
+        cast.problems.add(`${base}: callback names a different ${role} from the one the earlier choice was about`);
+    }
+  }
+  if (ev.picked) for (const [slot, id] of Object.entries(ev.picked)) (cast.options[base] ||= new Set()).add(slot + '=' + id);
+  const src = build.content.events.concat((build.content.rival || {}).events || []).find(e => e.id === base);
+  if (!src || !castOrParts(E, src)) return;
+  const keep = cast.states[base] ||= new Map();
+  const sig = `${S.rank}|${S.origin}|${castSig(S)}`;
+  if (!keep.has(sig) && keep.size < CAP_STATES) keep.set(sig, S);
+}
+
+// Re-render every cast or parts card in every context it was seen in, with every version and
+// every part combination that fits there, and lint the result.
+function castLint(build, smp, problems) {
+  const E = build.engine, C = build.content, ladder = C.ladder;
+  let renders = 0;
+  const reachable = {};
+  for (const [id, states] of Object.entries(smp.cast.states)) {
+    const ev = C.events.concat((C.rival || {}).events || []).find(e => e.id === id);
+    for (const S of states.values()) {
+      const ctx = { fires: 1, inPolitics: S.rank >= 8 ? 1 : 0, atPermSec: S.rank === 7 ? 1 : 0, inService: S.rank < 7 ? 1 : 0, rankMax: S.rank };
+      for (let v = 0; v <= (ev.variants || []).length; v++) {
+        const ver = E.applyVariant(ev, v);
+        const combos = ev.parts ? E.partCombos(ev, S, 64) : [null];
+        for (const parts of combos) {
+          const r = E.render(C, ver, S, parts ? { parts } : undefined);
+          renders++;
+          if (parts) for (const [slot, oid] of Object.entries(parts)) (reachable[id] ||= new Set()).add(slot + '=' + oid);
+          for (const p of textProblems(build, S, id, cardStrings(r), `as ${ladder[S.rank].title}${parts ? ' ' + JSON.stringify(parts) : ''}: `)) problems.push(p);
+          for (const t of cardStrings(r)) for (const rule of RULES) {
+            const m = typeof t === 'string' && t.match(rule.re);
+            if (m && rule.bad(ctx, { rivalCard: !!ev.rivalCard })) problems.push(`${id}: ${rule.why} ("${m[0]}") as ${ladder[S.rank].title}`);
+          }
+        }
+      }
+    }
+  }
+  // part options no sampled context could draw (a warning: a requirement may be too tight)
+  const dead = [];
+  for (const ev of C.events.filter(e => e.parts)) for (const [slot, sl] of E.partSlots(ev)) sl.options.forEach((o, k) => {
+    const key = slot + '=' + (o.id !== undefined ? o.id : k);
+    if (smp.cards[ev.id] && !(reachable[ev.id] || new Set()).has(key)) dead.push(`${ev.id} ${key}`);
+  });
+  return { renders, dead };
+}
+
+// What can be checked from the content alone.
+function castStatic(build) {
+  const E = build.engine, C = build.content, out = [];
+  const roles = new Set(Object.keys((C.cast || {}).roles || {}));
+  const rivalTok = new Set(['rival', 'they', 'them', 'their', 'They', 'Them', 'Their', 'title']);
+  const all = C.events.map(e => ({ e, rivalCard: false })).concat(((C.rival || {}).events || []).map(e => ({ e, rivalCard: true })));
+  const byId = Object.fromEntries(all.map(x => [x.e.id, x.e]));
+  const tok = t => [...String(t).matchAll(/\{([A-Za-z]+)(?:\.([A-Za-z]+))?\}/g)].map(m => ({ name: m[1], field: m[2] || '', raw: m[0] }));
+  const strs = o => typeof o === 'string' ? [o] : Array.isArray(o) ? o.flatMap(strs) : o && typeof o === 'object' ? Object.values(o).flatMap(strs) : [];
+  for (const { e, rivalCard } of all) {
+    const slots = new Map(E.partSlots(e));
+    for (const k of slots.keys()) {
+      if (roles.has(k) || rivalTok.has(k)) out.push(`${e.id}: part slot "${k}" has the name of a cast role or a batchmate token`);
+      if (k !== k.toLowerCase()) out.push(`${e.id}: part slot "${k}" must be lower case`);
+      const ids = slots.get(k).options.map((o, i) => o.id !== undefined ? String(o.id) : String(i));
+      if (new Set(ids).size !== ids.length) out.push(`${e.id}: part slot "${k}" has duplicate option ids`);
+    }
+    const texts = strs([e.title, e.body, e.choices.map(c => [c.text, c.outcome]), (e.variants || []).map(v => [v.title, v.body, v.choices]),
+      [...slots.values()].map(sl => sl.options.map(o => Object.entries(o).filter(([k]) => !['id', 'requires', 'effects', 'scale', 'prefer'].includes(k)).map(([, v]) => v)))]);
+    for (const t of texts) for (const { name, field, raw } of tok(t)) {
+      const low = name.charAt(0).toLowerCase() + name.slice(1);
+      if (slots.has(low)) {
+        // every option of the slot must have the field the text asks for
+        for (const o of slots.get(low).options) if (typeof (field ? o[field] : o.text) !== 'string') out.push(`${e.id}: ${raw} but option "${o.id}" of "${low}" has no ${field || 'text'}`);
+      } else if (roles.has(name.toLowerCase())) {
+        if (field && !['name', 'full', 'given', 'formal', 'title', 'atitle', 'they', 'them', 'their', 'years'].includes(field.toLowerCase())) out.push(`${e.id}: unknown cast field ${raw}`);
+      } else if (!(rivalCard && rivalTok.has(name))) out.push(`${e.id}: unknown token ${raw}`);
+      // the pronoun convention: a subject pronoun never comes before a present-tense verb
+    }
+    for (const t of texts) for (const m of String(t).matchAll(/\{(?:[A-Za-z]+\.)?[Tt]hey\} (\w+)/g))
+      if (/^(is|was|has|does|isn't|wasn't|hasn't|doesn't)$/.test(m[1]) || (/[^s]s$/.test(m[1]) && !/^(always|perhaps|sometimes|this|thus|as|its)$/.test(m[1])))
+        out.push(`${e.id}: subject pronoun before a present-tense verb ("${m[0]}"); use the name, or a past tense`);
+    // a grade written next to a cast member, which no rank will keep right
+    for (const t of texts) {
+      const m = String(t).match(new RegExp(`\\{[A-Za-z]+\\}, (?:the |a |an |now )?(${titlesOf(build).map(escRe).join('|')})\\b`));
+      if (m) out.push(`${e.id}: a grade written out next to a cast member ("${m[0]}"); use {role.title}`);
+    }
+    // tokens where nothing fills them: montage lines, autoplay lines, and part tokens in a repeatable card's title (montage years show it)
+    for (const t of strs(e.montageLines)) if (tok(t).length) out.push(`${e.id}: token in a montage line ("${t.slice(0, 40)}...")`);
+    for (const t of strs([(e.autoPlay || {}).line, (e.variants || []).map(v => v.autoPlayLine)])) if (tok(t).some(x => !roles.has(x.name.toLowerCase()))) out.push(`${e.id}: part token in an autoplay line`);
+    if (!e.once && !e.triggered && tok(e.title).some(x => slots.has(x.name.charAt(0).toLowerCase() + x.name.slice(1)))) out.push(`${e.id}: part token in a repeatable card's title`);
+    // a callback that names a role must know whether the person there is the one the choice was about
+    e.choices.forEach((ch, i) => {
+      const flagged = Object.entries(ch.cast || {}).filter(([, op]) => (op.flags || []).length);
+      for (const sc of ch.schedule || []) for (const target of [sc.eventId, ...((byId[sc.eventId] || {}).alternates || [])]) {
+        const cb = byId[target];
+        if (!cb) continue;
+        for (const [role, op] of flagged) {
+          const knows = q => { const r = ((q || {}).cast || {})[role]; return r === false || (r && (r.vacant || (r.flagsAll || []).some(f => op.flags.includes(f)) || (r.flagsNone || []).some(f => op.flags.includes(f)))); };
+          if (E.roleNeeds(cb).includes(role) && !knows(cb.requires)) out.push(`${target}: names {${role}} but does not check that it is the ${role} ${e.id} choice ${'ABCD'[i]} was about`);
+          for (const [slot, sl] of E.partSlots(cb)) for (const o of sl.options) if (E.optionNeeds(o, cb).includes(role) && !knows(o.requires) && !knows(cb.requires))
+            out.push(`${target}: option ${slot}=${o.id} names {${role}} but does not check that it is the ${role} ${e.id} choice ${'ABCD'[i]} was about`);
+        }
+      }
+    });
+    // cast ops name a real role
+    e.choices.forEach(ch => { for (const r of Object.keys(ch.cast || {})) if (!roles.has(r)) out.push(`${e.id}: choice changes unknown cast role "${r}"`); });
+  }
+  for (const f of (C.folder || []).concat((C.rival || {}).folder || [])) if (tok(f.item).some(x => roles.has(x.name.toLowerCase()))) out.push(`folder item ${f.flag}: names a cast role (the folder is read years later, when the role may hold someone else)`);
+  return out;
 }
 
 function table(build, smp) {
@@ -188,6 +395,10 @@ function lint(build, smp) {
     for (const st of Object.keys(x.batchmateStatus)) if (!allowed.includes(st)) problems.push(`batchmate line "${key}": shown while the batchmate is ${st}`);
   }
   for (const f of [...new Set(smp.floors)]) problems.push(`age floor broken: ${f}`);
+  // the cast and card parts
+  problems.push(...castStatic(build), ...smp.cast.problems);
+  const cl = castLint(build, smp, problems);
+  lint.last = { renders: cl.renders, dead: cl.dead, shown: smp.cast.shown, named: smp.cast.named, lines: smp.cast.lines };
   return [...new Set(problems)];
 }
 
@@ -202,23 +413,25 @@ if (require.main === module) {
   const argv = process.argv.slice(2);
   const flag = k => { const i = argv.indexOf(k); return i >= 0 ? argv.splice(i, 2)[1] : null; };
   const has = k => { const i = argv.indexOf(k); if (i >= 0) argv.splice(i, 1); return i >= 0; };
-  const jsonOut = flag('--json'), mdOut = flag('--md'), check = has('--check');
+  const jsonOut = flag('--json'), mdOut = flag('--md'), showTable = has('--table');
+  has('--check');   // the lint always runs
   const N = +argv[0] || 600;
   const build = H.loadBuild();
   const smp = sample(build, N);
   const t = table(build, smp);
   if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify(t, null, 1) + '\n');
   const md = toMarkdown(t);
-  if (mdOut) fs.writeFileSync(mdOut, md); else if (!check) process.stdout.write(md);
-  if (check) {
-    const problems = lint(build, smp);
-    const cards = Object.keys(t).length, lineKeys = Object.keys(smp.lines).length;
-    if (problems.length) {
-      console.log(`✗ ${problems.length} immersion contradictions:`);
-      problems.forEach(p => console.log('  ' + p));
-      process.exitCode = 1;
-    } else console.log(`✓ no immersion contradictions: ${cards} cards and ${lineKeys} batchmate lines checked against where they fire; age floors held`);
-  }
+  if (mdOut) fs.writeFileSync(mdOut, md); else if (showTable) process.stdout.write(md);
+  const problems = lint(build, smp);
+  const cards = Object.keys(t).length, lineKeys = Object.keys(smp.lines).length, x = lint.last;
+  const partCards = build.content.events.filter(e => e.parts), opts = partCards.reduce((n, e) => n + build.engine.partSlots(e).reduce((k, [, sl]) => k + sl.options.length, 0), 0);
+  console.log(`cast and parts: ${x.shown} cards shown, ${x.named} naming the run's people, ${x.lines} cast lines; ${partCards.length} cards with ${opts} part options; ${x.renders} re-renders across the contexts they fired in`);
+  if (x.dead.length) console.log(`! part options no sampled context could draw: ${x.dead.join(', ')}`);
+  if (problems.length) {
+    console.log(`✗ ${problems.length} immersion contradictions:`);
+    problems.forEach(p => console.log('  ' + p));
+    process.exitCode = 1;
+  } else console.log(`✓ no immersion contradictions: ${cards} cards and ${lineKeys} batchmate lines checked against where they fire; cast and parts checked in every context; age floors held`);
 }
 
-module.exports = { contexts, sample, table, lint, toMarkdown, RULES };
+module.exports = { contexts, sample, table, lint, toMarkdown, RULES, castStatic };

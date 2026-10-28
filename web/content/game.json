@@ -446,5 +446,472 @@
         "text": "Your old division still uses your templates. Your new firm bills them for it."
       }
     ]
+  },
+  "cast": {
+    "note": "The run's recurring people. See docs/CONTENT_PLAN.md section 6 for how cards use them. Names are invented; never add a real public figure, or a batchmate's name (rival.json).",
+    "roles": {
+      "peer": {
+        "about": "an officer from your intake who moves up alongside you; stays in the service if you leave it",
+        "call": "given",
+        "track": "alongside",
+        "when": {},
+        "refillWhen": {
+          "maxRank": 7
+        },
+        "refillYears": 2,
+        "ageOff": [
+          -1,
+          2
+        ],
+        "minAge": 22,
+        "cap": [
+          6,
+          7
+        ],
+        "driftEvery": 3,
+        "retireAge": 65
+      },
+      "junior": {
+        "about": "an officer who reports to you, one or two grades below; only while you are in the service",
+        "call": "given",
+        "track": "below",
+        "when": {
+          "minRank": 1,
+          "maxRank": 7
+        },
+        "refillYears": 1,
+        "ageOff": [
+          -6,
+          4
+        ],
+        "minAge": 23,
+        "gap": [
+          1,
+          2
+        ],
+        "catchUpEvery": 2,
+        "retireAge": 65
+      },
+      "senior": {
+        "about": "someone two or three grades above you: a mentor, a boss; moves on when you reach their grade",
+        "call": "formal",
+        "track": "above",
+        "when": {
+          "maxRank": 6
+        },
+        "refillYears": 0,
+        "ageOff": [
+          9,
+          16
+        ],
+        "gap": [
+          2,
+          3
+        ],
+        "promoteEvery": 4,
+        "retireAge": 65
+      },
+      "journalist": {
+        "about": "a journalist who covers the public service, and later you",
+        "call": "full",
+        "track": "none",
+        "when": {},
+        "refillYears": 2,
+        "age": [
+          25,
+          33
+        ],
+        "retireAge": 63,
+        "titles": [
+          [
+            0,
+            "correspondent"
+          ],
+          [
+            8,
+            "senior correspondent"
+          ],
+          [
+            18,
+            "political editor"
+          ]
+        ]
+      },
+      "grassroots": {
+        "about": "a grassroots leader in your ward; only once you are in Parliament",
+        "call": "formal",
+        "track": "none",
+        "when": {
+          "minRank": 8
+        },
+        "refillYears": 2,
+        "age": [
+          52,
+          66
+        ],
+        "retireAge": 77,
+        "posts": [
+          "CCC chairman",
+          "RC chairman",
+          "CCMC chairman"
+        ]
+      },
+      "mp": {
+        "about": "a fellow Member of Parliament; only once you are in Parliament",
+        "call": "given",
+        "track": "political",
+        "rank": 8,
+        "when": {
+          "minRank": 8
+        },
+        "refillYears": 3,
+        "ageOff": [
+          -4,
+          6
+        ],
+        "retireAge": 70
+      }
+    },
+    "honorifics": {
+      "default": {
+        "m": "Mr",
+        "f": "Ms"
+      },
+      "grassroots": {
+        "m": "Mr",
+        "f": "Mdm"
+      }
+    },
+    "names": [
+      {
+        "full": "Ong Mei Xuan",
+        "given": "Mei Xuan",
+        "formal": "Ong",
+        "pron": "f"
+      },
+      {
+        "full": "Lim Kok Leong",
+        "given": "Kok Leong",
+        "formal": "Lim",
+        "pron": "m"
+      },
+      {
+        "full": "Chua Shi Ting",
+        "given": "Shi Ting",
+        "formal": "Chua",
+        "pron": "f"
+      },
+      {
+        "full": "Goh Jia Xin",
+        "given": "Jia Xin",
+        "formal": "Goh",
+        "pron": "f"
+      },
+      {
+        "full": "Teo Boon Huat",
+        "given": "Boon Huat",
+        "formal": "Teo",
+        "pron": "m"
+      },
+      {
+        "full": "Ng Siew Lan",
+        "given": "Siew Lan",
+        "formal": "Ng",
+        "pron": "f"
+      },
+      {
+        "full": "Koh Wen Jie",
+        "given": "Wen Jie",
+        "formal": "Koh",
+        "pron": "m"
+      },
+      {
+        "full": "Yeo Pei Shan",
+        "given": "Pei Shan",
+        "formal": "Yeo",
+        "pron": "f"
+      },
+      {
+        "full": "Toh Guan Hock",
+        "given": "Guan Hock",
+        "formal": "Toh",
+        "pron": "m"
+      },
+      {
+        "full": "Ho Xin Yi",
+        "given": "Xin Yi",
+        "formal": "Ho",
+        "pron": "f"
+      },
+      {
+        "full": "Seah Wee Kiat",
+        "given": "Wee Kiat",
+        "formal": "Seah",
+        "pron": "m"
+      },
+      {
+        "full": "Quek Yu Ying",
+        "given": "Yu Ying",
+        "formal": "Quek",
+        "pron": "f"
+      },
+      {
+        "full": "Pang Kai Wen",
+        "given": "Kai Wen",
+        "formal": "Pang",
+        "pron": "m"
+      },
+      {
+        "full": "Leong Mun Yee",
+        "given": "Mun Yee",
+        "formal": "Leong",
+        "pron": "f"
+      },
+      {
+        "full": "Lau Chee Meng",
+        "given": "Chee Meng",
+        "formal": "Lau",
+        "pron": "m"
+      },
+      {
+        "full": "Kwek Li Hua",
+        "given": "Li Hua",
+        "formal": "Kwek",
+        "pron": "f"
+      },
+      {
+        "full": "Soh Ming Kang",
+        "given": "Ming Kang",
+        "formal": "Soh",
+        "pron": "m"
+      },
+      {
+        "full": "Tay Kai Lun",
+        "given": "Kai Lun",
+        "formal": "Tay",
+        "pron": "m"
+      },
+      {
+        "full": "Chia Hwee Peng",
+        "given": "Hwee Peng",
+        "formal": "Chia",
+        "pron": "f"
+      },
+      {
+        "full": "Yap Choon Keat",
+        "given": "Choon Keat",
+        "formal": "Yap",
+        "pron": "m"
+      },
+      {
+        "full": "Liew Su Ann",
+        "given": "Su Ann",
+        "formal": "Liew",
+        "pron": "f"
+      },
+      {
+        "full": "Charmaine Ang",
+        "given": "Charmaine",
+        "formal": "Ang",
+        "pron": "f"
+      },
+      {
+        "full": "Benedict Loh",
+        "given": "Benedict",
+        "formal": "Loh",
+        "pron": "m"
+      },
+      {
+        "full": "Valerie Kok",
+        "given": "Valerie",
+        "formal": "Kok",
+        "pron": "f"
+      },
+      {
+        "full": "Nurul Huda binte Rahmat",
+        "given": "Nurul Huda",
+        "formal": "Nurul Huda",
+        "pron": "f"
+      },
+      {
+        "full": "Faizal bin Osman",
+        "given": "Faizal",
+        "formal": "Faizal",
+        "pron": "m"
+      },
+      {
+        "full": "Rohani binte Kassim",
+        "given": "Rohani",
+        "formal": "Rohani",
+        "pron": "f"
+      },
+      {
+        "full": "Hakim bin Yusof",
+        "given": "Hakim",
+        "formal": "Hakim",
+        "pron": "m"
+      },
+      {
+        "full": "Iskandar bin Jamal",
+        "given": "Iskandar",
+        "formal": "Iskandar",
+        "pron": "m"
+      },
+      {
+        "full": "Aminah binte Said",
+        "given": "Aminah",
+        "formal": "Aminah",
+        "pron": "f"
+      },
+      {
+        "full": "Khairul Anwar bin Salleh",
+        "given": "Khairul",
+        "formal": "Khairul",
+        "pron": "m"
+      },
+      {
+        "full": "Noraini binte Latif",
+        "given": "Noraini",
+        "formal": "Noraini",
+        "pron": "f"
+      },
+      {
+        "full": "Ridzwan bin Hassan",
+        "given": "Ridzwan",
+        "formal": "Ridzwan",
+        "pron": "m"
+      },
+      {
+        "full": "Diyana binte Rosli",
+        "given": "Diyana",
+        "formal": "Diyana",
+        "pron": "f"
+      },
+      {
+        "full": "Lakshmi Narayanan",
+        "given": "Lakshmi",
+        "formal": "Lakshmi",
+        "pron": "f"
+      },
+      {
+        "full": "Prakash Pillai",
+        "given": "Prakash",
+        "formal": "Pillai",
+        "pron": "m"
+      },
+      {
+        "full": "Devi Krishnan",
+        "given": "Devi",
+        "formal": "Devi",
+        "pron": "f"
+      },
+      {
+        "full": "Rajesh Nair",
+        "given": "Rajesh",
+        "formal": "Nair",
+        "pron": "m"
+      },
+      {
+        "full": "Meena Raju",
+        "given": "Meena",
+        "formal": "Meena",
+        "pron": "f"
+      },
+      {
+        "full": "Harpreet Kaur",
+        "given": "Harpreet",
+        "formal": "Kaur",
+        "pron": "f"
+      },
+      {
+        "full": "Anand Subramaniam",
+        "given": "Anand",
+        "formal": "Anand",
+        "pron": "m"
+      },
+      {
+        "full": "Kavya Rajan",
+        "given": "Kavya",
+        "formal": "Kavya",
+        "pron": "f"
+      },
+      {
+        "full": "Vikram Iyer",
+        "given": "Vikram",
+        "formal": "Iyer",
+        "pron": "m"
+      },
+      {
+        "full": "Marcus de Souza",
+        "given": "Marcus",
+        "formal": "de Souza",
+        "pron": "m"
+      },
+      {
+        "full": "Joanne Pereira",
+        "given": "Joanne",
+        "formal": "Pereira",
+        "pron": "f"
+      },
+      {
+        "full": "Gerald Fernandez",
+        "given": "Gerald",
+        "formal": "Fernandez",
+        "pron": "m"
+      },
+      {
+        "full": "Clarissa Rozario",
+        "given": "Clarissa",
+        "formal": "Rozario",
+        "pron": "f"
+      }
+    ],
+    "lines": {
+      "peer": {
+        "retired": [
+          "{name}, from your intake, retires from the service as {title}. The farewell lunch is at the restaurant where your intake had its tenth anniversary, which nobody planned."
+        ],
+        "arrive": [
+          "{name}, who joined the service the same year you did, is posted to your floor. You have been on the same circulation lists for years and never met."
+        ]
+      },
+      "junior": {
+        "first": [
+          "For the first time, someone reports to you: {name}, {aTitle}. On the first morning {name} asks how you like your papers formatted, and you find you have an answer."
+        ],
+        "arrive": [
+          "{name} joins your team as {aTitle}, and asks on the first day where the files from the last reorganisation went. Nobody knows."
+        ],
+        "movedUp": [
+          "{name}, who reported to you, is promoted to your grade and posted to another division. The leaving card goes round your floor twice."
+        ]
+      },
+      "senior": {
+        "caughtUp": [
+          "You are now the same grade as {name}, who was senior to you for {years} years. {name} is posted to another ministry, and sends a two-line email that ends \"Well done. Finally.\""
+        ],
+        "retired": [
+          "{name} retires from the service as {title}. At the farewell lunch you are asked to say a few words, and find you have more than a few."
+        ],
+        "arrive": [
+          "{name}, {aTitle}, is now the person your papers go up to. On the first day {name} mentions having read your file, and does not say which parts."
+        ]
+      },
+      "journalist": {
+        "retired": [
+          "{name} retires from the paper after {years} years. The last column is about the public service, and is kinder than any of the others."
+        ]
+      },
+      "grassroots": {
+        "retired": [
+          "{name} steps down as {title} after {years} years, and is given a plaque, a dinner and an advisory role with no agenda."
+        ]
+      },
+      "mp": {
+        "retired": [
+          "{name}, your fellow Member, does not stand again, and gives a valedictory speech that thanks the cleaners by name."
+        ]
+      }
+    }
   }
 }

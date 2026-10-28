@@ -44,7 +44,7 @@ ok('a game has no batchmate unless asked for, and the batchmate stays hidden unt
     assert.ok(!('rival' in S), 'no batchmate unless asked for');
     const { screens } = playRandom(origin, seed, { rival: true, screens: true });
     for (const sc of screens.slice(0, -1)) {
-      assert.ok(!/\bability\b|cepStart|"rel"|\{rival\}|\{the(y|m|ir)\}/i.test(sc.text), 'batchmate internals or placeholders on screen: ' + sc.text.slice(0, 200));
+      assert.ok(!/\bability\b|cepStart|"rel"|\{rival\}|\{the(y|m|ir)\}|\{[^{}\s]+\}/i.test(sc.text), 'batchmate internals or placeholders on screen: ' + sc.text.slice(0, 200));
     }
   }
   // batchmate cards: every schedule target exists, every choice has text and outcome, no dominated choices
