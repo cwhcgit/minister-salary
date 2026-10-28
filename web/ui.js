@@ -190,14 +190,20 @@ function render() {
 }
 
 // ---------- boot ----------
+const optional = u => fetch(u).then(r => (r.ok ? r.json() : null)).catch(() => null);
+const pack = id => fetch(Packs.DIR + id + ".json").then(r => {
+  if (!r.ok) throw new Error(`content pack "${id}" is missing`);
+  return r.json();
+});
 Promise.all([
   fetch("content/game.json").then(r => r.json()),
   fetch("content/events.json").then(r => r.json()),
   // the batchmate's cards; optional, so an old cached copy without them still plays
-  fetch("content/rival.json").then(r => (r.ok ? r.json() : null)).catch(() => null)
-]).then(([g, ev, rv]) => {
-  content = g; content.events = ev;
-  if (rv) content.rival = rv;
+  optional("content/rival.json"),
+  // content packs, listed in the manifest (optional, so an old cached copy still plays)
+  optional(Packs.DIR + "manifest.json").then(m => Promise.all(((m && m.packs) || []).map(pack)))
+]).then(([g, ev, rv, packs]) => {
+  content = Packs.assemble(g, ev, packs, rv);
   if (load() && S) render(); else startScreen();
 }).catch(err => {
   app.innerHTML = `<div class="card"><h2>Could not load content</h2>

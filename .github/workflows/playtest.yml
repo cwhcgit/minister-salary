@@ -30,6 +30,12 @@ jobs:
       - name: Blind prompts never leak hidden state
         run: node agents/leak-check.ts
 
+      - name: Content packs load, play and refuse duplicate ids
+        run: node test/packs.test.js
+
+      - name: Card writing is not repeating itself (near-duplicates, worn phrases)
+        run: node test/similarity.js
+
       - name: Bot regression (origin order, PM rare by accident, every run ends)
         run: node test/sim.js regress 400
 
