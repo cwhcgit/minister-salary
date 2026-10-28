@@ -2,7 +2,7 @@
 // Batches API at half price. Results can take up to 24 hours, usually under one; this
 // polls once a minute. Play never uses it: a turn cannot wait an hour for the next.
 import Anthropic from "@anthropic-ai/sdk";
-import { buildParams, client, parseMessage, type CallOpts, type CallResult, type Llm } from "./llm.ts";
+import { buildParams, client, parseMessage, RETRIES, type CallOpts, type CallResult, type Llm } from "./llm.ts";
 
 export interface BatchItem { id: string; opts: CallOpts }
 
@@ -18,16 +18,16 @@ export async function runBatch<T>(llm: Llm, items: BatchItem[], log: (s: string)
     const { betas: _b, fallbacks: _f, ...params } = buildParams(it.opts) as Anthropic.Beta.MessageCreateParamsNonStreaming;
     return { custom_id: it.id, params: params as unknown as Anthropic.Messages.MessageCreateParamsNonStreaming };
   });
-  const batch = await c.messages.batches.create({ requests });
+  const batch = await c.messages.batches.create({ requests }, RETRIES);
   log(`  batch ${batch.id}: ${requests.length} requests submitted`);
   let b = batch;
   while (b.processing_status !== "ended") {
     await new Promise(r => setTimeout(r, 60_000));
-    b = await c.messages.batches.retrieve(batch.id);
+    b = await c.messages.batches.retrieve(batch.id, {}, RETRIES);
     log(`  batch ${batch.id}: ${b.request_counts.processing} processing, ${b.request_counts.succeeded} done`);
   }
   const model = Object.fromEntries(items.map(it => [it.id, it.opts.model]));
-  for await (const r of await c.messages.batches.results(batch.id)) {
+  for await (const r of await c.messages.batches.results(batch.id, {}, RETRIES)) {
     if (r.result.type === "succeeded") out[r.custom_id] = parseMessage<T>(model[r.custom_id], r.result.message, true);
     else log(`  ! ${r.custom_id}: ${r.result.type}`);
   }

@@ -9,7 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { REPORTS } from "./lib/config.ts";
 import { H } from "./lib/harness.ts";
-import { mockLlm, realLlm } from "./lib/llm.ts";
+import { credentialSource, mockLlm, realLlm } from "./lib/llm.ts";
 import { audit, auditMarkdown } from "./lib/analysis.ts";
 
 const argv = process.argv.slice(2);
@@ -18,6 +18,7 @@ const opt = (k: string) => { const i = argv.indexOf(k); return i >= 0 ? argv[i +
 
 const build = H.loadBuild({ root: opt("--build"), canaries: has("--canaries") });
 const llm = has("--mock") ? mockLlm(11) : realLlm();
+if (!llm.mock) console.log(`credentials: ${credentialSource()}`);
 const { events, ...game } = build.content;
 const engineSrc = fs.readFileSync(path.join(build.root, "engine.js"), "utf8");
 console.log(`auditing ${events.length} events on build ${build.hash}${has("--no-batch") ? "" : " via the Batch API"}…`);

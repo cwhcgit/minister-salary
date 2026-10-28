@@ -5,9 +5,9 @@ name: Playtest harness
 # (or any phone) sees it. Everything below is free: no API calls.
 on:
   push:
-    paths: ['web/**', 'harness/**', 'test/**', 'agents/**', '.github/workflows/playtest.yml']
+    paths: ['web/**', 'harness/**', 'test/**', 'agents/**', '.github/scripts/**', '.github/workflows/playtest.yml']
   pull_request:
-    paths: ['web/**', 'harness/**', 'test/**', 'agents/**', '.github/workflows/playtest.yml']
+    paths: ['web/**', 'harness/**', 'test/**', 'agents/**', '.github/scripts/**', '.github/workflows/playtest.yml']
   workflow_dispatch:
 
 permissions:
@@ -38,7 +38,7 @@ jobs:
           npm install jsdom@24 --no-save --silent --no-fund --no-audit
           node test/screen.test.js
 
-      - name: Agent runner (typecheck, offline mock cohorts)
+      - name: Agent runner (typecheck, offline mock cohorts, WIF token handling)
         working-directory: agents
         run: |
           npm ci --no-fund --no-audit
