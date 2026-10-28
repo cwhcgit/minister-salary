@@ -92,9 +92,9 @@ Prompts are plain files: `personas/*.md` and `prompts/*.md`. Models, effort, run
 
 A session is one player playing careers back to back, as someone would on the phone: up to 5 (`--careers`), each starting when the last one ends, with the next origin along or the same one again. The meter runs 0 to 100, starts at 50 once per session, and carries from career to career. Every tap moves it by three things:
 
-- **the player's delta**, -10 to +10: its own reaction to this screen. The prompt (`prompts/play-fun.md`) allows a rise only for something it can name (a laugh, a surprise, a callback paying off, a real dilemma), says most screens land between -3 and +3, and keeps +6 and above for a moment you would tell a friend about. It sees the meter's value on every turn.
+- **the player's verdict**, mapped to a delta by `fun.verdicts`: `fine` 0 (the default), `skimmed` -2, `annoyed` -5, `smiled` +2, `tell_a_friend` +6. The model writes its reason first, then the verdict, then its choice. A free -10..+10 scale got about 90% ups from Haiku even when told zero was the default; named verdicts with an expected mix are easier to keep honest. It sees the meter's value on every turn.
 - **repeats**, applied by the runner: a card already played in full this session, in any career, costs 5. Repeats close together compound: 5, then 10, then 15 (and 15 after that), until three fresh cards in a row reset the streak. The persona's multiplier scales this (`fun-casual`: 8, 15, 23). "Meanwhile" lines (years that pass by themselves), the engine's one-line years and the canaries never count. A card is its version: a new version of a card (a different scene, same mechanics) is fresh.
-- **decay**, applied by the runner: 2 off every tap.
+- **decay**, applied by the runner: 1 off every tap. The anchor: a game whose every screen is merely `fine` loses the player within about one career (25 taps). At 2, with `fine` as the default verdict, nearly every session ended inside the first career, before repetition could matter. Canary taps leave the meter alone: they probe the reader, they are not part of the game.
 
 At or below the persona's quit line, the player quits: the runner records the tap, the career and the card, and stops the session. The ending card is a tap too (the player reacts to it; no repeat cost). Between careers the session does what the phone does after each ending: the engine is given the cards of the last two finished careers (`recent`, as `ui.js` keeps them), so the next career prefers cards and versions the player has not just seen. A session therefore measures the variety players actually get.
 
@@ -105,7 +105,7 @@ At the end (a quit, or the last career) comes a three-question exit survey: `qui
 **Fun sessions.** One conversation per career. Each turn appends one user message (the screen exactly as the harness renders it, then `Your fun: 47/100.`) and the player's reply, which is the whole of its output:
 
 ```json
-{"choice": "B", "delta": 2, "reason": "the appraisal euphemism for a C made me laugh", "off_tone": null}
+{"reason": "the appraisal euphemism for a C made me laugh", "verdict": "smiled", "choice": "B", "off_tone": null}
 ```
 
 `off_tone` is null unless a line broke the tone (a wink at the player, cruelty to a person rather than the system, a real politician, a wrong detail), in which case it quotes the line. No notes: the conversation is the memory. The request carries a cache breakpoint on the system prompt (shared by every career and session of the persona) and top-level automatic caching (`cache_control` on the request), which moves a breakpoint to the latest message, so each turn reads everything before it from the cache and pays full price only for the new screen and the last reply: about 250 tokens. Thinking is off (`disabled` on Haiku, `between_tools` on Sonnet). A new career opens with one line on how the earlier ones went. A reply that cannot be used is retried once with the available choices listed, then a choice is picked at random, flagged `autoPicked`, and the player is told so in its next message. Haiku has no refusal fallback; a refusal is handled the same way.

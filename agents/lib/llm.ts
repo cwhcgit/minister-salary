@@ -193,14 +193,19 @@ export function mockUsage(o: CallOpts, written: Set<string>): Omit<Usage, "outpu
   return { input: n - end, cacheWrite: end - read, cacheRead: read, thinking: 0 };
 }
 
-// Fills any schema with plausible values. Fun-session fields get scripted values: a delta that
-// drifts a little upward, about-ten-word reasons, the bland canary marked down and the winking
+// Fills any schema with plausible values. Fun-session fields get scripted values: verdicts that
+// lean a little positive, about-ten-word reasons, the bland canary marked down and the winking
 // one flagged, so the whole report (canary check included) has something real to chew on.
 function fill(schema: any, r: () => number, key: string, ctx: { choices: string[]; text: string }): unknown {
   if (key === "off_tone")
     return /Is This Satire\?/.test(ctx.text) ? "Somewhere, a narrator nods knowingly." : r() < 0.05 ? "a line that read like a wink" : null;
   if (schema.anyOf) return r() < 0.7 ? null : fill(schema.anyOf[0], r, key, ctx);
   if (key === "choice" && ctx.choices.length) return ctx.choices[Math.floor(r() * ctx.choices.length)];
+  if (key === "verdict" && schema.enum) {
+    if (/The Quarterly Return/.test(ctx.text)) return "skimmed";
+    const x = r();
+    return x < 0.45 ? "fine" : x < 0.62 ? "skimmed" : x < 0.7 ? "annoyed" : x < 0.92 ? "smiled" : "tell_a_friend";
+  }
   if (key === "delta" && schema.enum) {
     const max = Math.max(...schema.enum);
     const d = /The Quarterly Return/.test(ctx.text) ? -6 : Math.round(r() * 8 - 2.5);
