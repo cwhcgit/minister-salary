@@ -37,7 +37,7 @@
       "id": "strange_envelope",
       "triggered": true,
       "title": "Cleared",
-      "body": "Your grade is now cleared for SECRET, and the registry has released the envelope it was holding for you: one page, from your future self. Nearly all of it is redacted, in your own hand. One line is not: \"Take the leave.\"",
+      "body": "You are now cleared for SECRET, and the registry has released the envelope it was holding for you: one page, from your future self. Nearly all of it is redacted, in your own hand. One line is not: \"Take the leave.\"",
       "requires": { "maxRank": 7 },
       "alternates": ["strange_envelope_pol"],
       "choices": [
@@ -207,7 +207,7 @@
     {
       "id": "strange_clone",
       "title": "Two of You",
-      "body": "An A*STAR laboratory reports an accident, and itself, to MOH. The result is a second you: same memories, same appraisals, same leave balance. HR is clear that there is one post and one desk, and less clear whose they are.",
+      "body": "A research institute at one-north reports an accident, and itself, to MOH. The result is a second you: same memories, same appraisals, same leave balance. HR is clear that there is one post and one desk, and less clear whose they are.",
       "requires": { "minRank": 3, "maxRank": 6, "flagsNone": ["strange_met"] },
       "weight": 1,
       "once": true,
@@ -222,7 +222,7 @@
           "text": "Offer the other you the hard posting.",
           "effects": { "competence": 5, "reputation": 2, "standing": -3 },
           "setFlags": ["strange_met"],
-          "outcome": "The other you makes you the same offer, in the same words, at the same moment. HR posts you both to the statutory board in difficulty. It has never been so well run."
+          "outcome": "The other you makes you the same offer, in the same words, at the same moment. HR sends the other you, since you asked first by a second. The statutory board in difficulty has never been so well run."
         },
         {
           "text": "Propose a job-share under the flexi-work guidelines.",
