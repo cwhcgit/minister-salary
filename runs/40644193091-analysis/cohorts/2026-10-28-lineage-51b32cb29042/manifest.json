@@ -1,0 +1,35 @@
+{
+ "cohort": "2026-10-28-lineage-51b32cb29042",
+ "persona": {
+  "id": "lineage",
+  "name": "Sam Ong",
+  "file": "lineage.md",
+  "blind": true,
+  "model": "claude-sonnet-5-5",
+  "effort": "medium",
+  "runs": 30,
+  "lineage": {
+   "lineages": 6,
+   "runsEach": 5
+  },
+  "turnSchema": "player",
+  "diarySchema": "lineage",
+  "canaries": true,
+  "titleProbe": false,
+  "cohortCapUsd": 10,
+  "answers": "Does knowledge visibly improve outcomes? When is CEP inferred, and does it feel like discovery or unfairness?"
+ },
+ "buildHash": "51b32cb29042",
+ "buildRoot": "/home/runner/work/minister-salary/minister-salary/web",
+ "canaries": true,
+ "systemHash": "449cfb643829",
+ "runs": 30,
+ "plannedRuns": 30,
+ "capUsd": 10,
+ "maxTurns": 60,
+ "tags": "phone",
+ "concurrency": 4,
+ "dryRun": false,
+ "mock": false,
+ "createdAt": "2026-10-28T05:52:20.450Z"
+}

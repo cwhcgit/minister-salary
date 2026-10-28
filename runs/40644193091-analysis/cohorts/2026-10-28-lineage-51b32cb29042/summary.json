@@ -1,0 +1,3489 @@
+{
+ "cohort": "2026-10-28-lineage-51b32cb29042",
+ "persona": "lineage",
+ "model": "claude-sonnet-5-5",
+ "buildHash": "51b32cb29042",
+ "mock": false,
+ "runs": 30,
+ "turns": 1193,
+ "aborted": 0,
+ "autoPicks": 0,
+ "refusals": 0,
+ "cost": {
+  "total": 6.522,
+  "perRun": 0.2174,
+  "cacheReadShare": 68.4
+ },
+ "endings": {
+  "grad": {
+   "pm": 4,
+   "lostward": 2,
+   "retired": 3,
+   "quiet": 1
+  },
+  "poly": {
+   "permsec": 1,
+   "retired": 6,
+   "lostward": 3
+  },
+  "scholar": {
+   "pm": 4,
+   "retired": 6
+  }
+ },
+ "interest": {
+  "mean": 3.2,
+  "byAct": {
+   "I": {
+    "turns": 404,
+    "mean": 3.18,
+    "lowShare": 20.3,
+    "skippedYears": 4
+   },
+   "II": {
+    "turns": 84,
+    "mean": 4.36,
+    "lowShare": 0,
+    "skippedYears": 0
+   },
+   "III": {
+    "turns": 650,
+    "mean": 3.05,
+    "lowShare": 22.8,
+    "skippedYears": 26
+   }
+  }
+ },
+ "events": {
+  "__montage:the_work": {
+   "act": "I",
+   "shown": 37,
+   "meanInterest": 2,
+   "firstTimeInterest": null,
+   "repeatInterest": 2,
+   "weightyShare": 0,
+   "picks": {
+    "A": 37
+   },
+   "confusedBy": [
+    "Why silence at the satire question gave INTEG+1 and a wink; unclear what the wink means.",
+    "STAND dropped 5 even though COMP rose 9 after the IMC paper; unclear whether forcing a decision annoyed two ministries.",
+    "Appraisal says 'meeting requirements in most areas' even though stats went up; unclear how wording maps to grade.",
+    "Appraisal slid back to 'solid and dependable' after the concert choice, and STAND fell 3 while INTEG rose 6.",
+    "Y10 nomination of myself gave STAND-4 here; unclear if the ceiling rose, as the screen does not show it.",
+    "STAND dropped by 1 after fixing the process, and the appraisal was only 'meeting requirements in most areas' despite the big fix."
+   ],
+   "notes": [
+    "Only one choice this year; networking seems to have lifted REP and STAND.",
+    "The one sentence I am proud of is a nice touch.",
+    "Single-choice year; the lift laugh line was funny, and the ballot loss gave INTEG+8.",
+    "Single-option year; the paper forcing a decision cost STAND but raised REP and COMP.",
+    "STAND and COMP rose again, but REP is stuck at 22 even though the text keeps saying 'be seen'.",
+    "The officer I taught will be my Deputy Secretary in eleven years, so that is the callback from last life."
+   ]
+  },
+  "__montage:budget_round": {
+   "act": "I",
+   "shown": 3,
+   "meanInterest": 2,
+   "firstTimeInterest": null,
+   "repeatInterest": 2,
+   "weightyShare": 0,
+   "picks": {
+    "A": 3
+   },
+   "confusedBy": [
+    "Why I am an MP at Ministry of Manpower rather than a minister; I expected to ask for the hard ministry, but no choice for it appeared this year."
+   ],
+   "notes": [
+    "Budget bid is only choice A again; my notes say an over-exact bid cost STAND earlier, so I'll watch for that.",
+    "Single-choice year again at Perm Sec; still no Tea invitation at 44.",
+    "Budget Round returns with only one option; the earlier choice was apparently the only way to proceed."
+   ]
+  },
+  "__montage:the_quiet_year": {
+   "act": "III",
+   "shown": 33,
+   "meanInterest": 2.09,
+   "firstTimeInterest": null,
+   "repeatInterest": 2.09,
+   "weightyShare": 0,
+   "picks": {
+    "A": 33
+   },
+   "confusedBy": [
+    "STAND shows (-6) but the text only mentions the townhall going well.",
+    "Pay jumped from about $73.9k to $100.8k in one year; not sure why, maybe an annual bonus or the appraisal.",
+    "INTEG dropped 2 with no visible cause last year; unclear why.",
+    "STAND dropped 6 after a townhall that was praised and an outstanding appraisal; I do not understand why.",
+    "Why only one choice is offered; also the lifetime earnings jump versus the package figure.",
+    "Age 36 at Year 10 doesn't match my notes saying age 27 at Y1; also the title shows Senior Management Executive."
+   ],
+   "notes": [
+    "Nice that nothing blew up, but I don't trust it.",
+    "Networking moved the wording to 'solid and dependable'.",
+    "Checking email twice on holiday is relatable.",
+    "The nomination payoff from Y17 landed quietly, which was a nice touch.",
+    "Listening on camera gave REP+7 and a promotion to PS, so A at the Walkabout paid off.",
+    "Bintan joke about checking email twice was mildly funny."
+   ]
+  },
+  "__montage:the_townhall": {
+   "act": "III",
+   "shown": 19,
+   "meanInterest": 2.16,
+   "firstTimeInterest": null,
+   "repeatInterest": 2.16,
+   "weightyShare": 0,
+   "picks": {
+    "A": 19
+   },
+   "confusedBy": [
+    "Why STAND keeps sliding even with outstanding appraisals and 100 on everything else.",
+    "STAND keeps dropping by 6 a year while REP rises; not sure what drives it.",
+    "Why STAND stays low even with REP 100 and 'wider responsibility' praise; unclear what STAND actually gates.",
+    "STAND keeps drifting down (94, 87, 85) even though everything else is fine and appraisals stay glowing.",
+    "Why the GE vote share dropped to 55.9% yet I was still promoted to DPM, and what 'a timely reminder' meant.",
+    "STAND dropped another 6 even though the townhall went well; not sure why."
+   ],
+   "notes": [
+    "Single-option years are piling up; the game seems to be fast-forwarding to the PM decision.",
+    "Townhall repeats with a single option; the REP gain and STAND loss tradeoff seems to be baked in.",
+    "Townhall again, third year running.",
+    "Slides circulating as an example is a nice callback to the townhall years.",
+    "Still DPM, and this year is another single-option one.",
+    "COMP dropped 3 with no obvious cause; the single-choice years keep coming."
+   ]
+  },
+  "__montage:late_night": {
+   "act": "III",
+   "shown": 11,
+   "meanInterest": 2.18,
+   "firstTimeInterest": null,
+   "repeatInterest": 2.18,
+   "weightyShare": 0,
+   "picks": {
+    "A": 11
+   },
+   "confusedBy": [
+    "Level 9 at 11pm event has a single choice; unclear what it is testing, and what 'Go' means exactly.",
+    "Why the pay jumped from $228k to $457k in a year as PS, and the vague 'forgotten by March' line.",
+    "Level 9 at 11pm 'becomes a reputation' reads like a callback but I can't tell if it's good or bad.",
+    "STAND dropped 6 after conceding and the letter being thanked but not published; unclear why.",
+    "REP is only 18 while STAND is 38 and COMP is 88; I don't know what moves REP.",
+    "Why a single-option year is presented as a choice at all."
+   ],
+   "notes": [
+    "Pay dropped to $228k as MP from the Deputy Secretary package; GRC win at 61.4% gave REP+5.",
+    "The MPS letter choice raised REP by 3 as I hoped.",
+    "Family-over-work gave INTEG+6 and STAND-3 again, matching Life 1 notes.",
+    "Level 9 at 11pm becoming a reputation feels like a setup for a later callback.",
+    "The line about the concert and the deadline both being forgotten by March is a nice touch, but the game is giving me no real choices at this level.",
+    "The cleaner knowing my name is a nice touch, but this is a lot of years of the same late night."
+   ]
+  },
+  "__montage:the_pq": {
+   "act": "III",
+   "shown": 41,
+   "meanInterest": 2.22,
+   "firstTimeInterest": null,
+   "repeatInterest": 2.22,
+   "weightyShare": 0,
+   "picks": {
+    "A": 41
+   },
+   "confusedBy": [
+    "Why the only choice is 'as usual' and what writing written answers as if oral changes.",
+    "COMP dropped 3 with no event explaining it, and 55.9% is a thin margin for a DPM.",
+    "Why INTEG dropped 4 after pushing GDP, and why this year only offers one choice.",
+    "The Y37 text says I will retire as DPM, which is not what I wanted. It seems backing the other name capped me at DPM, not PM.",
+    "Why the notes show Minister MR4 earlier but the screen says MR3 now.",
+    "Vote share dropped to 55.9% and the 'timely reminder' line is vague; also why STAND fell without a clear cause."
+   ],
+   "notes": [
+    "Single-choice year; feels like the game is signalling a routine tick before the succession decision.",
+    "Finally DPM after walking every block; 'timely reminder' is a classic non-answer.",
+    "Single-option year again; my name is now one of two being weighed for the top job.",
+    "GE on record gave 61.2% again, matching Life 2.",
+    "A planted supplementary from my own side finally arrives, which is a nice callback.",
+    "Single option year, no agency."
+   ]
+  },
+  "__montage:the_appraisal_talk": {
+   "act": "I",
+   "shown": 30,
+   "meanInterest": 2.27,
+   "firstTimeInterest": null,
+   "repeatInterest": 2.27,
+   "weightyShare": 0,
+   "picks": {
+    "A": 30
+   },
+   "confusedBy": [
+    "Appraisal wording keeps flipping between 'solid and dependable' and 'meeting requirements in most areas' while stats rise.",
+    "Why visibility is mentioned twice while REP dropped by 2.",
+    "The new acronym is never explained.",
+    "The new acronym in the blurb is never explained. The CEP reveal says the potential estimate is never disclosed to me.",
+    "Why visibility keeps being raised when REP is stuck at 26.",
+    "The new acronym is never explained, and I don't know what 'stretch assignment' will lead to."
+   ],
+   "notes": [
+    "Visibility mentioned twice, perhaps a hint that REP needs it.",
+    "Visibility mentioned twice in appraisal; option B (be visible) at Y5 may matter.",
+    "Another appraisal talk with only one option; the 'new acronym' joke is mildly funny.",
+    "'It is always very tight this year' is a decent joke.",
+    "The appraisal wording moved up to 'solid and dependable' after I wrote the plan.",
+    "Another single-option appraisal conversation. REP is stuck at 22 while STAND and COMP keep rising."
+   ]
+  },
+  "__montage:the_walkabout": {
+   "act": "III",
+   "shown": 32,
+   "meanInterest": 2.34,
+   "firstTimeInterest": null,
+   "repeatInterest": 2.34,
+   "weightyShare": 0,
+   "picks": {
+    "A": 32
+   },
+   "confusedBy": [
+    "STAND keeps sliding even when the appraisal says outstanding and there is only one option each year.",
+    "STAND dropped 2 even though the clip went well and REP rose 7.",
+    "COMP dropping 3 with no explanation after the campaign.",
+    "COMP dropped 3 again with no obvious cause; the swing to 58.6% felt like a drop from 61.4% but was called normal.",
+    "STAND dropped 2 with no event that explains it.",
+    "Only one choice offered, and the umbrella photo seems to favour optics over substance."
+   ],
+   "notes": [
+    "The chilli stallholder walkabout is back again; it feels like a repeating event.",
+    "Walkabout repeats yearly, single option this time.",
+    "Umbrella photo is a nice touch, but the Walkabout is now a yearly single-option event.",
+    "Single-option year; chillies joke was decent.",
+    "Chillies line was funny; 'close somewhere else' is a nice dry jab.",
+    "Another single-option year; the umbrella photo is a nice touch."
+   ]
+  },
+  "__montage:the_mps_night": {
+   "act": "III",
+   "shown": 51,
+   "meanInterest": 2.39,
+   "firstTimeInterest": null,
+   "repeatInterest": 2.39,
+   "weightyShare": 0,
+   "picks": {
+    "A": 51
+   },
+   "confusedBy": [
+    "STAND dropped 4 even though I answered straight and the appraisal says wider responsibility.",
+    "Notes warned about a 300-word limit but the earlier prompt said 200; unclear which applies. Also STAND dropped 5 despite being one of two names weighed.",
+    "STAND keeps dropping (58 now) even though I'm DPM with REP, INTEG and COMP all at 100.",
+    "Last year says I'll retire as the most powerful DPM, which suggests backing the other name capped me below PM.",
+    "Asked for the hard ministry but ended up at Finance; the screen text mentioned housing/health/transport, which didn't match.",
+    "STAND fell another 6 to 55 while the appraisal still says 'outstanding, with clear potential for wider responsibility'."
+   ],
+   "notes": [
+    "Only one choice offered; the man with the kueh is a nice human touch.",
+    "Quiet constituency year after the big succession moment; STAND keeps sliding after plain-speaking choices.",
+    "Sixth or so year of appeal letters; the volunteers bringing their own chairs is a nice touch.",
+    "The man with the closed case came back with kueh, nice callback to Y22 MPS.",
+    "STAND dropped 4 again with no visible cause; wonder if it's tied to the PM race.",
+    "Nice callback to the appeal letters from MPS years."
+   ]
+  },
+  "the_work": {
+   "act": "I",
+   "shown": 25,
+   "meanInterest": 2.88,
+   "firstTimeInterest": 2.95,
+   "repeatInterest": 2.5,
+   "weightyShare": 48,
+   "picks": {
+    "B": 22,
+    "A": 2,
+    "C": 1
+   },
+   "confusedBy": [
+    "REP, STAND, INTEG and COMP are not explained. I assume reputation, standing, integrity and competence, but I'm not sure.",
+    "What REP, STAND, INTEG and COMP each do, and whether being seen costs INTEG.",
+    "The wink: unclear whether it was meant as approval or something else.",
+    "Appraisal says 'meeting requirements in most areas' which seems lukewarm after a decent year.",
+    "Not sure what STAND actually does, it barely moves."
+   ],
+   "notes": [
+    "The pay formula for the PM is published, so I'm curious how big the gap really is.",
+    "The 'nobody's name is on it' line is a nice touch, but then option B is literally about putting your name on it.",
+    "Finally a visibility option, though the text says nobody's name is on the work.",
+    "Testing the early climb with visibility this time.",
+    "Nice line about nobody's name being on it.",
+    "Appraisal back to 'solid and dependable' after the implementation plan became mine."
+   ]
+  },
+  "the_quiet_year": {
+   "act": "I",
+   "shown": 30,
+   "meanInterest": 2.93,
+   "firstTimeInterest": 2.96,
+   "repeatInterest": 2.67,
+   "weightyShare": 46.7,
+   "picks": {
+    "B": 15,
+    "A": 15
+   },
+   "confusedBy": [
+    "\"Meeting requirements in most areas\" - is that good or bad for promotion? Also unclear what 'some choices come back' means here.",
+    "Grade shows MR3 now though my notes said MR4; unsure whether that is a demotion or just how the ranks are numbered.",
+    "The wink: I can't tell whether it was a loyalty signal or something else, and no stat change explains it.",
+    "Not sure whether 'something nobody asked you to fix' is a hidden-reward option or just more thankless work like the lifts.",
+    "Why REP dropped 4 when the lifts were done correctly; the delay cost me with residents.",
+    "COMP dropped 3 with no explanation."
+   ],
+   "notes": [
+    "Bintan line made me laugh, very Singapore.",
+    "The narrator joke about the salary being the punchline is a fun fourth-wall nudge.",
+    "Nothing breaks while I'm away: compliment or warning, nice line.",
+    "Reporting officer hinting I should leave the service after year one is harsh.",
+    "Nothing breaking while I'm away: compliment or warning, I can't tell.",
+    "Putting myself forward cost STAND-5 but got my name down to one of two."
+   ]
+  },
+  "the_indicators": {
+   "act": "III",
+   "shown": 74,
+   "meanInterest": 2.97,
+   "firstTimeInterest": 3.5,
+   "repeatInterest": 2.75,
+   "weightyShare": 40.5,
+   "picks": {
+    "B": 48,
+    "A": 3,
+    "C": 23
+   },
+   "confusedBy": [
+    "The line that the indicators and the bonus do not record who moved them. I'm not sure if it hints at a hidden credit-taking mechanic.",
+    "Which two of the four indicators my ministry's levers actually move.",
+    "Which two of the four indicators my ministry's levers actually move; it only says two, and the bonus is blind to who moved them.",
+    "Which two of the four indicators my ministry's levers actually move.",
+    "Asking for the hard ministry gave me MSF, not housing, health or transport, so I can't tell if the ceiling rose.",
+    "The line that the bonus does not record who moved the indicators."
+   ],
+   "notes": [
+    "Last year's board seat decline was apparently framed as a curiosity in the chairman's office, so the callback might come later.",
+    "The line that the bonus doesn't record who moved the indicators reads like a hint about credit-taking.",
+    "Nobody records who moved the indicators, which sounds like a line the game wants me to think about.",
+    "The line about indicators not recording who moved them reads like a hint about credit and honesty.",
+    "Notes say Y38 was the end of the last life, but I'm at Y39 as a Minister, so this life seems to be a different run.",
+    "Last year's bonus text about the formula being unmentioned was a nice dry line."
+   ]
+  },
+  "new_ro": {
+   "act": "I",
+   "shown": 14,
+   "meanInterest": 3,
+   "firstTimeInterest": 3,
+   "repeatInterest": null,
+   "weightyShare": 92.9,
+   "picks": {
+    "A": 11,
+    "B": 3
+   },
+   "confusedBy": [
+    "Notes say Meet-the-People at Y9 gave an MP's notice in Life 3, but this year's event is different, so the timing is not fixed by year.",
+    "STAND dropped 4 after a year described as just 'Another year', and I don't know why.",
+    "This isn't the officer-teaching event my earlier lives had at Y11; maybe that one comes from a different path.",
+    "Why STAND dropped 8 while INTEG rose 12 after telling the Minister early.",
+    "Deputy Secretary at age 32 in Year 7 is wildly fast, and I'm unsure why the board mismatch was about grade.",
+    "Senior Director at 29 and a Superscale grade this early, plus pay jumping to $254k, felt oddly fast."
+   ],
+   "notes": [
+    "Pay is creeping up by only a few hundred a year despite stat gains, which feels slow.",
+    "Director presenting my slides as his own felt like a callback to the Y12 choice.",
+    "Hardest file option is tempting, but people choices seem to be the real lever.",
+    "Satire card B seems to have been fine, since I got promoted to MX12.",
+    "Y12 secondment gave COMP+10 but STAND-2, so the phone only starts ringing later.",
+    "Y8 notes said an MX12 promotion came from the Y7 plan, yet the appraisal wording is only 'solid and dependable'."
+   ]
+  },
+  "speech_vindicated": {
+   "act": "III",
+   "shown": 6,
+   "meanInterest": 3,
+   "firstTimeInterest": 3,
+   "repeatInterest": null,
+   "weightyShare": 33.3,
+   "picks": {
+    "A": 6
+   },
+   "confusedBy": [
+    "Why COMP dropped 3 after an outstanding appraisal",
+    "Why the front bench looking up the original matters; it might be a test of how I respond."
+   ],
+   "notes": [
+    "Front bench looking up the original feels like a setup for a callback.",
+    "Campaigning on the record got 61.2%, better than the 58.6% from walking every block.",
+    "Someone on the front bench looking up the original feels like a setup for a later callback.",
+    "Seated facing the door is a nice touch.",
+    "Front bench looking up the original feels like a setup for a callback.",
+    "Is the front bench checking whether the quote was accurate or whether I'd react?"
+   ]
+  },
+  "budget_round": {
+   "act": "I",
+   "shown": 10,
+   "meanInterest": 3,
+   "firstTimeInterest": 3,
+   "repeatInterest": null,
+   "weightyShare": 50,
+   "picks": {
+    "B": 7,
+    "A": 3
+   },
+   "confusedBy": [
+    "The rumour says the next step is a different life, which probably means a political invitation, but it is not clear what triggers it.",
+    "Why I'm a Deputy Secretary at 30 in MOF and still bidding for eleven officers; also the wink last year.",
+    "Senior Director at 27 in Year 2 seems odd, and I don't know why the first life notes mention a Y1 pen when this Y1 was a clearance.",
+    "Age 30 as Deputy Secretary with $1.02M lifetime earnings feels very fast; also unclear what 'Superscale' means for the climb.",
+    "Senior Director at 28 and a $257k package looks very fast, and the 'Eleven years later' flash-forward was odd."
+   ],
+   "notes": [
+    "Notes said ask ceiling at Y14, but this year's event is the Budget Round, so no such option appears here.",
+    "The rumour line confirms the political invitation is the next step beyond Perm Sec.",
+    "CEP line in the last-year text was a nice touch; I think about it in the lift too.",
+    "Fourth on a poster felt true to life.",
+    "Fourth on a poster is a good line.",
+    "Honest-ask option feels like the INTEG route, but none of these says 'pen' or 'put yourself forward'."
+   ]
+  },
+  "secondment_verdict": {
+   "act": "I",
+   "shown": 1,
+   "meanInterest": 3,
+   "firstTimeInterest": 3,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "B": 1
+   },
+   "confusedBy": [],
+   "notes": []
+  },
+  "overseas_posting": {
+   "act": "I",
+   "shown": 2,
+   "meanInterest": 3,
+   "firstTimeInterest": 3,
+   "repeatInterest": null,
+   "weightyShare": 50,
+   "picks": {
+    "C": 2
+   },
+   "confusedBy": [
+    "Age 26 with a nine-year-old daughter and starting as Senior Director seems odd.",
+    "Age 26 with a nine-year-old daughter and Senior Director rank at Year 1 seems odd."
+   ],
+   "notes": [
+    "Notes from the earlier life mention a ceiling, so I'll watch how this choice gets described in later appraisals."
+   ]
+  },
+  "cos_vindicated": {
+   "act": "I",
+   "shown": 1,
+   "meanInterest": 3,
+   "firstTimeInterest": 3,
+   "repeatInterest": null,
+   "weightyShare": 0,
+   "picks": {
+    "B": 1
+   },
+   "confusedBy": [
+    "Which option the game treats as the honest or hard one here. Pitching the pilot could also read as credit-grabbing."
+   ],
+   "notes": [
+    "Nice callback to the COS choice in Y4. Telling the Minister early that there was nothing is paying off."
+   ]
+  },
+  "dialogue_vindicated": {
+   "act": "I",
+   "shown": 2,
+   "meanInterest": 3,
+   "firstTimeInterest": 3,
+   "repeatInterest": null,
+   "weightyShare": 0,
+   "picks": {
+    "A": 2
+   },
+   "confusedBy": [
+    "Why my Permanent Secretary is above me when I'm already a Perm Sec; this might be a different ministry hierarchy.",
+    "Not sure why the raw feedback event is back as a callback with a Perm Sec nudge; unclear if the follow-up is a trap or a boost."
+   ],
+   "notes": [
+    "The rumour says the next step is a different life, which sounds like politics is coming.",
+    "Perm Sec's silent forward is peak Singapore civil service."
+   ]
+  },
+  "the_mps_night": {
+   "act": "III",
+   "shown": 32,
+   "meanInterest": 3.03,
+   "firstTimeInterest": 3.16,
+   "repeatInterest": 2.57,
+   "weightyShare": 18.8,
+   "picks": {
+    "B": 11,
+    "A": 20,
+    "C": 1
+   },
+   "confusedBy": [
+    "STAND dropped 3 on promotion to PS with no explanation.",
+    "Why STAND dropped another 6 while everything else is capped at 100.",
+    "Vote share fell from 61.4% to 58.6% even though I walked every block; unsure how REP rose anyway.",
+    "REP dropped 4 even though last year's choice was the correct one; STAND also fell from 80 to 73.",
+    "Age jumped from 35 at Y9/Y10 to 38 at Y13, which is a bit off. Also unclear whether anything is gained from the hopeless case.",
+    "Last year's text says I'll retire as the most powerful DPM ever, 'not the thing you wanted'. That reads like a ceiling cap at DPM."
+   ],
+   "notes": [
+    "The man who comes every week for a case that can't be reopened felt very true to life.",
+    "STAND drop accelerating: 58 to 52. Maybe it decays with age or tenure, not choices.",
+    "Nice callback to the notes about untested B and C at MPS; this time testing A first in life 2.",
+    "Man with the unreopenable case feels like a callback waiting to happen.",
+    "58.6% as a GE result again, same as the earlier walking run; swing is called normal.",
+    "The man with the case that can't be reopened feels like a callback waiting to happen."
+   ]
+  },
+  "re_election": {
+   "act": "III",
+   "shown": 128,
+   "meanInterest": 3.13,
+   "firstTimeInterest": 3.42,
+   "repeatInterest": 3.06,
+   "weightyShare": 86.7,
+   "picks": {
+    "B": 93,
+    "A": 35
+   },
+   "confusedBy": [
+    "Notes say Y24 but screen is Y25 and age 47; also STAND dropped 4 despite the appraisal wording.",
+    "My notes say Y29 was a Correction Direction, but the screen says I conceded in a Facebook post. Not sure if that is the same event.",
+    "STAND dropped 2 despite an 'outstanding' appraisal with potential for wider responsibility.",
+    "Why STAND dropped 4 last year with no choice made.",
+    "STAND keeps sliding even though appraisals say 'outstanding' and 'clear potential for wider responsibility'.",
+    "STAND keeps sliding even though I'm being promoted and REP is capped at 100."
+   ],
+   "notes": [
+    "The Y15 Deputy Secretary callback landed: STAND jumped +12 after he put my name forward.",
+    "Poster bigger this time - nice callback to Y27 and Y28 elections.",
+    "STAND is recovering nicely after the note to the newer MP; she framed it, which is a nice callback.",
+    "STAND dropped another 4 despite outstanding appraisal; still no DPM news.",
+    "Age 69 and still walking blocks, which is a bit absurd.",
+    "Tempted to test A, but PM is the goal and walking has been reliable."
+   ]
+  },
+  "the_night_degree": {
+   "act": "I",
+   "shown": 10,
+   "meanInterest": 3.2,
+   "firstTimeInterest": 3.2,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 10
+   },
+   "confusedBy": [
+    "STAND dropped by 2 even though REP and COMP went up; not sure what STAND tracks.",
+    "Why STAND dropped by 2 even though the honest answer got a senior person's attention.",
+    "Why STAND dropped by 2 even after the honest answer at the counter.",
+    "Why the appraisal says 'meeting requirements in most areas' after a result that impressed senior people."
+   ],
+   "notes": [
+    "The eleven things in their hands is a nice touch, and the part-time degree feels like a callback to the cohort who studied full-time.",
+    "Part-time degree route feels like a fairness/grit theme; wonder if it pays off later.",
+    "Part-time degree arc feels like a real Singapore story.",
+    "Part-time degree arc feels like a long-term setup that may pay off or return later.",
+    "The part-time degree detail feels very Singapore.",
+    "Age 28 at Y2 with a poly+night-class background, so the game is clearly modelling a slower path than the full-time cohort."
+   ]
+  },
+  "bto_queue": {
+   "act": "I",
+   "shown": 12,
+   "meanInterest": 3.25,
+   "firstTimeInterest": 3.25,
+   "repeatInterest": null,
+   "weightyShare": 66.7,
+   "picks": {
+    "A": 11,
+    "B": 1
+   },
+   "confusedBy": [],
+   "notes": [
+    "Nice touch that the ballot is run by the same ministry, so it feels like a test of integrity.",
+    "Fourth BTO ballot feels very Singapore; this one smells like an integrity test.",
+    "Nice touch that I work in the building that runs the scheme; smells like an integrity test.",
+    "Working in the building that runs the BTO scheme smells like an integrity test.",
+    "Nice touch that the BTO ballot is set in the building that runs the scheme; it feels like an integrity test.",
+    "Working in the building that runs the scheme feels like a deliberate integrity test."
+   ]
+  },
+  "committee_vindicated": {
+   "act": "I",
+   "shown": 4,
+   "meanInterest": 3.25,
+   "firstTimeInterest": 3.25,
+   "repeatInterest": null,
+   "weightyShare": 75,
+   "picks": {
+    "A": 2,
+    "B": 2
+   },
+   "confusedBy": [
+    "Age 39 at Year 13 while earlier notes mention Y20-22 GRC entry; pay seems low relative to lifetime earnings."
+   ],
+   "notes": [
+    "The paper from Y16 coming back as the new committee's terms of reference is a nice callback.",
+    "Nice callback to the people-first reorg choice; someone will repay it.",
+    "Name in the footer feels like a test of visible vs unannounced work.",
+    "The officer I taught will be my Deputy Secretary in eleven years, so the Y48 callback looks real."
+   ]
+  },
+  "postit_workshop": {
+   "act": "I",
+   "shown": 19,
+   "meanInterest": 3.26,
+   "firstTimeInterest": 3.26,
+   "repeatInterest": null,
+   "weightyShare": 73.7,
+   "picks": {
+    "C": 17,
+    "A": 2
+   },
+   "confusedBy": [
+    "Appraisal dropped to 'meeting requirements in most areas' after 'solid and dependable', unclear why.",
+    "I don't know what STAND measures, or why it went up this year while REP stayed lower.",
+    "Senior Director Superscale at age 27 in Year 2 feels oddly fast."
+   ],
+   "notes": [
+    "Promoted to MX12 after 'strong, consistently exceeding expectations'; the offsite satire is accurate.",
+    "Queue number 2,847 of 610 units made me laugh.",
+    "Post-its and acronym joke is painfully accurate.",
+    "The post-its and the 'agile, citizen-centric, data-driven' line are very real.",
+    "Offsite A/B/C is something my earlier notes listed as untested, so I'm trying C this time.",
+    "The post-its offsite felt painfully accurate."
+   ]
+  },
+  "the_appraisal_talk": {
+   "act": "I",
+   "shown": 22,
+   "meanInterest": 3.27,
+   "firstTimeInterest": 3.2,
+   "repeatInterest": 4,
+   "weightyShare": 72.7,
+   "picks": {
+    "C": 15,
+    "A": 4,
+    "B": 3
+   },
+   "confusedBy": [
+    "Why the appraisal wording keeps fluctuating while my stats only go up.",
+    "Being told to be more visible without saying to whom, and why the appraisal wording hasn't changed despite rising stats.",
+    "Why REP dropped 2 even though the Y1 plan choice raised STAND and COMP.",
+    "Why STAND dropped 3 when I bid exactly what I needed and got 70%.",
+    "Visible to whom? She never said, and the winking last year was odd.",
+    "CEP is described as the service's estimate of my ceiling, but I don't know what moves it besides the stats I can see."
+   ],
+   "notes": [
+    "The 'be more visible without saying to whom' line felt painfully real.",
+    "RO says 'more visible' without saying to whom, which feels very real.",
+    "Director taking credit for my slides stung a bit, but the appraisal still went up.",
+    "Sideways transfer after a diligent return felt harsh.",
+    "Reporting officer asking for visibility without saying to whom is painfully accurate.",
+    "Y1 already offers the ask-ceiling option, though my notes say to do that at Y14."
+   ]
+  },
+  "the_townhall": {
+   "act": "III",
+   "shown": 23,
+   "meanInterest": 3.3,
+   "firstTimeInterest": 3.3,
+   "repeatInterest": null,
+   "weightyShare": 69.6,
+   "picks": {
+    "A": 20,
+    "B": 3
+   },
+   "confusedBy": [
+    "STAND keeps dropping (-4 again) with no clear reason, now 61 and near the promotion threshold.",
+    "Why STAND keeps sliding even though I'm promoted and the appraisal says 'wider responsibility'.",
+    "MR3 now, though my notes said MR4 earlier; maybe a demotion or a different grade scale.",
+    "Why the hard ministry ended up as MOM, and why REP dropped 4 while STAND and COMP jumped.",
+    "Why STAND is so low (3) while REP, INTEG and COMP are all near 100; unclear what it actually gates."
+   ],
+   "notes": [
+    "COMP dipped -3 for the first time in ages, curious why.",
+    "Lift decision cost REP -4 as expected, but appraisal still outstanding.",
+    "Lift contract paid off slowly: REP -4 for doing it right, and promoted anyway.",
+    "Promoted to DPM at Y41 here, and the notes say Y40-45 DPM years are mostly single-option, so this choice is a nice change.",
+    "Handover notes whose first page says 'for information' made me laugh.",
+    "STAND slipping two years running while appraisal is still glowing is worrying."
+   ]
+  },
+  "late_night": {
+   "act": "I",
+   "shown": 19,
+   "meanInterest": 3.32,
+   "firstTimeInterest": 3.32,
+   "repeatInterest": null,
+   "weightyShare": 68.4,
+   "picks": {
+    "B": 16,
+    "A": 3
+   },
+   "confusedBy": [
+    "Pay jumped from $48k to $71k at MX12 while lifetime earnings show $450k; also I have a daughter now, which I never chose.",
+    "Concert was at eight and it's 11:40pm, so 'Go' is oddly framed.",
+    "Concert was at eight and it's 11:40pm, so 'Go' is a bit odd; I'd be going home, not to the concert.",
+    "Screen says the concert was at eight and it's 11:40pm, so Go seems to mean going home; also I have a daughter now, which is new to me.",
+    "Why STAND dropped by 1 this year, and the line about my daughter's concert, since I never chose to have a child.",
+    "I have a daughter in this life, and the game never told me. Family over work was flagged in my notes as costing STAND."
+   ],
+   "notes": [
+    "The 11:40pm clearance scene is a good gut punch; it feels like a work vs family trade-off that will come back.",
+    "Work-life choice; suspect it comes back later via family.",
+    "Classic work-life choice; suspect it comes back as a family or reputation callback.",
+    "First real work-life tradeoff, and it looks like one of those choices that come back later.",
+    "Family over work gave INTEG+6 but STAND-3 earlier; wondering if this callbacks.",
+    "Family over work gave INTEG+6 but STAND-3 before; STAND is 74 now so I can afford it."
+   ]
+  },
+  "town_council": {
+   "act": "III",
+   "shown": 22,
+   "meanInterest": 3.32,
+   "firstTimeInterest": 3.32,
+   "repeatInterest": null,
+   "weightyShare": 86.4,
+   "picks": {
+    "A": 22
+   },
+   "confusedBy": [],
+   "notes": [
+    "Option B reads like a trap; the contractor's cousin is a giveaway.",
+    "Contractor's cousin is a classic conflict-of-interest flag; B looks like a trap that comes back later.",
+    "Contractor's cousin is a classic Singapore town council trap.",
+    "Contractor's cousin is a pretty obvious integrity trap; 'sort paperwork after' smells like it comes back later.",
+    "Lorry swing of six points noted; someone wrote it down, so maybe STAND will move.",
+    "The 'contractor has a cousin' line smells like a test for INTEG and a callback later."
+   ]
+  },
+  "the_walkabout": {
+   "act": "III",
+   "shown": 27,
+   "meanInterest": 3.33,
+   "firstTimeInterest": 3.35,
+   "repeatInterest": 3,
+   "weightyShare": 18.5,
+   "picks": {
+    "A": 27
+   },
+   "confusedBy": [
+    "STAND fell 6 this year with no clear cause, and I don't know why STAND keeps dropping while REP stays at 100.",
+    "STAND dropped 3 this year with no obvious cause."
+   ],
+   "notes": [
+    "Chillies at volume is very Singapore.",
+    "Chilli aunty at 7:20am is very Singapore.",
+    "REP dropped 4 after the lift upgrade, which is the price of doing it properly.",
+    "A one-line 'That needed saying' from a Minister is a nice payoff for the honest Maiden Speech.",
+    "Chilli auntie at 7:20am is very Singapore.",
+    "Chilli auntie on camera feels like a classic test of whether listening pays off."
+   ]
+  },
+  "national_day_award": {
+   "act": "I",
+   "shown": 9,
+   "meanInterest": 3.33,
+   "firstTimeInterest": 3.33,
+   "repeatInterest": null,
+   "weightyShare": 0,
+   "picks": {
+    "B": 9
+   },
+   "confusedBy": [
+    "Why the paper forcing a decision gave REP+5 but STAND-5 and only a 'solid and dependable' appraisal.",
+    "Why STAND fell 5 while REP and COMP rose after the paper; two ministries objecting probably cost standing.",
+    "Senior Director at age 28 after 2 years is oddly fast; unclear what the winking Director meant.",
+    "Being Permanent Secretary (Staff Grade) at 32 feels absurdly fast, so I wonder if promotion speed is tied to the ceiling."
+   ],
+   "notes": [
+    "Mother not understanding which award it is made me smile.",
+    "Mother being proud without knowing which award it is made me laugh.",
+    "Mother not understanding which award it is made me smile.",
+    "Mother being proud without knowing which award it is made me laugh.",
+    "Mother who is proud but doesn't know which award is a nice touch.",
+    "Mother not understanding which award it is made me smile."
+   ]
+  },
+  "mps_duty": {
+   "act": "I",
+   "shown": 11,
+   "meanInterest": 3.36,
+   "firstTimeInterest": 3.36,
+   "repeatInterest": null,
+   "weightyShare": 90.9,
+   "picks": {
+    "A": 11
+   },
+   "confusedBy": [
+    "Decline option cites a young family at age 56, which seems off.",
+    "Senior Director at 28 and a $259k package is very fast; I don't see how the Y2 bid led to that.",
+    "Senior Director [Superscale] at age 26 in Year 1 seems odd as a starting grade."
+   ],
+   "notes": [
+    "Pressing HR about CEP cost INTEG-2 but gave no actual answer.",
+    "Option C mentions a young family that I never set up in my life; curious if family over work gives INTEG+6 STAND-3 again.",
+    "First event that smells like politics; Meet-the-People Session feels like the invitation path.",
+    "Finally the MP event my notes were waiting for. Declining for family is flagged as a STAND loser.",
+    "Meet-the-People appears at Y7 this time, much earlier than Y30 in life 1.",
+    "MTP sessions look like the political invitation pipeline; the 'young family' option feels like a trap given Y5 skipping late work."
+   ]
+  },
+  "the_pq": {
+   "act": "III",
+   "shown": 29,
+   "meanInterest": 3.38,
+   "firstTimeInterest": 3.46,
+   "repeatInterest": 3,
+   "weightyShare": 65.5,
+   "picks": {
+    "A": 25,
+    "C": 4
+   },
+   "confusedBy": [
+    "Asked for a hard ministry (housing/health/transport) but got Trade and Industry.",
+    "Still no Reshuffle; the notes said ~Y32-33 but it hasn't appeared yet.",
+    "STAND dropped 2 even though the appraisal was glowing and the bonus matched target.",
+    "STAND dropped 3 on promotion to SPS, and I don't know why.",
+    "INTEG dropped 4 last year with nothing obvious causing it.",
+    "Why STAND keeps dropping (73, -6) and the appraisal wording slipping from 'outstanding' to 'strong'."
+   ],
+   "notes": [
+    "Ward swing of six points feels like a payoff for walking every block.",
+    "STAND dropped 14 from asking about the bonus indicators; that's a big cost.",
+    "Testing C at PQ for the first time.",
+    "Walkabout listening paid off with REP+7, good to see.",
+    "Hard ministry request landed in MTI, not a queue-and-waiting-list ministry.",
+    "Dodging with B looks like an INTEG trap, and C feels like a half-dodge."
+   ]
+  },
+  "headhunter_political": {
+   "act": "III",
+   "shown": 15,
+   "meanInterest": 3.4,
+   "firstTimeInterest": 3.4,
+   "repeatInterest": null,
+   "weightyShare": 93.3,
+   "picks": {
+    "B": 15
+   },
+   "confusedBy": [
+    "Why STAND stays flat at 50 this year while REP rises.",
+    "STAND keeps dropping (46) even while I'm getting promoted; unclear what rebuilds it besides networking.",
+    "Why STAND keeps sliding about 6 a year with no clear cause.",
+    "Why a PS is offered a board role meant for someone in or near Cabinet."
+   ],
+   "notes": [
+    "A board role that pays more than the PM, four meetings a year, looks like a pure integrity and ambition test.",
+    "Pays more than the PM for four meetings a year - obviously a temptation test.",
+    "Board Seat reads like a loyalty test; resigning my seat looks like a dead end.",
+    "A board seat that pays more than the PM is a funny temptation, and obviously a trap for a run aiming at the top.",
+    "A board seat that pays more than the PM, offered right when I'm one of two names, reads like a loyalty test.",
+    "Pays more than the PM, which is a nice little temptation test."
+   ]
+  },
+  "pofma_vindicated": {
+   "act": "III",
+   "shown": 8,
+   "meanInterest": 3.5,
+   "firstTimeInterest": 3.5,
+   "repeatInterest": null,
+   "weightyShare": 62.5,
+   "picks": {
+    "B": 7,
+    "A": 1
+   },
+   "confusedBy": [
+    "Why STAND keeps sliding despite 100 INTEG and COMP rising, and what the 'Third Point' callback is meant to lead to.",
+    "Which 'post' and 'third point' this refers to, since I have no record of it in my notes.",
+    "Why STAND keeps dropping while appraisals say outstanding.",
+    "Which post's author is meant; assuming it is the Facebook post or the third-point suggester.",
+    "STAND dropped 14 while REP rose 12 after the Cabinet question; unclear which hidden stat that really feeds."
+   ],
+   "notes": [
+    "Nice callback to the Correction Direction third point from Y29.",
+    "The third point keeps coming back, so earlier public choices do return.",
+    "Third Point callback to Y33 Correction Direction; wondering if this is the PM test about credit versus visibility.",
+    "STAND fell 14 after last year's question, so the ceiling or Minister appointment may depend on ownership rather than STAND.",
+    "Nice callback to the Y21 Correction Direction where I answered the third point publicly.",
+    "The Third Point callback to my Facebook concession."
+   ]
+  },
+  "leadership_programme": {
+   "act": "I",
+   "shown": 9,
+   "meanInterest": 3.56,
+   "firstTimeInterest": 3.56,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "C": 4,
+    "A": 5
+   },
+   "confusedBy": [
+    "The header says MX11 after promotion, but my notes say MX12 last year, so I am not sure how the grades are numbered.",
+    "I'm the director in the text, yet my director asks for my view; not sure who is who.",
+    "Two names go forward but I'm asked for my view on who: unclear whether naming myself counts as one of the two.",
+    "Why STAND dropped 3 even though I was promoted and appraised as outstanding.",
+    "Age 27 as Senior Director in Superscale at Year 2 seems odd; unsure why STAND dropped 3.",
+    "Senior Director at age 28, Year 3 is a very fast jump, and INTEG dropped after I stayed silent."
+   ],
+   "notes": [
+    "CEP showing up as 'Currently Estimated Potential' confirms the hidden ceiling idea.",
+    "The director presenting my slides as his own is a nice touch of realism.",
+    "Y9 Tuesdays paid off nicely: REP+10 STAND+4 INTEG+6 and a promotion.",
+    "Leadership Programme might be the sponsor/invitation route.",
+    "Self-nomination looks like STAND bait, but it may read as grasping; testing the generous option.",
+    "The supervised officer becoming my Deputy Secretary in eleven years is a nice long-fuse callback."
+   ]
+  },
+  "reorg": {
+   "act": "I",
+   "shown": 9,
+   "meanInterest": 3.56,
+   "firstTimeInterest": 3.56,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 4,
+    "C": 5
+   },
+   "confusedBy": [
+    "Age 28 as a Senior Director in Superscale in Year 3 feels odd, and the pay is huge for a junior officer.",
+    "Senior Director at 28 with a $250k package seems oddly fast."
+   ],
+   "notes": [
+    "One fewer director box is a classic test of self versus people.",
+    "One fewer director box feels like a deliberate test of selfishness.",
+    "Early return seems to have nudged STAND +1 or the promotion, can't tell which.",
+    "STAND dropped 4 after the bolted-on pillar, so honesty cost visibility again.",
+    "Big bid paid off: STAND +2 and an appraisal mentioning wider responsibility.",
+    "The MP noticing me from Meet-the-People is a good sign for the party side."
+   ]
+  },
+  "cos_speech": {
+   "act": "I",
+   "shown": 12,
+   "meanInterest": 3.67,
+   "firstTimeInterest": 3.67,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 9,
+    "C": 3
+   },
+   "confusedBy": [
+    "The screen says saying there is nothing is not an available option, but option C is exactly that.",
+    "The line says saying nothing is not an available option, yet C is exactly that.",
+    "The screen says saying there is nothing is not an available option, yet C is offered as exactly that.",
+    "The screen says saying there is nothing is not an available option, yet C is exactly that.",
+    "The text says saying nothing is not an available option, yet choice C is exactly that.",
+    "Why a first-year officer is already a Senior Director on Superscale at age 26, and why option C is described as both unavailable and listed."
+   ],
+   "notes": [
+    "Y16's fourth pillar choice gave INTEG+8 COMP+7 but STAND-4, and appraisal stayed strong. REP is still stuck at 40.",
+    "STAND dropped 3 even with family-first choice, as the notes predicted.",
+    "STAND slipped 3 for no obvious reason, maybe from an unlisted decay or from the Y35 late-night choice.",
+    "Option C contradicts the blurb that says saying so isn't available.",
+    "Lost the ballot with number 2,847 of 610 units, which was funny.",
+    "The formula for PM pay is published, so I'm curious how the gap closes."
+   ]
+  },
+  "headhunter_mid": {
+   "act": "I",
+   "shown": 3,
+   "meanInterest": 3.67,
+   "firstTimeInterest": 3.67,
+   "repeatInterest": null,
+   "weightyShare": 66.7,
+   "picks": {
+    "B": 3
+   },
+   "confusedBy": [
+    "Not sure whether the drawer option is a hidden hook that comes back later, or just a hedge.",
+    "Why STAND dropped 6 last year despite the good outcome."
+   ],
+   "notes": [
+    "The consultancy that billed $1.9M for a deck is coming back to hire me, which is a nice callback to my Y13 paper being repeated by consultants.",
+    "A deck for $1.9M is painfully believable.",
+    "Rumour says the next step is a different life, so the political invitation should be close."
+   ]
+  },
+  "old_colleague": {
+   "act": "I",
+   "shown": 3,
+   "meanInterest": 3.67,
+   "firstTimeInterest": 3.67,
+   "repeatInterest": null,
+   "weightyShare": 66.7,
+   "picks": {
+    "A": 3
+   },
+   "confusedBy": [],
+   "notes": [
+    "Hoping this is the sponsor event; the 'wider responsibility' appraisal line feels like a nudge toward politics.",
+    "Callbacks to earlier years suggest 'some choices come back'; this feels like a networking test.",
+    "Y12 nomination revised CEP upward, good sign for the file side, though STAND dipped."
+   ]
+  },
+  "consultant_report": {
+   "act": "I",
+   "shown": 9,
+   "meanInterest": 3.78,
+   "firstTimeInterest": 3.78,
+   "repeatInterest": null,
+   "weightyShare": 55.6,
+   "picks": {
+    "C": 1,
+    "A": 5,
+    "B": 3
+   },
+   "confusedBy": [
+    "Why REP is stuck at 30 while STAND keeps rising.",
+    "Age 27 and Senior Director at Superscale in Year 2 is odd, and the lifetime earnings look off.",
+    "Senior Director at age 27 in Year 2 seems oddly fast.",
+    "Senior Director at 27 with Superscale pay seems very fast for year 2."
+   ],
+   "notes": [
+    "Consultancy repeating the minute paper for $1.9M is painfully real.",
+    "The $1.9M consultancy repeating my minute paper is painfully true to life.",
+    "The $1.9 million consultancy repeating my minute paper is a very believable scene.",
+    "A $1.9 million consultancy repeating my minute paper is painfully realistic.",
+    "Notes say to take ownership early; this looks like a 'put yourself forward' moment.",
+    "Funny that a $1.9M deck recommends what my minute paper said two years ago."
+   ]
+  },
+  "the_counter": {
+   "act": "I",
+   "shown": 10,
+   "meanInterest": 3.8,
+   "firstTimeInterest": 3.8,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 10
+   },
+   "confusedBy": [
+    "Not sure what REP, STAND and COMP each do, or how INTEG trades off against the others.",
+    "Not sure what REP, STAND and COMP each measure, or how HARD mode changes the game."
+   ],
+   "notes": [
+    "The pay formula and the gap to the PM being shown upfront is a nice touch.",
+    "Same Counter event as Y27 last life, but now at Y1 with a poly background.",
+    "Y1 here is The Counter, which my notes had at Y27; the timeline looks different this time.",
+    "Notes say this is the key Y1 choice; going honest again.",
+    "Starting on HARD with poly and night classes; stats are lower than before.",
+    "Starting stats show INTEG at 70 but REP at only 15, so speaking up may test which one matters more."
+   ]
+  },
+  "inconvenient_figure": {
+   "act": "I",
+   "shown": 12,
+   "meanInterest": 3.83,
+   "firstTimeInterest": 3.83,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "C": 12
+   },
+   "confusedBy": [
+    "INTEG dropped 2 last year after choosing work over the concert, which seems odd.",
+    "The notes say Y9 was work over concert, but this year is a different event, so I'm not sure how years line up across lives.",
+    "Why the Senior Director grade came by Year 5 and age 30; the pay jump looks odd."
+   ],
+   "notes": [
+    "The 'range rather than a number' ask feels like a classic integrity test; the footer callback paying off was nice.",
+    "Spinning a number into a range is a classic integrity test; the offsite plan being 'quietly mine' feels like a callback setup.",
+    "Classic civil service 'range rather than a number' line, felt very true to life.",
+    "Classic 'present it as a range' nudge; clearly the disclosure test.",
+    "Asking about the ceiling just got a polite brush-off and STAND-4, so that was a bad trade.",
+    "Classic test of candour versus spin; wondering if this comes back later."
+   ]
+  },
+  "dialogue_session": {
+   "act": "III",
+   "shown": 12,
+   "meanInterest": 3.83,
+   "firstTimeInterest": 3.83,
+   "repeatInterest": null,
+   "weightyShare": 91.7,
+   "picks": {
+    "A": 9,
+    "C": 3
+   },
+   "confusedBy": [
+    "Promoted to Permanent Secretary at age 31 in Year 6 is absurdly fast, and I don't see why a flat bid got 70% yet raised INTEG.",
+    "Permanent Secretary at 34 with REP only 39; unclear what REP does for promotion versus STAND and INTEG."
+   ],
+   "notes": [
+    "Feels like a candour test; C might be riskier for STAND but good for INTEG.",
+    "Feels like the 'write what everyone thinks honestly' type of test; likely INTEG vs STAND tradeoff.",
+    "Promoted to Perm Sec without any visible event; STAND dipped -1 for no clear reason.",
+    "The nomination payoff showed up as a Deputy Secretary who remembers me, which is nice; the game does bring choices back.",
+    "Fourth on a poster is a nice touch; 61.4% feels very real.",
+    "Fourth pillar feels like the Counter again: honest but politically visible."
+   ]
+  },
+  "second_look": {
+   "act": "I",
+   "shown": 6,
+   "meanInterest": 3.83,
+   "firstTimeInterest": 3.83,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "B": 3,
+    "A": 3
+   },
+   "confusedBy": [
+    "Not sure what 'record does not match their grade' means: too low or too high?",
+    "What 'record does not match their grade' means: am I over- or under-graded relative to my CEP?",
+    "Why a board is revisiting 'an officer whose record does not match their grade' - is it my CEP being reviewed?",
+    "Not sure whether the record 'not matching the grade' means I'm under- or over-graded.",
+    "Deputy Secretary at age 31 in Year 6 seems absurdly fast; unclear whether the board is checking for an overpromotion."
+   ],
+   "notes": [
+    "Board second look came right after a promotion, which feels odd.",
+    "First time a board revisits me; smells like a CEP-related event.",
+    "Y10 pressing the HR friend about CEP seems to have led straight into this board; INTEG dropped 2 though.",
+    "Networking last year paid off with a promotion and +5 STAND, so visibility seems to work.",
+    "Callback from the Y17 Lo Hei move: the PS said to say it again on Thursday, and now the board is revisiting me.",
+    "Board revisiting my record feels like the hidden ceiling being tested."
+   ]
+  },
+  "the_tender": {
+   "act": "I",
+   "shown": 6,
+   "meanInterest": 3.83,
+   "firstTimeInterest": 3.83,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "B": 4,
+    "A": 2
+   },
+   "confusedBy": [
+    "Senior Director at age 27 in Year 2 looks like a very fast jump; CEP revised upward by a committee I never meet.",
+    "Being a Senior Director at 28 with a $254k package, and the winking director from last year's event."
+   ],
+   "notes": [
+    "The MP noticing me from the Meet-the-People Sessions looks like the sponsor thread paying off.",
+    "Classic conflict-of-interest test; my notes say recusal costs STAND, so I'm testing whether merit-award is safe.",
+    "Classic conflict-of-interest test; recusal might look safe but invisible.",
+    "Option C is the classic trap: rejecting the better bid just to look clean is its own bias.",
+    "Recusal has built INTEG in earlier lives, so I'm testing it again.",
+    "Option C looks like a trap: rejecting the better vendor just to look clean is its own form of bias."
+   ]
+  },
+  "the_bonus_reveal": {
+   "act": "III",
+   "shown": 20,
+   "meanInterest": 3.85,
+   "firstTimeInterest": 3.85,
+   "repeatInterest": null,
+   "weightyShare": 80,
+   "picks": {
+    "A": 7,
+    "C": 13
+   },
+   "confusedBy": [
+    "Why STAND keeps falling when appraisals say 'outstanding, wider responsibility' and the rumour line says 'steady'.",
+    "Why a Harvard slot went to a junior again despite 'outstanding' appraisals, and why STAND keeps dropping 8 a year."
+   ],
+   "notes": [
+    "Option C feels like a trap or a real integrity test; tempting to try next life.",
+    "A game about ministers' pay asking whether ministers should be paid on indicators they set is a nice bit of self-awareness.",
+    "Option C looks like the same trap as asking Cabinet about indicators, so I'm avoiding it.",
+    "Option C looks like the indicator trap from earlier lives, so I skipped it.",
+    "Pay now over $1M, and the bonus is tied to indicators I influence; the game is poking at conflict of interest.",
+    "Promoted to MR3 at STAND 34, so the STAND 61 threshold from life 1 is clearly wrong. Option C is tempting but looks like the ceiling-question trap."
+   ]
+  },
+  "the_crisis": {
+   "act": "I",
+   "shown": 10,
+   "meanInterest": 3.9,
+   "firstTimeInterest": 3.9,
+   "repeatInterest": null,
+   "weightyShare": 90,
+   "picks": {
+    "A": 9,
+    "B": 1
+   },
+   "confusedBy": [
+    "Why REP is only 35 when I am already Deputy Secretary, and why STAND dropped 8."
+   ],
+   "notes": [
+    "Nice payoff on the PSLP nomination, a Deputy Secretary who remembers who put her name in.",
+    "Last year's Lo Hei speech paid off: PS said say it again to the committee, REP+8.",
+    "Y12 choice of placing my people first gave INTEG+12 and a promotion, so people choices do pay.",
+    "Clapping at my own minute paper being called an external perspective stung a bit.",
+    "STAND rose +6 after cooperating in the inquiry, which fits my earlier suspicion.",
+    "Appraisal wording now mentions 'wider responsibility', which feels like a hint towards politics."
+   ]
+  },
+  "pofma_moment": {
+   "act": "III",
+   "shown": 15,
+   "meanInterest": 3.93,
+   "firstTimeInterest": 3.93,
+   "repeatInterest": null,
+   "weightyShare": 93.3,
+   "picks": {
+    "B": 15
+   },
+   "confusedBy": [
+    "Conceding at the PQ gave STAND -4 but REP +6 and COMP +3, so I'm not sure how STAND is scored.",
+    "Why STAND fell 4 after a year of straight answers and a good appraisal.",
+    "Appraisal jumped back to 'outstanding, with clear potential for wider responsibility' with no obvious cause.",
+    "Promoted to MR3 while the notes said MR4 earlier; the grade numbering seems to run the other way, or I misread it."
+   ],
+   "notes": [
+    "Correction direction on a partly true post feels like a test of integrity versus control.",
+    "Asking the Cabinet question cost STAND -14 but gave REP +12, which I didn't expect.",
+    "Candour test again: probably costs STAND and gains REP/INTEG, though both are already at 100.",
+    "Third-point-correct dilemma is a nice touch; 'timely reminder' line made me smile.",
+    "A good dilemma: a correction direction is legal, but it's wrong to use it on something partly true.",
+    "Honest-but-bold option; curious if REP recovers after the lift complaints."
+   ]
+  },
+  "the_scholar": {
+   "act": "I",
+   "shown": 6,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 6
+   },
+   "confusedBy": [
+    "Promoted to MX11 though my notes say MX12, so I'm unsure whether the grade numbers run up or down."
+   ],
+   "notes": [
+    "A fast-track officer who will outrank me is a good setup for a callback later.",
+    "The CEP line hit hard; pressing the HR friend seems to have cost INTEG -2 but gave a promotion.",
+    "Y14's budget bid got 70% of what I needed anyway, so padding apparently is expected here.",
+    "Y10 hardest-file gamble paid off: promoted to MX11 and appraisal finally 'strong'.",
+    "A clever junior who will outrank me feels like a callback in the making.",
+    "This is the teach-an-officer event, one year later than the Y11 I expected."
+   ]
+  },
+  "the_committee": {
+   "act": "I",
+   "shown": 5,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 5
+   },
+   "confusedBy": [
+    "Age 37 at Year 11 doesn't match the age 27 start in my notes, and the notes call me SME MX12 at Y10 but the screen says I was just promoted to AD MX11."
+   ],
+   "notes": [
+    "Deputy Secretary callback in eleven years is a nice long fuse; the IMC that has met eleven times and still wants further study made me laugh.",
+    "'Further study is warranted' after eleven meetings is painfully accurate.",
+    "The IMC that has met eleven times and still says 'further study is warranted' is painfully real.",
+    "Eleven meetings to conclude 'further study is warranted' is painfully accurate.",
+    "Eleven meetings and 'further study is warranted' is painfully accurate."
+   ]
+  },
+  "scholar_returns": {
+   "act": "III",
+   "shown": 4,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 50,
+   "picks": {
+    "A": 4
+   },
+   "confusedBy": [
+    "STAND dropped 3 even though I was promoted to SPS.",
+    "Notes said this event comes at Y48, but it came at Y26 (age 48), so I misread the year in my notes.",
+    "STAND dropped 5 after the disclosure; unclear if the tender folder cost me or it's just the party probing."
+   ],
+   "notes": [
+    "The Y15 callback landed: the officer I taught is now my Deputy Secretary, as I suspected.",
+    "Nice callback to the Y15 junior I taught.",
+    "The young AS officer I taught really did turn up as my Deputy, nice callback.",
+    "Nice callback to the Y11 officer I taught; the game does remember."
+   ]
+  },
+  "cep_discovery": {
+   "act": "I",
+   "shown": 11,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 10,
+    "B": 1
+   },
+   "confusedBy": [
+    "CEP - never heard it; presumably a hidden assessment or potential rating.",
+    "CEP - presumably Career Entry Programme or Currently Estimated Potential, but I don't actually know.",
+    "CEP - presumably some hidden assessment of potential, never explained to me",
+    "CEP - never heard of it, and the HR friend's pause suggests it matters.",
+    "CEP - never heard of it, and apparently it's about me",
+    "CEP - likely Current Estimated Potential, which would be the hidden ceiling."
+   ],
+   "notes": [
+    "Hidden-ceiling vibe: CEP sounds like the thing the ceilings were measuring.",
+    "The awkward pause feels like the game hinting at a hidden rating, maybe the ceiling.",
+    "Asking the RO what she needs finally got me promoted with a strong appraisal.",
+    "A hidden-metric reveal, maybe the ceiling by another name?",
+    "The wrong-length pause is a nice touch; feels like the hidden promotion mechanic finally showing up.",
+    "The awkward pause suggests the game is hinting at the hidden ceiling."
+   ]
+  },
+  "ally_returns": {
+   "act": "III",
+   "shown": 3,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 3
+   },
+   "confusedBy": [
+    "Why only one choice is offered; it feels like a test of whether I'd interfere."
+   ],
+   "notes": [
+    "The quiet officer C from Y17 returns as a Deputy Secretary, as predicted.",
+    "Callback to the quiet officer I nominated in Y2 - the game does bring choices back.",
+    "Same event as Life 2 but earlier, at 40 instead of 38. This time she's the quiet officer I nominated in Y3, so the callback lands."
+   ]
+  },
+  "the_leak": {
+   "act": "I",
+   "shown": 8,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 8
+   },
+   "confusedBy": [
+    "Option C: is it a real confession or a test of integrity? Unclear whether it's something I'd have done in an earlier year.",
+    "Option C: unclear whether it means a false confession or a real one, since I didn't leak anything.",
+    "Option C, 'It was you', is odd since I didn't leak it. It reads like a confession option I shouldn't take unless it was me.",
+    "Why Senior Director at 28 with only 3 years in, and why INTEG dropped after letting consultants take credit."
+   ],
+   "notes": [
+    "Eleven names on the list and I'm one of them, which is a nice bit of tension.",
+    "First real plot event in years; feels like a gate for the political invitation.",
+    "The tender documentation hint last year feels like a seed that may come back; glad this one is a clean inquiry.",
+    "Option C is a strange option; looks like a trap or a test of honesty over self-preservation.",
+    "Option C is wild; I wonder if confessing is a bold party-visible move, but it looks like career suicide.",
+    "Perm Sec at 30 is fast. Option C is locked behind INTEG 70, and I'm at 64, so there might be a confession route that pays off later."
+   ]
+  },
+  "secondment": {
+   "act": "I",
+   "shown": 4,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 4
+   },
+   "confusedBy": [
+    "Whether the secondment is a proving ground or a siding, and how it affects CEP.",
+    "The estimate is revised, but nobody says by how much or which estimate it is."
+   ],
+   "notes": [
+    "Leak inquiry ended inconclusively but STAND and INTEG both went up, so cooperating paid off.",
+    "Finally a real fork after a run of single-choice years.",
+    "Announcing the pilot early seems to have paid off with a promotion to Director.",
+    "The Y18 written case gave STAND +4 and a promotion, so the game does reward the bold route."
+   ]
+  },
+  "headhunter_early": {
+   "act": "I",
+   "shown": 1,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "C": 1
+   },
+   "confusedBy": [],
+   "notes": [
+    "Recruiter temptation looks like a loyalty test, so I'm curious whether declining comes back later."
+   ]
+  },
+  "cny_lohei": {
+   "act": "I",
+   "shown": 6,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 6
+   },
+   "confusedBy": [
+    "STAND dropped 4 last year even though the appraisal was 'strong, consistently exceeding expectations'. Maybe nominating myself for PSLP cost me."
+   ],
+   "notes": [
+    "Perm Sec asking at Lo Hei feels like a test; plain-speaking cost STAND before.",
+    "Lo hei with the PS is a very Singapore trap.",
+    "Lo Hei with the PS feels like a deliberate test of candour.",
+    "Feels like a callback to The Counter; wary that candour has cost STAND before.",
+    "Feels like a setup for the Y27 Counter pattern, with candour as a recurring test.",
+    "STAND is at 38 after the reorganisation choice, so I'll watch whether candour pushes it down further."
+   ]
+  },
+  "forum_letter": {
+   "act": "I",
+   "shown": 6,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "B": 5,
+    "A": 1
+   },
+   "confusedBy": [
+    "STAND dropped 8 after the credit-taking circulation last year, so I am not sure whether circulating the old minute paper backfired.",
+    "Notes say Y24 might bring the political invitation, but this is a Forum letter; unclear if this is the test.",
+    "Why a PS at 33 is already paid $1.1M; also whether option C is a trap.",
+    "Promoted to Deputy Secretary at 29 feels absurdly fast; also unclear why STAND dropped 6 while promoted."
+   ],
+   "notes": [
+    "Option C feels like a trap; finding out who he is sounds like a thing that comes back to bite me.",
+    "Option C feels like a test of integrity, and a ministry-flavoured version of the drawer option.",
+    "The correct-on-every-point letter is painfully realistic.",
+    "Option C looks like a trap that would come back later.",
+    "Option C 'find out who he is' feels like a deliberate integrity trap.",
+    "Option C smells like a trap that would come back later."
+   ]
+  },
+  "maiden_speech": {
+   "act": "III",
+   "shown": 6,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "B": 6
+   },
+   "confusedBy": [],
+   "notes": [
+    "Fourth on a poster line was a nice touch.",
+    "Twelve minutes to a two-thirds empty House is a very Singapore setup.",
+    "Fourth on a poster is a nice touch.",
+    "Fourth pillar being 'bolted on' was a nice callback; STAND dropped 4 despite REP rising, so seniors and citizens seem to want different things.",
+    "Maiden speech to a two-thirds empty House feels like a quiet test of ownership.",
+    "Twelve minutes to a two-thirds empty House felt oddly intimate. Age 39 with thirty years in service doesn't add up, but fine."
+   ]
+  },
+  "tender_questions": {
+   "act": "I",
+   "shown": 1,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 1
+   },
+   "confusedBy": [],
+   "notes": [
+    "The Y13 tender with the ex-colleague's firm is back, as I suspected it would be."
+   ]
+  },
+  "grassroots_invite": {
+   "act": "I",
+   "shown": 4,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 4
+   },
+   "confusedBy": [],
+   "notes": [
+    "The adviser's hint feels like the start of the political route, so this is probably where the party estimate begins to be shaped.",
+    "This looks like the GRC entry hook; the party estimate may get set from here.",
+    "Meet-the-People paid off just as I suspected; the hint is barely disguised.",
+    "Y5 adviser event arrived right on schedule, as my notes predicted."
+   ]
+  },
+  "bonus_vindicated": {
+   "act": "III",
+   "shown": 7,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 5,
+    "B": 2
+   },
+   "confusedBy": [],
+   "notes": [
+    "The Y28 Cabinet question coming back as item three of the terms of reference is a proper callback.",
+    "Nice callback to the Y23 Cabinet question coming back as item three.",
+    "Nice callback to the Y17 Cabinet question coming back as a committee's terms of reference.",
+    "Nice callback to the Y27 Cabinet question; a junior colleague got Harvard instead, so the ceiling may be stuck.",
+    "Callback to my Y25 Cabinet question on ministers' pay being tied to indicators; nice to see it return.",
+    "The Cabinet question from Y25 has come back as a callback, unattributed."
+   ]
+  },
+  "minute_vindicated": {
+   "act": "I",
+   "shown": 1,
+   "meanInterest": 4,
+   "firstTimeInterest": 4,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "B": 1
+   },
+   "confusedBy": [],
+   "notes": [
+    "Paragraph four callback to Y4 minute paper, nice payoff."
+   ]
+  },
+  "reshuffle": {
+   "act": "III",
+   "shown": 19,
+   "meanInterest": 4.05,
+   "firstTimeInterest": 4.05,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 19
+   },
+   "confusedBy": [
+    "Why I was left off the Leadership Programme list with no reason given, and why STAND fell 6 after rising last year.",
+    "STAND dropped 2 despite the outstanding appraisal and crediting the author; unclear what drives it.",
+    "Why COMP dropped 3 even though REP rose 4, and what COMP actually measures.",
+    "STAND dropped again to 93 with no visible reason, and COMP is still stuck at 70.",
+    "Not on the Leadership Programme list with no reason given, despite 'wider responsibility' in the appraisal."
+   ],
+   "notes": [
+    "Eleven people sure it is good news is a nice touch.",
+    "Pushing the bottom 20th gave a bonus exactly on target and promoted me to Minister, so it was a safe test.",
+    "Eleven people sure it's good news is funny and very Singapore.",
+    "Eleven people sure it's good news is a very Singapore line.",
+    "STAND dropped 8 after the Facebook concession; candour is costly again.",
+    "Finally the Reshuffle card shows up, at Y37 this time and not around Y32-33."
+   ]
+  },
+  "the_election": {
+   "act": "II",
+   "shown": 28,
+   "meanInterest": 4.07,
+   "firstTimeInterest": 4.07,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 26,
+    "B": 2
+   },
+   "confusedBy": [
+    "The folder line says there was nothing to disclose, even though I disclosed everything, which is odd.",
+    "The folder line 'There is nothing to disclose' even though I disclosed everything; unclear if disclosure itself earned the INTEG+6.",
+    "Notes mention a 300-word limit but the schema says under 200; I kept it short.",
+    "Why STAND dropped by 5 after disclosure, even though INTEG rose by 8.",
+    "Not sure whether a GRC or a single seat gives a higher party ceiling; the screen doesn't say.",
+    "Why REP is only 45 when STAND is 86; single seat needs REP 60 which I never built."
+   ],
+   "notes": [
+    "Disclosing everything gave INTEG+6 and led to candidacy. Wow, that's the invitation.",
+    "REP 47 is low versus STAND 81; single seat needs 60.",
+    "Disclosing everything seems to have led straight to candidacy, and the single seat needs REP 60 which I don't have.",
+    "Disclosure paid off with a GRC fielding as predicted.",
+    "Promoted to Deputy Secretary at Y19, earlier than Life 1's timeline; the Tea and the disclosure paid off.",
+    "Single seat gated at REP 60, which backs up my suspicion that REP is the politics bottleneck."
+   ]
+  },
+  "the_vetting": {
+   "act": "II",
+   "shown": 28,
+   "meanInterest": 4.18,
+   "firstTimeInterest": 4.18,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 28
+   },
+   "confusedBy": [
+    "Whether disclosing things they may not have could hurt STAND, or if it is the integrity test for candidacy.",
+    "Not sure whether full disclosure counts as honesty rewarded or as handing them a reason to reject me.",
+    "The folder being thin read as disappointment, so I can't tell if clean is good or if they wanted leverage.",
+    "What 'the folder is thin, he seems slightly disappointed' means for my chances: is thin good or bad?",
+    "Why the folder being thin disappointed him.",
+    "Why the folder was thin and why he seemed disappointed; unclear if that is good or bad."
+   ],
+   "notes": [
+    "The disappointed man with a thin folder is great; it feels like they want something to find.",
+    "The folder being thin and him being disappointed is a nice touch.",
+    "The disappointed man with a thin folder is a nice touch.",
+    "The thin folder and his slight disappointment is a nice touch.",
+    "The thin folder and his slight disappointment was a nice touch.",
+    "The 'thin folder, slightly disappointed' line is funny; suggests a clean record is a thing the game tracks."
+   ]
+  },
+  "succession": {
+   "act": "III",
+   "shown": 14,
+   "meanInterest": 4.71,
+   "firstTimeInterest": 4.71,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 9,
+    "B": 5
+   },
+   "confusedBy": [
+    "Promoted to MR3 yet STAND fell 6; the townhall answer seems to have cost STAND despite praise.",
+    "Age 59 at Y37 while my notes said succession was around Y38-39, so the timing is a little off.",
+    "No 'nominate someone and step back' option appears here, only self or the other candidate.",
+    "Why STAND dropped 2 and rank shows MR3 after promotion; unclear whether STAND 69 is enough for this.",
+    "STAND dropping 2 again with no clear reason, and whether B's 'senior portfolio' is a real path to PM or a consolation prize.",
+    "Why the screen says MR3 when my notes had me at MR4; the hard ministry move seems to have come with a grade change."
+   ],
+   "notes": [
+    "Finally the succession event; feels like the fork the whole run was building to.",
+    "Life 1 had a succession choice at Y39; this is Y38 here, so it looks like the same fork.",
+    "Succession at Y45 this life, not Y38-39. B is the untested 'back the other name' option, but A feels like the direct path.",
+    "First time at the succession room in this life; testing backing the other name as my notes suggested.",
+    "Notes say never back the other name, but this screen has no nominate-and-step-back option, so I'm testing B.",
+    "Finally the succession year, this feels like the real gate."
+   ]
+  },
+  "tea_session": {
+   "act": "II",
+   "shown": 28,
+   "meanInterest": 4.82,
+   "firstTimeInterest": 4.82,
+   "repeatInterest": null,
+   "weightyShare": 100,
+   "picks": {
+    "A": 28
+   },
+   "confusedBy": [
+    "Promoted two grades at once to Senior Director; the director took credit for my slides yet I still jumped, which I did not expect.",
+    "Why the sender's title isn't explained, and what exactly gets assessed at a tea with no agenda.",
+    "Why the tea invitation comes at 32, so early, after only a few years as PS."
+   ],
+   "notes": [
+    "The tea invitation with no agenda is very true to life in Singapore.",
+    "The tea invitation with no agenda is a very Singapore moment.",
+    "Finally the tea invitation; declining is probably a dead end for the party route.",
+    "The tea invitation with no agenda is very Singapore.",
+    "The tea invitation with no agenda is a nicely understated way to show the political talent-spotting.",
+    "The 'tea' is the political talent-spotting invitation; loved how it's never named."
+   ]
+  }
+ },
+ "behaviour": {
+  "playAgainNow": 96.7,
+  "endingFair": 60,
+  "chaseNext": [
+   "A faster or scholarship-free route to PM with fewer dead DPM years, or an ending where I hit a lower ceiling like SMS through plain-speaking and refusing succession, to see how the party's estimate bites.",
+   "Prime Minister again, but faster. I want to test backing someone else at succession, and campaigning on record at GE since it did better than walking at Y36. I also want to try the Board Seat.",
+   "PM again, by repeating the people route: back juniors, nominate a successor, step back, and at Y45 not put myself forward, plus test backing the other name. PM is the only ending that has proved how much choices matter.",
+   "Faster early climb. I'd like to reach PM while testing Board Seat and B/C at MPS, to see whether any shortcut exists beyond the people choices.",
+   "A faster PM: nominate and step back at the first succession instead of backing the other name. I also want to test Board Seat, since I keep not trying it, and see whether the early climb can go faster.",
+   "Reach PM faster, or at a younger age, by networking in every quiet year to keep STAND up and asking for the hard ministry early. I would also like to see whether a lower-integrity path pays more or hits a wall.",
+   "The PM ending again, but this time by finding the choices that raise the party's ceiling early (Nomination, hard ministry at the Reshuffle, succession volunteering) and getting promoted before STAND bleeds. I'd also test the untested options: Tuesday Night B and C, and writing honestly what everyone thinks.",
+   "Prime Minister again. It is the only ending that matters, and the notes say the ceiling is the key, so I want to raise it early and survive the first five years.",
+   "Retired at the top: I want PM, but first I need to learn what decides the GRC placement and the ward at Y17. I will test taking a different run option at Y17, such as waiting a cycle, and try the Tuesday Night B/C and the honest writing of what everyone thinks.",
+   "Prime Minister, by getting to the Reshuffle ask earlier, since the ceiling raise is the lever. Also try succession B, National Bonus C, and honestly writing what everyone thinks, to see whether they raise the ceiling or protect STAND.",
+   "The political invitation: a Minister or MP sponsor. I would keep up the Meet-the-People Sessions, take credit, and avoid the standing-losing choices early to build STAND above 60.",
+   "The PM ending. Now I know the party's estimate is set when I win my seat, so I'd test what shapes it: entering politics earlier, a different ministry, or taking the board seat I declined.",
+   "Perm Sec or minister. I would take the GRC at Y17 to get into politics safely, then try for the party ceiling. A PM ending is still the aim, but I need to see what the party estimate depends on.",
+   "Retired as PM-track: find out what sets the party estimate when I win my seat, with earlier politics entry, sponsor events and high STAND, and test whether honest concessions cost too much STAND.",
+   "A Minister of State or higher ending via a different party ceiling. I would try to get Tea much earlier, before 19, and avoid the honest concessions, to see if the party estimate rises above Senior MOS.",
+   "The PM ending. I would test early-life choices that raise the ceiling, like the Y27 Counter-type moments, and look for a party-side stat that I can raise before the MP years.",
+   "The PM ending. I will test what impresses the party around the seat win (Y20-24) and not just the service. The Y27 Counter honesty already removed the file ceiling, so the unknown is the party estimate.",
+   "Retired as Prime Minister, obviously. I need to find which choices raise the party estimate beyond SMS, and the ceiling raise at Y48 suggests human, mentoring choices might be it.",
+   "Prime Minister. Next time I would try Y42 option B, or the other bold political choices at Y17-24, to see what lifts the party estimate above SMS.",
+   "DPM or PM via the Succession route. I'd go back to the Life 4 path (MOE, Y42 Succession A), because it's the only one that has gone past Minister. After that I'd find the Y17-24 choices that move the party estimate.",
+   "Retire as PM with a shorter career: find which early choices raise the hidden ceiling, since the card says it moved at 35 through an ownership choice. I would take the pen and write the statement every time it is offered and see whether PM comes faster.",
+   "Prime Minister again, by asking for the hard ministry early (right after winning the seat), taking the pen on statements, and avoiding the bottom-20th indicators choice, so the ceiling rises sooner and STAND does not hit 0.",
+   "PM itself. I'd ask for the hard ministry the moment I win the seat, before the Reshuffle, and take every pen, statement and put-yourself-forward choice to push the ceiling past DPM early. Life 1 got PM, so it is possible.",
+   "PM at a younger age, by finding which ownership or personal-effort choices raise the ceiling earlier. Walking every block raised it at Polling Day, so I'd test the Y10 or Y29 equivalents sooner.",
+   "Prime Minister again. It is the only ending that feels like a win, and I want to find what reliably raises the ceiling earlier. Then I can tell which choices count.",
+   "Prime Minister. Find which Reshuffle or similar choices raise the ceiling, and take the hard, unwanted options early and repeatedly, since that is the one thing confirmed to lift it.",
+   "Become PM. Everything in the card says ceiling is the lever, so I would hunt for more moments like The Officer You Nominated, where I step back and trust someone else, and test whether each one lifts the ceiling by a grade.",
+   "A faster path to PM: find the ceiling-raising choices earlier, such as the hard ministry and the succession and nomination events, and see whether I can reach PM without so many idle DPM years.",
+   "Prime Minister again. It is confirmed reachable, and I want to find what triggers the nomination event and whether the Succession and hard-ministry choices are enough without it.",
+   "Retire as PM again, but understand why. I want to see which choices the card names, especially in earlier years, and test whether quiet one-line or hands-off replies on feedback and nomination events raise the ceiling."
+  ],
+  "overallInterest": 3.4
+ },
+ "callbacks": [
+  {
+   "run": "grad-10512-L1-life1",
+   "earlier_choice": "Y15 taught a young Admin Service officer",
+   "came_back_as": "He nominated me (STAND+12), and the ending card cites him again as the ceiling-raising moment and legacy",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10512-L1-life1",
+   "earlier_choice": "Y19 honest utilisation disclosure and Y21 background check",
+   "came_back_as": "INTEG 95 then 100, a GRC fielding, and a 'clean enough to be boring' exposure line",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10512-L1-life1",
+   "earlier_choice": "Walked every block in elections",
+   "came_back_as": "Higher REP and vote share (55.9% in Y42)",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10512-L1-life1",
+   "earlier_choice": "Y36 newer MP quoted me in Hansard",
+   "came_back_as": "Never clearly saw her return; maybe folded into the legacy line about people quoting me",
+   "felt_earned": false
+  },
+  {
+   "run": "grad-10613-L1-life2",
+   "earlier_choice": "Y17 backed a quiet officer",
+   "came_back_as": "She nominated me at Y28-29",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10613-L1-life2",
+   "earlier_choice": "Y37 sent a note to a junior Member who quoted me",
+   "came_back_as": "The Y50 Officer You Nominated event, where I chose to let her decide, raised my ceiling to PM",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10613-L1-life2",
+   "earlier_choice": "Y18 holding statement",
+   "came_back_as": "Led to promotion to Director",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10714-L1-life3",
+   "earlier_choice": "Taught a clever AS officer around Y14-15",
+   "came_back_as": "Legacy line: people you trained say you are the reason they stayed",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10714-L1-life3",
+   "earlier_choice": "Asked for the hard ministry nobody wants",
+   "came_back_as": "Ceiling raised to Deputy Prime Minister, shown in the declassified card",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10714-L1-life3",
+   "earlier_choice": "Disclosed everything at Y23",
+   "came_back_as": "Integrity 96 and a clean file, 'boring' in a good way",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10815-L1-life4",
+   "earlier_choice": "Y34 PQ written promise",
+   "came_back_as": "Returned at Y38 as a follow-up on the promise",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10815-L1-life4",
+   "earlier_choice": "Y15 teaching and backing juniors",
+   "came_back_as": "Legacy line: people I trained quote me and two say I'm the reason they stayed",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10815-L1-life4",
+   "earlier_choice": "Y44 public concession on the true third point",
+   "came_back_as": "STAND-8 at the Y45 GE",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10916-L1-life5",
+   "earlier_choice": "Y15 taught the Admin officer",
+   "came_back_as": "He became my Deputy Secretary, and at Y48 The Officer You Taught returned",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10916-L1-life5",
+   "earlier_choice": "Y25 backed a newer Member and got MOS; Y26 told him he was worth the trouble",
+   "came_back_as": "The Y48 officer scene and the ceiling rise to PM, shown on the declassified card",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10916-L1-life5",
+   "earlier_choice": "Disclosed everything throughout",
+   "came_back_as": "Integrity 100 and a file 'clean enough to be boring'",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-10916-L1-life5",
+   "earlier_choice": "Y36 backed the other candidate at succession",
+   "came_back_as": "I stayed DPM for years instead of reaching PM then",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12027-L4-life1",
+   "earlier_choice": "Asked for the hard ministry nobody wants (Y32/33)",
+   "came_back_as": "Ending card named it as the year my ceiling rose to Deputy Prime Minister",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12027-L4-life1",
+   "earlier_choice": "Campaigned on the record in GRC elections rather than walking every block",
+   "came_back_as": "Better vote shares and the 'timely reminder' wording, with a stable vote share",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12027-L4-life1",
+   "earlier_choice": "Consistently honest and full-disclosure choices all life",
+   "came_back_as": "Integrity 100 and the 'clean enough to be boring' exposure line",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12027-L4-life1",
+   "earlier_choice": "Trained and mentored people along the way",
+   "came_back_as": "Legacy line: people I trained quote me and two stayed because of me",
+   "felt_earned": false
+  },
+  {
+   "run": "grad-12128-L4-life2",
+   "earlier_choice": "Y5 took the BTO tip (in life 1)",
+   "came_back_as": "Resurfaced at Y18 as an INTEG hit",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12128-L4-life2",
+   "earlier_choice": "Y35 The Nomination: nominated myself",
+   "came_back_as": "Ceiling rose to Permanent Secretary on the declassified card",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12128-L4-life2",
+   "earlier_choice": "Y23 declined Board Seat",
+   "came_back_as": "Clean file and 100 INTEG, described as boring in a good way",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12229-L4-life3",
+   "earlier_choice": "Y3 wrote honestly what everyone was thinking on the post-it",
+   "came_back_as": "The reporting officer hinted I might leave for the private sector, then the Quiet Conversation at the end",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12330-L4-life4",
+   "earlier_choice": "Y16 disclosed everything in the background check",
+   "came_back_as": "Promoted to Senior Director at Y17 with INTEG 84, and a clean-file line on the ending card",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12330-L4-life4",
+   "earlier_choice": "Y9 weekly Meet-the-People sessions",
+   "came_back_as": "Shaking every hand in the ward at Y17, though it was not enough to win",
+   "felt_earned": false
+  },
+  {
+   "run": "grad-12330-L4-life4",
+   "earlier_choice": "Y10 nominated myself",
+   "came_back_as": "Nothing visible; the card says the ceiling never needed to change",
+   "felt_earned": false
+  },
+  {
+   "run": "grad-12431-L4-life5",
+   "earlier_choice": "Asked for the hard ministry at the Reshuffle",
+   "came_back_as": "The ending card says it raised my ceiling to Prime Minister, and that I was put in Transport and later made Minister and DPM",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12431-L4-life5",
+   "earlier_choice": "Disclosed everything at Y25 and was honest to the PS at Lo Hei",
+   "came_back_as": "Clean file; the card says my file is 'clean enough to be boring', and promotions came through",
+   "felt_earned": true
+  },
+  {
+   "run": "grad-12431-L4-life5",
+   "earlier_choice": "Declined the Board Seat and campaigned on the record",
+   "came_back_as": "INTEG stayed at 100 and I won the GRC",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11017-L2-life1",
+   "earlier_choice": "Y27 The Counter: told them exactly why it would fail (blunt honesty)",
+   "came_back_as": "The ending card named it as the year my ceiling rose to Deputy Secretary",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11017-L2-life1",
+   "earlier_choice": "Y30 Meet-the-People Session every week",
+   "came_back_as": "Y31 REP+10 and an MP noticed me",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11017-L2-life1",
+   "earlier_choice": "Y36 announced the quiet pilot",
+   "came_back_as": "Y37 STAND+8 and REP up after delivery",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11118-L2-life2",
+   "earlier_choice": "Y27 Meet-the-People, walked every block",
+   "came_back_as": "Y38 walking every block again cost STAND",
+   "felt_earned": false
+  },
+  {
+   "run": "poly-11118-L2-life2",
+   "earlier_choice": "Y40 pushed for the bottom 20th",
+   "came_back_as": "A junior got Harvard instead of me at Y41, and the card calls it the ceiling refusing a promotion",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11118-L2-life2",
+   "earlier_choice": "Y27 blunt honesty at The Counter",
+   "came_back_as": "The ending card names it as the moment my in-service ceiling was removed",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11118-L2-life2",
+   "earlier_choice": "Y22 disclosed everything in the background check",
+   "came_back_as": "INTEG stayed at 100 to the end, which the card calls boring and clean",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11219-L2-life3",
+   "earlier_choice": "Y1 and Y27 The Counter: honest answer",
+   "came_back_as": "The ending card says it removed my service ceiling. In this life the Y1 honest answer is what the card credits at 'age 27'.",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11219-L2-life3",
+   "earlier_choice": "Y9 weekly Meet-the-People",
+   "came_back_as": "An MP noticed me, which led to the promotion and later the tea invitation.",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11219-L2-life3",
+   "earlier_choice": "Y16 disclosed everything in the background check",
+   "came_back_as": "The ending card says my file is clean enough to be boring.",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11320-L2-life4",
+   "earlier_choice": "Y1 and Y27 honest answer at The Counter",
+   "came_back_as": "The ending card named it as the choice that removed my service ceiling.",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11320-L2-life4",
+   "earlier_choice": "Y28 conceded straight at the PQ",
+   "came_back_as": "Y29 Correction Direction followed the same honesty-versus-protection theme, with REP and STAND shifts.",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11320-L2-life4",
+   "earlier_choice": "Y26 walked every block at GE2 and Y31 did the same at GE3",
+   "came_back_as": "The ward was lost at 48.2% anyway; the card said it was never going to be about me.",
+   "felt_earned": false
+  },
+  {
+   "run": "poly-11421-L2-life5",
+   "earlier_choice": "Y1 and Y27-style honesty at The Counter",
+   "came_back_as": "The ending card revealed it removed my service ceiling",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11421-L2-life5",
+   "earlier_choice": "Accepting Tea at Y20 and disclosing everything at Y21",
+   "came_back_as": "I was able to stand for a seat and won the GRC",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-11421-L2-life5",
+   "earlier_choice": "Y25 slow-and-proper Town Council",
+   "came_back_as": "REP fell, and I probably went into the election weaker",
+   "felt_earned": false
+  },
+  {
+   "run": "poly-12532-L5-life1",
+   "earlier_choice": "Y27 The Counter: told them exactly why it would fail",
+   "came_back_as": "The ending card said this raised my ceiling to Deputy Secretary. I never saw it matter during play.",
+   "felt_earned": false
+  },
+  {
+   "run": "poly-12532-L5-life1",
+   "earlier_choice": "Y34 questioned in Cabinet whether ministers should be paid on indicators they set",
+   "came_back_as": "Indicators event at Y41 and again at Y44, offering a choice about pushing the bottom 20th",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12532-L5-life1",
+   "earlier_choice": "Full disclosure, INTEG 100 all the way",
+   "came_back_as": "Exposure line: file clean enough to be boring",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12633-L5-life2",
+   "earlier_choice": "Y11 taught a young AS officer",
+   "came_back_as": "They nominated me for the GRC in Y23",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12633-L5-life2",
+   "earlier_choice": "Y18 declared the tender link",
+   "came_back_as": "I was promoted",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12633-L5-life2",
+   "earlier_choice": "Y33 and Y43 walk every block",
+   "came_back_as": "STAND rose in Y33 and I was promoted to DPM in Y44",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12633-L5-life2",
+   "earlier_choice": "Y11 mentoring and training people",
+   "came_back_as": "Legacy line: two people say I am the reason they stayed",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12734-L5-life3",
+   "earlier_choice": "Y11 taught a junior officer plainly",
+   "came_back_as": "Y48 The Officer You Taught, where the officer returned and my reply raised the ceiling; the legacy line also says people I trained quote me",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12734-L5-life3",
+   "earlier_choice": "Y26 and Y31 walked every block",
+   "came_back_as": "Team won with 55.9% at Y41 and STAND stayed high, leading to DPM",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12734-L5-life3",
+   "earlier_choice": "Y38 put myself forward for succession",
+   "came_back_as": "STAND -5 with no visible benefit; the card shows the party estimate stayed at SMS",
+   "felt_earned": false
+  },
+  {
+   "run": "poly-12835-L5-life4",
+   "earlier_choice": "Y27 The Counter: tell them exactly why it will fail",
+   "came_back_as": "The ending card names it as the year my service ceiling was removed, and the rumour about the 'safe pair of hands' meant the ceiling was refusing promotions.",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12835-L5-life4",
+   "earlier_choice": "Y40 note to a newer Member",
+   "came_back_as": "The ending's LEGACY line says people I trained quote me and two stayed because of me.",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12835-L5-life4",
+   "earlier_choice": "Y11 indispensable, which skipped the teach event",
+   "came_back_as": "No Y48 DPM boost event. I still reached DPM, so the ceiling doesn't seem to be the only route.",
+   "felt_earned": false
+  },
+  {
+   "run": "poly-12936-L5-life5",
+   "earlier_choice": "Y12 taught an officer plainly (A)",
+   "came_back_as": "The legacy line: two people I trained say I'm why they stayed",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12936-L5-life5",
+   "earlier_choice": "Y27 The Counter, tell them exactly why it will fail",
+   "came_back_as": "The card names it as removing my service ceiling",
+   "felt_earned": true
+  },
+  {
+   "run": "poly-12936-L5-life5",
+   "earlier_choice": "Y30 won my seat",
+   "came_back_as": "The party's estimate of Minister, which capped me at the rank I retired at",
+   "felt_earned": false
+  },
+  {
+   "run": "scholar-10007-L0-life1",
+   "earlier_choice": "Grassroots work such as MPS sessions and walkabouts",
+   "came_back_as": "The political invitation (Y5 adviser, Y7 Tea, Y8 full disclosure) and winning the GRC at Y9",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10007-L0-life1",
+   "earlier_choice": "Y10 crisis holding statement",
+   "came_back_as": "Promotion to PS at Y11",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10007-L0-life1",
+   "earlier_choice": "Y22 asked for a hard ministry (MOM)",
+   "came_back_as": "STAND+7 and COMP+10",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10007-L0-life1",
+   "earlier_choice": "Y35 chose to take the pen and write the statement",
+   "came_back_as": "The declassified file says this raised my ceiling to Minister, and the game reveals that only at the end",
+   "felt_earned": false
+  },
+  {
+   "run": "scholar-10108-L0-life2",
+   "earlier_choice": "Volunteered for the reorg at Y3 and bid exactly what was needed at Y5",
+   "came_back_as": "Made Perm Sec at 31, much earlier than expected",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10108-L0-life2",
+   "earlier_choice": "Chose bottom 20th on indicators in Y28-39",
+   "came_back_as": "STAND fell to 0 and I was stuck at SMS until 65",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10108-L0-life2",
+   "earlier_choice": "Asked for the hard ministry at the Reshuffle",
+   "came_back_as": "The ceiling was raised to Minister and I got promoted",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10108-L0-life2",
+   "earlier_choice": "Answered the PQ straight in Y43",
+   "came_back_as": "REP +4, STAND -4, appraisal still strong",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10209-L0-life3",
+   "earlier_choice": "Y1 took the pen, plus the Y2 implementation plan and Y4 bid exactly what was needed",
+   "came_back_as": "Perm Sec at 30 and a ceiling that never blocked me inside the service",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10209-L0-life3",
+   "earlier_choice": "Y9-Y12 Tea, full disclosure and the GRC team",
+   "came_back_as": "The political invitation and an MP seat",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10209-L0-life3",
+   "earlier_choice": "Asked for the hard ministry (Reshuffle, shown on the card as age 53)",
+   "came_back_as": "Ceiling raised to DPM, shown on the declassified card",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10209-L0-life3",
+   "earlier_choice": "Not on the Leadership Programme list (Y39 rumour)",
+   "came_back_as": "The card translates it: my work earned a promotion and my ceiling refused it, told 5 times",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10209-L0-life3",
+   "earlier_choice": "Chose the bottom 20th on indicators (Y33, Y35, Y38)",
+   "came_back_as": "Nothing visible; I was promoted to DPM anyway at Y34",
+   "felt_earned": false
+  },
+  {
+   "run": "scholar-10310-L0-life4",
+   "earlier_choice": "Y17 asked in Cabinet whether ministers should be paid on indicators they set",
+   "came_back_as": "The ending line about the published formula and nobody being able to say they weren't told, plus the salary committee submission at Y20",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10310-L0-life4",
+   "earlier_choice": "Y8 disclosed everything",
+   "came_back_as": "INTEG 100 and the 'file clean enough to be boring' exposure line",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10310-L0-life4",
+   "earlier_choice": "Y26 put myself forward for Succession and Y28 asked for the hard ministry",
+   "came_back_as": "Manpower, then DPM at 30",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10411-L0-life5",
+   "earlier_choice": "Y8 disclosed everything",
+   "came_back_as": "Political invitation and GRC seat at Y10",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10411-L0-life5",
+   "earlier_choice": "Y21 answered Correction Direction publicly",
+   "came_back_as": "Helped the climb to Minister at Y22",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10411-L0-life5",
+   "earlier_choice": "Y27 raised ministers' pay indicators in Cabinet",
+   "came_back_as": "Formula adjusted at Y30",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-10411-L0-life5",
+   "earlier_choice": "Y43 asked for the hard ministry, then walked every block at Y44",
+   "came_back_as": "The card says the ceiling only rose at 68 to DPM, far too late to matter",
+   "felt_earned": false
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "earlier_choice": "Early honesty, disclosure and recusal",
+   "came_back_as": "Promotion to Permanent Secretary",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "earlier_choice": "Straight PQ answers",
+   "came_back_as": "Promotion to Senior Parliamentary Secretary",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "earlier_choice": "Early quarterly return in Y18",
+   "came_back_as": "Promoted to SMS",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "earlier_choice": "Asked for the hard ministry (MTI)",
+   "came_back_as": "Ending card says that raised my ceiling to DPM, a hidden ceiling I never saw",
+   "felt_earned": false
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "earlier_choice": "Walked every block in GEs",
+   "came_back_as": "STAND held and I kept winning GEs",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "earlier_choice": "Y35 Harvard slot went to a junior colleague",
+   "came_back_as": "Ending reveals this was the ceiling refusing my promotion, told 4 times",
+   "felt_earned": false
+  },
+  {
+   "run": "scholar-11623-L3-life2",
+   "earlier_choice": "Y38 The Officer You Nominated: 'Let her decide without hearing from you'",
+   "came_back_as": "Ending card revealed it raised my ceiling to DPM",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11623-L3-life2",
+   "earlier_choice": "Walked every block in every GE",
+   "came_back_as": "Won GRC seats repeatedly, 61.4% then 63.0%, though it slipped to 58.6% later",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11623-L3-life2",
+   "earlier_choice": "Y25 asked Cabinet whether ministers should be paid on indicators they set",
+   "came_back_as": "STAND -14 right away, and later indicator events kept coming back as a recurring pressure",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11724-L3-life3",
+   "earlier_choice": "Y31 The Succession: backed the other candidate and asked for a senior portfolio",
+   "came_back_as": "Promoted to DPM after GE5 at Y35, as the outcome had implied",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11724-L3-life3",
+   "earlier_choice": "Y40 The Officer You Nominated: 'Let her decide without hearing from you'",
+   "came_back_as": "Ending card named it as the year the ceiling rose to DPM, and I retired as PM",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11724-L3-life3",
+   "earlier_choice": "Walking every block in every GE, plus honesty and disclosure choices",
+   "came_back_as": "INTEG 100 and a clean file, called 'boring' on the card, plus Legacy about trainees quoting me",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11825-L3-life4",
+   "earlier_choice": "Asked for the hard ministry (MTI) at the Reshuffle",
+   "came_back_as": "Became DPM, and the ending card named it as the year the ceiling rose to DPM",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11825-L3-life4",
+   "earlier_choice": "Honesty, disclosure and straight PQ answers",
+   "came_back_as": "Integrity 100 and a clean-file exposure line on the card",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11825-L3-life4",
+   "earlier_choice": "Trained and mentored people, gave credit away",
+   "came_back_as": "Legacy line: two people say I am the reason they stayed",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11825-L3-life4",
+   "earlier_choice": "Stayed in the role while the ceiling blocked promotion",
+   "came_back_as": "The same HR 'safe pair of hands' rumour, repeated 11 times",
+   "felt_earned": false
+  },
+  {
+   "run": "scholar-11926-L3-life5",
+   "earlier_choice": "Y33 asked in Cabinet whether ministers should be paid on indicators they set",
+   "came_back_as": "STAND dropped 14 the following year and I was marked as a particular kind of colleague",
+   "felt_earned": true
+  },
+  {
+   "run": "scholar-11926-L3-life5",
+   "earlier_choice": "Y22 took the hard ministry nobody wants",
+   "came_back_as": "Promotion toward DPM at 56, in line with earlier lives",
+   "felt_earned": true
+  }
+ ],
+ "heldBackBy": [
+  {
+   "run": "grad-10512-L1-life1",
+   "life": 1,
+   "origin": "grad",
+   "ending": "pm",
+   "answer": "Not much in the end, since I reached PM. Hidden ceilings (Deputy Secretary by file, SMS by party) were set low and only moved through the people-related choices. STAND decline from plain-speaking seemed to slow the late climb but didn't block it.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "resigned",
+    "blames": "the_system",
+    "evidence": "Hidden ceilings (Deputy Secretary by file, SMS by party) were set low and only moved through the people-related choices."
+   }
+  },
+  {
+   "run": "grad-10613-L1-life2",
+   "life": 2,
+   "origin": "grad",
+   "ending": "lostward",
+   "answer": "STAND slid from 74 to 65 because of plain-speaking and asking about indicators, and I put myself forward at succession instead of backing someone else. The GE loss may have come from walking blocks over campaigning on record, but a 10-point swing suggests the ward was rigged against me anyway.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "unfair",
+    "blames": "luck",
+    "evidence": "a 10-point swing suggests the ward was rigged against me anyway"
+   }
+  },
+  {
+   "run": "grad-10714-L1-life3",
+   "life": 3,
+   "origin": "grad",
+   "ending": "retired",
+   "answer": "The party's ceiling was SMS and mine was Deputy Secretary, and only people-choices moved them. This time I took the ask-for-hard-ministry route too late and put myself forward at succession instead of backing and nominating someone, so no PM. Pushing GDP also cost INTEG and probably did not help the ceiling.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "The card spelled out exactly which choice raised the ceiling and why the 'steady' rumours were warnings, so I can see I stalled myself; though I only learned it after the fact."
+   }
+  },
+  {
+   "run": "grad-10815-L1-life4",
+   "life": 4,
+   "origin": "grad",
+   "ending": "pm",
+   "answer": "The hidden ceilings (file: Senior Director, party: Minister) were set low and only rose through people choices. Backing the other candidate at succession was a plain mistake, but this run still reached PM, so the Lo Hei choice at 38 is what mattered.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "The declassified card laid out exactly which choice raised the ceiling and when, so I can trace the result to my own decisions."
+   }
+  },
+  {
+   "run": "grad-10916-L1-life5",
+   "life": 5,
+   "origin": "grad",
+   "ending": "pm",
+   "answer": "In this run, the hidden ceilings (file: Senior Director, party: SMS) held me back until the people choices raised them. My Y36 succession test, backing the other name, also cost me about a decade, since I did not nominate and step back.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "The card spelled out exactly which choice raised the ceiling and why I stalled at DPM. I could trace it, and the late arrival was my own test costing me time."
+   }
+  },
+  {
+   "run": "grad-12027-L4-life1",
+   "life": 1,
+   "origin": "grad",
+   "ending": "pm",
+   "answer": "STAND steadily slid in my late career because public candour and public-facing scenes cost it, so promotions came late. The party's low estimate of me (Senior Minister of State) also meant I had to beat my ceiling through the hard-ministry gamble.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "Ceiling is hidden: file says Permanent Secretary, party says Senior Minister of State. Asking for the hard ministry in the Reshuffle (~Y32-33) raised the ceiling to DPM, so do it again and try for more."
+   }
+  },
+  {
+   "run": "grad-12128-L4-life2",
+   "life": 2,
+   "origin": "grad",
+   "ending": "retired",
+   "answer": "The ending card says the ceiling stayed below what my work had earned, and the 'steady' line was the warning, which I only saw once. My theory is that the hidden ceiling (party estimate SMS, raised only by specific choices like Nomination) capped me at DPM no matter how high my stats went. Asking about the ceiling at Y11 also cost STAND early. I never found the choice that lifts the party's estimate above DPM.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "unfair",
+    "blames": "the_system",
+    "evidence": "after 25 years it felt arbitrary rather than earned"
+   }
+  },
+  {
+   "run": "grad-12229-L4-life3",
+   "life": 3,
+   "origin": "grad",
+   "ending": "quiet",
+   "answer": "The honest post-it at Y3 cost STAND-5 early, and with a low ceiling and no visible way to raise it, I got managed out. My earlier notes said honesty is good later in life, but at junior level it is clearly dangerous. Y1 and Y2 silence and blending in did not build enough STAND to cushion it.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "Still true from earlier lives: ask for the hard ministry at the Reshuffle (~Y32-33) to raise the ceiling to DPM, volunteer for succession at Y37, network at Y38, and get promoted before STAND bleeds from ~Y39."
+   }
+  },
+  {
+   "run": "grad-12330-L4-life4",
+   "life": 4,
+   "origin": "grad",
+   "ending": "lostward",
+   "answer": "I think the game decided the result on something outside my stats. The card says the scholarship decided my ceiling and that the loss was never about me, so no amount of REP, COMP or INTEG would have changed it. Perhaps the Y17 GRC slot, or which ward and which team I was put with, was the real lever, and I walked into a seat I could not win.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "unfair",
+    "blames": "the_system",
+    "evidence": "I think the game decided the result on something outside my stats... no amount of REP, COMP or INTEG would have changed it"
+   }
+  },
+  {
+   "run": "grad-12431-L4-life5",
+   "life": 5,
+   "origin": "grad",
+   "ending": "retired",
+   "answer": "Timing and STAND. The ceiling only reached PM at 59 after the Reshuffle ask, and then STAND bled from about 65 onward, so I hit DPM at 69 and ran out of years before PM opened. Raising the ceiling earlier, or being promoted faster, is the fix.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "resigned",
+    "blames": "own_choices",
+    "evidence": "The game never promised PM, and the card explains the ceiling clearly. I reached DPM with a ceiling of PM, so the shortfall was about age and timing, which I can see now."
+   }
+  },
+  {
+   "run": "poly-11017-L2-life1",
+   "life": 1,
+   "origin": "poly",
+   "ending": "permsec",
+   "answer": "The file ceiling was set at joining (Director), and my one big raise to Deputy Secretary came from a single Y27 choice. I suspect the political invitation needed a hidden sponsor or flag, perhaps linked to the MP from Y31, that I never triggered. Standing stayed in the 40s while my other stats maxed out, and I picked the standing-losing options too often.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "I suspect the political invitation needed a hidden sponsor or flag, perhaps linked to the MP from Y31, that I never triggered."
+   }
+  },
+  {
+   "run": "poly-11118-L2-life2",
+   "life": 2,
+   "origin": "poly",
+   "ending": "retired",
+   "answer": "The party's hidden estimate for me was Senior Minister of State, and I became a Minister anyway, so I think the cap was set when I won my seat and the PM path may need a different entry. Honesty and INTEG built a clean file, but they never gave me the visibility or party-favoured traits that a PM invitation seems to need.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "the_system",
+    "evidence": "I think the cap was set when I won my seat and the PM path may need a different entry"
+   }
+  },
+  {
+   "run": "poly-11219-L2-life3",
+   "life": 3,
+   "origin": "poly",
+   "ending": "lostward",
+   "answer": "I think it was the election. Single seat versus GRC, or the swing in the ward, was out of my hands, and the card said it was never about me. The ceiling was probably not the issue. I never got to see the party estimate, and I reached politics too late, at 17 years in, to build anything.",
+   "code": {
+    "infers_hidden_ceiling": false,
+    "ceiling_feeling": "not_mentioned",
+    "blames": "luck",
+    "evidence": "The ceiling was probably not the issue."
+   }
+  },
+  {
+   "run": "poly-11320-L2-life4",
+   "life": 4,
+   "origin": "poly",
+   "ending": "lostward",
+   "answer": "The party ceiling set when I won my seat was Senior Minister of State, and nothing I did afterwards seemed to move it. My STAND kept being spent on honest concessions, and the election was decided by hidden rolls and not by effort.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "unfair",
+    "blames": "the_system",
+    "evidence": "\"nothing I did afterwards seemed to move it\" and \"the election was decided by hidden rolls and not by effort\""
+   }
+  },
+  {
+   "run": "poly-11421-L2-life5",
+   "life": 5,
+   "origin": "poly",
+   "ending": "lostward",
+   "answer": "I think the election is a hidden roll that sits at 48.2% whatever I do, so I never get past it. In four lives the vote share has hardly moved. The party ceiling is probably fixed when I win the seat, and that depends on something I do before the win, such as a sponsor event I have not noticed or what I did in the 20s.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "unfair",
+    "blames": "the_system",
+    "evidence": "\"48.2% three times in a row feels scripted rather than earned, and the card says it was never about me.\""
+   }
+  },
+  {
+   "run": "poly-12532-L5-life1",
+   "life": 1,
+   "origin": "poly",
+   "ending": "retired",
+   "answer": "The hidden ceilings: the file said Director, the party said Senior Minister of State. I overshot both and still ended at DPM, so PM probably needed some hidden party-favour or CEP value that my choices never raised. Falling STAND probably mattered too.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "unclear",
+    "evidence": "so PM probably needed some hidden party-favour or CEP value that my choices never raised"
+   }
+  },
+  {
+   "run": "poly-12633-L5-life2",
+   "life": 2,
+   "origin": "poly",
+   "ending": "retired",
+   "answer": "The party's estimate was set at SMS when I won my seat, and nothing I did later seemed to lift it. In life 1 I thought the Y27 Counter choice raised my file ceiling, but the card shows it removed the ceiling inside the service, which does nothing for the party's estimate. I think PM depends on the party's estimate, which is set at the GRC entry and by how I impressed the party before it. I spent my choices on the service side.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "I think PM depends on the party's estimate, which is set at the GRC entry and by how I impressed the party before it. I spent my choices on the service side."
+   }
+  },
+  {
+   "run": "poly-12734-L5-life3",
+   "life": 3,
+   "origin": "poly",
+   "ending": "retired",
+   "answer": "The party's estimate was fixed at SMS when I won my seat, and only the ceiling raised at Y48 moved me to DPM. PM needed a party-side ceiling I never found how to raise. I also pushed the wrong early levers: candour and disclosure got me REP, not party trust.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "The party's estimate was fixed at SMS when I won my seat, and only the ceiling raised at Y48 moved me to DPM."
+   }
+  },
+  {
+   "run": "poly-12835-L5-life4",
+   "life": 4,
+   "origin": "poly",
+   "ending": "retired",
+   "answer": "The party's estimate of SMS, set when I won my seat. It never changed in any life, and it is the one number I couldn't see or move. I still reached DPM through the Y42 succession, so the estimate is a soft cap, not a hard one.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "unclear",
+    "evidence": "The party's estimate of SMS, set when I won my seat. It never changed in any life, and it is the one number I couldn't see or move."
+   }
+  },
+  {
+   "run": "poly-12936-L5-life5",
+   "life": 5,
+   "origin": "poly",
+   "ending": "retired",
+   "answer": "The party's estimate was Minister, set when I won my seat, and nothing I did later moved it. My service ceiling was gone, but PM sits on the party side. I never found the choice that raises that estimate, and this time I didn't even get the Y42 Succession event.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "unfair",
+    "blames": "the_system",
+    "evidence": "\"It is realistic but not much fun when the gate is invisible.\""
+   }
+  },
+  {
+   "run": "scholar-10007-L0-life1",
+   "life": 1,
+   "origin": "scholar",
+   "ending": "pm",
+   "answer": "I think the party's estimate of me was capped at Minister and my STAND kept sliding, so I was never treated as PM material. The real driver seems to be small moments of taking ownership, not the stats I was tracking.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "I think the party's estimate of me was capped at Minister and my STAND kept sliding, so I was never treated as PM material. The real driver seems to be small moments of taking ownership, not the stats I was tracking."
+   }
+  },
+  {
+   "run": "scholar-10108-L0-life2",
+   "life": 2,
+   "origin": "scholar",
+   "ending": "retired",
+   "answer": "The hidden ceiling. The file put none on me, the party estimated Minister of State, and promotion was refused until I raised it by asking for the hard ministry. It was 17 rumours of being passed over before I found the lever, so that is mostly on me for not asking earlier.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "The hidden ceiling. The file put none on me, the party estimated Minister of State, and promotion was refused until I raised it by asking for the hard ministry."
+   }
+  },
+  {
+   "run": "scholar-10209-L0-life3",
+   "life": 3,
+   "origin": "scholar",
+   "ending": "retired",
+   "answer": "The hidden ceiling. The party's estimate at election was Senior Minister of State, and the hard-ministry ask only got it to DPM. I think PM needs a second ownership or put-yourself-forward moment I never found, probably after I became DPM or earlier than the Reshuffle.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "resigned",
+    "blames": "the_system",
+    "evidence": "\"The hidden ceiling decides promotion, not performance.\""
+   }
+  },
+  {
+   "run": "scholar-10310-L0-life4",
+   "life": 4,
+   "origin": "scholar",
+   "ending": "pm",
+   "answer": "The hidden ceiling, which stayed at Minister until Polling Day Again at 44 raised it. Nothing I could see on screen said which choices mattered. I suspect walking every block counted as ownership of the political work, not just ownership of the pen.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "I suspect walking every block counted as ownership of the political work, not just ownership of the pen."
+   }
+  },
+  {
+   "run": "scholar-10411-L0-life5",
+   "life": 5,
+   "origin": "scholar",
+   "ending": "retired",
+   "answer": "The hidden ceiling. The party's estimate was only Senior Minister of State, and I only raised it by asking for the hard ministry at 68, too late. Ownership choices early did not seem to raise it as I assumed. The walk-every-block habit apparently did nothing this life, so my theory from life 4 was wrong or unreliable.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "\"The party's estimate was only Senior Minister of State, and I only raised it by asking for the hard ministry at 68, too late.\""
+   }
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "life": 1,
+   "origin": "scholar",
+   "ending": "retired",
+   "answer": "A hidden ceiling. The file and the party's estimate capped me, and only one choice (the hard ministry) raised it, to DPM. I probably needed a different or earlier lever to raise it again, not more STAND or good performance.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "unfair",
+    "blames": "the_system",
+    "evidence": "\"The game never showed that a hidden ceiling was the gate. The rumours were only translated after the fact. The ending is coherent but the rules were opaque.\""
+   }
+  },
+  {
+   "run": "scholar-11623-L3-life2",
+   "life": 2,
+   "origin": "scholar",
+   "ending": "retired",
+   "answer": "The hidden ceiling. Mine was set at DPM by one choice at 38, and the party's early estimate of Senior Minister of State was low. Performance, INTEG and REP at 100 made no difference, so I never raised it enough or early enough. The raising choices were probably quiet, hands-off moments like the nomination, not the hard-ministry reshuffle, which never even appeared.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "The raising choices were probably quiet, hands-off moments like the nomination, not the hard-ministry reshuffle, which never even appeared."
+   }
+  },
+  {
+   "run": "scholar-11724-L3-life3",
+   "life": 3,
+   "origin": "scholar",
+   "ending": "pm",
+   "answer": "The hidden ceiling, specifically the party's estimate. It was Senior Minister of State at the start and only moved when I made hands-off, non-self-serving choices on nomination and succession events. Performance stats alone never moved it.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "own_choices",
+    "evidence": "The hidden ceiling, specifically the party's estimate. It was Senior Minister of State at the start and only moved when I made hands-off, non-self-serving choices on nomination and succession events."
+   }
+  },
+  {
+   "run": "scholar-11825-L3-life4",
+   "life": 4,
+   "origin": "scholar",
+   "ending": "retired",
+   "answer": "The hidden ceiling stopped at DPM. I only raised it once, with the hard ministry, and I never got the nomination event ('The Officer You Nominated') that raised it again in Lives 2 and 3. That event seems not to be guaranteed, and may depend on earlier choices I never learned.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "unfair",
+    "blames": "the_system",
+    "evidence": "\"it felt a bit of a cheat that the key event never turned up in 46 years\""
+   }
+  },
+  {
+   "run": "scholar-11926-L3-life5",
+   "life": 5,
+   "origin": "scholar",
+   "ending": "pm",
+   "answer": "The hidden ceiling. The ending card says it moved at 38 on a small choice, The Raw Feedback, not the nomination event I was waiting for. The ceiling seems to rise on small, humble-looking choices, and I stalled while hunting for one specific event. The card also shows Minister, not PM, which clashes with the ending title, and I could not square that.",
+   "code": {
+    "infers_hidden_ceiling": true,
+    "ceiling_feeling": "discovery",
+    "blames": "unclear",
+    "evidence": "The ceiling seems to rise on small, humble-looking choices, and I stalled while hunting for one specific event."
+   }
+  }
+ ],
+ "toneBreaks": [
+  {
+   "run": "grad-10512-L1-life1",
+   "line": "The formula pays you twice the entry-grade minister's salary, and the formula was published, so nobody can say they were not told.",
+   "problem": "winked",
+   "note": "Slightly smug, winking at real-world pay controversy. Also the claim that PM pays twice the entry-grade minister is a questionable real-world detail."
+  },
+  {
+   "run": "grad-10512-L1-life1",
+   "line": "Your file is clean enough to be boring. In this building, that is a compliment.",
+   "problem": "winked",
+   "note": "Knowing nudge to the player rather than in-world voice, though mild."
+  },
+  {
+   "run": "grad-10916-L1-life5",
+   "line": "The formula pays you twice the entry-grade minister's salary, and the formula was published, so nobody can say they were not told.",
+   "problem": "winked",
+   "note": "A little smug about the pay formula. It reads like the game nudging me about the real salary debate, and it is the one line that felt written for the reader rather than the character."
+  },
+  {
+   "run": "grad-12128-L4-life2",
+   "line": "You served. The service continued. Both of these facts are entirely unremarkable and that is the highest compliment the system can pay.",
+   "problem": "winked",
+   "note": "Slightly smug narrator voice, but it fits the dry tone. Minor."
+  },
+  {
+   "run": "grad-12330-L4-life4",
+   "line": "It was never going to be about you anyway.",
+   "problem": "other",
+   "note": "Reads as a slightly smug fourth-wall nudge at the player and undercuts agency rather than commenting on the system."
+  },
+  {
+   "run": "grad-12431-L4-life5",
+   "line": "You served. The service continued. Both of these facts are entirely unremarkable and that is the highest compliment the system can pay.",
+   "problem": "winked",
+   "note": "Slightly knowing, but it is aimed at the system and not a person, so I did not mind much."
+  },
+  {
+   "run": "poly-11421-L2-life5",
+   "line": "it was never about you anyway",
+   "problem": "other",
+   "note": "This reads as a wink at the player. It undercuts the effort and the sim's tone."
+  },
+  {
+   "run": "poly-12835-L5-life4",
+   "line": "Someone in HR called you \"a safe pair of hands\". You are not sure this is good.",
+   "problem": "other",
+   "note": "Not a break. The rumour is cryptic until the card translates it, which is clever, but the player has to wait until the end to learn what it meant."
+  },
+  {
+   "run": "scholar-10007-L0-life1",
+   "line": "The formula pays you twice the entry-grade minister's salary, and the formula was published, so nobody can say they were not told.",
+   "problem": "winked",
+   "note": "Reads as a dry nudge at real pay debates. It is mild, but it is the game commenting rather than just describing."
+  },
+  {
+   "run": "scholar-10007-L0-life1",
+   "line": "Your file is clean enough to be boring. In this building, that is a compliment.",
+   "problem": "winked",
+   "note": "A knowing joke at the system's expense that steps out of the sober tone."
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "line": "You served. The service continued. Both of these facts are entirely unremarkable and that is the highest compliment the system can pay.",
+   "problem": "winked",
+   "note": "Dry, knowing narrator voice; slightly winking but fits the satire and I liked it."
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "line": "Your file is clean enough to be boring. In this building, that is a compliment.",
+   "problem": "winked",
+   "note": "Same wry tone, harmless."
+  },
+  {
+   "run": "scholar-11825-L3-life4",
+   "line": "Someone in HR called you \"a safe pair of hands\". You are not sure this is good.",
+   "problem": "winked",
+   "note": "Mild. The joke is a little knowing, but it works as a rumour translation. Repeating it 11 times wore it out."
+  },
+  {
+   "run": "scholar-11926-L3-life5",
+   "line": "The formula pays you twice the entry-grade minister's salary, and the formula was published, so nobody can say they were not told.",
+   "problem": "winked",
+   "note": "Slightly smug wink at the real pay formula debate. Funny, but it nudges the player rather than just describing the outcome."
+  }
+ ],
+ "title": {
+  "beforePlay": {},
+  "beforePlayExpectations": [],
+  "afterPlay": {
+   "Confirmed & Substantive": 29,
+   "Minister Salary": 1
+  }
+ },
+ "canaries": {
+  "bland": {
+   "shown": 27,
+   "meanInterest": 1.96,
+   "cohortMeanInterest": 3.2,
+   "passed": true
+  },
+  "wink": {
+   "shown": 28,
+   "flagged": 28,
+   "passed": true
+  },
+  "passed": true
+ },
+ "lives": {
+  "1": {
+   "runs": 6,
+   "pmRate": 50,
+   "meanFinalRank": 14.17,
+   "medianWealth": 37851143
+  },
+  "2": {
+   "runs": 6,
+   "pmRate": 0,
+   "meanFinalRank": 14.33,
+   "medianWealth": 46510655
+  },
+  "3": {
+   "runs": 6,
+   "pmRate": 16.7,
+   "meanFinalRank": 11,
+   "medianWealth": 36589164
+  },
+  "4": {
+   "runs": 6,
+   "pmRate": 33.3,
+   "meanFinalRank": 13.17,
+   "medianWealth": 36696492
+  },
+  "5": {
+   "runs": 6,
+   "pmRate": 33.3,
+   "meanFinalRank": 14,
+   "medianWealth": 37175790
+  }
+ },
+ "diaries": [
+  {
+   "run": "grad-10512-L1-life1",
+   "origin": "grad",
+   "ending": "pm",
+   "life": 1,
+   "best": {
+    "year": 48,
+    "what": "The Officer You Taught: choosing 'Tell him he was worth the trouble' raised my ceiling to DPM and paid off the Y15 young officer thread. The teaching choice coming back as a ceiling change was the memorable payoff."
+   },
+   "worst": {
+    "year": 45,
+    "what": "Single-option years in the DPM stretch (Y40-45): appeal letters, PQ, townhall with only 'read it out and answer'. No agency, STAND ticking down, felt like tapping through."
+   },
+   "skip": {
+    "year": 44,
+    "why": "Mid-DPM years were repetitive single-option admin with stats already at 100 and nothing to decide; any of Y40-45 would do."
+   },
+   "fair": "The card explained the ceiling history, the pay formula and the clean file, so the result felt traceable to choices like teaching, honesty and walking blocks. The ceiling reveal was a bit late to act on, though.",
+   "again": "I got the top job and the mystery is mostly solved; a rerun would repeat the same single-option middle. I'd want a break first."
+  },
+  {
+   "run": "grad-10613-L1-life2",
+   "origin": "grad",
+   "ending": "lostward",
+   "life": 2,
+   "best": {
+    "year": 50,
+    "what": "The Officer You Nominated: I chose 'Let her decide without hearing from you' and the declassified card said it raised my ceiling to Prime Minister. Hands-off trust paying off was a good, quiet reveal."
+   },
+   "worst": {
+    "year": 41,
+    "what": "The GE ending: I shook every hand, lost the ward at 48.2%, and the game said it was never about me. It ended the run on a result I had no real control over."
+   },
+   "skip": {
+    "year": 32,
+    "why": "Asking Cabinet about indicators cost STAND-14 and gave nothing back. It was a flat, punishing year and I learned nothing useful from it."
+   },
+   "fair": "My ceiling was raised to PM, I was one of two names, and I lost on a single ward vote with no visible link to my choices. It felt arbitrary. The card also says 'it was never about you', which stings after 40 years of play.",
+   "again": "I still have untested branches: B/C at MPS, A/B at the bonus, and the Board Seat. The loss is annoying enough that I want to beat it."
+  },
+  {
+   "run": "grad-10714-L1-life3",
+   "origin": "grad",
+   "ending": "retired",
+   "life": 3,
+   "best": {
+    "year": 48,
+    "what": "Pushing GDP at Indicators got a 5-month bonus and a promotion to DPM, the first time a risky call paid off visibly."
+   },
+   "worst": {
+    "year": 45,
+    "what": "Y40-45 DPM-track years were mostly single-option screens with no agency, and the Succession put-myself-forward choice led to a vague 'one of two names weighed' result."
+   },
+   "skip": {
+    "year": 37,
+    "why": "The PQ brief answer was a rerun of the same choice from earlier lives; nothing new landed and the result was just a small STAND shift."
+   },
+   "fair": "The card spelled out exactly which choice raised the ceiling and why the 'steady' rumours were warnings, so I can see I stalled myself; though I only learned it after the fact.",
+   "again": "I now know the ceiling mechanism and want to test the succession fork I skipped; the loop is short enough to try again."
+  },
+  {
+   "run": "grad-10815-L1-life4",
+   "origin": "grad",
+   "ending": "pm",
+   "life": 4,
+   "best": {
+    "year": 38,
+    "what": "Lo Hei: telling her specifically, with an example. It raised my ceiling to Permanent Secretary, and the ending card confirmed it, which made the whole run click."
+   },
+   "worst": {
+    "year": 44,
+    "what": "Correction Direction: a single-option-feeling slog where the honest answer just cost STAND, with little to do but watch the number drop."
+   },
+   "skip": {
+    "year": 41,
+    "why": "Townhall: reading out a rude question and answering it was a low-stakes beat that felt like padding, and the DPM years generally offer little agency."
+   },
+   "fair": "The declassified card laid out exactly which choice raised the ceiling and when, so I can trace the result to my own decisions. Integrity 100 with a clean file matches how I played.",
+   "again": "I now understand the ceiling mechanic but still have untested branches, and I want to see if I can get here with fewer dead DPM years."
+  },
+  {
+   "run": "grad-10916-L1-life5",
+   "origin": "grad",
+   "ending": "pm",
+   "life": 5,
+   "best": {
+    "year": 48,
+    "what": "The Officer You Taught came back and I told him he was worth the trouble. It paid off a Y15 choice 33 years later and lifted my ceiling to PM, the one moment the game's memory felt personal."
+   },
+   "worst": {
+    "year": 43,
+    "what": "The DPM years (Y40-45): Ministry Townhall and Tuesday Night were single-option, so I tapped A with nothing to decide. It felt like waiting for the game to let me through."
+   },
+   "skip": {
+    "year": 42,
+    "why": "Tuesday Night was single-option appeal letters again, with no choice and no change. Nothing happened that I could not have guessed."
+   },
+   "fair": "The card spelled out exactly which choice raised the ceiling and why I stalled at DPM. I could trace it, and the late arrival was my own test costing me time.",
+   "again": "I still have open questions, like Board Seat and whether the climb can be quicker, and the decade-long single-option stretch is the only thing that puts me off."
+  },
+  {
+   "run": "grad-12027-L4-life1",
+   "origin": "grad",
+   "ending": "pm",
+   "life": 1,
+   "best": {
+    "year": 33,
+    "what": "Asking for the hard ministry nobody wants in the Reshuffle and getting made Minister. It felt like a real gamble, and the ending card confirmed it raised my ceiling to DPM."
+   },
+   "worst": {
+    "year": 43,
+    "what": "Tuesday Night meet-the-people with only one option. STAND dropped 6 and I had no say, so it was just tapping through a decline."
+   },
+   "skip": {
+    "year": 44,
+    "why": "Walkabout in the rain had a single option and nothing changed. The late DPM years were mostly forced single-choice scenes with no PM decision in sight."
+   },
+   "fair": "I reached PM, and the declassified card explained why I got there. The ceiling and the year it changed matched what I did. The sudden retirement at 67 right after getting the job felt abrupt, though.",
+   "again": "Now I know the ceiling system and the STAND/COMP thresholds, I want to test the untested options: asking about the ceiling, the BTO tip and writing honestly what everyone thinks."
+  },
+  {
+   "run": "grad-12128-L4-life2",
+   "origin": "grad",
+   "ending": "retired",
+   "life": 2,
+   "best": {
+    "year": 21,
+    "what": "The honest maiden speech in Parliament; it felt like a real choice that fit the person I was playing, and it paid off in REP and INTEG."
+   },
+   "worst": {
+    "year": 47,
+    "what": "Years 44-49 as DPM: STAND bled away while REP, INTEG and COMP were all 100. I kept picking from the same few choices and nothing I did changed the outcome."
+   },
+   "skip": {
+    "year": 45,
+    "why": "Tuesday Night and the Polling Day repeats were the same grind with no visible effect, and I knew the PM invitation wasn't coming."
+   },
+   "fair": "My stats were maxed and the card says my work earned a promotion that the ceiling refused. That is a fair mechanic in theory, but I was never given a way to see or fight it, so after 25 years it felt arbitrary rather than earned.",
+   "again": "I have clear untested branches and a theory about the ceiling, so I want to test it. The late game was a slog though."
+  },
+  {
+   "run": "grad-12229-L4-life3",
+   "origin": "grad",
+   "ending": "quiet",
+   "life": 3,
+   "best": {
+    "year": 3,
+    "what": "Writing what everyone was actually thinking on the post-it at the Public Sector Transformation offsite. It cost STAND but gave INTEG and REP, and it felt like the only real choice I made."
+   },
+   "worst": {
+    "year": 2,
+    "what": "The Work: a bland choice between working and being seen, with no stakes I could feel. Then I got shown the door at 26 with no warning."
+   },
+   "skip": {
+    "year": 2,
+    "why": "Nothing happened that I could tell, and I had no idea any of it was feeding the early exit."
+   },
+   "fair": "The hint from the reporting officer was there and I ignored it. Being let go for being 'boring but solid' fits the clues. It was abrupt, though: a pass that stops working on a Friday is cold and effective.",
+   "again": "The run was only 4 years, so I lost almost nothing, and I now know the early years are a trap I can steer around."
+  },
+  {
+   "run": "grad-12330-L4-life4",
+   "origin": "grad",
+   "ending": "lostward",
+   "life": 4,
+   "best": {
+    "year": 9,
+    "what": "Weekly Meet-the-People sessions gave REP+10 and felt like the game opening up toward politics. Getting promoted to Director at Y15 after the tea invitation was a close second."
+   },
+   "worst": {
+    "year": 17,
+    "what": "Ran in the GRC after all the careful build-up and lost the ward at 48.2%. The card said it was never about me, so none of my choices seemed to matter."
+   },
+   "skip": {
+    "year": 12,
+    "why": "The number plus recovery plan year was a dry, bureaucratic choice, and I could not tell what it did."
+   },
+   "fair": "I did nearly everything my notes said and still lost at 39 with no explanation I could act on. Losing a seat is fine, but 'it was never about you' feels like the game shrugging at me.",
+   "again": "I now have a specific unanswered question, which is what happens at Y17 and whether the ceiling has anything to do with it, and I want to test it."
+  },
+  {
+   "run": "grad-12431-L4-life5",
+   "origin": "grad",
+   "ending": "retired",
+   "life": 5,
+   "best": {
+    "year": 59,
+    "what": "Y37 in my own count, the Reshuffle: asking for the hard ministry nobody wants. It raised the ceiling all the way to Prime Minister, and the ending card confirmed it. Finally seeing the hidden ceiling spelled out felt like a reveal."
+   },
+   "worst": {
+    "year": 49,
+    "what": "The DPM years at the end: tapping through the Townhall and networking for +5 STAND with nothing changing. STAND bled while stats sat at 100, and I could not tell what would trigger the PM offer."
+   },
+   "skip": {
+    "year": 44,
+    "why": "The Board Seat year, plus the quiet DPM years around it. It was a known decline and the loop of maintain-stats-and-wait added nothing."
+   },
+   "fair": "The game never promised PM, and the card explains the ceiling clearly. I reached DPM with a ceiling of PM, so the shortfall was about age and timing, which I can see now. It still stings that I had nothing else to try at the end.",
+   "again": "I now know the ceiling reached PM and that the delay is what cost me, so I have a concrete experiment to run. I want to see whether I can reach the Reshuffle sooner."
+  },
+  {
+   "run": "poly-11017-L2-life1",
+   "origin": "poly",
+   "ending": "permsec",
+   "life": 1,
+   "best": {
+    "year": 31,
+    "what": "Running Meet-the-People Session every week paid off: REP+10 and an MP noticed me, flagged as something that would matter later. It was the only time a choice felt like it opened a door."
+   },
+   "worst": {
+    "year": 35,
+    "what": "Late night at Level 9 with only one choice, A. Several years in a row had a single option, so there was no decision to make and I just tapped through."
+   },
+   "skip": {
+    "year": 38,
+    "why": "Budget Round with only choice A (bid exactly). No real choice, and nothing visibly came of it. Years 32-38 were all similar."
+   },
+   "fair": "I maxed integrity, competence and reputation and was still capped by a hidden number, and the game never told me what the political route required. The ending card was nicely written, but the last seven years had no real agency.",
+   "again": "I haven't cracked the PM route, and I have clear hypotheses to test: STAND, sponsor, early choices."
+  },
+  {
+   "run": "poly-11118-L2-life2",
+   "origin": "poly",
+   "ending": "retired",
+   "life": 2,
+   "best": {
+    "year": 27,
+    "what": "The Counter: telling them exactly why it would fail. It felt like a real gamble, and the ending card says it removed my ceiling inside the service."
+   },
+   "worst": {
+    "year": 41,
+    "what": "Years 39-45 were mostly single-choice screens or choices with a hidden STAND penalty, so I was tapping through while my numbers fell and no PM invitation came."
+   },
+   "skip": {
+    "year": 41,
+    "why": "The PQ had one choice, STAND fell anyway, and nothing I did could change it."
+   },
+   "fair": "The card explains the ceilings only after the run, and the PM path had no visible signal I could act on. I went with maxed REP, INTEG and COMP and honest choices, which felt like the right play, and still got nowhere. It was good to learn what the ceilings were, but I could not have reached them by trying.",
+   "again": "I now have a real lead, the party's estimate, and I want to see what moves it."
+  },
+  {
+   "run": "poly-11219-L2-life3",
+   "origin": "poly",
+   "ending": "lostward",
+   "life": 3,
+   "best": {
+    "year": 14,
+    "what": "The statutory board turnaround worked and I was promoted to Director after choosing to stay and finish it. It was the one stretch where my choices visibly added up."
+   },
+   "worst": {
+    "year": 17,
+    "what": "The General Election. I asked for the single seat, lost at 48.2%, and the card said it was never going to be about me. The choice felt huge and the result felt fixed."
+   },
+   "skip": {
+    "year": 13,
+    "why": "Making myself indispensable was a quiet admin year. It had no stakes I could feel, and I only learned later that it mattered, if it did."
+   },
+   "fair": "Losing at 48.2% after a clean career is believable, but it felt arbitrary. I had no way to know the single seat was a coin flip, and nothing I built over 16 years mattered in the final vote. The game ended the whole run on one hidden roll.",
+   "again": "I now know the election is the gate. I want to test the GRC choice and see whether the single seat was the mistake."
+  },
+  {
+   "run": "poly-11320-L2-life4",
+   "origin": "poly",
+   "ending": "lostward",
+   "life": 4,
+   "best": {
+    "year": 26,
+    "what": "GE2 walking every block after winning the GRC; the +6 swing and the party noticing finally made the grind feel like it counted."
+   },
+   "worst": {
+    "year": 30,
+    "what": "The Board Seat offer: a text-heavy choice about resigning my seat for a conglomerate board, with no sign of what declining would do. It felt like a trap with no feedback."
+   },
+   "skip": {
+    "year": 24,
+    "why": "The mid-career admin years before and after the Tea invitation were mostly single-note events with little to decide, and I only tapped through them waiting for politics to start."
+   },
+   "fair": "Walking every block for nine days and losing by under two points, then being told it was never about me, felt like the game overriding my choices. The card's explanation was clear but it came too late to act on.",
+   "again": "I now know the party ceiling is the real lever and I have specific things to test, so I want to try it immediately."
+  },
+  {
+   "run": "poly-11421-L2-life5",
+   "origin": "poly",
+   "ending": "lostward",
+   "life": 5,
+   "best": {
+    "year": 23,
+    "what": "The Walkabout, where I listened on camera and REP jumped by 7. It was a small human moment and the one choice where the result felt connected to how I behaved."
+   },
+   "worst": {
+    "year": 25,
+    "what": "Town Council: proper and slow. It was a grind, REP fell for doing the right thing, and I could not tell what the game wanted from me."
+   },
+   "skip": {
+    "year": 26,
+    "why": "Year Without Incident. I picked 'build network' on a hunch, nothing visibly came of it, and the next year was just another election."
+   },
+   "fair": "48.2% three times in a row feels scripted rather than earned, and the card says it was never about me. That is a bleak message when I had put in nine days of walking, so it felt more arbitrary than fair.",
+   "again": "I still do not know what sets the party estimate, and I have one concrete experiment left: enter politics much earlier and skip the concessions."
+  },
+  {
+   "run": "poly-12532-L5-life1",
+   "origin": "poly",
+   "ending": "retired",
+   "life": 1,
+   "best": {
+    "year": 34,
+    "what": "Asking in Cabinet whether ministers should be paid on indicators they set. It was the one choice that felt like a real stand, and STAND dropped 46 to 32 as a result, so it had a visible cost."
+   },
+   "worst": {
+    "year": 43,
+    "what": "Another Meet-the-People with a single option. Late in the run, with COMP, REP and INTEG all at 100, nothing I did seemed to matter and the game just carried on."
+   },
+   "skip": {
+    "year": 42,
+    "why": "Years 37-45 blurred into one stretch of single-option events and STAND ticking down. Y42 is a representative one: COMP 99 and nothing happened."
+   },
+   "fair": "I hit 100 on everything and was told my ceiling was far lower than where I got to, with no way to see or influence it. The card explained things only after the fact. Nothing during play showed me what the PM gate was.",
+   "again": "I now know there are hidden ceilings set by specific choices, and I want to find which ones raise the party's estimate. That is a concrete thing to test."
+  },
+  {
+   "run": "poly-12633-L5-life2",
+   "origin": "poly",
+   "ending": "retired",
+   "life": 2,
+   "best": {
+    "year": 44,
+    "what": "Becoming DPM after walking every block in Y43, because it felt earned and the long grind paid off, even though PM was still out of reach."
+   },
+   "worst": {
+    "year": 45,
+    "what": "Tuesday Night was single-option letters again at DPM age 71, with all stats at 100 and nothing to decide. It felt like waiting out the clock."
+   },
+   "skip": {
+    "year": 41,
+    "why": "STAND drifted down despite 100 stats and strong appraisals, and I had no lever to pull. It was a passive slog with nothing to react to."
+   },
+   "fair": "DPM at 72 with a clean file is a decent outcome and the card explained the ceilings clearly. It does sting that the game gave me no visible way to move the party estimate, and 100 stats counting for nothing feels harsh.",
+   "again": "I now know the two ceilings and which choice cleared the service one, so I have a concrete hypothesis to test on the party side."
+  },
+  {
+   "run": "poly-12734-L5-life3",
+   "origin": "poly",
+   "ending": "retired",
+   "life": 3,
+   "best": {
+    "year": 48,
+    "what": "The Officer You Taught: choosing 'Tell him he was worth the trouble' quietly raised my ceiling to DPM. It was a small human choice that mattered, and the ending card confirmed it."
+   },
+   "worst": {
+    "year": 44,
+    "what": "Tuesday Night: a single-option Meet-the-People year where STAND and INTEG moved with no explanation and nothing for me to decide."
+   },
+   "skip": {
+    "year": 44,
+    "why": "Single option, unexplained stat changes, and no PM talk, so there was nothing to play."
+   },
+   "fair": "The card spells out the ceilings and the year it changed, so DPM makes sense. It is a bit frustrating that the key choice was a soft human one at 48, not anything I could have predicted.",
+   "again": "I finally have one confirmed ceiling raise and a clear gap to test, so I want to see if a different early-career path reaches PM."
+  },
+  {
+   "run": "poly-12835-L5-life4",
+   "origin": "poly",
+   "ending": "retired",
+   "life": 4,
+   "best": {
+    "year": 42,
+    "what": "Succession A, putting myself forward and being named one of two. It was the first time in four lives that the late game felt like a real contest, and I ended up DPM."
+   },
+   "worst": {
+    "year": 37,
+    "what": "Answering publicly and losing STAND -8. The cost was steep and I couldn't tell beforehand that it would be. It also felt like a trap because the other lives had already warned me."
+   },
+   "skip": {
+    "year": 45,
+    "why": "Quiet Year. I fixed something nobody asked for, lost 3 COMP, and nothing came back. Most of the late years are single-option Meet-the-People, which I would skip too."
+   },
+   "fair": "Mostly yes. The card explained the hidden ceilings and the translated rumours clearly. DPM after SMS-level party estimate feels like a decent result, though it's still short of PM and I don't know what the missing piece was.",
+   "again": "Yes. I am closer than ever, and I have a specific untested lever (Y42 B and early party-facing choices), so I want to try it."
+  },
+  {
+   "run": "poly-12936-L5-life5",
+   "origin": "poly",
+   "ending": "retired",
+   "life": 5,
+   "best": {
+    "year": 27,
+    "what": "Telling them exactly why it would fail in The Counter. It was the one choice the ending card confirmed as a ceiling change, and it felt like a real gamble."
+   },
+   "worst": {
+    "year": 43,
+    "what": "Tuesday Night, a single-option Meet-the-People at MSF. The late years are pressing next with no decisions in them."
+   },
+   "skip": {
+    "year": 42,
+    "why": "It was a single-option Parliamentary Question where I expected the Succession event. It was a dead year and a disappointment."
+   },
+   "fair": "The cap was set early and hidden, and I only learned of it on the card. The 100 stats and the walked blocks felt pointless. It is realistic but not much fun when the gate is invisible.",
+   "again": "I still haven't found what moves the party estimate, and the Life 4 path is a concrete lead. I want to test it."
+  },
+  {
+   "run": "scholar-10007-L0-life1",
+   "origin": "scholar",
+   "ending": "pm",
+   "life": 1,
+   "best": {
+    "year": 36,
+    "what": "Retiring as Prime Minister at 61 after STAND had slid for years with no PM signal. The ending card landing as a surprise was the payoff."
+   },
+   "worst": {
+    "year": 31,
+    "what": "The straight honest PQ answer dropped STAND and my appraisal. Candour was punished with no explanation, and it felt like the game was arbitrary about what it rewarded."
+   },
+   "skip": {
+    "year": 27,
+    "why": "STAND began its slide here and nothing I did seemed to reverse it. The years after were repetitive: GE walkabouts, townhalls and credit choices with little visible effect."
+   },
+   "fair": "I reached PM, and the card shows a hidden ceiling that moved at one specific choice, which explains the run. But I could not have known the Y35 choice mattered, so the cause was invisible while I played.",
+   "again": "I now know the hidden ceiling exists and I want to find which choices move it. I also want to see whether I can get there without STAND collapsing."
+  },
+  {
+   "run": "scholar-10108-L0-life2",
+   "origin": "scholar",
+   "ending": "retired",
+   "life": 2,
+   "best": {
+    "year": 43,
+    "what": "Promoted to Minister at 68 for Home Affairs after asking for the hard ministry, even with STAND at 0. It felt like the grind finally paid off."
+   },
+   "worst": {
+    "year": 39,
+    "what": "The long Y28-39 stretch of stuck SMS years with the bottom-20th indicators choice. Nothing moved, my STAND sat at 0, and the years blurred together."
+   },
+   "skip": {
+    "year": 34,
+    "why": "Mid-stretch SMS years where nothing I picked changed anything, so I would have tapped through."
+   },
+   "fair": "The declassified card explained exactly why I stalled and what changed it, so it made sense. It still stings that I knew the lever existed from life 1 and only used it at 67.",
+   "again": "I now have a clear hypothesis, that the ceiling rises early via ownership and hard asks, and I want to test it for PM."
+  },
+  {
+   "run": "scholar-10209-L0-life3",
+   "origin": "scholar",
+   "ending": "retired",
+   "life": 3,
+   "best": {
+    "year": 9,
+    "what": "Tea and the political invitation: the grassroots work I'd done since Y5 paid off, and the GRC win followed. It was the first time the game's hidden machinery felt like it was answering me."
+   },
+   "worst": {
+    "year": 44,
+    "what": "Late DPM years: Townhall, Walkabout, Tuesday Night and Indicators with a single option or the same hold-steady choice. I was waiting for a PM sign that could not come, and nothing I picked mattered."
+   },
+   "skip": {
+    "year": 45,
+    "why": "Same Indicators choice again, an appraisal that dipped from outstanding to strong for no stated reason, and no movement on the succession chart. Nothing happened."
+   },
+   "fair": "The card explains it clearly and my notes had the mechanism. It stung to see how many years I'd spent waiting for something that was locked, but the logic held up and the rumours were translated honestly.",
+   "again": "I now know the ceiling is the mechanic, and I want to see what raises it to PM. A run with a clear experiment is more fun than another long wait."
+  },
+  {
+   "run": "scholar-10310-L0-life4",
+   "origin": "scholar",
+   "ending": "pm",
+   "life": 4,
+   "best": {
+    "year": 34,
+    "what": "Becoming PM at 59 after the Y34 Polling Day, the pay line saying the formula was published so nobody could say they weren't told. It gave the run a payoff."
+   },
+   "worst": {
+    "year": 32,
+    "what": "Years as DPM spent choosing MPS and PQ options again and again with no visible signal. It was repetitive dead time and I was just waiting."
+   },
+   "skip": {
+    "year": 33,
+    "why": "Another DPM year pushing the bottom 20th at the indicators. It felt identical to earlier years and nothing registered."
+   },
+   "fair": "The declassified card named the exact choice that raised the ceiling and the reason was traceable, even though I couldn't see it while playing. PM at 59 felt slow but earned.",
+   "again": "The ceiling is a real puzzle now. I know effortful, personally owned choices raise it and I want to see how early I can get it to PM."
+  },
+  {
+   "run": "scholar-10411-L0-life5",
+   "origin": "scholar",
+   "ending": "retired",
+   "life": 5,
+   "best": {
+    "year": 27,
+    "what": "Asked Cabinet about ministers being paid on indicators they set, and by Y30 the formula was actually adjusted. A rare choice that visibly paid off."
+   },
+   "worst": {
+    "year": 45,
+    "what": "Single-option PQ years at 70-odd as Minister, tapping 'answer straight' with no PM signal. Dead time with nothing to decide."
+   },
+   "skip": {
+    "year": 46,
+    "why": "Another single-option PQ with no stakes. Late-game years after the ceiling stalled were all the same and nothing changed."
+   },
+   "fair": "The card explained exactly what happened and the ceiling logic is consistent, so it was fair. It was just annoying that the rumours had hinted at it for 6 years and I still could not fix it in time.",
+   "again": "I still have not figured out the ceiling mechanics. The ceiling rising looks random or tied to specific events I have not isolated, and that nags at me."
+  },
+  {
+   "run": "scholar-11522-L3-life1",
+   "origin": "scholar",
+   "ending": "retired",
+   "life": 1,
+   "best": {
+    "year": 22,
+    "what": "Fixing a process quietly without announcing it, which got me confirmed as full Minister. It felt like the game rewarded doing the right thing unseen, which was a nice contrast to 'be seen doing it'."
+   },
+   "worst": {
+    "year": 45,
+    "what": "The quiet Tuesday Night event with a single choice, and the years after it where I waited for a PM offer that never came. Single-choice years felt like tapping through a waiting room."
+   },
+   "skip": {
+    "year": 42,
+    "why": "Bottom-20th indicators: every option cost something and STAND kept sliding, and it felt like a grind with no way to see the real gate."
+   },
+   "fair": "I got DPM at 72 with perfect integrity and REP and was never offered PM, and the game never showed that a hidden ceiling was the gate. The rumours were only translated after the fact. The ending is coherent but the rules were opaque.",
+   "again": "Now I know a hidden ceiling exists and one choice that lifts it, so there's a concrete thing to test."
+  },
+  {
+   "run": "scholar-11623-L3-life2",
+   "origin": "scholar",
+   "ending": "retired",
+   "life": 2,
+   "best": {
+    "year": 38,
+    "what": "Made DPM after the GE at 63.0%, and the ceiling reveal later showed my 'Let her decide without hearing from you' choice in The Officer You Nominated was what raised it. Hands-off restraint paying off was the one moment the hidden system felt clever."
+   },
+   "worst": {
+    "year": 45,
+    "what": "Meet-the-People offered only option A, so there was no real choice, and STAND dropped 4 anyway. Late-game years were repeated indicators, PQs and GEs with nothing new to decide."
+   },
+   "skip": {
+    "year": 44,
+    "why": "The PQ had a single option, answer straight. It was a non-decision in a stretch of years where nothing could move me toward PM."
+   },
+   "fair": "The card explained exactly why: the ceiling was DPM and I only raised it once. It was a bit opaque while playing, but the reveal is fair and I can learn from it.",
+   "again": "Now I know the ceiling is raised by specific choices and the card names them. I want to find the next one before age 38 and see whether PM is reachable."
+  },
+  {
+   "run": "scholar-11724-L3-life3",
+   "origin": "scholar",
+   "ending": "pm",
+   "life": 3,
+   "best": {
+    "year": 39,
+    "what": "Finally reaching PM after the long wait as DPM. The ending card paying twice the entry-grade minister's salary landed as a dry punchline, and the declassified ceiling reveal made the whole run click."
+   },
+   "worst": {
+    "year": 36,
+    "what": "The DPM wait years: Indicators C again, Walkabout with a single option, no sign of movement. I was repeating inputs and watching numbers with nothing to decide."
+   },
+   "skip": {
+    "year": 37,
+    "why": "Another DPM year of waiting with a hands-off test and no feedback. I could not tell whether the choice did anything."
+   },
+   "fair": "The card spelled out exactly which choice raised the ceiling and what my file looked like, and it matched my notes. Waiting that long felt a bit arbitrary, but nothing felt rigged.",
+   "again": "I want to test whether the ceiling can be raised earlier, and I now know the system well enough to try a quicker route. I would also like to see what other endings exist."
+  },
+  {
+   "run": "scholar-11825-L3-life4",
+   "origin": "scholar",
+   "ending": "retired",
+   "life": 4,
+   "best": {
+    "year": 53,
+    "what": "The Reshuffle: asking for the hard ministry nobody wants. It was the only choice that visibly moved the ceiling, and I got the card confirmation of it at the end."
+   },
+   "worst": {
+    "year": 44,
+    "what": "A Year Without Incident: a single option, the same Harvard junior rumour again, and nothing to decide. DPM years 42-46 were mostly waiting."
+   },
+   "skip": {
+    "year": 43,
+    "why": "Tuesday Night Meet-the-People with only one option and a repeated third-column rumour. No agency and nothing new."
+   },
+   "fair": "The card explained exactly why, and it matches the rumours. It is fair mechanically, but it felt a bit of a cheat that the key event never turned up in 46 years.",
+   "again": "Yes. I now know the ceiling mechanic and want to test which events trigger the second raise rather than waiting passively."
+  },
+  {
+   "run": "scholar-11926-L3-life5",
+   "origin": "scholar",
+   "ending": "pm",
+   "life": 5,
+   "best": {
+    "year": 38,
+    "what": "The Raw Feedback: I replied with one line and it quietly raised my ceiling to Minister. A small, throwaway choice turned out to matter, which was the best reveal of the run."
+   },
+   "worst": {
+    "year": 35,
+    "what": "The PQ event had only one choice (answer straight). There was no decision to make, and I was stuck waiting at DPM for a nomination event that never came."
+   },
+   "skip": {
+    "year": 34,
+    "why": "Polling Day Again was the same walk-every-block choice I have made in every life. It cost me nothing and taught me nothing, and the DPM wait years blur together."
+   },
+   "fair": "The card said I made PM at 60 but the ceiling it names is only Minister, and my notes say I was DPM at 58 and still waiting. I do not understand how those fit together, so it felt unearned and confusing rather than unfair in a deserved way.",
+   "again": "The hidden ceiling is still not fully mapped and each run reveals one more trigger. I want to test whether small choices like the Raw Feedback reply are the real lever."
+  }
+ ]
+}
