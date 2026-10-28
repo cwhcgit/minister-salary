@@ -15,10 +15,11 @@ jobs:
             core.setSecret(token);
             core.exportVariable('JWT', token);
       - name: Exchange for an Anthropic access token
+        # Fails the job unless an access token comes back, so a green run means WIF works.
         run: |
           curl -sS https://api.anthropic.com/v1/oauth/token \
             -H "content-type: application/json" \
-            --data @- <<JSON | jq 'with_entries(if (.key | test("token$")) then .value = "<redacted>" else . end)'
+            --data @- > response.json <<JSON
           {
             "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
             "assertion": "$JWT",
@@ -28,3 +29,11 @@ jobs:
             "workspace_id": "wrkspc_014M7AmfQuPoyQccxD9agdEB"
           }
           JSON
+          jq 'with_entries(if (.key | test("token$")) then .value = "<redacted>" else . end)' response.json
+          if jq -e '.access_token | startswith("sk-ant-oat01-")' response.json > /dev/null; then
+            echo "::notice title=WIF OK::Exchanged the GitHub token for an Anthropic access token (expires in $(jq -r .expires_in response.json)s)"
+          else
+            echo "::error title=WIF failed::$(jq -c 'del(.access_token)' response.json)"
+            exit 1
+          fi
+          rm -f response.json
