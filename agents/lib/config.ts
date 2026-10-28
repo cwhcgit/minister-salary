@@ -40,7 +40,8 @@ export interface FunConfig {
   cap: number;                // ceiling
   quitLine: number;           // at or below this after a tap, the player puts the phone down
   decay: number;              // taken off every tap
-  maxDelta: number;           // the model's own delta is -maxDelta..+maxDelta
+  maxDelta: number;           // the model's own delta is clamped to -maxDelta..+maxDelta
+  verdicts: Record<string, number>; // the model picks a verdict; this maps it to its delta
   repeatSteps: number[];      // a full card already seen this session costs these, compounding
   repeatMultiplier: number;   // scales repeatSteps (rounded to whole points)
   freshToReset: number;       // this many fresh cards in a row reset the repeat streak
@@ -48,7 +49,9 @@ export interface FunConfig {
   origins: "rotate" | "keep"; // the next career's origin: the next one along, or the same again
 }
 export const FUN_DEFAULTS: FunConfig = {
-  start: 50, cap: 100, quitLine: 25, decay: 2, maxDelta: 10, repeatSteps: [5, 10, 15], repeatMultiplier: 1,
+  start: 50, cap: 100, quitLine: 25, decay: 2, maxDelta: 10,
+  verdicts: { fine: 0, skimmed: -2, annoyed: -5, smiled: 2, tell_a_friend: 6 },
+  repeatSteps: [5, 10, 15], repeatMultiplier: 1,
   freshToReset: 3, careers: 5, origins: "rotate"
 };
 
@@ -88,7 +91,7 @@ export const PERSONAS: Persona[] = [
     runs: 100, turnSchema: "fun", diarySchema: "fun", canaries: true, titleProbe: false, cohortCapUsd: 2,
     fun: fun({ quitLine: 15 }),
     answers: "Do callbacks and endings pull a patient player through several careers?" },
-  { id: "fun-critic", name: "Priya Nair", file: "fun-critic.md", blind: true, model: "claude-sonnet-5-5", effort: "low", thinking: "disabled",
+  { id: "fun-critic", name: "Priya Nair", file: "fun-critic.md", blind: true, model: "claude-sonnet-5-5", effort: "low", thinking: "between_tools",
     runs: 15, turnSchema: "fun", diarySchema: "fun", canaries: true, titleProbe: false, cohortCapUsd: 4,
     fun: fun({ quitLine: 25 }),
     answers: "Calibration: does a sharper (and dearer) reader agree with the Haiku players card by card?" },

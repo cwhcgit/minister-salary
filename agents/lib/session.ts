@@ -59,7 +59,7 @@ export async function playSession(ctx: SessionCtx, spec: SessionSpec): Promise<S
   const write = (o: object) => fs.appendFileSync(file, JSON.stringify(o) + "\n");
   const careers = spec.careers.slice(0, ctx.careers);
   const pick = H.rng(careers[0].seed ^ 0x5bd1e995);
-  const schema = funTurnSchema(cfg.maxDelta);
+  const schema = funTurnSchema(Object.keys(cfg.verdicts));
   const terms = new Map<string, string[]>();
   const meter = new Meter(cfg);
   let cost = 0, autoPicks = 0, refusals = 0, taps = 0, careersPlayed = 0, careersFinished = 0, quit = false;
@@ -123,6 +123,7 @@ export async function playSession(ctx: SessionCtx, spec: SessionSpec): Promise<S
           messages[messages.length - 1].content.push({ text: lostReplyText(choice) });
         } else {
           reply = r.data; choice = letter(r);
+          reply.delta = cfg.verdicts[String(reply.verdict ?? "").trim().toLowerCase()] ?? 0;
           messages.push({ role: "assistant", content: [{ text: r.text }] });
         }
         return { choice, reply, autoPicked, retried, stop: r.stop, refusal: r.refusal, servedBy: r.servedBy, usage, cost: turnCost };
