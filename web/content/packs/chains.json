@@ -22,7 +22,7 @@
               "text": "advisers who walk into heartland shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
-              "requires": { "ministry": "Ministry of Trade and Industry" }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
             },
             {
               "id": "mom",
@@ -131,7 +131,7 @@
               "text": "advisers who walk into heartland shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
-              "requires": { "ministry": "Ministry of Trade and Industry" }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
             },
             {
               "id": "mom",
@@ -267,7 +267,7 @@
               "text": "advisers who walk into heartland shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
-              "requires": { "ministry": "Ministry of Trade and Industry" }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
             },
             {
               "id": "mom",
@@ -378,7 +378,7 @@
               "text": "advisers who walk into heartland shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
-              "requires": { "ministry": "Ministry of Trade and Industry" }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
             },
             {
               "id": "mom",
@@ -488,7 +488,7 @@
               "text": "advisers who walk into heartland shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
-              "requires": { "ministry": "Ministry of Trade and Industry" }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
             },
             {
               "id": "mom",
@@ -595,7 +595,7 @@
               "text": "advisers who walk into heartland shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
-              "requires": { "ministry": "Ministry of Trade and Industry" }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
             },
             {
               "id": "mom",
@@ -770,7 +770,7 @@
               "text": "advisers who walk into heartland shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
-              "requires": { "ministry": "Ministry of Trade and Industry" }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
             },
             {
               "id": "mom",
@@ -1274,7 +1274,7 @@
               "id": "mti",
               "text": "ending grants for firms that miss their productivity targets two years running",
               "short": "the two-year rule",
-              "requires": { "ministry": "Ministry of Trade and Industry", "flagsNone": ["moved_ministry"] }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry", "flagsNone": ["moved_ministry"] }
             },
             {
               "id": "mom",
@@ -1376,7 +1376,7 @@
               "id": "mti",
               "text": "ending grants for firms that miss their productivity targets two years running",
               "short": "the two-year rule",
-              "requires": { "ministry": "Ministry of Trade and Industry", "flagsNone": ["moved_ministry"] }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry", "flagsNone": ["moved_ministry"] }
             },
             {
               "id": "mom",
@@ -1501,7 +1501,7 @@
               "id": "mti",
               "text": "ending grants for firms that miss their productivity targets two years running",
               "short": "the two-year rule",
-              "requires": { "ministry": "Ministry of Trade and Industry", "flagsNone": ["moved_ministry"] }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry", "flagsNone": ["moved_ministry"] }
             },
             {
               "id": "mom",
@@ -1642,7 +1642,7 @@
               "id": "mti",
               "text": "ending grants for firms that miss their productivity targets two years running",
               "short": "the two-year rule",
-              "requires": { "ministry": "Ministry of Trade and Industry", "flagsNone": ["moved_ministry"] }
+              "requires": { "ministry": "Ministry of Energy, Trade and Industry", "flagsNone": ["moved_ministry"] }
             },
             {
               "id": "mom",
