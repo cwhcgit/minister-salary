@@ -292,6 +292,7 @@ function castStatic(build) {
       if (new Set(ids).size !== ids.length) out.push(`${e.id}: part slot "${k}" has duplicate option ids`);
     }
     const texts = strs([e.title, e.body, e.choices.map(c => [c.text, c.outcome]), (e.variants || []).map(v => [v.title, v.body, v.choices]),
+      Object.values((e.again || {}).scenes || {}).map(v => [v.title, v.body, v.choices]),
       [...slots.values()].map(sl => sl.options.map(o => Object.entries(o).filter(([k]) => !['id', 'requires', 'effects', 'scale', 'prefer'].includes(k)).map(([, v]) => v)))]);
     for (const t of texts) for (const { name, field, raw } of tok(t)) {
       const low = name.charAt(0).toLowerCase() + name.slice(1);
@@ -313,7 +314,7 @@ function castStatic(build) {
     }
     // tokens where nothing fills them: montage lines, autoplay lines, and part tokens in a repeatable card's title (montage years show it)
     for (const t of strs(e.montageLines)) if (tok(t).length) out.push(`${e.id}: token in a montage line ("${t.slice(0, 40)}...")`);
-    for (const t of strs([(e.autoPlay || {}).line, (e.variants || []).map(v => v.autoPlayLine)])) if (tok(t).some(x => !roles.has(x.name.toLowerCase()))) out.push(`${e.id}: part token in an autoplay line`);
+    for (const t of strs([(e.autoPlay || {}).line, (e.autoPlay || {}).lines, (e.variants || []).map(v => v.autoPlayLine)])) if (tok(t).some(x => !roles.has(x.name.toLowerCase()))) out.push(`${e.id}: part token in an autoplay line`);
     if (!e.once && !e.triggered && tok(e.title).some(x => slots.has(x.name.charAt(0).toLowerCase() + x.name.slice(1)))) out.push(`${e.id}: part token in a repeatable card's title`);
     // a callback that names a role must know whether the person there is the one the choice was about
     e.choices.forEach((ch, i) => {
@@ -387,10 +388,13 @@ const LINE_RULES = {
 function texts(e) {
   const out = [e.title, e.body];
   for (const c of e.choices || []) out.push(c.text, c.outcome);
-  // every version of the card is shown in the same contexts as the card itself
+  // every version of the card is shown in the same contexts as the card itself, and so is a
+  // series' second-showing scene
   for (const v of e.variants || []) { out.push(v.title, v.body); for (const c of v.choices || []) out.push(c.text, c.outcome); }
+  for (const v of Object.values((e.again || {}).scenes || {})) { out.push(v.title, v.body); for (const c of v.choices || []) out.push(c.text, c.outcome); }
   const m = e.montageLines;
   if (m) out.push(...(Array.isArray(m) ? m : Object.values(m).flat()));
+  if (e.autoPlay) out.push(e.autoPlay.line, ...(e.autoPlay.lines || []));
   return out.filter(Boolean);
 }
 

@@ -81,11 +81,15 @@ function texts(list, game) {
     (e.choices || []).forEach((c, i) => c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}${tag}.choices[${i}].outcome`, text: fill(c.outcome, pick) }));
     if (x) continue;   // montage lines and versions once per card
     strings(e.montageLines).forEach((m, i) => out.push({ card: e.id, kind: "montage", where: `${e.id}.montageLines#${i}`, text: fill(m) }));
+    strings((e.autoPlay || {}).lines).forEach((m, i) => out.push({ card: e.id, kind: "montage", where: `${e.id}.autoPlay.lines#${i}`, text: fill(m) }));
     // a card's other versions are the same card in another scene: checked against every other card
-    (e.variants || []).forEach((v, k) => {
-      if (v.body) out.push({ card: e.id, kind: "body", where: `${e.id}.variants[${k}].body`, text: fill(v.body, pick) });
-      (v.choices || []).forEach((c, i) => c && c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}.variants[${k}].choices[${i}].outcome`, text: fill(c.outcome, pick) }));
-    });
+    // (a series' second-showing scenes too)
+    const versions = (e.variants || []).map((v, k) => [`variants[${k}]`, v])
+      .concat(Object.entries((e.again || {}).scenes || {}).map(([st, v]) => [`again.${st}`, v]));
+    for (const [at, v] of versions) {
+      if (v.body) out.push({ card: e.id, kind: "body", where: `${e.id}.${at}.body`, text: fill(v.body, pick) });
+      (v.choices || []).forEach((c, i) => c && c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}.${at}.choices[${i}].outcome`, text: fill(c.outcome, pick) }));
+    }
   }
   for (const en of (game.endings || [])) out.push({ card: `ending:${en.id}`, kind: "epitaph", where: `endings.${en.id}.epitaph`, text: en.epitaph });
   return out;

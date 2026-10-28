@@ -439,7 +439,11 @@
     "The team is returned with 58.6%. The swing against you is described as \"within the normal range\".",
     "The team is returned with 61.2%. The result is described as \"a clear endorsement of the team's record\", which is how you know it was close somewhere else.",
     "The team is returned with 55.9%. The result is described as \"a timely reminder\". Nobody specifies of what.",
-    "The team is returned with 63.0%. A newspaper calls your ward \"safe\", and the branch chairman asks you, quietly, never to say that word out loud."
+    "The team is returned with 63.0%. A newspaper calls your ward \"safe\", and the branch chairman asks you, quietly, never to say that word out loud.",
+    "The team is returned with 57.4%. Your branch chairman calls it \"steady\", and means it as praise, mostly.",
+    "The team is returned with 64.7%. The papers call it \"emphatic\", and the other side calls it \"a learning experience\".",
+    "The team is returned with 60.3%. It is the third-best result in the region, a fact the branch has already printed.",
+    "The team is returned with 59.9%. The branch spends the thank-you parade explaining that 59.9% rounds to 60."
   ],
   "cepHintsPolitics": [
     "The Prime Minister's office describes your work as \"very solid\". It is the word they use for furniture.",
@@ -993,5 +997,18 @@
         ]
       }
     }
-  }
+  },
+  "warnLines": [
+    "Your reporting officer asks whether you have considered the private sector. It is phrased as concern.",
+    "HR sends you a link to the career transition portal, \"in case it is useful\".",
+    "Your reporting officer mentions, twice, that a friend at a bank is hiring. It is phrased as news.",
+    "A workshop called \"Planning Your Next Chapter\" appears in your calendar, booked by someone else.",
+    "Your reporting officer says the service is \"not for everyone\", to a point just past your shoulder."
+  ],
+  "warnLinesPolitics": [
+    "The Whip asks, kindly, whether you have thought about spending more time in your ward. It is phrased as concern.",
+    "The Whip mentions several former Members who found fulfilling careers outside politics. It is phrased as an anecdote.",
+    "The party's organising secretary asks about your plans for the next election, which is early to be asking.",
+    "Your seat on a committee you liked is given to a newer Member, with thanks for your contribution."
+  ]
 }

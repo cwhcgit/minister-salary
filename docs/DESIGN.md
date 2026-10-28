@@ -154,7 +154,10 @@ influence once they hold a portfolio: real median income growth, income growth o
 lowest 20th percentile, unemployment, real GDP growth).
 
 Once the player is a Minister, **their own policy choices move their own bonus.** The
-game never comments on this. It just shows the number.
+game never comments on this. It just shows the number. The choice comes as The Indicators,
+twice a career: the second time, the plan from the first is the default and the question is
+whether to break it. After that the ministry rolls the habit over by itself, and every year's
+pay line still shows the months it earned.
 
 ---
 
@@ -169,7 +172,8 @@ performanceScore = 0.5·Competence + 0.3·Standing + 0.15·Reputation + noise(±
 
 - **A / B+** → promotion eligible, if `currentRank < CEP`
 - **C** twice consecutively → lateral transfer to a posting nobody wants
-- **D** → a warning; the next year, the improvement plan card. Two Ds in a row after it →
+- **D** → a warning; the next year, the improvement plan card (once a career: a later plan
+  passes as a Meanwhile year that does what you did with the first). Two Ds in a row after it →
   the quiet conversation (never in the first four years, or before six cards)
 - `currentRank == CEP` → *"You are described as having found your level."* Promotion
   never comes. Player must find a CEP-raising event or accept the ceiling.

@@ -41,6 +41,8 @@ const Engine = (() => {
       gradeSeen: {},     // appraisal quotes used so far this run, per grade (see gradeLabel)
       fillerSeen: {},    // repeatable events already played in full, for montage years
       habits: {},        // the choice made on each of them, which montage years repeat
+      series: {},        // habits shared by sibling cards (see seriesOf): { key: { stance, full, passed } }
+      linesUsed: {},     // Meanwhile lines this run has shown, per card and habit (see pickLine)
       history: [],       // one entry per year, for the Declassified screen
       flags: [],
       seen: [],
@@ -522,6 +524,12 @@ const Engine = (() => {
       }) };
     if (pick) out.picked = pick;
     if (Object.keys(who).length) out.who = who;
+    // a series' second showing: the habit is the default, so it comes first (order maps the
+    // buttons back to the card's own choices)
+    if (ev.keep > 0) {
+      out.order = [ev.keep, ...out.choices.map((_, i) => i).filter(i => i !== ev.keep)];
+      out.choices = out.order.map(i => out.choices[i]);
+    }
     return out;
   }
   // Only for a save made before a card's parts changed: the first option of every slot.
@@ -664,6 +672,7 @@ const Engine = (() => {
   function eligible(ev, s) {
     if (ev.triggered) return false;
     if (ev.once && s.seen.includes(ev.id)) return false;
+    if (spent(ev, s)) return false;   // a repeatable card with nothing new to say this run
     return cardOk(ev, s);
   }
 
@@ -920,7 +929,9 @@ const Engine = (() => {
       } else if (won) {
         const lines = content.reElectionLines || ["The team is returned."];
         s.reElections = (s.reElections || 0) + 1;
-        log.push({ kind: "promo", text: lines[(s.reElections - 1) % lines.length] });
+        const i = pickLine(s, "__reElection", lines.length, true);
+        useLine(s, "__reElection", i);
+        log.push({ kind: "promo", text: lines[i] });
       }
       else s.ending = "lostward";
     } else if (ch.election) {
@@ -1032,9 +1043,14 @@ const Engine = (() => {
     if (s.consecutiveD >= 2 && !s.pipDone) { s.consecutiveD = 1; t.pipHeld = true; }
     if (s.consecutiveD >= 2) { s.ending = "quiet"; return log; }
     if (s.consecutiveD === 1) {
-      log.push({ kind: "warn", text: s.rank >= 8
+      // the warning, in one of several wordings, none twice until all have been used
+      const pol = s.rank >= 8, key = pol ? "__warnPolitics" : "__warn";
+      const lines = (pol ? content.warnLinesPolitics : content.warnLines) || [pol
         ? "The Whip asks, kindly, whether you have thought about spending more time in your ward. It is phrased as concern."
-        : "Your reporting officer asks whether you have considered the private sector. It is phrased as concern." });
+        : "Your reporting officer asks whether you have considered the private sector. It is phrased as concern."];
+      const w = pickLine(s, key, lines.length, true);
+      useLine(s, key, w);
+      log.push({ kind: "warn", text: lines[w] });
       if (!s.pipDone && !s.scheduled.some(x => x.eventId === "improvement_plan") && content.events.some(e => e.id === "improvement_plan")) {
         const e = { eventId: "improvement_plan", fireYear: s.year + 1 };
         s.scheduled.push(e);
@@ -1068,8 +1084,13 @@ const Engine = (() => {
     const rv = s.rival ? rivalYear(content, s, t, wouldPromote ? score : null) : { lost: false, log: [] };
 
     if (promotable && s.rank >= s.cep) {
-      const hints = s.rank >= 8 && content.cepHintsPolitics ? content.cepHintsPolitics : content.cepHints;
-      log.push({ kind: "cep", text: hints[Math.floor(roll(s) * hints.length)] });
+      const pol = s.rank >= 8 && content.cepHintsPolitics, hints = pol ? content.cepHintsPolitics : content.cepHints;
+      // the rumours are taken like Meanwhile lines, none twice until all have been heard; the
+      // die this used to read is still rolled, so the run's other dice fall where they did
+      roll(s);
+      const key = pol ? "__cepPolitics" : "__cep", i = pickLine(s, key, hints.length, true);
+      useLine(s, key, i);
+      log.push({ kind: "cep", text: hints[i] });
     } else if (promotable && s.rank === 7) {
       // Said a few times, differently, then not again: a Permanent Secretary can be there for years.
       const lines = content.topRungLines || ["There is no rung above this one. The next step is not a promotion; it is a different life."];
@@ -1150,21 +1171,101 @@ const Engine = (() => {
   const MONTAGE = "__montage:";
   const isFiller = ev => !ev.once && !ev.triggered && !ev.priority && !ev.noMontage;
 
+  // --- Meanwhile lines ---------------------------------------------------------
+  // A year that passes by itself shows one line. A run never shows the same line twice: each
+  // card-and-habit takes its lines in an order drawn from the seed, preferring lines the phone
+  // has not shown in its last runs (the freshness memory, as card versions do). The lines used
+  // are kept in the state, so a replay shows the same ones.
+  // montageLines is either one list, or lists keyed by the habit (a choice index, or a series
+  // stance), so a year of coasting never reads like a year of hard work.
+  function linesFor(src, habit) {
+    const pool = src.montageLines;
+    if (Array.isArray(pool)) return { key: src.id, lines: pool };
+    if (pool && habit !== undefined && pool[habit]) return { key: `${src.id}:${habit}`, lines: pool[habit] };
+    if (pool) return { key: `${src.id}:*`, lines: Object.values(pool).flat() };
+    return { key: "__year", lines: ["The year passes. Most of them do."] };
+  }
+  // The index of the line to show next, or null when every line has been shown this run. With
+  // `cycle`, lines that have all been shown are taken again in the same order: for a series,
+  // which cannot come back in full, and for rumours and election results, which must be said.
+  function pickLine(s, key, n, cycle) {
+    if (!n) return null;
+    const used = (s.linesUsed || {})[key] || [];
+    const r = rng((s.seed ^ hashStr("mw:" + key)) >>> 0);
+    const order = Array.from({ length: n }, (_, i) => i);
+    for (let i = n - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+    const fresh = order.filter(i => !used.includes(i)), recent = s.recent || [];
+    const i = fresh.find(i => !recent.includes(`mw:${key}#${i}`)) ?? fresh[0];
+    if (i !== undefined) return i;
+    return cycle ? order[used.length % n] : null;
+  }
+  function useLine(s, key, i) {
+    const u = (s.linesUsed = s.linesUsed || {});
+    (u[key] = u[key] || []).push(i);
+  }
+
   // A montage year repeats the player's habit: the effects of what they chose the first
   // time they played this card in full (without its "noted" hit or its consequences).
   function montageOf(content, src, s) {
-    // montageLines is either one list, or lists keyed by the habit's choice index, so a year
-    // of coasting never reads like a year of hard work.
-    const pool = src.montageLines, h = (s.habits || {})[src.id];
-    const lines = Array.isArray(pool) ? pool
-      : pool && pool[h] ? pool[h]
-      : pool ? Object.values(pool).flat() : ["The year passes. Most of them do."];
-    const n = s.fillerSeen[src.id] || 1;
-    const habit = src.choices[(s.habits || {})[src.id]];
+    const h = (s.habits || {})[src.id];
+    const { key, lines } = linesFor(src, h);
+    const line = pickLine(s, key, lines.length, true);
+    const habit = src.choices[h];
     const effects = habit ? Object.fromEntries(Object.entries(habit.effects || {}).filter(([k]) => k !== "appraisal"))
       : (src.montageEffects || { competence: 1 });
-    return { id: MONTAGE + src.id, title: sub(src.title, s, content), body: lines[(n - 1) % lines.length], montage: true,
+    return { id: MONTAGE + src.id, title: sub(src.title, s, content), body: lines[line], montage: true, lineKey: key, line,
       choices: [{ text: habit ? `As usual: ${habit.text}` : "Carry on.", effects, outcome: "Another year." }] };
+  }
+  // A habit year passes while it has a line this run has not shown (every fourth time the card
+  // comes back in full instead, while it has a scene this run has not shown). Once its lines for
+  // the habit are spent, the card comes back in full, as a new scene, and the player chooses again.
+  const scenesLeft = (ev, s) => (ev.variants || []).length + 1 - (s.history || []).filter(x => x.ev === ev.id && !x.passed).length;
+  function freshLine(ev, s) {
+    const { key, lines } = linesFor(ev, (s.habits || {})[ev.id]);
+    return pickLine(s, key, lines.length, false) !== null;
+  }
+  function habitYear(ev, s) {
+    const n = s.fillerSeen[ev.id] || 0;
+    if (!isFiller(ev) || n < 1 || (s.habits || {})[ev.id] === undefined || !freshLine(ev, s)) return false;
+    return n % 4 !== 0 || scenesLeft(ev, s) <= 0;
+  }
+  // A repeatable card with no scene and no line left for its habit has nothing new to say this
+  // run: it is not drawn again.
+  function spent(ev, s) {
+    return isFiller(ev) && (s.fillerSeen[ev.id] || 0) >= 1 && (s.habits || {})[ev.id] !== undefined
+      && scenesLeft(ev, s) <= 0 && !freshLine(ev, s);
+  }
+
+  // --- series ------------------------------------------------------------------
+  // Sibling cards can share one habit: the Indicators in a strong year, in a downturn and before
+  // an election are one decision, made in three weathers. Each card says
+  // "series": { "key": "indicators", "full": 2 }, and each of its choices names its "stance".
+  // The series is shown in full `full` times a career. After that, a card of the series passes
+  // as a Meanwhile year that repeats the habit in full, its mechanics included (the National
+  // Bonus it sets, the protection an improvement plan gives), with a line for that card and stance.
+  // The second full showing may have its own scene, `again`: the habit from the first is the
+  // default and comes first, and the question is whether to break it. `again.keep` and
+  // `again.change` are added to the effects of keeping the habit and of breaking it.
+  function seriesOf(ev, s) { return ev && ev.series ? (s.series || {})[ev.series.key] || null : null; }
+  const stanceIndex = (ev, stance) => stance === undefined ? -1 : ev.choices.findIndex(c => c.stance === stance);
+  function seriesYear(ev, s) {
+    const f = seriesOf(ev, s);
+    return !!f && f.full >= (ev.series.full || Infinity) && stanceIndex(ev, f.stance) >= 0;
+  }
+  function addFx(a, b) {
+    if (!b) return a;
+    const out = { ...(a || {}) };
+    for (const [k, v] of Object.entries(b)) { out[k] = (out[k] || 0) + v; if (!out[k]) delete out[k]; }
+    return out;
+  }
+  // The card as shown this time: its second-showing scene, or one of its versions.
+  function sceneOf(ev, s) {
+    const f = seriesOf(ev, s), k = f ? stanceIndex(ev, f.stance) : -1;
+    const sc = k >= 0 && f.full === 1 && ev.again && (ev.again.scenes || {})[f.stance];
+    if (!sc) return variantOf(ev, s);
+    return { ...ev, variant: "again:" + f.stance, keep: k, title: sc.title || ev.title, body: sc.body,
+      choices: ev.choices.map((c, i) => ({ ...c, text: (sc.choices[i] || {}).text || c.text, outcome: (sc.choices[i] || {}).outcome || c.outcome,
+        effects: addFx(c.effects, i === k ? ev.again.keep : ev.again.change) })) };
   }
 
   // The card the player is looking at, whatever kind it is. UI and harness both use this.
@@ -1179,7 +1280,7 @@ const Engine = (() => {
     const hit = SHOWN.get(s);
     if (hit && hit.key === key && hit.content === content) return hit.ev;
     const ev = allEvents(content, s).find(e => e.id === id);
-    const out = ev ? render(content, variantOf(ev, s), s) : ev;
+    const out = ev ? render(content, sceneOf(ev, s), s) : ev;
     SHOWN.set(s, { key, content, ev: out });
     return out;
   }
@@ -1199,7 +1300,7 @@ const Engine = (() => {
     const recent = s.recent || [];
     const fresh = order.filter(i => !recent.includes(ev.id + "#" + i));
     const list = fresh.concat(order.filter(i => !fresh.includes(i)));
-    // a card shown in full again in the same run (a repeat card, an improvement plan) moves on
+    // a card shown in full again in the same run (a repeat card) moves on
     const shownBefore = (s.history || []).filter(h => h.ev === ev.id && !h.passed).length;
     return list[shownBefore % n];
   }
@@ -1209,7 +1310,7 @@ const Engine = (() => {
     const v = ev.variants[i - 1];
     return { ...ev, variant: i, title: v.title || ev.title, body: v.body || ev.body,
       choices: ev.choices.map((c, k) => ({ ...c, ...(v.choices && v.choices[k] ? { text: v.choices[k].text || c.text, outcome: v.choices[k].outcome || c.outcome } : {}) })),
-      ...(v.autoPlayLine && ev.autoPlay ? { autoPlay: { ...ev.autoPlay, line: v.autoPlayLine } } : {}) };
+      ...(v.autoPlayLine && ev.autoPlay ? { autoPlay: { ...ev.autoPlay, line: v.autoPlayLine, lines: null } } : {}) };
   }
 
   // What this run showed, for the next run's freshness: card ids, the versions and part options
@@ -1222,20 +1323,29 @@ const Engine = (() => {
       for (const [slot, id] of Object.entries(h.parts || {})) out.add(`${h.ev}~${slot}=${id}`);
     }
     if (s.cast) for (const p of Object.values(s.cast.on).concat(s.cast.past)) if (p) out.add("cast:" + p.nm.full);
+    for (const [key, used] of Object.entries(s.linesUsed || {})) for (const i of used) out.add(`mw:${key}#${i}`);
     return [...out];
   }
 
   // --- years that pass by themselves ---------------------------------------
   // A year with no decision in it is not a card. A habit year (a repeatable card already played
-  // in full, except every fifth time), a safe re-election (ev.autoPlay) or an empty pool passes
+  // in full, three draws in four, while it has a fresh line), a series card already shown in
+  // full as often as it may be, a safe re-election (ev.autoPlay) or an empty pool passes
   // on its own: pay, appraisal, promotion and the batchmate's year all still happen, and the
   // outcome screen the player is already looking at shows it as a short Meanwhile entry.
   function passKind(ev, s) {
     if (!ev) return "quiet";
-    const n = s.fillerSeen[ev.id] || 0;
-    if (isFiller(ev) && n >= 1 && n % 4 !== 0 && (s.habits || {})[ev.id] !== undefined) return "habit";
+    if (seriesYear(ev, s)) return "series";
+    if (habitYear(ev, s)) return "habit";
     if (ev.autoPlay && meets(ev.autoPlay.when || {}, s)) return "auto";
     return null;
+  }
+  // A safe re-election's line: the next of autoPlay.lines (a version's own line replaces them).
+  function autoLine(ev, s) {
+    const own = ev.autoPlay.lines === null;   // a version that brought its own line
+    const lines = ev.autoPlay.lines || (ev.autoPlay.line ? [ev.autoPlay.line] : []);
+    const key = `${ev.id}:auto${own ? "#" + ev.variant : ""}`, i = pickLine(s, key, lines.length, true);
+    return i === null ? { text: null } : { text: lines[i], key, i };
   }
 
   // pay + appraisal on one line; everything else (promotions, rumours, warnings) as it was
@@ -1263,14 +1373,29 @@ const Engine = (() => {
         choice = s.habits[ev.id]; ch = m.choices[0]; pt.habit = choice; pt.line = m.body;
         applyEffects(s, ch.effects);
         s.fillerSeen[ev.id]++;
+        useLine(s, m.lineKey, m.line);
         lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${m.body}` });
         ev = { ...ev, title: m.title };
+      } else if (kind === "series") {
+        // the habit, in full: the same choice the player made, with everything it does
+        const f = s.series[ev.series.key];
+        choice = stanceIndex(ev, f.stance); ch = ev.choices[choice]; pt.habit = f.stance;
+        const { key, lines: pool } = linesFor(ev, f.stance);
+        const li = pickLine(s, key, pool.length, true);
+        pt.line = pool[li];
+        const al = applyChoice(content, s, ev, ch, pt);
+        if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
+        f.passed = (f.passed || 0) + 1;
+        useLine(s, key, li);
+        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${pool[li]}` }, ...al);
       } else if (kind === "auto") {
         const vev = render(content, variantOf(ev, s), s);
         choice = ev.autoPlay.choice || 0; ch = vev.choices[choice];
         ev = vev;
+        const line = autoLine(ev, s);
         const al = applyChoice(content, s, ev, ch, pt, { safe: true });
-        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${ev.autoPlay.line || ch.outcome}` }, ...al);
+        if (line.key) useLine(s, line.key, line.i);
+        lines.push({ kind: "meanwhile", text: `Age ${before.age}. ${line.text || ch.outcome}` }, ...al);
       } else {
         ch = QUIET_YEAR.choices[0];
         applyEffects(s, ch.effects);
@@ -1299,24 +1424,34 @@ const Engine = (() => {
     // the card as shown: a pure function of the state, so the copy reads the same as the original
     const ev = eventOf(content, state);
     const ch = ev.choices[choiceIndex];
+    // the card's own index for the button pressed (a series' second showing puts the habit first)
+    const ci = ev.order ? ev.order[choiceIndex] : choiceIndex;
+    const own = ev.order ? ev.choices.map((_, j) => ev.choices[ev.order.indexOf(j)]) : ev.choices;
     const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
     const trace = {};
     const log = applyChoice(content, s, ev, ch, trace);
     if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
+    // a card in a series: what was chosen becomes the habit its later years repeat
+    if (ev.series) {
+      const S = (s.series = s.series || {}), k = ev.series.key, cur = S[k] || { full: 0, passed: 0 };
+      S[k] = { ...cur, stance: ch.stance !== undefined ? ch.stance : cur.stance, full: cur.full + 1 };
+    }
     if (!s.ending) log.push(...yearEnd(content, s, trace));
-    if (ev.id.startsWith(MONTAGE)) s.fillerSeen[ev.id.slice(MONTAGE.length)]++;
-    else if (isFiller(ev)) {
+    if (ev.id.startsWith(MONTAGE)) {
+      s.fillerSeen[ev.id.slice(MONTAGE.length)]++;
+      if (ev.line !== null && ev.line !== undefined) useLine(s, ev.lineKey, ev.line);
+    } else if (isFiller(ev)) {
       s.fillerSeen[ev.id] = (s.fillerSeen[ev.id] || 0) + 1;
-      (s.habits = s.habits || {})[ev.id] = choiceIndex;   // what habit years will repeat
+      (s.habits = s.habits || {})[ev.id] = ci;   // what habit years will repeat
     }
     s.cardsPlayed = (s.cardsPlayed || 0) + 1;
     // A card with parts or cast keeps what it showed: the combination (freshness, the next
     // showing's rotation), who it named, and, when the Declassified file may quote an untaken
     // choice from it (one that raised the ceiling), its choices' words as read.
-    const quoted = ev.choices.some((c, i) => i !== choiceIndex && ((c.effects || {}).cep || 0) > 0);
+    const quoted = own.some((c, i) => i !== ci && ((c.effects || {}).cep || 0) > 0);
     const shown = ev.picked || ev.who ? { ...(ev.picked ? { parts: ev.picked } : {}), ...(ev.who ? { who: ev.who } : {}),
-      ...(quoted ? { texts: ev.choices.map(c => c.text) } : {}) } : {};
-    s.history.push({ ...before, ev: ev.id, title: ev.title, choice: choiceIndex, text: ch.text, variant: ev.variant || 0, ...shown,
+      ...(quoted ? { texts: own.map(c => c.text) } : {}) } : {};
+    s.history.push({ ...before, ev: ev.id, title: ev.title, choice: ci, text: ch.text, variant: ev.variant || 0, ...shown,
       grade: (trace.appraisal || {}).grade,
       cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation,
       noted: ((ch.effects || {}).appraisal || 0) < 0,
@@ -1335,8 +1470,7 @@ const Engine = (() => {
     const ev = pickEvent(content, s);
     if (!ev) { s.currentEvent = "__quiet"; return { state: s, event: QUIET_YEAR }; }
     // An old save may still land on a habit year: show it as the one-line card it used to be.
-    const seenN = s.fillerSeen[ev.id] || 0;
-    if (isFiller(ev) && seenN >= 1 && seenN % 4 !== 0) {
+    if (habitYear(ev, s)) {
       s.currentEvent = MONTAGE + ev.id;
       return { state: s, event: montageOf(content, ev, s) };
     }

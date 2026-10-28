@@ -182,9 +182,31 @@ A card gets two or three alternate scenes when it appears in more than about 40%
   check exempts families from worn-phrase counts but not from this.
 - **Deterministic.** Scenes live in a card's `variants` list. The first showing in a run is picked from
   the seed, preferring a scene the phone has not shown in its last two runs; a card shown again in the
-  same run (a repeat card, an improvement plan) moves on to its next scene. The freshness memory is part
+  same run (a repeat card) moves on to its next scene. The freshness memory is part
   of the replay key, so a replay shows the same scenes. Rank variants (the existing `alternates` field)
   still pick by state.
+
+**Series: one decision that comes back.** Some sibling cards are one decision made in different
+weather: the Indicators in a strong year, in a downturn and before an election; the improvement plan
+and the Whip's word. Each card says `"series": { "key": "indicators", "full": 2 }`, and each choice names
+its `"stance"` (the same stance names on every card of the series). The series is shown in full `full`
+times a career (the Indicators twice, the plan once). After that, a card of the series passes as a
+Meanwhile year: the habit (the stance last chosen) is applied in full, mechanics included (the National
+Bonus it sets, the protection a plan gives, the cooldown), with a Meanwhile line for that card and
+stance. The second full showing may have its own scene, `"again"`, written per stance in
+`again.scenes`: the habit is the default and is shown first, and the question is whether to break it,
+knowing it will not be asked again. `again.keep` and `again.change` are added to the effects of keeping
+the habit and of breaking it, so the second time has its own stakes; no choice may be dominated.
+
+**Meanwhile lines.** A Meanwhile line is one sentence of glance-able payoff, at most about 20 words.
+Every montage card has at least four per habit (`montageLines`, keyed by choice index, or by stance for
+a series), a safe re-election has its own list (`autoPlay.lines`), and none of them uses a token.
+A run never shows the same line twice: each card and habit takes its lines in an order drawn from the
+seed, preferring lines the phone has not shown in its last two runs. When a repeatable card's lines for
+the habit have all been shown, the card comes back in full, in a scene the run has not shown; a card
+with no line and no scene left is not drawn again that run. A series, which cannot come back in full,
+takes its lines again in the same order, so give it enough lines for a long career. Write lines that do not count ("another", not "a second"), and that do not
+claim a result the year's own lines may contradict (the pay line shows the bonus).
 
 ## 5. The quality bar (every card, every pack)
 
