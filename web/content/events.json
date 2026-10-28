@@ -2074,6 +2074,7 @@
         }
       }
     ],
+    "priority": true,
     "variants": [
       {
         "body": "Day three of the debate on the President's Address. You rise at 4:40pm, after a Minister and before the break, with your maiden speech on your phone in three versions, all of them finished.",
@@ -2195,7 +2196,7 @@
         "choices": [
           {
             "text": "Hand the phone back. The tender stays.",
-            "outcome": "The Town Council sends a stair-climber for her sessions, and the tender runs its five months. At the new lift's opening she tells you there are 168 steps. She has counted them."
+            "outcome": "The Town Council helps her down the stairs, with a day's notice, for every session of the tender's five months. At the new lift's opening she tells you there are 168 steps."
           },
           {
             "text": "Take the call. Monday it is.",
@@ -3111,15 +3112,15 @@
     "variants": [
       {
         "title": "Question Time",
-        "body": "A Member asks whether the ministry will review a rule that residents raise at every Meet-the-People Session. It is being reviewed. Nothing has been decided, and the Minister would like to be the one to announce it.",
+        "body": "A Member asks whether the ministry will review a rule that residents raise at every Meet-the-People Session. It is being reviewed. Nothing has been decided, and an announcement is planned for March, with a backdrop.",
         "choices": [
           {
             "text": "Say it is under review, and what is being looked at.",
-            "outcome": "You say so, plainly, with the three things being looked at. The Member thanks you. The Minister's announcement in March makes smaller news than it would have."
+            "outcome": "You say so, plainly, with the three things being looked at. The Member thanks you. The announcement in March makes smaller news than it would have, backdrop and all."
           },
           {
             "text": "Say the ministry keeps all its rules under review.",
-            "outcome": "This is true of every rule and says nothing about this one. The Member points that out. Hansard records you both, and the Minister's announcement in March gets the headline."
+            "outcome": "This is true of every rule and says nothing about this one. The Member points that out. Hansard records you both, and the announcement in March gets the headline."
           },
           {
             "text": "Offer the Member a full written reply once it is decided.",
@@ -4276,7 +4277,7 @@
           },
           {
             "text": "Decline, on your own letterhead.",
-            "outcome": "The search firm replies within the hour, thanking you, and files you under \"later\": a long list, and an attentive one."
+            "outcome": "The search firm replies within the hour, thanking you, and files you under \"later\". The list is long, and attentive."
           }
         ]
       }
@@ -4372,7 +4373,7 @@
           },
           {
             "text": "Decline, on your own letterhead.",
-            "outcome": "The search firm replies within the hour, thanking you, and files you under \"later\": a long list, and an attentive one."
+            "outcome": "The search firm replies within the hour, thanking you, and files you under \"later\". The list is long, and attentive."
           }
         ]
       }

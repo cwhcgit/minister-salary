@@ -1,12 +1,43 @@
 {
   "id": "backbench",
   "title": "Backbench and Junior Office",
-  "note": "The House, the ward and the first rungs of office: MP (rank 8), Parliamentary Secretary and Senior Parliamentary Secretary (9-10), with one card for office holders (11-16). Ward cards stop at 10 on purpose: the pool at 11-14 is where The Reshuffle raises the ceiling, and every card there dilutes it. Backbench cards trade Reputation against Standing with the Whip; junior office cards trade Integrity against Standing with the Minister. Parts and the cast make one card many scenes: the bill and the Whip's text, the ministry a promise belongs to, the facility residents petition against. The two seat cards are exclusive: The Next Ward needs seat_grc, The Other Candidate seat_smc.",
+  "note": "The House, the ward and the first rungs of office: MP (rank 8), Parliamentary Secretary and Senior Parliamentary Secretary (9-10), with one card for office holders (11-16). The four House cards pick a backbench or an office-holder version by rank (the role part). Ward cards stop at 10 on purpose: the pool at 11-14 is where The Reshuffle raises the ceiling, and every card there dilutes it. Backbench cards trade Reputation against Standing with the Whip; junior office cards trade Integrity against Standing with the Minister. Parts and the cast make one card many scenes: the bill and the Whip's text, the ministry a promise belongs to, the facility residents petition against. The two seat cards are exclusive: The Next Ward needs seat_grc, The Other Candidate seat_smc.",
   "events": [
     {
       "id": "bench_whip",
       "title": "The Whip's Text",
       "parts": {
+        "role": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "bench",
+              "requires": {
+                "maxRank": 8
+              },
+              "a": "Vote with the party. Send your view to the GPC.",
+              "aOut": "You vote with the party and email your view to the GPC chairman, who replies with a thumbs-up. The bill passes. Your view is filed with the thumbs-up.",
+              "b": "Speak against {bill.short}. Then vote for the bill.",
+              "bOut": "Your eleven minutes on {bill.short} go into Hansard. So does your vote, an hour later. A resident writes to ask which one you meant. You write back: both."
+            },
+            {
+              "id": "office",
+              "requires": {
+                "minRank": 9
+              },
+              "a": "Vote with the party. Keep your view to yourself.",
+              "aOut": "You vote with the party and the bill passes. Your view stays in a note on your phone, under a heading you do not open again.",
+              "b": "Put your view to the bill's Minister. Then vote for it.",
+              "bOut": "The bill's Minister hears you out over kopi and accepts one change to {bill.short}: a comma. Your vote goes in with everyone else's. The comma goes into the Act.",
+              "effects": {
+                "1": {
+                  "reputation": -3,
+                  "competence": 1
+                }
+              }
+            }
+          ]
+        },
         "msg": [
           {
             "id": "attend",
@@ -19,6 +50,9 @@
           {
             "id": "slot",
             "text": "\"2nd Reading tmr. Want a slot to speak? Pls advise.\"",
+            "requires": {
+              "maxRank": 8
+            },
             "effects": {
               "1": {
                 "standing": -1
@@ -47,28 +81,28 @@
       "body": "At 10:52pm the Whip texts: {msg} Tomorrow's bill brings in {bill}. You have a view on it, and the party has a different one.",
       "requires": {
         "minRank": 8,
-        "maxRank": 8
+        "maxRank": 10
       },
       "weight": 7,
       "once": true,
       "choices": [
         {
-          "text": "Vote with the party. Send your view to the GPC.",
+          "text": "{role.a}",
           "effects": {
             "standing": 5,
             "integrity": -3
           },
-          "outcome": "You vote with the party and email your view to the GPC chairman, who replies with a thumbs-up. The bill passes. Your view is filed with the thumbs-up."
+          "outcome": "{role.aOut}"
         },
         {
-          "text": "Speak against {bill.short}. Then vote for the bill.",
+          "text": "{role.b}",
           "effects": {
             "reputation": 5,
             "integrity": 2,
             "competence": 1,
             "standing": -3
           },
-          "outcome": "Your eleven minutes on {bill.short} go into Hansard. So does your vote, an hour later. A resident writes to ask which one you meant. You write back: both."
+          "outcome": "{role.bOut}"
         },
         {
           "text": "Ask the Whip to lift the whip.",
@@ -84,6 +118,37 @@
       "id": "bench_adjournment",
       "title": "The Adjournment Motion",
       "parts": {
+        "role": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mover",
+              "requires": {
+                "maxRank": 8
+              },
+              "body": "You win the ballot for the adjournment motion: twenty minutes, at the end of a long sitting, on {topic}. {house}",
+              "a": "Speak for the full twenty minutes.",
+              "aOut": "Twenty minutes on {topic.short}, at 9:40pm. The reply takes ten. Then Parliament does now adjourn, exactly as your motion proposed, and everyone goes home.",
+              "b": "Cut it to five. Let the House go home.",
+              "bOut": "Five minutes, and the House is grateful in the lift. The reply, written for twenty minutes of argument, is read out in full, at the usual pace.",
+              "c": "Send the ministry your speech the day before.",
+              "cOut": "The reply answers every point you make, in order, including the one you cut at 9:38pm. You have never been so thoroughly answered, or so little reported."
+            },
+            {
+              "id": "reply",
+              "requires": {
+                "minRank": 9
+              },
+              "body": "{mp} has won the ballot for tonight's adjournment motion, on a matter your ministry handles, so the reply is yours: ten minutes, at about ten o'clock. {draft}",
+              "a": "Concede the point {mp} is right about.",
+              "aOut": "You concede it in your second minute and spend the other eight on what will change. {mp} thanks you across the floor. Your officials thank you less.",
+              "b": "Read the draft, at a steady pace.",
+              "bOut": "The reply is read in full. {mp} listens with the face of a colleague, then posts the speech online with your reply beneath it, unedited.",
+              "c": "Call {mp} beforehand, and agree the exchange.",
+              "cOut": "The exchange goes as agreed, which nobody watching can tell. {mp} thanks you in the lift. The newspaper calls the debate \"cordial\" and gives it two paragraphs."
+            }
+          ]
+        },
         "topic": [
           {
             "id": "bus",
@@ -103,54 +168,68 @@
         ],
         "house": [
           {
-            "id": "mp",
-            "text": "{mp} has promised to stay and listen."
-          },
-          {
             "id": "press",
             "text": "{journalist}, in the press gallery, has brought a sandwich."
           },
           {
             "id": "empty",
             "text": "By then the Chamber will hold eleven Members and the Clerks."
+          },
+          {
+            "id": "wait",
+            "text": "Most of those still there will be waiting for the next item, which is home."
+          }
+        ],
+        "draft": [
+          {
+            "id": "nothing",
+            "text": "Your officials' draft reply concedes nothing, beautifully."
+          },
+          {
+            "id": "long",
+            "text": "The draft reply runs to twelve minutes. You have ten."
+          },
+          {
+            "id": "early",
+            "text": "The draft reply was finished before the speech was."
           }
         ]
       },
-      "body": "You win the ballot for the adjournment motion: twenty minutes, at the end of a long sitting, on {topic}. {house}",
+      "body": "{role.body}",
       "requires": {
         "minRank": 8,
-        "maxRank": 8
+        "maxRank": 10
       },
       "weight": 7,
       "once": true,
       "choices": [
         {
-          "text": "Speak for the full twenty minutes.",
+          "text": "{role.a}",
           "effects": {
-            "competence": 3,
             "integrity": 3,
+            "competence": 2,
             "reputation": 3,
-            "standing": -3
+            "standing": -4
           },
-          "outcome": "Twenty minutes on {topic.short}, at 9:40pm. The reply takes ten. Then the House agrees that Parliament do now adjourn, which was the motion all along, and it carries."
+          "outcome": "{role.aOut}"
         },
         {
-          "text": "Cut it to five. Let the House go home.",
+          "text": "{role.b}",
           "effects": {
             "standing": 4,
             "reputation": -2,
-            "competence": -1
+            "integrity": -1
           },
-          "outcome": "Five minutes, and the House is grateful in the lift. The reply, written for twenty minutes of argument, is read out in full, at the usual pace."
+          "outcome": "{role.bOut}"
         },
         {
-          "text": "Send the ministry your speech the day before.",
+          "text": "{role.c}",
           "effects": {
             "competence": 3,
             "standing": 2,
             "reputation": -2
           },
-          "outcome": "The reply answers every point you make, in order, including the one you cut at 9:38pm. You have never been so thoroughly answered, or so little reported."
+          "outcome": "{role.cOut}"
         }
       ]
     },
@@ -158,6 +237,37 @@
       "id": "bench_cut",
       "title": "One Hundred Dollars",
       "parts": {
+        "role": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "mover",
+              "requires": {
+                "maxRank": 8
+              },
+              "body": "Committee of Supply. So that you may speak, you have filed a cut of $100 to {head}'s budget, as Standing Orders allow. You have a few minutes, a ward that wants {head.ward}, and a harder question.",
+              "a": "Ask for what your ward wants.",
+              "aOut": "The Minister promises, by name, to study {head.ward}. In your ward, that counts as delivery. You ask leave to withdraw your amendment. Leave is granted.",
+              "b": "Ask the harder question.",
+              "bOut": "The Minister answers carefully, and for longer than planned. You ask leave to withdraw your $100. It is granted, a little more slowly than the others.",
+              "c": "Ask the question your GPC agreed on, word for word.",
+              "cOut": "Four Members ask it in the same words. The Minister answers it once, warmly, and all four ask leave to withdraw their $100. The budget is unchanged by $400."
+            },
+            {
+              "id": "reply",
+              "requires": {
+                "minRank": 9
+              },
+              "body": "Committee of Supply. Members have filed eleven cuts of $100 to your ministry's budget, and four of the replies are yours. One Member wants something for a ward. Another has asked the harder question.",
+              "a": "Promise the Member a study, naming the ward.",
+              "aOut": "You promise, naming the ward, to study it. Its residents count that as delivery. Your officials count it as a new workstream, with a deadline you have just set.",
+              "b": "Answer the harder cut properly, past your time.",
+              "bOut": "You run four minutes over on the harder cut. The Member asks leave to withdraw the $100, and thanks you in a tone that sounds, unusually, sincere.",
+              "c": "Read the replies your officials drafted.",
+              "cOut": "The replies are accurate, and written for the questions the ministry expected. All four Members ask leave to withdraw their $100 anyway. That is what the $100 is for."
+            }
+          ]
+        },
         "head": [
           {
             "id": "mot",
@@ -181,50 +291,83 @@
           }
         ]
       },
-      "body": "Committee of Supply. So that you may speak, you have filed a cut of $100 to {head}'s budget, as Standing Orders allow. You have a few minutes, a ward that wants {head.ward}, and a harder question.",
+      "body": "{role.body}",
       "requires": {
         "minRank": 8,
-        "maxRank": 8
+        "maxRank": 10
       },
       "weight": 6,
       "once": true,
       "choices": [
         {
-          "text": "Ask for what your ward wants.",
+          "text": "{role.a}",
           "effects": {
             "reputation": 5,
             "standing": 1,
             "competence": -2
           },
-          "outcome": "The Minister promises, by name, to study {head.ward}. In your ward, that counts as delivery. You ask leave to withdraw your amendment. Leave is granted."
+          "outcome": "{role.aOut}"
         },
         {
-          "text": "Ask the harder question.",
+          "text": "{role.b}",
           "effects": {
             "integrity": 4,
             "competence": 3,
             "standing": -4
           },
-          "outcome": "The Minister answers carefully, and for longer than planned. You ask leave to withdraw your $100. It is granted, a little more slowly than the others."
+          "outcome": "{role.bOut}"
         },
         {
-          "text": "Ask the question your GPC agreed on, word for word.",
+          "text": "{role.c}",
           "effects": {
             "standing": 4,
             "integrity": -2,
             "reputation": -1
           },
-          "outcome": "Four Members ask it in the same words. The Minister answers it once, warmly, and all four ask leave to withdraw their $100. The budget is unchanged by $400."
+          "outcome": "{role.cOut}"
         }
       ]
     },
     {
       "id": "bench_gpc",
       "title": "The Briefing",
-      "body": "Your GPC is briefed, behind closed doors, on a scheme you once worked on. The briefer is {peer}, from your intake, now {peer.aTitle}. Slide nine leaves out what you would have left out too.",
+      "parts": {
+        "role": {
+          "pick": "first",
+          "options": [
+            {
+              "id": "member",
+              "requires": {
+                "maxRank": 8
+              },
+              "body": "Your GPC is briefed, behind closed doors, on a scheme you once worked on. The briefer is {peer}, from your intake, now {peer.aTitle}. Slide nine leaves out what you would have left out too.",
+              "a": "Ask about what slide nine leaves out.",
+              "aOut": "{peer} answers it fully, with a figure you recognise. Afterwards {peer} sends one word: \"Thanks.\" Slide nine, you realise, was left that way for somebody to ask.",
+              "b": "Thank {peer} for a comprehensive briefing.",
+              "bOut": "The GPC thanks {peer}, and {peer} thanks the GPC. The scheme goes ahead as briefed, slide nine and all. GPCs publish no minutes, so the thanks are the record.",
+              "c": "Ask {peer} about it afterwards, over kopi.",
+              "cOut": "{peer} comes for kopi, talks about your intake's reunion for forty minutes, and says of the scheme only: \"It's in the briefing.\" It was."
+            },
+            {
+              "id": "office",
+              "requires": {
+                "minRank": 9
+              },
+              "body": "You are to brief a GPC, behind closed doors, on a scheme your ministry runs. The slides are by {peer}, from your intake, now {peer.aTitle}. Slide nine leaves out what you would have left out too.",
+              "a": "Tell them what slide nine leaves out.",
+              "aOut": "In a closed room, out loud, you name what is missing, and the GPC asks better questions for an hour. Afterwards {peer} sends one word: \"Thanks.\" The slide was left that way for you.",
+              "b": "Present the slides as written.",
+              "bOut": "The GPC thanks you, and you thank the GPC. The scheme goes ahead as briefed, slide nine and all. GPCs publish no minutes, so the thanks are the record.",
+              "c": "Ask {peer} to take slide nine.",
+              "cOut": "{peer} presents slide nine flawlessly and takes the hard question for you. Afterwards {peer} asks, lightly, whether you will be needing anyone for slide ten."
+            }
+          ]
+        }
+      },
+      "body": "{role.body}",
       "requires": {
         "minRank": 8,
-        "maxRank": 8,
+        "maxRank": 10,
         "cast": {
           "peer": {
             "minRank": 4
@@ -235,7 +378,7 @@
       "once": true,
       "choices": [
         {
-          "text": "Ask about what slide nine leaves out.",
+          "text": "{role.a}",
           "effects": {
             "integrity": 4,
             "competence": 3,
@@ -244,14 +387,14 @@
           "cast": {
             "peer": {
               "flags": [
-                "you_asked"
+                "asked_about_slide_nine"
               ]
             }
           },
-          "outcome": "{peer} answers it fully, with a figure you recognise. Afterwards {peer} sends one word: \"Thanks.\" Slide nine, you realise, was left that way for somebody to ask."
+          "outcome": "{role.aOut}"
         },
         {
-          "text": "Thank {peer} for a comprehensive briefing.",
+          "text": "{role.b}",
           "effects": {
             "standing": 4,
             "integrity": -3
@@ -259,14 +402,14 @@
           "cast": {
             "peer": {
               "flags": [
-                "you_let_it_pass"
+                "let_slide_nine_pass"
               ]
             }
           },
-          "outcome": "The GPC thanks {peer}, and {peer} thanks the GPC. The scheme goes ahead as briefed, slide nine and all. GPCs publish no minutes, so the thanks are the record."
+          "outcome": "{role.bOut}"
         },
         {
-          "text": "Ask {peer} about it afterwards, over kopi.",
+          "text": "{role.c}",
           "effects": {
             "competence": 1,
             "standing": 2,
@@ -275,11 +418,11 @@
           "cast": {
             "peer": {
               "flags": [
-                "kept_it_formal"
+                "slide_nine_offline"
               ]
             }
           },
-          "outcome": "{peer} comes for kopi, talks about your intake's reunion for forty minutes, and says of the scheme only: \"It's in the briefing.\" It was."
+          "outcome": "{role.cOut}"
         }
       ]
     },
@@ -342,6 +485,7 @@
           "effects": {
             "reputation": 4,
             "integrity": -5,
+            "competence": -1,
             "heat": 7
           },
           "outcome": "The letters keep working. In the agency that noticed, someone opens a file of discrepancies, and every page of it is on your letterhead."
@@ -413,14 +557,15 @@
             "standing": 2,
             "reputation": -5
           },
-          "outcome": "You say it on Saturday and are heckled, politely, for forty minutes. {site.later}"
+          "outcome": "On Saturday you say so, and are heckled, politely, for forty minutes. {site.later}"
         },
         {
           "text": "Ask the ministry to look at other sites.",
           "effects": {
             "reputation": 5,
             "integrity": -4,
-            "standing": -3
+            "standing": -3,
+            "competence": -1
           },
           "outcome": "The ministry finds a site two towns away. That ward has a petition too, with more signatures, and its MP rings you to ask how you did it."
         },
@@ -806,7 +951,7 @@
             "id": "shop",
             "text": "a grandmother's provision shop and its abacus",
             "short": "behind a shop counter",
-            "guest": "Afterwards a guest asks whether the shop is still there. You say it has gone, which is true of some shop, somewhere."
+            "guest": "Afterwards a guest asks whether the shop is still there. Gone, you say, which is true of some shop, somewhere."
           }
         ]
       },
@@ -843,83 +988,6 @@
             "standing": -4
           },
           "outcome": "Your own childhood, unrehearsed, is less tidy than the Minister's. It gets the only real laugh of the night. The Minister's office asks for a copy, for the files."
-        }
-      ]
-    },
-    {
-      "id": "bench_reply",
-      "title": "The Reply",
-      "parts": {
-        "draft": [
-          {
-            "id": "nothing",
-            "text": "Your officials' draft reply concedes nothing, beautifully."
-          },
-          {
-            "id": "long",
-            "text": "The draft reply runs to twelve minutes. You have ten."
-          },
-          {
-            "id": "early",
-            "text": "The draft reply was finished before {mp} finished the speech."
-          }
-        ]
-      },
-      "body": "{mp} has won the ballot for tonight's adjournment motion, on a matter your ministry handles, so the reply is yours: ten minutes, at about ten o'clock. {draft}",
-      "requires": {
-        "minRank": 9,
-        "maxRank": 10
-      },
-      "weight": 6,
-      "once": true,
-      "choices": [
-        {
-          "text": "Concede the point {mp} is right about.",
-          "effects": {
-            "integrity": 4,
-            "reputation": 3,
-            "standing": -4
-          },
-          "cast": {
-            "mp": {
-              "flags": [
-                "you_conceded"
-              ]
-            }
-          },
-          "outcome": "You concede it in your second minute and spend the other eight on what will change. {mp} thanks you across the floor. Your officials thank you less."
-        },
-        {
-          "text": "Read the draft, at a steady pace.",
-          "effects": {
-            "standing": 4,
-            "integrity": -2,
-            "reputation": -1
-          },
-          "cast": {
-            "mp": {
-              "flags": [
-                "read_the_draft"
-              ]
-            }
-          },
-          "outcome": "The reply is read in full. {mp} listens with the face of a colleague, then posts the speech online with your reply beneath it, unedited."
-        },
-        {
-          "text": "Call {mp} beforehand, and agree the exchange.",
-          "effects": {
-            "competence": 3,
-            "standing": 2,
-            "reputation": -2
-          },
-          "cast": {
-            "mp": {
-              "flags": [
-                "agreed_the_exchange"
-              ]
-            }
-          },
-          "outcome": "The exchange goes as agreed, which nobody watching can tell. {mp} thanks you in the lift. The newspaper calls the debate \"cordial\" and gives it two paragraphs."
         }
       ]
     },
