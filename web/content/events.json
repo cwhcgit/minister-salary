@@ -215,6 +215,42 @@
             "outcome": "You write it up properly, with owners and dates. It is the only retreat report anyone has ever acted on, and you are now, somehow, in charge of it."
           }
         ]
+      },
+      {
+        "title": "2060",
+        "body": "A scenario-planning day: four futures for Singapore in 2060, laid out on a two-by-two matrix, and a facilitator's rule that nobody may say \"budget\" before lunch. Every future, you notice, has your division in it, unchanged.",
+        "choices": [
+          {
+            "text": "Say \"budget\" at 11:15.",
+            "outcome": "You point out that all four futures assume today's headcount. The facilitator writes \"resourcing\" outside the matrix, in a corner that belongs to no future at all. It is noted."
+          },
+          {
+            "text": "Give the four futures names.",
+            "outcome": "You call them Harbour, Haze, Heartland and Hive. The names outlive the exercise by a decade. Hive turns up, years later, in a Minister's speech, meaning something else."
+          },
+          {
+            "text": "Volunteer to write up the implications.",
+            "outcome": "Nobody else wanted the implications. Your paper turns four futures into six actions with owners and dates. Two of them happen within the year: the only part of 2060 to arrive early."
+          }
+        ]
+      },
+      {
+        "title": "The Innovation Challenge",
+        "body": "The division's innovation challenge: five teams, five-minute pitches, a panel of three directors and a $5,000 grant for a prototype. Your team's idea is good. The team before yours has a logo.",
+        "choices": [
+          {
+            "text": "Pitch the real problem: there are not enough of you.",
+            "outcome": "Your five minutes are about headcount. The panel thanks you for your candour and gives the grant to the logo. Your slide turns up, unattributed, at the next directors' retreat. It is noted."
+          },
+          {
+            "text": "Give your idea a logo, and an acronym.",
+            "outcome": "Your idea becomes S.P.A.R.K. It wins by one vote. The panel's chair presents the cheque and asks what it stands for, and nobody on your team can remember."
+          },
+          {
+            "text": "Offer to build the winning idea, whoever's it is.",
+            "outcome": "The logo wins. Its owners move on to next year's challenge, and you build their idea over the following year, quietly. Version two, the one that ships, is yours."
+          }
+        ]
       }
     ]
   },
@@ -314,8 +350,8 @@
   },
   {
     "id": "the_crisis",
-    "title": "The Thing That Actually Happens",
-    "body": "It begins at 4am on a Saturday. By Monday there are three ministries, a task force, and a press conference scheduled for 6pm that somebody has to prepare a holding statement for.",
+    "title": "Oil at East Coast",
+    "body": "At 4:10am on a Saturday, a bunker tanker is holed off the Southern Islands. By Monday there is oil on the beach at East Coast, four agencies, a task force, and a 6pm press conference with no holding statement.",
     "requires": {
       "minRank": 3,
       "maxRank": 6,
@@ -327,7 +363,7 @@
     "once": true,
     "choices": [
       {
-        "text": "Take the pen. Write the statement.",
+        "text": "Take the pen: write the 6pm statement.",
         "effects": {
           "competence": 6,
           "standing": 8,
@@ -335,26 +371,64 @@
           "cep": 1,
           "heat": 6
         },
-        "outcome": "Eleven drafts. The Minister delivers the ninth almost verbatim. On Tuesday the Perm Sec asks for your name, and is told it, and writes it down.",
+        "outcome": "Eleven drafts. The Minister reads the ninth almost word for word, down to the metres of boom laid. On Tuesday the transcript goes round the ministries with one line added: who wrote it.",
         "standout": true
       },
       {
-        "text": "Run the operations room instead. Let someone else write.",
+        "text": "Take the ops room: booms, beaches, rosters.",
         "effects": {
           "competence": 12,
           "standing": 6,
           "reputation": -2
         },
-        "outcome": "You are extremely good at this and nobody outside the room will ever know it happened. The thing does not get worse. That was the entire job."
+        "outcome": "Nine days of booms, shovels, contractors and volunteers who bring their own buckets. The oil gets no further than East Coast. Nobody outside the room ever knows how close it came."
       },
       {
-        "text": "Stay out of it. It is not your division.",
+        "text": "Stay at your own desk. It is not your division.",
         "effects": {
           "standing": -6,
           "integrity": 2,
           "competence": 2
         },
-        "outcome": "It was not your division. That is true, and it is the sort of true thing that gets remembered in a particular tone."
+        "outcome": "It was not your division. When the task force stands down, its thank-you lunch has forty-one names on the list. You know every one of them."
+      }
+    ],
+    "variants": [
+      {
+        "title": "The Siren",
+        "body": "At 4:10am on a Saturday, every Public Warning System siren on the island sounds the Important Message signal. There is no message. By Monday there are three ministries, a task force, and a 6pm press conference to explain nothing.",
+        "choices": [
+          {
+            "text": "Take the pen: explain, at 6pm, that nothing happened.",
+            "outcome": "Nine drafts on how to say that nothing happened without sounding as if something did. The last is read out at 6pm, and calms an island. On Tuesday three Permanent Secretaries ask who wrote it."
+          },
+          {
+            "text": "Take the ops room: the hotline, the vendor, every siren.",
+            "outcome": "Nine days on the hotline and with the vendor, then every siren on the island, checked by hand. None sounds out of turn again. That was the job, and it leaves no trace."
+          },
+          {
+            "text": "Go back to bed. It is not your division.",
+            "outcome": "It was not your division. By Wednesday everyone on your floor can explain the Important Message signal, and does, at length. You were awake at 4:10am as well. Nobody counts that."
+          }
+        ]
+      },
+      {
+        "title": "Lights Out",
+        "body": "At 7:40pm on a Thursday, a substation fault blacks out a third of the island for forty minutes, stopping lifts and trains where they stand. By morning there are three ministries, a task force, and a 6pm press conference.",
+        "choices": [
+          {
+            "text": "Take the pen: the 6pm statement, and the apology in it.",
+            "outcome": "Eleven drafts, the last four about a single word, \"regret\". The Minister keeps it. On Friday the Head of Civil Service asks who chose the word, and is told, and writes your name down."
+          },
+          {
+            "text": "Take the ops room: lifts first, then everything else.",
+            "outcome": "You run the room through the night: two hundred lift rescues, each one logged, none of them late. By morning the grid is back and the log is in order. Nobody reads the log."
+          },
+          {
+            "text": "Go home, by the stairs. It is not your division.",
+            "outcome": "It was not your division. You were, however, in a lift at 7:40pm, for thirty-one minutes, and you are the only person in the building who never mentions it."
+          }
+        ]
       }
     ]
   },
@@ -970,6 +1044,44 @@
           }
         ]
       }
+    ],
+    "variants": [
+      {
+        "title": "Paragraph 14",
+        "body": "The draft of the Minister's Committee of Supply speech has a gap at paragraph 14, marked [ANNOUNCEMENT: DIVISION TO PROVIDE]. Your division is the division. The draft goes to him on Friday.",
+        "choices": [
+          {
+            "text": "Fill paragraph 14 with the pilot you have been building.",
+            "outcome": "Paragraph 14 promises it \"from next year\". It needs two. You spend both making paragraph 14 true, and in the end Hansard is right, a little late."
+          },
+          {
+            "text": "Fill it with an old scheme, renamed and Enhanced.",
+            "outcome": "Paragraph 14 introduces the Enhanced scheme: the old one, with a larger number in front of it. It reads well. Nothing changes, and it is reported as a change."
+          },
+          {
+            "text": "Send paragraph 14 back empty, with a note saying why.",
+            "outcome": "He reads the note on Friday, is irritated all weekend, and on Monday cuts paragraph 14. The speech runs a minute shorter. He remembers which minute."
+          }
+        ]
+      },
+      {
+        "title": "The Rehearsal",
+        "body": "The Minister rehearses his Committee of Supply speech aloud in the boardroom, with the press secretary timing him. At your division's page he stops, reads it twice, and asks the room what, exactly, is new.",
+        "choices": [
+          {
+            "text": "Answer with the pilot, though it is not ready.",
+            "outcome": "You describe the pilot as rather further along than it is. He likes it, and it is in the speech by evening. The next two years are spent catching up with that evening."
+          },
+          {
+            "text": "Answer with an old scheme, newly Enhanced.",
+            "outcome": "\"An Enhanced scheme, Minister.\" The press secretary writes it down. The coverage is warm and calls it new. Apart from its name, nothing about it is."
+          },
+          {
+            "text": "Answer that nothing is, and that nothing should be dressed up.",
+            "outcome": "The room goes very still. He finishes the rehearsal without your page, thanks everyone, and leaves without looking at you. On the day he speaks for seven minutes, not eight."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1146,6 +1258,44 @@
           "integrity": 2
         },
         "outcome": "She stays five years. Your appraisals during that period are a flat line that will be visible to every promotion board for the rest of your career."
+      }
+    ],
+    "variants": [
+      {
+        "title": "Standing Up",
+        "body": "Your reporting officer has moved on. The new one comes from the SAF after twenty-two years in uniform, holds the morning meeting standing up, and has asked two officers he once commanded to come across with him.",
+        "choices": [
+          {
+            "text": "Take the file nobody has briefed him on.",
+            "outcome": "The file turns out to hold the legal opinion. You brief him in nine minutes, standing. From then on he asks for you by surname. In his vocabulary, that is a commendation."
+          },
+          {
+            "text": "Make yourself useful to his two officers.",
+            "outcome": "They know him; you know the building. By Christmas you are the fourth chair at their lunch table, and you keep the chair for four years. It is near the window."
+          },
+          {
+            "text": "Stand easy until he moves on.",
+            "outcome": "His two-year stint is extended twice. Your appraisals for those six years read like a parade state: present, correct, in line, and visible to every promotion board after it."
+          }
+        ]
+      },
+      {
+        "title": "The Deck",
+        "body": "Your reporting officer has moved on. The new one is a mid-career hire from a consulting firm, calls the work \"the portfolio\", has brought two former colleagues in on contract, and would like everything as a deck.",
+        "choices": [
+          {
+            "text": "Take the file that will not fit on a slide.",
+            "outcome": "The file is the statutory one: an Act, two amendments and a court case. You walk her through it in an afternoon. She is quick, and from then on rates you on what you know."
+          },
+          {
+            "text": "Make yourself useful to her two consultants.",
+            "outcome": "They need someone who knows how a clearance really moves, and you do. They bill for it. Their final report thanks you in a footnote, as a key stakeholder."
+          },
+          {
+            "text": "Wait for her to go back to the private sector.",
+            "outcome": "She stays nine years, and likes it. In that time your appraisals do not move by a word, and every promotion board after reads the nine identical years as one."
+          }
+        ]
       }
     ]
   },
@@ -2492,7 +2642,7 @@
   {
     "id": "budget_round",
     "title": "The Budget Round",
-    "body": "Your bid is for eleven officers and a system. Finance has indicated that the envelope is flat.",
+    "body": "Your bid is for eleven officers and a system. The envelope, you have been told, is flat. Every other division has been told the same, and every other bid is also for eleven of something.",
     "requires": {
       "minRank": 3,
       "maxRank": 6
@@ -2524,7 +2674,7 @@
           "competence": -4,
           "reputation": -2
         },
-        "outcome": "Finance is delighted. Your officers do the work of eleven people for three years and two of them leave."
+        "outcome": "Everyone upstream of your bid is delighted. Your officers do the work of eleven people for three years and two of them leave."
       }
     ],
     "montageEffects": {
@@ -2534,17 +2684,76 @@
     "montageLines": {
       "0": [
         "You bid for eleven and get four, which is what you bid eleven for.",
-        "Budget season. Every line is justified, footnoted and cut by a third, as planned."
+        "Budget season. Every line is justified, footnoted and cut by a third, as planned.",
+        "You bid big again, defend every line, and are cut back to the number you had in mind all along."
       ],
       "1": [
-        "You bid for exactly what you need and get two-thirds of it, which Finance describes as a good outcome for you.",
-        "The envelope is flat. Your bid is honest. The two facts meet in a spreadsheet, and the spreadsheet wins."
+        "You bid for exactly what you need and get two-thirds of it, which is described to you as a good outcome.",
+        "The envelope is flat. Your bid is honest. The two facts meet in a spreadsheet, and the spreadsheet wins.",
+        "An honest bid again, funded at two-thirds again. You are thanked for the realism of your projections."
       ],
       "2": [
-        "You absorb it again. Finance sends a note of thanks, which is the only budget increase you get.",
-        "Budget season. You learn a new way to say \"absorb\"."
+        "You absorb it again. A note of thanks arrives, the only budget increase you get.",
+        "Budget season. You learn a new way to say \"absorb\".",
+        "No bid again. Your people absorb it with you, and one of them updates a LinkedIn profile."
       ]
-    }
+    },
+    "variants": [
+      {
+        "title": "One Per Cent",
+        "body": "MOF has taken one per cent off every ministry's budget, its own included, to be bid back for new and emerging priorities. Your bid for eleven officers and a system has been, since Tuesday, new and emerging.",
+        "choices": [
+          {
+            "text": "Bid for all eleven, with a page per officer.",
+            "outcome": "Eleven pages, one per officer, each describing the work that officer would do. You get four back, and a note praising the pages from the people who cut them."
+          },
+          {
+            "text": "Bid for exactly the gap, and say so.",
+            "outcome": "You bid for the gap and not a dollar more. Everyone else padded, the pool is oversubscribed, and you are funded at sixty per cent of an honest number."
+          },
+          {
+            "text": "Let the one per cent go.",
+            "outcome": "You absorb it. The one per cent funds someone else's new and emerging priority. Two years later that priority is merged into your division, without its officers."
+          }
+        ]
+      },
+      {
+        "title": "Five Minutes",
+        "body": "The Permanent Secretary's budget meeting: every division's bid on one screen, and a total twice the size of the ministry's envelope. Each division gets five minutes. Yours, for eleven officers and a system, is ninth.",
+        "choices": [
+          {
+            "text": "Bid big, and use every one of the five minutes.",
+            "outcome": "Five minutes, eleven officers, every line defended. The Permanent Secretary trims you to four on the spot, before anyone further up can do worse, and calls it protecting you."
+          },
+          {
+            "text": "Bid exactly what you need, in two minutes.",
+            "outcome": "You finish in two minutes. The room is so surprised that the next division overruns by six. You are funded at two-thirds, the same as everyone who padded."
+          },
+          {
+            "text": "Withdraw the bid, and give back the five minutes.",
+            "outcome": "The meeting ends five minutes early, and the Permanent Secretary thanks you for it by name. Your people carry the extra work for two cycles, and lose one of their number to it."
+          }
+        ]
+      },
+      {
+        "title": "Tab 9",
+        "body": "The budget template has fourteen tabs this year. Tab 9 is called Savings Identified, and the workbook will not submit while it is blank. Your bid is for eleven officers and a system. Your savings, so far, are nil.",
+        "choices": [
+          {
+            "text": "Fill tab 9 with savings you can defend, then bid big.",
+            "outcome": "Tab 9 finds savings in printing, travel and a hotline nobody calls. Tabs 10 to 14 spend them twice over. The bid is trimmed back to four officers, as everyone expected."
+          },
+          {
+            "text": "Bid what you need, and leave tab 9 honest.",
+            "outcome": "Tab 9 says nil, with a note. The workbook will not submit a nil, so IT enters a zero for you, and the note is lost. The bid is funded at two-thirds."
+          },
+          {
+            "text": "Close the workbook. Absorb it.",
+            "outcome": "No bid, no tab 9. The year-end summary lists your division under \"units not requiring additional resources\", in a slightly larger font than the others."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "the_mps_night",
@@ -4352,6 +4561,40 @@
           {
             "text": "Reply to each expectation, point by point.",
             "outcome": "Your reply is longer than the expectations. It is read carefully by the name you did not recognise, who now knows exactly who you are."
+          }
+        ]
+      },
+      {
+        "body": "The plan arrives as a form in the HR system, pre-filled. Your reporting officer has ticked four boxes and written one sentence. The system needs your acknowledgement within five working days, or it records one on your behalf.",
+        "choices": [
+          {
+            "text": "Acknowledge it, and work through the four boxes.",
+            "outcome": "All four boxes are cleared by the review. The system marks the plan Completed, in green, and asks you to rate the experience out of five. You give it a four."
+          },
+          {
+            "text": "Ask HR for a move before day five.",
+            "outcome": "HR moves faster than the system. By the time the plan acknowledges itself, you have been moved, and the plan is addressed to a post you no longer hold."
+          },
+          {
+            "text": "Use the comments box, all two thousand characters of it.",
+            "outcome": "Two thousand characters exactly; the box takes no more. Your reporting officer reads every one, books a meeting room, and, a year late, asks what you think."
+          }
+        ]
+      },
+      {
+        "body": "Your reporting officer asks to see you in a meeting room with the blinds down. On the table: a plan with three goals, a box of tissues nobody mentions, and a pen, placed at an angle, for you.",
+        "choices": [
+          {
+            "text": "Pick up the pen, and then the work.",
+            "outcome": "Three goals, met in four months. At the review the blinds are up. Your reporting officer says \"good\" twice, and the tissues have gone to another room."
+          },
+          {
+            "text": "Leave the pen, and ask for a posting.",
+            "outcome": "The posting comes through in six weeks, to a team that has just lost two people and asks you nothing about the plan. The plan stays on the table, with the pen."
+          },
+          {
+            "text": "Write your reply on the spot, with their pen.",
+            "outcome": "Three pages, written in the meeting room while your reporting officer waits. The reply is filed with the plan. The pen, by some oversight, is filed with you."
           }
         ]
       }
