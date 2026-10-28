@@ -26,6 +26,6 @@ try {
   const err = e as Error;
   console.error(`✗ ${err.name}: ${err.message}`);
   if (e instanceof Anthropic.AuthenticationError || /token exchange|identity token/i.test(err.message))
-    console.error("  Check the federation rule matches this job's subject (repo:<owner>/<repo>:environment:playtest) and its audience https://api.anthropic.com, then see the authentication history on the Console's Workload identity page.");
+    console.error("  Check the federation rule matches this job's subject (repo:<owner>@<owner id>/<repo>@<repo id>:ref:refs/heads/main) and its audience https://api.anthropic.com, then see the authentication history on the Console's Workload identity page.");
   process.exit(1);
 }

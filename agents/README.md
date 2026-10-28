@@ -15,7 +15,7 @@ Paid runs happen in GitHub Actions and authenticate with [workload identity fede
 **One-time setup**
 
 1. Claude Console → [Workload identity](https://platform.claude.com/settings/workload-identity-federation) → Connect workload → GitHub Actions. The wizard registers GitHub's issuer (`https://token.actions.githubusercontent.com`, discovery mode) and creates a service account and a federation rule. Use these values for the rule:
-   - `subject_prefix`: `repo:cwhcgit/minister-salary:ref:refs/heads/main`, the subject of a job dispatched on `main`. The workflows must not set `environment:`, which would change the subject to `…:environment:<name>`.
+   - `subject_prefix`: `repo:cwhcgit@156731708/minister-salary@1368461072:ref:refs/heads/main`, the subject of a job dispatched on `main`. GitHub includes the owner and repository IDs in the subject, so the plain `repo:cwhcgit/minister-salary:…` form does not match. The workflows must not set `environment:`, which would change the subject to `…:environment:<name>`.
    - `audience`: `https://api.anthropic.com`; `claims`: `repository_owner` `cwhcgit`, `repository_owner_id` `156731708`, `repository` `cwhcgit/minister-salary`, `ref` `refs/heads/main`, `event_name` `workflow_dispatch`. Only people with write access can dispatch, so forks cannot get tokens.
    - `workspace_id`: the project's own workspace (`wrkspc_014M7AmfQuPoyQccxD9agdEB`, no spend limit by the owner's choice)
    - `oauth_scope`: `workspace:developer`
