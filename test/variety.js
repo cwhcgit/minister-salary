@@ -8,17 +8,21 @@
 //     card (the id), version (card + variant + part combination: the same words), and scene
 //     (version + the cast it named: the same words about the same people),
 //   the spine: non-structural cards (not priority, not triggered) shown in more than 60% of runs,
-//     by card and by scene (a card with versions spreads across them).
+//     by card and by scene (a card with versions spreads across them),
+//   repeats inside one run: how often an office holder's career shows the Indicators in full and
+//     lets them pass, and the Meanwhile lines a run shows (how many, how many different).
 //
-//   node test/variety.js [players=120] [runsEach=4] [--json FILE]
+//   node test/variety.js [players=120] [runsEach=4] [--json FILE] [--content DIR]
 const H = require('../harness');
 const fs = require('fs');
 
 const argv = process.argv.slice(2);
 const jsonAt = argv.indexOf('--json');
 const jsonOut = jsonAt >= 0 ? argv.splice(jsonAt, 2)[1] : null;
+const contentAt = argv.indexOf('--content');
+const contentDir = contentAt >= 0 ? argv.splice(contentAt, 2)[1] : null;
 const PLAYERS = +argv[0] || 120, RUNS = +argv[1] || 4;
-const build = H.loadBuild();
+const build = H.loadBuild(contentDir ? { root: contentDir } : {});
 const C = build.content;
 const structural = new Set(C.events.filter(e => e.priority || e.triggered).map(e => e.id));
 const pool = C.events.length;
@@ -31,7 +35,10 @@ const BOTS = {
 function career(origin, seed, recent, score) {
   const r = H.rng((seed * 97 + 13) >>> 0);
   let run = H.newRun(origin, seed, { build, recent });
+  const meanwhile = [];
+  let office = false;
   while (run.phase !== 'ending' && run.turn < 95) {
+    if (run.S.rank >= 11) office = true;
     const live = H.choices(run).filter(c => c.available), ev = H.currentEvent(build, run.S);
     let pick;
     if (!score) pick = live[Math.floor(r() * live.length)].id;
@@ -44,8 +51,10 @@ function career(origin, seed, recent, score) {
       }
     }
     run = H.step(run, pick);
+    for (const l of run.last.log) if (l.kind === 'meanwhile' && !/^Age \d+\. Nothing of consequence/.test(l.text)) meanwhile.push(l.text.replace(/^Age \d+\. /, ''));
   }
   const t = H.trace(run);
+  const indicators = id => /^the_indicators/.test(id);
   const turns = t.turns.filter(x => !x.event.id.startsWith('__'));
   const version = x => x.event.id + '#' + (x.event.variant || 0) + (x.event.parts ? '~' + Object.entries(x.event.parts).map(([k, v]) => k + '=' + v).join(',') : '');
   const scene = x => version(x) + (x.event.cast ? '@' + Object.entries(x.event.cast).map(([k, v]) => k + '=' + v.name).sort().join(',') : '');
@@ -55,7 +64,11 @@ function career(origin, seed, recent, score) {
     scenes: new Set(turns.map(scene)),
     taps: t.turns.length,
     cardTaps: turns.length,
-    recentNext: build.engine.recentKeys(C, run.S)
+    recentNext: build.engine.recentKeys(C, run.S),
+    office: office || run.S.rank >= 11,
+    indicatorsFull: t.turns.filter(x => indicators(x.event.id)).length,
+    indicatorsPassed: t.turns.flatMap(x => x.passed).filter(p => indicators(p.event)).length,
+    meanwhile: meanwhile.length, meanwhileDistinct: new Set(meanwhile).size
   };
 }
 
@@ -85,6 +98,7 @@ function measure(score, origin, fresh) {
   const seenScene = {};
   for (const r of runs) for (const id of r.versions) seenScene[id] = (seenScene[id] || 0) + 1;
   const spine = spineOf(seen), spineScenes = spineOf(seenScene);
+  const office = runs.filter(r => r.office);
   return {
     taps: +avg(runs.map(r => r.taps)).toFixed(1),
     distinct: +avg(runs.map(r => r.cards.size)).toFixed(1),
@@ -94,11 +108,19 @@ function measure(score, origin, fresh) {
     overlapVersions: Math.round(100 * avg(overlapVersions)),
     overlapScenes: Math.round(100 * avg(overlapScenes)),
     cardsSeenEver: Object.keys(seen).length,
-    spine, spineScenes
+    spine, spineScenes,
+    officeRuns: office.length,
+    indicatorsFull: +avg(office.map(r => r.indicatorsFull)).toFixed(2),
+    indicatorsFullMax: Math.max(0, ...office.map(r => r.indicatorsFull)),
+    indicatorsPassed: +avg(office.map(r => r.indicatorsPassed)).toFixed(2),
+    meanwhile: +avg(runs.map(r => r.meanwhile)).toFixed(1),
+    meanwhileDistinct: +avg(runs.map(r => r.meanwhileDistinct)).toFixed(1),
+    meanwhileRepeatRuns: Math.round(100 * runs.filter(r => r.meanwhileDistinct < r.meanwhile).length / Math.max(1, runs.length))
   };
 }
 
 const out = { pool, players: PLAYERS, runsEach: RUNS, results: {} };
+console.log(`build ${build.hash}${contentDir ? ` (${contentDir})` : ''}`);
 console.log(`cards in the pool: ${pool} (plus ${(C.rival && C.rival.events || []).length} batchmate cards); ${PLAYERS} players x ${RUNS} careers each`);
 for (const [bot, score] of Object.entries(BOTS)) for (const origin of ['grad', 'poly', 'scholar']) {
   const off = measure(score, origin, false), on = measure(score, origin, true);
@@ -107,5 +129,7 @@ for (const [bot, score] of Object.entries(BOTS)) for (const origin of ['grad', '
   console.log(`${''.padEnd(18)} next run repeats (cards / versions / scenes): ${off.overlapCards}% / ${off.overlapVersions}% / ${off.overlapScenes}% without memory, ${on.overlapCards}% / ${on.overlapVersions}% / ${on.overlapScenes}% with it`);
   console.log(`${''.padEnd(18)} cards in >60% of runs: ${on.spine.join(', ') || 'none'}`);
   console.log(`${''.padEnd(18)} versions (card#variant~parts) in >60% of runs: ${on.spineScenes.join(', ') || 'none'}`);
+  console.log(`${''.padEnd(18)} the Indicators per office holder's career (${on.officeRuns} careers): ${on.indicatorsFull} in full (most ${on.indicatorsFullMax}), ${on.indicatorsPassed} passed`);
+  console.log(`${''.padEnd(18)} Meanwhile lines per run: ${on.meanwhile}, ${on.meanwhileDistinct} different; runs that repeat one: ${on.meanwhileRepeatRuns}%`);
 }
 if (jsonOut) { fs.writeFileSync(jsonOut, JSON.stringify(out, null, 1) + '\n'); console.log(`written to ${jsonOut}`); }

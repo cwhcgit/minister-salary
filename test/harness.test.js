@@ -316,4 +316,100 @@ ok('the trace shows which of the run\'s people and which part options a card use
   assert.ok(cast > 20 && parts > 10, `expected cast and parts in traces (${cast}, ${parts})`);
 });
 
+ok('series: the Indicators in full at most twice a career, the plan once; the years after keep the habit and set the bonus', () => {
+  const C = build.content;
+  const fam = id => (C.events.find(e => e.id === id) || {}).series;
+  const score = f => (f.cep||0)*60 + (f.standing||0)*1.5 + (f.competence||0)*1.4 + (f.reputation||0)*1.3 - (f.heat||0)*0.8;
+  let again = 0, passedInd = 0, passedPlan = 0, office = 0;
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 60; seed++) {
+    const r = H.rng(seed * 5 + 1), greedy = seed % 2 === 0;
+    let run = H.newRun(origin, seed, { build });
+    const full = {}, lines = new Set();
+    while (run.phase !== 'ending' && run.turn < 95) {
+      const ev = H.currentEvent(build, run.S), f = fam(ev.id);
+      if (f) {
+        full[f.key] = (full[f.key] || 0) + 1;
+        if (String(ev.variant).startsWith('again:')) {
+          // the second showing: the habit from the first is the default, and comes first
+          again++;
+          assert.strictEqual(full[f.key], 2, `${ev.id}: a second-showing scene on showing ${full[f.key]}`);
+          assert.strictEqual(ev.choices[0].stance, run.S.series[f.key].stance, `${ev.id}: the habit is not the first choice`);
+        }
+      }
+      const live = ev.choices.map((c, i) => [c, i]).filter(([c]) => build.engine.choiceAvailable(c, run.S));
+      const pick = greedy ? live.reduce((a, b) => score(b[0].effects || {}) > score(a[0].effects || {}) ? b : a)[1] : live[Math.floor(r() * live.length)][1];
+      run = H.step(run, pick);
+      if (run.S.rank >= 11) office++;
+      // every Meanwhile line is new to the run; a series year sets the bonus its habit sets
+      const log = run.last.log;
+      log.forEach((l, k) => {
+        if (l.kind !== 'meanwhile') return;
+        const text = l.text.replace(/^Age \d+\. /, '');
+        if (!/^Nothing of consequence/.test(text)) { assert.ok(!lines.has(text), `${origin} ${seed}: Meanwhile line shown twice: ${text}`); lines.add(text); }
+      });
+      for (const p of run.turns[run.turns.length - 1].passed) {
+        const f2 = fam(p.event);
+        if (!f2) continue;
+        if (f2.key === 'plan') { passedPlan++; continue; }
+        passedInd++;
+        const src = C.events.find(e => e.id === p.event), ch = src.choices.find(c => c.stance === p.habit);
+        assert.ok(ch, `${p.event}: no choice for the habit ${p.habit}`);
+        const i = log.findIndex(l => l.kind === 'meanwhile' && l.text.startsWith(`Age ${p.age}.`));
+        const pay = log.slice(i + 1).find(l => l.kind === 'pay');
+        const m = pay && pay.text.match(/including (?:a National Bonus of (\d) months?|no National Bonus)/);
+        assert.ok(m, `${p.event}: the pay line does not show the bonus: ${pay && pay.text}`);
+        const months = m[1] === undefined ? 0 : +m[1];
+        assert.ok([ch.nationalBonus, (ch.nationalBonusRisk || {}).months].includes(months), `${p.event} as ${p.habit}: ${months} months`);
+      }
+    }
+    assert.ok((full.indicators || 0) <= 2, `${origin} ${seed}: the Indicators shown in full ${full.indicators} times`);
+    assert.ok((full.plan || 0) <= 1, `${origin} ${seed}: the improvement plan shown in full ${full.plan} times`);
+  }
+  assert.ok(again > 30 && passedInd > 30 && passedPlan > 0 && office > 100, `expected second showings and passed series years (${again}, ${passedInd}, ${passedPlan})`);
+});
+
+ok('every second-showing scene renders whole, with the habit first and no dominated choice', () => {
+  const C = build.content, E = build.engine;
+  const { dominatedChoices } = require('./metrics');
+  let n = 0;
+  for (const ev of C.events.filter(e => e.again)) for (const [stance, sc] of Object.entries(ev.again.scenes)) {
+    const S = JSON.parse(JSON.stringify(H.newRun('scholar', 3, { build }).S));
+    Object.assign(S, { rank: 11, currentEvent: ev.id, series: { [ev.series.key]: { stance, full: 1, passed: 0 } } });
+    const r = E.eventOf(C, S);
+    assert.strictEqual(r.variant, 'again:' + stance);
+    assert.strictEqual(r.choices.length, ev.choices.length);
+    assert.strictEqual(r.choices[0].stance, stance, `${ev.id} ${stance}: the habit is not first`);
+    assert.strictEqual(sc.choices.length, ev.choices.length, `${ev.id} ${stance}: one text per choice`);
+    for (const c of r.choices) assert.ok(c.text && c.outcome && !/\{[^{}\s]+\}/.test(c.text + c.outcome), `${ev.id} ${stance}: a choice without words`);
+    assert.deepStrictEqual(dominatedChoices({ events: [r] }), [], `${ev.id} ${stance}: a dominated choice`);
+    // the button pressed is the card's own choice, whatever its place on screen
+    const S2 = E.advance(C, S, 0).state;
+    assert.strictEqual(S2.history[S2.history.length - 1].choice, ev.choices.findIndex(c => c.stance === stance));
+    assert.strictEqual(S2.series[ev.series.key].stance, stance);
+    n++;
+  }
+  assert.ok(n >= 9, `expected the Indicators' nine second-showing scenes (${n})`);
+});
+
+ok('Meanwhile lines: deterministic, and the next run prefers lines this one did not show', () => {
+  // the replay key includes the phone's memory: the same memory replays the same lines
+  const passes = run => run.turns.flatMap(t => t.passed).filter(p => p.kind !== 'quiet').length;
+  let seed = 8, first = playRandom('grad', seed).run;
+  while (passes(first) < 3) first = playRandom('grad', ++seed).run;
+  const memory = build.engine.recentKeys(build.content, first.S);
+  assert.ok(memory.some(k => k.startsWith('mw:')), 'the run remembers its Meanwhile lines');
+  let a = H.newRun('grad', seed, { build, recent: memory });
+  const r = H.rng(9);
+  while (a.phase !== 'ending' && a.turn < 95) { const live = H.choices(a).filter(c => c.available); a = H.step(a, live[Math.floor(r() * live.length)].id); }
+  const t = H.trace(a);
+  assert.deepStrictEqual(H.trace(H.replay({ buildHash: t.buildHash, origin: 'grad', seed, name: t.name, recent: memory, choices: t.choices })), t);
+  // with every line of a habit remembered but one, that one is taken first
+  const S = JSON.parse(JSON.stringify(first.S));
+  const ev = build.content.events.find(e => e.id === 'the_work');
+  S.linesUsed = {}; S.fillerSeen.the_work = 1; S.habits.the_work = 0; S.currentEvent = '__montage:the_work';
+  const n = ev.montageLines[0].length;
+  S.recent = Array.from({ length: n }, (_, i) => `mw:the_work:0#${i}`).filter(k => k !== `mw:the_work:0#${n - 1}`);
+  assert.strictEqual(build.engine.eventOf(build.content, S).body, ev.montageLines[0][n - 1]);
+});
+
 console.log(`\nAll ${passed} harness tests passed.`);
