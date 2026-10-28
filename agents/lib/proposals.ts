@@ -31,12 +31,14 @@ export interface Status {
 const WEB = path.join(REPO, "web");
 const FX_KEYS = new Set(["reputation", "standing", "integrity", "competence", "wealth", "heat", "cep", "appraisal"]);
 const REQ_KEYS = new Set(["minRank", "maxRank", "minStats", "maxStats", "minAge", "maxAge", "flagsAll", "flagsNone", "origin", "originNot", "notDuringBond",
-  "ministry", "economy", "electionDue", "cooldown", "rival"]);
+  "ministry", "economy", "electionDue", "cooldown", "rival", "cast"]);
 // Everything web/engine.js reads on a card. A field missing here is refused in a proposal.
 const EVENT_KEYS = new Set(["id", "title", "body", "requires", "weight", "once", "priority", "triggered", "choices",
-  "alternates", "variants", "standout", "noMontage", "montageLines", "montageEffects", "autoPlay", "cooldown", "rivalCard"]);
+  "alternates", "variants", "standout", "noMontage", "montageLines", "montageEffects", "autoPlay", "cooldown", "rivalCard",
+  "parts", "series", "again"]);
 const CHOICE_KEYS = new Set(["text", "effects", "setFlags", "clearFlags", "outcome", "schedule", "requiresStat", "setRank", "election",
-  "standout", "pip", "resetWarnings", "readFolder", "folder", "privateSector", "nationalBonus", "nationalBonusRisk", "newMinistry", "markSeen", "rival"]);
+  "standout", "pip", "resetWarnings", "readFolder", "folder", "privateSector", "nationalBonus", "nationalBonusRisk", "newMinistry", "markSeen", "rival",
+  "cast", "stance"]);
 
 export const dirOf = (id: string) => path.join(PROPOSALS, id);
 export const readJson = (f: string) => JSON.parse(fs.readFileSync(f, "utf8"));
