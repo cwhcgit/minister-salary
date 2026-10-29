@@ -197,6 +197,7 @@ export function mockUsage(o: CallOpts, written: Set<string>): Omit<Usage, "outpu
 // lean a little positive, about-ten-word reasons, the bland canary marked down and the winking
 // one flagged, so the whole report (canary check included) has something real to chew on.
 function fill(schema: any, r: () => number, key: string, ctx: { choices: string[]; text: string }): unknown {
+  if (key === "unclear") return /The Quarterly Return/.test(ctx.text) ? "mock: the bland card said nothing I could follow" : null;   // no draw: keeps the mock stream as it was
   if (key === "off_tone")
     return /Is This Satire\?/.test(ctx.text) ? "Somewhere, a narrator nods knowingly." : r() < 0.05 ? "a line that read like a wink" : null;
   if (schema.anyOf) return r() < 0.7 ? null : fill(schema.anyOf[0], r, key, ctx);

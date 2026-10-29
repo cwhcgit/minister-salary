@@ -55,7 +55,7 @@ export function summarizeSessions(dir: string) {
   const model: ModelId = meta.model;
 
   type Card = { title: string | null; act: string | null; shown: number; sessions: Set<number>; deltas: number[]; first: number[]; again: number[];
-    rule: number[]; offTone: string[]; reasons: Array<{ d: number; r: string }>; quits: number };
+    rule: number[]; offTone: string[]; unclear: string[]; reasons: Array<{ d: number; r: string }>; quits: number };
   const cards: Record<string, Card> = {};
   const endings: Record<string, { title: string | null; shown: number; deltas: number[]; reasons: string[] }> = {};
   const curve: Record<number, { meter: number[]; model: number[]; quits: number }> = {};
@@ -116,11 +116,12 @@ export function summarizeSessions(dir: string) {
         E.shown++; E.deltas.push(m.model); if (E.reasons.length < 4) E.reasons.push(`${m.model > 0 ? "+" : ""}${m.model} ${a.reason}`);
         continue;
       }
-      const c = cards[id] ||= { title: l.card.title, act: l.trace?.act ?? null, shown: 0, sessions: new Set(), deltas: [], first: [], again: [], rule: [], offTone: [], reasons: [], quits: 0 };
+      const c = cards[id] ||= { title: l.card.title, act: l.trace?.act ?? null, shown: 0, sessions: new Set(), deltas: [], first: [], again: [], rule: [], offTone: [], unclear: [], reasons: [], quits: 0 };
       c.shown++; c.sessions.add(si); c.deltas.push(m.model); c.rule.push(m.repeat);
       (seenHere.has(id) ? c.again : c.first).push(m.model);
       seenHere.add(id);
       if (a.off_tone) c.offTone.push(a.off_tone);
+      if (a.unclear) c.unclear.push(a.unclear);
       c.reasons.push({ d: m.model, r: a.reason });
     }
     if (sum.quit && sum.quitAt) {
@@ -140,7 +141,7 @@ export function summarizeSessions(dir: string) {
   const cardRows = Object.entries(cards).map(([id, c]) => {
     const ex = [...c.reasons].sort((a, b) => Math.abs(b.d) - Math.abs(a.d)).slice(0, 3).map(x => `${x.d > 0 ? "+" : ""}${x.d} ${x.r}`);
     return { id, title: c.title, act: c.act, shown: c.shown, sessions: c.sessions.size, meanDelta: mean(c.deltas), firstDelta: mean(c.first),
-      repeatDelta: mean(c.again), meanRepeatRule: mean(c.rule), offTone: c.offTone.length, offToneLines: c.offTone.slice(0, 3), quits: c.quits, reasons: ex };
+      repeatDelta: mean(c.again), meanRepeatRule: mean(c.rule), offTone: c.offTone.length, offToneLines: c.offTone.slice(0, 3), unclear: c.unclear.length, unclearLines: c.unclear.slice(0, 5), quits: c.quits, reasons: ex };
   }).sort((a, b) => (b.meanDelta ?? 0) - (a.meanDelta ?? 0) || b.shown - a.shown);
   // Rank cards seen at least twice when there are enough of them; otherwise everything.
   const minShown = cardRows.filter(c => c.shown >= 2).length >= 20 ? 2 : 1;
@@ -245,6 +246,9 @@ export function funMarkdown(s: FunSummary): string {
     `## Cards: the model's own delta (rule deltas excluded; ranked when shown ${s.cards.minShownToRank}+ times)`, "",
     "### Top 10", "", ...cardTable(s.cards.top), "", "### Bottom 10", "", ...cardTable(s.cards.bottom), "",
     "### Where players quit", "", ...(s.quitCards.length ? s.quitCards.map(q => `- ${esc(q.title ?? q.id)} \`${q.id}\`: ${q.quits}`) : ["- nobody quit"]), "",
+    "## Lines players could not follow", "",
+    ...(() => { const u = s.cards.all.filter((c: any) => c.unclear > 0).sort((a: any, b: any) => b.unclear - a.unclear);
+      return u.length ? u.map((c: any) => `- ${esc(c.title ?? c.id)} \`${c.id}\` (${c.unclear} of ${c.shown}): ${c.unclearLines.map((q: string) => `"${esc(q)}"`).join("; ")}`) : ["- none flagged"]; })(), "",
     "## Endings", "", "| ending | shown | mean delta | reasons |", "|---|---|---|---|",
     ...Object.entries(s.endings).map(([id, e]) => `| ${esc(e.title)} \`${id}\` | ${e.shown} | ${e.meanDelta} | ${esc(e.reasons.join("; "))} |`), "",
     "## Canaries", "",
