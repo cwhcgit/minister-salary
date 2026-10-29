@@ -13,9 +13,10 @@
 // start screen's own words), "header" (rank, grade and ministry), or a path into game.json or
 // rival.json for lines that come from there (review lines, cast lines, endings), such as
 // "game.json:endgame.headsUp.service.first", or "engine:<kind>" for a line the engine writes itself
-// (the pay line is "engine:pay"). A card whose body names a cast member for the first
-// time carries that role's introduction (game.json cast.roles.<role>.intro); a term inside it is
-// placed there, not on the card.
+// (a line it has no game.json text for). A card whose body names a cast member for the first
+// time carries that role's introduction (game.json cast.roles.<role>.intro), and a later card the
+// role's tag (cast.roles.<role>.tag, engineLines.rivalTag); a term inside one is placed there, not
+// on the card.
 //
 // Also checked: every term is well formed (term, meaning, a regex that compiles and never matches
 // an empty string or its own `skip` examples, entry points that exist and use the term), and no
@@ -73,7 +74,7 @@ function template(path, text, intro) {
 }
 const templates = lineStrings.filter(s => s.text.length >= 12 && !/\.intro$/.test(s.path))
   .map(s => template(s.path, s.text)).filter(t => t.lit.length >= 8);
-const introTemplates = lineStrings.filter(s => /^game\.json:cast\.roles\.\w+\.intro$/.test(s.path))
+const introTemplates = lineStrings.filter(s => /^game\.json:(cast\.roles\.\w+\.(intro|tag)|engineLines\.rivalTag)$/.test(s.path))
   .map(s => template(s.path, s.text, true));
 
 // The line that covers position i of text, or null.
@@ -98,7 +99,7 @@ catch (e) { console.error("jargon.json: " + e.message); process.exit(1); }
 const terms = [];
 const KNOWN = new Set(["start", "header"]);
 const ENGINE_KINDS = new Set(["pay", "appraisal", "promo", "note", "cep", "heat", "folder", "warn", "why", "noted", "rival",
-  "election", "incumbent", "limit", "retire", "locked", "ending", "quiet"]);
+  "election", "incumbent", "limit", "retire", "locked", "ending", "quiet", "year"]);
 const seenNames = new Set();
 for (const [i, t] of (Array.isArray(LIST.terms) ? LIST.terms : []).entries()) {
   const at = `jargon.json term ${i + 1}${t && t.term ? ` ("${t.term}")` : ""}`;
@@ -145,27 +146,38 @@ const BOTS = { random: null, "knows the win": WIN };
 const cardId = id => String(id).replace(/^__montage:/, "");
 const unfilled = new Map();
 
-// The screen as the phone shows it, in reading order, each piece with where it came from.
+// The screen as the phone shows it, in reading order, each piece with where it came from: the
+// start screen, then last year's outcome as pages (each under its own header: the card's outcome,
+// then one page per year, opening with that year's heading), then this year's header and card,
+// or the ending. Header text counts like any other: rank, grade, the place line (game.json
+// engineLines.place, such as "MP, one of a GRC team") and the batchmate.
+const headerLine = h => `${h.rank} [${h.grade}] ${h.age} ${h.place || h.ministry || ""}${h.batchmate ? " " + h.batchmate : ""}`;
 function pieces(run) {
   const v = H.screen(run), out = [];
   if (v.start) {
     out.push({ src: "start", text: [v.start.title, v.start.tagline, v.start.hint].join("\n") });
     out.push({ src: "game.json:origins.blurb", text: `${v.start.origin.name}\n${v.start.origin.blurb}` });
   }
-  if (v.header) out.push({ src: "header", text: `${v.header.rank} [${v.header.grade}] ${v.header.age} ${v.header.ministry}${v.header.batchmate ? " " + v.header.batchmate : ""}` });
   if (v.outcome && run.last) {
     const prev = run.turns[run.turns.length - 1];
+    const pages = v.outcome.pages || [{ header: v.header, log: [] }];
+    let page = 0;
+    if (pages[0] && pages[0].header) out.push({ src: "header", text: headerLine(pages[0].header) });
     out.push({ src: cardId(prev.event.id), text: String(run.last.outcome) });
     let pi = 0;
     for (const l of run.last.log) {
-      if (l.kind === "year") continue;
-      if (l.kind === "meanwhile") {
+      if (l.kind === "year") {
+        page++;
+        if (pages[page] && pages[page].header) out.push({ src: "header", text: headerLine(pages[page].header) });
+        out.push({ src: null, kind: "year", text: String(l.text) });
+      } else if (l.kind === "meanwhile") {
         const p = prev.passed[pi++];
         out.push({ src: p && p.event !== "__quiet" ? cardId(p.event) : "engine:quiet", text: String(l.text) });
       } else out.push({ src: null, kind: l.kind, text: String(l.text) });
     }
   }
   if (v.event) {
+    if (v.header) out.push({ src: "header", text: headerLine(v.header) });
     const ev = H.currentEvent(build, run.S);
     const id = ev.id === "__quiet" ? "engine:quiet" : cardId(ev.id);
     out.push({ src: id, card: true, text: [v.event.title, v.event.body, ...v.event.choices.map(c => c.text)].join("\n") });

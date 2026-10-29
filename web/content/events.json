@@ -587,7 +587,7 @@
   {
     "id": "mps_duty",
     "title": "Meet-the-People Session",
-    "body": "An old school friend volunteers at her MP's Meet-the-People Session: every Tuesday night, residents bring their Member of Parliament their problems, and volunteers write their appeal letters to agencies. She asks you to help. Most of the cases were decided correctly the first time. The sessions are run by the party's branch in the ward, and civil servants are meant to stay out of politics. She says lots of people help in their own time.",
+    "body": "An old school friend volunteers at her MP's Meet-the-People Session: every Tuesday night, residents bring their problems to their Member of Parliament, and volunteers write their appeal letters to agencies. She asks you to help. Most of the cases were decided correctly the first time. The sessions are run by the party's branch in the ward, and civil servants are meant to stay out of politics. She says lots of people help in their own time.",
     "requires": {
       "minRank": 1,
       "maxRank": 5
@@ -2049,7 +2049,7 @@
           "reputation": 3,
           "integrity": -1
         },
-        "outcome": "Lifts, hawkers and a void deck, the open ground floor of a block, with a chess table. Three colleagues call it lovely in the lift, and your residents cut it out of the newsletter. Theirs is the only review that votes."
+        "outcome": "Lifts, hawkers and a void deck, the empty floor under a block, with a chess table. Three colleagues call it lovely in the lift, and your residents cut it out of the newsletter. Theirs is the only review that votes."
       },
       {
         "text": "The draft about the one thing from the service you believe.",
@@ -2086,7 +2086,7 @@
         "choices": [
           {
             "text": "Give the version about your ward.",
-            "outcome": "Eleven minutes on your blocks, your hawkers and the chess table at a void deck, the open ground floor of one of them. It is warm, local and over before the break. Your ward's newsletter prints it in full."
+            "outcome": "Eleven minutes on your blocks, your hawkers and the chess table at a void deck, the open space at the foot of one of them. It is warm, local and over before the break. Your ward's newsletter prints it in full."
           },
           {
             "text": "Give the version with the thing you believe.",
@@ -2536,8 +2536,8 @@
       "0": [
         "A scheme goes out on time, and you're one of five people who know why.",
         "You clear forty-one papers and write one sentence you're proud of. Nobody notices the sentence.",
-        "A minute you wrote comes back to you months later as \"the ministry's position\", and you let it.",
-        "The system you fixed in March stops producing complaints, and nobody connects the two.",
+        "A memo you wrote comes back to you months later as \"the ministry's position\", and you let it stand.",
+        "You fix a system in March, it stops producing complaints, and nobody connects the two.",
         "A paper you wrote goes upstairs under someone else's name, and does well there.",
         "You catch an error in a figure three divisions had already passed, and fix it quietly.",
         "Another ministry copies an approval process you redesigned, and doesn't credit you."
@@ -2675,21 +2675,21 @@
     },
     "montageLines": {
       "0": [
-        "You ask where you stand, and are told it's \"not a helpful way to think about it\", the most precise answer yet.",
-        "Forty minutes, six competency areas, and one question from you that nobody writes down.",
-        "You ask how far you can go, and are offered a coaching session on curiosity.",
-        "You ask about your ceiling, and the question is recorded under \"Officer's Aspirations\", a box on the form.",
-        "You ask where you stand at the end of the forty minutes, when there are two left."
+        "At your appraisal you ask how high you can rise, and are told it's \"not a helpful way to think about it\", the most precise answer yet.",
+        "Your appraisal: forty minutes, six competency areas, and one question from you, about how far you can rise, that nobody writes down.",
+        "At your appraisal you ask how far you can go, and are offered a coaching session on curiosity.",
+        "You ask at your appraisal how far you can rise, and the question is recorded under \"Officer's Aspirations\", a box on the form.",
+        "You ask how far you can rise at the end of your appraisal, when there are two minutes left."
       ],
       "1": [
         "You agree again to be more visible, and at the next appraisal you're told that you have been.",
-        "Six competency areas, one new acronym and the phrase \"stretch assignment\", with you nodding at the right moments.",
+        "Your appraisal: six competency areas, one new acronym and the phrase \"stretch assignment\", with you nodding at the right moments.",
         "You're more visible this year, mostly in the background of other people's photographs.",
         "Your visibility is praised at a meeting you went to mainly in order to be seen there.",
-        "Your visibility is discussed for forty minutes, in a room with no windows."
+        "Your visibility is discussed at your appraisal for forty minutes, in a room with no windows."
       ],
       "2": [
-        "You ask what isn't being done, and by March it's done and your name is on the list for the next good posting.",
+        "At your appraisal you ask what isn't being done. By March it's done, and your name is on the list for the next good posting.",
         "You ask what would have helped in this year's \"very tight\" ranking, and, unusually, you're told.",
         "The things nobody was doing become your things, each with a thank-you for asking.",
         "The list of work nobody is doing gets shorter by March and longer by June, with your name at the top.",
@@ -2817,7 +2817,7 @@
     },
     "montageLines": {
       "0": [
-        "Level 9 at 11pm becomes a habit, then a reputation.",
+        "Working late on Level 9 becomes a habit, then a reputation.",
         "The cleaner on your floor now says goodnight to you by name.",
         "You miss a birthday dinner and make a deadline. By March both are forgotten, by different people.",
         "The night guard knows your car, your floor and your usual time: late.",
@@ -2827,12 +2827,12 @@
       ],
       "1": [
         "You leave at seven and send things in the morning, and the building doesn't fall down.",
-        "A birthday dinner, attended, while the fourth draft's comments wait until morning, as they always could.",
+        "A birthday dinner, attended, while the comments on your paper wait until morning, as they always could.",
         "You've stopped apologising for leaving on time, and two people on your floor have started doing the same.",
         "You leave at six, the work is in by nine the next morning, and nobody can tell it wasn't written at midnight.",
-        "You leave on time, and the comments come back anyway. They're the same comments.",
-        "Dinner at eight, as promised, and the fourth draft is none the worse for a night in the outbox.",
-        "You go home at seven again, and the midnight reply-all happens without you in it."
+        "You leave on time, and the comments on your paper come back anyway. They're the same comments.",
+        "Dinner at eight, as promised, and your paper is none the worse for a night in the outbox.",
+        "You go home at seven again, and the midnight reply-all about your paper happens without you in it."
       ]
     },
     "variants": [
@@ -2910,7 +2910,7 @@
     },
     "montageLines": {
       "0": [
-        "You bid for eleven and get four: the reason you bid for eleven.",
+        "In the budget round you bid for eleven officers and get four: the reason you bid for eleven.",
         "Budget season: every line justified, footnoted and cut by a third, as planned.",
         "You bid big again, defend every line, and are cut back to the number you had in mind all along.",
         "In the budget round you bid for eleven officers and a system, and get only the system, which needs eleven officers."
@@ -2923,7 +2923,7 @@
       ],
       "2": [
         "You make do within your existing budget again, and a note of thanks arrives: the only increase you get.",
-        "Budget season, and you learn a new way to say \"absorb\".",
+        "Budget season, no bid again, and you learn one more polite way to say \"we will absorb it\".",
         "No bid again. Your people absorb the extra work with you, and one of them updates a LinkedIn profile.",
         "You absorb the extra work so quietly that next year's budget is smaller, as a vote of confidence."
       ]
@@ -3029,7 +3029,7 @@
     },
     "montageLines": {
       "0": [
-        "You see every resident on Tuesday nights, and the man whose case cannot be reopened now brings you kueh, still warm from the market.",
+        "You see every resident on Tuesday nights, and a man whose case cannot be reopened now brings you kueh, still warm from the market.",
         "Your Meet-the-People Session runs past midnight again, and the volunteers have started bringing cushions.",
         "The coffee shop downstairs now closes before your Meet-the-People Session does, every week.",
         "Another Tuesday ends after midnight, with the last resident apologising for the hour and seen anyway.",
@@ -3047,7 +3047,7 @@
       "2": [
         "You leave the Tuesday session at ten again, and the volunteers see the rest of the queue, very well and very tired.",
         "A resident thanks you for the new lifts, which were the Town Council's doing, and you accept on its behalf and leave at ten.",
-        "Your speech is finished by Wednesday, and the volunteers finish the queue without you, a little after midnight.",
+        "Your speech for Parliament is done by Wednesday, because the volunteers saw out the Tuesday queue without you.",
         "You leave Meet-the-People at ten again, and the volunteers no longer look up when the lift doors close.",
         "Your speech is the best-prepared in the House, and the Tuesday queue is a little longer for it.",
         "The volunteers keep a list of the residents who asked for you after ten, and give it to you monthly."
@@ -3135,7 +3135,7 @@
     "montageLines": {
       "0": [
         "Wet markets at 7am, with cameras, until you know the price of chillies better than the price of anything else.",
-        "On a walkabout an auntie says you looked thinner on television, and you hear out the rest of it, about the lift.",
+        "On a walkabout an auntie says you looked thinner on television, and you hear out the rest of what she has to say, about her lift.",
         "A stallholder you once sat and listened to, on camera, now greets you every visit with whatever has gone up in price since.",
         "Another walkabout, another auntie, and four minutes of footage about her lift that the news runs in full.",
         "A fishmonger explains the price of fish to you on camera, and the clip is shared mostly by fishmongers.",
@@ -3150,11 +3150,11 @@
         "The walkabout is so punctual that the stallholders now time their breaks by it."
       ],
       "2": [
-        "You take numbers at walkabouts and call them at night, and your call log becomes the best map of the ward.",
+        "You take residents' phone numbers at walkabouts and call them at night, and your call log becomes the best map of the ward.",
         "Three phone numbers on a napkin from the wet market, and you call all three that evening, off camera.",
         "You call a stallholder back about her rent, and she tells the next stall, and the next.",
         "A resident you called one night tells the whole residents' committee, and the committee now knows you as the MP who calls back.",
-        "Your evening calls now take longer than the walkabouts, and settle more.",
+        "Your evening calls to residents now take longer than the walkabouts, and sort out more.",
         "A hawker you called back about her lease tells you the next week that it was renewed, as if you did it."
       ]
     },
@@ -3252,7 +3252,7 @@
       "0": [
         "At Question Time you answer the question that was actually asked, and people still notice.",
         "Seven questions this sitting, and two of your answers make the news for being short and true.",
-        "A Member files a question expecting a brief, gets an answer instead, and files another.",
+        "A Member files a question expecting your officials' usual reply, gets a straight answer instead, and files another.",
         "Your straight answers are now quoted back to you in follow-up questions, so somebody read them.",
         "You give the House the actual number, and the Member who asked has no follow-up question ready.",
         "Your answer in the House is one paragraph shorter than the brief: you cut the paragraph that dodged."
@@ -3262,7 +3262,7 @@
         "A sharp follow-up question meets a smooth reply; Hansard records both, and the papers record the reply.",
         "Question Time again, and the brief answers a question your officials found easier.",
         "Your replies this sitting are smooth enough that the follow-up questions slide straight off them.",
-        "The brief is read in full, accurately, and a Member asks the original question again in other words.",
+        "You read your officials' brief in full, accurately, and the Member asks the original question again in other words.",
         "At Question Time you read the brief so well that nobody can quite say which question it answered."
       ],
       "2": [
@@ -3450,7 +3450,7 @@
         "A quiet year of receptions, where you learn to hold a plate, a glass and a business card at once."
       ],
       "2": [
-        "Bintan in June, where you check your email only twice. That's progress.",
+        "A week on Bintan in June, where you check your email only twice. That's progress.",
         "A quiet year, and somewhere someone writes \"steady\" about you and means it kindly.",
         "A quiet year, and you take all your leave, which the leave system flags as unusual.",
         "You rest, and everything keeps running without you. It's reassuring, and very slightly insulting.",
@@ -4273,7 +4273,7 @@
         ]
       },
       {
-        "body": "At Tuesday's Meet-the-People Session, where residents bring you their problems, three of the first ten cases are retrenchments. On Thursday your ministry settles its plan for the next three Budgets, and the plan also sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are hit, less in a downturn. The three files are still in your bag.",
+        "body": "At Tuesday's Meet-the-People Session, your weekly evening of residents' problems, three of the first ten cases are retrenchments. On Thursday your ministry settles its plan for the next three Budgets, and the plan also sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are hit, less in a downturn. The three files are still in your bag.",
         "choices": [
           {
             "text": "Plan for jobs.",
@@ -5333,7 +5333,7 @@
   {
     "id": "model_ward",
     "title": "A Model Ward",
-    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, your Tuesday-night Meet-the-People Sessions, where residents bring you their problems, and a weak opponent.",
+    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, your Tuesday-night Meet-the-People Sessions, where residents queue with their problems, and a weak opponent.",
     "triggered": true,
     "once": true,
     "requires": {
@@ -5495,27 +5495,27 @@
     "montageLines": {
       "comply": [
         "Another improvement plan arrives on the same template, and you do what you did with the first: sign, meet, file.",
-        "Another plan is marked Met and added to your file, which HR now describes as \"a pattern\".",
-        "The plan comes round again, and you sign where it says acknowledgement and work to its dates.",
-        "The same three objectives arrive in a different order, and you clear them in the old one.",
-        "You meet the new plan's objectives a month early, and the review is cancelled for lack of material.",
-        "The plan arrives with last time's comments still in its margin, and you work through it in the same order."
+        "Another improvement plan is marked Met and added to your file, which HR now describes as \"a pattern\".",
+        "The improvement plan comes round again, and you sign where it says acknowledgement and work to its dates.",
+        "Another improvement plan brings the same three objectives in a different order, and you clear them in the old one.",
+        "You meet the new improvement plan's objectives a month early, and the review is cancelled for lack of material.",
+        "The improvement plan arrives with last time's comments still in its margin, and you work through it in the same order."
       ],
       "move": [
         "Another improvement plan arrives, and you ask for a posting again; HR still has your last request on file.",
-        "HR moves you before the new plan's first review and closes it as \"Officer Transferred\", as before.",
+        "HR moves you before the new improvement plan's first review and closes it as \"Officer Transferred\", as before.",
         "HR processes your transfer request faster than last time, which it treats as a sign of maturity.",
-        "A new plan, then a new division, and a new reporting officer who reads your file from the back.",
-        "You are posted out within the month, and the plan is closed by a system that records you as \"Moved On\".",
-        "Your transfer is approved before the plan's review is booked, by an HR officer who recognises your name."
+        "A new improvement plan, then a new division, and a new reporting officer who reads your file from the back.",
+        "You are posted out within the month, and the improvement plan is closed by a system that records you as \"Moved On\".",
+        "Your transfer is approved before the improvement plan's review is booked, by an HR officer who recognises your name."
       ],
       "contest": [
         "Another improvement plan arrives, and you reply to it in writing, at the same length as last time.",
-        "Your reply to the new plan is filed beside the old one, and the review moves to a larger room.",
-        "Another plan, another four-page reply, and HR opens a second folder because the first is full.",
-        "You answer the new plan point by point, and your reporting officer now writes everything down, in pen.",
+        "Your written reply to the new improvement plan is filed beside the old one, and the review moves to a larger room.",
+        "Another improvement plan, another four-page reply, and HR opens a second folder because the first is full.",
+        "You answer the new improvement plan point by point, and your reporting officer now writes everything down, in pen.",
         "Your written reply cites the previous plan by paragraph number, which nobody on the panel can find.",
-        "The new plan comes with a box for your comments, and your comments come with an annex."
+        "The new improvement plan comes with a box for your comments, and your comments come with an annex."
       ]
     }
   },
@@ -5890,7 +5890,7 @@
           "competence": 2,
           "standing": -2
         },
-        "outcome": "Two hours at a void deck, the open ground floor of one of their blocks. You explain the policy, and then you listen to what it means to them. That's a different conversation, and a longer one."
+        "outcome": "Two hours at a void deck, the shaded open space under one of their blocks. You explain the policy, and then you listen to what it means to them. That's a different conversation, and a longer one."
       },
       {
         "text": "Reply in writing, accurately and kindly.",

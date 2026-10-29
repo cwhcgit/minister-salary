@@ -235,7 +235,7 @@
     {
       "id": "strange_loop",
       "title": "Again",
-      "body": "Your budget meeting with the Ministry of Finance has now happened nine times: the same meeting, starting each time at 2.30pm. Each time you ask for eleven more officers to run a new scheme. Each time Finance says your budget can't grow next year, and offers four. Nobody else in the room seems to have noticed the loop.",
+      "body": "Your budget meeting with the Finance ministry has now happened nine times: the same meeting, starting each time at 2.30pm. Each time you ask for eleven more officers to run a new scheme. Each time Finance says your budget can't grow next year, and offers four. Nobody else in the room seems to have noticed the loop.",
       "requires": { "minRank": 4, "maxRank": 6, "flagsNone": ["strange_met"] },
       "weight": 1,
       "once": true,
@@ -291,7 +291,7 @@
     {
       "id": "strange_dragon",
       "title": "The Void Deck",
-      "body": "A dragon has nested in the void deck, the open ground floor, of Block 412, in your ward. Residents find it quiet, and warm. The housing board, the Town Council and the parks board have each written to say it is another agency's problem. Now the dragon has queued at your weekly Meet-the-People Session, where residents bring you their problems: it wants your help to appeal to IRAS, the tax authority, for the lower property tax rate that owner-occupiers pay.",
+      "body": "A dragon has nested in the void deck of Block 412, the open space beneath the flats, in your ward. Residents find it quiet, and warm. The housing board, the Town Council and the parks board have each written to say it is another agency's problem. Now the dragon has queued at your weekly Meet-the-People Session, where residents come for help with agencies: it wants your help to appeal to IRAS, the tax authority, for the lower property tax rate that owner-occupiers pay.",
       "requires": { "minRank": 8, "maxRank": 10, "flagsNone": ["strange_met"] },
       "weight": 1.4,
       "once": true,
@@ -375,7 +375,7 @@
     {
       "id": "strange_gold",
       "title": "The Gold Bar",
-      "body": "Since Monday, one gold bar in the national reserves has produced another every night. Nobody can say how. The Ministry of Finance can say exactly what it is: a return on the reserves. The rules let the Government spend up to half the expected return each year, and nobody expected this. Cabinet must decide what to do.",
+      "body": "Since Monday, one gold bar in the national reserves has produced another every night. Nobody can say how. The Finance ministry can say exactly what it is: a return on the reserves. The rules let the Government spend up to half the expected return each year, and nobody expected this. Cabinet must decide what to do.",
       "requires": { "minRank": 13, "maxRank": 16, "flagsNone": ["strange_met"] },
       "weight": 0.7,
       "once": true,

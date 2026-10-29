@@ -1015,7 +1015,7 @@
         "down": [
           "Your integrity takes a knock. You notice, even if nobody else does.",
           "You tell yourself it was necessary. Your integrity is less sure.",
-          "You bend a rule you once said you never would, and your integrity is the worse for it."
+          "Your integrity pays for this one, and the ward will never know."
         ]
       }
     },
@@ -1627,7 +1627,7 @@
           "{name}, your reporting officer until now, retires from the service as {title}. At the farewell lunch you are asked to say a few words, and find you have more than a few.",
           "{name}, whose desk your papers have gone to for {years}, retires as {title}. The office is cleared in an afternoon, apart from a framed organisation chart from three reorganisations ago that nobody will take down.",
           "{name}, who has signed off your work for {years}, retires as {title}. The last paper {name} signs off is one of yours, with a single word in the margin: \"Good.\"",
-          "{name}, your reporting officer until now, retires as {title} and is given a crystal paperweight engraved with the wrong year. You are given {their} pot plant, and keep it alive."
+          "{name}, the reporting officer you have answered to for {years}, retires as {title} and is given a crystal paperweight engraved with the wrong year. You are given {their} pot plant, and keep it alive."
         ],
         "arrive": [
           "{name}, your new reporting officer, is {aTitle}. On the first day {name} mentions having read your file, and does not say which parts.",
@@ -1788,7 +1788,7 @@
     },
     "warnLate": {
       "service": "A D is a formal warning, but next year is your last before you retire, and HR does not start an improvement plan in an officer's last year. The D stays on your file.",
-      "slate": "A D is a formal warning. Next year the party settles its slate for the coming general election, and this will be on the table when it does.",
+      "slate": "A D is a formal warning. Next year the party settles its slate of candidates for the coming general election, and this will be on the table when it does.",
       "leaving": "A D is a formal warning, but next year is your last in office, and nobody is put on notice in their last year. The D stays on the record."
     },
     "teaNear": {
@@ -1801,7 +1801,7 @@
         "At a community event, a party activist asks for your card, and keeps it. In your experience, people do not keep cards.",
         "Someone you have never met asks your office for a copy of your CV, \"for a newsletter\". There is no newsletter.",
         "Your name appears on the guest list for a dinner where most of the other guests are Members of Parliament. Nobody tells you why you were asked.",
-        "A Member of Parliament from the party, whom you met once at a community event, sends a handwritten note: it was good to hear your remarks. You made no remarks. The note was never about them."
+        "A Member of Parliament from the party, whom you met once at a community event, sends a handwritten note: it was good to hear your remarks. You made no remarks."
       ],
       "seatAtRisk": [
         "The party's seat assessment for next year's general election lists your ward as \"competitive\". It is not a compliment.",
@@ -2010,13 +2010,13 @@
       "promoted": "Your pay rises from next year."
     },
     "place": {
-      "grc": "Member for a GRC",
-      "smc": "Member for a single seat",
+      "grc": "MP, one of a GRC team",
+      "smc": "MP for a single seat",
       "mp": "Member of Parliament",
       "pm": "Prime Minister's Office",
       "candidate": "Resigned from the service to stand for election"
     },
-    "nextSameTitle": "{grade}, the next Cabinet grade up",
+    "nextSameTitle": "a step up to {grade}, the next grade in Cabinet",
     "rivalTag": "your batchmate",
     "sideways": {
       "named": "That's three Cs in a row, so HR moves you sideways: the same grade, in another division. From next year your papers go to a new reporting officer instead of {senior}. It's meant as a fresh start. Nobody there asked for you, but the work is real.",

@@ -454,7 +454,7 @@
         "the_indicators",
         "the_indicators_downturn",
         "the_indicators_election",
-        "engine:pay"
+        "game.json:engineLines.payWhy.withBonus"
       ]
     },
     {

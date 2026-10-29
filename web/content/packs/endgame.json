@@ -83,7 +83,7 @@
           "text": "Agree, if you can introduce your successor to the ward.",
           "effects": { "reputation": 4, "competence": -2, "standing": -1 },
           "setFlags": ["renewal_successor"],
-          "outcome": "The party's candidate is a generation younger, with a better CV than yours ever was. All year you take them round every block, coffee shop and void deck, the open ground floor where residents gather, as the person who looks after the ward now."
+          "outcome": "The party's candidate is a generation younger, with a better CV than yours ever was. All year you take them round every block, coffee shop and void deck, where residents gather under the blocks, as the person who looks after the ward now."
         }
       ]
     },

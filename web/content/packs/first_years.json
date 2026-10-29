@@ -337,7 +337,7 @@
               "chance": 0.6
             }
           ],
-          "outcome": "Over kopi, without mentioning any email, you tell {peer} it might be a good time to look around. {peer} applies for two other jobs in the service that week, gets one, and never asks how you knew."
+          "outcome": "Over kopi, without mentioning any email, you tell {peer} it might be a good time to look around. {peer} applies for two other jobs in the division that week, gets one, and never asks how you knew."
         },
         {
           "text": "Say nothing. It wasn't sent to you to share.",
@@ -360,7 +360,7 @@
               "chance": 0.6
             }
           ],
-          "outcome": "The restructuring is announced six weeks later at a townhall. {peer} hears it with everyone else and is moved to another job in good order. You say all the right things, a little too smoothly for someone hearing it for the first time."
+          "outcome": "The restructuring is announced six weeks later at a townhall. {peer} hears it with everyone else and is moved to another job in the division, in good order. You say all the right things, a little too smoothly for someone hearing it for the first time."
         },
         {
           "text": "Tell the sender you were copied in by mistake.",
