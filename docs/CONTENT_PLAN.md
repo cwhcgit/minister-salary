@@ -39,8 +39,8 @@ Where the pool cards can appear, by rank band (a card can cover several bands):
 **Gaps.** These are the places a returning player will notice repetition first. Figures in
 italics are today's.
 - **The first years:** 12 cards for ranks 0-1, which every career passes through. *(Now 37.)*
-- **The top of the service:** 16 cards for Deputy Secretary and Permanent Secretary. *(Now 31;
-  its own pack is not written.)*
+- **The top of the service:** 16 cards for Deputy Secretary and Permanent Secretary. *(Now 31,
+  plus the 12 of `top_service`.)*
 - **Backbench to Senior Parliamentary Secretary:** 8 cards. *(Now 29.)*
 - **Ministry content:** ten ministries exist; four of them (Health, Manpower, National
   Development, Education) have three cards each, from `fun/variety`.
@@ -60,7 +60,7 @@ distinct cards. Alternate scenes are extra and counted in section 5.
 | The first years | 12 | 0-1 | Competence vs Standing; Integrity both | 13 (`first_years`) |
 | Postings and statutory boards | 12 | 2-6 | Competence vs Standing; ceiling up via proving grounds | |
 | Overseas postings | 8 | 3-6 | Competence and ceiling vs Standing (out of sight) | |
-| The top of the service | 10 | 6-7 | Standing vs Integrity; Reputation both | |
+| The top of the service | 10 | 6-7 | Standing vs Integrity; Reputation both | 12 (`top_service`; 10 for Permanent Secretaries, 2 for Senior Directors and Deputy Secretaries) |
 | Backbench and junior office | 12 | 8-10 | Reputation vs Standing (with the Whip) | 12 (`backbench`) |
 | Cabinet life and portfolios | 10 | 11-16 | Standing vs Integrity; Reputation both; National Bonus | |
 | Crises | 12 | 3-16, split service/office | Competence and Reputation vs Heat; ceiling for standouts | |
@@ -77,6 +77,14 @@ Three packs outside this table have also been written: **Openings** (`openings`,
 scholar's and the graduate's first year), **Strange Years** (`strange`, 15 cards: one impossible
 premise, processed as routine, in about a third of careers) and **The end of a career**
 (`endgame`, 8 cards; DESIGN.md section 4).
+
+Two more fill the years that pass with nothing to decide in a long stay, which one decision, once
+(rule 5.15) made longer: **The Long Stay** (`long_stay`, 8 cards for an officer still a Management
+Executive or Senior Management Executive at 38 or over) and **Long in Office** (`long_office`, 4
+cards for a Deputy Prime Minister of 55 or over; not for Ministers, whose years hold the reshuffle).
+The Permanent Secretary's cards in `top_service` serve the same purpose. Each of the three sets
+shares a cooldown (`"cooldown"` on the card, `requires.cooldown` of three years), so a long stay
+meets a decision every few years instead of all of them at once.
 
 ### Seeds (one-line premises; writers turn these into cards)
 
@@ -291,7 +299,7 @@ A pack is `web/content/packs/<id>.json`:
 1. The first years. *(Written.)*
 2. Ministries (the six `fun/variety` does not cover first).
 3. Backbench and junior office. *(Written.)*
-4. The top of the service.
+4. The top of the service. *(Written.)*
 5. Crises.
 6. Story chains. *(Five of ten written.)*
 7. Life outside work.

@@ -22,17 +22,17 @@
     {
      "text": "Deliver all twenty-three. Give the List more officers.",
      "effects": {
-      "standing": 5,
-      "reputation": 1,
-      "competence": -4
+      "standing": 6,
+      "reputation": 3,
+      "competence": -3
      },
      "outcome": "The List gets eleven officers and a meeting room of its own. By December twenty ideas are done, and the ministry's own work plan is a quarter behind. The Minister calls it the ministry's best year."
     },
     {
      "text": "Go through it with the Minister, and keep three.",
      "effects": {
-      "competence": 6,
-      "integrity": 2,
+      "competence": 7,
+      "integrity": 3,
       "standing": -4
      },
      "outcome": "It takes two meetings. The Minister keeps four, and asks at the door who will tell the residents about the other nineteen. You do, in the end, by letter, nineteen times."
@@ -41,9 +41,9 @@
      "text": "Mark every line \"in progress\". Do the three that matter.",
      "effects": {
       "competence": 4,
-      "standing": 2,
-      "integrity": -5,
-      "heat": 4
+      "standing": 4,
+      "integrity": -6,
+      "heat": 5
      },
      "outcome": "The progress column turns a reassuring amber. Three ideas are done properly. The other twenty stay amber until a Monday a year later, when the Minister asks what amber means."
     }
@@ -88,8 +88,8 @@
     {
      "text": "Let the chief executive face it alone.",
      "effects": {
-      "standing": 4,
-      "integrity": -3,
+      "standing": 5,
+      "integrity": -4,
       "reputation": -2
      },
      "outcome": "The chief executive takes forty minutes of questions alone, and does well. The ministry appears in the story only as \"the parent ministry\", in paragraph nine. At the agency, people notice who was not at the podium."
@@ -97,19 +97,19 @@
     {
      "text": "Stand beside the chief executive yourself.",
      "effects": {
-      "integrity": 4,
-      "reputation": 3,
+      "reputation": 8,
+      "integrity": 3,
       "competence": 2,
-      "standing": -6
+      "standing": -4
      },
      "outcome": "A Permanent Secretary at a press conference is a story in itself. The questions the chief executive cannot answer come to you, including whose idea the payments system was. It was the ministry's."
     },
     {
      "text": "Ask the Minister to front it, from your brief.",
      "effects": {
-      "competence": 4,
+      "competence": 5,
       "reputation": 1,
-      "standing": -3
+      "standing": -2
      },
      "outcome": "The Minister does it from your eleven pages, word perfect. The story is now about the Minister, which the Minister's office had hoped to avoid. You are thanked warmly, and the next brief is written in the Minister's office."
     }
@@ -154,7 +154,8 @@
     {
      "text": "Draft them wide: the outage, and the ministry's oversight.",
      "effects": {
-      "integrity": 6,
+      "integrity": 7,
+      "reputation": 2,
       "competence": 2,
       "standing": -5
      },
@@ -163,8 +164,8 @@
     {
      "text": "Draft them narrow: the vendor's system, and nothing else.",
      "effects": {
-      "standing": 5,
-      "integrity": -5,
+      "standing": 6,
+      "integrity": -6,
       "heat": 6
      },
      "setFlags": [
@@ -176,8 +177,8 @@
      "text": "Let the judge propose the terms, and accept them.",
      "effects": {
       "competence": 4,
-      "reputation": 3,
-      "standing": -3
+      "reputation": 4,
+      "standing": -2
      },
      "outcome": "The judge proposes terms wider than you would have dared and narrower than you feared, and the Minister signs them unchanged. The report is careful, and the ministry learns more from it than it expected to."
     }
@@ -222,8 +223,8 @@
     {
      "text": "Put {junior} first.",
      "effects": {
-      "integrity": 4,
-      "standing": 3,
+      "integrity": 5,
+      "standing": 4,
       "competence": -4
      },
      "cast": {
@@ -237,8 +238,8 @@
      "text": "Give two other good names.",
      "effects": {
       "competence": 3,
-      "standing": 2,
-      "integrity": -4
+      "standing": 4,
+      "integrity": -5
      },
      "cast": {
       "junior": {
@@ -252,9 +253,10 @@
     {
      "text": "Ask {junior} which list to be on.",
      "effects": {
-      "integrity": 3,
+      "integrity": 4,
+      "reputation": 3,
       "competence": 1,
-      "standing": -3
+      "standing": -4
      },
      "cast": {
       "junior": {
@@ -306,7 +308,7 @@
     {
      "text": "Ring your predecessor, and ask for the calls to stop.",
      "effects": {
-      "competence": 3,
+      "competence": 5,
       "integrity": 2,
       "standing": -4
      },
@@ -315,18 +317,18 @@
     {
      "text": "Tell your directors to bring the suggestions to you.",
      "effects": {
-      "standing": 2,
-      "competence": 2,
-      "reputation": -3
+      "standing": 3,
+      "competence": 3,
+      "reputation": -1
      },
      "outcome": "The directors do, for a month. Then the suggestions start arriving at your desk directly, in your predecessor's handwriting, copied to the directors. You have become the person who forwards them."
     },
     {
      "text": "Leave it. The suggestions are mostly good.",
      "effects": {
-      "standing": 3,
-      "competence": -2,
-      "reputation": -1
+      "standing": 5,
+      "competence": -3,
+      "reputation": -2
      },
      "outcome": "They are mostly good, and the ministry runs very smoothly, in two directions at once. At the agency's annual dinner your predecessor raises a glass to \"my successor\", and the room laughs a beat too early."
     }
@@ -371,8 +373,8 @@
     {
      "text": "Keep the scoring. Eleventh is eleventh.",
      "effects": {
-      "integrity": 5,
-      "reputation": 2,
+      "integrity": 6,
+      "reputation": 3,
       "standing": -5
      },
      "outcome": "The list goes up as scored. The Minister approves it without comment, and mentions the block a third time, at a dinner, to someone else. Your officers notice that the scoring held, and say so in the lift."
@@ -380,10 +382,10 @@
     {
      "text": "Find a criterion that moves the Minister's estates up.",
      "effects": {
-      "standing": 5,
+      "standing": 6,
       "competence": 1,
-      "integrity": -6,
-      "heat": 5
+      "integrity": -7,
+      "heat": 6
      },
      "setFlags": [
       "estate_criterion"
@@ -393,8 +395,8 @@
     {
      "text": "Ask the Minister, plainly, whether it is a request.",
      "effects": {
-      "integrity": 3,
-      "competence": 2,
+      "integrity": 4,
+      "competence": 3,
       "standing": -3
      },
      "outcome": "The Minister looks surprised and says no, of course not. The scoring stands. The block is never mentioned again in your hearing, and you wonder whether you misread it, and then whether you were meant to."
@@ -440,17 +442,17 @@
     {
      "text": "Take it, with its staff and its backlog.",
      "effects": {
-      "competence": 5,
-      "reputation": 2,
-      "standing": -4
+      "competence": 6,
+      "reputation": 3,
+      "standing": -3
      },
      "outcome": "The orphan arrives with nine officers, four thousand unanswered calls and a number nobody may change. A year later the backlog is gone. The other ministry writes to say it always knew the line would be in good hands."
     },
     {
      "text": "Write back, just as warmly, proposing it belongs with them.",
      "effects": {
-      "standing": 3,
-      "integrity": -4,
+      "standing": 4,
+      "integrity": -5,
       "competence": -1
      },
      "outcome": "Your letter is as warm as theirs and twice as long. The letters go on at a dignified pace for eight months, and the callers go on at theirs. The orphan stays where it was, with nobody."
@@ -458,8 +460,8 @@
     {
      "text": "Propose a joint unit, run by both ministries.",
      "effects": {
-      "competence": 2,
-      "standing": 2,
+      "competence": 3,
+      "standing": 3,
       "reputation": -2
      },
      "outcome": "The joint unit has two directors, two budgets and one phone line, and its quarterly report needs four signatures. Callers get through more often than before. The officers in the unit call the arrangement, privately, joint custody."
@@ -505,8 +507,8 @@
     {
      "text": "Read paragraph six as written.",
      "effects": {
-      "reputation": 6,
-      "integrity": 1,
+      "reputation": 7,
+      "integrity": 2,
       "standing": -6
      },
      "outcome": "The review is in the next morning's business pages under your name, which is where the Minister reads about it. The industry is delighted. The Minister's office would like to see your next speech a week early."
@@ -514,7 +516,7 @@
     {
      "text": "Cut paragraph six.",
      "effects": {
-      "standing": 3,
+      "standing": 4,
       "reputation": -4
      },
      "outcome": "The speech is sound, and nobody quotes it. A month later the Minister announces the review, in a sentence very like paragraph six, and the industry thanks the Minister."
@@ -522,9 +524,9 @@
     {
      "text": "Send paragraph six to the Minister's office tonight.",
      "effects": {
-      "standing": 2,
+      "standing": 3,
       "competence": 2,
-      "reputation": -2
+      "integrity": -2
      },
      "outcome": "It comes back at midnight, approved, with every verb softened: \"will review\" is now \"is studying the feasibility of reviewing\". You read it as amended. One reporter writes it up, accurately, as nothing."
     }
@@ -569,9 +571,9 @@
     {
      "text": "Show the whole ministry the results, and ask why.",
      "effects": {
+      "reputation": 6,
       "integrity": 4,
-      "reputation": 3,
-      "standing": -4
+      "standing": -2
      },
      "outcome": "You present the slide yourself, lowest score first. The silence lasts eleven seconds. Then come the questions, more than you wanted, some of them fair. The next survey is better, and so is the ministry."
     },
@@ -579,7 +581,7 @@
      "text": "Talk it through with your Deputy Secretaries only.",
      "effects": {
       "competence": 3,
-      "standing": 1,
+      "standing": 2,
       "reputation": -2
      },
      "outcome": "Your Deputy Secretaries agree that the score is unfair. Then, one at a time over the next month, each tells you privately about a meeting where it was not. You change two habits."
@@ -587,9 +589,9 @@
     {
      "text": "File it, and be more open, quietly.",
      "effects": {
-      "standing": 3,
+      "standing": 4,
       "competence": -1,
-      "integrity": -2
+      "integrity": -3
      },
      "outcome": "You resolve to be more open, and are, in the meetings where you remember to be. The next survey moves by two points, which the Public Service Division calls \"a positive trajectory\"."
     }
@@ -634,17 +636,16 @@
     {
      "text": "Say the ministry is comfortable.",
      "effects": {
-      "standing": 3,
-      "reputation": -1,
-      "integrity": -4
+      "standing": 5,
+      "integrity": -5
      },
      "outcome": "The board approves it in four minutes. You spend the next quarter making the ministry comfortable: a paper, two meetings and a call to the Minister's office about the sky garden, which survives."
     },
     {
      "text": "Say you will come back once the ministry has decided.",
      "effects": {
-      "integrity": 3,
-      "competence": 2,
+      "integrity": 4,
+      "competence": 3,
       "standing": -3
      },
      "outcome": "The decision waits a quarter, and the agency's management stays very polite to you. The ministry approves the building with a smaller garden, and the model on the table is quietly replaced with a smaller one."
@@ -652,8 +653,8 @@
     {
      "text": "Ask what the forty per cent buys, line by line.",
      "effects": {
-      "competence": 5,
-      "standing": -3
+      "competence": 6,
+      "standing": -2
      },
      "outcome": "It takes two hours. The forty per cent turns out to be thirty-one for the building and nine for the garden. The board approves the building and defers the garden. Management describes the meeting afterwards as \"robust\"."
     }
@@ -693,8 +694,8 @@
     {
      "text": "Decide it yourself. You are acting.",
      "effects": {
-      "competence": 5,
-      "reputation": 1,
+      "competence": 6,
+      "reputation": 2,
       "standing": -3
      },
      "outcome": "You approve the statement with the date a month later, the one change you are sure of. It goes out at nine. The Permanent Secretary, back on Monday, would have chosen a different month, and says so, once."
@@ -702,7 +703,7 @@
     {
      "text": "Wake the Permanent Secretary.",
      "effects": {
-      "standing": 3,
+      "standing": 4,
       "integrity": 1,
       "competence": -2
      },
@@ -711,8 +712,8 @@
     {
      "text": "Hold it until Monday.",
      "effects": {
-      "integrity": 2,
-      "standing": 1,
+      "integrity": 3,
+      "standing": 2,
       "reputation": -4
      },
      "outcome": "The agency issues its statement on Monday, with a date the Permanent Secretary approves. Over the weekend a newspaper reports that the ministry \"declined to comment\", which is technically what happened."
@@ -753,8 +754,8 @@
     {
      "text": "Put the real alternative in as the second option.",
      "effects": {
-      "integrity": 5,
-      "competence": 3,
+      "integrity": 6,
+      "competence": 4,
       "standing": -4
      },
      "outcome": "The paper goes up with a real choice in it. Your Minister rewrites the comparison table personally, and Cabinet chooses the Minister's option anyway. One minister asks about the second option for nine minutes."
@@ -762,16 +763,16 @@
     {
      "text": "Write the three options as asked.",
      "effects": {
-      "standing": 3,
-      "integrity": -5
+      "standing": 5,
+      "integrity": -6
      },
      "outcome": "The expensive option costs four times as much, the cheap one does nothing, and the Minister's is approved in seven minutes. A minister remarks, approvingly, that the paper made the choice obvious. It did."
     },
     {
      "text": "Put the real alternative in an annex.",
      "effects": {
-      "competence": 3,
-      "integrity": 1,
+      "competence": 4,
+      "integrity": 2,
       "standing": -2
      },
      "outcome": "One minister reads the annex, and asks at the meeting why the best idea in the paper is on page fourteen. Your Minister answers well. The question is not minuted, and is remembered."

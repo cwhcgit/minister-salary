@@ -1,13 +1,13 @@
 {
  "id": "long_office",
  "title": "Long in Office",
- "note": "Senior ministers, from Minister to Deputy Prime Minister, in their late fifties and sixties, who can hold office for many years. One three-year cooldown (long_office).",
+ "note": "Deputy Prime Ministers in their late fifties and sixties, who can hold the office for many years. Not for Ministers: their years hold the reshuffle, and cards there would crowd it out. One three-year cooldown (long_office).",
  "events": [
   {
    "id": "lo_counterpart",
    "title": "The Counterpart",
    "requires": {
-    "minRank": 13,
+    "minRank": 15,
     "maxRank": 15,
     "minAge": 55,
     "cooldown": {
@@ -23,17 +23,17 @@
     {
      "text": "Agree to wait three months.",
      "effects": {
-      "standing": 3,
-      "integrity": -5,
-      "reputation": -2
+      "standing": 5,
+      "integrity": -6,
+      "reputation": -1
      },
      "outcome": "The announcement waits. Your counterpart is re-elected, and sends a case of something expensive, which you declare and return. Your own industry, which needed the decision, spends the three months asking why."
     },
     {
      "text": "Announce it on the day planned.",
      "effects": {
-      "integrity": 4,
-      "competence": 2,
+      "integrity": 5,
+      "competence": 3,
       "standing": -3
      },
      "outcome": "You announce it on schedule. Across the border, your counterpart's party loses two seats and blames you by name. The private number stops ringing, and regional meetings are formal for some years."
@@ -41,9 +41,10 @@
     {
      "text": "Announce on schedule, and tell your counterpart the day before.",
      "effects": {
-      "competence": 3,
-      "reputation": 1,
-      "integrity": -2,
+      "competence": 4,
+      "reputation": 3,
+      "standing": 1,
+      "integrity": -3,
       "heat": 3
      },
      "outcome": "With a day's warning, your counterpart announces a support package first. The two announcements land side by side in the morning papers, looking almost coordinated. The private number keeps ringing, less often."
@@ -74,7 +75,7 @@
    "id": "lo_pre_agreed",
    "title": "Pre-Agreed",
    "requires": {
-    "minRank": 13,
+    "minRank": 15,
     "maxRank": 15,
     "minAge": 55,
     "cooldown": {
@@ -90,27 +91,27 @@
     {
      "text": "Ask for one paper a month that argues against you.",
      "effects": {
-      "competence": 4,
-      "integrity": 2,
-      "standing": -3
+      "competence": 5,
+      "integrity": 3,
+      "standing": -2
      },
      "outcome": "The first arrives labelled \"Contrary view (as requested)\", and is very good. By the third month, officials compete to write it. Decisions take a week again, and two of them come out differently."
     },
     {
      "text": "Leave it. It works.",
      "effects": {
-      "standing": 3,
+      "standing": 5,
       "competence": -3,
       "heat": 3
      },
-     "outcome": "It does work. Years later an auditor finds a scheme nobody questioned, and asks to see the options paper that went to the Minister. There was only ever one option in it."
+     "outcome": "It does work. Years later an auditor finds a scheme nobody questioned, and asks to see the options paper that went to you. There was only ever one option in it."
     },
     {
      "text": "Bring in an outside panel to test the big decisions.",
      "effects": {
-      "competence": 3,
-      "reputation": 3,
-      "standing": -4
+      "competence": 4,
+      "reputation": 4,
+      "standing": -2
      },
      "outcome": "The panel meets quarterly: a professor, a former banker and a union leader. In its first year it finds a serious flaw, in a scheme your officials had doubted and never mentioned. They are relieved, and a little put out."
     }
@@ -140,7 +141,7 @@
    "id": "lo_historian",
    "title": "The Historian",
    "requires": {
-    "minRank": 13,
+    "minRank": 15,
     "maxRank": 15,
     "minAge": 55,
     "cooldown": {
@@ -156,8 +157,8 @@
     {
      "text": "Check the records first, and correct yourself.",
      "effects": {
-      "integrity": 5,
-      "competence": 1,
+      "integrity": 6,
+      "competence": 2,
       "reputation": -2
      },
      "outcome": "You spend a weekend with the files, and arrive with your own memory corrected in pencil. The historian is delighted. The book gives you a short, accurate paragraph, and the other minister, long retired, writes to thank you."
@@ -165,17 +166,17 @@
     {
      "text": "Tell it the way you remember it.",
      "effects": {
-      "reputation": 2,
-      "standing": 1,
-      "integrity": -4
+      "reputation": 4,
+      "standing": 3,
+      "integrity": -5
      },
      "outcome": "It is a good story, and you tell it well. The book quotes it in full, followed by a footnote giving the time from the records. Reviewers enjoy the footnote more than the story."
     },
     {
      "text": "Decline the interview, and send the files.",
      "effects": {
-      "integrity": 1,
-      "standing": 1,
+      "integrity": 2,
+      "standing": 2,
       "reputation": -2
      },
      "outcome": "The chapter is written from the files alone. It is accurate, dry and short on you. Your 2am phone call survives only in your own telling, at dinners, where nobody brings footnotes."
@@ -206,7 +207,7 @@
    "id": "lo_podcast",
    "title": "The Podcast",
    "requires": {
-    "minRank": 13,
+    "minRank": 15,
     "maxRank": 15,
     "minAge": 55,
     "cooldown": {
@@ -222,16 +223,17 @@
     {
      "text": "Go, and answer anything.",
      "effects": {
-      "reputation": 6,
+      "reputation": 8,
       "integrity": 1,
-      "standing": -5
+      "standing": -4
      },
      "outcome": "Ninety minutes, unedited. You are funny about your first election and frank about a policy you would now do differently. The clips travel. At the next Cabinet meeting, two colleagues have clearly listened to the frank part."
     },
     {
      "text": "Go, with the questions agreed in advance.",
      "effects": {
-      "standing": 2,
+      "standing": 4,
+      "competence": 1,
       "reputation": -2
      },
      "outcome": "The hosts agree the questions, then ask them in a tone that makes it plain they were agreed. The episode is polite, and loses half its usual audience. Your press secretary calls it a success."
@@ -239,8 +241,8 @@
     {
      "text": "Decline, and suggest a younger colleague instead.",
      "effects": {
-      "standing": 2,
-      "integrity": 1,
+      "standing": 3,
+      "integrity": 2,
       "reputation": -3
      },
      "outcome": "A younger minister goes in your place, is very good, and is now known to a generation that has never heard your name. Your press secretary is relieved. You listen to the episode in the car, twice."
