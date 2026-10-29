@@ -2243,7 +2243,7 @@ const Engine = (() => {
         const li = pickLine(s, key, pool.length, true);
         pt.line = pool[li];
         const shown = src(ev, s);
-        const why = noDecision(content, "series", { title: sub(shown.title, s, content), choice: shown.choices[choice].text });
+        const why = noDecision(content, "series", { title: sub(shown.title, s, content), choice: sub(shown.choices[choice].text, s, content) });
         // a consequence the habit already has on its way, or has had, is not scheduled again
         const again = id => s.scheduled.some(x => x.eventId === id) || (s.seen.includes(id) && (allEvents(content, s).find(e => e.id === id) || {}).once);
         const al = applyChoice(content, s, ev, ch.schedule ? { ...ch, schedule: ch.schedule.filter(x => !again(x.eventId)) } : ch, pt);

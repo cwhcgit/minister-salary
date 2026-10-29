@@ -363,6 +363,7 @@ ok('series: the Indicators in full at most twice a career, the plan in full ever
         const f2 = fam(p.event);
         if (!f2) continue;
         if (f2.key === 'plan') { passedPlan++; continue; }
+        if (f2.key !== 'indicators') continue;   // the other series set no bonus (test/duplicates.js covers them)
         passedInd++;
         const src = C.events.find(e => e.id === p.event), ch = src.choices.find(c => c.stance === p.habit);
         assert.ok(ch, `${p.event}: no choice for the habit ${p.habit}`);
@@ -456,13 +457,16 @@ ok('Meanwhile lines: deterministic, and the next run prefers lines this one did 
   while (a.phase !== 'ending' && a.turn < 95) { const live = H.choices(a).filter(c => c.available); a = H.step(a, live[Math.floor(r() * live.length)].id); }
   const t = H.trace(a);
   assert.deepStrictEqual(H.trace(H.replay({ buildHash: t.buildHash, origin: 'grad', seed, name: t.name, recent: memory, choices: t.choices })), t);
-  // with every line of a habit remembered but one, that one is taken first
+  // with every line of a habit remembered but one, that one is taken first (a repeatable card is a
+  // series now, so the habit's card is built for the test: the_work as it was, its lines by choice)
   const S = JSON.parse(JSON.stringify(first.S));
-  const ev = build.content.events.find(e => e.id === 'the_work');
+  const work = build.content.events.find(e => e.id === 'the_work');
+  const ev = { ...work, series: undefined, noMontage: undefined, again: undefined, montageLines: { 0: work.montageLines.substance } };
+  const C = { ...build.content, events: build.content.events.map(e => (e.id === 'the_work' ? ev : e)) };
   S.linesUsed = {}; S.fillerSeen.the_work = 1; S.habits.the_work = 0; S.currentEvent = '__montage:the_work';
   const n = ev.montageLines[0].length;
   S.recent = Array.from({ length: n }, (_, i) => `mw:the_work:0#${i}`).filter(k => k !== `mw:the_work:0#${n - 1}`);
-  assert.strictEqual(build.engine.eventOf(build.content, S).body, ev.montageLines[0][n - 1]);
+  assert.strictEqual(build.engine.eventOf(C, S).body, ev.montageLines[0][n - 1]);
 });
 
 ok('story chains: Declassified names each story once, a bond can be extended, and a ministry move is remembered', () => {
@@ -1107,7 +1111,8 @@ ok('every outcome page heading carries its year and age, and a year with nothing
     }
   });
   assert.ok(pages > 2000 && passed > 500 && payWhy > 300 && falls > 50, `expected pages, passed years and pay reasons (${pages}, ${passed}, ${payWhy}, ${falls})`);
-  assert.ok(kinds.habit > 100 && kinds.series > 0 && kinds.auto > 10, `every kind of quiet year says why: ${JSON.stringify(kinds)}`);
+  // repeatable cards repeat as series now (WRITING_RULES 5.15): a year that keeps a habit is a series year
+  assert.ok((kinds.habit || 0) + (kinds.series || 0) > 100 && kinds.series > 0 && kinds.auto > 10, `every kind of quiet year says why: ${JSON.stringify(kinds)}`);
 });
 
 ok('every pay line from the second year says how it compares with last year, and a fall always says why', () => {
