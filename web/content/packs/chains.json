@@ -19,7 +19,7 @@
             },
             {
               "id": "mti",
-              "text": "advisers who walk into heartland shops and explain the grants",
+              "text": "advisers who walk into neighbourhood shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
               "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
@@ -54,14 +54,14 @@
             },
             {
               "id": "mnd",
-              "text": "an evening for new BTO neighbours to meet before key collection",
+              "text": "an evening for neighbours in a new housing block to meet before they collect their keys",
               "place": "towns",
               "short": "the neighbours' evenings",
               "requires": { "ministry": "Ministry of National Development" }
             },
             {
               "id": "mot",
-              "text": "late-night shuttle buses from MRT stations to the estates",
+              "text": "late-night shuttle buses from train stations to the housing estates",
               "place": "towns",
               "short": "the night shuttles",
               "requires": { "ministry": "Ministry of Transport" }
@@ -83,7 +83,7 @@
           ]
         }
       },
-      "body": "Your division has the money for a one-year pilot of {scheme}, in three {scheme.place}, and you choose which three. If it works, the Minister will announce it in the Committee of Supply debate in two years, using the numbers your pilot produces. Where you run it will decide what those numbers look like.",
+      "body": "Your division has the money for a one-year pilot of {scheme}, in three {scheme.place}, and you choose which three. If it works, the Minister will announce it in the Committee of Supply debate, Parliament's yearly debate on each ministry's budget, in two years, using the numbers your pilot produces. Where you run it will decide what those numbers look like.",
       "requires": { "minRank": 2, "maxRank": 3 },
       "weight": 9,
       "once": true,
@@ -128,7 +128,7 @@
             },
             {
               "id": "mti",
-              "text": "advisers who walk into heartland shops and explain the grants",
+              "text": "advisers who walk into neighbourhood shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
               "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
@@ -163,14 +163,14 @@
             },
             {
               "id": "mnd",
-              "text": "an evening for new BTO neighbours to meet before key collection",
+              "text": "an evening for neighbours in a new housing block to meet before they collect their keys",
               "place": "towns",
               "short": "the neighbours' evenings",
               "requires": { "ministry": "Ministry of National Development" }
             },
             {
               "id": "mot",
-              "text": "late-night shuttle buses from MRT stations to the estates",
+              "text": "late-night shuttle buses from train stations to the housing estates",
               "place": "towns",
               "short": "the night shuttles",
               "requires": { "ministry": "Ministry of Transport" }
@@ -264,7 +264,7 @@
             },
             {
               "id": "mti",
-              "text": "advisers who walk into heartland shops and explain the grants",
+              "text": "advisers who walk into neighbourhood shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
               "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
@@ -299,14 +299,14 @@
             },
             {
               "id": "mnd",
-              "text": "an evening for new BTO neighbours to meet before key collection",
+              "text": "an evening for neighbours in a new housing block to meet before they collect their keys",
               "place": "towns",
               "short": "the neighbours' evenings",
               "requires": { "ministry": "Ministry of National Development" }
             },
             {
               "id": "mot",
-              "text": "late-night shuttle buses from MRT stations to the estates",
+              "text": "late-night shuttle buses from train stations to the housing estates",
               "place": "towns",
               "short": "the night shuttles",
               "requires": { "ministry": "Ministry of Transport" }
@@ -375,7 +375,7 @@
             },
             {
               "id": "mti",
-              "text": "advisers who walk into heartland shops and explain the grants",
+              "text": "advisers who walk into neighbourhood shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
               "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
@@ -410,14 +410,14 @@
             },
             {
               "id": "mnd",
-              "text": "an evening for new BTO neighbours to meet before key collection",
+              "text": "an evening for neighbours in a new housing block to meet before they collect their keys",
               "place": "towns",
               "short": "the neighbours' evenings",
               "requires": { "ministry": "Ministry of National Development" }
             },
             {
               "id": "mot",
-              "text": "late-night shuttle buses from MRT stations to the estates",
+              "text": "late-night shuttle buses from train stations to the housing estates",
               "place": "towns",
               "short": "the night shuttles",
               "requires": { "ministry": "Ministry of Transport" }
@@ -485,7 +485,7 @@
             },
             {
               "id": "mti",
-              "text": "advisers who walk into heartland shops and explain the grants",
+              "text": "advisers who walk into neighbourhood shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
               "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
@@ -520,14 +520,14 @@
             },
             {
               "id": "mnd",
-              "text": "an evening for new BTO neighbours to meet before key collection",
+              "text": "an evening for neighbours in a new housing block to meet before they collect their keys",
               "place": "towns",
               "short": "the neighbours' evenings",
               "requires": { "ministry": "Ministry of National Development" }
             },
             {
               "id": "mot",
-              "text": "late-night shuttle buses from MRT stations to the estates",
+              "text": "late-night shuttle buses from train stations to the housing estates",
               "place": "towns",
               "short": "the night shuttles",
               "requires": { "ministry": "Ministry of Transport" }
@@ -592,7 +592,7 @@
             },
             {
               "id": "mti",
-              "text": "advisers who walk into heartland shops and explain the grants",
+              "text": "advisers who walk into neighbourhood shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
               "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
@@ -627,14 +627,14 @@
             },
             {
               "id": "mnd",
-              "text": "an evening for new BTO neighbours to meet before key collection",
+              "text": "an evening for neighbours in a new housing block to meet before they collect their keys",
               "place": "towns",
               "short": "the neighbours' evenings",
               "requires": { "ministry": "Ministry of National Development" }
             },
             {
               "id": "mot",
-              "text": "late-night shuttle buses from MRT stations to the estates",
+              "text": "late-night shuttle buses from train stations to the housing estates",
               "place": "towns",
               "short": "the night shuttles",
               "requires": { "ministry": "Ministry of Transport" }
@@ -767,7 +767,7 @@
             },
             {
               "id": "mti",
-              "text": "advisers who walk into heartland shops and explain the grants",
+              "text": "advisers who walk into neighbourhood shops and explain the grants",
               "place": "towns",
               "short": "the shop visits",
               "requires": { "ministry": "Ministry of Energy, Trade and Industry" }
@@ -802,14 +802,14 @@
             },
             {
               "id": "mnd",
-              "text": "an evening for new BTO neighbours to meet before key collection",
+              "text": "an evening for neighbours in a new housing block to meet before they collect their keys",
               "place": "towns",
               "short": "the neighbours' evenings",
               "requires": { "ministry": "Ministry of National Development" }
             },
             {
               "id": "mot",
-              "text": "late-night shuttle buses from MRT stations to the estates",
+              "text": "late-night shuttle buses from train stations to the housing estates",
               "place": "towns",
               "short": "the night shuttles",
               "requires": { "ministry": "Ministry of Transport" }
@@ -886,7 +886,7 @@
           "text": "Give a quote about what the evaluation taught you.",
           "effects": { "reputation": 5, "standing": 1, "integrity": -2 },
           "setFlags": ["pilot_noted"],
-          "outcome": "The piece runs on Sunday as a profile, with a photograph of you at a void deck that has nothing to do with the scheme. The officers who ran it read it on their phones."
+          "outcome": "The piece runs on Sunday as a profile, with a photograph of you at a coffee shop that has nothing to do with the scheme. The officers who ran it read it on their phones."
         }
       ]
     },
@@ -1108,34 +1108,34 @@
             {
               "id": "protected",
               "requires": { "flagsAll": ["whistle_protected"] },
-              "text": "At the briefing for tomorrow's Parliamentary Question, the director stays behind after the others have gone.",
+              "text": "At the briefing for tomorrow's question, the director stays behind after the others have gone.",
               "says": "the director says",
               "b": "You read paragraph two as drafted, and nobody asks. In the gallery the director writes nothing down, and you find that worse than a note."
             },
             {
               "id": "ignored",
               "requires": { "flagsAll": ["whistle_ignored"] },
-              "text": "The night before tomorrow's Parliamentary Question, the director sends you a note, copied to the file.",
+              "text": "Tonight the director sends you a note, copied to the file.",
               "says": "the note says",
               "b": "You read paragraph two as drafted, and nobody asks. In the file, beside the reply, is a note dated the night before, which anyone may one day read."
             },
             {
               "id": "reported",
-              "text": "The night before tomorrow's Parliamentary Question, a minute from the director reaches you through the proper channel.",
+              "text": "Tonight a minute from the director reaches you through the proper channel.",
               "says": "the minute says",
               "b": "You read paragraph two as drafted, and nobody asks. The minute is on the file, through the proper channel, with your name in the copy line."
             }
           ]
         }
       },
-      "body": "The junior officer who once brought you forty-one purchases, kept just under the $6,000 line, is now a director in your ministry. {how} Paragraph two of your reply, {how.says}, is not quite true. Read as drafted, it goes into Hansard.",
+      "body": "Tomorrow, in the House, you answer a Parliamentary Question: a Member's question about your ministry, filed in advance. The junior officer who once brought you forty-one purchases, kept just under the $6,000 line, is now a director there. {how} Paragraph two of your reply, {how.says}, is not quite true. Read as drafted, it goes into Hansard.",
       "requires": { "minRank": 9, "flagsNone": ["moved_ministry"] },
       "choices": [
         {
           "text": "Correct paragraph two, though the reply is due tomorrow.",
           "effects": { "integrity": 5, "competence": 2, "standing": -4 },
           "setFlags": ["whistle_corrected"],
-          "outcome": "Paragraph two is rewritten by midnight. The reply runs eleven seconds shorter, and the supplementary questions find nothing in it to supplement. The director's name appears nowhere."
+          "outcome": "Paragraph two is rewritten by midnight. The reply runs eleven seconds shorter, and the follow-up questions find nothing in it to follow up. The director's name appears nowhere."
         },
         {
           "text": "Read it as drafted. Correct it later, if asked.",
@@ -1285,7 +1285,7 @@
             {
               "id": "moe",
               "text": "capping co-curricular activities at two afternoons a week",
-              "short": "the CCA cap",
+              "short": "the activities cap",
               "requires": { "ministry": "Ministry of Education", "flagsNone": ["moved_ministry"] }
             },
             {
@@ -1302,14 +1302,14 @@
             },
             {
               "id": "mnd",
-              "text": "a levy on renting out a whole HDB flat",
+              "text": "a levy on renting out a whole public housing flat",
               "short": "the rental levy",
               "requires": { "ministry": "Ministry of National Development", "flagsNone": ["moved_ministry"] }
             },
             {
               "id": "mot",
-              "text": "charging ERP on three expressways at weekends",
-              "short": "weekend ERP",
+              "text": "charging road tolls on three expressways at weekends",
+              "short": "the weekend tolls",
               "requires": { "ministry": "Ministry of Transport", "flagsNone": ["moved_ministry"] }
             },
             {
@@ -1354,7 +1354,7 @@
           "effects": { "competence": 4, "standing": 1, "reputation": -2 },
           "setFlags": ["uturn_met", "uturn_figures"],
           "schedule": [{ "eventId": "uturn_reversal", "inYears": 2, "chance": 0.85 }],
-          "outcome": "Your replies run to nine figures and no adjectives. Members find little to quote and no supplementary questions to ask. Hansard records the most accurate answers of the sitting, unread."
+          "outcome": "Your replies run to nine figures and no adjectives. Members find little to quote and no follow-up questions to ask. Hansard records the most accurate answers of the sitting, unread."
         }
       ]
     },
@@ -1387,7 +1387,7 @@
             {
               "id": "moe",
               "text": "capping co-curricular activities at two afternoons a week",
-              "short": "the CCA cap",
+              "short": "the activities cap",
               "requires": { "ministry": "Ministry of Education", "flagsNone": ["moved_ministry"] }
             },
             {
@@ -1404,14 +1404,14 @@
             },
             {
               "id": "mnd",
-              "text": "a levy on renting out a whole HDB flat",
+              "text": "a levy on renting out a whole public housing flat",
               "short": "the rental levy",
               "requires": { "ministry": "Ministry of National Development", "flagsNone": ["moved_ministry"] }
             },
             {
               "id": "mot",
-              "text": "charging ERP on three expressways at weekends",
-              "short": "weekend ERP",
+              "text": "charging road tolls on three expressways at weekends",
+              "short": "the weekend tolls",
               "requires": { "ministry": "Ministry of Transport", "flagsNone": ["moved_ministry"] }
             },
             {
@@ -1512,7 +1512,7 @@
             {
               "id": "moe",
               "text": "capping co-curricular activities at two afternoons a week",
-              "short": "the CCA cap",
+              "short": "the activities cap",
               "requires": { "ministry": "Ministry of Education", "flagsNone": ["moved_ministry"] }
             },
             {
@@ -1529,14 +1529,14 @@
             },
             {
               "id": "mnd",
-              "text": "a levy on renting out a whole HDB flat",
+              "text": "a levy on renting out a whole public housing flat",
               "short": "the rental levy",
               "requires": { "ministry": "Ministry of National Development", "flagsNone": ["moved_ministry"] }
             },
             {
               "id": "mot",
-              "text": "charging ERP on three expressways at weekends",
-              "short": "weekend ERP",
+              "text": "charging road tolls on three expressways at weekends",
+              "short": "the weekend tolls",
               "requires": { "ministry": "Ministry of Transport", "flagsNone": ["moved_ministry"] }
             },
             {
@@ -1653,7 +1653,7 @@
             {
               "id": "moe",
               "text": "capping co-curricular activities at two afternoons a week",
-              "short": "the CCA cap",
+              "short": "the activities cap",
               "requires": { "ministry": "Ministry of Education", "flagsNone": ["moved_ministry"] }
             },
             {
@@ -1670,14 +1670,14 @@
             },
             {
               "id": "mnd",
-              "text": "a levy on renting out a whole HDB flat",
+              "text": "a levy on renting out a whole public housing flat",
               "short": "the rental levy",
               "requires": { "ministry": "Ministry of National Development", "flagsNone": ["moved_ministry"] }
             },
             {
               "id": "mot",
-              "text": "charging ERP on three expressways at weekends",
-              "short": "weekend ERP",
+              "text": "charging road tolls on three expressways at weekends",
+              "short": "the weekend tolls",
               "requires": { "ministry": "Ministry of Transport", "flagsNone": ["moved_ministry"] }
             },
             {
@@ -1762,8 +1762,8 @@
       "title": "A Year Away",
       "parts": {
         "school": [
-          { "id": "kennedy", "text": "the Kennedy School at Harvard" },
-          { "id": "blavatnik", "text": "the Blavatnik School at Oxford" }
+          { "id": "kennedy", "text": "Harvard's Kennedy School of Government" },
+          { "id": "blavatnik", "text": "Oxford's Blavatnik School of Government" }
         ]
       },
       "body": "The Public Service Division offers to sponsor a master's degree for you: a year at {school}, with fees and an allowance paid. It comes with a bond of its own: two more years in the service, served after your scholarship bond ends. Leaving before then would mean paying back the cost, with damages.",
@@ -1812,7 +1812,7 @@
           ]
         }
       },
-      "body": "You're still serving your scholarship bond, so leaving the service now means paying PSC damages for the years you haven't served. A bank wants you by March, and will pay those damages in full, {left}, and call it a signing bonus. Two sureties, usually family, also signed your bond deed, guaranteeing to PSC that you would serve it out.",
+      "body": "You're still serving your scholarship bond, so leaving the service now means paying damages to PSC, the Public Service Commission that paid for your degree, for the years you haven't served. A bank wants you by March, and will pay those damages in full, {left}, and call it a signing bonus. Your bond deed also carries the signatures of two sureties, usually family, who promised to pay PSC themselves if you broke it.",
       "requires": { "origin": ["scholar"], "maxRank": 7, "duringBond": true },
       "choices": [
         {

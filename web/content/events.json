@@ -87,7 +87,7 @@
   {
     "id": "consultant_report",
     "title": "The Report",
-    "body": "Your ministry paid a consultancy $1.9 million to work out why one of its schemes isn't working. Today they present their final deck: exactly what you proposed in an earlier minute paper nobody acted on, minus your paragraph four, on how it could go wrong. The Deputy Secretary who hired them loves it.",
+    "body": "Your ministry paid a consultancy $1.9 million to work out why one of its schemes isn't working. Today they present their final deck: exactly what you proposed in an earlier minute paper, a memo to the people above you that nobody acted on, minus your paragraph four, on how it could go wrong. The Deputy Secretary who hired them loves it.",
     "requires": {
       "minRank": 2,
       "maxRank": 5
@@ -587,7 +587,7 @@
   {
     "id": "mps_duty",
     "title": "Meet-the-People Session",
-    "body": "An old school friend volunteers at her MP's Meet-the-People Session, where residents bring their problems every Tuesday night, and asks you to help write their appeal letters to agencies. Most of the cases were decided correctly the first time. The sessions are run by the party's branch in the ward, and civil servants are meant to stay out of politics. She says lots of people help in their own time.",
+    "body": "An old school friend volunteers at her MP's Meet-the-People Session: every Tuesday night, residents bring their Member of Parliament their problems, and volunteers write their appeal letters to agencies. She asks you to help. Most of the cases were decided correctly the first time. The sessions are run by the party's branch in the ward, and civil servants are meant to stay out of politics. She says lots of people help in their own time.",
     "requires": {
       "minRank": 1,
       "maxRank": 5
@@ -1351,7 +1351,7 @@
   {
     "id": "grassroots_invite",
     "title": "The Adviser Suggests Something",
-    "body": "After a community event, the ward's grassroots adviser, the party's MP who oversees its community groups, stops you at the lift lobby to say you handle yourself well with people. The adviser says it to nobody else that evening. Everyone knows what this is: the first, deniable step in finding people the party might one day field at an election. Whatever you say back will be passed on.",
+    "body": "After a community event, the ward's grassroots adviser, the party's Member of Parliament who oversees its community groups, stops you at the lift lobby to say you handle yourself well with people. The adviser says it to nobody else that evening. Everyone knows what this is: the first, deniable step in finding people the party might one day field at an election. Whatever you say back will be passed on.",
     "requires": {
       "minRank": 4,
       "maxRank": 7,
@@ -1448,7 +1448,7 @@
     "id": "tender_questions",
     "triggered": true,
     "title": "Questions About the Tender",
-    "body": "Some years back you awarded a $4 million contract to a firm run by a former colleague, the one whose Chinese New Year card arrived the week the tender closed. Now an MP has filed a parliamentary question about contracts won by firms run by former civil servants. The answer will list fourteen contracts in an annex, and yours is one of them.",
+    "body": "Some years back you awarded a $4 million contract to a firm run by a former colleague, the one whose Chinese New Year card arrived the week the tender closed. Now a Member of Parliament has filed a parliamentary question about contracts won by firms run by former civil servants. The answer will list fourteen contracts in an annex, and yours is one of them.",
     "choices": [
       {
         "text": "Let your four pages of reasons speak for you.",
@@ -1966,7 +1966,7 @@
           "reputation": 5
         },
         "election": "grc",
-        "outcome": "Your name is fourth on the poster. You shake eleven thousand hands and understand, with total clarity, that almost none of this is about you.",
+        "outcome": "Nine days of walkabouts, meeting voters at every market and coffee shop, with your name fourth on the poster. You shake eleven thousand hands and understand, with total clarity, that almost none of this is about you.",
         "schedule": [
           {
             "eventId": "re_election",
@@ -1987,7 +1987,7 @@
         "requiresStat": {
           "reputation": 60
         },
-        "outcome": "A contested single seat, alone, against a decent opponent with volunteers on every floor. Nobody carries you, and if it goes wrong, there is nobody else to blame.",
+        "outcome": "Nine days of walkabouts, meeting voters at every market and coffee shop, alone, against a decent opponent with volunteers on every floor. Nobody carries you, and if it goes wrong, there is nobody else to blame.",
         "schedule": [
           {
             "eventId": "re_election",
@@ -2005,11 +2005,11 @@
         "choices": [
           {
             "text": "Stand with the GRC team: shared risk, shared credit.",
-            "outcome": "You spend nine days learning which blocks have lifts that stop on every floor. The minister leading your team does the rally speeches. You do the lifts."
+            "outcome": "Nine days of walkabouts, meeting voters block by block, teach you which blocks have lifts that stop on every floor. The minister leading your team does the rally speeches. You do the lifts."
           },
           {
             "text": "Stand alone in a single seat: your risk, your credit.",
-            "outcome": "A single seat, a real opponent, and nobody to share the result with. Yours is the only name on your posters. It is thrilling for exactly one day."
+            "outcome": "Nine days of walkabouts, meeting voters block by block, against a real opponent and with nobody to share the result with. Yours is the only name on your posters. It is thrilling for exactly one day."
           }
         ]
       },
@@ -2022,7 +2022,7 @@
           },
           {
             "text": "Take the single seat, alone.",
-            "outcome": "Nine days of being the only candidate anyone in the ward asks for. By the last rally your voice has gone and your opponent's has not. It feels significant, and is not."
+            "outcome": "Nine days of walkabouts, meeting voters at every market and coffee shop, as the only candidate anyone in the ward asks for. By the last rally your voice has gone and your opponent's has not. It feels significant, and is not."
           }
         ]
       }
@@ -2046,7 +2046,7 @@
           "reputation": 3,
           "integrity": -1
         },
-        "outcome": "Lifts, hawkers and a void deck with a chess table. Three colleagues call it lovely in the lift, and your residents cut it out of the newsletter. Theirs is the only review that votes."
+        "outcome": "Lifts, hawkers and a void deck, the open ground floor of a block, with a chess table. Three colleagues call it lovely in the lift, and your residents cut it out of the newsletter. Theirs is the only review that votes."
       },
       {
         "text": "The draft about the one thing from the service you believe.",
@@ -2083,7 +2083,7 @@
         "choices": [
           {
             "text": "Give the version about your ward.",
-            "outcome": "Eleven minutes on your blocks, your hawkers and the chess table at a void deck. It is warm, local and over before the break. Your ward's newsletter prints it in full."
+            "outcome": "Eleven minutes on your blocks, your hawkers and the chess table at a void deck, the open ground floor of one of them. It is warm, local and over before the break. Your ward's newsletter prints it in full."
           },
           {
             "text": "Give the version with the thing you believe.",
@@ -2096,7 +2096,7 @@
         ]
       },
       {
-        "body": "Your maiden speech, your first in Parliament, is next week. The office of the Whip, who keeps the party's backbenchers, its Members with no government job, voting together, has sent guidance on length and tone, and a sample first line: \"I rise in support of the motion.\" The speech tells the party what kind of Member you will be. You have kept the first line. The rest is up to you.",
+        "body": "Your maiden speech, your first in the House, as Members call Parliament, is next week. The office of the Whip, who keeps the party's backbenchers, its Members with no government job, voting together, has sent guidance on length and tone, and a sample first line: \"I rise in support of the motion.\" Whatever follows it goes into Hansard, the official record, and tells the party what kind of Member you will be. The rest is up to you.",
         "choices": [
           {
             "text": "Write the rest about your ward.",
@@ -2724,7 +2724,7 @@
           },
           {
             "text": "Ask what {senior} wants done while away.",
-            "outcome": "{senior} lists three things. You finish two of them before {senior} flies home, and {senior} mentions it at the ranking meeting, the only meeting that matters."
+            "outcome": "{senior} lists three things. You finish two of them before {senior} flies home, and {senior} mentions it at the ranking meeting that decides grades, the only meeting that matters."
           }
         ]
       },
@@ -2737,7 +2737,7 @@
           },
           {
             "text": "Use the eighteen minutes to list what you did.",
-            "outcome": "You get through the list in eleven minutes. {senior} writes down four items, and they're the four that end up in your ranking. You learn which four to lead with next year."
+            "outcome": "You get through the list in eleven minutes. {senior} writes down four items, and they're the four taken to the ranking meeting that decides your grade. You learn which four to lead with next year."
           },
           {
             "text": "Ask what {senior} needs from you this year.",
@@ -3053,7 +3053,7 @@
     "variants": [
       {
         "title": "Meet-the-People, After the Rain",
-        "body": "Your weekly Meet-the-People Session: a downpour at seven, so everyone comes at nine. In the queue are a family whose flat appeal has been turned down twice, and a man who wants the void deck, the open ground floor of his block, named after his father. Parliament sits at noon tomorrow, and you have not read your papers.",
+        "body": "Your weekly Meet-the-People Session, where residents bring you their problems: a downpour at seven, so everyone comes at nine. In the queue are a family whose flat appeal has been turned down twice, and a man who wants the void deck, the open ground floor of his block, named after his father. Parliament sits at noon tomorrow, and you have not read your papers.",
         "choices": [
           {
             "text": "Stay until the last one is seen.",
@@ -3292,7 +3292,7 @@
       },
       {
         "title": "The Supplementary",
-        "body": "You have answered a Parliamentary Question about your ministry, and it went well. Then the Member rises with a follow-up question, the one your officials said would not come, and your brief has nothing on it. The House is waiting, and Hansard is recording.",
+        "body": "You have answered a Parliamentary Question about your ministry, and it went well. Then the Member rises with a follow-up question, the one your officials said would not come, and your brief has nothing on it. The House is waiting, and Hansard, the official record, is recording.",
         "choices": [
           {
             "text": "Answer it straight, without the brief.",
@@ -3457,7 +3457,7 @@
     },
     "variants": [
       {
-        "body": "This year brings no crisis, no reorganisation and no parliamentary question with your name in it. Your diary has empty afternoons, something nobody around you has seen in years. Everyone has noticed, and is pretending not to. Empty afternoons get filled, and for once you can choose with what.",
+        "body": "This year brings no crisis, no reorganisation and no question in Parliament with your name in it. Your diary has empty afternoons, something nobody around you has seen in years. Everyone has noticed, and is pretending not to. Empty afternoons get filled, and for once you can choose with what.",
         "choices": [
           {
             "text": "Use it to fix something small and permanent.",
@@ -3993,7 +3993,7 @@
       "economy": "strong",
       "electionDue": false
     },
-    "body": "Your ministry must settle its plan for the next three Budgets, and the plan sets part of your pay. Office holders get a National Bonus: three months' salary when the country hits its targets for growth, jobs, median incomes and incomes at the 20th percentile, up to six when it beats them. Growth is strong. You can push one target, not all of them.",
+    "body": "Your ministry must settle its plan for the next three Budgets, and the plan sets part of your pay. Office holders get a National Bonus: three months' salary when the country hits its targets for growth, jobs, typical incomes and the incomes of the lowest-paid fifth of workers, up to six when it beats them. Growth is strong. You can push one target, not all of them.",
     "choices": [
       {
         "text": "Push headline GDP.",
@@ -4007,11 +4007,11 @@
           "months": 2,
           "outcome": "Growth comes in a little under forecast, which in a strong year is noticed, and your National Bonus drops to two months. The commentary uses the word \"moderate\" four times."
         },
-        "outcome": "Growth comes in above forecast, and your National Bonus is five months. Incomes at the 20th percentile rise too, slightly, the way a small boat rises when a larger one goes past.",
+        "outcome": "Growth comes in above forecast, and your National Bonus is five months. The lowest incomes rise too, slightly, the way a small boat rises when a larger one goes past.",
         "stance": "headline"
       },
       {
-        "text": "Push incomes at the 20th percentile.",
+        "text": "Push the incomes of the lowest-paid.",
         "nationalBonus": 4,
         "effects": {
           "reputation": 4,
@@ -4021,9 +4021,9 @@
         "nationalBonusRisk": {
           "chance": 0.3,
           "months": 0,
-          "outcome": "The 20th-percentile figure misses its target by a tenth of a point, and the formula pays no National Bonus at all. Your officials' chart of it is still a good chart."
+          "outcome": "The lowest-incomes figure misses its target by a tenth of a point, and the formula pays no National Bonus at all. Your officials' chart of it is still a good chart."
         },
-        "outcome": "Incomes at the 20th percentile grow faster than the median, which has not happened in six years, and your bonus is four months. The chart goes into the Budget speech, in colour.",
+        "outcome": "The lowest incomes grow faster than the median, which has not happened in six years, and your bonus is four months. The chart goes into the Budget speech, in colour.",
         "stance": "lowest"
       },
       {
@@ -4044,7 +4044,7 @@
         "choices": [
           {
             "text": "Sign the plan that backs the investment push.",
-            "outcome": "Two plants and a data centre are brought forward, growth comes in above forecast, and your bonus is five months. The 20th percentile rises a little, carried along. The other plans go into a drawer."
+            "outcome": "Two plants and a data centre are brought forward, growth comes in above forecast, and your bonus is five months. The lowest incomes rise a little, carried along. The other plans go into a drawer."
           },
           {
             "text": "Sign the one for wage support at the bottom.",
@@ -4057,14 +4057,14 @@
         ]
       },
       {
-        "body": "Your ministry's chief economist has one chart for the next three Budgets: growth strong, incomes at the 20th percentile flat. \"You can move either line,\" the economist says. \"Not both, at this price.\" Both lines feed your National Bonus, which pays three months' salary when the national targets are met and up to six when they are beaten.",
+        "body": "Your ministry's chief economist has one chart for the next three Budgets: growth strong, the lowest incomes flat. \"You can move either line,\" the economist says. \"Not both, at this price.\" Both lines feed your National Bonus, which pays three months' salary when the national targets are met and up to six when they are beaten.",
         "choices": [
           {
             "text": "Move the growth line.",
-            "outcome": "The growth line climbs above forecast, and your bonus is five months. The 20th-percentile line rises a little too, out of politeness. The economist relabels the chart \"broad-based\"."
+            "outcome": "The growth line climbs above forecast, and your bonus is five months. The lowest-incomes line rises a little too, out of politeness. The economist relabels the chart \"broad-based\"."
           },
           {
-            "text": "Move the 20th-percentile line.",
+            "text": "Move the lowest-incomes line.",
             "outcome": "The lower line overtakes the median's growth and holds, and your bonus is four months. The economist prints the chart on A3, which economists do not do."
           },
           {
@@ -4114,8 +4114,8 @@
               "outcome": "Signed in pen, beside the old dates. Growth comes in above forecast again, your bonus is five months, and the plan will now renew itself. Nobody asks what else it could have been."
             },
             {
-              "text": "Cross it out. Put the 20th percentile first.",
-              "outcome": "Your officials redraft three years of work in a fortnight, and Finance asks in writing why a working plan has changed. Incomes at the 20th percentile outgrow the median by spring, and this is now the standing plan."
+              "text": "Cross it out. Put the lowest incomes first.",
+              "outcome": "Your officials redraft three years of work in a fortnight, and Finance asks in writing why a working plan has changed. The lowest incomes outgrow the median by spring, and this is now the standing plan."
             },
             {
               "text": "Cross it out. Bank the targets instead.",
@@ -4125,7 +4125,7 @@
         },
         "lowest": {
           "title": "The Indicators, Again",
-          "body": "Growth is strong, and the next three Budgets need a plan. Last time you put incomes at the 20th percentile first, and that chart now hangs in the ministry lobby, framed. Your officials' draft keeps it climbing. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, in good years and bad, without being put to you again.",
+          "body": "Growth is strong, and the next three Budgets need a plan. Last time you put the lowest incomes first, and that chart now hangs in the ministry lobby, framed. Your officials' draft keeps it climbing. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, in good years and bad, without being put to you again.",
           "choices": [
             {
               "text": "Take the chart down. Push headline GDP this time.",
@@ -4133,7 +4133,7 @@
             },
             {
               "text": "Sign it. Keep the chart climbing.",
-              "outcome": "Signed without a meeting. Incomes at the 20th percentile outgrow the median for another cycle, your bonus is four months, and the plan will now roll on by itself. The lobby chart is replaced by a larger one."
+              "outcome": "Signed without a meeting. The lowest incomes outgrow the median for another cycle, your bonus is four months, and the plan will now roll on by itself. The lobby chart is replaced by a larger one."
             },
             {
               "text": "Bank the targets. Let the chart level off.",
@@ -4150,8 +4150,8 @@
               "outcome": "Growth comes in above forecast, and growth-first is the standing plan from now on. The ministries that borrowed your old plan have to give it back, and your officials rewrite three years of documents in three weeks."
             },
             {
-              "text": "Stop it. Put the 20th percentile first.",
-              "outcome": "Incomes at the 20th percentile outgrow the median by the next survey, and that is the standing plan from now on. The ministries that borrowed your old plan ask, in writing, whether they must change theirs."
+              "text": "Stop it. Put the lowest incomes first.",
+              "outcome": "The lowest incomes outgrow the median by the next survey, and that is the standing plan from now on. The ministries that borrowed your old plan ask, in writing, whether they must change theirs."
             },
             {
               "text": "Let it renew.",
@@ -4170,7 +4170,7 @@
         "The growth-first plan renews itself for three more Budgets, and the only edit anyone makes is to the year."
       ],
       "lowest": [
-        "Your plan for incomes at the 20th percentile rolls into three more Budgets, and its chart gets new numbers.",
+        "Your plan for the lowest incomes rolls into three more Budgets, and its chart gets new numbers.",
         "Wage support for the lowest-paid is renewed without a meeting, the surest sign that it is policy now.",
         "Finance's yearly letter asking whether the support for the lowest-paid is temporary arrives on schedule, and gets a template reply.",
         "Your standing plan puts the lowest incomes first again, and your economists print the chart on A3, out of habit.",
@@ -4228,7 +4228,7 @@
         "nationalBonusRisk": {
           "chance": 0.5,
           "months": 0,
-          "outcome": "The push does not take. Growth stays flat, the 20th percentile falls, and there is no National Bonus. Nobody calls it a gamble, because it was a plan."
+          "outcome": "The push does not take. Growth stays flat, the lowest incomes fall, and there is no National Bonus. Nobody calls it a gamble, because it was a plan."
         },
         "outcome": "Growth recovers ahead of the region and your bonus is four months. The speech about resilience writes itself. The jobs do come back, in time, in other industries, for other people.",
         "stance": "headline"
@@ -4244,9 +4244,9 @@
         "nationalBonusRisk": {
           "chance": 0.3,
           "months": 0,
-          "outcome": "The cushion holds the 20th percentile steady. The indicator only counts growing, not holding steady, so the formula pays no National Bonus."
+          "outcome": "The cushion holds the lowest incomes steady. The indicator only counts growing, not holding steady, so the formula pays no National Bonus."
         },
-        "outcome": "Incomes at the 20th percentile hold steady through the downturn, and your bonus is one month. Rent is paid on time in a great many flats. Nobody reports on rent paid on time.",
+        "outcome": "The lowest incomes hold steady through the downturn, and your bonus is one month. Rent is paid on time in a great many flats. Nobody reports on rent paid on time.",
         "stance": "lowest"
       }
     ],
@@ -4270,7 +4270,7 @@
         ]
       },
       {
-        "body": "At Tuesday's Meet-the-People Session, three of the first ten cases are retrenchments. On Thursday your ministry settles its plan for the next three Budgets, and the plan also sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are hit, less in a downturn. The three files are still in your bag.",
+        "body": "At Tuesday's Meet-the-People Session, where residents bring you their problems, three of the first ten cases are retrenchments. On Thursday your ministry settles its plan for the next three Budgets, and the plan also sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are hit, less in a downturn. The three files are still in your bag.",
         "choices": [
           {
             "text": "Plan for jobs.",
@@ -4408,7 +4408,7 @@
       },
       "electionDue": true
     },
-    "body": "A general election is due within the year, and your ministry must settle its plan for the next three Budgets before Nomination Day. The plan sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are met, up to six when they are beaten. Your branch chairman has sent, unasked, a list of what the ward would like announced.",
+    "body": "A general election is due within the year, and your ministry must settle its plan for the next three Budgets before Nomination Day, when the candidates file their papers. The plan sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are met, up to six when they are beaten. The chairman of your party branch, which runs the party's volunteers in your ward, has sent, unasked, a list of what the ward would like announced.",
     "choices": [
       {
         "text": "Spread the gains widely before polling day.",
@@ -4423,7 +4423,7 @@
           "months": 1,
           "outcome": "The measures land after the indicators are measured, so your bonus is one month. Residents like the measures anyway; the indicators were not voting."
         },
-        "outcome": "The measures land in time and are felt in every block, and your bonus is three months. Your branch chairman reads them out at the CCC dinner, from a printout, with feeling.",
+        "outcome": "The measures land in time and are felt in every block, and your bonus is three months. Your branch chairman reads them out at the community club dinner, from a printout, with feeling.",
         "stance": "headline"
       },
       {
@@ -4443,7 +4443,7 @@
         "stance": "steady"
       },
       {
-        "text": "Push incomes at the 20th percentile.",
+        "text": "Push the incomes of the lowest-paid.",
         "nationalBonus": 3,
         "effects": {
           "reputation": 3,
@@ -4453,16 +4453,16 @@
         "nationalBonusRisk": {
           "chance": 0.35,
           "months": 0,
-          "outcome": "The 20th-percentile figure misses its target by a tenth of a point, and the formula pays no National Bonus. In an election year, a tenth of a point gets a press conference."
+          "outcome": "The lowest-incomes figure misses its target by a tenth of a point, and the formula pays no National Bonus. In an election year, a tenth of a point gets a press conference."
         },
-        "outcome": "Incomes at the 20th percentile outgrow the median, and your bonus is three months. The chart is on a campaign flyer by Friday, cropped so the axis starts somewhere encouraging.",
+        "outcome": "The lowest incomes outgrow the median, and your bonus is three months. The chart is on a campaign flyer by Friday, cropped so the axis starts somewhere encouraging.",
         "stance": "lowest"
       }
     ],
     "weight": 16,
     "variants": [
       {
-        "body": "Your Permanent Secretary is briefing you on the ministry's plan for the next three Budgets, which also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them. The briefing pauses, politely, at a slide titled \"Timing\". Everyone in the room knows a general election is due within the year. Nobody has said so for forty minutes.",
+        "body": "Your Permanent Secretary is briefing you on the ministry's plan for the next three Budgets, which also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them. The briefing pauses, politely, at a slide titled \"Timing\". Everyone in the room knows a general election is due within the year. Nobody has said so for forty minutes, though your party branch, the volunteers who run your campaign, has said little else.",
         "choices": [
           {
             "text": "Bring everything forward, before polling day.",
@@ -4474,12 +4474,12 @@
           },
           {
             "text": "Use the timing for the lowest incomes.",
-            "outcome": "Support for the lowest incomes lands before polling day, and your bonus is three months. The 20th-percentile chart rises, and is reprinted on a flyer at a size the economists would not approve."
+            "outcome": "Support for the lowest incomes lands before polling day, and your bonus is three months. The lowest-incomes chart rises, and is reprinted on a flyer at a size the economists would not approve."
           }
         ]
       },
       {
-        "body": "A general election is due, and the party's election committee asks every office holder for \"one thing residents can feel by polling day\". Your ministry's plan for the next three Budgets has three versions, each felt by different residents. Whichever you choose also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them.",
+        "body": "A general election is due, and the party's election committee asks every office holder for \"one thing residents can feel by polling day\". Your ministry's plan for the next three Budgets has three versions, each felt by different residents. Whichever you choose also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them. Your party branch, the volunteers who run your campaign, would like something it can print.",
         "choices": [
           {
             "text": "Give them something everyone can feel.",
@@ -4524,7 +4524,7 @@
             },
             {
               "text": "Pull the flyer. Put the lowest incomes first.",
-              "outcome": "Support for the lowest incomes lands before polling day, a new flyer is printed with a new chart, and that is the plan from now on. The old flyers are used, unofficially, to wrap kueh at the CCC."
+              "outcome": "Support for the lowest incomes lands before polling day, a new flyer is printed with a new chart, and that is the plan from now on. The old flyers are used, unofficially, to wrap cakes at the community club."
             }
           ]
         },
@@ -4560,7 +4560,7 @@
             },
             {
               "text": "Leave it settled.",
-              "outcome": "Incomes at the 20th percentile outgrow the median again, your bonus is three months, and the plan now renews itself. The chart goes on another flyer, and residents who were on it last time say they have seen it."
+              "outcome": "The lowest incomes outgrow the median again, your bonus is three months, and the plan now renews itself. The chart goes on another flyer, and residents who were on it last time say they have seen it."
             }
           ]
         }
@@ -4571,7 +4571,7 @@
         "An election is due, and your standing plan brings the visible measures forward again, with last time's flyer redated.",
         "Polling day approaches, and your ministry's measures are timed to land in every block, as the standing plan says.",
         "Your branch gets its flyer, its measures and its press conference, in the usual order.",
-        "An election year, and the plan is rolled forward to land just before Nomination Day."
+        "An election year, and the plan is rolled forward to land just before the campaign starts."
       ],
       "steady": [
         "An election is due, and your standing plan holds the line on the targets again; your branch chairman has stopped asking.",
@@ -4580,7 +4580,7 @@
         "The targets are kept through another election year, and the campaign leads on lift upgrading instead."
       ],
       "lowest": [
-        "An election is due, and the 20th-percentile chart goes on the flyer, cropped so the axis starts somewhere encouraging.",
+        "An election is due, and the lowest-incomes chart goes on the flyer, cropped so the axis starts somewhere encouraging.",
         "Support for the lowest incomes is timed to land before polling day, as your standing plan says.",
         "Your branch prints the lowest-incomes chart again, and residents on it say they did not need the flyer.",
         "The plan for the lowest incomes renews itself in an election year, and a volunteer translates the chart's caption again."
@@ -5219,7 +5219,7 @@
   {
     "id": "lanterns",
     "title": "Lanterns",
-    "body": "The grassroots adviser who told you at a lift lobby that you handle yourself well with people has been in touch, as promised. Are you free on Saturday? It is the community club's Mid-Autumn celebration, with lanterns, a lion dance and an MP, and the MP would like to meet you. This, the adviser says, is nothing formal.",
+    "body": "The grassroots adviser who told you at a lift lobby that you handle yourself well with people has been in touch, as promised. Are you free on Saturday? It is the community club's Mid-Autumn celebration, with lanterns, a lion dance and the ward's Member of Parliament, and the MP would like to meet you. This, the adviser says, is nothing formal.",
     "triggered": true,
     "requires": {
       "maxRank": 7
@@ -5330,7 +5330,7 @@
   {
     "id": "model_ward",
     "title": "A Model Ward",
-    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, your Tuesday-night Meet-the-People Sessions and a weak opponent.",
+    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, your Tuesday-night Meet-the-People Sessions, where residents bring you their problems, and a weak opponent.",
     "triggered": true,
     "once": true,
     "requires": {

@@ -55,6 +55,13 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: '22' }
 
+      # Text a newcomer can follow: every term in web/content/jargon.json is introduced before it
+      # is used, and every line that names one of the run's people outside a card says who they are.
+      - name: Content checks
+        run: |
+          node test/jargon.js
+          node test/castlines.js
+
       # Seeded, so the same content always gives the same numbers. Fails the deploy if the
       # origin order inverts or PM becomes common for a first-timer.
       - name: Simulate careers and enforce the balance invariant

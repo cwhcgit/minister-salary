@@ -59,7 +59,7 @@
           }
         ]
       },
-      "body": "You spent a week on a minute paper for {senior}, your reporting officer, on {topic}. It runs to four pages, and it's the first paper of yours meant to go further upstairs. It comes back the next morning with one word in the margin, in {senior}'s handwriting: \"{word}\"",
+      "body": "You spent a week on a minute paper for {senior}, your reporting officer: a memo on {topic}, asking for a decision. It runs to four pages, and it's the first paper of yours meant to go further upstairs. It comes back the next morning with one word in the margin, in {senior}'s handwriting: \"{word}\"",
       "requires": {
         "minRank": 0,
         "maxRank": 1
@@ -307,7 +307,7 @@
           }
         ]
       },
-      "body": "An email arrives that clearly wasn't meant for you. You're copied in, below {above}, on a confidential plan for next year's restructuring, marked Official (Closed). Paragraph two abolishes the job of {peer}, who joined the service with you. {peer} doesn't know yet.",
+      "body": "An email arrives that clearly wasn't meant for you. You're copied in, below {above}, on a confidential plan for next year's restructuring, marked Official (Closed): for the people it is addressed to, and nobody else. Paragraph two abolishes the job of {peer}, who joined the service with you. {peer} doesn't know yet.",
       "requires": {
         "minRank": 0,
         "maxRank": 1
@@ -642,7 +642,7 @@
           }
         ]
       },
-      "body": "You missed the meeting where the committee for the division's dinner-and-dance was picked, so you're on it. The theme is {theme}. The top prize is {prize}, and the box for the lucky draw holds every name in the division, directors included.",
+      "body": "You missed the meeting where the committee for the division's D&D, its yearly dinner-and-dance, was picked, so you're on it. The theme is {theme}. The top prize is {prize}, and the box for the lucky draw holds every name in the division, directors included.",
       "requires": {
         "minRank": 0,
         "maxRank": 1

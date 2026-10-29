@@ -300,7 +300,7 @@
     {
       "id": "level",
       "title": "You Found Your Level",
-      "epitaph": "Four decades, give or take, and a CPF balance that will comfortably outlast you. The pewter plate says \"{player.formal}, with appreciation\". The scheme you designed in year nine is still running."
+      "epitaph": "Four decades, give or take, and retirement savings that will comfortably outlast you. The pewter plate says \"{player.formal}, with appreciation\". The scheme you designed in year nine is still running."
     },
     {
       "id": "declined",
@@ -330,7 +330,7 @@
     {
       "id": "office",
       "title": "Never Quite Cabinet",
-      "epitaph": "You answered Parliamentary Questions, from answers your old colleagues had drafted, and answered them well. Cabinet was always one reshuffle away."
+      "epitaph": "You answered Members' questions in Parliament, from answers your old colleagues had drafted, and answered them well. Cabinet was always one reshuffle away."
     },
     {
       "id": "retired",
@@ -340,7 +340,7 @@
     {
       "id": "consultancy",
       "title": "The Consultancy",
-      "epitaph": "You now advise ministries on the problems you used to have. The decks are better designed than your minute papers were. They say the same things, and they cost $1.9 million."
+      "epitaph": "You now advise ministries on the problems you used to have. The decks are better designed than your memos were. They say the same things, and they cost $1.9 million."
     },
     {
       "id": "withdrawn",
@@ -471,7 +471,7 @@
           "pilot_flattered"
         ]
       },
-      "text": "Your best number is in Hansard, in a Minister's speech. The paragraph that explained it is in a file."
+      "text": "Your best number is in a Minister's speech, and in Parliament's record for good. The paragraph that explained it is in a file."
     },
     {
       "label": "The pilot",
@@ -760,7 +760,7 @@
         ],
         "notDuringBond": true
       },
-      "text": "Six years served in full, with a master's declined and then a bank's offer. The deed is in a PSC file you have never asked to see."
+      "text": "Six years served in full, with a master's declined and then a bank's offer. The deed is in a file at the Public Service Commission that you have never asked to see."
     },
     {
       "label": "The bond",
@@ -780,7 +780,7 @@
         ],
         "notDuringBond": true
       },
-      "text": "Six years, served in full. The deed is in a PSC file you have never asked to see."
+      "text": "Six years, served in full. The deed is in a file at the Public Service Commission that you have never asked to see."
     }
   ],
   "legacyTiers": [
@@ -790,7 +790,7 @@
     },
     {
       "min": 105,
-      "text": "Your old minute papers are still forwarded, with your name taken off."
+      "text": "Your old memos are still forwarded, with your name taken off."
     },
     {
       "min": 80,
@@ -809,11 +809,11 @@
     "You are re-elected with 58.6%. The swing against you is described as \"within the normal range\".",
     "You are re-elected with 61.2%. The papers call it \"a clear endorsement\", the phrase they use when another ward's result was close.",
     "You are re-elected with 55.9%. The result is described as \"a timely reminder\". Nobody says of what.",
-    "You are re-elected with 63.0%. A newspaper calls your ward \"safe\", and your branch chairman asks you, quietly, never to say that word out loud.",
-    "You are re-elected with 57.4%. Your branch chairman calls it \"steady\", and means it as praise, mostly.",
+    "You are re-elected with 63.0%. A newspaper calls your ward \"safe\", and the volunteer who runs your campaign asks you, quietly, never to say that word out loud.",
+    "You are re-elected with 57.4%. The head of your campaign team calls it \"steady\", and means it as praise, mostly.",
     "You are re-elected with 64.7%. The papers call it \"emphatic\", and the other side calls it \"a learning experience\".",
-    "You are re-elected with 60.3%, the third-best result in the region, a fact the branch has already printed on a banner.",
-    "You are re-elected with 59.9%. The branch spends the thank-you parade explaining that 59.9% rounds to 60."
+    "You are re-elected with 60.3%, the third-best result in the region, a fact your volunteers have already printed on a banner.",
+    "You are re-elected with 59.9%. On the lorry that carries you round the ward to thank voters, your volunteers explain that 59.9% rounds to 60."
   ],
   "cepHintsPolitics": [
     "Your year was strong enough for a bigger job, and none is offered. The Prime Minister's Office describes your work as \"very solid\". It is the word they use for furniture.",
@@ -894,11 +894,11 @@
         "A choice this year counted in your favour, but not enough to move the grade."
       ],
       "luckUp": [
-        "A good year lifted the grade to {grade}.",
+        "Luck went your way this year, and the grade went up to {grade}.",
         "The year went your way, and that lifted the grade to {grade}."
       ],
       "luckDown": [
-        "A bad year took the grade down to {grade}.",
+        "Luck went against you this year, and the grade came down to {grade}.",
         "The year went against you, and that took the grade down to {grade}."
       ],
       "better": [
@@ -935,7 +935,7 @@
         "up": [
           "Your reputation outside the building grows.",
           "More people outside the building know your name now, for good reasons.",
-          "Your name travels further outside the building than it did."
+          "People outside the building have started to hear your name."
         ],
         "down": [
           "Your reputation outside the building takes a knock.",
@@ -999,7 +999,7 @@
       },
       "standing": {
         "label": "Standing",
-        "about": "Standing is how far the people above you trusted you: your bosses in the service, or the party leadership once you were in politics. Their trust helped your yearly grade, and the party only invites people to tea once both their Standing and their Reputation are high enough.",
+        "about": "Standing is how far the people above you trusted you: your bosses in the service, or the party leadership once you were in politics. Their trust helped your yearly grade, and the party only invites people to tea, its first quiet approach to a possible election candidate, once both their Standing and their Reputation are high enough.",
         "bands": [
           {
             "min": 70,
@@ -1025,11 +1025,11 @@
         "bands": [
           {
             "min": 60,
-            "text": "Your Reputation was high enough to ask the party for a single seat of your own, not just a place on a GRC team."
+            "text": "Your Reputation was high enough that, at an election, you could have run alone for a seat of your own, not just as one of a party team."
           },
           {
             "min": 35,
-            "text": "Your Reputation was respectable, but too low to ask for a single seat, so at an election you would have run as one of a GRC team."
+            "text": "Your Reputation was respectable, but too low to run alone for a seat, so at an election you would have run as one of a party team."
           },
           {
             "min": 0,
@@ -1072,7 +1072,7 @@
     "scandal": [
       {
         "min": 110,
-        "text": "Three former staff wrote to the Forum page in defence of {player.formal} and {player.their} record. They knew it would not help."
+        "text": "Three former staff wrote to the newspaper in defence of {player.formal} and {player.their} record. They knew it would not help."
       },
       {
         "min": 0,
@@ -1206,9 +1206,9 @@
         ],
         "retireAge": 77,
         "posts": [
-          "CCC chairman",
-          "RC chairman",
-          "CCMC chairman"
+          "Citizens' Consultative Committee chairman",
+          "residents' committee chairman",
+          "community club chairman"
         ],
         "intro": "{grassroots.aTitle} in your ward"
       },
@@ -1527,9 +1527,9 @@
       "peer": {
         "retired": [
           "{name}, who joined the service with you, retires as {title}. The farewell lunch is at the restaurant where the officers who joined with you held their tenth-anniversary dinner. Nobody planned the coincidence.",
-          "{name} retires as {title}. You both joined the service the same year, and that year's group chat, silent for a decade, produces forty messages in an hour, mostly photographs nobody remembers being taken.",
+          "{name}, who joined the service the same year as you, retires as {title}. The group chat from your first year, silent for a decade, produces forty messages in an hour, mostly photographs nobody remembers being taken.",
           "{name}, who joined the service the same year you did, retires as {title}. You are one of three people at the farewell who knew {them} in the first week.",
-          "{name} retires as {title}, and emails everyone who joined the service alongside the two of you a long note about your first week. You appear in it twice, both times kindly."
+          "{name}, who joined the service the same week as you, retires as {title}, and emails everyone else who joined that year a long note about your first week. You appear in it twice, both times kindly."
         ],
         "arrive": [
           "{name}, who joined the service the same year you did, is posted to your floor. You have been on the same circulation lists for years and never met.",
@@ -1539,66 +1539,66 @@
       },
       "junior": {
         "first": [
-          "For the first time, someone reports to you: {name}, {aTitle}. On the first morning {name} asks how you like your papers formatted, and you find you have an answer.",
-          "{name}, {aTitle}, now reports to you. You write performance objectives for someone else for the first time, and they are better than any you were given.",
-          "You have a direct report: {name}, {aTitle}, who calls you \"{player}\" on day one and \"{player.formal}\" on day two, after somebody has a word."
+          "{name}, your first direct report, is {aTitle}. On the first morning {name} asks how you like your papers formatted, and you find you have an answer.",
+          "{name}, the first officer ever to report to you, is {aTitle}. You write performance objectives for someone else for the first time, and they are better than any you were given.",
+          "{name}, your first direct report, is {aTitle}, and calls you \"{player}\" on day one and \"{player.formal}\" on day two, after somebody has a word."
         ],
         "arrive": [
-          "{name} joins your team as {aTitle}, and asks on the first day where the files from the last reorganisation went. Nobody knows.",
-          "{name}, {aTitle}, joins your team from another ministry with a reputation for asking why. By Friday you can see where it came from.",
-          "Your new direct report is {name}, {aTitle}, whose handover note from the last post runs to eleven pages and is, unusually, useful."
+          "{name}, your new direct report, joins your team as {aTitle}, and asks on the first day where the files from the last reorganisation went. Nobody knows.",
+          "{name}, your new direct report, joins your team from another ministry as {aTitle}, with a reputation for asking why. By Friday you can see where the reputation came from.",
+          "{name}, your new direct report, arrives as {aTitle} with a handover note from the last post that runs to eleven pages and is, unusually, useful."
         ],
         "movedUp": [
           "{name}, who reported to you, is promoted to your grade and posted to another division. The leaving card goes round your floor twice.",
-          "{name} is promoted to your grade and moves to another ministry. You are asked for a reference, and write the best one of your career.",
-          "{name} no longer reports to you: a promotion, a new division, and a farewell kopi at which you are thanked for things you had forgotten doing."
+          "{name}, who reported to you, is promoted to your grade and moves to another ministry. You are asked for a reference, and write the best one of your career.",
+          "{name}, who reported to you until now, has been promoted: a new division, and a farewell coffee at which you are thanked for things you had forgotten doing."
         ],
         "retired": [
           "{name}, who reported to you, retires as {title}. The farewell card has a line from you, and it is the longest one on it.",
-          "{name} retires as {title}, after more years in the service than you have had. You speak at the farewell, and keep to time, as {name} always did.",
-          "{name} retires as {title} and leaves a handover note that answers every question you were about to ask."
+          "{name}, who reports to you, retires as {title}, after more years in the service than you have had. You speak at the farewell, and keep to time, as {name} always did.",
+          "{name}, who reports to you, retires as {title} and leaves a handover note that answers every question you were about to ask."
         ]
       },
       "senior": {
         "caughtUp": [
           "You are now the same grade as {name}, who was senior to you for {years}. {name} is posted to another ministry, and sends a two-line email that ends \"Well done. Finally.\"",
           "Your promotion puts you level with {name}, senior to you for {years}. {name} moves to another ministry, and leaves you the good chair.",
-          "You and {name} are now the same grade. After {years} of your papers going up to {them}, {name} is posted elsewhere, and the papers go somewhere new.",
-          "You have caught up with {name}, who outranked you for {years}. {name} is posted to a statutory board, and tells the farewell lunch that {they} saw it coming."
+          "You and {name}, your reporting officer for {years}, are now the same grade. {name} is posted elsewhere, and your papers go somewhere new.",
+          "You have caught up with {name}, who outranked you for {years}. {name} is posted to a government agency, and tells the farewell lunch that {they} saw it coming."
         ],
         "retired": [
-          "{name} retires from the service as {title}. At the farewell lunch you are asked to say a few words, and find you have more than a few.",
-          "{name} retires as {title}. The office is cleared in an afternoon, apart from a framed organisation chart from three reorganisations ago that nobody will take down.",
-          "{name}, {aTitle}, retires. The last minute {name} signs off is one of yours, with a single word in the margin: \"Good.\"",
-          "{name} retires as {title} and is given a crystal paperweight engraved with the wrong year. You are given {their} pot plant, and keep it alive."
+          "{name}, your reporting officer until now, retires from the service as {title}. At the farewell lunch you are asked to say a few words, and find you have more than a few.",
+          "{name}, whose desk your papers have gone to for {years}, retires as {title}. The office is cleared in an afternoon, apart from a framed organisation chart from three reorganisations ago that nobody will take down.",
+          "{name}, who has signed off your work for {years}, retires as {title}. The last paper {name} signs off is one of yours, with a single word in the margin: \"Good.\"",
+          "{name}, your reporting officer until now, retires as {title} and is given a crystal paperweight engraved with the wrong year. You are given {their} pot plant, and keep it alive."
         ],
         "arrive": [
-          "{name}, {aTitle}, is now the person your papers go up to. On the first day {name} mentions having read your file, and does not say which parts.",
-          "Your papers now go up to {name}, {aTitle}, who returns your first one with no comments at all. You spend a week interpreting them.",
-          "{name}, {aTitle}, arrives from another ministry and asks to meet everyone in the division for fifteen minutes each. Yours runs to forty.",
-          "The new person above you is {name}, {aTitle}, whose first all-staff email is two lines long. The division finds this unsettling."
+          "{name}, your new reporting officer, is {aTitle}. On the first day {name} mentions having read your file, and does not say which parts.",
+          "{name}, your new reporting officer, is {aTitle}, and returns your first paper with no comments at all. You spend a week interpreting them.",
+          "{name}, your new reporting officer, arrives from another ministry as {aTitle} and asks to meet everyone in the division for fifteen minutes each. Yours runs to forty.",
+          "{name}, your new reporting officer, is {aTitle}, and sends a first all-staff email two lines long. The division finds this unsettling."
         ]
       },
       "journalist": {
         "retired": [
-          "{name} retires from the Straits Times after {years} covering the public service. The last column is about the service, and is kinder than any of the others.",
-          "{name} leaves the Straits Times after {years} on the public-service beat. The farewell piece quotes eleven officials, all anonymously, and you recognise three of them.",
-          "{name}, the journalist, retires after {years} at the paper, and sends you a handwritten note: \"Dear {player.formal}, it was a pleasure, mostly.\"",
-          "{name} files a last story for the Straits Times after {years} at the paper. It is about a scheme you once ran, and it gets the numbers right."
+          "{name}, who has reported on you and the public service for the Straits Times, retires after {years} on the beat. The last column is about the service, and is kinder than any of the others.",
+          "{name}, the Straits Times reporter who has followed your work, leaves the paper after {years} on the public-service beat. The farewell piece quotes eleven officials, all anonymously, and you recognise three of them.",
+          "{name}, the journalist who has covered you for the Straits Times, retires after {years} at the paper, and sends you a handwritten note: \"Dear {player.formal}, it was a pleasure, mostly.\"",
+          "{name}, the Straits Times journalist who has covered your career, files a last story after {years}. It is about a scheme you once ran, and it gets the numbers right."
         ]
       },
       "grassroots": {
         "retired": [
-          "{name} steps down as {title} after {years}, and is given a plaque, a dinner and an advisory role with no agenda.",
-          "{name} steps down as {title} after {years}. The residents' WhatsApp group is renamed in {their} honour, and then, by an administrator, back again.",
-          "{name} hands over as {title} after {years}, with a box file of residents' names more accurate than any database you have seen."
+          "{name}, one of the grassroots leaders in your ward, steps down as {title} after {years}, and is given a plaque, a dinner and an advisory role with no agenda.",
+          "{name}, {aTitle} in your ward, steps down after {years}. The residents' WhatsApp group is renamed in {their} honour, and then, by an administrator, back again.",
+          "{name}, a grassroots volunteer in your ward for {years}, hands over as {title}, with a box file of residents' names more accurate than any database you have seen."
         ]
       },
       "mp": {
         "retired": [
           "{name}, your fellow MP, does not stand again, and gives a valedictory speech that thanks the cleaners by name.",
-          "{name}, a fellow MP, retires from Parliament. The farewell dinner has a slideshow, and you are in eleven of the photographs, always at the edge.",
-          "{name}, a fellow MP, does not stand again. The last speech {name} makes in the House is about bus stops, and is the best attended of the session."
+          "{name}, who sat with you on the party's benches, retires from Parliament. The farewell dinner has a slideshow, and you are in eleven of the photographs, always at the edge.",
+          "{name}, one of your fellow MPs, does not stand again. The last speech {name} makes in Parliament is about bus stops, and is the best attended of the session."
         ]
       }
     }
@@ -1664,7 +1664,7 @@
     "foreboding": {
       "service": [
         [
-          "HR sends the pre-retirement briefing pack. You retire at {retire}, two years from now, and the pack has a page on it: CPF LIFE payouts start at 65, a year later, and the page calls the year in between \"a transition\".",
+          "HR sends the pre-retirement briefing pack. You retire at {retire}, two years from now, and the pack has a page on it: the monthly payouts from your CPF, the retirement savings you have paid into since your first payslip, start at 65, a year later, and the page calls the year in between \"a transition\".",
           "HR books you on the pre-retirement workshop, two years before you retire at {retire}. The first session asks everyone to list their hobbies. Most of the room lists projects they are still waiting to see finished.",
           "The succession plan for your post is due, and this year it has your retirement date on it: two years from now, at {retire}. The form asks you to name two possible successors, and gives you three lines.",
           "HR asks you to confirm your retirement date, two years away, at {retire}. You check it twice and send it back the same day, the first form in years you have not left for the end of the week."
@@ -1679,15 +1679,15 @@
       "renewal": [
         [
           "The party has started talking about renewal before the next general election: new candidates, and older Members making way for them. Nobody says anything about it to you, and everybody is very warm.",
-          "The party has attached a younger activist to your branch ahead of the next general election. The activist sits in on your Meet-the-People Sessions and takes careful notes on the ward, as if expecting to need them.",
+          "The party has attached a younger activist to your campaign team ahead of the next general election. The activist sits in on your weekly sessions with residents and takes careful notes on the ward, as if expecting to need them.",
           "At the party's year-end dinner the talk is of renewal before the next general election. You are seated with the Members first elected the year you were, and all of them are being very cheerful.",
           "The Whip asks every Member to fill in a form on their \"availability for the next term\". You have never been asked this before. The form has two boxes."
         ],
         [
-          "Your branch now brings the party's new candidate to every event, standing one step behind you. By the end of the year the candidate is standing one step in front.",
-          "Your Meet-the-People volunteers ask, carefully, whether they should stay on with the new candidate. You tell them yes. Most of them had already decided to.",
+          "Your volunteers now bring the party's new candidate to every event, standing one step behind you. By the end of the year the candidate is standing one step in front.",
+          "The volunteers at your weekly sessions with residents ask, carefully, whether they should stay on with the new candidate. You tell them yes. Most of them had already decided to.",
           "The party introduces its new candidates in batches. The one for your ward is in the third batch, and the press release thanks you in its first paragraph.",
-          "The Whip's office collects every Member's diary for next year. Yours is blank after Nomination Day, and nobody asks why."
+          "The Whip's office collects every Member's diary for next year. Yours is blank from the start of the next campaign, and nobody asks why."
         ]
       ],
       "limit": [
@@ -1707,8 +1707,8 @@
     },
     "headsUp": {
       "service": {
-        "first": "Next year, when your bosses rank officers against each other for promotion, you'll have served long enough in your grade to be put up for {next}. To be promoted, you need {need} that year.",
-        "blocked": "Next year you'll have served long enough in your grade for {next}, but your name is not on the list for the ranking. Nobody says why.",
+        "first": "Next year you'll have served long enough in your grade to be put up for {next} at the ranking, the yearly meeting where your bosses rank officers of the same grade against each other for promotion. To be promoted, you need {need} that year.",
+        "blocked": "Next year you'll have served long enough in your grade for {next}, but your name is not on the list for the ranking, the yearly meeting that decides promotions. Nobody says why.",
         "lines": [
           "Your name goes forward at next year's ranking, for {next}. It takes {need}.",
           "Next year's ranking will consider you for {next}. It takes {need}.",
@@ -1717,14 +1717,14 @@
         ]
       },
       "politics": {
-        "first": "Your name goes forward for {next} at the Prime Minister's next reshuffle: by then you'll have served long enough. To be moved up, you need {need} that year.",
-        "blocked": "Next year you'll have served long enough to be considered for {next}, but your name is not in the papers for the reshuffle. Nobody says why.",
+        "first": "Your name goes forward for {next} at the Prime Minister's next reshuffle, when ministers and office holders are moved between jobs: by then you'll have served long enough. To be moved up, you need {need} that year.",
+        "blocked": "Next year you'll have served long enough to be considered for {next}, but your name is not in the papers for the reshuffle, when the Prime Minister moves ministers and office holders between jobs. Nobody says why.",
         "blockedPm": "Next year you'll have served long enough to be weighed for the top job, but yours is not among the names being weighed. Nobody says why.",
         "pm": "Next year the party could choose you as its next leader, and so Prime Minister. It takes an A that year.",
         "lines": [
           "Your name is on the list for next year's reshuffle, for {next}. It takes {need}.",
           "Next year's reshuffle will consider you for {next}. It takes {need}.",
-          "The Whip mentions that your name is in the papers for next year's reshuffle, for {next}. It takes {need}.",
+          "The party's Whip, who keeps its Members in line, mentions that your name is in the papers for next year's reshuffle, for {next}. It takes {need}.",
           "Next year you're in line for {next}, if the year earns {need}."
         ]
       }
@@ -1739,23 +1739,23 @@
     },
     "pmTooLate": "The party will choose its next leader soon, and wants one with more than a year or two before 70. You are thanked, at length, for your willingness.",
     "lines": {
-      "tookOffice": "You are sworn in at the Istana. In your first speech you say you will serve a few years and then hand over, and every newspaper prints that sentence in a box.",
+      "tookOffice": "You are sworn in at the Istana, the President's official residence. In your first speech you say you will serve a few years and then hand over, and every newspaper prints that sentence in a box.",
       "teaNear": [
         "At a community event, a party activist asks for your card, and keeps it. In your experience, people do not keep cards.",
         "Someone you have never met asks your office for a copy of your CV, \"for a newsletter\". There is no newsletter.",
-        "Your name appears on the guest list for a dinner where most of the other guests are MPs. Nobody tells you why you were asked.",
-        "A grassroots adviser you met once sends a handwritten note praising remarks you never made. The note isn't about the remarks: the party has taken an interest in you."
+        "Your name appears on the guest list for a dinner where most of the other guests are Members of Parliament. Nobody tells you why you were asked.",
+        "A Member of Parliament from the party, whom you met once at a community event, sends a handwritten note: it was good to hear your remarks. You made no remarks. The note was never about them."
       ],
       "seatAtRisk": [
         "The party's seat assessment for next year's general election lists your ward as \"competitive\". It is not a compliment.",
-        "Your branch's own canvass for next year's election comes back closer than last time, and your branch chairman has started saying \"we\" instead of \"you\".",
+        "Your volunteers' own canvass for next year's election comes back closer than last time, and their chairman has started saying \"we\" instead of \"you\".",
         "Party headquarters sends extra volunteers to your ward a year before the election. It only does that for the wards it is worried about."
       ],
       "pmFirstYear": "There is no appraisal for a Prime Minister, only the newspapers every morning and Parliament on sitting days.",
       "pmLastYear": "Your office starts boxing your papers for the National Archives. The boxes are numbered, and there are more of them than you expected.",
       "pmElection": [
         "The general election falls in your tenure. The party is returned with a clear majority, and the commentary spends a week deciding whether the win was yours or the party's.",
-        "Polling Day comes round while you are Prime Minister. The party is returned, and your own ward's result is the first read out on television, which your branch takes personally."
+        "Polling Day comes round while you are Prime Minister. The party is returned, and your own ward's result is the first read out on television, which your volunteers take personally."
       ],
       "pmYears": [
         "Your diary for next year arrives already full. The one empty afternoon is marked \"hold\" by someone who is not you.",
@@ -1812,7 +1812,7 @@
             "last_push"
           ]
         },
-        "text": "Your last change became law just before you left. The second reading speech thanked the officers who drafted it, and not you, correctly."
+        "text": "Your last change became law just before you left. The Minister's speech in Parliament thanked the officers who drafted it, and not you, correctly."
       },
       {
         "label": "Your last year",
@@ -1822,7 +1822,7 @@
             "last_cleared"
           ]
         },
-        "text": "You handed over a case a week. Your branch held the dinner you were not supposed to know about. The speeches were the only surprise."
+        "text": "You handed over a case a week. Your volunteers held the dinner you were not supposed to know about. The speeches were the only surprise."
       },
       {
         "label": "The slate",

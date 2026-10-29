@@ -15,8 +15,8 @@
               "requires": {
                 "maxRank": 8
               },
-              "a": "Vote with the party. Send your view to the GPC.",
-              "aOut": "You vote with the party and email your view to the GPC chairman, who replies with a thumbs-up. The bill passes. Your view is filed with the thumbs-up.",
+              "a": "Vote with the party. Send your view to the party's committee on the bill.",
+              "aOut": "You vote with the party and email your view to the committee's chairman, who replies with a thumbs-up. The bill passes. Your view is filed with the thumbs-up.",
               "b": "Speak against {bill.short}. Then vote for the bill.",
               "bOut": "Your eleven minutes against {bill.short} go into Hansard. So does your vote for the bill, an hour later. A resident writes to ask which one you meant. You write back: both."
             },
@@ -68,12 +68,12 @@
           },
           {
             "id": "appeals",
-            "text": "new powers for a statutory board, with appeals to its own Minister",
+            "text": "new powers for a government agency, with appeals to its own Minister",
             "short": "the appeals clause"
           },
           {
             "id": "fines",
-            "text": "higher fines for parking offences in HDB car parks",
+            "text": "higher fines for parking offences in public housing car parks",
             "short": "the fines schedule"
           }
         ]
@@ -245,12 +245,12 @@
               "requires": {
                 "maxRank": 8
               },
-              "body": "At the Committee of Supply, the yearly debate on each ministry's budget, you want a few minutes to speak. To get them, you have filed a motion to cut {head}'s budget by $100, as Standing Orders allow. Nobody expects the cut to pass. Your ward wants {head.ward}. You also have a harder question.",
+              "body": "At the Committee of Supply, the yearly debate on each ministry's budget, you want a few minutes to speak. To get them, you have filed a motion to cut {head}'s budget by $100, as Parliament's rules allow. Nobody expects the cut to pass. Your ward wants {head.ward}. You also have a harder question.",
               "a": "Ask for what your ward wants.",
               "aOut": "The Minister promises, by name, to study {head.ward}. In your ward, that counts as delivery. You ask leave to withdraw your amendment. Leave is granted.",
               "b": "Ask the harder question.",
               "bOut": "The Minister answers carefully, and for longer than planned. You ask leave to withdraw your $100. It is granted, a little more slowly than the others.",
-              "c": "Ask the question your GPC agreed on, word for word.",
+              "c": "Ask the question your party committee agreed on, word for word.",
               "cOut": "Four Members ask it in the same words. The Minister answers it once, warmly, and all four ask leave to withdraw their $100. The budget is unchanged by $400."
             },
             {
@@ -271,22 +271,22 @@
         "head": [
           {
             "id": "mot",
-            "text": "MOT",
-            "ward": "a sheltered linkway to the MRT station"
+            "text": "the Ministry of Transport",
+            "ward": "a sheltered walkway to the train station"
           },
           {
             "id": "moh",
-            "text": "MOH",
+            "text": "the Ministry of Health",
             "ward": "a polyclinic nearer than the next town's"
           },
           {
             "id": "msf",
-            "text": "MSF",
+            "text": "the Ministry of Social and Family Development",
             "ward": "longer hours at the family service centre"
           },
           {
             "id": "mnd",
-            "text": "MND",
+            "text": "the Ministry of National Development",
             "ward": "lifts for the three blocks the upgrading missed"
           }
         ]
@@ -340,7 +340,7 @@
               "requires": {
                 "maxRank": 8
               },
-              "body": "Your GPC is briefed, behind closed doors, on a scheme you worked on in the service. The briefer is {peer}, {peer.aTitle} now, who started in the service the same week as you. Slide nine leaves out the scheme's weakest number, just as you would have. Asking about it would put {peer} on the spot in front of MPs.",
+              "body": "Your GPC, the party's committee of backbench MPs who shadow one ministry, is briefed, behind closed doors, on a scheme you worked on in the service. The briefer is {peer}, {peer.aTitle} now, who started in the service the same week as you. Slide nine leaves out the scheme's weakest number, just as you would have. Asking about it would put {peer} on the spot in front of MPs.",
               "a": "Ask about what slide nine leaves out.",
               "aOut": "{peer} answers it fully, with a figure you recognise. Afterwards {peer} sends one word: \"Thanks.\" Slide nine, you realise, was left that way for somebody to ask.",
               "b": "Thank {peer} for a comprehensive briefing.",
@@ -353,7 +353,7 @@
               "requires": {
                 "minRank": 9
               },
-              "body": "As an office holder you must brief a GPC of backbench MPs, behind closed doors, on a scheme your ministry runs. The slides are by {peer}, {peer.aTitle} now, who started in the service the same week as you. Slide nine leaves out the scheme's weakest number. The MPs will not know unless you tell them.",
+              "body": "As an office holder you must brief a GPC, the party's committee of backbench MPs who shadow your ministry, behind closed doors, on one of its schemes. The slides are by {peer}, {peer.aTitle} now, who started in the service the same week as you. Slide nine leaves out the scheme's weakest number. The MPs will not know unless you tell them.",
               "a": "Tell them what slide nine leaves out.",
               "aOut": "In a closed room, out loud, you name what is missing, and the GPC asks better questions for an hour. Afterwards {peer} sends one word: \"Thanks.\" The slide had been left that way for you.",
               "b": "Present the slides as written.",
@@ -509,7 +509,7 @@
         "site": [
           {
             "id": "eldercare",
-            "text": "an eldercare centre at the void deck of Blk 118",
+            "text": "an eldercare centre at the void deck, the open ground floor, of Blk 118",
             "short": "the eldercare centre",
             "later": "Two years after it opens, the woman who started the petition drops her mother there on weekdays."
           },
@@ -602,7 +602,7 @@
           }
         ]
       },
-      "body": "At your Town Council meeting, the managing agent proposes taking households more than six months behind on their S&CC to court. Forty are on the list, and it needs the council's approval. One of them is {who}.",
+      "body": "At the meeting of your Town Council, which runs the estates in your ward, the managing agent proposes taking households more than six months behind on their S&CC, the monthly charges for the estate's upkeep, to court. Forty are on the list, and it needs the council's approval. One of them is {who}.",
       "requires": {
         "minRank": 8,
         "maxRank": 10
@@ -659,7 +659,7 @@
           }
         ]
       },
-      "body": "Your GRC is split into wards, one for each MP on the team. Blk 438 is in {mp}'s ward, but its residents come to your Meet-the-People Session because {reason}. {mp} has mentioned this at the team's breakfast, as a joke, twice. It sounds less like a joke the second time.",
+      "body": "Your GRC is split into wards, one for each MP on the team. Blk 438 is in {mp}'s ward, but its residents come to your Meet-the-People Session, your weekly evening for residents' problems, because {reason}. {mp} has mentioned this at the team's breakfast, as a joke, twice. It sounds less like a joke the second time.",
       "requires": {
         "minRank": 8,
         "maxRank": 10,
@@ -732,7 +732,7 @@
           },
           {
             "id": "mrt",
-            "text": "Saturday mornings at the MRT exit"
+            "text": "Saturday mornings at the train station exit"
           },
           {
             "id": "hawker",
@@ -740,7 +740,7 @@
           }
         ]
       },
-      "body": "The opposition candidate you beat at the last election has not stopped campaigning in your ward: {where}, in a party T-shirt, shaking hands you shook first. If residents warm to them, your single seat is at risk next time. Your branch chairman would like you out there too, in your own T-shirt.",
+      "body": "The opposition candidate you beat at the last election has not stopped campaigning in your ward: {where}, in a party T-shirt, shaking hands you shook first. If residents warm to them, your single seat is at risk next time. The chairman of your party branch, the party's volunteers in your ward, would like you out there too, in your own T-shirt.",
       "requires": {
         "minRank": 8,
         "maxRank": 10,
@@ -862,7 +862,7 @@
             "requires": {
               "ministry": "Ministry of Energy, Trade and Industry"
             },
-            "text": "the grant for heartland shops will open next month",
+            "text": "the grant for neighbourhood shops will open next month",
             "real": "the new financial year",
             "made": "The grant opens next month, with a form that asks for information it will only need next year. Eleven shops apply. Two of them understand the form."
           },

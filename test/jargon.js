@@ -12,7 +12,8 @@
 // A place is a card id (its body, choices and outcomes, every version and part), "start" (the
 // start screen's own words), "header" (rank, grade and ministry), or a path into game.json or
 // rival.json for lines that come from there (review lines, cast lines, endings), such as
-// "game.json:endgame.headsUp.service.first". A card whose body names a cast member for the first
+// "game.json:endgame.headsUp.service.first", or "engine:<kind>" for a line the engine writes itself
+// (the pay line is "engine:pay"). A card whose body names a cast member for the first
 // time carries that role's introduction (game.json cast.roles.<role>.intro); a term inside it is
 // placed there, not on the card.
 //
@@ -39,7 +40,8 @@ const problems = [];
 // --- the strings of game.json and rival.json, by path ------------------------------------------
 // Paths drop array indices: "game.json:cast.lines.journalist.retired".
 const TEXT_SKIP = new Set(["id", "eventId", "requires", "effects", "setFlags", "clearFlags", "flags", "schedule",
-  "unflags", "origin", "kind", "pron", "flag", "prefer", "pick", "want", "code", "grade", "org", "ministry", "key", "events"]);
+  "unflags", "origin", "kind", "pron", "flag", "prefer", "pick", "want", "code", "grade", "org", "ministry", "key", "events",
+  "note"]);   // notes for writers, never shown
 function strings(o, p, out) {
   if (typeof o === "string") out.push({ path: p, text: o });
   else if (Array.isArray(o)) for (const x of o) strings(x, p, out);
@@ -95,6 +97,8 @@ try { LIST = JSON.parse(fs.readFileSync(LIST_FILE, "utf8")); }
 catch (e) { console.error("jargon.json: " + e.message); process.exit(1); }
 const terms = [];
 const KNOWN = new Set(["start", "header"]);
+const ENGINE_KINDS = new Set(["pay", "appraisal", "promo", "note", "cep", "heat", "folder", "warn", "why", "noted", "rival",
+  "election", "incumbent", "limit", "retire", "locked", "ending", "quiet"]);
 const seenNames = new Set();
 for (const [i, t] of (Array.isArray(LIST.terms) ? LIST.terms : []).entries()) {
   const at = `jargon.json term ${i + 1}${t && t.term ? ` ("${t.term}")` : ""}`;
@@ -111,6 +115,8 @@ for (const [i, t] of (Array.isArray(LIST.terms) ? LIST.terms : []).entries()) {
   for (const p of t.entryPoints || []) {
     if (typeof p !== "string") { problems.push(`${at}: entry point ${JSON.stringify(p)} is not a string`); continue; }
     if (KNOWN.has(p)) continue;
+    // a line the engine writes itself, such as the pay line ("engine:pay"): its kind of review line
+    if (/^engine:[a-z]+$/.test(p)) { if (!ENGINE_KINDS.has(p.slice(7))) problems.push(`${at}: entry point ${p} is not a kind of line the engine writes`); continue; }
     if (/^(game|rival)\.json:/.test(p)) {
       if (!linePaths.has(p)) { problems.push(`${at}: entry point ${p} is not a path in the content`); continue; }
       if (re && !lineStrings.some(s => s.path === p && re.test(s.text))) problems.push(`${at}: entry point ${p} never uses the term`);
@@ -144,7 +150,7 @@ function pieces(run) {
   const v = H.screen(run), out = [];
   if (v.start) {
     out.push({ src: "start", text: [v.start.title, v.start.tagline, v.start.hint].join("\n") });
-    out.push({ src: "game.json:origins", text: `${v.start.origin.name}\n${v.start.origin.blurb}` });
+    out.push({ src: "game.json:origins.blurb", text: `${v.start.origin.name}\n${v.start.origin.blurb}` });
   }
   if (v.header) out.push({ src: "header", text: `${v.header.rank} [${v.header.grade}] ${v.header.age} ${v.header.ministry}${v.header.batchmate ? " " + v.header.batchmate : ""}` });
   if (v.outcome && run.last) {

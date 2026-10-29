@@ -1,68 +1,81 @@
 {
-  "note": "Every term a newcomer to Singapore's government would not know, and where the game introduces it. Not loaded by the game: test/jargon.js checks that each term's first appearance in a career is on one of its entry points, a card whose story makes the meaning clear. `meaning` is for writers and never appears in the game. `match` is a JavaScript regular expression for the term's uses; `skip` lists phrases it must not match. An entry point is a card id, \"start\" (the start screen), \"header\" (rank, grade and ministry), or a path into game.json or rival.json for lines shown outside cards.",
+  "note": "Every term a newcomer to Singapore's government would not know, and where the game introduces it. The game does not load this file. test/jargon.js plays careers and checks that each term's first appearance in a career is at one of its entry points: a card whose story makes the meaning clear, a line from game.json or rival.json that explains the term itself, or \"start\" (the start screen), \"header\" (rank, grade and ministry) or \"engine:<kind>\" (a line the engine writes, such as the pay line). After its entry point a term may be used freely. `meaning` is for writers and never appears in the game. `match` is a JavaScript regular expression for the term's uses; `examples` must match it and `skip` must not.",
   "terms": [
     {
       "term": "CEP",
-      "meaning": "Currently Estimated Potential: HR's private estimate of the highest grade an officer will ever reach, set early and never told to them.",
+      "meaning": "Currently Estimated Potential: HR's private estimate of the highest grade an officer will ever reach, set early in a career and never told to the officer.",
       "match": "\\bCEP\\b|Currently Estimated Potential",
       "entryPoints": [
-        "start"
+        "cep_discovery",
+        "farewell_drinks"
       ]
     },
     {
       "term": "the ranking",
-      "meaning": "Each year senior officers rank officers of the same grade against each other; only the top of the ranking is promoted.",
+      "meaning": "The yearly meeting where senior officers rank officers of the same grade against each other; only those near the top are promoted.",
       "match": "\\branking\\b|\\branked\\b",
       "entryPoints": [
-        "start"
+        "game.json:endgame.headsUp.service.first",
+        "game.json:endgame.headsUp.service.blocked",
+        "the_appraisal_talk"
       ]
     },
     {
       "term": "appraisal",
-      "meaning": "The yearly performance grade (A, B+, B, C, D) that decides promotion; written by your reporting officer.",
-      "match": "\\bappraisals?\\b",
+      "meaning": "The yearly performance grade (A, B+, B, C or D) that decides promotion, written by your reporting officer.",
+      "match": "\\b[Aa]ppraisals?\\b",
       "entryPoints": [
         "start"
       ]
     },
     {
       "term": "reporting officer",
-      "meaning": "Your direct boss in the service: the person who writes your appraisal.",
+      "meaning": "Your direct boss in the service: the person who sets your work and writes your appraisal.",
       "match": "\\breporting officers?\\b",
       "entryPoints": [
-        "start"
+        "opening_scholar",
+        "opening_grad",
+        "the_counter"
       ]
     },
     {
       "term": "grade codes",
-      "meaning": "The service's salary grades: MX13 at the bottom up to MX9, then Superscale and Staff Grade; MR4 to MR1 for ministers.",
+      "meaning": "The service's salary grades: MX13 at the bottom up to MX9, then Superscale and Staff Grade; MR4 to MR1 for ministers. Shown beside your title.",
       "match": "\\bMX ?(?:9|1[0-3])\\b|\\bMR ?[1-4]\\b|\\bSuperscale\\b|\\bStaff Grade\\b",
+      "examples": [
+        "Management Executive [MX13]",
+        "Minister [MR4]"
+      ],
       "entryPoints": [
-        "start"
+        "header"
       ]
     },
     {
       "term": "minute paper",
-      "meaning": "A short internal memo that sets out a problem and a recommendation, sent up the line for a decision.",
+      "meaning": "A short internal memo that sets out a problem and asks the people above for a decision.",
       "match": "\\bminute papers?\\b",
       "entryPoints": [
-        "start"
+        "one_word",
+        "consultant_report",
+        "minute_vindicated"
       ]
     },
     {
       "term": "statutory board",
-      "meaning": "A government agency set up by its own Act of Parliament, run at arm's length from its ministry (HDB, CPF Board, LTA).",
+      "meaning": "A government agency set up by its own Act of Parliament and run at arm's length from its ministry, such as HDB.",
       "match": "\\bstatutory boards?\\b",
       "entryPoints": [
-        "start"
+        "secondment",
+        "secondment_verdict"
       ]
     },
     {
       "term": "Official (Closed)",
-      "meaning": "A security marking for documents that may be read only by the officers they are sent to.",
+      "meaning": "A security marking: the document is for the officers it is addressed to, and nobody else.",
       "match": "Official \\(Closed\\)",
       "entryPoints": [
-        "start"
+        "copied_in",
+        "copied_in_file"
       ]
     },
     {
@@ -70,7 +83,9 @@
       "meaning": "A high security classification; reading such a document needs clearance at that level.",
       "match": "\\bSECRET\\b",
       "entryPoints": [
-        "start"
+        "strange_letter",
+        "strange_envelope",
+        "strange_envelope_pol"
       ]
     },
     {
@@ -78,151 +93,102 @@
       "meaning": "The office that logs, stores and tracks every classified document in a building.",
       "match": "\\bregistry\\b",
       "entryPoints": [
-        "start"
+        "strange_letter",
+        "strange_envelope",
+        "strange_envelope_pol"
       ]
     },
     {
       "term": "Inter-Ministry Committee",
-      "meaning": "A committee of officials from several ministries set up to settle a question none can settle alone.",
+      "meaning": "A committee of officials from several ministries, set up to settle a question none of them can settle alone.",
       "match": "Inter-Ministry Committee",
       "entryPoints": [
-        "start"
+        "the_committee"
       ]
     },
     {
       "term": "secretariat",
       "meaning": "The officers who write a committee's papers and minutes and do its work between meetings.",
-      "match": "\\bsecretariat\\b",
+      "match": "\\b[Ss]ecretariat\\b",
       "entryPoints": [
-        "start"
+        "the_committee"
       ]
     },
     {
       "term": "PSC",
-      "meaning": "The Public Service Commission: awards government scholarships, holds the bond, and appoints and disciplines senior officers.",
-      "match": "\\bPSC\\b|Public Service Commission",
+      "meaning": "The Public Service Commission: awards government scholarships, holds the scholar's bond, and appoints senior officers.",
+      "match": "\\bPSC\\b",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "PSD",
-      "meaning": "The Public Service Division of the Prime Minister's Office: runs the civil service's careers, pay and training.",
-      "match": "\\bPSD\\b|Public Service Division",
-      "entryPoints": [
-        "start"
+        "bond_bank"
       ]
     },
     {
       "term": "bond",
-      "meaning": "The years of service a government scholar must serve in return for the scholarship; leaving early means paying damages.",
+      "meaning": "The years a government scholar must serve in return for the scholarship; leaving early means paying damages.",
       "match": "\\bbond(?:s|ed)?\\b",
       "entryPoints": [
-        "start"
+        "game.json:origins.blurb"
       ]
     },
     {
       "term": "sureties",
-      "meaning": "People, usually family, who sign the bond deed with a scholar and promise to pay if the scholar breaks it.",
+      "meaning": "People, usually family, who sign a scholar's bond deed and promise to pay if the scholar breaks it.",
       "match": "\\bsureties\\b|\\bsurety\\b",
       "entryPoints": [
-        "start"
+        "bond_bank"
       ]
     },
     {
       "term": "scholar",
-      "meaning": "In the service, an officer who studied on a government scholarship, expected to rise fast.",
+      "meaning": "In the service, an officer who studied on a government scholarship and is expected to rise fast.",
       "match": "\\bscholars?\\b",
+      "skip": [
+        "a scholarship that bonds you"
+      ],
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "Administrative Service",
-      "meaning": "The elite scheme of the civil service from which Permanent Secretaries are drawn.",
-      "match": "Administrative Service",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "Auditor-General",
-      "meaning": "The Auditor-General's Office: audits government ministries and agencies and reports to Parliament.",
-      "match": "Auditor-General",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "circular",
-      "meaning": "An official instruction or notice sent round to every officer or agency it concerns.",
-      "match": "\\bcirculars?\\b",
-      "entryPoints": [
-        "start"
+        "opening_scholar",
+        "leadership_programme",
+        "the_scholar"
       ]
     },
     {
       "term": "D&D",
-      "meaning": "Dinner-and-dance: a division's annual party, with a theme, a band and a lucky draw.",
+      "meaning": "Dinner-and-dance: a division's yearly party, with a theme, a band and a lucky draw.",
       "match": "D&D|dinner-and-dance",
       "entryPoints": [
-        "start"
+        "lucky_draw"
       ]
     },
     {
       "term": "lo hei",
-      "meaning": "The Chinese New Year custom of tossing a raw-fish salad (yusheng) high while shouting good wishes.",
+      "meaning": "The Chinese New Year custom of tossing a raw-fish salad (yusheng) as high as possible while shouting good wishes.",
       "match": "\\b[Ll]o [Hh]ei\\b|\\byusheng\\b",
       "entryPoints": [
-        "start"
+        "cny_lohei"
       ]
     },
     {
       "term": "seventh month",
-      "meaning": "The Hungry Ghost month of the lunar calendar, when the spirits of the dead are said to roam.",
+      "meaning": "The seventh month of the lunar calendar, when the spirits of the dead are said to roam.",
       "match": "seventh month|Hungry Ghost",
       "entryPoints": [
-        "start"
+        "strange_ghost"
       ]
     },
     {
       "term": "National Day Awards",
-      "meaning": "State honours announced each National Day; the medals (pingat) are presented at an investiture.",
-      "match": "\\bPingat\\b|National Day Awards?|\\binvestiture\\b",
+      "meaning": "State honours announced each National Day; pingat is Malay for medal.",
+      "match": "\\bPingat\\b|National Day Awards?",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "Permanent Secretary",
-      "meaning": "The most senior civil servant in a ministry, answering to its Minister.",
-      "match": "Permanent Secretar(?:y|ies)|\\bPermanent Secretary's\\b",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "Deputy Secretary",
-      "meaning": "The rank just below Permanent Secretary; runs part of a ministry.",
-      "match": "Deputy Secretar(?:y|ies)",
-      "entryPoints": [
-        "start"
+        "national_day_award"
       ]
     },
     {
       "term": "Careers@Gov",
-      "meaning": "The government's job portal, where most officers apply.",
+      "meaning": "The government's job portal, through which most officers apply.",
       "match": "Careers@Gov",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "SAF",
-      "meaning": "The Singapore Armed Forces.",
-      "match": "\\bSAF\\b|Singapore Armed Forces",
-      "entryPoints": [
-        "start"
+        "game.json:origins.blurb"
       ]
     },
     {
@@ -230,39 +196,45 @@
       "meaning": "The official word-for-word record of everything said in Parliament.",
       "match": "\\bHansard\\b",
       "entryPoints": [
-        "start"
+        "maiden_speech",
+        "the_pq"
       ]
     },
     {
       "term": "Question Time",
-      "meaning": "The hour when MPs put questions to ministers in Parliament, filed in advance as Parliamentary Questions.",
-      "match": "Question Time|Parliamentary Questions?|\\bPQs?\\b",
+      "meaning": "The part of a sitting when Members put questions to ministers; the questions, filed in advance, are Parliamentary Questions.",
+      "match": "Question Time|[Pp]arliamentary [Qq]uestions?|\\bPQs?\\b",
       "entryPoints": [
-        "start"
+        "the_pq",
+        "uturn_questions",
+        "tender_questions",
+        "whistle_return_pol"
       ]
     },
     {
       "term": "supplementary question",
-      "meaning": "A follow-up question an MP may ask straight after a minister's answer, without notice.",
+      "meaning": "A follow-up question a Member may ask straight after a minister's answer, without notice.",
       "match": "\\b[Ss]upplementar(?:y|ies)\\b",
       "entryPoints": [
-        "start"
+        "the_pq"
       ]
     },
     {
       "term": "the House",
-      "meaning": "Parliament, as its members call it.",
-      "match": "\\b(?:the|this|The|This) House\\b",
+      "meaning": "Parliament, as its Members call it.",
+      "match": "\\b(?:[Tt]he|[Tt]his) House\\b",
       "entryPoints": [
-        "start"
+        "maiden_speech",
+        "the_pq"
       ]
     },
     {
       "term": "the Whip",
-      "meaning": "The party's officer in Parliament who makes sure its MPs attend and vote as the party decides.",
+      "meaning": "The party's officer in Parliament who makes sure its Members attend and vote as the party decides.",
       "match": "\\b[Ww]hip\\b|\\bWhip's\\b",
       "entryPoints": [
-        "start"
+        "maiden_speech",
+        "game.json:endgame.headsUp.politics.lines"
       ]
     },
     {
@@ -270,7 +242,9 @@
       "meaning": "When the Prime Minister moves ministers and office holders between jobs.",
       "match": "\\breshuffles?\\b",
       "entryPoints": [
-        "start"
+        "game.json:endgame.headsUp.politics.first",
+        "game.json:endgame.headsUp.politics.blocked",
+        "reshuffle"
       ]
     },
     {
@@ -278,63 +252,99 @@
       "meaning": "An MP's weekly evening session where residents bring their problems and volunteers write appeal letters for them.",
       "match": "Meet-the-People",
       "entryPoints": [
-        "start"
+        "mps_duty",
+        "the_mps_night",
+        "bench_letters",
+        "model_ward",
+        "bench_next_ward",
+        "strange_dragon",
+        "the_indicators_downturn"
       ]
     },
     {
       "term": "GRC",
-      "meaning": "Group Representation Constituency: a large ward where voters elect a team of MPs together.",
+      "meaning": "Group Representation Constituency: a large ward where voters elect a team of MPs, usually five, together.",
       "match": "\\bGRCs?\\b|Group Representation Constituenc",
       "entryPoints": [
-        "start"
+        "the_election"
       ]
     },
     {
       "term": "single seat",
       "meaning": "Single Member Constituency: a ward that elects one MP, who runs alone.",
-      "match": "\\bsingle seats?\\b|\\bSMCs?\\b|Single Member Constituenc",
+      "match": "\\bsingle seats?\\b|\\bsingle-member seat\\b|\\bSMCs?\\b",
       "entryPoints": [
-        "start"
+        "the_election"
       ]
     },
     {
       "term": "stand (for election)",
       "meaning": "To run in an election as a candidate.",
-      "match": "\\b(?:stand|stands|standing|stood)\\b(?= (?:again|once more|one more time|for (?:Parliament|election)|at the (?:same |next |first )?general election|with the team|in (?:a|the) (?:GRC|single seat))|: with a GRC|\\.)|resigned from the service to stand",
+      "match": "\\b(?:[Ss]tand|[Ss]tands|[Ss]tanding|[Ss]tood)\\b(?= (?:again|once more|one more time|for (?:Parliament|election|a seat)|at (?:the|this) (?:same |next |first )?(?:general )?election|in (?:a |the )?(?:GRC|single seat|election)|with the GRC team|alone in a single seat))|\\bto stand\\b(?=[.,;:])",
+      "examples": [
+        "resigned from the service to stand, and",
+        "not to stand again",
+        "Stand once more.",
+        "stood at the same general election"
+      ],
+      "skip": [
+        "the meeting standing up",
+        "you understand",
+        "Ask, plainly, where you stand.",
+        "Go, and stand at the back.",
+        "You stand on a campaign lorry",
+        "trains where they stand.",
+        "instead of standing yourself",
+        "the standing plan",
+        "outstanding",
+        "standing one step behind you",
+        "thick enough to stand up by itself"
+      ],
       "entryPoints": [
-        "start"
+        "tea_session",
+        "the_election",
+        "ally_returns_ps"
       ]
     },
     {
       "term": "the tea",
-      "meaning": "The ruling party's first, informal approach to someone it may field at an election: an invitation to tea.",
+      "meaning": "The governing party's first, informal approach to someone it may field at an election: an invitation to tea.",
       "match": "\\btea\\b(?! break)",
+      "skip": [
+        "does not speak to you at the tea break"
+      ],
       "entryPoints": [
-        "start"
+        "tea_session",
+        "game.json:statWords.verdicts.standing.about",
+        "other_life",
+        "ally_returns_ps",
+        "bench_tea"
       ]
     },
     {
       "term": "walkabout",
-      "meaning": "An MP's or candidate's walk through a market, hawker centre or estate, meeting residents.",
+      "meaning": "A candidate's or MP's walk through a market, hawker centre or estate, meeting voters.",
       "match": "\\bwalkabouts?\\b",
       "entryPoints": [
-        "start"
+        "the_election",
+        "the_walkabout"
       ]
     },
     {
       "term": "Nomination Day",
-      "meaning": "The day candidates file their papers to stand in an election; campaigning starts then.",
+      "meaning": "The day candidates file their papers to stand at an election; the campaign starts then.",
       "match": "Nomination Day",
       "entryPoints": [
-        "start"
+        "re_election",
+        "the_indicators_election"
       ]
     },
     {
       "term": "Cooling-off Day",
-      "meaning": "The day before polling day, when campaigning is banned.",
+      "meaning": "The day before polling, when campaigning is banned.",
       "match": "Cooling-off Day",
       "entryPoints": [
-        "start"
+        "re_election"
       ]
     },
     {
@@ -342,15 +352,7 @@
       "meaning": "An early count of a sample of votes, published on election night before the full result.",
       "match": "sample count",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "polling day",
-      "meaning": "Election day, when voters cast their votes.",
-      "match": "\\b[Pp]olling [Dd]ay\\b",
-      "entryPoints": [
-        "start"
+        "re_election"
       ]
     },
     {
@@ -358,111 +360,101 @@
       "meaning": "The weeks of Budget debate when Parliament goes through each ministry's spending and ministers announce new schemes.",
       "match": "Committee of Supply",
       "entryPoints": [
-        "start"
+        "cos_speech",
+        "pilot_design",
+        "bench_cut"
       ]
     },
     {
       "term": "GPC",
-      "meaning": "Government Parliamentary Committee: the ruling party's backbenchers who shadow one ministry.",
+      "meaning": "Government Parliamentary Committee: the governing party's backbench MPs who shadow one ministry.",
       "match": "\\bGPCs?\\b|Government Parliamentary Committee",
       "entryPoints": [
-        "start"
+        "bench_gpc",
+        "whip_word"
       ]
     },
     {
       "term": "backbencher",
-      "meaning": "An MP who holds no office in the government.",
+      "meaning": "An MP with no government job.",
       "match": "\\b[Bb]ack ?bench(?:er|ers|es)?\\b",
       "entryPoints": [
-        "start"
+        "maiden_speech",
+        "bench_gpc"
       ]
     },
     {
       "term": "front bench",
-      "meaning": "The seats in Parliament where ministers sit; the ministers themselves.",
+      "meaning": "The seats in Parliament where the ministers sit.",
       "match": "\\bfront bench\\b",
       "entryPoints": [
-        "start"
+        "speech_vindicated"
       ]
     },
     {
       "term": "maiden speech",
       "meaning": "A new MP's first speech in Parliament.",
-      "match": "maiden speech",
+      "match": "[Mm]aiden [Ss]peech",
       "entryPoints": [
-        "start"
+        "maiden_speech"
       ]
     },
     {
       "term": "President's Address",
-      "meaning": "The speech that opens each term of Parliament, setting out the government's plans; MPs then debate it.",
+      "meaning": "The speech that opens each new term of Parliament, setting out the government's plans; Members then debate it.",
       "match": "President's Address",
       "entryPoints": [
-        "start"
+        "maiden_speech"
       ]
     },
     {
       "term": "Standing Orders",
-      "meaning": "Parliament's rule book; its Standing Orders Committee decides how the rules apply.",
+      "meaning": "Parliament's rule book; the Standing Orders Committee decides how the rules apply.",
       "match": "Standing Orders",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "anchor minister",
-      "meaning": "The senior minister who leads a party's team of candidates in a GRC.",
-      "match": "anchor minister",
-      "entryPoints": [
-        "start"
+        "strange_hansard"
       ]
     },
     {
       "term": "party branch",
       "meaning": "The party's local office and volunteers in an MP's ward.",
-      "match": "\\bbranch (?:chairman|secretary|meeting|activists?)\\b|\\b(?:[Tt]he|[Yy]our|party's) branch\\b",
+      "match": "\\bbranch (?:chairman|secretary|meeting|activists?)\\b|\\b(?:[Tt]he|[Yy]our|party's|party) branch\\b",
       "entryPoints": [
-        "start"
+        "mps_duty",
+        "re_election",
+        "the_indicators_election",
+        "bench_other_candidate"
       ]
     },
     {
       "term": "grassroots adviser",
-      "meaning": "The person, usually the ruling party's MP or candidate, appointed to advise a ward's community organisations.",
+      "meaning": "The person, usually the governing party's MP, appointed to advise a ward's community groups.",
       "match": "\\bgrassroots advisers?\\b",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "CCC, RC, CCMC",
-      "meaning": "A ward's community committees (Citizens' Consultative Committee, Residents' Committee, Community Club Management Committee), run by grassroots volunteers.",
-      "match": "\\b(?:CCC|RC|CCMC)s?\\b",
-      "entryPoints": [
-        "start"
+        "grassroots_invite"
       ]
     },
     {
       "term": "Town Council",
       "meaning": "The body, run by a ward's MPs, that maintains and manages the HDB estates in it.",
-      "match": "Town Council",
+      "match": "Town Councils?\\b",
       "entryPoints": [
-        "start"
+        "town_council",
+        "bench_arrears",
+        "strange_dragon",
+        "the_mps_night"
       ]
     },
     {
       "term": "National Bonus",
-      "meaning": "Extra pay for ministers and senior officials, from none up to six months' salary, tied to four national numbers.",
+      "meaning": "Extra pay for ministers, from nothing up to six months' salary, tied to four national targets.",
       "match": "National Bonus",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "percentile",
-      "meaning": "Income at the 20th percentile: the income of a worker paid less than four in five workers; one of the National Bonus's four numbers.",
-      "match": "\\bpercentiles?\\b|\\b20th-percentile\\b",
-      "entryPoints": [
-        "start"
+        "the_bonus_reveal",
+        "the_indicators",
+        "the_indicators_downturn",
+        "the_indicators_election",
+        "engine:pay"
       ]
     },
     {
@@ -470,7 +462,7 @@
       "meaning": "The President's official residence, where ministers are sworn in.",
       "match": "\\bIstana\\b",
       "entryPoints": [
-        "start"
+        "game.json:endgame.lines.tookOffice"
       ]
     },
     {
@@ -478,7 +470,7 @@
       "meaning": "The Prime Minister's yearly speech to the nation in August, in several languages.",
       "match": "National Day Rally",
       "entryPoints": [
-        "start"
+        "pm_rally"
       ]
     },
     {
@@ -486,15 +478,18 @@
       "meaning": "Member of Parliament.",
       "match": "\\bMPs?\\b",
       "entryPoints": [
-        "start"
+        "header",
+        "mps_duty",
+        "lanterns"
       ]
     },
     {
       "term": "tripartite",
-      "meaning": "The standing partnership of the government, the unions and the employers, which sets wage guidelines together.",
+      "meaning": "The standing partnership of government, unions and employers, which settles wage guidelines together.",
       "match": "\\b[Tt]ripartite\\b",
       "entryPoints": [
-        "start"
+        "the_indicators",
+        "mom_wages"
       ]
     },
     {
@@ -502,15 +497,15 @@
       "meaning": "The law against online falsehoods: a minister can direct a post's author to attach a correction notice to it.",
       "match": "\\bPOFMA\\b|correction direction",
       "entryPoints": [
-        "start"
+        "pofma_moment"
       ]
     },
     {
       "term": "CPF",
-      "meaning": "Central Provident Fund: the compulsory savings account every worker pays into, for retirement, housing and health.",
+      "meaning": "Central Provident Fund: the compulsory savings every worker pays into, for retirement, housing and health.",
       "match": "\\bCPF\\b",
       "entryPoints": [
-        "start"
+        "game.json:endgame.foreboding.service"
       ]
     },
     {
@@ -518,7 +513,9 @@
       "meaning": "The Housing and Development Board: builds and sells the public flats most Singaporeans live in.",
       "match": "\\bHDB\\b",
       "entryPoints": [
-        "start"
+        "bto_queue",
+        "mnd_lease",
+        "mnd_classification"
       ]
     },
     {
@@ -526,7 +523,7 @@
       "meaning": "Build-To-Order: a new HDB flat, sold by ballot before it is built.",
       "match": "\\bBTO\\b",
       "entryPoints": [
-        "start"
+        "bto_queue"
       ]
     },
     {
@@ -534,55 +531,37 @@
       "meaning": "An HDB flat bought second-hand from its owner, at market price.",
       "match": "\\bresale\\b",
       "entryPoints": [
-        "start"
+        "bto_queue"
       ]
     },
     {
       "term": "non-mature estate",
-      "meaning": "A newer HDB town, further out and with fewer amenities; flats there are cheaper.",
+      "meaning": "A newer HDB town far from the centre, with fewer amenities; its flats are cheaper.",
       "match": "non-mature",
       "entryPoints": [
-        "start"
+        "bto_queue"
       ]
     },
     {
       "term": "Standard, Plus, Prime",
-      "meaning": "HDB's three classes of flat: Plus and Prime flats are more central and subsidised more, and come with longer stays and repayments when sold.",
-      "match": "\\bPrime (?:project|launch|flats?)\\b|Standard, Plus or Prime|\\bPlus or Prime\\b",
+      "meaning": "HDB's three classes of new flat: Plus and Prime flats are more central and more subsidised, and owners must stay longer and repay more when they sell.",
+      "match": "\\bPrime (?:project|launch|flats?)\\b|Standard, Plus or Prime",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "four-room",
-      "meaning": "An HDB flat with three bedrooms and a living room.",
-      "match": "four-room",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "MRT",
-      "meaning": "Singapore's train system.",
-      "match": "\\bMRT\\b",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "ERP",
-      "meaning": "Electronic Road Pricing: road tolls charged automatically at gantries, by time of day.",
-      "match": "\\bERP\\b",
-      "entryPoints": [
-        "start"
+        "bto_queue",
+        "mnd_classification"
       ]
     },
     {
       "term": "void deck",
-      "meaning": "The open ground floor of an HDB block, used for meeting, chess, weddings and funerals.",
+      "meaning": "The open ground floor of an HDB block, used for meetings, chess, weddings and funerals.",
       "match": "void decks?",
       "entryPoints": [
-        "start"
+        "the_mps_night",
+        "mnd_lease",
+        "bench_site",
+        "strange_dragon",
+        "maiden_speech",
+        "endgame_renewal"
       ]
     },
     {
@@ -590,23 +569,20 @@
       "meaning": "Coffee, local style, from a coffee shop.",
       "match": "\\bkopi\\b",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "hawker centre",
-      "meaning": "An open-air food court of cheap food stalls; a hawker runs one.",
-      "match": "\\bhawkers?\\b",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "CCA",
-      "meaning": "Co-curricular activity: a school club or sport every student joins.",
-      "match": "\\bCCAs?\\b",
-      "entryPoints": [
-        "start"
+        "copied_in",
+        "copied_in_file",
+        "the_quiet_year",
+        "re_election",
+        "the_walkabout",
+        "bench_letters",
+        "bto_queue",
+        "protege_dissent",
+        "protege_panel",
+        "bench_gpc",
+        "bench_whip",
+        "bench_other_candidate",
+        "younger_officer",
+        "whip_word"
       ]
     },
     {
@@ -614,31 +590,15 @@
       "meaning": "The national exam at the end of primary school, which decides secondary school places.",
       "match": "\\bPSLE\\b",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "polyclinic",
-      "meaning": "A government outpatient clinic in a housing estate.",
-      "match": "\\bpolyclinics?\\b",
-      "entryPoints": [
-        "start"
+        "moe_psle"
       ]
     },
     {
       "term": "MediShield",
-      "meaning": "The national basic health insurance scheme.",
+      "meaning": "MediShield Life: the national basic health insurance scheme.",
       "match": "MediShield",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "NParks",
-      "meaning": "The National Parks Board: runs parks and the trees along roads.",
-      "match": "NParks",
-      "entryPoints": [
-        "start"
+        "moh_premiums"
       ]
     },
     {
@@ -646,7 +606,8 @@
       "meaning": "The national water agency.",
       "match": "\\bPUB\\b",
       "entryPoints": [
-        "start"
+        "strange_merlion",
+        "strange_moon"
       ]
     },
     {
@@ -654,71 +615,23 @@
       "meaning": "The Singapore Tourism Board.",
       "match": "\\bSTB\\b",
       "entryPoints": [
-        "start"
+        "strange_merlion"
       ]
     },
     {
       "term": "IRAS",
-      "meaning": "The tax authority.",
+      "meaning": "The Inland Revenue Authority of Singapore, the tax authority.",
       "match": "\\bIRAS\\b",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "MOF",
-      "meaning": "The Ministry of Finance.",
-      "match": "\\bMOF\\b",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "NEA",
-      "meaning": "The National Environment Agency.",
-      "match": "\\bNEA\\b",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "MFA",
-      "meaning": "The Ministry of Foreign Affairs.",
-      "match": "\\bMFA\\b",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "MOH, MOT, MSF, MND",
-      "meaning": "Ministry of Health, of Transport, of Social and Family Development, of National Development.",
-      "match": "\\b(?:MOH|MOT|MSF|MND)\\b",
-      "entryPoints": [
-        "start"
+        "strange_dragon"
       ]
     },
     {
       "term": "S&CC",
-      "meaning": "Service and conservancy charges: the monthly fee HDB residents pay their Town Council.",
+      "meaning": "Service and conservancy charges: the monthly fee HDB residents pay their Town Council for the estate's upkeep.",
       "match": "S&CC",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "MSCP",
-      "meaning": "A multi-storey car park in an HDB estate.",
-      "match": "\\bMSCP\\b",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "PIE",
-      "meaning": "The Pan-Island Expressway.",
-      "match": "\\bPIE\\b",
-      "entryPoints": [
-        "start"
+        "bench_arrears"
       ]
     },
     {
@@ -726,47 +639,25 @@
       "meaning": "Singapore's main English-language daily newspaper.",
       "match": "Straits Times",
       "entryPoints": [
-        "start"
+        "forum_letter",
+        "game.json:cast.roles.journalist.intro",
+        "game.json:cast.lines.journalist.retired"
       ]
     },
     {
       "term": "Forum page",
       "meaning": "The Straits Times's letters page.",
-      "match": "Forum page",
+      "match": "Forum page|\\bForum letter\\b|\\bthe Forum\\b",
       "entryPoints": [
-        "start"
+        "forum_letter"
       ]
     },
     {
       "term": "HardwareZone",
-      "meaning": "A Singapore online forum, famous for its long, angry threads.",
+      "meaning": "A Singapore online forum, known for its long, angry threads.",
       "match": "HardwareZone",
       "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "auntie, uncle",
-      "meaning": "How Singaporeans address or describe an older woman or man, family or not.",
-      "match": "\\b[Aa]unties?\\b|\\b[Uu]ncles?\\b",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "wet market",
-      "meaning": "A market of fresh food stalls, meat, fish and vegetables.",
-      "match": "wet markets?",
-      "entryPoints": [
-        "start"
-      ]
-    },
-    {
-      "term": "kampong",
-      "meaning": "A village, of the kind Singapore had before the HDB estates.",
-      "match": "\\bkampongs?\\b",
-      "entryPoints": [
-        "start"
+        "pofma_moment"
       ]
     },
     {
@@ -774,7 +665,7 @@
       "meaning": "The statue of a lion's head on a fish's body at Marina Bay, Singapore's emblem for tourists.",
       "match": "Merlion",
       "entryPoints": [
-        "start"
+        "strange_merlion"
       ]
     }
   ]
