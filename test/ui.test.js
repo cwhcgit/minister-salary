@@ -30,22 +30,27 @@ async function shareTests(window, $, $$, wait) {
   const ending = { title: $('.ending h1').textContent, epitaph: $('.ending .ep').textContent,
     stats: $$('.rv').map(el => [el.querySelector('.rk .k').textContent, el.querySelector('.rk .v').textContent, el.querySelector('.t').textContent]),
     declassified: $$('.dl').map(el => [el.querySelector('.k').textContent, el.querySelector('.t').textContent]) };
-  let drawn = [], shared = null, copied = null, saved = null;
+  let drawn = [], shared = null, copied = null, shareError = null;
   set(C, 'getContext', function () { return recorder(drawn); });
   set(C, 'toBlob', function (cb, type) { cb(new window.Blob(['png:' + this.width + 'x' + this.height], { type })); });
   set(nav, 'canShare', d => !!(d.files && d.files.length));
-  set(nav, 'share', async d => { shared = d; });
+  set(nav, 'share', async d => { shared = d; if (shareError) throw shareError; });
   set(nav, 'clipboard', { writeText: async t => { copied = t; } });
   set(window.URL, 'createObjectURL', () => 'blob:card');
   set(window.URL, 'revokeObjectURL', () => {});
-  set(window.HTMLAnchorElement.prototype, 'click', function () { saved = this.download; });
+  const quiet = window.console.error; window.console.error = () => {};   // the failures below are logged on purpose
+  const btn = $('#share'), panel = () => $('.sharepanel'), toastText = () => ($('.toast') || {}).textContent || '';
 
-  // 1. the share sheet takes the picture
-  $('#share').click(); await wait(60);
-  if (!shared || !shared.files || !shared.files.length) throw new Error('share did not offer a picture');
-  const f = shared.files[0];
-  if (!(f instanceof window.File) || f.type !== 'image/png' || !f.size) throw new Error('the shared file is not a PNG');
-  if (!shared.url || !shared.text.includes(ending.title) || !shared.title.includes('Minister Salary')) throw new Error('the share text or link is missing: ' + JSON.stringify(shared));
+  // 1. a tap opens the panel at once; the picture follows as a preview, saved by a real download link
+  btn.click();
+  if (!panel()) throw new Error('tapping Share did not open the share panel at once');
+  if (btn.disabled) throw new Error('the Share button was disabled');
+  await wait(60);
+  const img = $('.sharepanel .sprev img');
+  if (!img || img.getAttribute('src') !== 'blob:card') throw new Error('the panel shows no picture');
+  const save = $('#ssave');
+  if (!save || save.tagName !== 'A' || save.getAttribute('download') !== 'minister-salary.png' || !/^blob:/.test(save.getAttribute('href') || '') || save.getAttribute('aria-disabled'))
+    throw new Error('Save picture is not a download link to the picture: ' + (save && save.outerHTML));
   const card = norm(drawn.join(' '));
   if (/\{[^{}\s]+\}/.test(card)) throw new Error('the share card has a raw token: ' + card.match(/\{[^{}\s]+\}/)[0]);
   const want = ['MINISTER SALARY', 'TAN WEI MING', ending.title, ending.epitaph, 'LIFETIME EARNINGS', $('.final .v[style*=cash]').textContent,
@@ -57,23 +62,52 @@ async function shareTests(window, $, $$, wait) {
   if (!card.includes('cwhcgit.github.io/minister-salary')) throw new Error('the share card has no link to the public game in its footer');
   if (/DECLASSIFIED/i.test(card)) throw new Error('the share card carries the Declassified heading');
   for (const [k, t] of ending.declassified) if (card.includes(norm(t)) || card.includes(k.toUpperCase())) throw new Error('the share card carries a Declassified line: ' + k);
-  console.log(`✓ share: a PNG through the share sheet, with the link as text; the card draws ${drawn.length} lines and no Declassified line`);
+  console.log(`✓ share: a tap opens the panel with the picture (${drawn.length} lines drawn, no Declassified line) and a download link to save it`);
 
-  // 2. no file sharing: the picture is saved, and the words and link are copied
+  // 2. Copy text and link: the words and the public link, and a toast says so
+  $('#scopy').click(); await wait(10);
+  if (!copied || !copied.includes('https://cwhcgit.github.io/minister-salary/') || !copied.includes(ending.title)) throw new Error('Copy did not copy the words and the public link: ' + copied);
+  if (!/copied/i.test(toastText())) throw new Error('no toast says the words were copied: ' + toastText());
+  // 3. Share... hands the picture to the system's sheet, from the tap itself
+  const sys = $('#ssys');
+  if (!sys || sys.hidden) throw new Error('no Share... button although the browser can share the picture');
+  sys.click();
+  if (!shared || !shared.files || !shared.files.length) throw new Error('Share... did not offer the picture');
+  const f = shared.files[0];
+  if (!(f instanceof window.File) || f.type !== 'image/png' || !f.size) throw new Error('the shared file is not a PNG');
+  if (!shared.url || !shared.text.includes(ending.title) || !shared.title.includes('Minister Salary')) throw new Error('the share text or link is missing: ' + JSON.stringify(shared));
+  // a share sheet the player closes says nothing; one that fails says so
+  $('.toast') && $('.toast').remove();
+  shareError = Object.assign(new Error('closed'), { name: 'AbortError' }); sys.click(); await wait(10);
+  if ($('.toast')) throw new Error('closing the share sheet showed a toast: ' + toastText());
+  shareError = Object.assign(new Error('nope'), { name: 'NotAllowedError' }); sys.click(); await wait(10);
+  if (!/didn't work/.test(toastText())) throw new Error('a failed share said nothing: ' + toastText());
+  shareError = null;
+  $('#sclose').click();
+  if (panel()) throw new Error('the close button did not close the panel');
+  console.log('✓ share: Copy puts the words and the public link on the clipboard; Share... opens the system sheet from the tap; a failure says so; the panel closes');
+
+  // 4. a browser that cannot share files: no Share... button, the rest as before
   set(nav, 'canShare', () => false); shared = null; drawn = [];
-  $('#share').click(); await wait(60);
-  if (shared) throw new Error('shared although the browser cannot share files');
-  if (saved !== 'minister-salary.png') throw new Error('the picture was not saved');
-  if (!copied || !copied.includes('https://cwhcgit.github.io/minister-salary/')) throw new Error('the public link was not copied');
-  const toast = $('.toast');
-  if (!toast || !/saved/i.test(toast.textContent)) throw new Error('no toast says what happened');
-  console.log('✓ share fallback: picture saved, words and link copied, toast:', JSON.stringify(toast.textContent));
+  btn.click(); await wait(60);
+  if (!$('#ssys').hidden) throw new Error('Share... is offered although the browser cannot share files');
+  if (!/^blob:/.test($('#ssave').getAttribute('href') || '')) throw new Error('no picture to save');
+  // tapping Share again starts afresh: one panel, never two
+  btn.click(); await wait(60);
+  if ($$('.sharepanel').length !== 1) throw new Error('two share panels');
+  $('#sclose').click();
+  console.log('✓ share without file sharing: Save and Copy only; a second tap opens one fresh panel');
 
-  // 3. no canvas at all: the words alone, as before
-  set(C, 'getContext', () => null); set(nav, 'canShare', d => true);
-  $('#share').click(); await wait(60);
-  if (!shared || shared.files || !shared.text.includes(ending.title)) throw new Error('the text-only share did not run: ' + JSON.stringify(shared));
-  console.log('✓ share last resort: the words and link alone');
+  // 5. no picture at all: the words and link are copied instead, and the Share button still works
+  set(C, 'getContext', () => null); copied = null;
+  btn.click(); await wait(60);
+  if (!/Couldn't make the picture; copied the text and link instead/.test(toastText())) throw new Error('no toast says the picture failed: ' + toastText());
+  if (!copied || !copied.includes('https://cwhcgit.github.io/minister-salary/')) throw new Error('the words and link were not copied when the picture failed');
+  if (!$('#ssave').hidden || !panel()) throw new Error('the panel offers a picture it does not have');
+  if (btn.disabled) throw new Error('the Share button was left disabled');
+  $('#sclose').click();
+  window.console.error = quiet;
+  console.log('✓ share without a picture: the words and link are copied, a toast says so, and Share still works');
 }
 
 server.listen(0, async () => {
@@ -217,7 +251,7 @@ server.listen(0, async () => {
     dom3.window.close();
 
     // a save from an older version of the game: the player is told, and can start fresh or carry on;
-    // and the header's New career control abandons a run only on a second tap
+    // and the header's Reincarnate control abandons a run only on a second tap
     const boot = async () => { const dm = await JSDOM.fromURL(url, { runScripts:'dangerously', resources:'usable',
       beforeParse(w) { w.scrollTo=()=>{}; w.alert=()=>{}; w.fetch = window.fetch;
         Object.defineProperty(w,'localStorage',{ value: window.localStorage }); } }); await wait(500); return dm; };
@@ -230,17 +264,25 @@ server.listen(0, async () => {
     sv.v = 'older'; window.localStorage.setItem('ministerSalary.v1', JSON.stringify(sv));
     const dom5 = await boot(), d5 = dom5.window.document, t5 = () => d5.getElementById('app').textContent;
     if (!t5().includes('The game has been updated')) throw new Error('an older save was not flagged');
+    if (d5.querySelector('#fresh').textContent !== 'Reincarnate') throw new Error('the old-version screen\'s fresh start is not labelled Reincarnate: ' + d5.querySelector('#fresh').textContent);
     d5.querySelector('#carry').click(); await wait(10);
     if (t5().includes('The game has been updated') || t5().includes('Begin')) throw new Error('carrying on did not resume the run');
     const nc = d5.querySelector('#newcareer');
-    if (!nc) throw new Error('no New career control in the header');
+    if (!nc) throw new Error('no Reincarnate control in the header');
+    if (nc.textContent !== 'Reincarnate') throw new Error('the header control is not labelled Reincarnate: ' + nc.textContent);
     nc.click(); await wait(5);
     if (t5().includes('Begin')) throw new Error('one tap abandoned the career');
-    if (!d5.querySelector('#newcareer').textContent.includes('Tap again')) throw new Error('the first tap did not ask for a second');
+    if (d5.querySelector('#newcareer').textContent !== 'Tap again to abandon this career') throw new Error('the first tap did not ask for a second: ' + d5.querySelector('#newcareer').textContent);
+    // left alone, the button goes back to Reincarnate, and a later tap asks again
+    await wait(3100);
+    if (d5.querySelector('#newcareer').textContent !== 'Reincarnate' || d5.querySelector('#newcareer').classList.contains('armed')) throw new Error('the button did not go back to Reincarnate: ' + d5.querySelector('#newcareer').textContent);
+    if (t5().includes('Begin')) throw new Error('waiting abandoned the career');
+    d5.querySelector('#newcareer').click(); await wait(5);
+    if (d5.querySelector('#newcareer').textContent !== 'Tap again to abandon this career') throw new Error('a tap after the reset did not ask for a second');
     d5.querySelector('#newcareer').click(); await wait(10);
-    if (!t5().includes('Begin')) throw new Error('two taps did not start a new career');
+    if (!t5().includes('Begin')) throw new Error('two taps did not reincarnate (start a new career)');
     if (window.localStorage.getItem('ministerSalary.v1')) throw new Error('the abandoned career is still saved');
-    console.log('✓ an older save is flagged (new career, or carry on); New career takes two taps');
+    console.log('✓ an older save is flagged (Reincarnate, or carry on); Reincarnate takes two taps, and resets after three seconds');
     dom5.window.close();
 
     const real = errors.filter(e => e && !/serviceWorker|Not implemented/i.test(e));

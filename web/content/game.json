@@ -968,6 +968,57 @@
         ]
       }
     },
+    "swingPolitics": {
+      "about": "The swing lines in politics: the party leadership, voters and the ward instead of upstairs and the building. {standing}, {reputation} and {competence} are the stats' names in politics (statWords.names.politics).",
+      "standing": {
+        "up": [
+          "The party leadership will remember this, in your favour.",
+          "{standing} goes up. Nobody says so, but the Whip's notes to you get shorter and friendlier.",
+          "Someone in the party leadership has made a note of this, in your favour."
+        ],
+        "down": [
+          "The party leadership will remember this, and not fondly.",
+          "{standing} takes a knock. Nobody will mention it to you.",
+          "Someone in the party leadership has made a note of this. It will not help you."
+        ]
+      },
+      "reputation": {
+        "up": [
+          "{reputation} grows.",
+          "More voters know your name now, for good reasons.",
+          "More residents in your ward speak well of you now than a year ago."
+        ],
+        "down": [
+          "{reputation} takes a knock.",
+          "Voters think a little less of you now.",
+          "In the coffee shops in your ward, your name now comes up for the wrong reasons."
+        ]
+      },
+      "competence": {
+        "up": [
+          "You are better at the job after this, and people can see it.",
+          "{competence} is no longer in question on this one.",
+          "{competence} grows. The work teaches you more than any briefing paper did."
+        ],
+        "down": [
+          "Questions are now being asked about your competence.",
+          "This does your competence no favours, and people noticed.",
+          "You come out of this looking less sure of the job than you went in."
+        ]
+      },
+      "integrity": {
+        "up": [
+          "Your integrity holds, whatever else this costs you.",
+          "You did the right thing. Your integrity is the better for it.",
+          "You can look your volunteers in the eye at the next walkabout. Your integrity is intact."
+        ],
+        "down": [
+          "Your integrity takes a knock. You notice, even if nobody else does.",
+          "You tell yourself it was necessary. Your integrity is less sure.",
+          "You bend a rule you once said you never would, and your integrity is the worse for it."
+        ]
+      }
+    },
     "locked": {
       "competence": "You haven't shown the competence for this yet.",
       "standing": "You don't have the standing to ask for this yet.",
@@ -1121,6 +1172,7 @@
         ],
         "driftEvery": 3,
         "retireAge": 64,
+        "tag": "who joined the service with you",
         "intro": "who joined the service the same week as you"
       },
       "junior": {
@@ -1143,6 +1195,7 @@
         ],
         "catchUpEvery": 2,
         "retireAge": 64,
+        "tag": "who reports to you",
         "intro": "{junior.aTitle} who reports to you"
       },
       "senior": {
@@ -1163,6 +1216,7 @@
         ],
         "promoteEvery": 4,
         "retireAge": 64,
+        "tag": "your reporting officer",
         "intro": "{senior.aTitle} and your reporting officer"
       },
       "journalist": {
@@ -1190,6 +1244,7 @@
             "political editor"
           ]
         ],
+        "tag": "the Straits Times journalist",
         "intro": "{journalist.aTitle} who covers the public service for the Straits Times"
       },
       "grassroots": {
@@ -1210,6 +1265,7 @@
           "residents' committee chairman",
           "community club chairman"
         ],
+        "tag": "{grassroots.aTitle} in your ward",
         "intro": "{grassroots.aTitle} in your ward"
       },
       "mp": {
@@ -1226,6 +1282,7 @@
           6
         ],
         "retireAge": 70,
+        "tag": "your fellow MP",
         "intro": "a fellow MP"
       }
     },
@@ -1925,5 +1982,45 @@
         "text": "Your successor's first year had no surprises in it. The evenings you spent going through the files together are why."
       }
     ]
+  },
+  "engineLines": {
+    "about": "Lines the engine writes around the cards: each outcome page's heading, the line that says why a year needed no decision, why the pay moved, where the header says you are, and the sideways move. Plain English (CONTENT_PLAN 5a). Never a stat's name with a number: the stats are hidden during play.",
+    "yearHeading": {
+      "review": "Year {year} · Age {age} · Year-end review",
+      "passed": "Year {year} · Age {age} · A year without a decision"
+    },
+    "noDecision": {
+      "habit": "No decision was needed this year. \"{title}\" came round again, and you did what you chose last time: \"{choice}\"",
+      "series": "No decision was needed this year. \"{title}\" came up, and the plan you chose before still stands: \"{choice}\"",
+      "auto": "No decision was needed this year. A general election came, and your seat was safe.",
+      "quiet": "No decision was needed this year. Nothing came up that needed you."
+    },
+    "payWhy": {
+      "line": "Annual package: {pay}{bonus}",
+      "withBonus": " (including a National Bonus of {months})",
+      "noBonus": " (no National Bonus)",
+      "none": "none",
+      "same": ", the same as last year",
+      "up": ", up {diff} on last year",
+      "down": ", down {diff} on last year",
+      "rank": "this was your first year paid as {aTitle}",
+      "bonus": "the National Bonus went from {was} to {now}, because of how the national targets went",
+      "work": "your bonus follows how good your work was",
+      "workRise": 0.03,
+      "promoted": "Your pay rises from next year."
+    },
+    "place": {
+      "grc": "Member for a GRC",
+      "smc": "Member for a single seat",
+      "mp": "Member of Parliament",
+      "pm": "Prime Minister's Office",
+      "candidate": "Resigned from the service to stand for election"
+    },
+    "nextSameTitle": "{grade}, the next Cabinet grade up",
+    "rivalTag": "your batchmate",
+    "sideways": {
+      "named": "That's three Cs in a row, so HR moves you sideways: the same grade, in another division. From next year your papers go to a new reporting officer instead of {senior}. It's meant as a fresh start. Nobody there asked for you, but the work is real.",
+      "plain": "That's three Cs in a row, so HR moves you sideways: the same grade, in another division, for a fresh start. Nobody there asked for you, but the work is real."
+    }
   }
 }

@@ -510,7 +510,11 @@ const Engine = (() => {
         // nobody is cast who would have to leave at once (a senior who cannot be senior to you)
         if (!np || exitReason(content, s, role, cfg, np)) continue;
         K.on[role] = np;
-        const l = !quiet && castLine(content, s, role, first ? "first" : "arrive", np);
+        // after a move (sideways, or a card that hands the role on: moveOn) the move has said
+        // someone new is coming; they are introduced on the first card they appear on
+        const moved = K.moved && K.moved[role] !== undefined && s.year - K.moved[role] <= 1;
+        if (K.moved) delete K.moved[role];
+        const l = !quiet && !moved && castLine(content, s, role, first ? "first" : "arrive", np);
         if (l && log) log.push(l);
       }
     }
@@ -659,23 +663,32 @@ const Engine = (() => {
   function render(content, ev, s, force) {
     const pick = ev.parts ? (force && force.parts) || pickParts(ev, s) || fallbackParts(ev) : null;
     // who: the people this showing actually names (not every role some other version of it names)
-    const who = {};
-    const named = t => {
+    // saw: the people the player reads on the card itself (title, body, choices; "rival" for the
+    // batchmate). A choice's outcome keeps its own, as the player only reads the one they chose.
+    const who = {}, saw = {};
+    const named = (t, seen) => {
       if (t.indexOf("{") < 0) return t;
-      for (const { name } of tokensIn(t)) { const r = name.toLowerCase(); if (!NOT_ROLES.has(r) && s.cast && s.cast.on[r]) who[r] = s.cast.on[r].id; }
+      for (const { name } of tokensIn(t)) {
+        const r = name.toLowerCase();
+        if (r === "rival") { if (s.rival) seen.rival = true; continue; }
+        if (!NOT_ROLES.has(r) && s.cast && s.cast.on[r]) who[r] = seen[r] = s.cast.on[r].id;
+      }
       return t;
     };
-    const T = t => (typeof t === "string" ? sub(named(fillParts(t, ev, pick)), s, content) : t);
-    const B = t => (typeof t === "string" ? sub(named(introduce(content, s, fillParts(t, ev, pick))), s, content) : t);
+    const T = (t, seen = saw) => (typeof t === "string" ? sub(named(fillParts(t, ev, pick), seen), s, content) : t);
+    const B = t => (typeof t === "string" ? sub(named(introduce(content, s, fillParts(t, ev, pick)), saw), s, content) : t);
     const out = { ...ev, title: T(ev.title), body: B(ev.body),
       choices: ev.choices.map((c, k) => {
-        const x = { ...c, text: T(c.text), outcome: T(c.outcome) };
+        const own = {};
+        const x = { ...c, text: T(c.text), outcome: T(c.outcome, own) };
         if (pick) x.effects = partEffects(c.effects, k, ev, pick);
-        if (c.rival && c.rival.contest) x.rival = { ...c.rival, contest: { ...c.rival.contest, winText: T(c.rival.contest.winText), loseText: T(c.rival.contest.loseText) } };
+        if (c.rival && c.rival.contest) x.rival = { ...c.rival, contest: { ...c.rival.contest, winText: T(c.rival.contest.winText, own), loseText: T(c.rival.contest.loseText, own) } };
+        if (Object.keys(own).length) x.saw = own;
         return x;
       }) };
     if (pick) out.picked = pick;
     if (Object.keys(who).length) out.who = who;
+    if (Object.keys(saw).length) out.saw = saw;
     // a series' second showing: the habit is the default, so it comes first (order maps the
     // buttons back to the card's own choices)
     if (ev.keep > 0) {
@@ -684,22 +697,67 @@ const Engine = (() => {
     }
     return out;
   }
-  // The first card a person appears on says who they are: the first bare mention of them in the
-  // body gets their role's introduction ("Joanne, who joined the service the same week as you,").
-  // So does a person not seen for INTRO_AGAIN years. A mention the writer already followed with
-  // a comma (their own introduction) is left alone, as is a possessive.
+  // Every card says who its people are, so a name never has to be remembered from cards ago.
+  // The first card a person appears on (and the first after INTRO_AGAIN years without them) gives
+  // their role's introduction ("Joanne, who joined the service the same week as you,"). Every
+  // later card gives a short tag instead ("Nurul Huda, your fellow MP,"), unless they were on the
+  // card the player saw just before. Either goes on the first mention of them in the body. A
+  // mention the writer already followed with a comma or a bracket (their own introduction) is left
+  // alone, and so is one inside a quotation. A possessive ("{mp}'s ward") takes neither: the next
+  // plain mention does, or, if there is none, a tag that is a noun phrase goes in front of the name
+  // ("your fellow MP Nurul Huda's ward"). The batchmate ({rival}) has a tag only (engineLines.rivalTag):
+  // the writer introduces them in their own words, and the header names them throughout.
   const INTRO_AGAIN = 8;
+  // Whether a tag reads in front of a name ("your fellow MP Nurul Huda's"): "your ..." or "the ...",
+  // with no clause of its own.
+  const nounTag = t => /^(?:your|the) [^,]+$/i.test(t) && !/\b(?:who|in|from|with|and)\b/.test(t);
+  const inQuote = (text, i) => (text.slice(0, i).match(/"/g) || []).length % 2 === 1
+    || text.lastIndexOf("\u201c", i) > text.lastIndexOf("\u201d", i);
+  // What a card's body says about a person on this showing: "intro", "tag" or nothing.
+  function introKind(content, s, role) {
+    if (role === "rival") return s.rival && s.rival.seenCard !== (s.cardsPlayed || 0) ? "tag" : null;
+    const p = s.cast && s.cast.on[role];
+    if (!p) return null;
+    if (p.met === undefined || s.year - p.met >= INTRO_AGAIN) return "intro";
+    return p.seenCard === (s.cardsPlayed || 0) ? null : "tag";
+  }
   function introduce(content, s, text) {
-    if (!content.cast || !s.cast || text.indexOf("{") < 0) return text;
-    const done = new Set();
-    return text.replace(/\{([A-Za-z]+)\}(?!'s|\u2019s)(?=(.?))/g, (m, name, next) => {
-      const role = name.toLowerCase(), cfg = content.cast.roles[role], p = s.cast.on[role];
-      if (!cfg || !cfg.intro || !p || done.has(role)) return m;
-      done.add(role);
-      if (next === "," || next === "(") return m;
-      if (p.met !== undefined && s.year - p.met < INTRO_AGAIN) return m;
-      return `${m}, ${cfg.intro},`.replace(/,,$/, ",");
-    }).replace(/,(\s*[.?!;:])/g, "$1");
+    if (typeof text !== "string" || text.indexOf("{") < 0) return text;
+    const roles = (content.cast || {}).roles || {};
+    const byRole = new Map();
+    for (const m of text.matchAll(/\{([A-Za-z]+)\}/g)) {
+      const role = m[1].toLowerCase();
+      if (role === "rival" ? !s.rival : !(roles[role] && s.cast && s.cast.on[role])) continue;
+      const end = m.index + m[0].length, after = text.slice(end);
+      if (!byRole.has(role)) byRole.set(role, []);
+      byRole.get(role).push({ at: m.index, end, upper: isUpper(m[1]), poss: /^(?:'s|\u2019s)/.test(after),
+        own: /^\s*[,(]/.test(after), quoted: inQuote(text, m.index) });
+    }
+    const edits = [];   // { at, text } insertions, applied from the end
+    for (const [role, ms] of byRole) {
+      const kind = introKind(content, s, role);
+      if (!kind) continue;
+      const tag = role === "rival" ? (EL(content).rivalTag || "your batchmate") : (roles[role].tag || null);
+      const phrase = kind === "intro" ? roles[role].intro : tag;
+      if (!phrase) continue;
+      const open = ms.filter(x => !x.quoted);
+      const first = open[0];
+      if (!first || first.own) continue;   // the writer introduced them, or only quotes them
+      const plain = first.poss ? open.find(x => !x.poss) : first;
+      if (plain) {
+        if (plain.own) continue;
+        const next = text.charAt(plain.end);
+        edits.push({ at: plain.end, text: `, ${phrase}${/[.?!;:)"\u201d\u2019\u2014]/.test(next) || !next ? "" : ","}` });
+      } else if (tag && nounTag(tag)) {
+        // possessives only: the tag goes in front, capitalised at the start of a sentence
+        const start = first.upper || /(?:^|[.?!]["\u201d]?\s+)$/.test(text.slice(0, first.at));
+        edits.push({ at: first.at, text: `${start ? cap(tag) : tag} ` });
+      }
+    }
+    if (!edits.length) return text;
+    let out = text;
+    for (const e of edits.sort((a, b) => b.at - a.at)) out = out.slice(0, e.at) + e.text + out.slice(e.at);
+    return out;
   }
   // Only for a save made before a card's parts changed: the first option of every slot.
   function fallbackParts(ev) {
@@ -817,6 +875,40 @@ const Engine = (() => {
       out.lost = true; out.log.push(rivalLine(content, s, "pmBlocked"));
     }
     return out;
+  }
+
+  // --- the header -------------------------------------------------------------
+  // Lines the engine writes around the cards (game.json engineLines): page headings, why a year
+  // needed no decision, why the pay moved, the header's place, the sideways move. A {key} is
+  // filled from `fill`; anything else is left as it is.
+  const EL = content => content.engineLines || {};
+  const fillT = (t, fill) => String(t).replace(/\{(\w+)\}/g, (m, k) => (fill[k] !== undefined ? fill[k] : m));
+  // Where the player is, as the header's second line says it: the ministry in the service and
+  // for an office holder (the ministry they serve in); a backbencher's seat; the Prime
+  // Minister's Office; and, on the election card itself, a candidate who has left the service.
+  function placeOf(content, s) {
+    const P = EL(content).place || {};
+    if (s.rank === 16) return P.pm || "Prime Minister's Office";
+    if (s.rank === 8) return s.flags.includes("seat_smc") ? P.smc || "Member for a single seat"
+      : s.flags.includes("seat_grc") ? P.grc || "Member for a GRC" : P.mp || "Member of Parliament";
+    if (s.rank < 8 && s.currentEvent === "the_election" && P.candidate) return P.candidate;
+    return s.ministry;
+  }
+  // The header as data: rank, grade, age, year, place, lifetime earnings (a number) and the
+  // batchmate line. The UI and the harness both draw it from here. No stat is ever in it.
+  function header(content, s) {
+    const r = content.ladder[s.rank];
+    return { title: r.title, grade: r.grade, age: s.age, year: s.year, place: placeOf(content, s),
+      wealth: s.wealth, batchmate: batchmate(content, s) };
+  }
+  // A page's header: the state at the end of that page, dated to the year the page is about
+  // (the year-end review ages the player on its last line).
+  const pageHead = (content, s, at) => ({ ...header(content, s), age: at.age, year: at.year });
+  // A page heading: the year, the age, and what the page is.
+  function yearHeading(content, kind, at) {
+    const Y = EL(content).yearHeading || {};
+    const t = Y[kind] || (kind === "review" ? "Year {year} · Age {age} · Year-end review" : "Year {year} · Age {age} · A year without a decision");
+    return { kind: "year", text: fillT(t, { year: at.year, age: at.age }), year: at.year, age: at.age, page: kind };
   }
 
   // What the header says about the batchmate: their name and where they are.
@@ -968,7 +1060,7 @@ const Engine = (() => {
     if (!E) return;
     const seen = (s.headsUp = s.headsUp || {});
     const next = E.headsUp ? nextRanking(content, s) : null;
-    const fill = t => t.replace(/\{next\}/g, title(content, s.rank + 1)).replace(/\{now\}/g, title(content, s.rank)).replace(/\{need\}/g, s.rank >= 13 ? "an A" : "a B+ or better");
+    const fill = t => t.replace(/\{next\}/g, nextName(content, s.rank)).replace(/\{now\}/g, title(content, s.rank)).replace(/\{need\}/g, s.rank >= 13 ? "an A" : "a B+ or better");
     if (next === "in" && seen.at !== s.rank) {
       const pol = s.rank >= 8, H = pol ? E.headsUp.politics : E.headsUp.service, k = pol ? "politics" : "service";
       // the first one on each ladder says how it works; after that, shorter lines
@@ -999,6 +1091,14 @@ const Engine = (() => {
       const text = endLine(content, s, "seat", L.seatAtRisk, true);
       if (text) log.push({ kind: "note", about: "seat", text });
     }
+  }
+  // The next rung up, as a heads-up or a rumour names it. Two rungs can share a title (a Minister
+  // is MR4, then MR3): the next one is then named so that it never reads as the rank the player
+  // already holds (engineLines.nextSameTitle).
+  function nextName(content, r) {
+    const L = content.ladder, next = L[Math.min(r + 1, L.length - 1)];
+    if (!L[r] || next.title !== L[r].title) return next.title;
+    return fillT(EL(content).nextSameTitle || "{grade}, the next grade up", { title: next.title, grade: next.grade });
   }
   // A line from one of the endgame pools, never twice in a run (cycle: taken again in order).
   function endLine(content, s, key, lines, cycle, fill = {}) {
@@ -1213,6 +1313,14 @@ const Engine = (() => {
     if (ev.endgame) endgameChoice(s, ev, ch, t);
     // What the choice did to or for a cast member stays with that person.
     if (ch.cast) castOps(content, s, ch.cast, t, ev.who);
+    // A card whose story hands a role to someone new (ev.replaces: ["senior"]: a new reporting
+    // officer takes over): whichever choice is made, the person the card named leaves the story,
+    // and the role refills with a newcomer at the castSync below, before the next card.
+    if (ev.replaces) {
+      const named = ev.replaces.filter(r => !ev.who || ev.who[r] === undefined || (s.cast && s.cast.on[r] && s.cast.on[r].id === ev.who[r]));
+      const left = moveOn(s, named, "replaced");
+      if (left.length) (t.cast = t.cast || []).push(...left.map(x => ({ ...x, leave: "replaced" })));
+    }
     // Standout moments in the service. Two of them mark the file "exceptional", which lets the
     // top rungs' age floors give a little (ladder minAgeExceptional). Rare by design.
     if ((ch.standout || ev.standout) && s.rank < 8) {
@@ -1435,15 +1543,22 @@ const Engine = (() => {
   // One quiet line on the outcome screen when a single choice moves a stat by 6 or more: the
   // biggest move, and only when no line has named a stat in the last two cards (a why line that
   // names them counts too), so the stats come up every few cards, not on every one.
-  function swingLine(content, s, moved) {
-    const W = (content.statWords || {}).swing, at = (s.voice || {}).wordsAt;
+  // In politics (pol: the player was an MP or a candidate when they chose) the lines come from
+  // statWords.swingPolitics where it has them, since "upstairs" and "outside the building" are the
+  // service's; a pool may also name a stat as {standing}, {reputation} or {competence}, in the
+  // phase's own words (statWords.names).
+  function swingLine(content, s, moved, pol) {
+    const SW = content.statWords || {}, at = (s.voice || {}).wordsAt;
+    const W = pol && SW.swingPolitics ? SW.swingPolitics : SW.swing, key = W === SW.swing ? "swing" : "swingPolitics";
     if (!W || (at !== undefined && (s.cardsPlayed || 0) - at < 3)) return null;
     const [k, d] = moved.reduce((a, b) => (Math.abs(b[1]) > Math.abs(a[1]) ? b : a), [null, 0]);
-    if (Math.abs(d) < 6 || !W[k]) return null;
-    const text = voice(s, `swing.${k}.${d > 0 ? "up" : "down"}`, W[k][d > 0 ? "up" : "down"]);
+    const dir = d > 0 ? "up" : "down";
+    const pool = (W[k] || {})[dir] && W[k][dir].length ? W[k][dir] : ((SW.swing || {})[k] || {})[dir];
+    if (Math.abs(d) < 6 || !pool) return null;
+    const text = voice(s, `${pool === (W[k] || {})[dir] ? key : "swing"}.${k}.${dir}`, pool);
     if (!text) return null;
     s.voice.wordsAt = s.cardsPlayed || 0;
-    return { kind: "note", text };
+    return { kind: "note", about: "swing", text: sayStats(text, (SW.names || {})[pol ? "politics" : "service"] || {}, {}) };
   }
 
   // Why a choice is locked, in words: the stat it needs, never the number.
@@ -1499,13 +1614,69 @@ const Engine = (() => {
     if (text) log[i] = { kind: "why", text }; else log.splice(i, 1);
     return log;
   }
+  // People who leave the run's story because the player's job changed around them, not by the
+  // usual lifecycle: the role is vacant, and refills (from the next castSync that may refill it)
+  // with a new person, quietly: whatever moved them has said so, and the newcomer is introduced on
+  // the first card they appear on. Their flags stay with them, so no callback lands on a stranger.
+  function moveOn(s, roles, why) {
+    const K = s.cast, left = [];
+    if (!K) return left;
+    for (const role of roles) {
+      const p = K.on[role];
+      if (!p) continue;
+      p.left = s.year; p.why = why;
+      K.past.push(p); K.on[role] = null; K.vacant[role] = s.year;
+      (K.moved = K.moved || {})[role] = s.year;
+      left.push({ role, person: p.id });
+    }
+    return left;
+  }
+  // Three Cs in a row in the service: HR moves the player sideways, to another division at the
+  // same grade. The move is real: the reporting officer (and anyone who reported to the player)
+  // stays behind in the old division, and the roles refill from next year with new people.
+  const DIVISION = ["senior", "junior"];
+  function sideways(content, s, t) {
+    const L = EL(content).sideways || {}, K = s.cast;
+    const was = K && K.on.senior ? personField(content, s, "senior", K.on.senior, "") : null;
+    t.sideways = { left: moveOn(s, DIVISION, "sideways") };
+    const text = was
+      ? fillT(L.named || "That's three Cs in a row, so HR moves you sideways: the same grade, in another division. From next year your papers go to a new reporting officer instead of {senior}. It's meant as a fresh start. Nobody there asked for you, but the work is real.", { senior: was })
+      : L.plain || "That's three Cs in a row, so HR moves you sideways: the same grade, in another division, for a fresh start. Nobody there asked for you, but the work is real.";
+    return { kind: "warn", about: "sideways", text };
+  }
+  const months = n => `${n} month${n === 1 ? "" : "s"}`;
+  // The pay line: the package, the National Bonus in it (office holders), and from the second
+  // year on how it compares with last year, in dollars ("up $6,000 on last year", "the same as last
+  // year"). When the player could not tell why it moved, a reason follows: their first year on a
+  // new grade's pay, the National Bonus months, or the performance bonus moving with how good their
+  // work was. One reason, the biggest; a small rise from the work goes without one (people expect a
+  // raise), a fall never does. No stat is named, and no stat's number.
+  function payLine(content, s, was, now) {
+    const P = EL(content).payWhy || {}, $ = n => "$" + n.toLocaleString();
+    const m = n => (n === 0 ? P.none || "none" : months(n));
+    const nb = now.nb === null ? "" : fillT(now.nb === 0 ? P.noBonus || " (no National Bonus)" : P.withBonus || " (including a National Bonus of {months})", { months: m(now.nb) });
+    let text = fillT(P.line || "Annual package: {pay}{bonus}", { pay: $(now.total), bonus: nb });
+    if (!was) return text;
+    const d = now.total - was.total;
+    if (d === 0) return text + (P.same || ", the same as last year");
+    text += fillT(d > 0 ? P.up || ", up {diff} on last year" : P.down || ", down {diff} on last year", { diff: $(Math.abs(d)) });
+    let why = null;
+    if (was.rank !== now.rank) {
+      const t = title(content, now.rank);
+      why = fillT(P.rank || "this was your first year paid as {aTitle}", { aTitle: `${article(t)} ${t}` });
+    } else if (now.nb !== null && was.nb !== null && was.nb !== now.nb) {
+      why = fillT(P.bonus || "the National Bonus went from {was} to {now}, because of how the national targets went", { was: m(was.nb), now: m(now.nb) });
+    } else if (d < 0 || now.total >= was.total * (1 + (P.workRise || 0.03))) {
+      why = P.work || "your bonus follows how good your work was";
+    }
+    return why ? `${text}: ${why}` : text;
+  }
   function reviewYear(content, s, t) {
     const log = [];
     const pay = payout(content, s);
-    const nb = s.nbMonths === 0 ? "no National Bonus" : `a National Bonus of ${s.nbMonths} month${s.nbMonths === 1 ? "" : "s"}`;
-    log.push({ kind: "pay", text: s.rank >= 11
-      ? `Annual package: $${pay.toLocaleString()}, including ${nb}`
-      : `Annual package: $${pay.toLocaleString()}` });
+    const was = s.lastPay;
+    s.lastPay = { total: pay, rank: s.rank, nb: s.rank >= 11 ? s.nbMonths : null };
+    log.push({ kind: "pay", text: payLine(content, s, was, s.lastPay) });
 
     s.yearsInGrade++;
     // The career's end: the plan (when the last year comes), whether this is it, and whether the
@@ -1568,9 +1739,8 @@ const Engine = (() => {
     if (s.consecutiveC >= 3) {
       s.consecutiveC = 0;
       s.competence = clamp(s.competence + 3, 0, 100);
-      log.push({ kind: "warn", text: s.rank >= 8
-        ? "That's three Cs in a row, so the Whip moves you to chair a select committee nobody wanted to sit on. The work is real, at least."
-        : "That's three Cs in a row, so HR moves you sideways to another division, for a fresh start. Nobody there asked for you, but the work is real." });
+      if (s.rank >= 8) log.push({ kind: "warn", text: "That's three Cs in a row, so the Whip moves you to chair a select committee nobody wanted to sit on. The work is real, at least." });
+      else log.push(sideways(content, s, t));
     }
 
     // The last two steps are never given on "strong" alone.
@@ -1636,13 +1806,18 @@ const Engine = (() => {
       // a late starter ever makes up the years a scholar was simply given.
       const doubleJump = !fast && grade.code === "A" && s.rank <= 4 && score >= 84 && s.rank + 1 < s.cep
         && floorAge(content, s, s.rank + 2) <= s.age;
+      const from = s.rank;
       s.rank += doubleJump ? 2 : 1;
       if (doubleJump) t.promotion.result = "promoted_two";
       s.yearsInGrade = 0;
       const r = rank(content, s);
-      log.push({ kind: "promo", text: doubleJump
+      // a backbencher's first office is in a ministry: the header names it from now on
+      const where = from === 8 ? `, ${s.ministry}` : "";
+      // this year was paid at the old grade: the new grade's pay starts next year
+      const rise = r.pay > content.ladder[from].pay && (EL(content).payWhy || {}).promoted;
+      log.push({ kind: "promo", text: (doubleJump
         ? `Promoted two grades: ${r.title} (${r.grade}). This does not normally happen.`
-        : `Promoted: ${r.title} (${r.grade})` });
+        : `Promoted: ${r.title} (${r.grade})${where}`) + (rise ? `${doubleJump ? "" : "."} ${rise}` : "") });
       // The top job: a short tenure of its own cards follows, then the ending. (A build without
       // them ends here, as it always did.)
       if (s.rank === 16) {
@@ -1917,6 +2092,21 @@ const Engine = (() => {
     return i === null ? { text: null } : { text: lines[i], key, i };
   }
 
+  // The plain line a year with nothing to decide opens with: no decision was needed, and why
+  // (the card came round again and the habit decided it, the plan chosen before still stands, the
+  // seat was safe, or nothing came up). {title} and {choice} are the card and the choice as shown.
+  function noDecision(content, kind, fill) {
+    const N = EL(content).noDecision || {};
+    const t = N[kind] || {
+      habit: "No decision was needed this year. \"{title}\" came round again, and you did what you chose last time: \"{choice}\"",
+      series: "No decision was needed this year. \"{title}\" came up, and the plan you chose before still stands: \"{choice}\"",
+      auto: "No decision was needed this year. A general election came, and your seat was safe.",
+      quiet: "No decision was needed this year. Nothing came up that needed you."
+    }[kind];
+    return { kind: "note", about: "noDecision", passed: kind, text: fillT(t, fill) };
+  }
+  // A card's words as this showing would put them (its version), for quoting a choice.
+  const src = (ev, s) => variantOf(ev, s);
   // pay + appraisal on one line; everything else (promotions, rumours, warnings) as it was
   function compress(log) {
     const pay = log.find(l => l.kind === "pay"), ap = log.find(l => l.kind === "appraisal");
@@ -1937,13 +2127,18 @@ const Engine = (() => {
       const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
       const pt = { kind, ev: ev ? ev.id : "__quiet", source: info.source, fired: info.fired || null, age: s.age, rank: s.rank, origin: s.origin };
       let choice = 0, ch, lines = [];
+      // the page opens by saying why there was nothing to decide this year
+      const heading = yearHeading(content, "passed", before);
       if (kind === "habit") {
         const m = montageOf(content, ev, s);
         choice = s.habits[ev.id]; ch = m.choices[0]; pt.habit = choice; pt.line = m.body;
+        // the card and the choice as the player last saw them in full
+        const last = (s.history || []).filter(h => h.ev === ev.id && !h.passed).pop();
+        const why = noDecision(content, "habit", { title: last ? last.title : m.title, choice: last ? last.text : src(ev, s).choices[choice].text });
         applyEffects(s, ch.effects);
         s.fillerSeen[ev.id]++;
         useLine(s, m.lineKey, m.line);
-        lines.push({ kind: "year", text: `Age ${before.age} · A year without a decision` }, { kind: "meanwhile", text: m.body });
+        lines.push(heading, why, { kind: "meanwhile", text: m.body });
         ev = { ...ev, title: m.title };
       } else if (kind === "series") {
         // the habit, in full: the same choice the player made, with everything it does
@@ -1952,11 +2147,13 @@ const Engine = (() => {
         const { key, lines: pool } = linesFor(ev, f.stance);
         const li = pickLine(s, key, pool.length, true);
         pt.line = pool[li];
+        const shown = src(ev, s);
+        const why = noDecision(content, "series", { title: sub(shown.title, s, content), choice: shown.choices[choice].text });
         const al = applyChoice(content, s, ev, ch, pt);
         if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
         f.passed = (f.passed || 0) + 1;
         useLine(s, key, li);
-        lines.push({ kind: "year", text: `Age ${before.age} · A year without a decision` }, { kind: "meanwhile", text: pool[li] }, ...al);
+        lines.push(heading, why, { kind: "meanwhile", text: pool[li] }, ...al);
       } else if (kind === "auto") {
         const vev = render(content, variantOf(ev, s), s);
         choice = ev.autoPlay.choice || 0; ch = vev.choices[choice];
@@ -1964,13 +2161,14 @@ const Engine = (() => {
         const line = autoLine(ev, s);
         const al = applyChoice(content, s, ev, ch, pt, { safe: true });
         if (line.key) useLine(s, line.key, line.i);
-        lines.push({ kind: "year", text: `Age ${before.age} · A year without a decision` }, { kind: "meanwhile", text: line.text || ch.outcome }, ...al);
+        lines.push(heading, noDecision(content, "auto", {}), { kind: "meanwhile", text: line.text || ch.outcome }, ...al);
       } else {
         ch = QUIET_YEAR.choices[0];
         applyEffects(s, ch.effects);
-        lines.push({ kind: "year", text: `Age ${before.age} · A year without a decision` }, { kind: "meanwhile", text: QUIET_YEAR.body });
+        lines.push(heading, noDecision(content, "quiet", {}), { kind: "meanwhile", text: QUIET_YEAR.body });
       }
       const yl = s.ending ? [] : yearEnd(content, s, pt);
+      heading.head = pageHead(content, s, before);
       lines.push(...yl);
       log.push(...lines);
       t.passed.push(pt);
@@ -2001,17 +2199,21 @@ const Engine = (() => {
     const trace = {};
     const log = applyChoice(content, s, ev, ch, trace);
     const moved = STATS.map(k => [k, s[k] - state[k]]);   // what this choice did to the four stats
+    // in politics when they chose: an MP, or a candidate on the election card
+    const pol = state.rank >= 8 || s.rank >= 8 || ev.id === "the_election";
     if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
     // a card in a series: what was chosen becomes the habit its later years repeat
     if (ev.series) {
       const S = (s.series = s.series || {}), k = ev.series.key, cur = S[k] || { full: 0, passed: 0 };
       S[k] = { ...cur, stance: ch.stance !== undefined ? ch.stance : cur.stance, full: cur.full + 1 };
     }
+    // the outcome's own page shows the header as the choice left it, before the year-end
+    const head = header(content, s);
     if (!s.ending) {
       const ye = yearEnd(content, s, trace);
-      const sw = swingLine(content, s, moved);
+      const sw = swingLine(content, s, moved, pol);
       if (sw) log.push(sw);
-      if (ye.length) log.push({ kind: "year", text: `Age ${before.age} · Year-end review` }, ...ye);
+      if (ye.length) log.push({ ...yearHeading(content, "review", before), head: pageHead(content, s, before) }, ...ye);
     }
     if (ev.id.startsWith(MONTAGE)) {
       s.fillerSeen[ev.id.slice(MONTAGE.length)]++;
@@ -2021,7 +2223,16 @@ const Engine = (() => {
       (s.habits = s.habits || {})[ev.id] = ci;   // what habit years will repeat
     }
     s.cardsPlayed = (s.cardsPlayed || 0) + 1;
-    if (ev.who && s.cast) for (const r of Object.keys(ev.who)) if (s.cast.on[r]) s.cast.on[r].met = before.year;
+    // the people the player read on the card and the outcome they chose (not an outcome they did
+    // not choose) have been met, on this card: the next card leaves out their tag (introduce).
+    // Only those people: someone who took over the role this year (a sideways move, a retirement
+    // at the year-end) has not been met yet, and is introduced on their first card.
+    const saw = { ...(ev.saw || {}), ...(ch.saw || {}) };
+    for (const [r, id] of Object.entries(saw)) {
+      if (r === "rival") { if (s.rival) s.rival.seenCard = s.cardsPlayed; continue; }
+      const p = s.cast && s.cast.on[r];
+      if (p && p.id === id) { p.met = before.year; p.seenCard = s.cardsPlayed; }
+    }
     // A card with parts or cast keeps what it showed: the combination (freshness, the next
     // showing's rotation), who it named, and, when the Declassified file may quote an untaken
     // choice from it (one that raised the ceiling), its choices' words as read.
@@ -2037,7 +2248,7 @@ const Engine = (() => {
     if (!s.ending) {
       log.push(...passYears(content, s, trace));
     }
-    return { state: s, outcome: trace.outcome ? sub(trace.outcome, s, content) : ch.outcome, log: capNotes(s, log), trace };
+    return { state: s, outcome: trace.outcome ? sub(trace.outcome, s, content) : ch.outcome, log: capNotes(s, log), trace, head };
   }
 
   // The card for this year. advance() has normally drawn it already; this draws only for the
@@ -2136,7 +2347,8 @@ const Engine = (() => {
       : r === 7 ? "Permanent Secretary" : r >= 8 ? "none" : title(content, r);
     out.push({ label: "Your civil service ceiling", text: serviceCeilingLine(content, s, H, ceiling) });
     const won = H.find(h => h.ev === "the_election" && h.rankAfter === 8);
-    if (won) out.push({ label: "The party's estimate", text: `${title(content, won.cepAfter)}. Also not mentioned.` });
+    // the party's own ceiling, set when it won the seat (a choice can raise it later: The next move)
+    if (won) out.push({ label: "The party's estimate", text: `The highest office the party expected you to reach, decided when you were elected: ${title(content, won.cepAfter)}. Nobody told you.` });
 
     // The move that raised the ceiling: in the service while a ceiling below the top still applied;
     // in politics, after the election that set the party's own estimate. A politician sees both.
@@ -2147,7 +2359,9 @@ const Engine = (() => {
     // The choice that set the final ceiling, not merely the biggest step: a career's story ends
     // at the raise that made its last rung possible.
     const last = xs => xs.reduce((a, b) => (b.cepAfter >= a.cepAfter ? b : a));
-    const said = r => `${r.title}, age ${r.age}. "${r.text}" Ceiling: ${r.rank < 8 && r.cepAfter >= 8 ? "gone" : ceiling(r.cepAfter, r.rank >= 8)}.`;
+    // what the choice did, said in full: which ceiling it moved, and to where
+    const said = r => `${r.title}, age ${r.age}. "${r.text}" ${r.rank >= 8 ? `That raised the party's estimate to ${ceiling(r.cepAfter, true)}.`
+      : r.cepAfter >= 8 ? "That removed your ceiling in the service altogether." : `That raised your ceiling in the service to ${ceiling(r.cepAfter, false)}.`}`;
     // The first choice that would have raised it, had you taken it.
     const missed = pol => {
       const h = H.filter(h => !h.passed && (pol ? h.rank >= 8 : h.rank < 8)).find(h => {
@@ -2188,14 +2402,15 @@ const Engine = (() => {
       const q = tea.requires || {}, need = q.minStats || {};
       const window = H.filter(h => h.rankAfter >= (q.minRank || 0) && h.rankAfter <= (q.maxRank ?? 7));
       let text;
-      if (!window.length) text = `Never came. Tea starts at ${title(content, q.minRank || 0)}. You never got there.`;
+      if (!window.length) text = `Never came. The party only asks officers at ${title(content, q.minRank || 0)} or above to tea. You never got there.`;
       else {
         const peak = k => Math.max(...window.map(h => h[k] ?? 0));
         const short = Object.keys(need).map(k => ({ k, need: need[k], got: peak(k) })).filter(x => x.got < x.need)
           .sort((a, b) => (b.need - b.got) - (a.need - a.got))[0];
-        const both = Object.keys(need).map(k => `${cap(k)} ${need[k]}`).join(" and ");
-        text = short ? `Never came. Tea wants ${cap(short.k)} ${short.need}. You peaked at ${short.got}.`
-          : `Never came. Tea wants ${both} together. You never had both.`;
+        const both = Object.keys(need).map(k => `their ${cap(k)} is at least ${need[k]}`).join(" and ");
+        // the numbers are the ones the ending has just revealed above (Your numbers)
+        text = short ? `Never came. The party only asks people to tea once their ${cap(short.k)} reaches ${short.need}. Your ${cap(short.k)} never went higher than ${short.got}.`
+          : `Never came. The party only asks people to tea once ${both}, at the same time. You never had both at once.`;
       }
       out.push({ label: "The invitation", text });
       const noted = H.filter(h => h.noted).length;
@@ -2210,10 +2425,12 @@ const Engine = (() => {
       const early = [7, 6].map(r => ({ r, h: H.find(h => h.rankAfter === r && h.rank !== r) }))
         .find(x => x.h && L[x.r].minAge && x.h.age < L[x.r].minAge);
       const x = s.exceptionalAt;
+      // what the mark is for: the top grades' minimum ages give way for it
+      const what = `Marked "exceptional" at ${x.age}, which lets the top grades take an officer younger than their usual minimum age.`;
       out.push({ label: "The exception", text: early
-        ? `Marked "exceptional" at ${x.age}. Hence ${L[early.r].title} at ${early.h.age}, not ${L[early.r].minAge}.`
-        : x.age >= (L[7].minAge || 0) ? `Marked "exceptional" at ${x.age}. By then, nobody thought you too young.`
-        : `Marked "exceptional" at ${x.age}. The age floors would have bent. They never had to.` });
+        ? `${what} Hence ${L[early.r].title} at ${early.h.age}, not ${L[early.r].minAge}.`
+        : x.age >= (L[7].minAge || 0) ? `${what} By then you were old enough anyway.`
+        : `${what} It never came to that.` });
     }
 
     // A career that ended below its ceiling was not stopped by the ceiling: say what did.
@@ -2232,7 +2449,7 @@ const Engine = (() => {
 
     const peak = H.reduce((a, b) => (b.heatAfter > a.heatAfter ? b : a), { heatAfter: 0 });
     out.push({ label: "Exposure", text: peak.heatAfter >= 20
-      ? `Peaked at ${peak.heatAfter}, after "${peak.title}". At 85, it all comes out.`
+      ? `How much there was for a journalist to find. It peaked at ${peak.heatAfter}, after "${peak.title}". At 85, it all comes out and the career ends.`
       : "Clean enough to be boring. In this building, a compliment." });
 
     // Stories that ran across a career (content.declassifiedFlags): one line per label, the first
@@ -2285,6 +2502,8 @@ const Engine = (() => {
 
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
     finalLabels, ending, recentKeys, lockedText, statVerdicts, endPlan,
+    // the header as data (the event screen, and each page of an outcome), and the next rung's name
+    header, nextName,
     // the player's name and gender: the start screen, old saves, the lint and the tests
     player, genders, upgradePlayer, playerWords, playerFields, playerTableProblem,
     // cast and card parts, for the immersion lint and the tests
