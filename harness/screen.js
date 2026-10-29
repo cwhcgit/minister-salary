@@ -3,14 +3,10 @@
 // test/screen.test.js checks this against the real DOM, so a UI change that is not
 // copied here fails the build instead of silently diverging.
 
-const STATKEYS = [
-  ["reputation", "Rep"],
-  ["standing",   "Stand"],
-  ["integrity",  "Integ"],
-  ["competence", "Comp"]
-];
-
 const LETTERS = "ABCDEFGH";
+
+// The heading over the four stats on the ending screen (ui.js endingScreen).
+const STATS_LABEL = "Your numbers";
 
 // same as ui.js: the CEP hint and the Heat rumour both read as RUMOUR
 const TAG_LABEL = { cep: "rumour", heat: "rumour", rival: "batchmate", noted: "appraisal" };
@@ -27,23 +23,22 @@ const START = {
   hint: "One tap is one year, and every year ends with an appraisal grade. A or B+ gets you considered for promotion; two Ds in a row and you are asked to leave. Choices are permanent, and some of them come back."
 };
 
-function header(build, S, prev) {
+// The four stats are hidden during play: the header carries no values, bars or changes.
+function header(build, S) {
   const r = build.engine.rank(build.content, S);
   return {
     rank: r.title, grade: r.grade,
     age: S.age, year: S.year, ministry: S.ministry,
     // same as ui.js: the batchmate line appears only in a run with a batchmate
     ...(S.rival ? { batchmate: build.engine.batchmate(build.content, S) } : {}),
-    wealth: money(S.wealth), wealthLabel: "lifetime earnings",
-    stats: STATKEYS.map(([key, label]) => ({
-      key, label, value: S[key],
-      delta: prev && prev[key] !== S[key] ? S[key] - prev[key] : 0
-    }))
+    wealth: money(S.wealth), wealthLabel: "lifetime earnings"
   };
 }
 
-function requirementText(ch) {
-  return "Requires " + Object.entries(ch.requiresStat).map(([k, v]) => `${k} ${v}`).join(", ");
+// A locked choice gives an in-world reason, never the number (engine.lockedText; same words as ui.js).
+function requirementText(build, ch) {
+  return build.engine.lockedText ? build.engine.lockedText(build.content, ch)
+    : "Requires " + Object.entries(ch.requiresStat).map(([k, v]) => `${k} ${v}`).join(", ");
 }
 
 function eventCard(build, S, ev) {
@@ -52,7 +47,7 @@ function eventCard(build, S, ev) {
     body: ev.body,
     choices: ev.choices.map((c, i) => {
       const ok = build.engine.choiceAvailable(c, S);
-      return { id: LETTERS[i], text: c.text, available: ok, requires: ok ? null : requirementText(c) };
+      return { id: LETTERS[i], text: c.text, available: ok, requires: ok ? null : requirementText(build, c) };
     })
   };
 }
@@ -74,7 +69,9 @@ function endingCard(build, S) {
     position: r.title,
     ageLabel: build.engine.finalLabels ? build.engine.finalLabels(build.content, S).age : "At age",
     age: S.age,
-    lifetimeEarnings: money(S.wealth), integrity: S.integrity,
+    lifetimeEarnings: money(S.wealth),
+    // the four stats, hidden until now, each with its verdict (engine.statVerdicts; same lines as ui.js)
+    stats: build.engine.statVerdicts ? build.engine.statVerdicts(build.content, S).map(v => ({ label: v.label, value: v.value, verdict: v.text })) : [],
     // what was really going on, revealed only now (engine.declassify; same lines as ui.js)
     declassified: build.engine.declassify ? build.engine.declassify(build.content, S) : []
   };
@@ -90,10 +87,8 @@ function startCard(build, originId, rival = false) {
 // opts.tags: "phone" (default, as displayed) or "none" (drop the tag labels).
 
 function headerText(h) {
-  const stats = h.stats.map(s =>
-    `${s.label.toUpperCase()} ${s.value}${s.delta ? ` (${s.delta > 0 ? "+" : ""}${s.delta})` : ""}`).join("   ");
   return `${h.rank} [${h.grade}]   ${h.wealth} ${h.wealthLabel.toUpperCase()}\nAge ${h.age} · Year ${h.year} · ${h.ministry}`
-    + (h.batchmate ? `\nBatchmate: ${h.batchmate}` : "") + `\n${stats}`;
+    + (h.batchmate ? `\nBatchmate: ${h.batchmate}` : "");
 }
 
 function toText(view, opts = {}) {
@@ -110,7 +105,8 @@ function toText(view, opts = {}) {
   // the ending card comes after the last outcome (ui.js shows it on the next screen)
   if (view.ending) {
     const e = view.ending;
-    out.push(`${e.label.toUpperCase()}\n${e.title}\n\n${e.epitaph}\n\n${e.positionLabel.toUpperCase()} ${e.position}\n${e.ageLabel.toUpperCase()} ${e.age}\nLIFETIME EARNINGS ${e.lifetimeEarnings}\nINTEGRITY ${e.integrity}`
+    out.push(`${e.label.toUpperCase()}\n${e.title}\n\n${e.epitaph}\n\n${e.positionLabel.toUpperCase()} ${e.position}\n${e.ageLabel.toUpperCase()} ${e.age}\nLIFETIME EARNINGS ${e.lifetimeEarnings}`
+      + (e.stats.length ? `\n\n${STATS_LABEL.toUpperCase()}\n` + e.stats.map(x => `${x.label.toUpperCase()} ${x.value}: ${x.verdict}`).join("\n") : "")
       + (e.declassified.length ? "\n\nDECLASSIFIED\n" + e.declassified.map(l => `${l.label.toUpperCase()}: ${l.text}`).join("\n") : ""));
     return out.join("\n\n");
   }
@@ -122,4 +118,4 @@ function toText(view, opts = {}) {
   return out.join("\n\n");
 }
 
-module.exports = { header, eventCard, outcomeCard, endingCard, startCard, toText, money, LETTERS, STATKEYS };
+module.exports = { header, eventCard, outcomeCard, endingCard, startCard, toText, money, LETTERS, STATS_LABEL };

@@ -836,6 +836,177 @@
   ],
   "exceptionalAfter": 2,
   "probationCards": 6,
+  "statWords": {
+    "names": {
+      "service": { "competence": "your competence", "standing": "your standing upstairs", "reputation": "your reputation outside the building" },
+      "politics": { "competence": "your competence", "standing": "your standing with the party leadership", "reputation": "your reputation with voters" }
+    },
+    "whyFirst": "An appraisal weighs your competence most, then your standing upstairs, then a little of your reputation outside the building.",
+    "why": {
+      "contrast": [
+        "{A} is not in question; {B} is.",
+        "Nobody doubts {A}. {B} is another matter.",
+        "{A} carried the year. {B} held it back.",
+        "There were no complaints about {A}. There were some about {B}."
+      ],
+      "carried": [
+        "{A} did most of the work, and nothing else held the grade back.",
+        "{A} is the strong part of your file, and the rest is good enough.",
+        "The grade rests on {A}, and nothing else in the file pulls it down."
+      ],
+      "thin": [
+        "Nothing in your file is strong yet. {B} needs the most work.",
+        "Your file has no strong suit yet, and the first thing to fix is {B}.",
+        "Nothing in your file is carrying you yet, least of all {B}."
+      ],
+      "even": [
+        "Competence, standing and reputation: all middling, none of them a problem.",
+        "Nothing in your file stands out, good or bad.",
+        "Nobody had a complaint about your work, and nobody had a compliment."
+      ],
+      "strong": [
+        "Competence, standing, reputation: nobody had a complaint about any of them.",
+        "There is no weak spot in your file, and people looked.",
+        "{competence}, {standing} and {reputation} all point the same way."
+      ],
+      "choiceDown": [
+        "A choice this year that counted against you took the grade down to {grade}.",
+        "One choice this year cost you a grade, and it came down to {grade}."
+      ],
+      "choiceAgainst": [
+        "A choice this year counted against you, though not by a whole grade.",
+        "A choice this year counted against you, but not enough to cost a grade."
+      ],
+      "choiceUp": [
+        "A choice this year that counted in your favour lifted the grade to {grade}.",
+        "One choice this year earned you a grade, and it went up to {grade}."
+      ],
+      "choiceFor": [
+        "A choice this year counted in your favour, though not by a whole grade.",
+        "A choice this year counted in your favour, but not enough to move the grade."
+      ],
+      "luckUp": [
+        "A good year lifted the grade to {grade}.",
+        "The year went your way, and that lifted the grade to {grade}."
+      ],
+      "luckDown": [
+        "A bad year took the grade down to {grade}.",
+        "The year went against you, and that took the grade down to {grade}."
+      ],
+      "better": [
+        "Your file is stronger than it was a year ago.",
+        "Your file has improved since last year, and the grade has followed it."
+      ],
+      "worse": [
+        "Your file is weaker than it was a year ago.",
+        "Your file has slipped since last year, and the grade has followed it."
+      ],
+      "lastHigh": [
+        "Last year's grade was higher than your file deserved, and this year's is not.",
+        "Last year's grade flattered you; this year's does not."
+      ],
+      "lastLow": [
+        "Last year's grade was lower than your file deserved, and this year's is not.",
+        "Last year's grade undersold you; this year's catches up."
+      ]
+    },
+    "swing": {
+      "standing": {
+        "up": [
+          "People upstairs will remember this.",
+          "Your standing upstairs goes up. Nobody says so, but it does.",
+          "Someone senior has made a note of this, in your favour."
+        ],
+        "down": [
+          "People upstairs will remember this, and not fondly.",
+          "Your standing upstairs takes a knock. Nobody will mention it.",
+          "Someone senior has made a note of this. It will not help you."
+        ]
+      },
+      "reputation": {
+        "up": [
+          "Your reputation outside the building grows.",
+          "More people outside the building know your name now, for good reasons.",
+          "Your name travels further outside the building than it did."
+        ],
+        "down": [
+          "Your reputation outside the building takes a knock.",
+          "People outside the building think a little less of you now.",
+          "Outside the building, your name now comes up for the wrong reasons."
+        ]
+      },
+      "competence": {
+        "up": [
+          "You are better at the job after this, and people can see it.",
+          "Your competence is no longer in question on this one.",
+          "Your competence grows. The work teaches you more than the last two courses did."
+        ],
+        "down": [
+          "Questions are now being asked about your competence.",
+          "This does your competence no favours, and people noticed.",
+          "You come out of this looking less sure of the job than you went in."
+        ]
+      },
+      "integrity": {
+        "up": [
+          "Your integrity holds, whatever else this costs you.",
+          "You did the right thing. Your integrity is the better for it.",
+          "You can look at yourself in the lift mirror tomorrow. Your integrity is intact."
+        ],
+        "down": [
+          "Your integrity takes a knock. You notice, even if nobody else does.",
+          "You tell yourself it was necessary. Your integrity is less sure.",
+          "Something gives a little, and it is your integrity."
+        ]
+      }
+    },
+    "locked": {
+      "competence": "You haven't shown the competence for this yet.",
+      "standing": "You don't have the standing to ask for this yet.",
+      "reputation": "You'd need a stronger reputation for this.",
+      "integrity": "This would take more integrity than you have."
+    },
+    "verdicts": {
+      "competence": {
+        "label": "Competence",
+        "about": "Half of every appraisal, and your yearly bonus.",
+        "bands": [
+          { "min": 70, "text": "Yours was never the problem." },
+          { "min": 50, "text": "Yours was enough, and rarely more." },
+          { "min": 30, "text": "Yours held both back." },
+          { "min": 0, "text": "Yours cost you grades and money, every year." }
+        ]
+      },
+      "standing": {
+        "label": "Standing",
+        "about": "How far the people above you trusted you. A third of every appraisal, and one of the two things that get you invited to tea.",
+        "bands": [
+          { "min": 70, "text": "Yours was never in question." },
+          { "min": 54, "text": "Yours was high enough for tea." },
+          { "min": 30, "text": "Yours fell short of what tea asks for." },
+          { "min": 0, "text": "Yours pulled down every grade you got." }
+        ]
+      },
+      "reputation": {
+        "label": "Reputation",
+        "about": "What the public thought of you. It wins elections, and it is the other thing that gets you invited to tea.",
+        "bands": [
+          { "min": 60, "text": "Yours was enough to stand for a seat on your own." },
+          { "min": 35, "text": "Yours was enough for a GRC team, not a seat of your own." },
+          { "min": 0, "text": "Outside the building, almost nobody knew your name." }
+        ]
+      },
+      "integrity": {
+        "label": "Integrity",
+        "about": "What you did when nobody was checking. It decides most of what people say about you when you leave.",
+        "bands": [
+          { "min": 70, "text": "Yours held." },
+          { "min": 45, "text": "Yours bent, but not often." },
+          { "min": 0, "text": "Yours gave way whenever it was convenient." }
+        ]
+      }
+    }
+  },
   "freshness": 0.35,
   "legacyByEnding": {
     "quiet": [

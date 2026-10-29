@@ -250,9 +250,9 @@ function promotionWhy(p, appraisal, pre) {
 
 // --- the two views -----------------------------------------------------
 
-// Screen view. On the phone, a turn is two screens: the outcome of last year's choice
-// (with the stat changes it caused), then this year's event card. They show the same
-// header, so the agent view merges them: header, last year's outcome, this year's card.
+// Screen view. On the phone, a turn is two screens: the outcome of last year's choice,
+// then this year's event card. They show the same header, so the agent view merges them:
+// header, last year's outcome, this year's card.
 // opts.view: "agent" (merged, default) | "event" | "outcome" (each phone screen alone).
 function screen(run, opts = {}) {
   const build = getBuild(run.buildHash);
@@ -269,7 +269,7 @@ function screen(run, opts = {}) {
   const out = { phase: "event" };
   if (run.turn === 1 && view === "agent") out.start = View.startCard(build, run.origin, run.rival);
   const showOutcome = run.last && view !== "event";
-  out.header = View.header(build, S, showOutcome ? run.last.prev : null);
+  out.header = View.header(build, S);
   if (showOutcome) out.outcome = View.outcomeCard(run.last.outcome, run.last.log);
   if (view !== "outcome") out.event = View.eventCard(build, S, currentEvent(build, S));
   return out;

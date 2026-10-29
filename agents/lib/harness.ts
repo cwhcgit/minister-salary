@@ -63,6 +63,7 @@ export function traceView(run: Run): string {
   const title = (r: number) => `${C.ladder[r].title} (${C.ladder[r].grade})`;
   const lines: string[] = [];
   lines.push(`Rank ${S.rank}: ${title(S.rank)}. CEP ${S.cep}: ${S.cep > S.rank ? `ceiling at rank ${S.cep}, ${title(Math.min(16, S.cep))}` : "AT CEILING: promotion blocked until CEP rises"}.`);
+  lines.push(`Stats (hidden from blind players): Reputation ${S.reputation}, Standing ${S.standing}, Integrity ${S.integrity}, Competence ${S.competence}.`);
   lines.push(`Heat ${S.heat}/100 (journalist rumours from 55; scandal ending at 85 at year end).`);
   lines.push(`Years in grade ${S.yearsInGrade}. Consecutive C grades ${S.consecutiveC}, consecutive D grades ${S.consecutiveD}.`
     + (S.bondYears && S.year <= S.bondYears ? ` Bonded until year ${S.bondYears}.` : ""));

@@ -1212,28 +1212,110 @@ const Engine = (() => {
     return { grade: content.grades.find(g => score >= g.min), score, noise, mod };
   }
 
-  // Why the grade came out as it did, in plain words: the stats behind it, any choice that
-  // counted, and whether the year's luck moved it a grade.
-  function appraisalWhy(content, s, grade, noise, mod) {
+  // --- the four stats, in words ---------------------------------------------------
+  // The stats are never shown as numbers during play, only in words (content.statWords): the
+  // appraisal's "why" line in a year that needs explaining, one quiet line when a single choice
+  // moves a stat a long way, a locked choice's reason, and the verdicts on the ending screen.
+  // Each phrasing is drawn from the seed on its own stream, never twice in a row, so the run's
+  // dice never move.
+  const APPRAISAL = { competence: 0.50, standing: 0.30, reputation: 0.15 };
+  function voice(s, key, lines) {
+    if (!lines || !lines.length) return null;
+    const v = (s.voice = s.voice || {}), [n, last] = v[key] || [0, -1];
+    const r = rng((s.seed ^ hashStr("voice:" + key + "#" + n)) >>> 0);
+    let i = Math.floor(r() * lines.length);
+    if (i === last && lines.length > 1) i = (i + 1 + Math.floor(r() * (lines.length - 1))) % lines.length;
+    v[key] = [n + 1, i];
+    return lines[i];
+  }
+  // {A} the strong suit, {B} the weak spot, {competence} etc. by name; sentences start with a capital
+  function sayStats(text, names, fill) {
+    return text.replace(/\{(\w+)\}/g, (m, k) => fill[k] !== undefined ? fill[k] : names[k] !== undefined ? names[k] : m)
+      .replace(/(^|[.!?]\s+)([a-z])/g, (m, p, c) => p + c.toUpperCase());
+  }
+
+  // What the appraisal was made of, kept for the end of the year: the "why" line is written only
+  // when there is something to explain (see yearEnd).
+  function whyFacts(content, s, grade, mod) {
     const gradeAt = x => content.grades.find(g => x >= g.min) || content.grades[content.grades.length - 1];
     const base = 0.50 * s.competence + 0.30 * s.standing + 0.15 * s.reputation;
-    const fromStats = gradeAt(base), withChoices = gradeAt(base + mod);
+    return { grade: grade.code, fromStats: gradeAt(base).code, withChoices: gradeAt(base + mod).code, mod,
+      rank: s.rank, year: s.year, stats: { competence: s.competence, standing: s.standing, reputation: s.reputation } };
+  }
+
+  // The strong suit (60 or more) and the weak spot (under 45, the one costing the grade the most)
+  // among the three stats an appraisal weighs, and the shape they make.
+  function statShape(st) {
+    const keys = Object.keys(APPRAISAL);
+    const strong = keys.filter(k => st[k] >= 60).sort((a, b) => st[b] - st[a])[0];
+    const weak = keys.filter(k => st[k] < 45).sort((a, b) => APPRAISAL[b] * (60 - st[b]) - APPRAISAL[a] * (60 - st[a]))[0];
+    const shape = keys.every(k => st[k] >= 60) ? "strong" : strong && weak ? "contrast" : strong ? "carried" : weak ? "thin" : "even";
+    return { shape, strong, weak, key: [shape, strong || "", weak || ""].join(":") };
+  }
+
+  // Why the grade came out as it did, in plain words. The stats are named only when that is news:
+  // the first appraisal, a warning (opts.stats), or a strong suit or weak spot that has changed since
+  // they were last named. Otherwise the line says what a choice or the year's luck did, which way the
+  // file moved (opts.moved), or that last year's grade was off the file (opts.lastOff). Returns ""
+  // when there is nothing new to say.
+  function appraisalWhy(content, s, f, opts) {
+    const W = content.statWords || {}, P = W.why || {}, v = s.voice;
+    const names = (W.names || {})[f.rank >= 8 ? "politics" : "service"] || {};
     const order = content.grades.map(g => g.code);   // best first
-    // the full sentence the first time; after that, the numbers
-    const parts = [s.whySeen
-      ? `Competence ${s.competence}, Standing ${s.standing}, Reputation ${s.reputation}: ${fromStats.code} level`
-      : `An appraisal is mostly Competence, then Standing, then a little Reputation. Yours (${s.competence}, ${s.standing}, ${s.reputation}) are ${fromStats.code} level`];
-    s.whySeen = true;
-    if (mod < 0) parts.push(withChoices.code !== fromStats.code ? `a choice this year that counted against you took it to ${withChoices.code}` : "a choice this year counted against you");
-    if (mod > 0) parts.push(withChoices.code !== fromStats.code ? `a choice this year that counted for you lifted it to ${withChoices.code}` : "a choice this year counted for you");
-    if (grade.code !== withChoices.code) {
-      const better = order.indexOf(grade.code) < order.indexOf(withChoices.code);
-      parts.push(s.year <= 1 && grade.code === "C" && withChoices.code === "D"
-        ? "a first appraisal never goes below C"
-        : better ? `a good year lifted it to ${grade.code}` : `a bad year took it down to ${grade.code}`);
+    const say = (key, fallback, fill) => sayStats(voice(s, "why." + key, P[key]) || fallback, names, fill || {});
+    const tails = [];
+    if (f.mod < 0) tails.push(f.withChoices !== f.fromStats
+      ? say("choiceDown", "A choice this year that counted against you took the grade down to {grade}.", { grade: f.withChoices })
+      : say("choiceAgainst", "A choice this year counted against you."));
+    if (f.mod > 0) tails.push(f.withChoices !== f.fromStats
+      ? say("choiceUp", "A choice this year that counted in your favour lifted the grade to {grade}.", { grade: f.withChoices })
+      : say("choiceFor", "A choice this year counted in your favour."));
+    if (f.grade !== f.withChoices) {
+      const better = order.indexOf(f.grade) < order.indexOf(f.withChoices);
+      tails.push(f.year <= 1 && f.grade === "C" && f.withChoices === "D" ? "A first appraisal never goes below C."
+        : say(better ? "luckUp" : "luckDown", better ? "A good year lifted the grade to {grade}." : "A bad year took the grade down to {grade}.", { grade: f.grade }));
     }
-    const promo = s.rank < 8 && order.indexOf(grade.code) > order.indexOf("B+") ? " Promotion needs B+ or better." : "";
-    return parts.join("; ") + "." + promo;
+    const parts = [];
+    if (opts.first && W.whyFirst) parts.push(W.whyFirst);
+    const sh = statShape(f.stats);
+    if (opts.stats || sh.key !== v.said) {
+      const line = voice(s, "why." + sh.shape, P[sh.shape]);
+      if (line) { parts.push(sayStats(line, names, { A: names[sh.strong], B: names[sh.weak] })); v.said = sh.key; v.wordsAt = s.cardsPlayed || 0; }
+    } else if (!tails.length && opts.moved) parts.push(say(opts.moved > 0 ? "better" : "worse", opts.moved > 0 ? "Your file is stronger than it was a year ago." : "Your file is weaker than it was a year ago."));
+    else if (!tails.length && opts.lastOff) parts.push(say(opts.lastOff > 0 ? "lastHigh" : "lastLow", opts.lastOff > 0 ? "Last year's grade was higher than your file deserved, and this year's is not." : "Last year's grade was lower than your file deserved, and this year's is not."));
+    parts.push(...tails);
+    if (!parts.length) return "";
+    if (f.rank < 8 && order.indexOf(f.grade) > order.indexOf("B+")) parts.push("Promotion needs B+ or better.");
+    return parts.join(" ");
+  }
+
+  // One quiet line on the outcome screen when a single choice moves a stat by 6 or more: the
+  // biggest move, and only when no line has named a stat in the last two cards (a why line that
+  // names them counts too), so the stats come up every few cards, not on every one.
+  function swingLine(content, s, moved) {
+    const W = (content.statWords || {}).swing, at = (s.voice || {}).wordsAt;
+    if (!W || (at !== undefined && (s.cardsPlayed || 0) - at < 3)) return null;
+    const [k, d] = moved.reduce((a, b) => (Math.abs(b[1]) > Math.abs(a[1]) ? b : a), [null, 0]);
+    if (Math.abs(d) < 6 || !W[k]) return null;
+    const text = voice(s, `swing.${k}.${d > 0 ? "up" : "down"}`, W[k][d > 0 ? "up" : "down"]);
+    if (!text) return null;
+    s.voice.wordsAt = s.cardsPlayed || 0;
+    return { kind: "note", text };
+  }
+
+  // Why a choice is locked, in words: the stat it needs, never the number.
+  function lockedText(content, ch) {
+    const L = (content.statWords || {}).locked || {};
+    return Object.keys(ch.requiresStat || {}).map(k => L[k] || `You don't have the ${k} for this yet.`).join(" ");
+  }
+
+  // The four stats, revealed on the ending screen: each with what it was and what it did to the run.
+  function statVerdicts(content, s) {
+    const V = (content.statWords || {}).verdicts || {};
+    return ["competence", "standing", "reputation", "integrity"].map(k => {
+      const v = V[k] || {}, band = (v.bands || []).find(b => s[k] >= b.min);
+      return { key: k, label: v.label || cap(k), value: s[k], text: [v.about, band && band.text].filter(Boolean).join(" ") };
+    });
   }
 
   // The words for a grade. A grade may list several (labels; label is the fallback): each time
@@ -1252,7 +1334,29 @@ const Engine = (() => {
   }
 
   // `t` collects what the year-end decided and why, for playtest traces. The UI ignores it.
+  // The appraisal's "why" line is written only in a year that may need explaining (the first
+  // appraisal, a grade that differs from last year's, a year-end with a promotion or a warning in
+  // it), and only if it has something new to say. A steady year shows just the grade and its quote.
   function yearEnd(content, s, t = {}) {
+    const prev = (s.history || []).filter(h => h.grade).pop(), rank0 = s.rank;
+    const log = reviewYear(content, s, t);
+    const i = log.findIndex(l => l.kind === "why" && l.facts);
+    if (i < 0) return log;
+    const f = log[i].facts, v = (s.voice = s.voice || {}), order = content.grades.map(g => g.code);
+    // the grade last year's stats alone were worth, and whether last year's grade was above or
+    // below it (a choice or luck), for which way the file moved
+    const base0 = v.base, off0 = v.off || 0;
+    v.base = f.fromStats;
+    v.off = Math.sign(order.indexOf(f.fromStats) - order.indexOf(f.grade));
+    const warned = log.some(l => l.kind === "warn");
+    const text = !prev || warned || s.rank > rank0 || prev.grade !== f.grade
+      ? appraisalWhy(content, s, f, { first: !prev, stats: !prev || warned,
+          moved: base0 === undefined ? 0 : Math.sign(order.indexOf(base0) - order.indexOf(f.fromStats)), lastOff: off0 })
+      : "";
+    if (text) log[i] = { kind: "why", text }; else log.splice(i, 1);
+    return log;
+  }
+  function reviewYear(content, s, t) {
     const log = [];
     const pay = payout(content, s);
     const nb = s.nbMonths === 0 ? "no National Bonus" : `a National Bonus of ${s.nbMonths} month${s.nbMonths === 1 ? "" : "s"}`;
@@ -1277,10 +1381,10 @@ const Engine = (() => {
     // A choice that was noted shows up here, in the one word that matters.
     const label = gradeLabel(s, grade);
     // The letter goes first: the euphemism is the joke, the letter is what it means.
-    const whyLine = appraisalWhy(content, s, grade, noise, mod);
     log.push({ kind: "appraisal", text: `Grade ${grade.code}. ${mod < 0
       ? `${label} The comments section includes the word "however".` : label}` });
-    log.push({ kind: "why", text: whyLine });
+    log.push({ kind: "why", facts: whyFacts(content, s, grade, mod) });
+
     // the last review: nothing that follows from a grade (a warning, a plan, a move) is to come
     if (grade.code === "C" && !finalYear) s.consecutiveC++; else s.consecutiveC = 0;
     if (grade.code === "D" && !finalYear) s.consecutiveD++; else { s.consecutiveD = 0; s.pipDone = false; }
@@ -1752,6 +1856,7 @@ const Engine = (() => {
     const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
     const trace = {};
     const log = applyChoice(content, s, ev, ch, trace);
+    const moved = STATS.map(k => [k, s[k] - state[k]]);   // what this choice did to the four stats
     if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
     // a card in a series: what was chosen becomes the habit its later years repeat
     if (ev.series) {
@@ -1760,6 +1865,8 @@ const Engine = (() => {
     }
     if (!s.ending) {
       const ye = yearEnd(content, s, trace);
+      const sw = swingLine(content, s, moved);
+      if (sw) log.push(sw);
       if (ye.length) log.push({ kind: "year", text: `Age ${before.age} · Year-end review` }, ...ye);
     }
     if (ev.id.startsWith(MONTAGE)) {
@@ -2026,7 +2133,7 @@ const Engine = (() => {
   }
 
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
-    finalLabels, recentKeys, endPlan,
+    finalLabels, recentKeys, lockedText, statVerdicts, endPlan,
     // cast and card parts, for the immersion lint and the tests
     render, applyVariant, partSlots, partCombos, roleNeeds, optionNeeds, maxRankForAge, personField, TOKEN,
     article, STATS, QUIET: QUIET_YEAR };

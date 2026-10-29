@@ -4,7 +4,8 @@
 //       effect numbers, win-route thresholds, or any 7-word run copied from a secret document
 //       (the mechanics brief, the design doc) that is not also on the public store page.
 //   checkScreen(text, build)                for generated screens: internal ids, JSON, render
-//       bugs. Game text may name CEP (an event explains it); prompts may not.
+//       bugs, and any stat value during play (the four stats are hidden until the ending screen).
+//       Game text may name CEP (an event explains it); prompts may not.
 //
 // CLI: node harness/leak-check.js [runs]  plays seeded runs and checks every screen.
 const H = require("./index");
@@ -58,8 +59,24 @@ function screenTerms(build) {
   return [...ids];
 }
 
-function checkScreen(text, build, terms = screenTerms(build)) {
+// The four stats are hidden during play and revealed only on the ending card, whose first line
+// is "<NAME> · THE FINAL POSITION" (harness/screen.js). The ending screen shows the last year's
+// outcome above that card, and the stats stay hidden there, so only the text before the line is
+// checked. opts.ending (no line in the text) treats the whole text as the ending card.
+const ENDING_LINE = /^[^\n]* · THE FINAL POSITION$/m;
+const STAT_VALUES = [
+  [/\b(REP|STAND|INTEG|COMP)\s+\(?[+-]?\d/, "stat value during play"],   // the old header labels
+  [/\b(reputation|standing|integrity|competence)\b\s*[:=(]?\s*\d{1,3}\b/i, "stat value during play"]
+];
+
+function checkScreen(text, build, terms = screenTerms(build), opts = {}) {
   const hits = [];
+  const at = text.search(ENDING_LINE);
+  const during = at >= 0 ? text.slice(0, at) : opts.ending ? "" : text;   // what is shown before the ending card
+  for (const [re, why] of STAT_VALUES) {
+    const m = during.match(re);
+    if (m) hits.push({ why, match: m[0] });
+  }
   for (const id of terms) if (text.includes(id)) hits.push({ why: "internal id", match: id });
   for (const [re, why] of [
     [/"\w+"\s*:/, "JSON"], [/\bundefined\b|\bNaN\b|\[object Object\]/, "render bug"],
@@ -89,7 +106,7 @@ if (require.main === module) {
         for (const tags of ["phone", "none"]) {
           const text = H.screenText(run, { tags });
           screens++;
-          const hits = checkScreen(text, build, terms);
+          const hits = checkScreen(text, build, terms, { ending: run.phase === "ending" });
           if (hits.length) { bad++; if (bad <= 5) console.log(`✗ ${origin} seed ${run.seed} turn ${run.turn}:`, hits); }
         }
         if (run.phase === "ending") break;
