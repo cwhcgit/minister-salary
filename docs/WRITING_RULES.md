@@ -18,6 +18,7 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 | `node test/sim.js regress` | Missing text, outcomes or scheduled cards; consequences dropped. It also reports dominated choices and stats pushed one way, without failing | CI |
 | `node test/jargon.js` | A player meeting a term before any of its entry points (`web/content/jargon.json`) | Being added |
 | `node test/castlines.js` | A person named outside a card without saying who they are | Being added |
+| `node test/duplicates.js` | Two cards that pose the same decision in one career; a card that repeats outside its series | CI |
 | Pages "Validate content" step | Duplicate ids, missing scheduled cards, a choice without text or an outcome | On every deploy |
 
 ## 1. Voice and tone
@@ -171,7 +172,7 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 - Check: `test/contexts.js` static check for tokens (also in CI); editor review for the rest.
 
 **3.13 Write enough lines that none repeats.** At least four Meanwhile lines per habit, enough for a long career on a series card, and three or four versions of each cast line, each sentence used once.
-- Why: a run never shows a line twice; when the lines run out, the card comes back in full, or the change happens with no line.
+- Why: a run never shows a line twice; when a repeatable card's lines for the habit run out, the card is not drawn again that run (rule 5.15), and a cast change happens with no line.
 - Check: `test/contexts.js` and `test/harness.test.js` fail a cast line shown twice in a run; the counts are editor review.
 
 **3.14 A story chain is 3-5 cards over years.** Each beat is set up by a flag and scheduled with `inYears` and a chance; branches are mutually exclusive flags; the chain feeds the Folder (a compromise) or Declassified (a line naming the chain) at least once. Order a chain's Declassified entries from the furthest point the story can reach to the nearest.
@@ -292,7 +293,7 @@ Never `{player}` on its own: say which form. Keep the player's tokens out of cho
 - Why: the vetting reads every compromise back.
 - Check: editor review only.
 
-**5.10 Choices come back.** Plant consequences with `schedule`, years later and with a chance. A consequence waits, still scheduled, until its requirements hold.
+**5.10 Choices come back.** Plant consequences with `schedule`, years later and with a chance. A consequence waits, still scheduled, until its requirements hold; one that would pose a decision the career has already had is struck instead (rule 5.15).
 - Why: a choice in year 6 detonating in year 14 is what makes choices feel heavy.
 - Check: `node test/sim.js regress` fails if a consequence is ever silently dropped.
 
@@ -311,6 +312,16 @@ Never `{player}` on its own: say which form. Keep the player's tokens out of cho
 **5.14 Traits (not built) never decide a career.** No trait is required to win, and every origin can take every trait.
 - Why: a trait is flavour and a small edge, not a key.
 - Check: editor review only.
+
+**5.15 One decision, once.** A career meets each decision once. Cards that pose the same decision in different words, close matches included (one shared option is enough: "ask for the hard ministry nobody wants"), share an exclusive group, and a career is shown one card of each group. A card that repeats does so as a series (rule 5.12), never as the same question asked again.
+- Why: in the owner's words, "close enough matches are very immersion breaking, although they happen often in real life… these matching cards should just not repeat". A second card with the first card's question tells the player they are reading a deck, not living a career.
+- How:
+  - Give each card of a group `"exclusive": "<group>"` (or a list of groups). The first card of the group a career is shown in full claims it, and the group's other cards are never drawn for that career; a consequence that would fire one of them is struck (the state keeps a list), never left waiting. The card that claimed the group keeps its own repeat behaviour. A card that poses the decision only in one of its roles names the condition: `{ "group": "house_brief", "requires": { "minRank": 9 } }` (the reply to an adjournment motion, not the motion).
+  - A story chain joins a group through its first card, even when the matching beat comes later (The Pilot is in `bad_number` because its second beat asks for one number for a speech), so a chain that has started always runs to its end. A card a consequence fires is in a group only if it ends its story.
+  - Draw order decides which card of a group a career meets. When a weak duplicate comes earlier in a career than the group's best card and would starve it, turn the weak one into a different decision instead (the CNY lunch now asks what to stop, not what is wrong; farewell drinks no longer asks for the hardest posting, which starved the reshuffle).
+  - A repeatable card is a series: `"series": { "key", "full", "spend": true }`, `"noMontage": true`, and a `stance` on each choice. It is shown in full `full` times a career (two, for a card worth a second look: the second showing asks whether to keep the habit, with `again.keep` and `again.change`); every year after passes by itself with a Meanwhile line for the habit, and once those lines are spent (`spend`) the card is not drawn again. Write the second-showing scene about the habit, not about the card it was set on: a series' first showing may be any of its cards.
+  - A new card that resembles an existing one either joins its group or is rewritten until the decision is different. `docs/CONTENT_PLAN.md` section 4 says how to check.
+- Check: `node test/duplicates.js` (in CI) plays 1,800 careers, random and win-seeking, every origin, alone and with a batchmate, and fails when a career is shown two cards of one group, when a card is shown in full more often than its series allows or its second showing is posed as new, or when a consequence waits for a card the career can no longer see. It also fails a group of one card, a repeatable card outside a series, a series card without a second-showing scene or Meanwhile lines for a stance, and a card a consequence fires that is in a group and schedules a later beat. Whether two cards pose the same decision is editor review: the audit (`reports/duplicates-audit.md`) lists every group and the likenesses weighed and kept apart.
 
 ## 6. Realism and satire
 

@@ -47,15 +47,16 @@ One **card = one year**. A turn is a card, its outcome, then a page for each yea
 3. **The year-end review**, on its own page, headed with the age: pay, compared with last
    year; the appraisal (§5); a promotion or not; any warning, rumour or batchmate news; and
    signals about next year. The player is a year older.
-4. **Years without a decision**, a page each: a repeatable card already played in full (one
-   Meanwhile line that repeats what you chose before), a safe re-election, a series card
-   already shown as often as it may be, or an empty pool. Each still has its pay, appraisal
-   and promotion.
+4. **Years without a decision**, a page each: a card that repeats, already shown as often as
+   its series may be (one Meanwhile line that repeats what you chose before), a safe
+   re-election, or an empty pool. Each still has its pay, appraisal and promotion.
 5. **Confirm Another Year**, on the last page, goes on to the next card. When the career is
    over, the button reads **The Final Position** and opens the ending card (§8).
 
 A card with no real decision in it is a failure of content. Years with nothing to decide pass
-by themselves instead.
+by themselves instead. A career meets each decision once: cards that pose the same decision share
+an exclusive group, and only the first of them a career meets is shown (`docs/WRITING_RULES.md`
+rule 5.15).
 
 The header shows rank, grade, age, year, ministry, the batchmate if there is one, and lifetime
 earnings. Its **Reincarnate** button abandons the current run and goes back to the start
@@ -306,8 +307,8 @@ tea, the National Bonus, the succession); then a weighted random draw from the c
 `test/variety.js`:
 - *Versions.* A card may carry `variants`: the same mechanics in a different scene (title,
   body, choice text and outcomes change; effects, flags and consequences do not). A run's
-  first showing prefers a version the phone has not shown recently; a repeatable card shown
-  in full again later in the run moves on to its next version.
+  first showing prefers a version the phone has not shown recently; a card shown in full
+  again later in the run (a series' second showing aside) moves on to its next version.
 - *Freshness.* The phone remembers the cards and versions of its last two runs; those cards
   are drawn at 0.35 of their weight.
 - *Ministry decks.* Some cards require the player's ministry (Health, Manpower, National
