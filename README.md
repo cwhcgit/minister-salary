@@ -11,6 +11,9 @@ signal.
 
 Design document: [`docs/DESIGN.md`](docs/DESIGN.md)
 
+Every card, in order: [`docs/DECK.md`](docs/DECK.md), as the player reads it, and
+[`docs/DECK-DESIGN.md`](docs/DECK-DESIGN.md), with the mechanics.
+
 ---
 
 ## What this is
@@ -44,6 +47,7 @@ can move across unchanged.
 web/                 the game: rules (engine.js), screens (ui.js), offline cache (sw.js)
 web/content/         everything you read in the game: cards, endings, pay, names (JSON)
 docs/                the design (DESIGN.md) and the writers' guide (CONTENT_PLAN.md)
+docs/DECK*.md        every card in order, with links, generated from the content by tools/deck.js
 harness/  test/      automated players, balance checks and tests
 agents/              Claude playtesters that play the game and report what was fun or unclear
 reports/             playtest results
@@ -82,7 +86,9 @@ field, the house style, and the plain-English rules.
 Push to `main` and the checks run. If a card is malformed or breaks the balance below, the
 change is stopped before it reaches anyone's phone. If it passes, the game is published in a
 few minutes. Bump `VERSION` in `web/sw.js` with every change: the game is stored on phones so
-it plays offline, and the new version number is what tells them to replace the old copy.
+it plays offline, and the new version number is what tells them to replace the old copy. Then
+run `node tools/deck.js`, which rewrites the deck (`docs/DECK.md`) from the content; the checks
+stop a change whose deck is out of date.
 
 ## Balance
 
