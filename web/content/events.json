@@ -498,7 +498,7 @@
         "choices": [
           {
             "text": "Take the pen: the 6pm statement, and the apology in it.",
-            "outcome": "Eleven drafts, the last four about a single word: \"regret\". The Minister keeps it. On Friday the Head of Civil Service asks who chose the word, is told \"{player.formal}\", and writes it down."
+            "outcome": "Eleven drafts, the last four about a single word: \"regret\". The Minister keeps it. On Friday the Head of Civil Service asks who chose the word, is told \"{player.full}\", and writes it down."
           },
           {
             "text": "Take the ops room: lifts first, then everything else.",
@@ -1023,7 +1023,7 @@
   {
     "id": "cny_lohei",
     "title": "Lo Hei",
-    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of lo hei, tossing the yusheng salad as high as chopsticks allow and shouting good wishes, the Permanent Secretary turns to you and asks, properly: \"So, {player.formal}, what do you actually think we're getting wrong?\"",
+    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of lo hei, tossing the yusheng salad as high as chopsticks allow and shouting good wishes, the Permanent Secretary turns to you and asks, properly: \"So, {player.given}, what do you actually think we're getting wrong?\"",
     "requires": {
       "minRank": 2,
       "maxRank": 6
@@ -1815,7 +1815,7 @@
         ]
       }
     },
-    "body": "Years ago, when your scheme's usage came in at 31%, you put it on a slide as \"30-60%\". Now the Auditor-General's Office is auditing the scheme and has asked for the original figure for that year. The request is routine and addressed to {player.formal}, and the auditors will compare it with the slide.",
+    "body": "Years ago, when your scheme's usage came in at 31%, you put it on a slide as \"30-60%\". Now the Auditor-General's Office is auditing the scheme and has asked for the original figure for that year. The request is routine and addressed to {player.full}, and the auditors will compare it with the slide.",
     "choices": [
       {
         "text": "Send the real figure, and explain the slide.",
@@ -4647,7 +4647,7 @@
   {
     "id": "committee_vindicated",
     "title": "The Decision Paper",
-    "body": "When you were secretariat to a deadlocked Inter-Ministry Committee, you wrote a paper that forced it to decide. That committee has now been dissolved, and its replacement has adopted your paper as its terms of reference. The footer still says \"Prepared by {player}, Secretariat\", and the paper is about to go to every ministry.",
+    "body": "When you were secretariat to a deadlocked Inter-Ministry Committee, you wrote a paper that forced it to decide. That committee has now been dissolved, and its replacement has adopted your paper as its terms of reference. The footer still says \"Prepared by {player.full}, Secretariat\", and the paper is about to go to every ministry.",
     "triggered": true,
     "choices": [
       {
@@ -4737,7 +4737,7 @@
   {
     "id": "speech_vindicated",
     "title": "Hansard",
-    "body": "Years ago you stood up in the House and said plainly what you thought, when a safer version was ready in front of you. Your words went into Hansard, word for word. This week a newer Member quotes them in a speech, beginning \"As {player.formal} said in this House\". Someone on the front bench, where the ministers sit, looks up the original, and so does the press gallery.",
+    "body": "Years ago you stood up in the House and said plainly what you thought, when a safer version was ready in front of you. Your words went into Hansard, word for word. This week a newer Member quotes them in a speech, beginning \"As {player.full} said in this House\". Someone on the front bench, where the ministers sit, looks up the original, and so does the press gallery.",
     "triggered": true,
     "choices": [
       {
@@ -6384,7 +6384,7 @@
   {
     "id": "model_ward",
     "title": "A Model Ward",
-    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really three things: the volunteers, the Tuesday-night Meet-the-People Sessions where residents queue with their problems, and a weak opponent.",
+    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.full} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really three things: the volunteers, the Tuesday-night Meet-the-People Sessions where residents queue with their problems, and a weak opponent.",
     "triggered": true,
     "once": true,
     "requires": {

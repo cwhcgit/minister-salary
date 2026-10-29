@@ -71,15 +71,21 @@ const STAT_VALUES = [
 ];
 
 // Another choice's honorific before the player's name (game.json player.genders): "Mr Tan Wei
-// Ming" for a player who chose Female, "Ms ..." for one who chose Male, and so on for any choice.
+// Ming" or "Mr Tan" for a player who chose Female, "Ms ..." for one who chose Male, and so on for
+// any choice. The name as typed, the whole name and the surname are each checked (engine.player
+// gives the forms of the name; an older engine has only the name as typed).
 function wrongHonorific(text, player, build) {
-  if (!player || !player.name || text.indexOf(player.name) < 0) return null;
+  if (!player || !player.name) return null;
   const T = ((build && build.content.player) || {}).genders;
   if (!T || !T[player.gender]) return null;
+  const me = build.engine && build.engine.player ? build.engine.player(build.content, { name: player.name, gender: player.gender }) : { name: player.name };
+  const bare = x => x && me.honorific && x.startsWith(me.honorific + " ") ? x.slice(me.honorific.length + 1) : x;
+  const names = [...new Set([player.name, bare(me.full), bare(me.formal)].filter(Boolean))].sort((a, b) => b.length - a.length);
+  if (!names.some(n => text.includes(n))) return null;
   const re = x => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const mine = T[player.gender].honorific;
   const wrong = [...new Set(Object.values(T).map(g => g.honorific).filter(h => h && h !== mine))];
-  const m = wrong.length && text.match(new RegExp(`\\b(?:${wrong.map(re).join("|")}) ${re(player.name)}\\b`));
+  const m = wrong.length && text.match(new RegExp(`\\b(?:${wrong.map(re).join("|")}) (?:${names.map(re).join("|")})\\b`));
   return m ? m[0] : null;
 }
 

@@ -24,7 +24,8 @@ const Packs = (() => {
   }
 
   // The start screen's choices (game.json player.genders) are the only source of the player's
-  // honorifics and pronouns: a build without them, or with a malformed table, is refused.
+  // honorifics and pronouns, and player.names of how a typed name is read: a build without them,
+  // or with a malformed table, is refused.
   // Same rules as the engine's playerTableProblem.
   function playerProblem(P) {
     const G = P && P.genders;
@@ -33,10 +34,18 @@ const Packs = (() => {
       if (!g || typeof g !== "object") return `player.genders.${id} is not an object`;
       if (typeof g.label !== "string" || !g.label) return `player.genders.${id} has no label`;
       if (typeof g.honorific !== "string" || !g.honorific) return `player.genders.${id} has no honorific`;
+      const taken = ["name", ...FORMS].find(k => Object.keys(g).some(x => x.toLowerCase() === k));
+      if (taken) return `player.genders.${id} has a field "${taken}", which is a form of the player's name`;
     }
     if (!Object.prototype.hasOwnProperty.call(G, P.default)) return `player.default "${P.default}" is not one of player.genders`;
+    const N = P.names;
+    if (!N || typeof N !== "object" || Array.isArray(N)) return "player.names is missing (the lists a typed name is read by)";
+    for (const k of NAME_LISTS) if (!Array.isArray(N[k]) || N[k].some(x => typeof x !== "string" || !x)) return `player.names.${k} is not a list of words`;
     return null;
   }
+  // the forms of the player's name, and the lists a typed name is read by (as engine.js)
+  const FORMS = ["given", "formal", "full"];
+  const NAME_LISTS = ["chineseSurnames", "chineseGiven", "surnames", "fatherNames", "patronymics", "surnameParticles", "noSurname", "dropFromGiven"];
 
   return { DIR, assemble, playerProblem };
 })();

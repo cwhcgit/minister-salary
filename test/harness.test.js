@@ -42,6 +42,35 @@ ok('a run replays exactly from (build, origin, seed, choices)', () => {
   }
 });
 
+ok('starting stats: each career starts near its origin, the same seed starts the same career, and the origins stay apart where they are ranked', () => {
+  const C = build.content, E = build.engine;
+  const band = (o, k) => ((o.startBand || {})[k] ?? (C.startBand || {})[k] ?? (C.startBand || {}).default ?? 0);
+  const range = (o, k) => [o.stats[k] - band(o, k), o.stats[k] + band(o, k)];
+  const flat = { ...C, startBand: { default: 0 }, origins: C.origins.map(o => { const x = { ...o }; delete x.startBand; return x; }) };
+  for (const o of C.origins) {
+    const values = Object.fromEntries(E.STATS.map(k => [k, new Set()]));
+    for (let seed = 1; seed <= 300; seed++) {
+      const a = E.newGame(C, o.id, 'X', seed), b = E.newGame(C, o.id, '', seed, { gender: 'm', rival: true });
+      const c = E.newGame(flat, o.id, 'X', seed);
+      for (const k of E.STATS) {
+        assert.ok(band(o, k) <= 5, `${o.id} ${k}: a band of ${band(o, k)} is wider than the narrow band`);
+        const [lo, hi] = range(o, k);
+        assert.ok(a[k] >= lo && a[k] <= hi, `${o.id} seed ${seed}: ${k} ${a[k]} is outside ${lo}-${hi}`);
+        assert.strictEqual(b[k], a[k], 'the name, the gender and the batchmate do not move the start');
+        assert.strictEqual(c[k], o.stats[k]);
+        values[k].add(a[k]);
+      }
+      // the band has a stream of its own: the run's own dice start where they would without it
+      assert.deepStrictEqual([a.ministry, a.cep, a.rngCalls], [c.ministry, c.cep, c.rngCalls]);
+    }
+    for (const k of E.STATS) assert.strictEqual(values[k].size, 2 * band(o, k) + 1, `${o.id} ${k}: every start in the band is reached`);
+  }
+  // a scholar starts with more standing and reputation than any graduate, and a graduate more than any poly entrant
+  const O = id => C.origins.find(o => o.id === id);
+  for (const k of ['standing', 'reputation']) for (const [hi, lo] of [['scholar', 'grad'], ['grad', 'poly']])
+    assert.ok(range(O(lo), k)[1] < range(O(hi), k)[0], `${k}: the ${lo}'s band ${range(O(lo), k).join('-')} reaches the ${hi}'s ${range(O(hi), k).join('-')}`);
+});
+
 ok('a game has no batchmate unless asked for, and the batchmate stays hidden until the end', () => {
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 20; seed++) {
     const S = build.engine.newGame(build.content, origin, 'X', seed);
@@ -689,21 +718,25 @@ ok('the player\'s name and gender are text only: the same seed plays identically
   assert.ok(differ > 10 && endings > 50, `expected screens that read differently as Female and as Male (${differ}), and endings (${endings})`);
 });
 
-ok('the player\'s tokens: name, formal name and pronouns, a blank name drawn for the gender, and old saves', () => {
+ok('the player\'s tokens: the three forms of the name and the pronouns, a blank name drawn for the gender, and old saves', () => {
   const C = build.content, E = build.engine;
   const S = (name, gender) => E.newGame(C, 'grad', name, 7, { gender });
   const say = (st, t) => E.render(C, { id: 't', title: 'T', body: t, choices: [{ text: 'A', outcome: 'B' }] }, st).body;
-  const t = 'Is {player} here? {player.formal} said {player.they} would come. Ask {player.them} about {player.their} file. {Player.They} said so. {player.Their} file.';
-  assert.strictEqual(say(S('Tan Wei Ming', 'm'), t), 'Is Tan Wei Ming here? Mr Tan Wei Ming said he would come. Ask him about his file. He said so. His file.');
-  assert.strictEqual(say(S('Lim Hui Min', 'f'), t), 'Is Lim Hui Min here? Ms Lim Hui Min said she would come. Ask her about her file. She said so. Her file.');
-  assert.strictEqual(say(S('Dr Ong', 'f'), '{player.formal}'), 'Dr Ong', 'a typed honorific is kept, not doubled');
-  assert.strictEqual(say(S('{peer} $&', 'f'), '{player}'), '{peer} $&', 'what the player typed is never read as a token');
-  // a blank name: a name from the cast pool for that gender, the same for the same seed
+  const t = '"{player.given}?" {player.formal} said {player.they} would come. Ask {player.them} about {player.their} file, "{player.full}". {Player.They} said so. {player.Their} file. {player}.';
+  assert.strictEqual(say(S('Tan Wei Ming', 'm'), t), '"Wei Ming?" Mr Tan said he would come. Ask him about his file, "Mr Tan Wei Ming". He said so. His file. Tan Wei Ming.');
+  assert.strictEqual(say(S('Lim Hui Min', 'f'), t), '"Hui Min?" Ms Lim said she would come. Ask her about her file, "Ms Lim Hui Min". She said so. Her file. Lim Hui Min.');
+  assert.strictEqual(say(S('Dr Ong', 'f'), '{player.formal}, {player.full}, {player.given}'), 'Dr Ong, Dr Ong, Dr Ong', 'a typed honorific is kept, not doubled');
+  assert.strictEqual(say(S('Dr Tan Wei Ling', 'm'), '{player.given}, {player.formal}, {player.full}'), 'Wei Ling, Dr Tan, Dr Tan Wei Ling');
+  assert.strictEqual(say(S('{peer} $&', 'f'), '{player} / {player.given} / {player.full}'), '{peer} $& / {peer} / Ms {peer} $&', 'what the player typed is never read as a token');
+  // a blank name: a name from the cast pool for that gender, the same for the same seed, and its
+  // forms are the pool's own
   for (let seed = 1; seed <= 30; seed++) for (const g of ['f', 'm']) {
     const a = E.newGame(C, 'grad', '', seed, { gender: g }), b = E.newGame(C, 'grad', '  ', seed, { gender: g });
     const n = C.cast.names.find(x => x.full === a.name);
     assert.ok(n && n.pron === g, `seed ${seed}: drawn name ${a.name} is not a ${g} name from the pool`);
     assert.strictEqual(a.name, b.name);
+    const hon = C.player.genders[g].honorific;
+    assert.deepStrictEqual(say(a, '{player.given}|{player.formal}|{player.full}').split('|'), [n.given, `${hon} ${n.formal}`, `${hon} ${n.full}`]);
     assert.deepStrictEqual([a.cep, a.ministry, a.rngCalls], [E.newGame(C, 'grad', 'X', seed, { gender: g }).cep, E.newGame(C, 'grad', 'X', seed).ministry, 0]);
   }
   // the batchmate is renamed (same pronoun) when the player has their name; their dice are not touched
@@ -726,13 +759,99 @@ ok('the player\'s tokens: name, formal name and pronouns, a blank name drawn for
   assert.strictEqual(E.player(C, old).name, up.name, 'an un-upgraded save reads the same defaults');
   // the lint knows the tokens: an unknown field is flagged, and so is a pronoun before a present tense
   const { castStatic } = require('./contexts');
-  const bad = { ...C, events: C.events.concat([{ id: 'x_test', title: 'X', body: '{player.given} {player.they} says', choices: [{ text: 'A', outcome: 'B' }] }]) };
+  const bad = { ...C, events: C.events.concat([{ id: 'x_test', title: 'X', body: '{player.nickname} {player.they} says', choices: [{ text: 'A', outcome: 'B' }] }]) };
   const found = castStatic({ ...build, content: bad }).filter(x => x.startsWith('x_test'));
   assert.ok(found.some(x => /unknown player field/.test(x)) && found.some(x => /present-tense/.test(x)), JSON.stringify(found));
-  // the leak check catches a raw token and the wrong honorific
+  // the leak check catches a raw token and the wrong honorific, before the whole name or the surname
   assert.ok(checkScreen('A {player.formal} B', build, []).some(h => /player placeholder/.test(h.why)));
-  assert.ok(checkScreen('Thank you, Mr Lim Hui Min.', build, [], { player: { name: 'Lim Hui Min', gender: 'f' } }).some(h => /honorific/.test(h.why)));
-  assert.deepStrictEqual(checkScreen('Thank you, Ms Lim Hui Min.', build, [], { player: { name: 'Lim Hui Min', gender: 'f' } }), []);
+  const lim = { player: { name: 'Lim Hui Min', gender: 'f' } };
+  for (const bad of ['Thank you, Mr Lim Hui Min.', 'Thank you, Mr Lim.']) assert.ok(checkScreen(bad, build, [], lim).some(h => /honorific/.test(h.why)), bad);
+  for (const good of ['Thank you, Ms Lim Hui Min.', 'Thank you, Ms Lim.', 'Hui Min, thank you.']) assert.deepStrictEqual(checkScreen(good, build, [], lim), [], good);
+});
+
+// Reading a typed name into its three forms (game.json player.names; engine nameForms): given is
+// what colleagues say, formal the honorific and the surname (or the given name, with no surname),
+// full the honorific and the whole name.
+ok('a typed name is read into its three forms by Singapore\'s naming conventions, and never into broken text', () => {
+  const C = build.content, E = build.engine;
+  const forms = (name, gender = 'f') => { const p = E.player(C, { name, gender }); return [p.given, p.formal, p.full]; };
+  const TABLE = [
+    // surname first, as Chinese names are written (Hanyu Pinyin and dialect spellings)
+    ['Lim Wei Ling', 'f', 'Wei Ling', 'Ms Lim', 'Ms Lim Wei Ling'],
+    ['Tan Kok Leong', 'm', 'Kok Leong', 'Mr Tan', 'Mr Tan Kok Leong'],
+    ['Zhang Xin Yi', 'f', 'Xin Yi', 'Ms Zhang', 'Ms Zhang Xin Yi'],
+    ['Quek Boon Huat', 'm', 'Boon Huat', 'Mr Quek', 'Mr Quek Boon Huat'],
+    ['lim wei ling', 'f', 'Wei Ling', 'Ms Lim', 'Ms Lim Wei Ling'],
+    ['  Goh   Jia  Xin ', 'f', 'Jia Xin', 'Ms Goh', 'Ms Goh Jia Xin'],
+    // a surname last, Western order
+    ['Charmaine Ang', 'f', 'Charmaine', 'Ms Ang', 'Ms Charmaine Ang'],
+    ['Wei Ling Tan', 'f', 'Wei Ling', 'Ms Tan', 'Ms Wei Ling Tan'],
+    ['Siew Ling Goh', 'f', 'Siew Ling', 'Ms Goh', 'Ms Siew Ling Goh'],
+    ['Mei Ling Kok', 'f', 'Mei Ling', 'Ms Kok', 'Ms Mei Ling Kok'],
+    ['Charmaine Tan Wei Ling', 'f', 'Charmaine', 'Ms Tan', 'Ms Charmaine Tan Wei Ling'],
+    ['Benjamin Sim Jun Hao', 'm', 'Benjamin', 'Mr Sim', 'Mr Benjamin Sim Jun Hao'],
+    ['Daniel de Souza', 'm', 'Daniel', 'Mr de Souza', 'Mr Daniel de Souza'],
+    ['Maya Torres', 'f', 'Maya', 'Ms Torres', 'Ms Maya Torres'],
+    // a Chinese given name typed alone: no surname
+    ['Jia Hui', 'f', 'Jia Hui', 'Ms Jia Hui', 'Ms Jia Hui'],
+    ['Kok Leong', 'm', 'Kok Leong', 'Mr Kok Leong', 'Mr Kok Leong'],
+    // Malay names: bin or binte, or a Malay first name; no surname, so formal uses the given name
+    ['Nurul Huda binte Rahmat', 'f', 'Nurul Huda', 'Ms Nurul Huda', 'Ms Nurul Huda binte Rahmat'],
+    ['NURUL HUDA BINTE RAHMAT', 'f', 'Nurul Huda', 'Ms Nurul Huda', 'Ms Nurul Huda binte Rahmat'],
+    ['Muhammad Faizal bin Osman', 'm', 'Faizal', 'Mr Faizal', 'Mr Muhammad Faizal bin Osman'],
+    ['Siti Aishah', 'f', 'Aishah', 'Ms Aishah', 'Ms Siti Aishah'],
+    ['Nur Aisyah', 'f', 'Nur Aisyah', 'Ms Nur Aisyah', 'Ms Nur Aisyah'],
+    // Indian names: s/o or d/o, a father's name last, initials, or a family name last
+    ['Kavya Rajan', 'f', 'Kavya', 'Ms Kavya', 'Ms Kavya Rajan'],
+    ['Rajesh s/o Kumar', 'm', 'Rajesh', 'Mr Rajesh', 'Mr Rajesh s/o Kumar'],
+    ['Priya d/o Ramasamy', 'f', 'Priya', 'Ms Priya', 'Ms Priya d/o Ramasamy'],
+    ['S. Thangaraj', 'm', 'Thangaraj', 'Mr Thangaraj', 'Mr S. Thangaraj'],
+    ['Priya Nair', 'f', 'Priya', 'Ms Nair', 'Ms Priya Nair'],
+    ['Harpreet Kaur', 'f', 'Harpreet', 'Ms Kaur', 'Ms Harpreet Kaur'],
+    // a single word, and a typed honorific
+    ['Madonna', 'f', 'Madonna', 'Ms Madonna', 'Ms Madonna'],
+    ['QA', 'm', 'QA', 'Mr QA', 'Mr QA'],
+    ['Dr Tan Wei Ling', 'f', 'Wei Ling', 'Dr Tan', 'Dr Tan Wei Ling'],
+    ['Dr Ong', 'm', 'Dr Ong', 'Dr Ong', 'Dr Ong']
+  ];
+  for (const [name, g, ...want] of TABLE) assert.deepStrictEqual(forms(name, g), want, name);
+  // every name in the cast pool is read as the pool reads it, by the lists alone (the pool's one
+  // choice the lists cannot make: which of two Malay given names colleagues use)
+  const noPool = { ...C, cast: { ...C.cast, names: [] } };
+  const differ = C.cast.names.filter(n => {
+    const p = E.player(noPool, { name: n.full, gender: n.pron });
+    return p.given !== n.given || p.formal !== `${C.player.genders[n.pron].honorific} ${n.formal}`;
+  });
+  assert.deepStrictEqual(differ.map(n => n.full), ['Khairul Anwar bin Salleh']);
+  // the batchmate's names are given names: read alone, they have no surname
+  for (const n of C.rival.names) assert.deepStrictEqual(forms(n.name, n.pron).slice(0, 2), [n.name, `${C.player.genders[n.pron].honorific} ${n.name}`], n.name);
+  // never broken text: every form of an odd name is made of what was typed, with nothing doubled or empty
+  for (const name of ['Tan', 'bin', 'Siti', 'd/o Rajan', 'Ms', 'A. B.', 'de Souza', 'Lim, Wei Ling', 'Mr Mr Tan', "O'Brien-Lee", 'Tan Wei Ling Charmaine'])
+    for (const f of forms(name, 'f')) assert.ok(f && !/\s{2}|^\s|\s$|undefined|null/.test(f), `${name}: "${f}"`);
+});
+
+// How people address the player (docs/WRITING_RULES.md rule 4.1): the lint in test/contexts.js.
+ok('the address lint: a colleague never calls you {player.formal} or {player.full}, and the content always says which form it means', () => {
+  const C = build.content, { playerAddress } = require('./contexts');
+  const card = (id, body) => ({ id, title: 'X', body, choices: [{ text: 'A', outcome: 'B' }] });
+  const lint = (bodies, extra = {}) => playerAddress({ ...build, content: { ...C, ...extra, events: bodies.map((b, i) => card('x' + i, b)) } }).map(x => +x.match(/^x(\d+)/)?.[1]);
+  assert.deepStrictEqual(lint([
+    '{peer} messages you within the minute: "Nice one, {player.formal}."',
+    '"Well done, {player.full}," says {senior}, your reporting officer.',
+    'Your batchmate laughs: "{player.formal}, again?"',
+    'A colleague leans over: "Is that you, {player.formal}?"',
+    'Everyone says {player} did well.',
+    // clean: an official, the press, a sentence apart, a contrast on purpose
+    'At the end your questioner says, "Thank you, {player.formal}. That was very complete."',
+    '{peer} sends you the article. Its headline is "{player.formal} resigns".',
+    '{junior} calls you "{player.given}" on day one and "{player.formal}" on day two.',
+    'The footer says "Prepared by {player.full}, Secretariat".',
+    '{senior} looks up: "{player.given}, a minute?"'
+  ]), [0, 1, 2, 3, 4]);
+  // a cast line of a colleague's role is that person's own speech
+  const withLine = (role, t) => playerAddress({ ...build, content: { ...C, events: [], cast: { ...C.cast, lines: { [role]: { arrive: [t] } } } } });
+  assert.strictEqual(withLine('peer', '{name} writes: "Dear {player.formal}, see you around."').length, 1);
+  assert.strictEqual(withLine('journalist', '{name} writes: "Dear {player.formal}, it was a pleasure."').length, 0);
 });
 
 ok('the player\'s choices are data: a third choice and a new token field need no code, and nothing but text reads the gender', () => {
@@ -749,7 +868,7 @@ ok('the player\'s choices are data: a third choice and a new token field need no
   const say = (st, t) => E.render(C3, { id: 't', title: 'T', body: t, choices: [{ text: 'A', outcome: 'B' }] }, st).body;
   const S3 = E.newGame(C3, 'grad', 'Lim Hui Min', 9, { gender: 'mdm' });
   assert.strictEqual(S3.gender, 'mdm');
-  assert.strictEqual(say(S3, '{player.formal} said {player.they} would do it {player.self}. {Player.Self}.'), 'Mdm Lim Hui Min said she would do it herself. Herself.');
+  assert.strictEqual(say(S3, '{player.full}: {player.formal} said {player.they} would do it {player.self}. {Player.Self}.'), 'Mdm Lim Hui Min: Mdm Lim said she would do it herself. Herself.');
   const blank = E.newGame(C3, 'grad', '', 9, { gender: 'mdm' });
   assert.ok(C.cast.names.some(n => n.full === blank.name && n.pron === 'f'), 'a blank name is drawn from the choice\'s pool');
   assert.strictEqual(E.newGame(C3, 'grad', 'X', 9, { gender: 'nonsense' }).gender, C.player.default, 'an unknown choice reads as the default');

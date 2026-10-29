@@ -388,19 +388,41 @@ blank name is drawn for the run from that pool. Like the cast, both are text onl
 never use the run's dice, and the same seed plays the same career either way. Nobody in the run shares
 a word of the player's name: a cast member or batchmate who would is given another name.
 
-**Tokens.** `{player}` is the name as entered. `{player.formal}` is the choice's honorific and the
-name ("Ms Tan Wei Ling"; a name typed with its own honorific, "Dr Tan", is kept as typed).
-`{player.<field>}` is that field of the player's choice: `{player.they}`, `{player.them}`,
-`{player.their}` today, and any field added to every choice in the table. Capitalise the role or the
-field for a capital: `{Player.They}`.
+**Tokens.** People say the player's name differently by who they are and where they are, so the one
+name field gives three forms (there is no second box on the start screen):
+
+| Token | "Lim Wei Ling", Female | Who says it |
+| --- | --- | --- |
+| `{player.given}` | Wei Ling | colleagues, peers, your reporting officer or anyone senior speaking to you directly, friends, the batchmate |
+| `{player.formal}` | Ms Lim | officials in a formal or serious setting (an inquiry, HR in writing, a minister in a meeting), residents, the press |
+| `{player.full}` | Ms Lim Wei Ling | documents and the record: Hansard and the House, award lists, plaques and nameplates, a paper's footer, a letter's address line |
+
+The honorific is the choice's, or one typed with the name ("Dr Tan Wei Ling" is "Dr Tan" formally).
+A drawn name takes the pool's own `given` and `formal` (`cast.names`). A typed name is read by the
+lists in `player.names` (`game.json`), for Singapore's naming conventions; it is sensible rather than
+perfect, and every form is made of the words typed, so the text is never broken:
+
+- a Chinese surname first (`chineseSurnames`, in Hanyu Pinyin and dialect spellings): "Lim Wei Ling" is Wei Ling, Ms Lim;
+- a surname last, Western order: "Charmaine Ang" is Charmaine, Ms Ang; "Charmaine Tan Wei Ling" is Charmaine, Ms Tan; "Marcus de Souza" is Marcus, Mr de Souza; a last word in no list is read as a surname too;
+- bin or binte, s/o or d/o (`patronymics`): no surname, so formal uses the given name: "Nurul Huda binte Rahmat" is Nurul Huda, Ms Nurul Huda; a Malay first name (`noSurname`) reads the same without bin; "Muhammad", "Mohd" and "Siti" are left off the given name (`dropFromGiven`);
+- a father's name last (`fatherNames`): "Kavya Rajan" is Kavya, Ms Kavya, and Ms Kavya Rajan in full; an Indian family name last (`surnames`: Pillai, Nair, Kaur...) is a surname;
+- a Chinese given name alone (`chineseGiven`): "Jia Hui" is Jia Hui, Ms Jia Hui;
+- a single word is all three forms.
+
+`{player}` on its own is still filled (the name as entered), but content always says which form it
+means, and the lint fails it. `{player.<field>}` is that field of the player's choice:
+`{player.they}`, `{player.them}`, `{player.their}` today, and any field added to every choice in the
+table (except `name`, `given`, `formal` and `full`, the name's own). Capitalise the role or the field
+for a capital: `{Player.They}`.
 
 **Where.** The game says "you", so the player is named only where someone else names or addresses
 them, and lightly: the papers and the Forum page, Hansard and the House, a document's footer, an
-official addressing the player ("Thank you, {player.formal}. That was very complete."), the
-batchmate, a cast line, the ending card and the Declassified file. The tokens are filled in card
-bodies, outcomes, choice text and titles, the batchmate's lines, cast lines, Folder items, the ending
-card and the Declassified file; never in montage or autoplay lines. Which token to use, and why they
-stay out of choice text anyway, are rules 4.1, 4.2 and 4.7 of [`WRITING_RULES.md`](WRITING_RULES.md).
+official addressing the player ("Thank you, {player.formal}. That was very complete."), a colleague
+("So, {player.given}, what do you actually think we're getting wrong?"), the batchmate, a cast line,
+the ending card and the Declassified file. The tokens are filled in card bodies, outcomes, choice
+text and titles, the batchmate's lines, cast lines, Folder items, the ending card and the
+Declassified file; never in montage or autoplay lines. Which form to use, and why the tokens stay
+out of choice text anyway, are rules 4.1, 4.2 and 4.7 of [`WRITING_RULES.md`](WRITING_RULES.md).
 
 ### Card parts
 
@@ -454,7 +476,11 @@ lengths (rules 2.9 and 2.10).
   checking that it is the person the earlier choice was about.
 - `node test/contexts.js` plays its careers as Female and as Male, under typed names and drawn ones;
   it fails on a player token with an unknown field, a gendered word addressing the player, the wrong
-  honorific before the player's name, and a cast member or batchmate who shares a word of it.
+  honorific before the player's name or surname, and a cast member or batchmate who shares a word of
+  it. From the content alone, it fails `{player}` on its own and a colleague calling you by
+  `{player.formal}` or `{player.full}` (rule 4.1 says how it decides who is speaking).
+- `test/harness.test.js` reads a table of sample names into their three forms, and every name in the
+  cast pool as the pool reads it.
 - `node harness/leak-check.js` fails on any raw `{token}` on screen, and on the wrong honorific before
   the player's name; `node agents/leak-check.ts` plays each blind persona's careers under its own name
   and gender and checks every screen the same way.
