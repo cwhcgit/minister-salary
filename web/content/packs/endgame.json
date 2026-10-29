@@ -14,32 +14,32 @@
         "when": {
           "pick": "first",
           "options": [
-            { "id": "due", "requires": { "maxAge": 63 }, "text": "You reach the retirement age, 64, at the end of it, and HR has already put the date in the system" },
-            { "id": "late", "text": "You are past the retirement age of 64, on the usual one-year re-employment contract, and HR has already marked it \"not for renewal\"" }
+            { "id": "due", "requires": { "maxAge": 63 }, "text": "You reach the retirement age, 64, at the end of it, and HR has the date in the system" },
+            { "id": "late", "text": "You are past the retirement age of 64, on a one-year re-employment contract that HR has marked \"not for renewal\"" }
           ]
         },
         "ro": {
           "pick": "first",
           "options": [
-            { "id": "senior", "requires": { "maxRank": 6, "cast": { "senior": {} } }, "text": "{senior}, your reporting officer, asks how you would like to spend the year." },
+            { "id": "senior", "requires": { "maxRank": 6, "cast": { "senior": {} } }, "text": "{senior} asks how you would like to spend the year." },
             { "id": "hcs", "requires": { "minRank": 7 }, "text": "The Head of Civil Service asks how you would like to spend the year." },
             { "id": "ps", "requires": { "maxRank": 6 }, "text": "Your Permanent Secretary asks how you would like to spend the year." }
           ]
         }
       },
-      "body": "This is your last year in the service. {When}. {Ro} Whatever you leave unfinished will go to your successor in a box file, with your initials on the spine.",
+      "body": "This is your last year in the service. {When}. {Ro} Whatever you leave unfinished goes to your successor in a box file with your initials on the spine.",
       "choices": [
         {
           "text": "Write the handover properly.",
           "effects": { "integrity": 4, "competence": 2, "standing": -3 },
           "setFlags": ["last_handover"],
-          "outcome": "The handover runs to forty pages: the files, the history, and the names and mobile numbers of the three people who actually know how the system works. Your successor reads it in a weekend, and calls once, to say thank you."
+          "outcome": "The handover runs to forty pages: the files, the history, and the mobile numbers of the three people who actually know how the system works. Your successor reads it in a weekend and calls once, to say thank you."
         },
         {
           "text": "Push one last thing through.",
           "effects": { "reputation": 5, "competence": 1, "standing": -5 },
           "setFlags": ["last_push"],
-          "outcome": "Most of your goodwill goes on the change you have wanted for a decade, and it is approved in November with your name nowhere on it. Two colleagues who are staying on are unhappy about it, and you can live with that."
+          "outcome": "Most of your goodwill goes on the change you have wanted for a decade. It is approved in November with your name nowhere on it. Two colleagues who are staying are unhappy, and you can live with that."
         },
         {
           "text": "Start clearing your desk, quietly.",
@@ -65,7 +65,7 @@
           ]
         }
       },
-      "body": "The party is renewing its slate before {due}: new candidates in, and Members past 65 asked to make way. This year it is your turn. The Whip has booked the small meeting room, the one with a box of tissues nobody ever mentions, and asks you, kindly, not to stand again.",
+      "body": "The party is renewing its slate before {due}: new candidates in, and Members who will be 65 or older by Polling Day asked to make way. This year it is your turn. The Whip has booked the meeting room with the box of tissues nobody mentions, and asks you, kindly, not to stand again.",
       "choices": [
         {
           "text": "Agree, and announce it yourself first.",
@@ -77,13 +77,13 @@
           "text": "Ask to stand one more time.",
           "effects": { "integrity": 3, "standing": -6 },
           "setFlags": ["renewal_asked"],
-          "outcome": "You make your case, and make it well. The Whip listens without writing anything down, and says the answer will be the same tomorrow. It is. Your name is not on the slate."
+          "outcome": "You make your case, and make it well. The Whip listens without writing anything down, and says the answer will be the same tomorrow. It is. The slate goes to print without your name."
         },
         {
           "text": "Agree, if you can introduce your successor to the ward.",
           "effects": { "reputation": 4, "competence": -2, "standing": -1 },
           "setFlags": ["renewal_successor"],
-          "outcome": "The party's candidate is a generation younger than you, with a better CV than yours ever was. All year you take them round every block, coffee shop and void deck, introducing them as the person who looks after the ward now."
+          "outcome": "The party's candidate is a generation younger, with a better CV than yours ever was. All year you take them round every block, coffee shop and void deck, as the person who looks after the ward now."
         }
       ]
     },
@@ -94,7 +94,7 @@
       "triggered": true,
       "priority": true,
       "once": true,
-      "body": "The party is renewing its slate before the general election due next year, and most Members past 65 are being asked to make way. You are not. The Prime Minister wants you to stand once more and stay in Cabinet until you turn 70, where the party draws the line, and says, twice, that there is no pressure.",
+      "body": "The party is renewing its slate before next year's general election, and most Members who will be 65 or older by Polling Day are being asked to make way. You are not. The Prime Minister wants you to stand again and stay in Cabinet to 70, where the party draws the line, and says twice that there is no pressure.",
       "choices": [
         {
           "text": "Stand once more.",
@@ -123,8 +123,8 @@
           "pick": "first",
           "options": [
             { "id": "election", "requires": { "endKind": "election" }, "text": "Parliament will be dissolved this year for the general election, and you are not on the party's slate" },
-            { "id": "cabinet", "requires": { "endKind": "limit", "flagsAll": ["stays_on"] }, "text": "You turn 70 at the end of this year, which is where the party draws the line. You will leave Cabinet then, and you will not stand again" },
-            { "id": "limit", "requires": { "endKind": "limit" }, "text": "You turn 70 at the end of this year, which is where the party draws the line, and you will not stand at the general election after it" }
+            { "id": "cabinet", "requires": { "endKind": "limit", "flagsAll": ["stays_on"] }, "text": "You turn 70 at the end of this year, where the party draws the line, and you will leave Cabinet then and not stand again" },
+            { "id": "limit", "requires": { "endKind": "limit" }, "text": "You turn 70 at the end of this year, where the party draws the line, and you will not stand at the next general election" }
           ]
         },
         "left": {
@@ -135,7 +135,7 @@
           ]
         }
       },
-      "body": "This is your last year in politics. {End}. {Left} For once, the year is yours to spend as you choose.",
+      "body": "This is your last year in politics. {End}. {Left} For once, the year is yours to spend.",
       "choices": [
         {
           "text": "Write the handover properly.",
@@ -228,7 +228,7 @@
           "text": "Let the younger ministers choose one of themselves.",
           "effects": { "integrity": 5, "standing": -3 },
           "setFlags": ["pm_let_them_choose"],
-          "outcome": "The younger ministers meet without you, four times, and come back with one name and a statement that the choice was unanimous. You agree with the name. Nobody asked you to."
+          "outcome": "A former Minister sees each of the younger ministers alone, and comes back with one name and the words \"overwhelming majority\". You were not consulted, by design. You agree with the name anyway."
         },
         {
           "text": "Name your choice, and back them in public.",

@@ -1471,7 +1471,7 @@
         [
           "Next year is your last in office. The reshuffle for when you turn {limit} has already been drafted, and you have been asked, kindly, for your comments on it.",
           "Next year is your last. Your ministry has started copying your likely successor on everything, including, by accident, the email planning your farewell.",
-          "Next year is your last in Cabinet. The Cabinet Secretary asks, as usual, which of your papers you would like to keep. It is fewer than you expected.",
+          "Next year is your last in Cabinet. Your office asks, as it asks every departing Minister, which of your papers you would like to keep. It is fewer than you expected.",
           "Next year is your last. Your grassroots leaders are collecting for a farewell gift in secret, which in a ward this size means everyone has asked you what you would like."
         ]
       ]
@@ -1648,7 +1648,7 @@
             "pm_let_them_choose"
           ]
         },
-        "text": "The younger ministers chose. Their statement said the decision was unanimous, and by the fourth meeting it was."
+        "text": "The younger ministers chose, one private conversation at a time, and you were not consulted. Every one of them now says the choice was obvious."
       },
       {
         "label": "The succession",
