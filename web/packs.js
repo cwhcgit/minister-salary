@@ -16,12 +16,29 @@ const Packs = (() => {
     const ids = all.concat((rival && rival.events) || []).map(e => e.id);
     const dup = ids.filter((x, i) => ids.indexOf(x) !== i);
     if (dup.length) throw new Error(`duplicate card ids: ${[...new Set(dup)].join(", ")}`);
+    const bad = playerProblem(game.player);
+    if (bad) throw new Error(`game.json player table: ${bad}`);
     game.events = all;
     if (rival) game.rival = rival;
     return game;
   }
 
-  return { DIR, assemble };
+  // The start screen's choices (game.json player.genders) are the only source of the player's
+  // honorifics and pronouns: a build without them, or with a malformed table, is refused.
+  // Same rules as the engine's playerTableProblem.
+  function playerProblem(P) {
+    const G = P && P.genders;
+    if (!G || typeof G !== "object" || Array.isArray(G) || !Object.keys(G).length) return "player.genders is missing or empty";
+    for (const [id, g] of Object.entries(G)) {
+      if (!g || typeof g !== "object") return `player.genders.${id} is not an object`;
+      if (typeof g.label !== "string" || !g.label) return `player.genders.${id} has no label`;
+      if (typeof g.honorific !== "string" || !g.honorific) return `player.genders.${id} has no honorific`;
+    }
+    if (!Object.prototype.hasOwnProperty.call(G, P.default)) return `player.default "${P.default}" is not one of player.genders`;
+    return null;
+  }
+
+  return { DIR, assemble, playerProblem };
 })();
 
 if (typeof module !== "undefined") module.exports = Packs;

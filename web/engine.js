@@ -21,6 +21,7 @@ const Engine = (() => {
   // default). A blank name is drawn from the cast's name pool for it. Both are text only:
   // neither touches the run's dice.
   function newGame(content, originId, name, seed, opts = {}) {
+    playerTable(content);   // throws on a missing or malformed table: never a quiet default
     const origin = content.origins.find(o => o.id === originId);
     const r = rng(seed);
     const me = playerOf(content, { name, gender: opts.gender, seed });   // text only
@@ -135,19 +136,36 @@ const Engine = (() => {
   // Nothing outside text reads the gender: not the dice, not the draw, not the appraisal.
   const PLAYER_TOKEN = /\{([Pp]layer)(?:\.([A-Za-z]+))?\}/g;
   const PLAYER_OWN = ["label", "pool"];   // a choice's fields that are not tokens
-  // For content with no table (an old game.json): the two choices the start screen first had.
-  const PLAYER_TABLE = { default: "f", genders: {
-    f: { label: "Female", pool: "f", honorific: "Ms", they: "she", them: "her", their: "her" },
-    m: { label: "Male", pool: "m", honorific: "Mr", they: "he", them: "him", their: "his" } } };
-  const playerTable = content => (content && content.player && content.player.genders ? content.player : PLAYER_TABLE);
+  // The table is the only source: content without it, or with a malformed one, is an error,
+  // never a quiet default. (web/packs.js refuses such a build too, so the phone never loads one.)
+  const CHECKED = new WeakSet();
+  function playerTable(content) {
+    const P = content && content.player;
+    if (P && CHECKED.has(P)) return P;
+    const problem = playerTableProblem(P);
+    if (problem) throw new Error(`game.json player table: ${problem} (see docs/DESIGN.md section 7)`);
+    CHECKED.add(P);
+    return P;
+  }
+  function playerTableProblem(P) {
+    const G = P && P.genders;
+    if (!G || typeof G !== "object" || Array.isArray(G) || !Object.keys(G).length) return "player.genders is missing or empty";
+    for (const [id, g] of Object.entries(G)) {
+      if (!g || typeof g !== "object") return `player.genders.${id} is not an object`;
+      if (typeof g.label !== "string" || !g.label) return `player.genders.${id} has no label`;
+      if (typeof g.honorific !== "string" || !g.honorific) return `player.genders.${id} has no honorific`;
+    }
+    if (!Object.prototype.hasOwnProperty.call(G, P.default)) return `player.default "${P.default}" is not one of player.genders`;
+    return null;
+  }
   // The start screen's choices, in order: [{ id, label }].
   function genders(content) {
-    return Object.entries(playerTable(content).genders).map(([id, g]) => ({ id, label: g.label || id }));
+    return Object.entries(playerTable(content).genders).map(([id, g]) => ({ id, label: g.label }));
   }
   // A choice the table has, or the table's default.
   function genderId(content, g) {
     const T = playerTable(content);
-    return Object.prototype.hasOwnProperty.call(T.genders, g) ? g : (T.default in T.genders ? T.default : Object.keys(T.genders)[0]);
+    return Object.prototype.hasOwnProperty.call(T.genders, g) ? g : T.default;
   }
   // The token fields a text may use: {player}, {player.name}, {player.formal}, and every field the
   // table's choices have (other than their own label and pool).
@@ -172,7 +190,7 @@ const Engine = (() => {
   // drawn on the player's own stream, clear of any name words in `avoid`.
   function drawName(content, seed, gender, avoid) {
     const C = content && content.cast;
-    if (!C || !(C.names || []).length) return "You";   // an old build with no name pool
+    if (!C || !(C.names || []).length) throw new Error("game.json has no cast.names to draw a blank name from");
     const r = rng((Math.imul(seed >>> 0, 0x2C1B3C6D) ^ hashStr("player")) >>> 0);
     const want = playerTable(content).genders[gender].pool || gender;
     const pool = C.names.filter(n => n.pron === want);
@@ -203,11 +221,11 @@ const Engine = (() => {
     return s;
   }
   function playerField(content, me, field) {
-    const f = (field || "").toLowerCase(), g = playerTable(content).genders[me.gender] || {};
+    const f = (field || "").toLowerCase(), g = playerTable(content).genders[me.gender];
     if (f === "" || f === "name") return me.name;
     if (f === "formal") {
       const first = me.name.split(/\s+/)[0].toLowerCase().replace(/\.$/, "");
-      return honorifics(content).has(first) || !g.honorific ? me.name : `${g.honorific} ${me.name}`;
+      return honorifics(content).has(first) ? me.name : `${g.honorific} ${me.name}`;
     }
     if (PLAYER_OWN.includes(f)) return null;
     const k = Object.keys(g).find(x => x.toLowerCase() === f);
@@ -225,7 +243,7 @@ const Engine = (() => {
   // The player for the UI and the checks: name, gender, its label and the formal name.
   function player(content, s) {
     const me = playerOf(content, s);
-    return { ...me, label: (playerTable(content).genders[me.gender] || {}).label || me.gender, formal: playerField(content, me, "formal") };
+    return { ...me, label: playerTable(content).genders[me.gender].label, formal: playerField(content, me, "formal") };
   }
 
   // --- the cast ------------------------------------------------------------
@@ -2268,7 +2286,7 @@ const Engine = (() => {
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
     finalLabels, ending, recentKeys, lockedText, statVerdicts, endPlan,
     // the player's name and gender: the start screen, old saves, the lint and the tests
-    player, genders, upgradePlayer, playerWords, playerFields,
+    player, genders, upgradePlayer, playerWords, playerFields, playerTableProblem,
     // cast and card parts, for the immersion lint and the tests
     render, applyVariant, partSlots, partCombos, roleNeeds, optionNeeds, maxRankForAge, personField, TOKEN,
     article, STATS, QUIET: QUIET_YEAR };
