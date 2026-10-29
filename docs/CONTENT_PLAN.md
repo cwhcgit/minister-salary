@@ -234,7 +234,7 @@ series: the work and a quiet year are one series (substance, visibility or rest)
 approved leave another (work or life), and the graduate's and the scholar's first cards open the series
 the new reporting officer closes (`"opens": true`). With `spend`, a card whose lines for the habit
 have all been shown is not drawn again that run; without it (the Budgets, which set the National
-Bonus every cycle), a series takes its lines again in order.
+Bonus every cycle), a series card goes on passing once its lines are spent, without a line.
 
 **Meanwhile lines.** A series card keeps its lines in `montageLines`, keyed by stance; a safe
 re-election has its own list (`autoPlay.lines`). A run never shows the same line twice: each card and
