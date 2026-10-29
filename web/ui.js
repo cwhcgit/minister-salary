@@ -70,7 +70,7 @@ function header() {
         ${S.rival ? `<div class="mate">Batchmate: ${esc(Engine.batchmate(content, S))}</div>` : ""}
       </div>
       <div class="cashbox"><div class="cash">${money(S.wealth)}</div><div class="cashlab">lifetime earnings</div>
-        ${phase !== "ending" ? `<button class="newcareer" id="newcareer" type="button">New career</button>` : ""}</div>
+        ${phase !== "ending" ? `<button class="newcareer" id="newcareer" type="button">Reincarnate</button>` : ""}</div>
     </div>
   </header>`;
 }
@@ -425,7 +425,7 @@ function render() {
   wireNewCareer();
 }
 
-// Abandoning a career takes two taps, so a stray one never costs a run.
+// Abandoning a career (the header's Reincarnate button) takes two taps, so a stray one never costs a run.
 function newCareer() { wipe(); S = null; phase = "start"; startScreen(); }
 function wireNewCareer() {
   const b = document.getElementById("newcareer");
@@ -435,18 +435,18 @@ function wireNewCareer() {
     if (armed) { clearTimeout(armed); return newCareer(); }
     b.textContent = "Tap again to abandon this career";
     b.classList.add("armed");
-    armed = setTimeout(() => { armed = null; b.textContent = "New career"; b.classList.remove("armed"); }, 3000);
+    armed = setTimeout(() => { armed = null; b.textContent = "Reincarnate"; b.classList.remove("armed"); }, 3000);
   };
 }
 
 // A career started on an older version of the game may not add up any more: say so, and offer
-// a fresh start (the default) or carrying on.
+// a fresh start (the default, Reincarnate) or carrying on.
 function oldVersionScreen() {
   app.innerHTML = `
     <div class="card">
       <h2 class="serif">The game has been updated</h2>
       <div class="body serif">This career was started on an older version of Minister Salary. Cards, ages and endings have changed since, so parts of it may no longer add up.</div>
-      <button class="primary" id="fresh">Start a new career</button>
+      <button class="primary" id="fresh">Reincarnate</button>
       <button class="choice" id="carry">Carry on with this one anyway</button>
     </div>`;
   app.querySelector("#fresh").onclick = newCareer;

@@ -52,7 +52,7 @@ server.listen(0, async () => {
     expect(where + ' cash label', $('.cashlab').textContent, h.wealthLabel);
     expect(where + ' batchmate', $('.mate') ? $('.mate').textContent : null, h.batchmate ? `Batchmate: ${h.batchmate}` : null);
     // the four stats are hidden during play: no values, bars or changes anywhere in the header
-    // the New career button is a control, not part of the screen the harness shows
+    // the Reincarnate button is a control, not part of the screen the harness shows
     const hd = $('header').cloneNode(true); hd.querySelectorAll('.newcareer').forEach(b => b.remove());
     expect(where + ' header text', hd.textContent.replace(/\s+/g, ' ').trim(),
       [`${h.rank}${h.grade}`, `Age ${h.age} · Year ${h.year} · ${h.ministry}`, h.batchmate ? `Batchmate: ${h.batchmate}` : null, h.wealth + h.wealthLabel].filter(Boolean).join(' '));

@@ -217,7 +217,7 @@ server.listen(0, async () => {
     dom3.window.close();
 
     // a save from an older version of the game: the player is told, and can start fresh or carry on;
-    // and the header's New career control abandons a run only on a second tap
+    // and the header's Reincarnate control abandons a run only on a second tap
     const boot = async () => { const dm = await JSDOM.fromURL(url, { runScripts:'dangerously', resources:'usable',
       beforeParse(w) { w.scrollTo=()=>{}; w.alert=()=>{}; w.fetch = window.fetch;
         Object.defineProperty(w,'localStorage',{ value: window.localStorage }); } }); await wait(500); return dm; };
@@ -230,17 +230,19 @@ server.listen(0, async () => {
     sv.v = 'older'; window.localStorage.setItem('ministerSalary.v1', JSON.stringify(sv));
     const dom5 = await boot(), d5 = dom5.window.document, t5 = () => d5.getElementById('app').textContent;
     if (!t5().includes('The game has been updated')) throw new Error('an older save was not flagged');
+    if (d5.querySelector('#fresh').textContent !== 'Reincarnate') throw new Error('the old-version screen\'s fresh start is not labelled Reincarnate: ' + d5.querySelector('#fresh').textContent);
     d5.querySelector('#carry').click(); await wait(10);
     if (t5().includes('The game has been updated') || t5().includes('Begin')) throw new Error('carrying on did not resume the run');
     const nc = d5.querySelector('#newcareer');
-    if (!nc) throw new Error('no New career control in the header');
+    if (!nc) throw new Error('no Reincarnate control in the header');
+    if (nc.textContent !== 'Reincarnate') throw new Error('the header control is not labelled Reincarnate: ' + nc.textContent);
     nc.click(); await wait(5);
     if (t5().includes('Begin')) throw new Error('one tap abandoned the career');
     if (!d5.querySelector('#newcareer').textContent.includes('Tap again')) throw new Error('the first tap did not ask for a second');
     d5.querySelector('#newcareer').click(); await wait(10);
-    if (!t5().includes('Begin')) throw new Error('two taps did not start a new career');
+    if (!t5().includes('Begin')) throw new Error('two taps did not reincarnate (start a new career)');
     if (window.localStorage.getItem('ministerSalary.v1')) throw new Error('the abandoned career is still saved');
-    console.log('✓ an older save is flagged (new career, or carry on); New career takes two taps');
+    console.log('✓ an older save is flagged (Reincarnate, or carry on); Reincarnate takes two taps');
     dom5.window.close();
 
     const real = errors.filter(e => e && !/serviceWorker|Not implemented/i.test(e));
