@@ -2414,7 +2414,9 @@ const Engine = (() => {
     // or lapsed when the player left the service
     const rest = all.length - telling.length;
     if (rest) out.push({ label: witLine(W, out.length ? "restLabel" : "label", out.length ? "Also noticed" : "Noticed"),
-      text: fillW(witLine(W, rest === 1 ? "restOne" : "restMany", rest === 1 ? "One{more} thing you did was noticed, and never changed a grade." : "{N}{more} things you did were noticed, and none of them changed a grade."),
+      text: fillW((rest === 1 ? witLine(W, "restOne", "One{more} thing you did was noticed, and never changed a grade.")
+        : rest === 2 ? witLine(W, "restTwo", "Two{more} things you did were noticed, and neither changed a grade.")
+        : witLine(W, "restMany", "{N}{more} things you did were noticed, and none of them changed a grade.")),
         { N: cap(COUNT[rest] || "many"), more: out.length ? " more" : "" }) });
     return out;
   }

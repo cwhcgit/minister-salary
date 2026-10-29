@@ -1684,6 +1684,7 @@
       "ceilingToo": "It also raised your ceiling in the service by a grade. Nobody mentioned that either.",
       "didFallback": "on \"{title}\", you chose \"{text}\"",
       "restOne": "One{more} thing you did was noticed, and never changed a grade.",
+      "restTwo": "Two{more} things you did were noticed, and neither changed a grade.",
       "restMany": "{N}{more} things you did were noticed, and none of them changed a grade."
     },
     "types": {
