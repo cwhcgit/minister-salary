@@ -254,11 +254,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you said out loud, at a planning day, what everyone in the room was thinking",
-        "you gave a planning day something catchy to remember it by",
-        "you volunteered to do the work a planning day left behind"
-      ],
       "by": {
         "floor": {
           "chance": 0.5,
@@ -1326,11 +1321,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you took the hardest file, the year someone new began writing your appraisals",
-        "you made yourself useful to the new arrivals, the year someone new began writing your appraisals",
-        "you kept your head down, the year someone new began writing your appraisals"
-      ],
       "by": {
         "countersigner": {
           "chance": 0.6,
@@ -2694,11 +2684,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you did a year's work well and said nothing about it",
-        "you made sure the right people saw your year's work",
-        "you coasted through a year"
-      ],
       "by": {
         "countersigner": {
           "chance": 0.4,
@@ -2867,11 +2852,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you asked, at your appraisal, where you really stood",
-        "you used your appraisal conversation to make yourself more visible",
-        "you asked, at your appraisal, what actually needed doing"
-      ],
       "by": {
         "panel": {
           "chance": 0.35,
@@ -3625,11 +3605,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you spent a quiet year fixing something nobody had asked you to fix",
-        "you spent a quiet year getting to know the right people",
-        "you spent a quiet year resting"
-      ],
       "by": {
         "countersigner": {
           "chance": 0.35,
@@ -3692,10 +3667,6 @@
     ],
     "priority": true,
     "witnesses": {
-      "did": [
-        "you told a design team, from four years at a counter, why their design would fail",
-        "you said nothing, and let a pilot fail the way you knew it would"
-      ],
       "by": {
         "countersigner": {
           "chance": 0.4,
@@ -6729,11 +6700,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you sent a short correction to everyone, at once",
-        "you recalled an email, and hoped",
-        "you replied all again, with an apology and a joke"
-      ],
       "by": {
         "floor": {
           "chance": 0.4,
