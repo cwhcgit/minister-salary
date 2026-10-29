@@ -87,7 +87,7 @@ function sample(build, n = 600, opts = {}) {
         const k = scheduledAt.findIndex(x => x.eventId === base && x.fireYear <= S.year);
         if (k >= 0) { c.since.push(S.year - scheduledAt[k].year); scheduledAt.splice(k, 1); }
       }
-      const live = H.choices(run).filter(x => x.available);
+      const live = H.choices(run);
       let id;
       if (!score) id = live[Math.floor(pick() * live.length)].id;
       else {

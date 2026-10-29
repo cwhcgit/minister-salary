@@ -99,7 +99,7 @@ catch (e) { console.error("jargon.json: " + e.message); process.exit(1); }
 const terms = [];
 const KNOWN = new Set(["start", "header"]);
 const ENGINE_KINDS = new Set(["pay", "appraisal", "promo", "note", "cep", "heat", "folder", "warn", "why", "noted", "rival",
-  "election", "incumbent", "limit", "retire", "locked", "ending", "quiet", "year"]);
+  "election", "incumbent", "limit", "retire", "ending", "quiet", "year"]);
 const seenNames = new Set();
 for (const [i, t] of (Array.isArray(LIST.terms) ? LIST.terms : []).entries()) {
   const at = `jargon.json term ${i + 1}${t && t.term ? ` ("${t.term}")` : ""}`;
@@ -181,7 +181,6 @@ function pieces(run) {
     const ev = H.currentEvent(build, run.S);
     const id = ev.id === "__quiet" ? "engine:quiet" : cardId(ev.id);
     out.push({ src: id, card: true, text: [v.event.title, v.event.body, ...v.event.choices.map(c => c.text)].join("\n") });
-    for (const c of v.event.choices) if (c.requires) out.push({ src: null, kind: "locked", text: c.requires });
   }
   if (v.ending) {
     const e = v.ending;

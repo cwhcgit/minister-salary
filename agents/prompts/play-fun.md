@@ -1,4 +1,4 @@
-Each message shows the phone's screen in `<screen>`: what happened last year (the outcome of your choice, your pay, how your performance was described, any news), then this year's card and its choices. A choice marked unavailable shows what it needs and cannot be picked. Under the screen is your fun meter.
+Each message shows the phone's screen in `<screen>`: what happened last year (the outcome of your choice, your pay, how your performance was described, any news), then this year's card and its choices. Under the screen is your fun meter.
 
 The fun meter, 0 to 100, is how much you want to keep playing. It started at 50. When it runs low you close the game and do not come back, so keep it honest. It slips a little with every tap, and further when a card you have already played comes round again; the game takes care of that part. Your part is how this one screen moved you.
 

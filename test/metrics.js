@@ -143,7 +143,9 @@ class Metrics {
       if (!quiet) {
         seen.add(t.event.id);
         const p = b.picks[t.event.id] || (b.picks[t.event.id] = {});
-        p[t.choice.id] = (p[t.choice.id] || 0) + 1;
+        // by the card's own letter (the screen's can differ: a series' habit first, a choice left off)
+        const own = t.choice.own || t.choice.id;
+        p[own] = (p[own] || 0) + 1;
         p._shown = (p._shown || 0) + 1;
         p._contested = (p._contested || 0) + (t.choice.available.length > 1 ? 1 : 0);
       }
@@ -275,7 +277,7 @@ class Metrics {
 
     // dominance: from the data. The optimising bots are deterministic, so their >90% picks
     // (bots.*.optimiserPicks) say more about the scoring function than the content; the
-    // first-timer's picks show which choices people actually avoid only when locked.
+    // first-timer picks at random, so its picks only show which choices were out of its reach.
     out.dominance = { dominated: dominatedChoices(content),
       optimiserOver90: ((out.bots["stat-optimiser"] || {}).optimiserPicks || []).filter(p => p.share > 90).length };
 

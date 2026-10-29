@@ -237,9 +237,9 @@ export function mockLlm(seed = 1): Llm {
     async call<T>(o: CallOpts) {
       const lastUser = o.messages ? [...o.messages].reverse().find(m => m.role === "user")!.content : o.user ?? [];
       const userText = lastUser.map(b => b.text).join("\n");
-      // available choices: "  A) text" lines on the screen without an [unavailable: ...] marker
+      // the choices: "  A) text" lines on the screen (only the ones the player can take are shown)
       const screen = userText.split("<screen>")[1]?.split("</screen>")[0] ?? "";
-      let choices = [...screen.matchAll(/^ {2}([A-D])\) (.*)$/gm)].filter(m => !m[2].includes("[unavailable")).map(m => m[1]);
+      let choices = [...screen.matchAll(/^ {2}([A-D])\) (.*)$/gm)].map(m => m[1]);
       if (!choices.length && /with choice A\./.test(userText)) choices = ["A"];
       const data = fill(o.schema, r, "", { choices, text: userText }) as T;
       const text = JSON.stringify(data);

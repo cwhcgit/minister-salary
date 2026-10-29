@@ -6,7 +6,8 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 
 export interface Build { hash: string; root: string; canaries: boolean; content: any; engine: any }
-export interface ChoiceView { id: string; text: string; available: boolean; requires: string | null }
+// A choice on the screen: its letter and its words. Only choices the player can take are shown.
+export interface ChoiceView { id: string; text: string }
 export interface Run {
   buildHash: string; origin: string; seed: number; name: string; gender: string;
   turn: number; phase: "event" | "ending";
@@ -15,7 +16,7 @@ export interface Run {
 export interface TurnRecord {
   turn: number; year: number; age: number; act: "I" | "II" | "III";
   event: { id: string; source: string; repeat: boolean; filler: boolean; once: boolean; variant?: number };
-  choice: { id: string; effects: Record<string, number>; available: string[] };
+  choice: { id: string; own: string; effects: Record<string, number>; available: string[] };
   delta: Record<string, number>;
   before: Record<string, number>; after: Record<string, number>;
   appraisal: { grade: string; score: number; noise: number; base: number } | null;

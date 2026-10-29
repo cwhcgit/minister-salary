@@ -39,8 +39,9 @@ endings; replay is the point.
 
 One **card = one year**. A turn is a card, its outcome, then a page for each year-end review:
 
-1. **The card.** One decision, two or three choices. A choice the player cannot take yet is
-   shown locked, with an in-world reason ("You'd need a stronger reputation for this.").
+1. **The card.** One decision, two or three choices. A choice the player cannot take yet (it
+   needs a stat they do not have) is not shown at all, and a card is only drawn while it has at
+   least two choices to show.
 2. **The outcome.** What the choice did, and anything it set off: a line saying it will count
    at this year's appraisal, a colleague arriving or leaving, and at most one quiet line when a
    stat moved a long way (§3).
@@ -72,8 +73,7 @@ must be pushed in opposite directions by real choices, or it does not earn its p
 The four stats are not shown as numbers during play. They appear only as words
 (`statWords` in `game.json`): the appraisal's "why" line in a year that needs explaining
 (naming the strong suit and the weak spot only when that is news), one quiet line when a
-single choice moves a stat by 6 or more (at most once every three cards), and a locked
-choice's in-world reason. The ending screen reveals all four, each with its number and a plain
+single choice moves a stat by 6 or more (at most once every three cards). The ending screen reveals all four, each with its number and a plain
 verdict on what it was and what it did to the run. How much each one weighs in the appraisal
 is never shown, not even there.
 

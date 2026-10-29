@@ -2473,10 +2473,10 @@
     "id": "the_election",
     "triggered": true,
     "title": "The General Election",
-    "body": "The party is fielding you at the general election. You have resigned from the service to stand, and if you lose, the service will not take you back. Now the party asks which kind of seat you will run in. In a GRC you are one of a team of five, and voters elect the whole team together. In a single seat you run alone, against one opponent.",
+    "body": "The party is fielding you at the general election, in a GRC: a large ward split into divisions, where you run as one of a team of five and voters elect the whole team together. You have resigned from the service to stand, and if you lose, the service will not take you back. The minister leading your team asks which division you will look after.",
     "choices": [
       {
-        "text": "Join the GRC team: share the risk, and the credit.",
+        "text": "Take the division you're given: share the risk, and the credit.",
         "effects": {
           "reputation": 5
         },
@@ -2493,7 +2493,25 @@
         ]
       },
       {
-        "text": "Run alone in a single seat: all the risk, and all the credit.",
+        "text": "Take the division the opposition is fighting for.",
+        "effects": {
+          "reputation": 1,
+          "standing": 3
+        },
+        "election": "grc",
+        "outcome": "Nine days of walkabouts in the four blocks the opposition has decided to win, while your teammates take the friendlier ones. The minister leading your team calls every evening to ask how it is going, and listens to the answer.",
+        "schedule": [
+          {
+            "eventId": "re_election",
+            "inYears": 5
+          }
+        ],
+        "setFlags": [
+          "seat_grc"
+        ]
+      },
+      {
+        "text": "Ask for a single seat of your own instead, alone against one opponent: all the risk, and all the credit.",
         "effects": {
           "reputation": 8,
           "standing": 5
@@ -2516,27 +2534,35 @@
     ],
     "variants": [
       {
-        "body": "Polling Day is announced on a Monday, and the party names you as a candidate. You have resigned from the service to stand, so losing ends your career: the service will not take you back. Now you choose the seat. A GRC is a large ward that elects a team of five together. A single seat is yours alone, against one opponent.",
+        "body": "Polling Day is announced on a Monday, and the party names you as a candidate in a GRC: a large ward, split into divisions, that elects a team of five together. You have resigned from the service to stand, so losing ends your career: the service will not take you back. Now you choose your division.",
         "choices": [
           {
-            "text": "Stand with the GRC team: shared risk, shared credit.",
+            "text": "Stand with the team, in the division you're given: shared risk, shared credit.",
             "outcome": "Nine days of walkabouts, meeting voters block by block, teach you which blocks have lifts that stop on every floor. The minister leading your team does the rally speeches. You do the lifts."
           },
           {
-            "text": "Stand alone in a single seat: your risk, your credit.",
+            "text": "Stand with the team, in its hardest division.",
+            "outcome": "Nine days of walkabouts, block by block, in the division the other side has picked to fight for. Your name is fourth on the poster and first on every complaint, and the team notices which of you went where."
+          },
+          {
+            "text": "Ask to stand alone in a single seat instead: your risk, your credit.",
             "outcome": "Nine days of walkabouts, meeting voters block by block, against a real opponent and with nobody to share the result with. Yours is the only name on your posters. It is thrilling for exactly one day."
           }
         ]
       },
       {
-        "body": "The party's candidates are photographed in a school hall that smells of floor polish. You have resigned from the service to stand, and if you lose, the service will not take you back. The party asks which kind of seat you want: a place on a GRC team of five, which voters elect together, or a single seat, alone against one opponent.",
+        "body": "The party's candidates are photographed in a school hall that smells of floor polish. You have resigned from the service to stand, and if you lose, the service will not take you back. The party has you on a GRC team of five, each looking after a division, which voters elect together. It asks which division you want.",
         "choices": [
           {
-            "text": "Take a place on the GRC team.",
+            "text": "Take the division you're offered.",
             "outcome": "Nine days of walkabouts in a team of five, through markets, coffee shops and lift lobbies, meeting voters. At every coffee shop someone asks which one you are. By the end of the campaign, you can answer."
           },
           {
-            "text": "Take the single seat, alone.",
+            "text": "Take the division nobody wants.",
+            "outcome": "Nine days of walkabouts in the division the opposition is targeting, where residents have their questions ready before you reach the lift. Nobody on the team says thank you. Everyone on it knows."
+          },
+          {
+            "text": "Ask for a single seat instead, alone against one opponent.",
             "outcome": "Nine days of walkabouts, meeting voters at every market and coffee shop, as the only candidate anyone in the ward asks for. By the last rally your voice has gone and your opponent's has not. It feels significant, and is not."
           }
         ]
@@ -2548,6 +2574,7 @@
           "chance": 0.4,
           "react": [
             2,
+            1,
             -2
           ]
         },
@@ -2555,6 +2582,7 @@
           "chance": 0.35,
           "react": [
             -1,
+            1,
             1
           ]
         }
@@ -4027,7 +4055,7 @@
           },
           {
             "text": "Leave the volunteers to finish. Read your papers.",
-            "outcome": "You leave at ten and are word-perfect in the House. The volunteers stay until one. The following Tuesday, the void deck man asks, pointedly, whether you are staying tonight."
+            "outcome": "You leave at ten and are word-perfect in the House. Your volunteers see the last resident out after midnight. The following Tuesday, the void deck man asks, pointedly, whether you are staying tonight."
           }
         ]
       },
@@ -5396,7 +5424,7 @@
         }
       },
       "lines": [
-        "Another general election. On the campaign lorry you read out everything the ward got in five years: new lifts, a covered walkway, an upgraded hawker centre. You read it all out as if it were your doing. Some of it was.",
+        "Another general election. On the campaign lorry you read out everything the ward got in five years: new lifts, a covered walkway, an upgraded hawker centre. You read it all out as if it were your doing, and the lorry driver, who has heard every version of it, nods in the right places.",
         "After the vote, an open lorry carries you round the ward to thank voters, by the same route as last time, down to the same coffee shop.",
         "Nine days of campaigning, one rally, and on election night a sample count, an early tally from a few ballot boxes, that tells everyone the result before the real one does.",
         "Your ward's result is among the first announced, and your volunteers treat this as a personal achievement.",
@@ -5423,7 +5451,75 @@
           ]
         }
       }
-    }
+    },
+    "variants": [
+      {
+        "body": "The general election is called in the middle of the monsoon, and your seat is contested again. Lose it, and your political career ends with it. Your volunteers have done the sums on last time's result and stopped joking about them, which is how you know the ward is close.",
+        "choices": [
+          {
+            "outcome": "You set out what the ward got since the last election at every rally, under a tarpaulin that drips on the front row. The front row stays anyway."
+          },
+          {
+            "outcome": "You walk the blocks in the rain for nine nights and learn which lift lobbies flood. Residents remember the umbrella longer than anything you said under it."
+          }
+        ]
+      },
+      {
+        "body": "Parliament is dissolved, and this time the opposition has sent your ward its best candidate: younger than you, fluent, and already photographed with every hawker in the market. Your seat is up, and losing it would end your political career. Your branch chairman has pinned the opponent's leaflet above the photocopier.",
+        "choices": [
+          {
+            "outcome": "You hold a press conference with a table of numbers: new lifts, new ramps, a new bus service. Your opponent holds one with a hawker, and gets the better photograph."
+          },
+          {
+            "outcome": "You visit every stall in the market twice and buy something at each. By Polling Day you have eaten more chicken rice than in the five years before it put together."
+          }
+        ]
+      },
+      {
+        "body": "The electoral boundaries are redrawn before the general election, and your ward gains four blocks you have never visited. Your seat is up again; lose it, and your political career is over. The new blocks' residents' committee has already written to ask who you are.",
+        "choices": [
+          {
+            "outcome": "You campaign on what the old blocks got since the last election. The new blocks listen politely, and then ask what they will get."
+          },
+          {
+            "outcome": "You walk the four new blocks first, every floor, and by the second night the residents' committee chairman is walking with you, mainly to tell you which doors not to knock on after nine."
+          }
+        ]
+      },
+      {
+        "body": "The general election falls in the month the bus service your ward has relied on for decades is withdrawn. Your seat is up, and if you lose it your political career is over. The decision was not yours, but the only face at the bus stop is yours, on an election poster.",
+        "choices": [
+          {
+            "outcome": "You campaign on everything else the ward got since the last election, which is a great deal. Every question at every rally is about the bus."
+          },
+          {
+            "outcome": "You ride the replacement service every morning for nine days and talk to everyone on it. It is slower than the old one, and by the end, so are you."
+          }
+        ]
+      },
+      {
+        "body": "A general election is called, your seat is up again, and losing it would end your political career. This time there is also a video: you, at a community event, mid-sentence, looking bored. It is eleven seconds long, and everyone in the ward seems to have seen it.",
+        "choices": [
+          {
+            "outcome": "You put the whole speech online, all forty minutes of it, so voters can see the eleven seconds in context. Eleven people watch it to the end."
+          },
+          {
+            "outcome": "You walk every block for nine days and let residents see you wide awake. Several tell you that you look much better in person, which you decide to count as support."
+          }
+        ]
+      },
+      {
+        "body": "Parliament is dissolved, and your seat is contested again; if it goes, so does your political career. Your longest-serving volunteer, who has worked on every campaign since before you arrived, has made a wall chart of every block and its mood. Too many of the blocks are coloured yellow.",
+        "choices": [
+          {
+            "outcome": "You give the same speech at every rally, listing what the ward got since the last election. By the last night your volunteer can mouth it along with you, and does."
+          },
+          {
+            "outcome": "You and your volunteer walk the yellow blocks first, every night for nine days. By the end the chart has more green on it, mostly in your volunteer's handwriting."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "the_indicators",
@@ -7005,7 +7101,7 @@
         ]
       },
       {
-        "body": "Last year's D means an improvement plan: targets to meet in six months, then a review, and if it goes badly you'll be asked to leave. It arrives as a form in the HR system. Your reporting officer has ticked four boxes and written one sentence. If you don't acknowledge it within five working days, the system acknowledges it for you.",
+        "body": "Last year's D comes with an improvement plan, and the plan comes with a deadline: six months to meet its targets, then a review that decides whether you stay. It arrives as a form in the HR system. Your reporting officer has ticked four boxes and written one sentence. If you don't acknowledge it within five working days, the system acknowledges it for you.",
         "choices": [
           {
             "text": "Acknowledge it, and work through the four boxes.",
@@ -7035,6 +7131,57 @@
           {
             "text": "Ask, in writing, how you'll know the journey has ended.",
             "outcome": "Your one-page question is filed with the plan and never answered. At the review, the third objective has quietly disappeared, and the first two are marked \"Met\"."
+          }
+        ]
+      },
+      {
+        "body": "Last year's D has started an improvement plan, and its first meeting is in a room booked under \"Catch-up\". Your reporting officer, an HR partner and a printed copy of your objectives are waiting. Fail the review in six months, or get another D, and you will be asked to leave.",
+        "choices": [
+          {
+            "text": "Agree the targets in the room, and meet them.",
+            "outcome": "You agree all four targets before the meeting ends, which nobody expected, and meet them in five months. The HR partner closes the file and stamps it, with some ceremony, \"Closed\"."
+          },
+          {
+            "text": "Ask HR, quietly, about a transfer.",
+            "outcome": "The HR partner slips you a card on the way out. Within a month you are in another division, and the room booked under \"Catch-up\" is booked by somebody else."
+          },
+          {
+            "text": "Ask for the reasons for the D, in writing, first.",
+            "outcome": "The reasons arrive three weeks later, two pages long. You agree with one of them. Your reporting officer, reading your reply, agrees with one of yours."
+          }
+        ]
+      },
+      {
+        "body": "Last year's D means an improvement plan, and this year's plans come with a \"buddy\", an officer from another division who checks on you once a month. The targets are due in six months; miss them, or get another D, and you will be asked to leave. Your buddy is younger than you, and very kind about it.",
+        "choices": [
+          {
+            "text": "Meet the targets, with the buddy's monthly check-ins.",
+            "outcome": "You meet the targets, and your buddy's final report is so warm that HR asks whether the two of you are related. The plan is closed."
+          },
+          {
+            "text": "Ask HR to move you before the first check-in.",
+            "outcome": "HR moves you before the buddy's first visit. The buddy is assigned to someone else, and sends you a cheerful message wishing you luck."
+          },
+          {
+            "text": "Tell the buddy, politely, that the D was wrong.",
+            "outcome": "Your buddy listens, writes it all down, and puts it in the monthly report. Nothing changes on paper. Your reporting officer starts asking for your view in meetings, which is something."
+          }
+        ]
+      },
+      {
+        "body": "The improvement plan for last year's D arrives as a spreadsheet: five targets, each with a weighting, the weightings adding up to a hundred per cent. In six months a review decides whether you stay, and another D decides it for you. Someone has already filled in the column headed \"Progress\" with zeros.",
+        "choices": [
+          {
+            "text": "Fill in the progress column, one target at a time.",
+            "outcome": "By the review every row says a hundred per cent, and the spreadsheet turns itself green. HR closes the plan, and keeps your spreadsheet as a template."
+          },
+          {
+            "text": "Ask for a transfer before the first update is due.",
+            "outcome": "HR moves you to another division before the first update. The spreadsheet stays behind, all zeros, in a shared folder nobody opens."
+          },
+          {
+            "text": "Add a column of your own, headed \"Context\".",
+            "outcome": "Your column runs longer than the rest of the spreadsheet put together. The review reads it, keeps the D, and quietly drops one of the five targets."
           }
         ]
       }

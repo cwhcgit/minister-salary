@@ -139,7 +139,7 @@ if (require.main === module) {
           if (hits.length) { bad++; if (bad <= 5) console.log(`✗ ${origin} seed ${run.seed} turn ${run.turn}:`, hits); }
         }
         if (run.phase === "ending") break;
-        const live = H.choices(run).filter(c => c.available);
+        const live = H.choices(run);
         run = H.step(run, live[Math.floor(r() * live.length)].id);
       }
     }

@@ -223,6 +223,32 @@ server.listen(0, async () => {
     console.log('✓ reload resumes mid-run (offline-safe)');
     dom2.window.close();
 
+    // a choice the player lacks the stats for is not on the card at all: The Leak's choice that
+    // needs integrity, with integrity well below it, leaves two buttons, none greyed out, and no
+    // word of a third
+    {
+      const evs = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'events.json'), 'utf8'));
+      const leak = (Array.isArray(evs) ? evs : evs.events).find(e => e.id === 'the_leak');
+      const li = leak.choices.findIndex(c => c.requiresStat);
+      const texts = [leak.choices[li].text, ...(leak.variants || []).map(v => ((v.choices || [])[li] || {}).text)].filter(Boolean);
+      const sv = JSON.parse(window.localStorage.getItem('ministerSalary.v1'));
+      Object.assign(sv.S, { currentEvent: 'the_leak', rank: 4 });
+      for (const [k, v] of Object.entries(leak.choices[li].requiresStat)) sv.S[k] = v - 10;
+      sv.phase = 'event';
+      window.localStorage.setItem('ministerSalary.v1', JSON.stringify(sv));
+      const dm = await JSDOM.fromURL(url, { runScripts:'dangerously', resources:'usable',
+        beforeParse(w) { w.scrollTo=()=>{}; w.alert=()=>{}; w.fetch = window.fetch;
+          Object.defineProperty(w,'localStorage',{ value: window.localStorage }); } });
+      await wait(500);
+      const d = dm.window.document, btns = [...d.querySelectorAll('.choice')];
+      if (btns.length !== leak.choices.length - 1) throw new Error(`the card shows ${btns.length} choices, not ${leak.choices.length - 1}`);
+      if (btns.some(b => b.disabled) || d.querySelector('.choice .why')) throw new Error('a choice is shown greyed out, or with a reason it cannot be taken');
+      const shown = d.getElementById('app').textContent;
+      if (texts.some(t => shown.includes(t))) throw new Error('the choice the player cannot take is on the screen');
+      console.log(`✓ a choice the player lacks the stats for is not shown: ${btns.length} buttons, none greyed out`);
+      dm.window.close();
+    }
+
     // a save from before the start screen asked: name "You", no gender. It loads with the
     // defaults (Female, a drawn name) and plays on, with no raw token and no "Ms You".
     const old = JSON.parse(window.localStorage.getItem('ministerSalary.v1'));
