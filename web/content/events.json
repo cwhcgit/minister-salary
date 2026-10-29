@@ -102,7 +102,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "bad_number"
   },
   {
     "id": "consultant_report",
@@ -171,7 +172,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "credit_taken"
   },
   {
     "id": "postit_workshop",
@@ -312,7 +314,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "candour_up"
   },
   {
     "id": "cep_discovery",
@@ -426,7 +429,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "one_slot"
   },
   {
     "id": "the_crisis",
@@ -758,7 +762,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "declare"
   },
   {
     "id": "mps_duty",
@@ -883,7 +888,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "mentor_hardway"
   },
   {
     "id": "the_leak",
@@ -1018,12 +1024,13 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "share_credit"
   },
   {
     "id": "cny_lohei",
     "title": "Lo Hei",
-    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of lo hei, tossing the yusheng salad as high as chopsticks allow and shouting good wishes, the Permanent Secretary turns to you and asks, properly: \"So, {player.given}, what do you actually think we're getting wrong?\"",
+    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of lo hei, tossing the yusheng salad as high as chopsticks allow and shouting wishes for abundance, the Permanent Secretary turns to you and asks, properly: \"So, {player.given}, if your division had to stop one thing this year, what should it be?\" The honest answer is your own project.",
     "requires": {
       "minRank": 2,
       "maxRank": 6
@@ -1032,31 +1039,32 @@
     "once": true,
     "choices": [
       {
-        "text": "Tell the Permanent Secretary, specifically, with an example.",
+        "text": "Your own project. Say why.",
         "effects": {
           "reputation": 8,
-          "competence": 7,
+          "competence": 6,
           "cep": 2,
-          "standing": -3
+          "standing": -4
         },
-        "outcome": "You have about ninety seconds, and you use all of them. Halfway through, the Permanent Secretary stops eating to listen, and at the end says, \"Say that again on Thursday, to the committee.\" The people who decide promotions will be in that room.",
+        "outcome": "You have about ninety seconds, and you spend all of them on why your own work should stop. The Permanent Secretary stops eating to listen, and at the end says, \"Say that again on Thursday, to the committee.\" The people who decide promotions will be in that room.",
         "standout": true
       },
       {
-        "text": "Say something safe about communications.",
+        "text": "Another division's project. Say why.",
+        "effects": {
+          "standing": 5,
+          "competence": 2,
+          "integrity": -5
+        },
+        "outcome": "It's a reasonable answer, well argued, and the Permanent Secretary nods. The other division's project is reviewed in March. Its director never finds out who suggested it, and you never ask whether yours would have been next."
+      },
+      {
+        "text": "Say that everything the division does matters.",
         "effects": {
           "standing": 4,
           "competence": -2
         },
         "outcome": "\"Mm,\" says the Permanent Secretary, and turns to the person on the other side. That's the end of it, and you both know it."
-      },
-      {
-        "text": "Ask the Permanent Secretary the same question.",
-        "effects": {
-          "standing": 6,
-          "reputation": -2
-        },
-        "outcome": "The answer is long, thoughtful and very good, and you learn a great deal. You've told the Permanent Secretary nothing about yourself, though, and that was what the question was for."
       }
     ],
     "witnesses": {
@@ -1375,7 +1383,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "announce"
   },
   {
     "id": "reorg",
@@ -1479,7 +1488,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "one_slot"
   },
   {
     "id": "dialogue_session",
@@ -1591,7 +1601,8 @@
           "competence": 8,
           "standing": 6
         },
-        "outcome": "The review takes eight months, and goes in before December. Your new reporting officer rates people strictly on what they've done, which turns out to be rarer than you'd thought, and suits you well."
+        "outcome": "The review takes eight months, and goes in before December. Your new reporting officer rates people strictly on what they've done, which turns out to be rarer than you'd thought, and suits you well.",
+        "stance": "harder"
       },
       {
         "text": "Be useful to the newcomer's two people.",
@@ -1600,7 +1611,8 @@
           "competence": -2,
           "integrity": -2
         },
-        "outcome": "You become the person they ask where things are and whom to see. It's a real position and a small one, and you hold it for as long as they stay."
+        "outcome": "You become the person they ask where things are and whom to see. It's a real position and a small one, and you hold it for as long as they stay.",
+        "stance": "network"
       },
       {
         "text": "Keep your head down until the newcomer leaves.",
@@ -1609,7 +1621,8 @@
           "competence": 3,
           "integrity": 2
         },
-        "outcome": "The newcomer is in no hurry to leave. Meanwhile your appraisals go flat, and every promotion board for the rest of your career will see the line."
+        "outcome": "The newcomer is in no hurry to leave. Meanwhile your appraisals go flat, and every promotion board for the rest of your career will see the line.",
+        "stance": "head_down"
       }
     ],
     "variants": [
@@ -1671,6 +1684,76 @@
             1,
             0,
             0
+          ]
+        }
+      }
+    },
+    "series": {
+      "key": "footing",
+      "full": 2
+    },
+    "again": {
+      "keep": {
+        "competence": 1,
+        "reputation": -1
+      },
+      "change": {
+        "reputation": 1,
+        "standing": -1
+      },
+      "scenes": {
+        "harder": {
+          "title": "The New Reporting Officer",
+          "body": "{senior}, your reporting officer until now, has been given more to run, and someone new from another ministry will write your appraisals. Since your first months you've gone for the hard work first, and the division's hardest file has nobody on it. What the newcomer sees this year is what your file will say about you for years.",
+          "choices": [
+            {
+              "text": "Take the hardest file, as you always have.",
+              "outcome": "The review goes in before December. Your new reporting officer rates people on what they've done, and you've done a great deal. It suits you, and it's become what people expect of you."
+            },
+            {
+              "text": "This time, start with the newcomer's two people.",
+              "outcome": "You learn their names before you learn the newcomer's habits. By March they ask you where things are and whom to see. The hardest file goes to someone else, who is tired by December."
+            },
+            {
+              "text": "Let someone else take the file. Keep your head down.",
+              "outcome": "Someone else takes the hard file, and you do your own work, quietly. The newcomer forms a view of you anyway, and the view is \"steady\", which every promotion board after will read."
+            }
+          ]
+        },
+        "network": {
+          "title": "The New Reporting Officer",
+          "body": "{senior}, your reporting officer until now, has been given more to run, and someone new from another ministry will write your appraisals, with two trusted people in tow. Since your first months you've made a point of knowing who matters. What the newcomer sees this year is what your file will say about you for years.",
+          "choices": [
+            {
+              "text": "Leave the networking. Take the hardest file.",
+              "outcome": "You take the file nobody wanted, and finish it in eight months. Fewer people know your face this year. Your new reporting officer knows your work, which turns out to be the one that counts."
+            },
+            {
+              "text": "Make yourself useful to the newcomer's two people.",
+              "outcome": "By Christmas you're the fourth chair at their lunch table. It's a real position and a small one, and you hold it for as long as they stay."
+            },
+            {
+              "text": "Step back, and keep your head down.",
+              "outcome": "You stop going to the lunches and do your own work. The newcomer barely knows your name by June, and the two trusted people have found someone else to ask."
+            }
+          ]
+        },
+        "head_down": {
+          "title": "The New Reporting Officer",
+          "body": "{senior}, your reporting officer until now, has been given more to run, and someone new from another ministry will write your appraisals. Since your first months you've kept your head down and done what's in front of you, well and without fuss. What the newcomer sees this year is what your file will say about you for years.",
+          "choices": [
+            {
+              "text": "This time, ask for the hardest file.",
+              "outcome": "You ask for the file nobody wanted, and the newcomer, who doesn't know you're usually quiet, hands it over without surprise. It goes in before December. You're slightly surprised you asked."
+            },
+            {
+              "text": "This time, get to know the newcomer's people.",
+              "outcome": "You start having lunch with the newcomer's two people. They're friendly, and by March they're asking you where things are. You find you're good at this."
+            },
+            {
+              "text": "Keep your head down, as you always have.",
+              "outcome": "You do your own work well, and the newcomer notices it the way you notice a clock that keeps time. Your appraisals go flat, and every promotion board after will read the same line."
+            }
           ]
         }
       }
@@ -2907,7 +2990,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "viral_post"
   },
   {
     "id": "reshuffle",
@@ -3064,7 +3148,8 @@
           "competence": 4,
           "standing": 2
         },
-        "outcome": "It launches on time, and nobody says a word, because on time is what's expected. The people who write your appraisal noticed anyway."
+        "outcome": "It launches on time, and nobody says a word, because on time is what's expected. The people who write your appraisal noticed anyway.",
+        "stance": "substance"
       },
       {
         "text": "Do the work, and be seen doing it.",
@@ -3080,7 +3165,8 @@
             ]
           }
         },
-        "outcome": "You present it at the divisional meeting, with four more slides than it needed. Two people who didn't know your name now do. {peer}, who made half the slides, isn't mentioned."
+        "outcome": "You present it at the divisional meeting, with four more slides than it needed. Two people who didn't know your name now do. {peer}, who made half the slides, isn't mentioned.",
+        "stance": "visibility"
       },
       {
         "text": "Coast. You've earned a quiet year.",
@@ -3089,7 +3175,8 @@
           "standing": -1,
           "integrity": 1
         },
-        "outcome": "You leave at six every day for a year and eat dinner at a normal hour. It costs you exactly what you thought it would."
+        "outcome": "You leave at six every day for a year and eat dinner at a normal hour. It costs you exactly what you thought it would.",
+        "stance": "low"
       }
     ],
     "montageEffects": {
@@ -3097,7 +3184,7 @@
       "standing": 1
     },
     "montageLines": {
-      "0": [
+      "substance": [
         "A scheme goes out on time, and you're one of five people who know why.",
         "You clear forty-one papers and write one sentence you're proud of. Nobody notices the sentence.",
         "A memo you wrote comes back to you months later as \"the ministry's position\", and you let it stand.",
@@ -3106,7 +3193,7 @@
         "You catch an error in a figure three divisions had already passed, and fix it quietly.",
         "Another ministry copies an approval process you redesigned, and doesn't credit you."
       ],
-      "1": [
+      "visibility": [
         "You present a scheme your team built at three forums, and by the third, people call it your scheme.",
         "Your name is on the slide, the email and the photograph, for work that was mostly last year's.",
         "Someone from another ministry greets you by name in the lift. Being seen is working.",
@@ -3115,7 +3202,7 @@
         "You sit on four panels this year, three of them about the same scheme.",
         "A speech you didn't write mentions a scheme you worked on, and you, by name. That part you did arrange."
       ],
-      "2": [
+      "low": [
         "You do what's asked, on time and not a minute more, and nobody can find anything to complain about.",
         "A quiet year at your desk. The best thing you write is your out-of-office message.",
         "The papers come in and go out. Someone on your floor is working late, and it isn't you.",
@@ -3227,6 +3314,78 @@
           }
         }
       }
+    },
+    "series": {
+      "key": "effort",
+      "full": 2,
+      "spend": true
+    },
+    "noMontage": true,
+    "again": {
+      "keep": {
+        "competence": 1,
+        "reputation": -1
+      },
+      "change": {
+        "reputation": 1,
+        "standing": -1
+      },
+      "scenes": {
+        "substance": {
+          "title": "The Work, Again",
+          "body": "{peer} is building another scheme this year, and has asked for you by name. You've made a habit of doing the work well and letting it speak for itself, while other people's names go on the slides. How you handle this one is how your working years will run after it, without anyone asking you again.",
+          "choices": [
+            {
+              "text": "Do it well, and let it speak, as usual.",
+              "outcome": "It launches on time and nobody says a word, because on time is what's expected of you now. The people who write your appraisal have stopped noticing, and started relying on it."
+            },
+            {
+              "text": "Do it, and this time make sure you're seen.",
+              "outcome": "You present the launch yourself, with your name on the first slide, and two directors ask afterwards who you are. {peer} notices too. From now on your name goes on your work."
+            },
+            {
+              "text": "Let the others carry this one. Ease off.",
+              "outcome": "You leave at six, and the scheme launches anyway, a week late and mostly fine. Nobody asks why. You find you don't miss the late nights as much as you'd expected."
+            }
+          ]
+        },
+        "visibility": {
+          "title": "The Work, Again",
+          "body": "{peer} is building another scheme this year, and you're on it again. You've made a habit of being seen with your work: the slides, the forums, the photograph beside the chart. {peer} has started counting whose names are on them. How you handle this one is how your working years will run after it, without anyone asking you again.",
+          "choices": [
+            {
+              "text": "Do the work, and let {peer} present it.",
+              "outcome": "{peer} presents it well, and thanks you by name in the second minute. Fewer people upstairs know your face this year. The people who write your appraisal know your work."
+            },
+            {
+              "text": "Present it, as you always do.",
+              "outcome": "Your slides, your forum, your photograph beside the chart. By the third presentation people call it your scheme, and {peer} has stopped volunteering to make the slides."
+            },
+            {
+              "text": "Step back from it altogether this year.",
+              "outcome": "You hand over your slides and leave on time. The scheme launches with {peer} at the lectern. Your name stops coming up in meetings, which is restful, and then noticeable."
+            }
+          ]
+        },
+        "low": {
+          "title": "The Work, Again",
+          "body": "{peer} is building another scheme this year, and needs one more person on it. You've made a habit of doing what's asked and not a minute more, and your evenings have been your own for a while. How you handle this one is how your working years will run after it, without anyone asking you again.",
+          "choices": [
+            {
+              "text": "Join, and do it properly this time.",
+              "outcome": "You join, and the late nights come back with the work. It launches on time. The people who write your appraisal notice the change before you've noticed it yourself."
+            },
+            {
+              "text": "Join, and make sure upstairs sees you did.",
+              "outcome": "You join late and present early. Two directors who had stopped saying your name start again, and {peer}, who did most of the year's work, says nothing about it."
+            },
+            {
+              "text": "Say you're stretched. Keep your evenings.",
+              "outcome": "{peer} finds someone else by Friday. You leave at six all year and nobody says anything, which you take as agreement. It's mostly indifference."
+            }
+          ]
+        }
+      }
     }
   },
   {
@@ -3241,13 +3400,14 @@
     "once": false,
     "choices": [
       {
-        "text": "Ask directly what your ceiling is.",
+        "text": "Ask directly where you stand.",
         "effects": {
           "standing": -4,
           "competence": 2,
           "integrity": 4
         },
-        "outcome": "\"Ceilings aren't really something we discuss,\" {senior} says, kindly. It's a complete answer."
+        "outcome": "\"Rankings aren't really something we discuss,\" {senior} says, kindly. It's a complete answer.",
+        "stance": "standing"
       },
       {
         "text": "Agree to be more visible.",
@@ -3255,7 +3415,8 @@
           "reputation": 4,
           "standing": 3
         },
-        "outcome": "You volunteer for two committees. It works, in the sense that more people have now seen you."
+        "outcome": "You volunteer for two committees. It works, in the sense that more people have now seen you.",
+        "stance": "visible"
       },
       {
         "text": "Ask what needs doing that nobody is doing.",
@@ -3263,7 +3424,8 @@
           "competence": 5,
           "standing": 4
         },
-        "outcome": "{senior} thinks for a moment, then names something real: a backlog nobody owns. You clear it by June. That one answer was worth the other thirty-nine minutes."
+        "outcome": "{senior} thinks for a moment, then names something real: a backlog nobody owns. You clear it by June. That one answer was worth the other thirty-nine minutes.",
+        "stance": "needs"
       }
     ],
     "montageEffects": {
@@ -3271,21 +3433,21 @@
       "competence": 1
     },
     "montageLines": {
-      "0": [
-        "At your appraisal you ask how high you can rise, and are told it's \"not a helpful way to think about it\", the most precise answer yet.",
-        "Your appraisal: forty minutes, six competency areas, and one question from you, about how far you can rise, that nobody writes down.",
-        "At your appraisal you ask how far you can go, and are offered a coaching session on curiosity.",
-        "You ask at your appraisal how far you can rise, and the question is recorded under \"Officer's Aspirations\", a box on the form.",
-        "You ask how far you can rise at the end of your appraisal, when there are two minutes left."
+      "standing": [
+        "At your appraisal you ask where you stand, and are told it's \"not a helpful way to think about it\", the most precise answer yet.",
+        "Your appraisal: forty minutes, six competency areas, and one question from you, about where you stand, that nobody writes down.",
+        "At your appraisal you ask where you stand, and are offered a coaching session on curiosity.",
+        "You ask at your appraisal where you stand, and the question is recorded under \"Officer's Aspirations\", a box on the form.",
+        "You ask where you stand at the end of your appraisal, when there are two minutes left."
       ],
-      "1": [
+      "visible": [
         "You agree again to be more visible, and at the next appraisal you're told that you have been.",
         "Your appraisal: six competency areas, one new acronym and the phrase \"stretch assignment\", with you nodding at the right moments.",
         "You're more visible this year, mostly in the background of other people's photographs.",
         "Your visibility is praised at a meeting you went to mainly in order to be seen there.",
         "Your visibility is discussed at your appraisal for forty minutes, in a room with no windows."
       ],
-      "2": [
+      "needs": [
         "At your appraisal you ask what isn't being done. By March it's done, and your name is on the list for the next good posting.",
         "You ask what would have helped in this year's \"very tight\" ranking, and, unusually, you're told.",
         "The things nobody was doing become your things, each with a thank-you for asking.",
@@ -3332,7 +3494,7 @@
         "body": "Your appraisal conversation is in a meeting room booked for thirty minutes, and it's the only time this year {senior} will sit down with you before writing your grade. {senior} arrives twelve minutes late, from another officer's appraisal, carrying that officer's form by mistake.",
         "choices": [
           {
-            "text": "Ask, while there's time, where your ceiling is.",
+            "text": "Ask, while there's time, where you stand.",
             "outcome": "{senior} glances down at someone else's form and says that's above {senior.their} pay grade. It may be the only literal thing anyone says to you all year."
           },
           {
@@ -3349,8 +3511,8 @@
         "body": "This year your appraisal includes anonymous feedback from the people who work around you, and {senior} reads it out. One comment says you \"never say no to anything from upstairs\", so the extra work lands on everyone else. Fair or not, it will go in your file.",
         "choices": [
           {
-            "text": "Ask what the comment means for your ceiling.",
-            "outcome": "{senior} says it's \"a development point, not a ceiling point\", and then that ceilings aren't discussed. Both halves are true, and only one of them was an answer."
+            "text": "Ask what the comment means for your grade.",
+            "outcome": "{senior} says it's \"a development point, not a grading point\", and then that grades aren't discussed before the ranking meeting. Both halves are true, and only one of them was an answer."
           },
           {
             "text": "Say you'll be more visible to the people around you, not just upstairs.",
@@ -3387,6 +3549,78 @@
           }
         }
       }
+    },
+    "series": {
+      "key": "appraisal",
+      "full": 2,
+      "spend": true
+    },
+    "noMontage": true,
+    "again": {
+      "keep": {
+        "competence": 1,
+        "reputation": -1
+      },
+      "change": {
+        "reputation": 1,
+        "standing": -1
+      },
+      "scenes": {
+        "standing": {
+          "title": "The Appraisal Conversation",
+          "body": "It's your yearly appraisal conversation with {senior} again: forty minutes, a form, and the ranking meeting after it. Every year you ask exactly where you stand, and {senior} now has an answer ready. How you spend this one is how you'll spend every one after it.",
+          "choices": [
+            {
+              "text": "Ask where you stand, as you always do.",
+              "outcome": "{senior} gives the ready answer, word for word, and adds \"as before\". It's still not an answer. It has become a tradition, which is nearly the same thing."
+            },
+            {
+              "text": "Agree, this time, to be more visible.",
+              "outcome": "You volunteer for two committees. {senior} writes \"more visible\" on the form, in the box where it has always said \"asked about prospects\"."
+            },
+            {
+              "text": "Ask what needs doing that nobody is doing.",
+              "outcome": "{senior}, braced for the usual question, is so relieved that the answer comes at once: a backlog nobody owns. You clear it by June."
+            }
+          ]
+        },
+        "visible": {
+          "title": "The Appraisal Conversation",
+          "body": "It's your yearly appraisal conversation with {senior} again, and the word \"visible\" is already on the form. Every year you agree to be more visible, and you are: committees, panels, photographs. How you spend this one is how you'll spend every one after it.",
+          "choices": [
+            {
+              "text": "Ask, plainly, where all that has got you.",
+              "outcome": "{senior} looks at the list of committees for a long time, and says it's \"a strong foundation\". Neither of you writes it down."
+            },
+            {
+              "text": "Agree to be more visible, as usual.",
+              "outcome": "Two more committees and one more panel. By December you're visible in rooms you didn't know the ministry had, and the form says so, again."
+            },
+            {
+              "text": "Ask what needs doing instead.",
+              "outcome": "{senior} names a backlog nobody owns, and you drop a committee to clear it. The committee doesn't notice you've gone. The backlog does."
+            }
+          ]
+        },
+        "needs": {
+          "title": "The Appraisal Conversation",
+          "body": "It's your yearly appraisal conversation with {senior} again. Every year you ask what needs doing that nobody is doing, and {senior} now arrives with a list. How you spend this one is how you'll spend every one after it.",
+          "choices": [
+            {
+              "text": "Ask, this time, where you stand.",
+              "outcome": "{senior} is surprised into honesty: \"Better than you think, and not as well as you'd like.\" It's the most useful sentence anyone says to you all year."
+            },
+            {
+              "text": "Agree, this time, to be more visible.",
+              "outcome": "You take the list and present it, item by item, at the divisional meeting. People who had been benefiting from your work quietly learn your name."
+            },
+            {
+              "text": "Take the list, as usual.",
+              "outcome": "Three things nobody owned, all done by June. {senior} has started saving them up for you, which is a compliment of a kind."
+            }
+          ]
+        }
+      }
     }
   },
   {
@@ -3415,7 +3649,8 @@
             ]
           }
         },
-        "outcome": "It's cleared at 1:20am, with {junior} proofreading the annexes. You're both thanked in one email of one word. Dinner is in the fridge, with a note that's mostly punctuation."
+        "outcome": "It's cleared at 1:20am, with {junior} proofreading the annexes. You're both thanked in one email of one word. Dinner is in the fridge, with a note that's mostly punctuation.",
+        "stance": "work"
       },
       {
         "text": "Go. Send it in the morning.",
@@ -3430,7 +3665,8 @@
             ]
           }
         },
-        "outcome": "You send {junior} home first, and make it home yourself in time for dessert. The paper goes in at 8:40am, and the world doesn't end. You make a careful note that it didn't."
+        "outcome": "You send {junior} home first, and make it home yourself in time for dessert. The paper goes in at 8:40am, and the world doesn't end. You make a careful note that it didn't.",
+        "stance": "life"
       }
     ],
     "montageEffects": {
@@ -3438,7 +3674,7 @@
       "integrity": -1
     },
     "montageLines": {
-      "0": [
+      "work": [
         "Working late on Level 9 becomes a habit, then a reputation.",
         "The cleaner on your floor now says goodnight to you by name.",
         "You miss a birthday dinner and make a deadline. By March both are forgotten, by different people.",
@@ -3447,7 +3683,7 @@
         "A deadline met at 1am is acknowledged at 9am with \"Thanks, noted\", all a deadline ever gets.",
         "Your laptop battery dies at 11:58pm, mid-sentence. You take it as advice, and ignore it."
       ],
-      "1": [
+      "life": [
         "You leave at seven and send things in the morning, and the building doesn't fall down.",
         "A birthday dinner, attended, while the comments on your paper wait until morning, as they always could.",
         "You've stopped apologising for leaving on time, and two people on your floor have started doing the same.",
@@ -3509,6 +3745,52 @@
           ]
         }
       }
+    },
+    "series": {
+      "key": "work_life",
+      "full": 2,
+      "spend": true
+    },
+    "noMontage": true,
+    "again": {
+      "keep": {
+        "competence": 1,
+        "reputation": -1
+      },
+      "change": {
+        "reputation": 1,
+        "standing": -1
+      },
+      "scenes": {
+        "work": {
+          "title": "Late, Again",
+          "body": "It's late again, a paper is due upstairs in the morning, and {junior} is still at {junior.their} desk, watching what you do. These nights always end the same way: you stay and finish, whatever was planned at home. What you do tonight is what you'll do every night after it.",
+          "choices": [
+            {
+              "text": "Finish it tonight, as usual.",
+              "outcome": "Cleared at 1:10am, with {junior} on the annexes again. The thanks is one word, as before. At home the note on the fridge has stopped being punctuation and become a list."
+            },
+            {
+              "text": "Go home. Send it in the morning, this once.",
+              "outcome": "You send {junior} home first, then go yourself. The paper goes in at 8:40am and nobody upstairs can tell. At home, the dinner is what people remember."
+            }
+          ]
+        },
+        "life": {
+          "title": "Late, Again",
+          "body": "It's late again, a paper is due upstairs in the morning, and {junior} is waiting to see what you do. These nights always end the same way: you go home on time and send it in the morning, and the building hasn't fallen down yet. What you do tonight is what you'll do every night after it.",
+          "choices": [
+            {
+              "text": "Stay tonight, and finish it.",
+              "outcome": "You stay, and {junior} stays because you did. It's cleared at 1am. Upstairs says thank you, once, and the next morning {junior} looks at you as if you'd changed the rules."
+            },
+            {
+              "text": "Go home, as you always do.",
+              "outcome": "You're home for dinner, and the paper goes in at 8:40am. Upstairs never asks when it was written. Two people on your floor now leave on time too, and say it was your idea."
+            }
+          ]
+        }
+      }
     }
   },
   {
@@ -3528,7 +3810,8 @@
           "competence": 5,
           "standing": 2
         },
-        "outcome": "You get four officers and half a system, as you expected. You bid for eleven precisely so that four would look like a compromise."
+        "outcome": "You get four officers and half a system, as you expected. You bid for eleven precisely so that four would look like a compromise.",
+        "stance": "big"
       },
       {
         "text": "Bid exactly what you need.",
@@ -3537,7 +3820,8 @@
           "competence": 3,
           "standing": -3
         },
-        "outcome": "You get seventy per cent of exactly what you needed, because the process assumes everyone pads their bid, and punishes you for not padding."
+        "outcome": "You get seventy per cent of exactly what you needed, because the process assumes everyone pads their bid, and punishes you for not padding.",
+        "stance": "exact"
       },
       {
         "text": "Don't bid. Absorb the extra work within your existing budget.",
@@ -3546,7 +3830,8 @@
           "competence": -4,
           "reputation": -2
         },
-        "outcome": "Everyone above you is delighted. Your officers do the work of eleven people for three years, and two of them leave."
+        "outcome": "Everyone above you is delighted. Your officers do the work of eleven people for three years, and two of them leave.",
+        "stance": "absorb"
       }
     ],
     "montageEffects": {
@@ -3554,19 +3839,19 @@
       "standing": 1
     },
     "montageLines": {
-      "0": [
+      "big": [
         "In the budget round you bid for eleven officers and get four: the reason you bid for eleven.",
         "Budget season: every line justified, footnoted and cut by a third, as planned.",
         "You bid big again, defend every line, and are cut back to the number you had in mind all along.",
         "In the budget round you bid for eleven officers and a system, and get only the system, which needs eleven officers."
       ],
-      "1": [
+      "exact": [
         "You bid for exactly what you need and get two-thirds of it, described to you as a good outcome.",
         "Your bid is honest and the budget is flat, and when the two meet in a spreadsheet, the spreadsheet wins.",
         "An honest bid, funded at two-thirds again, with thanks for the realism of your projections.",
         "Your exact bid is cut by a third, because every bid is cut by a third, and yours was exact."
       ],
-      "2": [
+      "absorb": [
         "You make do within your existing budget again, and a note of thanks arrives: the only increase you get.",
         "Budget season, no bid again, and you learn one more polite way to say \"we will absorb it\".",
         "No bid again. Your people absorb the extra work with you, and one of them updates a LinkedIn profile.",
@@ -3648,7 +3933,13 @@
           ]
         }
       }
-    }
+    },
+    "series": {
+      "key": "budget_round",
+      "full": 1,
+      "spend": true
+    },
+    "noMontage": true
   },
   {
     "id": "the_mps_night",
@@ -3667,7 +3958,8 @@
           "integrity": 3,
           "competence": -1
         },
-        "outcome": "You finish at 12:40am and fix the two things that could be fixed. The man will be back next Tuesday, as he will be for nine more years. You finish the speech in the car, and it sounds it."
+        "outcome": "You finish at 12:40am and fix the two things that could be fixed. The man will be back next Tuesday, as he will be for nine more years. You finish the speech in the car, and it sounds it.",
+        "stance": "everyone"
       },
       {
         "text": "Take the hardest cases, and write them yourself.",
@@ -3676,7 +3968,8 @@
           "reputation": 3,
           "standing": -1
         },
-        "outcome": "You write eleven letters, each argued rather than copied from a template, and three succeed that would not have. Thirty residents are seen by your volunteers, who are very good, and are not you."
+        "outcome": "You write eleven letters, each argued rather than copied from a template, and three succeed that would not have. Thirty residents are seen by your volunteers, who are very good, and are not you.",
+        "stance": "hardest"
       },
       {
         "text": "Leave at ten. Finish the speech.",
@@ -3685,7 +3978,8 @@
           "competence": 2,
           "reputation": -3
         },
-        "outcome": "You leave at ten, and the speech goes well in the House. The volunteers stay until one. By Thursday a resident has posted about the evening, and the post is about what time you left."
+        "outcome": "You leave at ten, and the speech goes well in the House. The volunteers stay until one. By Thursday a resident has posted about the evening, and the post is about what time you left.",
+        "stance": "speech"
       }
     ],
     "montageEffects": {
@@ -3693,7 +3987,7 @@
       "integrity": 1
     },
     "montageLines": {
-      "0": [
+      "everyone": [
         "You see every resident on Tuesday nights, and a man whose case cannot be reopened now brings you kueh, still warm from the market.",
         "Your Meet-the-People Session runs past midnight again, and the volunteers have started bringing cushions.",
         "The coffee shop downstairs now closes before your Meet-the-People Session does, every week.",
@@ -3701,7 +3995,7 @@
         "A resident brings a folder of letters from three MPs before you, and you read every one.",
         "The last resident of the night only wants to say thank you, and you stay for all forty minutes of it."
       ],
-      "1": [
+      "hardest": [
         "You write the hardest appeals yourself, and three a month now succeed that would not have.",
         "An appeal you argued yourself is approved, and the resident thanks the volunteer who typed it, fairly.",
         "You write the hard appeals yourself again, and one agency has started to recognise your paragraphs.",
@@ -3709,7 +4003,7 @@
         "Your letters to agencies now open with the right section number, and the agencies have noticed.",
         "A volunteer asks how you write the hard appeals, and you teach the paragraph, not the template."
       ],
-      "2": [
+      "speech": [
         "You leave the Tuesday session at ten again, and the volunteers see the rest of the queue, very well and very tired.",
         "A resident thanks you for the new lifts, which were the Town Council's doing, and you accept on its behalf and leave at ten.",
         "Your speech for Parliament is done by Wednesday, because the volunteers saw out the Tuesday queue without you.",
@@ -3775,7 +4069,13 @@
           ]
         }
       }
-    }
+    },
+    "series": {
+      "key": "mps_night",
+      "full": 1,
+      "spend": true
+    },
+    "noMontage": true
   },
   {
     "id": "the_walkabout",
@@ -3794,7 +4094,8 @@
           "integrity": 3,
           "standing": -2
         },
-        "outcome": "Four minutes of her talking and you not interrupting. The clip is shared widely, and the comments are, unusually, kind. The last fourteen stalls get nine seconds each."
+        "outcome": "Four minutes of her talking and you not interrupting. The clip is shared widely, and the comments are, unusually, kind. The last fourteen stalls get nine seconds each.",
+        "stance": "listen"
       },
       {
         "text": "Keep moving. Every stall gets a handshake.",
@@ -3802,7 +4103,8 @@
           "standing": 4,
           "reputation": -2
         },
-        "outcome": "Every stall in forty minutes. The photographs are excellent, and nobody remembers a word you said."
+        "outcome": "Every stall in forty minutes. The photographs are excellent, and nobody remembers a word you said.",
+        "stance": "move_on"
       },
       {
         "text": "Take her number. Call her tonight, off camera.",
@@ -3811,14 +4113,15 @@
           "integrity": 3,
           "competence": 3,
           "reputation": -1
-        }
+        },
+        "stance": "call_back"
       }
     ],
     "montageEffects": {
       "reputation": 2
     },
     "montageLines": {
-      "0": [
+      "listen": [
         "Wet markets at 7am, with cameras, until you know the price of chillies better than the price of anything else.",
         "On a walkabout an auntie says you looked thinner on television, and you hear out the rest of what she has to say, about her lift.",
         "A stallholder you once heard out on camera now greets you every visit with the latest price rises.",
@@ -3826,7 +4129,7 @@
         "A fishmonger explains the price of fish to you on camera, and the clip is shared mostly by fishmongers.",
         "You hear out a complaint about a bus route on camera, and the route is changed, though not because of the camera."
       ],
-      "1": [
+      "move_on": [
         "A walkabout in the rain, on schedule, and the photograph of you under someone else's umbrella does very well.",
         "Eleven market stalls in forty minutes: everyone gets a handshake and nobody gets a sentence.",
         "Fourteen stalls, fourteen handshakes and a volunteer one step behind you with hand sanitiser.",
@@ -3834,7 +4137,7 @@
         "Every stall gets a handshake before nine, and you are in the car by a quarter past, as planned.",
         "The walkabout is so punctual that the stallholders now time their breaks by it."
       ],
-      "2": [
+      "call_back": [
         "You take residents' phone numbers at walkabouts and call them at night, and your call log becomes the best map of the ward.",
         "Three phone numbers on a napkin from the wet market, and you call all three that evening, off camera.",
         "You call a stallholder back about her rent, and she tells the next stall, and the next.",
@@ -3900,7 +4203,13 @@
           ]
         }
       }
-    }
+    },
+    "series": {
+      "key": "walkabout",
+      "full": 1,
+      "spend": true
+    },
+    "noMontage": true
   },
   {
     "id": "the_pq",
@@ -3927,7 +4236,8 @@
             "inYears": 3,
             "chance": 0.3
           }
-        ]
+        ],
+        "stance": "straight"
       },
       {
         "text": "Read the brief, which answers a nearby question.",
@@ -3936,7 +4246,8 @@
           "reputation": -4,
           "integrity": -6
         },
-        "outcome": "Technically responsive, substantively elsewhere. It takes skill and you have it, and the clip will stay online for longer than the scheme."
+        "outcome": "Technically responsive, substantively elsewhere. It takes skill and you have it, and the clip will stay online for longer than the scheme.",
+        "stance": "brief"
       },
       {
         "text": "Promise a full written answer, and write it properly.",
@@ -3946,7 +4257,8 @@
           "standing": 1,
           "reputation": -3
         },
-        "outcome": "The written answer runs to four pages, with tables, and is the most complete account the ministry has ever given of the scheme. The Member reads it. So does one researcher."
+        "outcome": "The written answer runs to four pages, with tables, and is the most complete account the ministry has ever given of the scheme. The Member reads it. So does one researcher.",
+        "stance": "written"
       }
     ],
     "montageEffects": {
@@ -3954,7 +4266,7 @@
       "competence": 1
     },
     "montageLines": {
-      "0": [
+      "straight": [
         "At Question Time you answer the question that was actually asked, and people still notice.",
         "Seven questions this sitting, and two of your answers make the news for being short and true.",
         "A Member files a question expecting your officials' usual reply, gets a straight answer instead, and files another.",
@@ -3962,7 +4274,7 @@
         "You give the House the actual number, and the Member who asked has no follow-up question ready.",
         "Your answer in the House is one paragraph shorter than the brief: you cut the paragraph that dodged."
       ],
-      "1": [
+      "brief": [
         "At Question Time you answer a question that was nearly the one asked.",
         "A sharp follow-up question meets a smooth reply; Hansard records both, and the papers record the reply.",
         "Question Time again, and the brief answers a question your officials found easier.",
@@ -3970,7 +4282,7 @@
         "You read your officials' brief in full, accurately, and the Member asks the original question again in other words.",
         "At Question Time you read the brief so well that nobody can quite say which question it answered."
       ],
-      "2": [
+      "written": [
         "Seven questions this sitting, and the full written answers follow, as promised, with tables.",
         "Another four-page written answer, and a university researcher cites three of them in a paper, with footnotes.",
         "Another written answer to a Parliamentary Question goes out, longer than the question and shorter than its annex.",
@@ -4044,6 +4356,79 @@
           ]
         }
       }
+    },
+    "exclusive": "house_brief",
+    "series": {
+      "key": "house",
+      "full": 2,
+      "spend": true
+    },
+    "noMontage": true,
+    "again": {
+      "keep": {
+        "competence": 1,
+        "reputation": -1
+      },
+      "change": {
+        "reputation": 1,
+        "standing": -1
+      },
+      "scenes": {
+        "straight": {
+          "title": "The Parliamentary Question, Again",
+          "body": "Another Parliamentary Question on one of your ministry's schemes, and again the honest answer is unflattering. Your habit in the House is to answer straight, and the Members who file questions have noticed: they file more. How you answer this one is how you'll answer them all, and Hansard keeps every word.",
+          "choices": [
+            {
+              "text": "Answer it straight, as you always do.",
+              "outcome": "You say what isn't working and what you'll change. The Member who asked has run out of follow-up questions by the second one, and your officials have stopped drafting briefs that dodge."
+            },
+            {
+              "text": "Read the officials' brief this time.",
+              "outcome": "The brief answers a nearby question, fluently. The Member, who has heard you answer straight before, asks the question again, slowly, and Hansard records the second asking."
+            },
+            {
+              "text": "Promise a full written answer instead.",
+              "outcome": "The written answer runs to four pages, with tables, and arrives on the date you promised. The House hears less from you this sitting, and reads more."
+            }
+          ]
+        },
+        "brief": {
+          "title": "The Parliamentary Question, Again",
+          "body": "Another Parliamentary Question on one of your ministry's schemes, and your officials' brief is ready: accurate, and about a slightly different question, like the ones before it. Your habit in the House is to read it well. How you answer this one is how you'll answer them all, and Hansard keeps every word.",
+          "choices": [
+            {
+              "text": "Put the brief down. Answer the question asked.",
+              "outcome": "You answer the question that was asked, and the House goes quiet in the way it does for something new. Your officials rewrite the next brief overnight, to fit you."
+            },
+            {
+              "text": "Read the brief, as you always do.",
+              "outcome": "Fluent, accurate and slightly beside the point. The follow-up slides off it, as they all do, and the clip runs for a day longer than the answer deserved."
+            },
+            {
+              "text": "Offer a full written answer instead.",
+              "outcome": "Four pages, with tables, that answer exactly what was asked. The Member is so surprised that the next question arrives with a thank-you."
+            }
+          ]
+        },
+        "written": {
+          "title": "The Parliamentary Question, Again",
+          "body": "Another Parliamentary Question on one of your ministry's schemes. Your habit in the House is to promise a full written answer and deliver it, with tables, and one Member now files questions just to get them. How you answer this one is how you'll answer them all, and Hansard keeps every word.",
+          "choices": [
+            {
+              "text": "Answer this one straight, on your feet.",
+              "outcome": "You answer it in four sentences, and the House hears what your written answers have been saying all along. This time the press gallery writes it down."
+            },
+            {
+              "text": "Read the brief, and save the tables.",
+              "outcome": "The brief answers a nearby question, and the House moves on. The Member who collects your written answers looks at an empty folder, and files another question."
+            },
+            {
+              "text": "Promise the written answer, as usual.",
+              "outcome": "Another four pages, footnoted, on the date you promised. A researcher cites it within the month. In the House, the exchange takes eleven seconds."
+            }
+          ]
+        }
+      }
     }
   },
   {
@@ -4063,7 +4448,8 @@
           "reputation": 4,
           "standing": -6
         },
-        "outcome": "You read it in full, rude part included, and answer it for eleven minutes without notes. The room changes temperature. Nobody repeats anything else from the townhall, inside the ministry or out."
+        "outcome": "You read it in full, rude part included, and answer it for eleven minutes without notes. The room changes temperature. Nobody repeats anything else from the townhall, inside the ministry or out.",
+        "stance": "face"
       },
       {
         "text": "Address the theme without reading it.",
@@ -4072,7 +4458,8 @@
           "integrity": -4,
           "reputation": -2
         },
-        "outcome": "You speak warmly about wellbeing and the importance of a sustainable pace. Four hundred officers understand precisely what has happened, and the question's upvotes keep climbing."
+        "outcome": "You speak warmly about wellbeing and the importance of a sustainable pace. Four hundred officers understand precisely what has happened, and the question's upvotes keep climbing.",
+        "stance": "deflect"
       }
     ],
     "montageEffects": {
@@ -4080,14 +4467,14 @@
       "reputation": 1
     },
     "montageLines": {
-      "0": [
+      "face": [
         "The workload question tops the townhall board again, you read it out again, and this time the room applauds before you answer.",
         "Four hundred officers, one microphone, and a rude question read out in full: the only part of the townhall anyone repeats.",
         "An officer thanks you at the lift for reading the rude townhall question out, in a whisper, in case anyone is listening.",
         "You read the townhall's top question out in full, and the next year one officer puts a real name to a question.",
         "The townhall question about workload is read out again, and this time a director in the front row nods."
       ],
-      "1": [
+      "deflect": [
         "The townhall's top question is about workload, and you address its theme, warmly.",
         "Your townhall slides circulate, unofficially, as an example of what a townhall can be.",
         "The townhall runs to time and the theme is addressed, while the question waits on the board like a queue number.",
@@ -4111,16 +4498,16 @@
         ]
       },
       {
-        "title": "The Survey Results",
-        "body": "Your ministry's staff survey is back, and you are presenting it at the townhall. Most numbers went up. One fell a long way: whether officers feel safe raising concerns. Four hundred of them will see which number you put first.",
+        "title": "The Extra Floor",
+        "body": "You are hosting your ministry's townhall: four hundred officers and a roving microphone. An officer asks why headquarters added a floor of staff this year, while every division was told to absorb its work. It's true, the room knows it, and everyone is waiting to see what you do with it.",
         "choices": [
           {
-            "text": "Put that number on the first slide.",
-            "outcome": "The first slide is the bad number, in large type, and you talk about it for ten minutes. Two directors look at the floor. Four hundred officers look at you."
+            "text": "Say it's true, and say why.",
+            "outcome": "You say it's true, and why, and that it won't happen next year. The applause is short and real. Someone in the third row writes \"next year\" in a notebook."
           },
           {
-            "text": "Lead with the numbers that went up.",
-            "outcome": "The deck opens on engagement, up four points. The other number is on slide nineteen. Most of the room had found slide nineteen before you started."
+            "text": "Talk about the year's priorities.",
+            "outcome": "You talk about priorities for six minutes, well. The officer who asked sits down, and the microphone moves on, and the floor is still there."
           }
         ]
       }
@@ -4135,7 +4522,13 @@
           ]
         }
       }
-    }
+    },
+    "series": {
+      "key": "townhall",
+      "full": 1,
+      "spend": true
+    },
+    "noMontage": true
   },
   {
     "id": "the_quiet_year",
@@ -4152,7 +4545,8 @@
           "integrity": 3,
           "standing": -1
         },
-        "outcome": "You get a process fixed that has annoyed eleven thousand people for a decade. It takes the whole year, and it's never announced."
+        "outcome": "You get a process fixed that has annoyed eleven thousand people for a decade. It takes the whole year, and it's never announced.",
+        "stance": "substance"
       },
       {
         "text": "Use it to build your network.",
@@ -4160,7 +4554,8 @@
           "standing": 5,
           "reputation": 3
         },
-        "outcome": "Coffees, lunches, and a great deal of being remembered. It isn't work. It is, unmistakably, the job."
+        "outcome": "Coffees, lunches, and a great deal of being remembered. It isn't work. It is, unmistakably, the job.",
+        "stance": "visibility"
       },
       {
         "text": "Use it to rest.",
@@ -4169,7 +4564,8 @@
           "competence": -1,
           "reputation": -1
         },
-        "outcome": "You rest. It turns out you needed the rest more than anything needed fixing, or anyone needed lunch with you."
+        "outcome": "You rest. It turns out you needed the rest more than anything needed fixing, or anyone needed lunch with you.",
+        "stance": "low"
       }
     ],
     "montageEffects": {
@@ -4177,7 +4573,7 @@
       "integrity": 1
     },
     "montageLines": {
-      "0": [
+      "substance": [
         "Nothing breaks all year, which you suspect isn't a coincidence and can't prove.",
         "You use a quiet year to fix a process that annoyed people since before you arrived, and never announce it.",
         "You spend a quiet year fixing a form nobody asked you to fix, and three people quietly stop complaining.",
@@ -4185,7 +4581,7 @@
         "You fix the meeting-room booking system in a quiet year, and the queue for the big room disappears.",
         "In a quiet year you write down a process that existed only in one retiring officer's head."
       ],
-      "1": [
+      "visibility": [
         "A quiet year and forty lunches, of which you remember thirty: about average.",
         "You go to everything you're invited to, and by December you're invited to more.",
         "A quiet year of coffees in the same three cafés, with people who will remember you as \"helpful\".",
@@ -4193,7 +4589,7 @@
         "In a quiet year you join two committees, both for the networking and one of them for the food.",
         "A quiet year of receptions, where you learn to hold a plate, a glass and a business card at once."
       ],
-      "2": [
+      "low": [
         "A week on Bintan in June, where you check your email only twice. That's progress.",
         "A quiet year, and somewhere someone writes \"steady\" about you and means it kindly.",
         "A quiet year, and you take all your leave, which the leave system flags as unusual.",
@@ -4270,6 +4666,78 @@
             0,
             2,
             -2
+          ]
+        }
+      }
+    },
+    "series": {
+      "key": "effort",
+      "full": 2,
+      "spend": true
+    },
+    "noMontage": true,
+    "again": {
+      "keep": {
+        "competence": 1,
+        "reputation": -1
+      },
+      "change": {
+        "reputation": 1,
+        "standing": -1
+      },
+      "scenes": {
+        "substance": {
+          "title": "Another Quiet Year",
+          "body": "Another year without incident: everything runs, and your diary has empty afternoons. Your quiet years have a pattern by now: you fill them by fixing things nobody asked you to fix, and say nothing about it. What you do with this one decides the quiet years after it, and nobody will ask about them again.",
+          "choices": [
+            {
+              "text": "Find the next thing that needs fixing.",
+              "outcome": "This year it's the leave form, which asked for your reason three times. It asks once now. Nobody announces it, and you've stopped expecting anyone to."
+            },
+            {
+              "text": "Spend this one on lunches.",
+              "outcome": "Eleven lunches and a dinner, with people you've fixed things for without their knowing. Now they know, and several of them say so in rooms you're not in."
+            },
+            {
+              "text": "Rest. You've earned it.",
+              "outcome": "You rest, and the next broken thing stays broken for the year. Someone else fixes it eventually, and is thanked for it. You sleep well anyway."
+            }
+          ]
+        },
+        "visibility": {
+          "title": "Another Quiet Year",
+          "body": "Another year without incident, and the diary has gaps in it again. Your quiet years have a pattern by now: you fill them with coffees and lunches, and you're invited to more things than you can attend. What you do with this one decides the quiet years after it, and nobody will ask about them again.",
+          "choices": [
+            {
+              "text": "Turn down the lunches. Fix something instead.",
+              "outcome": "You decline nine invitations and fix the process that slows every new joiner's first week. Three people stop inviting you. The new joiners never find out you were busy."
+            },
+            {
+              "text": "Accept everything, as usual.",
+              "outcome": "Forty lunches, a reception a week, and a phone full of people who call you \"a friend\". Some of them mean it."
+            },
+            {
+              "text": "Accept nothing. Go home on time.",
+              "outcome": "You go home on time all year. The invitations thin out by June, and by December you can't honestly say you mind."
+            }
+          ]
+        },
+        "low": {
+          "title": "Another Quiet Year",
+          "body": "Another year without incident, and nothing needs you. Your quiet years have a pattern by now: you take them as rest, your leave, all of it, and home by six. What you do with this one decides the quiet years after it, and nobody will ask about them again.",
+          "choices": [
+            {
+              "text": "Use this one to fix something.",
+              "outcome": "You find the thing that has annoyed everyone for years, and fix it by September. People are surprised it was you, and say so, which is less flattering than it sounds."
+            },
+            {
+              "text": "Use this one to see people.",
+              "outcome": "Lunches again, after a long gap. Several people are pleased to see you, and two of them had assumed you'd left the service."
+            },
+            {
+              "text": "Rest, as you always do.",
+              "outcome": "You take every day of leave you're owed, and the office runs without you. The leave system flags it as unusual. Nobody else does."
+            }
           ]
         }
       }
@@ -4510,7 +4978,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "own_up"
   },
   {
     "id": "minute_vindicated",
@@ -4689,7 +5158,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "own_up"
   },
   {
     "id": "pofma_vindicated",
@@ -4732,7 +5202,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "share_credit"
   },
   {
     "id": "speech_vindicated",
@@ -4818,7 +5289,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "own_up"
   },
   {
     "id": "secondment_verdict",
@@ -5514,7 +5986,8 @@
         },
         "outcome": "You delete the message. Then you undelete it, read the number again, and delete it."
       }
-    ]
+    ],
+    "exclusive": "private_offer"
   },
   {
     "id": "headhunter_mid",
@@ -5549,7 +6022,8 @@
         },
         "outcome": "The drawer is the top one. You open it more often than you'd admit."
       }
-    ]
+    ],
+    "exclusive": "private_offer"
   },
   {
     "id": "headhunter_political",
@@ -5645,7 +6119,8 @@
           }
         ]
       }
-    ]
+    ],
+    "exclusive": "private_offer"
   },
   {
     "id": "headhunter_political_grc",
@@ -5741,7 +6216,8 @@
           }
         ]
       }
-    ]
+    ],
+    "exclusive": "private_offer"
   },
   {
     "id": "citizens_panel",
@@ -5853,7 +6329,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "declare"
   },
   {
     "id": "small_favour",
@@ -5949,7 +6426,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "share_credit"
   },
   {
     "id": "budget_committee",
@@ -6028,20 +6506,20 @@
   {
     "id": "farewell_drinks",
     "title": "Farewell Drinks",
-    "body": "Your friend in HR, the one who explained your CEP to you over lunch years ago, is leaving the service. At the farewell drinks, on a second glass, your friend tells you how yours gets reviewed: every year, by people who mostly read your last two postings. The hard postings, your friend says, get read twice.",
+    "body": "Your friend in HR, the one who explained your CEP to you over lunch years ago, is leaving the service. At the farewell drinks, on a second glass, your friend tells you how yours gets reviewed: every year, by people who mostly read your last two postings, and who like officers who have run something, not just written about it. So far, yours have all been papers.",
     "triggered": true,
     "requires": {
       "maxRank": 6
     },
     "choices": [
       {
-        "text": "Ask for the hardest posting going.",
+        "text": "Ask to run something at your next posting.",
         "effects": {
           "cep": 1,
           "standing": -3,
           "competence": 3
         },
-        "outcome": "You ask the next morning. HR says it will note your interest, and does: your next posting is a difficult one, and it gets read twice."
+        "outcome": "You ask the next morning. HR says it will note your interest, and does: your next posting comes with nine officers, a hotline and a backlog, and it gets read twice."
       },
       {
         "text": "Say thanks, and let your friend enjoy the drinks.",
@@ -6257,7 +6735,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "own_up"
   },
   {
     "id": "lanterns",
@@ -6303,13 +6782,14 @@
         "outcome": "You are given something anyway: the chair of a ministerial committee that meets on Saturday mornings. The appointment is a sign of enormous trust, and you will never see a Saturday again."
       },
       {
-        "text": "Ask for the hard portfolio nobody wants.",
+        "text": "Ask, at the table, for the portfolio you were promised.",
         "effects": {
-          "reputation": 6,
           "competence": 4,
-          "standing": -2
+          "reputation": 3,
+          "standing": -2,
+          "integrity": -2
         },
-        "outcome": "The Prime Minister had been hoping someone would ask, and agrees before you finish the sentence."
+        "outcome": "The Prime Minister gives it to you before the next item on the agenda, and the whole table watches a debt being paid in full. It's a good portfolio. Everyone will remember how you got it."
       }
     ],
     "witnesses": {
@@ -6441,7 +6921,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "share_credit"
   },
   {
     "id": "improvement_plan",
@@ -6756,7 +7237,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "announce"
   },
   {
     "id": "moh_premiums",
@@ -6824,7 +7306,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "bad_number"
   },
   {
     "id": "moh_waiting",
@@ -6893,7 +7376,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "viral_post"
   },
   {
     "id": "mom_dorms",
@@ -7090,7 +7574,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "floor_question"
   },
   {
     "id": "mnd_classification",
@@ -7264,7 +7749,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "viral_post"
   },
   {
     "id": "moe_mergers",
@@ -7445,7 +7931,8 @@
           ]
         }
       }
-    }
+    },
+    "exclusive": "floor_question"
   },
   {
     "id": "the_ask",
@@ -7568,7 +8055,7 @@
           "text": "{senior}, your reporting officer,",
           "short": "{senior}",
           "their": "{senior.their}",
-          "yes": "{senior} remembers it at your next ranking meeting, the only room where it counts.",
+          "yes": "{senior} remembers it in the meeting that decides your grade, the only room where it counts.",
           "no": "{senior} says that's perfectly fine, in the way the word is used upstairs.",
           "effects": {
             "1": {

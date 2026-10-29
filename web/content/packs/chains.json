@@ -5,6 +5,7 @@
   "events": [
     {
       "id": "pilot_design",
+      "exclusive": ["bad_number", "announce"],
       "title": "Pick Three",
       "parts": {
         "scheme": {
@@ -1174,6 +1175,7 @@
     },
     {
       "id": "whistle_return_pol",
+      "exclusive": "house_brief",
       "triggered": true,
       "title": "Another Spreadsheet",
       "parts": {
@@ -1305,6 +1307,7 @@
     },
     {
       "id": "protege_panel",
+      "exclusive": "not_yet",
       "triggered": true,
       "title": "Ready Now",
       "parts": {
@@ -1358,6 +1361,7 @@
     },
     {
       "id": "uturn_questions",
+      "exclusive": "house_brief",
       "title": "Nine Questions",
       "parts": {
         "policy": {
@@ -1881,6 +1885,7 @@
     },
     {
       "id": "bond_masters",
+      "exclusive": "private_offer",
       "title": "A Year Away",
       "parts": {
         "school": [

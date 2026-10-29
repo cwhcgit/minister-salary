@@ -6,7 +6,7 @@
     {
       "id": "opening_scholar",
       "title": "Four Months In",
-      "body": "You came back from your overseas degree four months ago and were posted to the {ministry} as an Assistant Director. Your reporting officer is {senior}, {senior.aTitle}. Today {senior} hands you your first real job: a paper for the Minister, due in two weeks, on a scheme whose numbers are bad. A scholar's first paper gets read closely.",
+      "body": "You came back from your overseas degree four months ago and were posted to the {ministry} as an Assistant Director. Your reporting officer is {senior}, {senior.aTitle}. Today {senior} hands you your first real job: a paper for the Minister, due in two weeks, on why a scheme isn't reaching the people it was built for. The officers who run its counters have done it for years, and nobody has asked them. A scholar's first paper gets read closely.",
       "requires": {
         "origin": [
           "scholar"
@@ -18,30 +18,34 @@
       "weight": 1,
       "choices": [
         {
-          "text": "Write that the scheme isn't working, and show the numbers.",
+          "text": "Spend the first week at the counters.",
           "effects": {
-            "integrity": 5,
-            "competence": 4,
+            "competence": 6,
+            "integrity": 2,
             "standing": -3
           },
-          "outcome": "Your paper says plainly that the scheme isn't working, and shows why. {senior} sends it up unchanged. The Minister's office asks who wrote it: half of them want to meet you, and half want to know why nobody stopped you."
+          "outcome": "You spend five mornings behind the counters, and the paper says what the counter staff have known for years, with numbers. {senior} sends it up unchanged. The Minister's office asks who wrote it, and why it reads as if the writer had been there.",
+          "stance": "harder"
         },
         {
-          "text": "Write it the way the Minister's office will want to read it.",
+          "text": "Ask a scholar from your year, now in the Minister's office, what the Minister wants.",
           "effects": {
             "standing": 5,
-            "integrity": -4
-          },
-          "outcome": "Your paper says the scheme is \"gaining traction\", which is true of its two good months. It goes up on time and comes back with a tick. {senior} says nothing, and doesn't give you a difficult file again for a year."
-        },
-        {
-          "text": "Ask {senior} what the Minister already thinks, first.",
-          "effects": {
-            "standing": 3,
-            "competence": 2,
+            "competence": 1,
             "integrity": -2
           },
-          "outcome": "{senior} tells you what the Minister thinks, and which numbers to lead with. The paper lands well. You've learned how papers get written here, and you're not sure you like it."
+          "outcome": "Your friend in the Minister's office tells you what the Minister likes to read, and in what order. The paper lands well and comes back with a tick. {senior}, who wasn't asked, notices that nobody asked.",
+          "stance": "network"
+        },
+        {
+          "text": "Write it from the files, and hand it in early.",
+          "effects": {
+            "competence": 3,
+            "standing": 2,
+            "reputation": -1
+          },
+          "outcome": "The files are thorough, and so is your paper: correct, and a day early. It goes up with a tick and comes back with no comment, which for a first paper is a comment.",
+          "stance": "head_down"
         }
       ],
       "witnesses": {
@@ -57,12 +61,17 @@
           "ministersOffice": {
             "chance": 0.4,
             "react": [
-              -3,
               -2,
-              2
+              2,
+              1
             ]
           }
         }
+      },
+      "series": {
+        "key": "footing",
+        "full": 2,
+        "opens": true
       }
     },
     {
@@ -85,7 +94,8 @@
             "competence": 6,
             "standing": -1
           },
-          "outcome": "{senior} gives you a briefing note for a Deputy Secretary, due Friday. It's harder than anything you've done. It goes in on time, with one mistake that {senior} catches before anyone upstairs sees it."
+          "outcome": "{senior} gives you a briefing note for a Deputy Secretary, due Friday. It's harder than anything you've done. It goes in on time, with one mistake that {senior} catches before anyone upstairs sees it.",
+          "stance": "harder"
         },
         {
           "text": "Ask {peer} how to get into those meetings.",
@@ -94,7 +104,8 @@
             "reputation": 2,
             "competence": -2
           },
-          "outcome": "{peer} says you just ask to sit in. So you ask. The meetings are mostly about scheduling other meetings, but people upstairs now know your face."
+          "outcome": "{peer} says you just ask to sit in. So you ask. The meetings are mostly about scheduling other meetings, but people upstairs now know your face.",
+          "stance": "network"
         },
         {
           "text": "Keep your head down and clear the letters.",
@@ -103,7 +114,8 @@
             "integrity": 4,
             "standing": -3
           },
-          "outcome": "You clear a hundred and forty replies by December, each one checked twice. Nobody upstairs counts them. {senior} does, and starts sending you the letters nobody else wants to answer."
+          "outcome": "You clear a hundred and forty replies by December, each one checked twice. Nobody upstairs counts them. {senior} does, and starts sending you the letters nobody else wants to answer.",
+          "stance": "head_down"
         }
       ],
       "witnesses": {
@@ -125,6 +137,11 @@
             ]
           }
         }
+      },
+      "series": {
+        "key": "footing",
+        "full": 2,
+        "opens": true
       }
     }
   ]

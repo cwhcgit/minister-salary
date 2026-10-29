@@ -1277,11 +1277,12 @@ const Engine = (() => {
       if (ev) claim(ev, { ...s, rank: h.rank, age: h.age, year: h.year });
     }
   }
-  // A due consequence is struck when the version written for where the player is now poses a
-  // decision this career has had, and no other version fits: it can never be shown, so it must not
-  // wait for ever.
+  // A due consequence is struck when every version of it poses a decision this career has had, or
+  // when the version written for where the player is now does and no other version fits: it can
+  // never be shown, so it must not wait for ever.
   function struck(content, id, s) {
     const all = versions(content, id, s);
+    if (all.length && all.every(x => excluded(x, s))) return true;
     return !all.some(x => fits(x, s)) && all.some(x => showable(x, s) && excluded(x, s));
   }
 
@@ -1340,6 +1341,12 @@ const Engine = (() => {
 
   // info (optional) says where the card came from, for playtest traces.
   function pickEvent(content, s, info = {}) {
+    // a due consequence that can no longer be shown (a decision this career has had) is struck,
+    // and the state says so
+    for (const x of s.scheduled.filter(x => x.fireYear <= s.year && struck(content, x.eventId, s))) {
+      s.scheduled.splice(s.scheduled.indexOf(x), 1);
+      (s.struck = s.struck || []).push({ ...x, year: s.year });
+    }
     // 0. the career's end takes its years (the renewal, the last year, a Prime Minister's
     //    tenure): anything scheduled for them carries over, as below
     const end = endgameCard(content, s);
@@ -1349,12 +1356,7 @@ const Engine = (() => {
     const opener = allEvents(content, s).find(e => e.priority === "first" && eligible(e, s, content));
     if (opener) { info.source = "priority"; return opener; }
     // 1. scheduled consequences pre-empt everything. One fires a year; when several fall
-    //    due together, the rest carry over to the following years, earliest first. One that can
-    //    no longer be shown (a decision this career has had) is struck, and the state says so.
-    for (const x of s.scheduled.filter(x => x.fireYear <= s.year && struck(content, x.eventId, s))) {
-      s.scheduled.splice(s.scheduled.indexOf(x), 1);
-      (s.struck = s.struck || []).push({ ...x, year: s.year });
-    }
+    //    due together, the rest carry over to the following years, earliest first.
     const due = s.scheduled.filter(x => x.fireYear <= s.year && resolve(content, x.eventId, s));
     if (due.length) {
       const next = due.reduce((a, b) => (b.fireYear < a.fireYear ? b : a));
@@ -2302,6 +2304,13 @@ const Engine = (() => {
   }
   // A card's words as this showing would put them (its version), for quoting a choice.
   const src = (ev, s) => variantOf(ev, s);
+  // A card's words as a past showing put them: its version, or its second-showing scene.
+  function seenAs(ev, variant) {
+    const st = typeof variant === "string" && variant.startsWith("again:") ? variant.slice(6) : null;
+    const sc = st && ev.again && (ev.again.scenes || {})[st];
+    if (sc) return { ...ev, title: sc.title || ev.title, choices: ev.choices.map((c, i) => ({ ...c, text: (sc.choices[i] || {}).text || c.text })) };
+    return applyVariant(ev, typeof variant === "number" ? variant : 0);
+  }
   // pay + appraisal on one line; everything else (promotions, rumours, warnings) as it was
   function compress(log) {
     const pay = log.find(l => l.kind === "pay"), ap = log.find(l => l.kind === "appraisal");
@@ -2342,8 +2351,11 @@ const Engine = (() => {
         const { key, lines: pool } = linesFor(ev, f.stance);
         const li = pickLine(s, key, pool.length, true);
         pt.line = pool[li];
-        const shown = src(ev, s);
-        const why = noDecision(content, "series", { title: sub(shown.title, s, content), choice: sub(shown.choices[choice].text, s, content) });
+        // the card and the choice as the player last saw them in full; a card first met as a series
+        // year (the habit was set on a sibling) is quoted in its own first words
+        const last = (s.history || []).filter(h => h.ev === ev.id && !h.passed).pop();
+        const shown = seenAs(ev, last ? last.variant : 0);
+        const why = noDecision(content, "series", { title: last ? last.title : sub(shown.title, s, content), choice: sub(shown.choices[choice].text, s, content) });
         // a consequence the habit already has on its way, or has had, is not scheduled again
         const again = id => s.scheduled.some(x => x.eventId === id) || (s.seen.includes(id) && (allEvents(content, s).find(e => e.id === id) || {}).once);
         const al = applyChoice(content, s, ev, ch.schedule ? { ...ch, schedule: ch.schedule.filter(x => !again(x.eventId)) } : ch, pt);

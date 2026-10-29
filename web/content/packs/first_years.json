@@ -330,7 +330,8 @@
             ]
           }
         }
-      }
+      },
+      "exclusive": "credit_taken"
     },
     {
       "id": "copied_in",
@@ -716,7 +717,8 @@
             ]
           }
         }
-      }
+      },
+      "exclusive": "own_up"
     },
     {
       "id": "lucky_draw",
@@ -962,7 +964,8 @@
             ]
           }
         }
-      }
+      },
+      "exclusive": "candour_up"
     },
     {
       "id": "real_sop",
@@ -1036,7 +1039,8 @@
             ]
           }
         }
-      }
+      },
+      "exclusive": "mentor_hardway"
     },
     {
       "id": "approved_leave",
@@ -1071,7 +1075,8 @@
             "standing": 6,
             "competence": -1
           },
-          "outcome": "You cancel the trip. Your slide, \"Rest as a Strategic Enabler\", is on at 4:40pm, and the Deputy Secretary leaves at 4:42. The airline gives you a voucher instead of a refund, and it expires unused, like the leave."
+          "outcome": "You cancel the trip. Your slide, \"Rest as a Strategic Enabler\", is on at 4:40pm, and the Deputy Secretary leaves at 4:42. The airline gives you a voucher instead of a refund, and it expires unused, like the leave.",
+          "stance": "work"
         },
         {
           "text": "Go. Someone else can present it.",
@@ -1080,7 +1085,8 @@
             "competence": 4,
             "standing": -4
           },
-          "outcome": "{senior} presents your slide for you, and tells the room you are \"role-modelling the theme\". Two directors write that down. You come back rested, and do the best work of your year."
+          "outcome": "{senior} presents your slide for you, and tells the room you are \"role-modelling the theme\". Two directors write that down. You come back rested, and do the best work of your year.",
+          "stance": "life"
         },
         {
           "text": "Present it by video, from the holiday.",
@@ -1089,7 +1095,8 @@
             "reputation": 2,
             "competence": -2
           },
-          "outcome": "From {away}, you present the slide on Staff Well-being. The connection holds. Three directors say how good it was to see you. Nobody mentions the slide."
+          "outcome": "From {away}, you present the slide on Staff Well-being. The connection holds. Three directors say how good it was to see you. Nobody mentions the slide.",
+          "stance": "work"
         }
       ],
       "witnesses": {
@@ -1108,6 +1115,75 @@
               -3,
               2,
               -2
+            ]
+          }
+        }
+      },
+      "series": {
+        "key": "work_life",
+        "full": 2,
+        "spend": true
+      },
+      "montageLines": {
+        "work": [
+          "A seminar lands in the middle of your leave, and the leave gives way, as it usually does.",
+          "You present your section's slide on the day your flight was meant to leave, and the flight leaves without you.",
+          "Your unused leave rolls over again, with a reminder from HR that leave is good for you.",
+          "A holiday becomes an airline voucher, and the voucher becomes a reminder in your inbox, then nothing.",
+          "Your leave is approved in January and cancelled in August, which your family now plans around."
+        ],
+        "life": [
+          "A seminar is moved into your leave, and you go on holiday anyway; someone else presents your slide.",
+          "You take your leave as approved, and the seminar manages without you, slightly shorter.",
+          "Your out-of-office message goes up on the day it says it will, and stays up.",
+          "You're on a beach when your section's slide is presented, and you hear it went fine.",
+          "Your leave is approved in January and taken in September, which on your floor counts as news."
+        ]
+      },
+      "again": {
+        "keep": {
+          "competence": 1,
+          "reputation": -1
+        },
+        "change": {
+          "reputation": 1,
+          "standing": -1
+        },
+        "scenes": {
+          "work": {
+            "title": "Approved Leave",
+            "body": "In January {senior} approved your two weeks' leave for September, and you booked flights. Now {senior} has moved the division's Work Plan Seminar into the second week, and nobody else can present your section's slide. When work and leave have collided before, work has won. Whatever you choose now, your leave will go the same way every year after.",
+            "choices": [
+              {
+                "text": "Cancel the leave, as you usually would.",
+                "outcome": "You cancel the trip and present the slide at 4:40pm, to a room that empties at 4:42. The airline's voucher expires unused, like the leave, and like the one before it."
+              },
+              {
+                "text": "Go this time. Someone else can present it.",
+                "outcome": "{senior} presents your slide and tells the room you're \"role-modelling the theme\". You come back rested, and slightly alarmed by how good it felt."
+              },
+              {
+                "text": "Present it by video, from the holiday.",
+                "outcome": "From {away}, you present the slide on Staff Well-being. The connection holds. Three directors say how good it was to see you, and nobody mentions the slide."
+              }
+            ]
+          },
+          "life": {
+            "title": "Approved Leave",
+            "body": "In January {senior} approved your two weeks' leave for September, and you booked flights. Now {senior} has moved the division's Work Plan Seminar into the second week, and nobody else can present your section's slide. When work and leave have collided before, you've taken the leave. Whatever you choose now, your leave will go the same way every year after.",
+            "choices": [
+              {
+                "text": "Cancel the leave this time, and present it.",
+                "outcome": "You cancel the trip and present at 4:40pm. The Deputy Secretary leaves at 4:42. {senior} thanks you in the corridor, warmly and at length, and the airline sends a voucher."
+              },
+              {
+                "text": "Go, as you always do.",
+                "outcome": "{senior} presents your slide for you and calls you a role model for the theme. You come back rested and do your best work of the year, which is becoming a pattern."
+              },
+              {
+                "text": "Go, but present it by video from the holiday.",
+                "outcome": "From {away}, you present the slide. The connection holds, and three directors say how good it was to see you. Your holiday photographs include one of a laptop."
+              }
             ]
           }
         }

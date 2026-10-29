@@ -190,7 +190,8 @@
           "rival": {},
           "outcome": "The form accepts it. HR's report later notes \"limited peer input\" for your whole division. Your blank form is one of the reasons."
         }
-      ]
+      ],
+      "exclusive": "peer_review"
     },
     {
       "id": "rival_annex",
@@ -268,7 +269,8 @@
             ]
           }
         }
-      }
+      },
+      "exclusive": "peer_review"
     },
     {
       "id": "rival_posting",
@@ -361,7 +363,8 @@
             ]
           }
         }
-      }
+      },
+      "exclusive": "one_slot"
     },
     {
       "id": "rival_views",
@@ -435,7 +438,11 @@
             ]
           }
         }
-      }
+      },
+      "exclusive": [
+        "not_yet",
+        "peer_review"
+      ]
     },
     {
       "id": "rival_ward",
