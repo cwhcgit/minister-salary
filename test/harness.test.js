@@ -488,7 +488,7 @@ ok('Meanwhile lines: deterministic, and the next run prefers lines this one did 
   // with every line of a habit remembered but one, that one is taken first
   const S = JSON.parse(JSON.stringify(first.S));
   const ev = build.content.events.find(e => e.id === 'the_work');
-  S.linesUsed = {}; S.fillerSeen.the_work = 1; S.habits.the_work = 0; S.currentEvent = '__montage:the_work';
+  S.linesUsed = {}; S.said = []; S.fillerSeen.the_work = 1; S.habits.the_work = 0; S.currentEvent = '__montage:the_work';
   const n = ev.montageLines[0].length;
   S.recent = Array.from({ length: n }, (_, i) => `mw:the_work:0#${i}`).filter(k => k !== `mw:the_work:0#${n - 1}`);
   assert.strictEqual(build.engine.eventOf(build.content, S).body, ev.montageLines[0][n - 1]);
