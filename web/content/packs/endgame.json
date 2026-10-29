@@ -1,0 +1,277 @@
+{
+  "id": "endgame",
+  "title": "The end of a career",
+  "note": "Cards the career's end decides, never drawn at random: the service's last year, the party's renewal (or its offer to stay), politics' last year, and a Prime Minister's tenure. Each has \"endgame\" set and is triggered by the engine in its own year, ahead of anything else due (engine.js, 'the end of a career'; the timing lives in game.json's endgame block). They say plainly what is happening and what comes next, and each choice sets a flag that Declassified reads.",
+  "events": [
+    {
+      "id": "endgame_last_service",
+      "title": "The Last Year",
+      "endgame": "last",
+      "triggered": true,
+      "priority": true,
+      "once": true,
+      "parts": {
+        "when": {
+          "pick": "first",
+          "options": [
+            { "id": "due", "requires": { "maxAge": 63 }, "text": "You reach the retirement age, 64, at the end of it, and HR has already put the date in the system" },
+            { "id": "late", "text": "You are past the retirement age of 64, on the usual one-year re-employment contract, and HR has already marked it \"not for renewal\"" }
+          ]
+        },
+        "ro": {
+          "pick": "first",
+          "options": [
+            { "id": "senior", "requires": { "maxRank": 6, "cast": { "senior": {} } }, "text": "{senior}, your reporting officer, asks how you would like to spend the year." },
+            { "id": "hcs", "requires": { "minRank": 7 }, "text": "The Head of Civil Service asks how you would like to spend the year." },
+            { "id": "ps", "requires": { "maxRank": 6 }, "text": "Your Permanent Secretary asks how you would like to spend the year." }
+          ]
+        }
+      },
+      "body": "This is your last year in the service. {When}. {Ro} Whatever you leave unfinished will go to your successor in a box file, with your initials on the spine.",
+      "choices": [
+        {
+          "text": "Write the handover properly.",
+          "effects": { "integrity": 4, "competence": 2, "standing": -3 },
+          "setFlags": ["last_handover"],
+          "outcome": "The handover runs to forty pages: the files, the history, and the names and mobile numbers of the three people who actually know how the system works. Your successor reads it in a weekend, and calls once, to say thank you."
+        },
+        {
+          "text": "Push one last thing through.",
+          "effects": { "reputation": 5, "competence": 1, "standing": -5 },
+          "setFlags": ["last_push"],
+          "outcome": "Most of your goodwill goes on the change you have wanted for a decade, and it is approved in November with your name nowhere on it. Two colleagues who are staying on are unhappy about it, and you can live with that."
+        },
+        {
+          "text": "Start clearing your desk, quietly.",
+          "effects": { "standing": 3, "reputation": -2, "competence": -1 },
+          "setFlags": ["last_cleared"],
+          "outcome": "You take one box home a week. By December the desk holds a phone, a pen and a stapler that was there when you arrived. Nobody notices it emptying, which you had half hoped they would."
+        }
+      ]
+    },
+    {
+      "id": "endgame_renewal",
+      "title": "Renewal",
+      "endgame": "renewal",
+      "triggered": true,
+      "priority": true,
+      "once": true,
+      "parts": {
+        "due": {
+          "pick": "first",
+          "options": [
+            { "id": "next", "requires": { "endKind": "election" }, "text": "the general election due next year" },
+            { "id": "later", "text": "the next general election" }
+          ]
+        }
+      },
+      "body": "The party is renewing its slate before {due}: new candidates in, and Members past 65 asked to make way. This year it is your turn. The Whip has booked the small meeting room, the one with a box of tissues nobody ever mentions, and asks you, kindly, not to stand again.",
+      "choices": [
+        {
+          "text": "Agree, and announce it yourself first.",
+          "effects": { "standing": 5, "reputation": 2, "integrity": -2 },
+          "setFlags": ["renewal_gracious"],
+          "outcome": "You tell your branch on Tuesday night, before the party tells anyone. Your statement says you have decided to make way for younger Members. Every word of it is true except \"decided\"."
+        },
+        {
+          "text": "Ask to stand one more time.",
+          "effects": { "integrity": 3, "standing": -6 },
+          "setFlags": ["renewal_asked"],
+          "outcome": "You make your case, and make it well. The Whip listens without writing anything down, and says the answer will be the same tomorrow. It is. Your name is not on the slate."
+        },
+        {
+          "text": "Agree, if you can introduce your successor to the ward.",
+          "effects": { "reputation": 4, "competence": -2, "standing": -1 },
+          "setFlags": ["renewal_successor"],
+          "outcome": "The party's candidate is a generation younger than you, with a better CV than yours ever was. All year you take them round every block, coffee shop and void deck, introducing them as the person who looks after the ward now."
+        }
+      ]
+    },
+    {
+      "id": "endgame_stay",
+      "title": "One More Term",
+      "endgame": "stay",
+      "triggered": true,
+      "priority": true,
+      "once": true,
+      "body": "The party is renewing its slate before the general election due next year, and most Members past 65 are being asked to make way. You are not. The Prime Minister wants you to stand once more and stay in Cabinet until you turn 70, where the party draws the line, and says, twice, that there is no pressure.",
+      "choices": [
+        {
+          "text": "Stand once more.",
+          "effects": { "standing": 4, "reputation": -2 },
+          "setFlags": ["stays_on"],
+          "outcome": "You say yes before the Prime Minister has finished asking, and the Whip puts your name back on the slate. At your next branch meeting someone asks, kindly, how long you plan to go on."
+        },
+        {
+          "text": "Make way anyway.",
+          "effects": { "integrity": 5, "reputation": 3, "standing": -4 },
+          "leaving": true,
+          "setFlags": ["made_way"],
+          "outcome": "You thank the Prime Minister and say no: the slate needs the room more than it needs you. The Prime Minister accepts at once, which you try not to read anything into."
+        }
+      ]
+    },
+    {
+      "id": "endgame_last_politics",
+      "title": "The Last Year",
+      "endgame": "last",
+      "triggered": true,
+      "priority": true,
+      "once": true,
+      "parts": {
+        "end": {
+          "pick": "first",
+          "options": [
+            { "id": "election", "requires": { "endKind": "election" }, "text": "Parliament will be dissolved this year for the general election, and you are not on the party's slate" },
+            { "id": "cabinet", "requires": { "endKind": "limit", "flagsAll": ["stays_on"] }, "text": "You turn 70 at the end of this year, which is where the party draws the line. You will leave Cabinet then, and you will not stand again" },
+            { "id": "limit", "requires": { "endKind": "limit" }, "text": "You turn 70 at the end of this year, which is where the party draws the line, and you will not stand at the general election after it" }
+          ]
+        },
+        "left": {
+          "pick": "first",
+          "options": [
+            { "id": "office", "requires": { "minRank": 9 }, "text": "Whatever you leave unfinished at the {ministry} goes to whoever holds your office next." },
+            { "id": "ward", "text": "Whatever you leave unfinished in the ward goes to the next Member, with your notes in the margins." }
+          ]
+        }
+      },
+      "body": "This is your last year in politics. {End}. {Left} For once, the year is yours to spend as you choose.",
+      "choices": [
+        {
+          "text": "Write the handover properly.",
+          "effects": { "integrity": 4, "competence": 2, "standing": -3 },
+          "setFlags": ["last_handover"],
+          "outcome": "Whoever comes next gets it all on paper: the files, the people who actually know how things work, and which residents to ring first when a lift breaks down. Your successor reads it twice, keeps your number, and uses it."
+        },
+        {
+          "text": "Push one last thing through.",
+          "effects": { "reputation": 5, "competence": 1, "standing": -5 },
+          "setFlags": ["last_push"],
+          "outcome": "You spend what goodwill you have left on one change you have wanted for years, and it goes through before you leave. Two colleagues who are staying on think you could have asked more nicely. You could have."
+        },
+        {
+          "text": "Start clearing your desk, quietly.",
+          "effects": { "standing": 3, "reputation": -2, "competence": -1 },
+          "setFlags": ["last_cleared"],
+          "outcome": "You stop taking new cases and hand the old ones over, one a week. Your branch notices before anyone else does, and starts planning a dinner you are not supposed to know about."
+        }
+      ]
+    },
+    {
+      "id": "pm_cabinet",
+      "title": "Your Cabinet",
+      "endgame": "pm",
+      "triggered": true,
+      "priority": true,
+      "once": true,
+      "body": "You are Prime Minister, and your first decision is the Cabinet: who runs which ministry. Your list goes to the Istana on Friday, and the President appoints whoever is on it. Every colleague left off it will know within the hour exactly who decided.",
+      "choices": [
+        {
+          "text": "Keep the team you inherited, mostly.",
+          "effects": { "standing": 6, "reputation": -3 },
+          "setFlags": ["pm_kept_team"],
+          "outcome": "Most of the old Cabinet keep their ministries, and two swap. The newspapers call it \"continuity\". Your colleagues call it generous, and several of them call you, to say so."
+        },
+        {
+          "text": "Bring in the new names, now.",
+          "effects": { "reputation": 5, "competence": 2, "standing": -6 },
+          "setFlags": ["pm_new_team"],
+          "outcome": "Four Ministers you served with leave Cabinet, and four people a generation younger join it. The newspapers call it bold. Two of the four who left send you very short notes, perfectly polite."
+        },
+        {
+          "text": "Give the hardest ministry to the colleague who nearly beat you.",
+          "effects": { "competence": 3, "integrity": 3, "standing": -2 },
+          "setFlags": ["pm_hard_ministry"],
+          "outcome": "The colleague who nearly had your job accepts the hardest ministry in one word. That appointment turns out to be your best, and for a year the two of you are the most careful people in every room."
+        }
+      ]
+    },
+    {
+      "id": "pm_rally",
+      "title": "The Rally",
+      "endgame": "pm",
+      "triggered": true,
+      "priority": true,
+      "once": true,
+      "body": "Your first National Day Rally is in August: one evening, in Malay, then Mandarin, then English, and the country will remember one announcement from it. Your speechwriters have prepared nine announcements, and would like you to choose.",
+      "choices": [
+        {
+          "text": "Lead with one big thing, and spend an hour on it.",
+          "effects": { "reputation": 6, "competence": -1, "standing": -2 },
+          "setFlags": ["pm_rally_big"],
+          "outcome": "You spend most of the English speech on one change, with charts. The next morning every front page has the same headline, and your Ministers spend the week explaining the eight things you left out."
+        },
+        {
+          "text": "Get through all nine, briskly.",
+          "effects": { "competence": 3, "standing": 3, "reputation": -3 },
+          "setFlags": ["pm_rally_nine"],
+          "outcome": "All nine get a slide and four minutes. The commentary calls it \"comprehensive\". A month later, the thing most people remember is the joke you made about running out of slides."
+        },
+        {
+          "text": "Talk about something hard instead.",
+          "effects": { "integrity": 5, "reputation": 2, "standing": -4 },
+          "setFlags": ["pm_rally_hard"],
+          "outcome": "You spend twenty minutes on a problem with no easy answer, and you say there isn't one. The hall goes very quiet. The letters that come in afterwards are the longest your office has ever received."
+        }
+      ]
+    },
+    {
+      "id": "pm_successor",
+      "title": "The Next One",
+      "endgame": "pm",
+      "triggered": true,
+      "priority": true,
+      "once": true,
+      "body": "When you took office you said you would serve a few years and hand over, and next year will be your last. The party expects your successor to be settled before then. How it is settled will be in the history books, in one paragraph, possibly in a footnote.",
+      "choices": [
+        {
+          "text": "Let the younger ministers choose one of themselves.",
+          "effects": { "integrity": 5, "standing": -3 },
+          "setFlags": ["pm_let_them_choose"],
+          "outcome": "The younger ministers meet without you, four times, and come back with one name and a statement that the choice was unanimous. You agree with the name. Nobody asked you to."
+        },
+        {
+          "text": "Name your choice, and back them in public.",
+          "effects": { "standing": 5, "reputation": 2, "integrity": -3 },
+          "setFlags": ["pm_named_successor"],
+          "outcome": "You name your choice at a press conference, and the party lines up behind them within the week. One of the other contenders sends your successor flowers, and sends you nothing, which is fair."
+        },
+        {
+          "text": "Keep it open a little longer.",
+          "effects": { "standing": 3, "competence": 2, "reputation": -4 },
+          "setFlags": ["pm_kept_open"],
+          "outcome": "At three press conferences you say it is too early to say. The contenders keep working very hard, which was the point, and the commentators start counting the months."
+        }
+      ]
+    },
+    {
+      "id": "pm_step_down",
+      "title": "Stepping Down",
+      "endgame": "pm",
+      "triggered": true,
+      "priority": true,
+      "once": true,
+      "body": "This is your last year as Prime Minister. Your successor will be sworn in at the Istana, and you will be offered the title of Senior Minister, the one former Prime Ministers have been given, with an office down the corridor from your old one. Until then, how you go is up to you.",
+      "choices": [
+        {
+          "text": "Take Senior Minister, and stay in Cabinet a while.",
+          "effects": { "standing": 4, "competence": 2, "integrity": -1 },
+          "setFlags": ["pm_senior_minister"],
+          "outcome": "You take the title and the office down the corridor. You attend Cabinet, speak last, and most weeks stop yourself from saying how you would have done it."
+        },
+        {
+          "text": "Leave Cabinet, and go back to your ward.",
+          "effects": { "reputation": 5, "integrity": 3, "standing": -5 },
+          "setFlags": ["pm_back_to_ward"],
+          "outcome": "You decline the title, politely, and go back to Meet-the-People Sessions on Tuesday nights. The first resident in the queue has a parking fine. You deal with it personally."
+        },
+        {
+          "text": "Spend the last months on the handover, not the farewells.",
+          "effects": { "competence": 3, "integrity": 2, "reputation": -3 },
+          "setFlags": ["pm_handover"],
+          "outcome": "You skip three of the five farewell dinners and spend the evenings with your successor instead, going through every file that will never be in the newspapers. At the swearing-in, your successor thanks you by name."
+        }
+      ]
+    }
+  ]
+}

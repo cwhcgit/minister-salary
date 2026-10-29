@@ -1,6 +1,6 @@
 {
   "startAge": 23,
-  "retireAge": 65,
+  "retireAge": 64,
   "minYearsInGrade": 2,
   "ladder": [
     {
@@ -348,7 +348,7 @@
       "epitaph": "Someone read your file and decided the country could wait. You were never told which page. You have narrowed it down to three."
     }
   ],
-  "politicalRetireAge": 72,
+  "politicalRetireAge": 70,
   "folder": [
     {
       "flag": "buried_figure",
@@ -891,7 +891,7 @@
           7
         ],
         "driftEvery": 3,
-        "retireAge": 65,
+        "retireAge": 64,
         "intro": "who joined the service the same week as you"
       },
       "junior": {
@@ -913,7 +913,7 @@
           2
         ],
         "catchUpEvery": 2,
-        "retireAge": 65,
+        "retireAge": 64,
         "intro": "{junior.aTitle} who reports to you"
       },
       "senior": {
@@ -933,7 +933,7 @@
           3
         ],
         "promoteEvery": 4,
-        "retireAge": 65,
+        "retireAge": 64,
         "intro": "{senior.aTitle} and your reporting officer"
       },
       "journalist": {
@@ -1386,5 +1386,315 @@
     "The Whip mentions several former Members who found fulfilling careers outside politics. It is phrased as an anecdote.",
     "The party's organising secretary asks about your plans for the next election, which is early to be asking.",
     "Your seat on a committee you liked is given to a newer Member, with thanks for your contribution."
-  ]
+  ],
+  "endgame": {
+    "note": "The end of a career, and what comes before it. See engine.js, 'the end of a career'. Retirement from the service at retireAge (64, from 1 July 2026); in politics the party asks Members not to stand at the first general election after renewalAge, unless stayOn holds (then politicalRetireAge, 70, is the stop for everyone). A Prime Minister serves a short tenure of cards (pmTenure: three or four, as many as fit before 70; the top job is not given without room for three). yearsInGrade sets the political ladder's pace (20 years from MP to Prime Minister, was 26), so careers peak at believable ages inside these limits. Lines are taken in an order drawn from the seed and never repeated in a run (headsUp lines cycle).",
+    "renewalAge": 65,
+    "term": 5,
+    "stayOn": {
+      "minRank": 13,
+      "minStats": {
+        "standing": 70
+      }
+    },
+    "lastCalls": {
+      "tea_session": 3,
+      "grassroots_invite": 4
+    },
+    "yearsInGrade": {
+      "8": 2,
+      "9": 1,
+      "10": 1,
+      "11": 2,
+      "12": 3,
+      "13": 4,
+      "14": 3,
+      "15": 4
+    },
+    "cards": {
+      "lastService": "endgame_last_service",
+      "lastPolitics": "endgame_last_politics",
+      "renewal": "endgame_renewal",
+      "stay": "endgame_stay"
+    },
+    "pmTenure": {
+      "cards": {
+        "3": [
+          "pm_cabinet",
+          "pm_successor",
+          "pm_step_down"
+        ],
+        "4": [
+          "pm_cabinet",
+          "pm_rally",
+          "pm_successor",
+          "pm_step_down"
+        ]
+      }
+    },
+    "foreboding": {
+      "service": [
+        [
+          "HR sends the pre-retirement briefing pack. You retire at {retire}, two years from now, and the pack has a page on it: CPF LIFE payouts start at 65, a year later, and the page calls the year in between \"a transition\".",
+          "HR books you on the pre-retirement workshop, two years before you retire at {retire}. The first session asks everyone to list their hobbies. Most of the room lists projects they are still waiting to see finished.",
+          "The succession plan for your post is due, and this year it has your retirement date on it: two years from now, at {retire}. The form asks you to name two possible successors, and gives you three lines.",
+          "HR asks you to confirm your retirement date, two years away, at {retire}. You check it twice and send it back the same day, the first form in years you have not left for the end of the week."
+        ],
+        [
+          "Next year is your last before you retire. HR has started on your successor: the shortlist has three names on it, and you trained two of them.",
+          "Next year is your last. Your post is in the next posting exercise, and its job description has been rewritten for the first time since you wrote it.",
+          "Next year is your last. The new organisation chart already shows your post with a dotted line, which is how HR draws a job that is about to change hands.",
+          "Next year is your last. Someone has already booked the private room for your farewell lunch, a year ahead, because the good room goes fast in December."
+        ]
+      ],
+      "renewal": [
+        [
+          "The party has started talking about renewal before the next general election: new candidates, and older Members making way for them. Nobody says anything about it to you, and everybody is very warm.",
+          "The party has attached a younger activist to your branch ahead of the next general election. The activist sits in on your Meet-the-People Sessions and takes careful notes on the ward, as if expecting to need them.",
+          "At the party's year-end dinner the talk is of renewal before the next general election. You are seated with the Members first elected the year you were, and all of them are being very cheerful.",
+          "The Whip asks every Member to fill in a form on their \"availability for the next term\". You have never been asked this before. The form has two boxes."
+        ],
+        [
+          "Your branch now brings the party's new candidate to every event, standing one step behind you. By the end of the year the candidate is standing one step in front.",
+          "Your Meet-the-People volunteers ask, carefully, whether they should stay on with the new candidate. You tell them yes. Most of them had already decided to.",
+          "The party introduces its new candidates in batches. The one for your ward is in the third batch, and the press release thanks you in its first paragraph.",
+          "The Whip's office collects every Member's diary for next year. Yours is blank after Nomination Day, and nobody asks why."
+        ]
+      ],
+      "limit": [
+        [
+          "You turn {limit} two years from now. The Prime Minister has said in Cabinet, to the table in general, that {limit} is where the party draws the line, and the table in general looked at you.",
+          "At the Cabinet retreat the group photograph is arranged by seniority, then again by age. You are at the same end both times, two years short of {limit}, the party's limit.",
+          "The Prime Minister's office asks every Minister for a portfolio note \"for continuity\". Yours is the only one with a date on it: two years from now, when you turn {limit}.",
+          "Two years before you turn {limit}, the party's limit, your press secretary starts a file called \"Legacy\". You find it by accident. It is very well organised."
+        ],
+        [
+          "Next year is your last in office. The reshuffle for when you turn {limit} has already been drafted, and you have been asked, kindly, for your comments on it.",
+          "Next year is your last. Your ministry has started copying your likely successor on everything, including, by accident, the email planning your farewell.",
+          "Next year is your last in Cabinet. The Cabinet Secretary asks, as usual, which of your papers you would like to keep. It is fewer than you expected.",
+          "Next year is your last. Your grassroots leaders are collecting for a farewell gift in secret, which in a ward this size means everyone has asked you what you would like."
+        ]
+      ]
+    },
+    "headsUp": {
+      "service": {
+        "first": "Your name goes forward at next year's ranking, for {next}: by then you'll have served long enough in your grade. To be promoted, you need {need} that year.",
+        "blocked": "Next year you'll have served long enough in your grade for {next}, but your name is not on the list for the ranking. Nobody says why.",
+        "lines": [
+          "Your name goes forward at next year's ranking, for {next}. It takes {need}.",
+          "Next year's ranking will consider you for {next}. It takes {need}.",
+          "Your file goes to next year's ranking panel, for {next}. It takes {need}.",
+          "Next year you're up for {next} at the ranking. It takes {need}."
+        ]
+      },
+      "politics": {
+        "first": "Your name goes forward for {next} at the Prime Minister's next reshuffle: by then you'll have served long enough. To be moved up, you need {need} that year.",
+        "blocked": "Next year you'll have served long enough to be considered for {next}, but your name is not in the papers for the reshuffle. Nobody says why.",
+        "blockedPm": "Next year you'll have served long enough to be weighed for the top job, but yours is not among the names being weighed. Nobody says why.",
+        "pm": "Next year the party could choose you as its next leader, and so Prime Minister. It takes an A that year.",
+        "lines": [
+          "Your name is on the list for next year's reshuffle, for {next}. It takes {need}.",
+          "Next year's reshuffle will consider you for {next}. It takes {need}.",
+          "The Whip mentions that your name is in the papers for next year's reshuffle, for {next}. It takes {need}.",
+          "Next year you're in line for {next}, if the year earns {need}."
+        ]
+      }
+    },
+    "warnLate": {
+      "service": "A D is a formal warning, but next year is your last before you retire, and HR does not start an improvement plan in an officer's last year. The D stays on your file.",
+      "slate": "A D is a formal warning. Next year the party settles its slate for the coming general election, and this will be on the table when it does.",
+      "leaving": "A D is a formal warning, but next year is your last in office, and nobody is put on notice in their last year. The D stays on the record."
+    },
+    "teaNear": {
+      "within": 5
+    },
+    "pmTooLate": "The party will choose its next leader soon, and wants one with more than a year or two before 70. You are thanked, at length, for your willingness.",
+    "lines": {
+      "tookOffice": "You are sworn in at the Istana. In your first speech you say you will serve a few years and then hand over, and every newspaper prints that sentence in a box.",
+      "teaNear": [
+        "At a community event, a party activist asks for your card, and keeps it. In your experience, people do not keep cards.",
+        "Someone you have never met asks your office for a copy of your CV, \"for a newsletter\". There is no newsletter.",
+        "Your name appears on the guest list for a dinner where most of the other guests are MPs. Nobody tells you why you were asked.",
+        "A grassroots adviser you met once sends a handwritten note saying how much they enjoyed your remarks. You did not make any remarks."
+      ],
+      "seatAtRisk": [
+        "The party's seat assessment for next year's general election lists your ward as \"competitive\". It is not a compliment.",
+        "Your branch's own canvass for next year's election comes back closer than last time, and your branch chairman has started saying \"we\" instead of \"you\".",
+        "Party headquarters sends extra volunteers to your ward a year before the election. It only does that for the wards it is worried about."
+      ],
+      "pmFirstYear": "There is no appraisal for a Prime Minister, only the newspapers every morning and Parliament on sitting days.",
+      "pmLastYear": "Your office starts boxing your papers for the National Archives. The boxes are numbered, and there are more of them than you expected.",
+      "pmElection": [
+        "The general election falls in your tenure. The party is returned with a clear majority, and the commentary spends a week deciding whether the win was yours or the party's.",
+        "Polling Day comes round while you are Prime Minister. The party is returned, and your own ward's result is the first read out on television, which your branch takes personally."
+      ],
+      "pmYears": [
+        "Your diary for next year arrives already full. The one empty afternoon is marked \"hold\" by someone who is not you.",
+        "Your security officers know your routine better than you do, and have opinions about the hawker centre you stop at on Saturdays.",
+        "Cabinet meets every week. The colleagues who will be in the next Cabinet have started arriving early."
+      ]
+    },
+    "declassifiedFlags": [
+      {
+        "label": "Your last year",
+        "requires": {
+          "act": "I",
+          "flagsAll": [
+            "last_handover"
+          ]
+        },
+        "text": "Your handover file became the division's template for handover files. The template still has your mobile number in it."
+      },
+      {
+        "label": "Your last year",
+        "requires": {
+          "act": "I",
+          "flagsAll": [
+            "last_push"
+          ]
+        },
+        "text": "The change you pushed through in your last year is still running. The two colleagues who opposed it now describe it as theirs."
+      },
+      {
+        "label": "Your last year",
+        "requires": {
+          "act": "I",
+          "flagsAll": [
+            "last_cleared"
+          ]
+        },
+        "text": "Your desk emptied a box a week and nobody noticed. Your successor kept the stapler, without knowing it was there before you."
+      },
+      {
+        "label": "Your last year",
+        "requires": {
+          "act": "III",
+          "flagsAll": [
+            "last_handover"
+          ]
+        },
+        "text": "Your successor kept your notes on the ward, and still calls the residents on your list first when a lift breaks down."
+      },
+      {
+        "label": "Your last year",
+        "requires": {
+          "act": "III",
+          "flagsAll": [
+            "last_push"
+          ]
+        },
+        "text": "Your last change became law just before you left. The second reading speech thanked the officers who drafted it, and not you, correctly."
+      },
+      {
+        "label": "Your last year",
+        "requires": {
+          "act": "III",
+          "flagsAll": [
+            "last_cleared"
+          ]
+        },
+        "text": "You handed over a case a week. Your branch held the dinner you were not supposed to know about. The speeches were the only surprise."
+      },
+      {
+        "label": "The slate",
+        "requires": {
+          "maxRank": 15,
+          "flagsAll": [
+            "stays_on"
+          ]
+        },
+        "text": "Asked to stay past 65, and you stayed, to 70. The Prime Minister's note asking you is in your file. It is two lines long and says \"no pressure\" in both."
+      },
+      {
+        "label": "The slate",
+        "requires": {
+          "flagsAll": [
+            "made_way"
+          ]
+        },
+        "text": "Asked to stay, you made way anyway. The candidate who took your place on the slate was never told, and the Prime Minister has never said."
+      },
+      {
+        "label": "The slate",
+        "requires": {
+          "flagsAll": [
+            "renewal_asked"
+          ]
+        },
+        "text": "You asked to stand once more. The Whip's note of the meeting is one line long, and leaves out the answer, because everyone knew it."
+      },
+      {
+        "label": "The slate",
+        "requires": {
+          "flagsAll": [
+            "renewal_successor"
+          ]
+        },
+        "text": "The candidate you walked round every block won the ward with a bigger swing than you ever had, and thanked you first."
+      },
+      {
+        "label": "The slate",
+        "requires": {
+          "flagsAll": [
+            "renewal_gracious"
+          ]
+        },
+        "text": "Your statement said you had decided to make way. The Whip kept a copy, as an example for the next Members asked."
+      },
+      {
+        "label": "The succession",
+        "requires": {
+          "flagsAll": [
+            "pm_let_them_choose"
+          ]
+        },
+        "text": "The younger ministers chose. Their statement said the decision was unanimous, and by the fourth meeting it was."
+      },
+      {
+        "label": "The succession",
+        "requires": {
+          "flagsAll": [
+            "pm_named_successor"
+          ]
+        },
+        "text": "You chose your successor yourself. The history books say so in one sentence, and then move on to your successor."
+      },
+      {
+        "label": "The succession",
+        "requires": {
+          "flagsAll": [
+            "pm_kept_open"
+          ]
+        },
+        "text": "You kept the succession open for a year. All three contenders later called it the hardest year of their careers, and the most productive."
+      },
+      {
+        "label": "Afterwards",
+        "requires": {
+          "flagsAll": [
+            "pm_senior_minister"
+          ]
+        },
+        "text": "Senior Minister: a title, a seat in Cabinet and the office down the corridor. You gave your view only when asked, which was more often than you expected."
+      },
+      {
+        "label": "Afterwards",
+        "requires": {
+          "flagsAll": [
+            "pm_back_to_ward"
+          ]
+        },
+        "text": "No title. Tuesday nights at Meet-the-People Sessions until the next election. The parking fine was waived, on appeal, through the proper channels."
+      },
+      {
+        "label": "Afterwards",
+        "requires": {
+          "flagsAll": [
+            "pm_handover"
+          ]
+        },
+        "text": "Your successor's first year had no surprises in it. The evenings you spent going through the files together are why."
+      }
+    ]
+  }
 }

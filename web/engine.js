@@ -696,11 +696,170 @@ const Engine = (() => {
   }
 
   // --- event selection -------------------------------------------------
-  function eligible(ev, s) {
+  // content (optional) adds the career's own clock: a card listed in endgame.lastCalls is not
+  // offered within that many years of the service's retirement age (nobody is asked to tea for an
+  // election they would retire before).
+  function eligible(ev, s, content) {
     if (ev.triggered) return false;
     if (ev.once && s.seen.includes(ev.id)) return false;
     if (spent(ev, s)) return false;   // a repeatable card with nothing new to say this run
+    if (content && tooLate(content, ev, s)) return false;
     return cardOk(ev, s);
+  }
+  function tooLate(content, ev, s) {
+    const n = ((content.endgame || {}).lastCalls || {})[ev.id];
+    return n !== undefined && s.rank < 8 && content.retireAge - s.age < n;
+  }
+
+  // --- the end of a career ---------------------------------------------------
+  // A career that ends by age is told so. The year-end reviews two years and one year before
+  // the last year say plainly that the end is coming (endgame.foreboding), and the last year
+  // itself is a card of its own, which takes that year whatever else falls due.
+  //   The service: officers retire at retireAge, so the last year is the one before it. An
+  //   officer who went to tea and has the election still ahead has resigned to stand: the
+  //   service's clock waits for the result.
+  //   Politics: the party asks Members not to stand at the first general election after they
+  //   turn endgame.renewalAge, the year before it falls due (the renewal card), and that election
+  //   ends the career. A Member doing very well (endgame.stayOn) is asked to stay instead, and
+  //   may; nobody serves past politicalRetireAge, the hard stop for everyone.
+  //   The Prime Minister: a short tenure of cards of its own (endgame.pmTenure), then the
+  //   ending. Promotion to the top needs room for at least the shortest tenure before the stop.
+  const END = content => content.endgame || null;
+  const EARLIEST = (s, id) => s.scheduled.filter(x => x.eventId === id).reduce((a, x) => (a === null || x.fireYear < a ? x.fireYear : a), null);
+  function entryPending(s) {
+    return s.rank < 8 && s.flags.includes("went_to_tea") && !s.flags.includes("tea_withdrawn")
+      && s.scheduled.some(x => x.eventId === "the_vetting" || x.eventId === "the_election");
+  }
+  // { track, kind, last }: the age of the career's last year, or null when no end by age is in
+  // view (a Prime Minister, a candidate waiting for an election). kind is "retire" (the service),
+  // "election" (the renewal election) or "limit" (the hard stop).
+  function endPlan(content, s) {
+    const E = END(content);
+    if (!E || s.rank === 16) return null;
+    if (s.rank < 8) return entryPending(s) ? null : { track: "service", kind: "retire", last: Math.max(content.retireAge - 1, s.age) };
+    const limit = content.politicalRetireAge - 1;
+    if (s.flags.includes("stays_on")) return { track: "politics", kind: "limit", last: limit };
+    const next = EARLIEST(s, "re_election");
+    let at = next === null ? Infinity : s.age + Math.max(0, next - s.year);
+    while (at < E.renewalAge) at += E.term || 5;
+    return at <= limit ? { track: "politics", kind: "election", last: at } : { track: "politics", kind: "limit", last: limit };
+  }
+  // Whether next year's card is already decided by the career's end (so no improvement plan,
+  // reshuffle or ranking can be promised for it).
+  function endNext(content, s, plan) {
+    if (!plan) return false;
+    const renewalAhead = plan.track === "politics" && !s.flags.includes("stays_on") && s.leaving === undefined;
+    return s.age + 1 >= plan.last - (renewalAhead ? 1 : 0);
+  }
+  function stayOffered(content, s, plan) {
+    const E = END(content);
+    return !!E.stayOn && plan.kind === "election" && plan.last < content.politicalRetireAge - 1 && meets(E.stayOn, s);
+  }
+  // The card this year must be, if the career's end decides it; null otherwise.
+  function endgameCard(content, s) {
+    const E = END(content);
+    if (!E || !E.cards) return null;
+    let id = null;
+    if (s.rank === 16) {
+      const T = s.pmTenure;
+      if (T) id = T.cards[Math.min(T.cards.length - 1, s.year - T.since)] || null;
+      if (id && s.seen.includes(id)) id = null;
+    } else if (s.lastYear === undefined) {
+      const p = endPlan(content, s);
+      if (p && s.age >= p.last) id = p.track === "service" ? E.cards.lastService : E.cards.lastPolitics;
+      else if (p && p.track === "politics" && !s.flags.includes("stays_on") && s.leaving === undefined && s.age === p.last - 1)
+        id = stayOffered(content, s, p) ? E.cards.stay : E.cards.renewal;
+      if (id) s.endKind = p.kind;   // the card's text says which end it is (requires.endKind)
+    }
+    return id ? allEvents(content, s).find(e => e.id === id) || null : null;
+  }
+  // A choice on one of those cards: the last year is marked (its year-end ends the career), the
+  // renewal is accepted, or the offer to stay is taken up.
+  function endgameChoice(s, ev, ch, t) {
+    if (ev.endgame === "last") s.lastYear = s.year;
+    if (ev.endgame === "renewal" || ch.leaving) s.leaving = s.year;
+    if (ev.endgame === "pm" && s.pmTenure && s.pmTenure.cards[s.pmTenure.cards.length - 1] === ev.id) s.lastYear = s.year;
+    t.endgame = { card: ev.id, kind: ev.endgame };
+  }
+  // On taking office: the tenure's cards, as many as fit before the hard stop.
+  function startTenure(content, s) {
+    const E = END(content), P = E && E.pmTenure;
+    if (!P) return false;
+    const room = content.politicalRetireAge - 1 - s.age;
+    const n = Math.max(...Object.keys(P.cards).map(Number).filter(k => k <= room));
+    const cards = P.cards[n];
+    if (!cards || !cards.every(id => content.events.some(e => e.id === id))) return false;
+    s.pmTenure = { since: s.year + 1, at: s.age, cards };
+    return true;
+  }
+  // Whether a Deputy Prime Minister promoted at this review would have room for a tenure.
+  function pmRoom(content, s, age = s.age) {
+    const P = (END(content) || {}).pmTenure;
+    return !P || content.politicalRetireAge - 1 - age >= Math.min(...Object.keys(P.cards).map(Number));
+  }
+  // Next year's ranking (or reshuffle): "in" when it will consider the player (the years in grade
+  // will be there, and no age floor, candidacy or career's end takes the year), "ceiling" when only
+  // the ceiling keeps them out of it, null otherwise.
+  function nextRanking(content, s) {
+    const r = s.rank;
+    if (r >= 16 || r === 7) return null;
+    if (s.yearsInGrade + 1 < yearsNeeded(content, s.origin, r)) return null;
+    // a candidate whose election is next year may not be in the service for next year's ranking
+    if (entryPending(s) && s.scheduled.some(x => x.eventId === "the_election" && x.fireYear <= s.year + 1)) return null;
+    if (r >= 8 && s.leaving !== undefined) return null;
+    if (endNext(content, s, endPlan(content, s))) return null;
+    if (r === 15 && (s.flags.includes("kingmaker") || (s.rival && s.rival.status === "active" && s.rival.rank === 16) || !pmRoom(content, s, s.age + 1))) return null;
+    // the ceiling comes before the age floor, as it does at the review itself
+    if (r >= s.cep) return "ceiling";
+    return floorAge(content, s, r + 1) > s.age + 1 ? null : "in";
+  }
+  // Signals for next year, each said once: the heads-up before a ranking (or, when only the
+  // ceiling stands in the way, the quiet news that your name is not on the list), the party's
+  // interest before the tea, and a seat that is not safe before a general election.
+  function signals(content, s, log, leaving) {
+    const E = END(content);
+    if (!E) return;
+    const seen = (s.headsUp = s.headsUp || {});
+    const next = E.headsUp ? nextRanking(content, s) : null;
+    const fill = t => t.replace(/\{next\}/g, title(content, s.rank + 1)).replace(/\{now\}/g, title(content, s.rank)).replace(/\{need\}/g, s.rank >= 13 ? "an A" : "a B+ or better");
+    if (next === "in" && seen.at !== s.rank) {
+      const pol = s.rank >= 8, H = pol ? E.headsUp.politics : E.headsUp.service, k = pol ? "politics" : "service";
+      // the first one on each ladder says how it works; after that, shorter lines
+      const text = s.rank === 15 && H.pm ? H.pm : !seen[k] && H.first ? H.first : endLine(content, s, pol ? "upPolitics" : "upService", H.lines, true);
+      seen.at = s.rank; seen[k] = (seen[k] || 0) + 1;
+      // (about: for traces and tests; the screen shows only the tag and the text)
+      if (text) log.push({ kind: "note", about: "headsUp", rank: s.rank, text: fill(text) });
+    } else if (next === "ceiling" && seen.at !== s.rank && seen.blockedAt !== s.rank) {
+      const H = s.rank >= 8 ? E.headsUp.politics : E.headsUp.service;
+      const text = s.rank === 15 && H.blockedPm ? H.blockedPm : H.blocked;
+      seen.blockedAt = s.rank;
+      if (text) log.push({ kind: "cep", about: "blocked", rank: s.rank, text: fill(text) });
+    }
+    const L = E.lines || {};
+    // the tea: in reach next year (the grade, the bond, the clock, and both stats within a few points)
+    const tea = content.events.find(e => e.id === "tea_session");
+    if (L.teaNear && tea && !seen.tea && !s.seen.includes(tea.id) && !["went_to_tea", "declined_tea", "tea_withdrawn"].some(f => s.flags.includes(f))) {
+      const q = tea.requires || {}, w = (E.teaNear || {}).within || 5;
+      const near = s.rank >= (q.minRank || 0) && s.rank <= (q.maxRank ?? 7) && s.year + 1 > (s.bondYears || 0)
+        && !tooLate(content, tea, { ...s, age: s.age + 1 }) && Object.entries(q.minStats || {}).every(([k, v]) => s[k] >= v - w);
+      if (near) { seen.tea = true; const text = endLine(content, s, "tea", L.teaNear, true); if (text) log.push({ kind: "note", about: "tea", text }); }
+    }
+    // a general election next year, in a seat that would not pass as safe
+    const F = EARLIEST(s, "re_election"), re = content.events.find(e => e.id === "re_election");
+    if (L.seatAtRisk && re && s.rank >= 8 && s.rank < 16 && !leaving && F === s.year + 1 && seen.seat !== F
+        && !(re.autoPlay && meets(re.autoPlay.when || {}, s))) {
+      seen.seat = F;
+      const text = endLine(content, s, "seat", L.seatAtRisk, true);
+      if (text) log.push({ kind: "note", about: "seat", text });
+    }
+  }
+  // A line from one of the endgame pools, never twice in a run (cycle: taken again in order).
+  function endLine(content, s, key, lines, cycle, fill = {}) {
+    if (!lines || !lines.length) return null;
+    const i = pickLine(s, "__end:" + key, lines.length, cycle);
+    if (i === null) return null;
+    useLine(s, "__end:" + key, i);
+    return lines[i].replace(/\{(\w+)\}/g, (m, k) => (fill[k] !== undefined ? fill[k] : m));
   }
 
   // A card can be shown when its requirements hold, every cast member its text names is in
@@ -742,6 +901,8 @@ const Engine = (() => {
     if (q.economy !== undefined && economy(s) !== q.economy) return false;
     if (q.electionDue !== undefined && electionDue(s) !== q.electionDue) return false;
     if (q.act !== undefined && (q.act === "III") !== (s.rank >= 8)) return false;   // I: the service, III: politics
+    if (q.endKind !== undefined && s.endKind !== q.endKind) return false;   // which end a last-year card is about
+    if (q.warned !== undefined && (s.consecutiveD >= 1) !== q.warned) return false;   // on a formal warning (a D)
     if (q.cast && !castMeets(q.cast, s)) return false;
     if (q.cooldown) {   // a shared clock: e.g. one Budget-cycle card every three years
       const last = (s.cooldowns || {})[q.cooldown.key];
@@ -778,6 +939,10 @@ const Engine = (() => {
 
   // info (optional) says where the card came from, for playtest traces.
   function pickEvent(content, s, info = {}) {
+    // 0. the career's end takes its years (the renewal, the last year, a Prime Minister's
+    //    tenure): anything scheduled for them carries over, as below
+    const end = endgameCard(content, s);
+    if (end) { info.source = "priority"; info.endgame = end.id; return end; }
     // 1. scheduled consequences pre-empt everything. One fires a year; when several fall
     //    due together, the rest carry over to the following years, earliest first.
     const due = s.scheduled.filter(x => x.fireYear <= s.year && resolve(content, x.eventId, s));
@@ -787,7 +952,7 @@ const Engine = (() => {
       const ev = resolve(content, next.eventId, s);
       if (ev) { info.source = "scheduled"; info.fired = next; return ev; }
     }
-    const pool = allEvents(content, s).filter(e => eligible(e, s));
+    const pool = allEvents(content, s).filter(e => eligible(e, s, content));
     if (!pool.length) { info.source = "quiet"; return null; }
     // 2. priority events (tea session, succession) fire the moment they qualify
     const pri = pool.filter(e => e.priority);
@@ -898,6 +1063,7 @@ const Engine = (() => {
     }
 
     (ch.setFlags || []).forEach(f => { if (!s.flags.includes(f)) s.flags.push(f); });
+    if (ev.endgame) endgameChoice(s, ev, ch, t);
     // What the choice did to or for a cast member stays with that person.
     if (ch.cast) castOps(content, s, ch.cast, t, ev.who);
     // Standout moments in the service. Two of them mark the file "exceptional", which lets the
@@ -1019,6 +1185,9 @@ const Engine = (() => {
   }
   function yearsNeeded(content, originId, r) {
     if (fastLane(content, originId, r)) return content.origins.find(x => x.id === originId).fastLane.yearsInGrade;
+    // endgame.yearsInGrade, by rank, sets the political ladder's pace (careers end by 70)
+    const P = (content.endgame || {}).yearsInGrade;
+    if (P && P[r] !== undefined) return P[r];
     return content.minYearsInGrade + (r >= 10 ? 1 : 0) + (r >= 13 ? 1 : 0) + (r >= 15 ? 1 : 0);
   }
 
@@ -1088,6 +1257,15 @@ const Engine = (() => {
       : `Annual package: $${pay.toLocaleString()}` });
 
     s.yearsInGrade++;
+    // The career's end: the plan (when the last year comes), whether this is it, and whether the
+    // party has already asked you not to stand.
+    const E = END(content), plan = endPlan(content, s);
+    const finalYear = s.lastYear === s.year, leaving = s.rank >= 8 && s.leaving !== undefined;
+    // a year that was due to be the last but was not (a candidate whose invitation lapsed late):
+    // the last year is next year
+    if (plan && !finalYear && plan.last <= s.age) plan.last = s.age + 1;
+    // A Prime Minister has no appraisal: the year is the tenure's card, the package and the news.
+    if (s.rank === 16 && s.pmTenure) return pmYearEnd(content, s, t, log, finalYear);
     let { grade, score, noise, mod } = appraise(content, s);
     // The first appraisal comes after months in the job, not years: it can be middling, not a D.
     if (s.year <= 1 && grade.code === "D") grade = content.grades.find(g => g.code === "C") || grade;
@@ -1099,9 +1277,9 @@ const Engine = (() => {
     log.push({ kind: "appraisal", text: `Grade ${grade.code}. ${mod < 0
       ? `${label} The comments section includes the word "however".` : label}` });
     log.push({ kind: "why", text: whyLine });
-
-    if (grade.code === "C") s.consecutiveC++; else s.consecutiveC = 0;
-    if (grade.code === "D") s.consecutiveD++; else { s.consecutiveD = 0; s.pipDone = false; }
+    // the last review: nothing that follows from a grade (a warning, a plan, a move) is to come
+    if (grade.code === "C" && !finalYear) s.consecutiveC++; else s.consecutiveC = 0;
+    if (grade.code === "D" && !finalYear) s.consecutiveD++; else { s.consecutiveD = 0; s.pipDone = false; }
     // Probation: nobody is eased out in their first four years, or before their sixth card;
     // a second D is a second warning.
     if (s.consecutiveD >= 2 && (s.year <= (content.probationYears || 4) || (s.cardsPlayed || 0) < (content.probationCards || 6))) {
@@ -1118,8 +1296,13 @@ const Engine = (() => {
         : "Your reporting officer asks whether you have considered the private sector. It is phrased as concern."];
       const w = pickLine(s, key, lines.length, true);
       useLine(s, key, w);
-      const planNext = !s.pipDone && !s.scheduled.some(x => x.eventId === "improvement_plan") && content.events.some(e => e.id === "improvement_plan");
-      const then = planNext
+      // a plan cannot be started in a year the career's end has already taken: the warning says
+      // what happens instead (endgame.warnLate), and no plan is scheduled
+      const late = endNext(content, s, plan) && E && E.warnLate;
+      const planNext = !late && !s.pipDone && !s.scheduled.some(x => x.eventId === "improvement_plan") && content.events.some(e => e.id === "improvement_plan");
+      const then = late
+        ? " " + (pol ? (leaving || (plan && s.age + 1 >= plan.last) ? E.warnLate.leaving : E.warnLate.slate) : E.warnLate.service)
+        : planNext
         ? (pol ? " A D is a formal warning: next year the Whip will put you on notice, and another D after that ends your time in office."
                : " A D is a formal warning: next year you will be put on an improvement plan, and another D after that and you will be asked to leave.")
         : (pol ? " This is your second warning. Another D next year ends your time in office."
@@ -1144,17 +1327,20 @@ const Engine = (() => {
     const fast = fastLane(content, s.origin, s.rank);
     const topRungs = s.rank >= 13;
     const gradeOk = grade.code === "A" || (grade.code === "B+" && !topRungs);
+    // Nobody is promoted in their last year, or once the party has asked them not to stand.
+    const ending = finalYear || leaving;
     const promotable = gradeOk
       && s.yearsInGrade >= needYears
-      && s.rank < 16;
+      && s.rank < 16 && !ending;
     t.promotion = { rank: s.rank, yearsInGrade: s.yearsInGrade, needYears, gradeOk,
-      result: !promotable ? "not_eligible" : s.rank >= s.cep ? "cep_ceiling" : s.rank === 7 ? "service_ceiling" : "promoted" };
+      result: ending ? "career_ending" : !promotable ? "not_eligible" : s.rank >= s.cep ? "cep_ceiling" : s.rank === 7 ? "service_ceiling" : "promoted" };
 
     // The batchmate's year runs first: at the same grade there is one slot. A player held by
     // the age floor is not in that year's contest at all.
     const ageFloored = s.rank < 16 && floorAge(content, s, s.rank + 1) > s.age;
     const pmGivenAway = s.rank === 15 && s.flags.includes("kingmaker");
-    const wouldPromote = promotable && s.rank < s.cep && s.rank !== 7 && !ageFloored && !pmGivenAway;
+    const noRoom = s.rank === 15 && !pmRoom(content, s);   // too near the stop for even a short tenure
+    const wouldPromote = promotable && s.rank < s.cep && s.rank !== 7 && !ageFloored && !pmGivenAway && !noRoom;
     const rv = s.rival ? rivalYear(content, s, t, wouldPromote ? score : null) : { lost: false, log: [] };
 
     if (promotable && s.rank >= s.cep) {
@@ -1181,6 +1367,10 @@ const Engine = (() => {
       if (k >= 0) log.push({ kind: "note", text: lines[k % lines.length] });
     } else if (promotable && rv.lost) {
       t.promotion.result = "ranking_lost";
+    } else if (promotable && noRoom) {
+      // the party wants a leader with a few years before the stop; said once
+      t.promotion.result = "pm_too_late";
+      if (!s.flags.includes("told_too_late") && E && E.pmTooLate) { s.flags.push("told_too_late"); log.push({ kind: "note", text: E.pmTooLate }); }
     } else if (promotable && pmGivenAway) {
       // You put someone else in the top job. It is theirs, not the next rung of yours.
       t.promotion.result = "pm_taken";
@@ -1202,9 +1392,15 @@ const Engine = (() => {
       log.push({ kind: "promo", text: doubleJump
         ? `Promoted two grades: ${r.title} (${r.grade}). This does not normally happen.`
         : `Promoted: ${r.title} (${r.grade})` });
-      if (s.rank === 16) { log.push(...rv.log); s.ending = "pm"; return log; }
+      // The top job: a short tenure of its own cards follows, then the ending. (A build without
+      // them ends here, as it always did.)
+      if (s.rank === 16) {
+        if (!startTenure(content, s)) { log.push(...rv.log); s.ending = "pm"; return log; }
+        if (E.lines && E.lines.tookOffice) log.push({ kind: "note", text: E.lines.tookOffice });
+      }
     }
     log.push(...rv.log);
+    if (!finalYear) signals(content, s, log, leaving);
     if (s.rival) {   // years each outranked the other, and the batchmate's own retirement
       const v = s.rival;
       if (v.status === "active") {
@@ -1217,11 +1413,59 @@ const Engine = (() => {
     if (s.heat >= 85) { s.ending = "scandal"; return log; }
     if (s.heat >= 55) log.push({ kind: "heat", text: "A journalist has been asking around about something old." });
 
+    // The end coming: a plain line two years and one year before the last year.
+    if (E && E.foreboding && plan && !finalYear && s.rank < 16 && plan.last - s.age >= 1 && plan.last - s.age <= 2) {
+      const pool = plan.track === "service" ? "service" : s.flags.includes("stays_on") ? "limit" : "renewal";
+      const k = plan.last - s.age, lines = (E.foreboding[pool] || [])[2 - k];
+      const text = endLine(content, s, `${pool}:${k}`, lines, false, { retire: content.retireAge, limit: content.politicalRetireAge });
+      if (text) { log.push({ kind: "note", about: "foreboding", pool, last: plan.last, text }); t.foreboding = { pool, k }; }
+    }
+    return endOfYear(content, s, log, finalYear, plan);
+  }
+
+  // The year turns: the career ends here if its last year (or a Prime Minister's tenure) has
+  // just been played. An election ends a political career within the year, and a Prime Minister
+  // steps down within it, so neither ages another year; the service and the hard stop do.
+  function endOfYear(content, s, log, finalYear, plan) {
+    if (finalYear && (s.rank === 16 || (plan && plan.kind === "election"))) { s.ending = s.rank === 16 ? "pm" : retirementEnding(s); return log; }
     s.age++; s.year++;
-    const retireAt = s.rank >= 8 ? content.politicalRetireAge : content.retireAge;
-    if (s.age >= retireAt) s.ending = retirementEnding(s);
+    // the last year's card ends the career; the old age limits are kept only as a safety net
+    // (for a build without the endgame cards, and for saves from before them)
+    const E = END(content), slack = E && E.cards ? 3 : 0;
+    const retireAt = (s.rank >= 8 ? content.politicalRetireAge : content.retireAge) + slack;
+    if (finalYear || (s.age >= retireAt && s.rank !== 16 && !entryPending(s))) s.ending = retirementEnding(s);
     else castSync(content, s, log);   // the cast's own year: promotions, retirements, arrivals
     return log;
+  }
+
+  // A Prime Minister's year-end: the package, the batchmate's year, the Heat, and a line from
+  // the tenure (endgame.lines.pmYears), never the same twice.
+  function pmYearEnd(content, s, t, log, finalYear) {
+    const E = END(content);
+    t.promotion = { rank: s.rank, yearsInGrade: s.yearsInGrade, needYears: 0, gradeOk: false, result: "top" };
+    const rv = s.rival ? rivalYear(content, s, t, null) : { log: [] };
+    log.push(...rv.log);
+    if (s.heat >= 85) { s.ending = "scandal"; return log; }
+    if (s.heat >= 55) log.push({ kind: "heat", text: "A journalist has been asking around about something old." });
+    // a general election that falls due in the tenure is held in it: the party is returned (a
+    // Prime Minister's tenure ends when the tenure does), and the next one is due in a term
+    const L = E.lines || {};
+    const due = s.scheduled.filter(x => x.eventId === "re_election" && x.fireYear <= s.year);
+    if (due.length) {
+      s.scheduled = s.scheduled.filter(x => !due.includes(x));
+      const e = { eventId: "re_election", fireYear: s.year + (E.term || 5) };
+      s.scheduled.push(e);
+      (t.added = t.added || []).push(e);
+      t.election = { kind: "incumbent", chance: 1, won: true, safe: true, pm: true };
+      const text = endLine(content, s, "pmElection", L.pmElection, true);
+      if (text) log.push({ kind: "promo", text });
+    }
+    // the first review says why there is no grade, the last one packs up; the others are lines from the tenure
+    const first = !(s.pmTenure.reviews > 0);
+    s.pmTenure.reviews = (s.pmTenure.reviews || 0) + 1;
+    const text = finalYear && L.pmLastYear ? L.pmLastYear : first && L.pmFirstYear ? L.pmFirstYear : endLine(content, s, "pmYears", L.pmYears, false);
+    if (text) log.push({ kind: "note", text });
+    return endOfYear(content, s, log, finalYear, null);
   }
 
   function retirementEnding(s) {
@@ -1573,7 +1817,10 @@ const Engine = (() => {
   function finalLabels(content, s) {
     const politician = s.rank >= 8;
     switch (s.ending) {
-      case "pm": return { position: "Final position", age: "Took office at", share: "became Prime Minister at" };
+      // with a tenure, the career ends when you step down, not when you take office
+      case "pm": return s.pmTenure
+        ? { position: "Final position", age: "Stepped down at", share: "stepped down as Prime Minister at" }
+        : { position: "Final position", age: "Took office at", share: "became Prime Minister at" };
       case "consultancy": return politician
         ? { position: "Left Parliament as", age: "At age", share: "left Parliament as" }
         : { position: "Left the service as", age: "At age", share: "left the service as" };
@@ -1600,7 +1847,7 @@ const Engine = (() => {
     const day1 = ceiling(Math.min(s.cepStart, 7), false);
     const reachedPS = s.rank === 7 || H.some(h => h.rank === 7 || h.rankAfter === 7);
     // the ceiling as it stood when the player last served (it can be raised by a choice)
-    const served = H.filter(h => h.rank < 8);
+    const served = H.filter(h => h.rankAfter < 8);   // years that ended still in the service (not the election)
     const lastCep = s.rank < 8 ? s.cep : served.length ? served[served.length - 1].cepAfter : s.cepStart;
     const raised = Math.min(lastCep, 7) > Math.min(s.cepStart, 7);
     if (s.cepStart >= 7 && reachedPS)
@@ -1715,6 +1962,12 @@ const Engine = (() => {
       out.push({ label: "What stopped you", text: `Appraisals, not the ceiling. ${low} of ${gs.length} came in below "strong".` });
     }
 
+    // The top job: when you took it, and how long it lasted.
+    if (s.pmTenure && s.rank === 16) {
+      const yrs = s.age - s.pmTenure.at;
+      out.push({ label: "In office", text: `Took office at ${s.pmTenure.at}. ${s.ending === "pm" ? `Stepped down at ${s.age}` : `Left at ${s.age}`}, after ${count(yrs)} year${yrs === 1 ? "" : "s"}.` });
+    }
+
     const peak = H.reduce((a, b) => (b.heatAfter > a.heatAfter ? b : a), { heatAfter: 0 });
     out.push({ label: "Exposure", text: peak.heatAfter >= 20
       ? `Peaked at ${peak.heatAfter}, after "${peak.title}". At 85, it all comes out.`
@@ -1723,7 +1976,7 @@ const Engine = (() => {
     // Stories that ran across a career (content.declassifiedFlags): one line per label, the first
     // entry whose requires hold at the end, so a chain is named by where it finished.
     const told = new Set();
-    for (const d of content.declassifiedFlags || []) {
+    for (const d of (content.declassifiedFlags || []).concat((content.endgame || {}).declassifiedFlags || [])) {
       if (told.has(d.label) || !meets(d.requires || {}, s)) continue;
       told.add(d.label);
       out.push({ label: d.label, text: d.text });
@@ -1769,7 +2022,7 @@ const Engine = (() => {
   }
 
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
-    finalLabels, recentKeys,
+    finalLabels, recentKeys, endPlan,
     // cast and card parts, for the immersion lint and the tests
     render, applyVariant, partSlots, partCombos, roleNeeds, optionNeeds, maxRankForAge, personField, TOKEN,
     article, STATS, QUIET: QUIET_YEAR };
