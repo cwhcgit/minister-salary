@@ -741,4 +741,103 @@ ok('the player\'s choices are data: a third choice and a new token field need no
     'something outside the player\'s text functions reads the gender');
 });
 
+ok('hidden witnesses: never named, a nudge and never a jump, landing one to three years on, a review line only when a grade moved, Declassified says what was noticed; a run where nobody notices plays as before', () => {
+  const C = build.content, E = build.engine, W = C.witnesses;
+  const { witnessStatic, witnessWordProblems } = require('./contexts');
+  assert.deepStrictEqual(witnessStatic(build), []);
+  // the lint catches a witness given away: a role, a name, a pronoun, a number, a token
+  const T = JSON.parse(JSON.stringify(W));
+  T.types.panel.review.hurt.push('Your reporting officer, Ong Mei Xuan, says he had doubts. Four out of 5.');
+  const leaky = { ...C, witnesses: T, events: C.events.map(e => e.id === 'copied_in' ? { ...e, witnesses: { ...e.witnesses, did: ['you told {peer}', 'x', 'y'] } } : e) };
+  const found = witnessStatic({ ...build, content: leaky });
+  for (const why of ['"reporting" says who', 'a name, "Ong Mei Xuan"', '"he" says who', 'a number', 'token {peer}'])
+    assert.ok(found.some(x => x.includes(why)), `the lint missed ${why}: ${JSON.stringify(found)}`);
+  assert.ok(witnessStatic({ ...build, content: { ...C, witnesses: { ...W, maxStep: 9 } } }).some(x => /maxStep/.test(x)), 'a reaction big enough to jump a grade is flagged');
+
+  // careers: what the witnesses did, against the screens
+  const pool = {};
+  for (const [type, x] of Object.entries(W.types)) for (const sign of ['help', 'hurt']) for (const l of x.review[sign]) pool[l] = { type, sign };
+  const shownSigns = new Set();
+  let landed = 0, moved = 0, shown = 0, endings = 0;
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
+    const r = H.rng(seed * 11 + 5);
+    let run = H.newRun(origin, seed, { build, rival: seed % 2 === 0, name: 'Tan Wei Ling', gender: 'f' });
+    const lines = [];
+    for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
+      const live = H.choices(run).filter(c => c.available);
+      run = H.step(run, live[Math.floor(r() * live.length)].id);
+      const turn = run.turns[run.turns.length - 1];
+      if (turn.appraisal && turn.appraisal.witness) assert.ok(Math.abs(turn.appraisal.witness) <= W.cap, 'a year\'s witnesses over the cap');
+      const log = run.last.log;
+      log.forEach((l, i) => {
+        if (l.about !== 'witness') return;
+        // on a review page: after a year's heading, below that year's grade
+        const head = log.slice(0, i).map(x => x.kind).lastIndexOf('year');
+        assert.ok(head >= 0 && log.slice(head, i).some(x => x.kind === 'appraisal'), 'a witness line off a review page');
+        assert.ok(pool[l.text], `not a witness line: ${l.text}`);
+        assert.deepStrictEqual(witnessWordProblems(build, l.text), []);
+        assert.ok(H.screenText(run).includes(l.text), 'the line is on the screen');
+        lines.push(l.text); shownSigns.add(pool[l.text].sign);
+      });
+    }
+    assert.strictEqual(new Set(lines).size, lines.length, `${origin} ${seed}: a witness line twice in one career`);
+    const seen = (run.S.witness || { seen: [] }).seen;
+    for (const e of seen) {
+      assert.ok(e.due - e.year >= W.delay[0] && e.due - e.year <= W.delay[1], 'a judgement lands one to three years on');
+      assert.ok(Math.abs(e.mod) <= W.maxStep);
+      if (!e.landed) continue;
+      landed++;
+      assert.strictEqual(e.landed.year, e.due, 'a judgement lands at the appraisal it was due at');
+      if (e.landed.without) moved++;
+      if (e.landed.shown) { shown++; assert.ok(e.landed.without, 'a line shown for a grade that did not move'); }
+      // one witness moves a grade by one step at most
+      const order = C.grades.map(g => g.code);
+      if (e.landed.without) assert.strictEqual(Math.abs(order.indexOf(e.landed.grade) - order.indexOf(e.landed.without)), 1);
+    }
+    assert.strictEqual(seen.filter(e => e.landed && e.landed.shown).length, lines.length, 'every line shown is one judgement that moved a grade');
+    // the ending: what was noticed, never who
+    const D = build.engine.declassify(C, run.S).filter(x => x.label === W.lines.label || x.label === W.lines.restLabel);
+    if (seen.length) assert.ok(D.length, `${origin} ${seed}: witnesses noticed, and Declassified says nothing`);
+    for (const d of D) {
+      assert.deepStrictEqual(witnessWordProblems(build, d.text.replace(/^At \d+, /, '')), [], d.text);
+      if (d.label === W.lines.label && /^At \d+, /.test(d.text)) assert.ok(/Your grade .* was an? \S+, not an? \S+\.|ceiling/.test(d.text), d.text);
+    }
+    const listed = D.filter(d => /^At \d+, /.test(d.text)).length;
+    assert.strictEqual(listed, seen.filter(e => (e.landed && e.landed.without) || (e.ceiling && e.service && Math.min(e.ceiling[1], 8) > Math.min(e.ceiling[0], 8))).length);
+    if (listed) {
+      endings++;
+      assert.ok(H.screenText(run).includes('DECLASSIFIED') && D.every(d => H.screenText(run).includes(d.text)), 'the entries are on the ending screen');
+    }
+  }
+  assert.ok(shownSigns.has('help') && shownSigns.has('hurt'), 'expected seeded runs to show a helping and a hurting line');
+  assert.ok(endings > 20, `expected endings with witness entries under Declassified (${endings})`);
+  assert.ok(shown > 0.3 * moved && shown < 0.7 * moved, `a line about half the time a grade moved (${shown} of ${moved})`);
+  assert.ok(moved < landed, 'most judgements nudge the score without moving a grade');
+
+  // same seed, same career: a run where nobody notices anything plays exactly as without witnesses,
+  // and one where somebody does plays the same until the first judgement lands
+  const bare = { ...C, events: C.events.map(e => { if (!e.witnesses) return e; const x = { ...e }; delete x.witnesses; return x; }) };
+  let quiet = 0, noticed = 0, waiting = 0;
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 30; seed++) {
+    let a = E.nextEvent(C, E.newGame(C, origin, 'Sim', seed, { rival: seed % 2 === 1 })).state;
+    let b = E.nextEvent(bare, E.newGame(bare, origin, 'Sim', seed, { rival: seed % 2 === 1 })).state;
+    const r = H.rng(seed * 3 + 1);
+    let apart = false;
+    for (let t = 0; t < 95 && !a.ending; t++) {
+      const ev = E.eventOf(C, a), live = ev.choices.map((c, i) => i).filter(i => E.choiceAvailable(ev.choices[i], a));
+      const k = live[Math.floor(r() * live.length)];
+      a = E.advance(C, a, k).state;
+      if (apart) continue;
+      b = E.advance(bare, b, k).state;
+      const w = (a.witness || { seen: [] }).seen;
+      if (w.some(e => e.landed || e.ceiling)) { apart = true; continue; }   // from here on, the careers may differ
+      if (w.length) waiting++;   // somebody has noticed, and nothing has landed yet: still the same career
+      const x = JSON.parse(JSON.stringify(a)); delete x.witness;
+      assert.deepStrictEqual(x, JSON.parse(JSON.stringify(b)), `${origin} ${seed}: the run moved before any witness landed (turn ${t})`);
+    }
+    if (a.witness) noticed++; else { quiet++; assert.deepStrictEqual(JSON.parse(JSON.stringify(a)), JSON.parse(JSON.stringify(b))); }
+  }
+  assert.ok(quiet >= 1 && noticed > 20 && waiting > 50, `expected careers with and without witnesses (${quiet}, ${noticed}, ${waiting})`);
+});
+
 console.log(`\nAll ${passed} harness tests passed.`);

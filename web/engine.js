@@ -2161,7 +2161,7 @@ const Engine = (() => {
       if (lead) lead.landed.without = without;
     }
     if (!lead) return;
-    (t.witnessMoved = { grade: grade.code, without: lead.landed.without, type: lead.type });
+    t.witnessMoved = { grade: grade.code, without: lead.landed.without, type: lead.type };   // for traces
     if (witDie(s, `show#${s.year}`) >= (W.show === undefined ? 0.5 : W.show)) return;
     const sign = lead.mod > 0 ? "help" : "hurt", lines = ((W.types[lead.type].review || {})[sign]) || [];
     const key = `__witness:${lead.type}:${sign}`, i = pickLine(s, key, lines.length, false);
@@ -2204,9 +2204,11 @@ const Engine = (() => {
     const rest = all.length - telling.length;
     if (rest) out.push({ label: witLine(W, out.length ? "restLabel" : "label", out.length ? "Also noticed" : "Noticed"),
       text: fillW(witLine(W, rest === 1 ? "restOne" : "restMany", rest === 1 ? "One{more} thing you did was noticed, and never changed a grade." : "{N}{more} things you did were noticed, and none of them changed a grade."),
-        { N: cap(NUM[rest] || String(rest)), more: out.length ? " more" : "" }) });
+        { N: cap(COUNT[rest] || "many"), more: out.length ? " more" : "" }) });
     return out;
   }
+  const COUNT = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+    "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
   const fillW = (t, fill) => String(t).replace(/\{(\w+)\}/g, (m, k) => (fill[k] !== undefined ? fill[k] : m));
 
   // --- the ending: legacy and the declassified file --------------------------

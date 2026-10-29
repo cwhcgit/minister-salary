@@ -1623,7 +1623,7 @@
         "three years later"
       ],
       "whenMany": "{n} years later",
-      "ceiling": "It also raised your ceiling in the service by a grade. Nobody mentioned it.",
+      "ceiling": "It raised your ceiling in the service by a grade. Nobody mentioned it.",
       "ceilingToo": "It also raised your ceiling in the service by a grade. Nobody mentioned that either.",
       "didFallback": "on \"{title}\", you chose \"{text}\"",
       "restOne": "One{more} thing you did was noticed, and never changed a grade.",
@@ -1636,12 +1636,12 @@
         "review": {
           "help": [
             "Your appraisal comes back with a sentence added under the grade, in handwriting you don't recognise: \"Sound judgement.\" Nobody mentions it.",
-            "Between the draft and the final version, your appraisal gained four words: \"a steady pair of hands\". Nobody says who added them.",
-            "The comments section is a paragraph longer than the draft you were shown, and the new paragraph is about your judgement. Nobody tells you where it came from.",
+            "Between the draft and the final version, your appraisal gained a phrase: \"a steady pair of hands\". Nobody says who added it.",
+            "The comments section is a paragraph longer than the draft you were shown, and the new paragraph praises your judgement. It isn't signed.",
             "Your grade came back higher than the draft you were shown. Nobody explains the difference, and you decide not to ask."
           ],
           "hurt": [
-            "Your appraisal comes back with one sentence added under the grade: \"Would benefit from greater consistency.\" Nobody says who added it.",
+            "Your appraisal comes back with one sentence added under the grade: \"Would benefit from greater consistency.\" It's in handwriting you don't recognise.",
             "Between the draft and the final version, your appraisal lost the word \"reliable\". Nobody tells you who took it out.",
             "Your grade came back lower than the draft you were shown. Nobody explains the difference, and the form has no box for asking.",
             "The comments section now includes the phrase \"not yet ready for more\". It wasn't in the draft, and nobody says when it was added."
@@ -1666,12 +1666,12 @@
         "review": {
           "help": [
             "The comments section mentions your discretion. Nobody tells you who raised it.",
-            "Your appraisal calls you \"a safe pair of hands with sensitive material\". You can't remember anyone watching you handle any.",
+            "Your appraisal says you \"can be trusted with sensitive material\". You can't remember anyone watching you handle any.",
             "Somebody asked for you by name this year, for work that was confidential. Nobody says why you."
           ],
           "hurt": [
             "The comments section uses the word \"discretion\" once, in a sentence that begins \"Would benefit from\". Nobody says whose sentence it is.",
-            "You were left off a list this year that you used to be on. Nobody tells you why, or who decided.",
+            "You were taken off the mailing list for confidential papers this year. Nobody tells you why, or who decided.",
             "Your appraisal says you should \"take more care with information\". Nobody explains which information."
           ]
         },
@@ -1695,8 +1695,8 @@
           "help": [
             "When the grades were decided this year, somebody already knew your name, and that turned out to be enough.",
             "Your appraisal mentions your \"visible initiative\". You hadn't thought anyone was looking.",
-            "You hear, third-hand, that your name came up this year before anyone had to look it up. Nobody who tells you was there.",
-            "Somebody you've never spoken to described you this year as \"one to watch\". It reached your file."
+            "Somebody you've never spoken to described you this year as \"one to watch\". It reached your file.",
+            "You hear, third-hand, that your name was mentioned this year as someone who gets things moving. Nobody says by whom."
           ],
           "hurt": [
             "When the grades were decided this year, your name came up attached to a story. Nobody tells you which one.",
@@ -1753,13 +1753,13 @@
         "review": {
           "help": [
             "This year your name was mentioned in a room you've never been in, as someone worth listening to. You find out only from the grade.",
-            "A note you never saw this year asked for \"someone like\" you. You were the someone.",
-            "You hear, from nobody in particular, that you're thought of upstairs as \"sensible\". In this building it's high praise."
+            "Somebody asked this year for \"someone sensible\" for a difficult job, and your name was the one given. You never find out who asked.",
+            "You hear, from nobody in particular, that you're thought of upstairs as \"sound\". In this building it's high praise."
           ],
           "hurt": [
             "Your name came up this year in a room you've never been in, next to the word \"surprise\". Nobody tells you which one.",
             "Somewhere you've never been, this year, somebody asked who was responsible for an awkward moment. Your name was the answer.",
-            "You hear, much later and from nobody in particular, that you're thought of upstairs as \"not quite ready\". Nobody says for what."
+            "You hear, from nobody in particular, that you're thought of upstairs as \"not quite ready\". Nobody says for what."
           ]
         },
         "declassified": {
