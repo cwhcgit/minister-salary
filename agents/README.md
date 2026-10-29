@@ -70,7 +70,8 @@ Fun-meter personas (blind: the screen and the meter, nothing else; Haiku with th
 | `fun-casual` | a 24-year-old who plays on the bus; three screens to hook her | 35 | ×1.5 | Haiku 5.5, low | 100 | How long does a casual player keep tapping, and what makes her stop? Keeps one origin. |
 | `fun-insider` | a Deputy Director; tone and accuracy matter | 25 | ×1 | Haiku 5.5, low | 100 | Does the satire hold an insider? Which lines break tone or get the service wrong? |
 | `fun-completionist` | plays every ending; loves a callback that pays off | 15 | ×1 | Haiku 5.5, low | 100 | Do callbacks and endings pull a patient player through several careers? |
-| `fun-critic` | a games critic, hard to impress | 25 | ×1 | Sonnet 5.5, low, thinking `between_tools` | 10 | Calibration: does a sharper (and dearer) reader agree with the Haiku players? |
+| `fun-critic` | a games critic, hard to impress | 25 | ×1 | Sonnet 5.5, low, thinking `between_tools` | 15 | Calibration: does a sharper (and dearer) reader agree with the Haiku players? |
+| `fun-critic-haiku` | the same critic, on Haiku | 25 | ×1 | Haiku 5.5, low | 40 | Calibration: the two models card by card, with no persona difference |
 | `calibration` | `fun-casual` ×3, `fun-insider` ×3, `fun-completionist` ×2, `fun-critic` ×3, canaries in every career | | | | 11 | Does Haiku mark the bland canary down, flag the wink, and agree with the critic card by card? |
 
 Each personality is a block of config (`fun` in `lib/config.ts`: quit line, repeat multiplier, decay, maximum delta, careers per session, rotate or keep the origin) plus a short persona prompt in `personas/fun-*.md`. Adding one is a few lines.
@@ -82,7 +83,7 @@ The original cohorts:
 | `blind-insider` | screen only; a Singapore public servant | Sonnet 5.5, low effort | 50 | Does the satire land for insiders? Is the jargon accurate? |
 | `blind-general` | screen only; knows the country, not the service | Sonnet 5.5, low | 50 | Is it funny and followable without insider knowledge? |
 | `blind-international` | screen only; a BitLife player abroad | Sonnet 5.5, low | 50 | Does it work abroad? Is the title opaque? |
-| `lineage` | screen, plus its own notes from earlier lives | Sonnet 5.5, medium | 20 × 5 | Does knowledge improve outcomes? When is CEP inferred, and how does that feel? |
+| `lineage` | screen, plus its own notes from earlier lives | Sonnet 5.5, medium | 6 × 5 | Does knowledge improve outcomes? When is CEP inferred, and how does that feel? |
 | `veteran` | the mechanics brief and the full trace | Haiku 5.5, low | 200 | Is the win reachable by skill from every origin? |
 | `breaker` | the mechanics brief and the full trace | Sonnet 5.5, medium | 30 | Heat farming, vetting and election exploits, degenerate loops |
 
@@ -105,10 +106,10 @@ At the end (a quit, or the last career) comes a three-question exit survey: `qui
 **Fun sessions.** One conversation per career. Each turn appends one user message (the screen exactly as the harness renders it, then `Your fun: 47/100.`) and the player's reply, which is the whole of its output:
 
 ```json
-{"reason": "the appraisal euphemism for a C made me laugh", "verdict": "smiled", "choice": "B", "off_tone": null}
+{"reason": "the appraisal euphemism for a C made me laugh", "verdict": "smiled", "choice": "B", "off_tone": null, "unclear": null}
 ```
 
-`off_tone` is null unless a line broke the tone (a wink at the player, cruelty to a person rather than the system, a real politician, a wrong detail), in which case it quotes the line. No notes: the conversation is the memory. The request carries a cache breakpoint on the system prompt (shared by every career and session of the persona) and top-level automatic caching (`cache_control` on the request), which moves a breakpoint to the latest message, so each turn reads everything before it from the cache and pays full price only for the new screen and the last reply: about 250 tokens. Thinking is off (`disabled` on Haiku, `between_tools` on Sonnet). A new career opens with one line on how the earlier ones went. A reply that cannot be used is retried once with the available choices listed, then a choice is picked at random, flagged `autoPicked`, and the player is told so in its next message. Haiku has no refusal fallback; a refusal is handled the same way.
+`off_tone` is null unless a line broke the tone (a wink at the player, cruelty to a person rather than the system, a real politician, a wrong detail), in which case it quotes the line. `unclear` is null unless a line did not make sense on a first read (what was happening, who someone was, why it mattered), in which case it quotes the line; a local term the player could look up does not count. No notes: the conversation is the memory. The request carries a cache breakpoint on the system prompt (shared by every career and session of the persona) and top-level automatic caching (`cache_control` on the request), which moves a breakpoint to the latest message, so each turn reads everything before it from the cache and pays full price only for the new screen and the last reply: about 250 tokens. Thinking is off (`disabled` on Haiku, `between_tools` on Sonnet). A new career opens with one line on how the earlier ones went. A reply that cannot be used is retried once with the available choices listed, then a choice is picked at random, flagged `autoPicked`, and the player is told so in its next message. Haiku has no refusal fallback; a refusal is handled the same way.
 
 **The original cohorts.** Blind personas get the screen and nothing else (see `harness/README.md`). Every request is ordered for caching:
 
@@ -134,7 +135,7 @@ Each turn returns `choice`, `why`, `interest` (1-5, calibrated in the prompt), `
 
 Fun cohorts: `reports/cohorts/<date>-<persona>-<build>/` holds `manifest.json`, `system-prompt.txt`, one JSONL per session in `sessions/`, `summary.json` and `report.md`. A session's JSONL has a `meta` line; per career a `career_start` (origin, seed, build, the freshness memory it started with, the meter) and a `career_end` (ending, choices, final state); one `turn` line per tap (the exact screen, the reply, the meter's before/model/repeat/decay/after, the card and whether it was a repeat, token usage and cost, the full trace); the `survey`; and a `summary` (quit, taps to quit, careers to quit, cost). Every career replays exactly from its build hash, origin, seed, `recent` and choices.
 
-`summary.json` and `report.md` give, in order: taps to quit and careers to quit (median and distribution, with sessions that never quit counted apart), the share of careers finished and their endings, the fun curve (mean meter and mean delta by tap, and how many are still playing), a score per card (mean model delta with the rule deltas left out, split into first showing and repeats, off-tone flags, the cards players quit on, top and bottom 10), the endings' scores, the canary check, the exit survey, and the cost: per tap, career and session, the token split (uncached input, cache writes, cache reads, output, thinking) and its cost share, and what the same token counts would cost on Haiku and on Sonnet. `node agents/runner.ts summarize <dir>` rebuilds both. A calibration run adds `<date>-calibration-<build>/calibration.{json,md}` beside its four cohorts.
+`summary.json` and `report.md` give, in order: taps to quit and careers to quit (median and distribution, with sessions that never quit counted apart), the share of careers finished and their endings, the fun curve (mean meter and mean delta by tap, and how many are still playing), a score per card (mean model delta with the rule deltas left out, split into first showing and repeats, off-tone flags, the cards players quit on, top and bottom 10), the lines players could not follow (`unclear`, by card), the endings' scores, the canary check, the exit survey, and the cost: per tap, career and session, the token split (uncached input, cache writes, cache reads, output, thinking) and its cost share, and what the same token counts would cost on Haiku and on Sonnet. `node agents/runner.ts summarize <dir>` rebuilds both. A calibration run adds `<date>-calibration-<build>/calibration.{json,md}` beside its four cohorts.
 
 The original cohorts:
 
@@ -151,7 +152,7 @@ The original cohorts:
 | Haiku 5.5 | ~$0.0001 | ~$0.0015 | ~$0.0015-0.003 | ~$0.006-0.008 |
 | Sonnet 5.5 | ~$0.0014 | ~$0.023 | ~$0.025-0.045 | ~$0.09-0.13 |
 
-Against the last Sonnet round ($0.25-0.31 a career, 58% of it per-turn output), that is about 12 times cheaper on Sonnet and about 200 times on Haiku. Nearly all input is a cache read; the cost is mostly cache writes (each new screen) and output. A Haiku cohort of 100 sessions comes to roughly $0.3-0.8 even if every session plays all five careers, so the $2 cap is a guard, not a budget; `calibration` is about $0.4, `fun-critic` about $1.2. A whole round (calibration, the three Haiku cohorts, the critic) is about $2-4, so $11.50 buys about three rounds, or many more Haiku cohorts on their own. Haiku 5.5 prices prompts over 100,000 tokens higher; a career's conversation stays under about 25,000 even at the 60-turn cap.
+Against the last Sonnet round ($0.25-0.31 a career, 58% of it per-turn output), that is about 12 times cheaper on Sonnet and about 200 times on Haiku. Nearly all input is a cache read; the cost is mostly cache writes (each new screen) and output. A Haiku cohort of 100 sessions comes to roughly $0.3-0.8 even if every session plays all five careers, so the $2 cap is a guard, not a budget; `calibration` is about $0.4, `fun-critic` (15 sessions, capped at $4) about $1.8, `fun-critic-haiku` (40 sessions, capped at $1) about $0.3. A whole round (calibration, the three Haiku cohorts, the critic) is about $3-5, so $11.50 buys two or three rounds, or many more Haiku cohorts on their own. Haiku 5.5 prices prompts over 100,000 tokens higher; a career's conversation stays under about 25,000 even at the 60-turn cap.
 
 **The original cohorts.**
 
@@ -159,13 +160,13 @@ Estimates from the real prompt sizes (about 4 characters a token), before thinki
 
 | cohort | per run | runs | cohort | cap |
 |---|---|---|---|---|
-| blind, each | $0.25-0.31 (measured in the first dry runs) | 50 | $13-15 | $20 |
-| lineage | ~$0.16 | 100 | ~$16 | $25 |
+| blind, each | $0.25-0.31 (measured in the first dry runs) | 50 | $13-15 | $14 |
+| lineage | ~$0.16 | 30 (6 lineages of 5 lives) | ~$5 | $10 |
 | veteran | ~$0.02 | 200 | ~$4 | $5 |
 | breaker | ~$0.17 | 30 | ~$5 | $10 |
 | audit, analyst, designer | | | ~$2-5 a cycle | |
 
-The caps add up to $76, leaving room in the $100 credit to re-test approved changes. Controls:
+The caps add up to $67, leaving room in the $100 credit to re-test approved changes. Controls:
 
 - A cohort stops launching runs once it has spent its cap (`lib/config.ts`); `--max-usd` caps a whole invocation.
 - Every run, and every career in a session, stops at 60 turns.
@@ -176,9 +177,9 @@ The caps add up to $76, leaving room in the $100 credit to re-test approved chan
 
 ## Answers to the plan's open questions
 
-- **Can the engine produce the on-screen text without the DOM?** Mostly. Event cards, outcomes, the pay line, appraisal euphemisms, promotion, warning, CEP-hint and rumour lines come from `engine.js` and the content. The UI adds the header, the in-world reason on locked choices ("You'd need a stronger reputation for this."), the log tag labels, the ending card labels and the start screen. `harness/screen.js` reproduces those, and `test/screen.test.js` plays six careers through the real DOM and checks that every screen matches field for field.
+- **Can the engine produce the on-screen text without the DOM?** Mostly. Event cards, outcomes, the pay line, appraisal grades and euphemisms, the "why" lines, promotion, warning, CEP-hint and rumour lines, the in-world reason on locked choices ("You'd need a stronger reputation for this."), the ending's stat verdicts and Declassified come from `engine.js` and the content. The UI adds the header's layout, the log tag labels, the page breaks between years, the ending card's fixed labels and the start screen. `harness/screen.js` reproduces those, and `test/screen.test.js` plays six careers through the real DOM and checks that every screen matches field for field.
 - **Are events stored as data the designer can add to?** Yes: `web/content/events.json`. The designer writes ops (add, replace, set a field); `lib/proposals.ts` validates them, builds a patched copy of `web/`, and produces the diff.
-- **Are balance numbers in config or hardcoded?** Both. In config: the ladder and pay, origins and CEP ranges, grade thresholds and euphemisms, minimum years in grade, retirement ages, and every choice's effects. Hardcoded in `engine.js`: the appraisal weights and noise, the bonus formula, the election win chances, the post-election CEP formula, the Heat thresholds (55 and 85), the C and D streak rules, the extra years at senior rungs and the double-jump rule. The designer can only propose content and config; if the analysis points at one of the hardcoded numbers, it says so instead. Moving them into `game.json` would open them up.
+- **Are balance numbers in config or hardcoded?** Both. In config: the ladder and pay, origins and CEP ranges, grade thresholds and euphemisms, minimum years in grade (and, rung by rung, the political ladder's), retirement ages and the rest of the career's end (`endgame`), the probation's card count, and every choice's effects. Hardcoded in `engine.js`: the appraisal weights and noise (±5), the bonus formula, the election win chances, the post-election CEP formula, the Heat thresholds (55 and 85), the C and D streak rules, the probation's four years and the double-jump rule. The designer can only propose content and config; if the analysis points at one of the hardcoded numbers, it says so instead. Moving them into `game.json` would open them up.
 - **Node/TypeScript with the Anthropic SDK?** That is what this is: TypeScript run by Node's built-in type stripping, with `@anthropic-ai/sdk` as the only runtime dependency.
 - **Which Console workspace and spend limit?** Yours to choose. Suggested: a workspace for this project alone with a spend limit of $90 a month, targeted by the federation rule (see Paid runs). No API key is needed.
 
