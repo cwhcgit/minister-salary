@@ -78,7 +78,7 @@
           }
         ]
       },
-      "body": "At 10:52pm the Whip texts: {msg} Tomorrow's bill brings in {bill}. You think it is wrong; the party supports it. Members vote the party line unless the Whip lifts the whip, and crossing the Whip costs you standing.",
+      "body": "At 10:52pm the Whip texts: {msg} Tomorrow's bill brings in {bill}. You think it is wrong; the party supports it. Members vote the party line unless the Whip \"lifts the whip\" and lets them vote freely, and crossing the Whip costs you standing.",
       "requires": {
         "minRank": 8,
         "maxRank": 10
@@ -128,7 +128,7 @@
               },
               "body": "You have won the ballot for tonight's adjournment motion: twenty minutes, at the end of a long sitting, to raise {topic}, and a minister must reply. Backbenchers rarely get to pick the subject. {house}",
               "a": "Speak for the full twenty minutes.",
-              "aOut": "Twenty minutes on {topic.short}, at 9:40pm. The reply takes ten. Then Parliament does now adjourn, exactly as your motion proposed, and everyone goes home.",
+              "aOut": "Twenty minutes on {topic.short}, at 9:40pm, and a ten-minute reply. Then the House passes your motion, which formally asks only that Parliament \"do now adjourn\", and everyone goes home.",
               "b": "Cut it to five. Let the House go home.",
               "bOut": "Five minutes, and the House is grateful in the lift. The reply, written for twenty minutes of argument, is read out in full, at the usual pace.",
               "c": "Send the ministry your speech the day before.",
@@ -247,7 +247,7 @@
               },
               "body": "At the Committee of Supply, the yearly debate on each ministry's budget, you want a few minutes to speak. To get them, you have filed a motion to cut {head}'s budget by $100, as Parliament's rules allow. Nobody expects the cut to pass. Your ward wants {head.ward}. You also have a harder question.",
               "a": "Ask for what your ward wants.",
-              "aOut": "The Minister promises, by name, to study {head.ward}. In your ward, that counts as delivery. You ask leave to withdraw your amendment. Leave is granted.",
+              "aOut": "The Minister promises, by name, to study {head.ward}. In your ward, that counts as delivery. You ask leave to withdraw your $100 cut. Leave is granted.",
               "b": "Ask the harder question.",
               "bOut": "The Minister answers carefully, and for longer than planned. You ask leave to withdraw your $100. It is granted, a little more slowly than the others.",
               "c": "Ask the question your party committee agreed on, word for word.",
@@ -740,7 +740,7 @@
           }
         ]
       },
-      "body": "The opposition candidate you beat at the last election has not stopped campaigning in your ward: {where}, in a party T-shirt, shaking hands you shook first. If residents warm to them, your single seat is at risk next time. The chairman of your party branch, the party's volunteers in your ward, would like you out there too, in your own T-shirt.",
+      "body": "The opposition candidate you beat at the last election has not stopped campaigning in your ward: {where}, in a party T-shirt, shaking hands you shook first. If residents warm to them, your single seat is at risk next time. The chairman of your party branch, which runs the party's volunteers in your ward, would like you out there too, in your own T-shirt.",
       "requires": {
         "minRank": 8,
         "maxRank": 10,
@@ -1036,7 +1036,7 @@
               ]
             }
           },
-          "outcome": "The panel lets you stay. You ask {peer} about the folder, gently, in the voice that once asked you. {peer} answers it better than you did, and the party still decides not to field {peer}."
+          "outcome": "The panel lets you stay. You ask {peer} about the file, gently, in the voice that once asked you about yours. {peer} answers better than you did, and the party still decides not to field {peer}."
         },
         {
           "text": "Sit, and say nothing about knowing {peer}.",

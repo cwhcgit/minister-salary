@@ -256,7 +256,7 @@
           "text": "Mention the loop to the Finance officer.",
           "effects": { "standing": 4, "integrity": -3 },
           "setFlags": ["strange_met"],
-          "outcome": "The Finance officer has noticed too. Finance has been running this meeting on a loop for years, she says: it's how budgets stay flat. She would be grateful if you didn't mention it."
+          "outcome": "The Finance officer has noticed too. Finance has been running this meeting on a loop for years, the officer says: it's how budgets stay flat. The officer would be grateful if you didn't mention it."
         }
       ]
     },
