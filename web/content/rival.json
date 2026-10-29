@@ -153,7 +153,7 @@
           "sameRank": true
         }
       },
-      "body": "It's 360-degree feedback season, when colleagues assess each other anonymously and the ranking panel reads the results. You've been asked to assess {rival}, from your intake, who is your rival for every promotion. The form promises anonymity. It has a free-text box headed \"Areas for development\".",
+      "body": "It's 360-degree feedback season, when colleagues assess each other anonymously and the ranking panel reads the results. You've been asked to assess {rival}, your batchmate and your rival for every promotion. The form promises anonymity. It has a free-text box headed \"Areas for development\".",
       "choices": [
         {
           "text": "Write something true and useful.",
@@ -207,7 +207,7 @@
           "near": 1
         }
       },
-      "body": "{rival}, from your intake and your rival for every promotion, sends a paper up to the Permanent Secretary at nine tomorrow, and you're copied on the draft. Annex B has the right numbers in the wrong columns, and the recommendation rests on them. A mistake like that would cost {rival} at the next ranking.",
+      "body": "{rival}, your batchmate and your rival for every promotion, sends a paper up to the Permanent Secretary at nine tomorrow, and you're copied on the draft. Annex B has the right numbers in the wrong columns, and the recommendation rests on them. A mistake like that would cost {rival} at the next ranking.",
       "choices": [
         {
           "text": "Call {them} tonight.",
@@ -263,7 +263,7 @@
           "sameRank": true
         }
       },
-      "body": "There's one two-year posting to the Budget Division at the Ministry of Finance this year, the kind that gets people noticed, and your division has two nominees: you and {rival}, from your intake. HR suggests the two of you \"have a conversation\" first. In HR, that means one of you should withdraw.",
+      "body": "There's one two-year posting to the Budget Division at the Ministry of Finance this year, the kind that gets people noticed, and your division has two nominees: you and {rival}, your batchmate. HR suggests the two of you \"have a conversation\" first. In HR, that means one of you should withdraw.",
       "choices": [
         {
           "text": "Withdraw, and say it was your idea.",
@@ -316,10 +316,10 @@
                 "standing": -3
               },
               "winText": "The posting goes to you. {rival} hears, eventually, how.",
-              "loseText": "The posting goes to {rival}. The Director mentions, in passing, that {rival} did not come to see her about it."
+              "loseText": "The posting goes to {rival}. The Director mentions, in passing, that {rival} did not come asking."
             }
           },
-          "outcome": "The Director listens, nods, and says she will \"bear it in mind\". That is the most anyone has ever got from her."
+          "outcome": "The Director listens, nods, and promises to \"bear it in mind\". That is the most anyone has ever got out of that office."
         }
       ]
     },
@@ -336,7 +336,7 @@
           "sameRank": true
         }
       },
-      "body": "{rival}, from your intake, has been shortlisted for a post one grade above you both, which would make {rival} senior to you. The selection panel has asked {rival}'s peers for their views. Yours will be read, and filed, and remembered by someone.",
+      "body": "{rival}, your batchmate, has been shortlisted for a post one grade above you both, which would make {rival} senior to you. The selection panel has asked {rival}'s peers for their views. Yours will be read, and filed, and remembered by someone.",
       "choices": [
         {
           "text": "Back {them}, warmly and specifically.",
@@ -361,7 +361,7 @@
           "outcome": "Two lines, both true, neither memorable. The panel files them with the others."
         },
         {
-          "text": "Suggest, carefully, that another year at grade might help {them}.",
+          "text": "Suggest, carefully, that another year in the grade might help {them}.",
           "effects": {
             "standing": 3,
             "integrity": -6
@@ -449,7 +449,7 @@
           "maxRank": 15
         }
       },
-      "body": "Who becomes the next Prime Minister, first among equals, is being settled informally by the Cabinet, in a room. It has come down to two names, as your intake joked it would at its first dinner: {player} and {rival}.",
+      "body": "Who becomes the next Prime Minister, first among equals, is being settled informally by the Cabinet, in a room. It has come down to two names, as the officers you joined with joked it would at your first dinner together: {player} and {rival}.",
       "choices": [
         {
           "text": "Put yourself forward.",

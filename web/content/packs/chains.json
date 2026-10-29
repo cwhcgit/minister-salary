@@ -1777,7 +1777,7 @@
           "bond": 2,
           "setFlags": ["bond_met", "bond_extended"],
           "schedule": [{ "eventId": "bond_bank", "inYears": 2, "chance": 0.85 }],
-          "outcome": "Twelve months, officials from forty countries, and a seminar in which you are asked to explain Singapore. You come back with a master's, a bond that ends at thirty-two, and someone else in your old job."
+          "outcome": "Twelve months, officials from forty countries, and a seminar in which you are asked to explain Singapore. You come back with a master's, two more years on your bond, and someone else in your old job."
         },
         {
           "text": "Decline. Your division needs you this year.",

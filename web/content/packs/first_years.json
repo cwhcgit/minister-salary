@@ -684,7 +684,7 @@
             "competence": 2,
             "integrity": 1
           },
-          "outcome": "You confirm the record is accurate and add nothing. The footnote appears anyway. What the people in it remember is that you didn't help them either."
+          "outcome": "You confirm the record is accurate and add nothing. The footnote appears anyway, and the people at that meeting decide you were no help to anyone, themselves included."
         }
       ]
     },
@@ -745,7 +745,7 @@
             "standing": 2,
             "integrity": -3
           },
-          "outcome": "An officer in her first month wins it, and cries a little. The directors, spared the business of giving it back, are quietly grateful. Nobody ever checks the box."
+          "outcome": "An officer in the first month of the job wins it, and cries a little. The directors, spared the business of giving it back, are quietly grateful. Nobody ever checks the box."
         },
         {
           "text": "Spend the prize money on the food instead.",
