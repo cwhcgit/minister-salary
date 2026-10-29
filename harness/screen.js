@@ -102,16 +102,17 @@ function toText(view, opts = {}) {
   if (view.start) {
     out.push(`${view.start.title}\n${view.start.tagline}\n\nYou chose: ${view.start.origin.name} (${view.start.origin.difficulty.toUpperCase()})\n${view.start.origin.blurb}\n\n${view.start.hint}`);
   }
+  if (view.header) out.push(headerText(view.header));
+  if (view.outcome) {
+    const lines = view.outcome.log.map(l => l.tag === "year" ? `  ${l.text.toUpperCase()}` : tags === "none" ? `  ${l.text}` : `  [${l.tag.toUpperCase()}] ${l.text}`);
+    out.push(`LAST YEAR\n${view.outcome.text}${lines.length ? "\n" + lines.join("\n") : ""}`);
+  }
+  // the ending card comes after the last outcome (ui.js shows it on the next screen)
   if (view.ending) {
     const e = view.ending;
     out.push(`${e.label.toUpperCase()}\n${e.title}\n\n${e.epitaph}\n\n${e.positionLabel.toUpperCase()} ${e.position}\n${e.ageLabel.toUpperCase()} ${e.age}\nLIFETIME EARNINGS ${e.lifetimeEarnings}\nINTEGRITY ${e.integrity}`
       + (e.declassified.length ? "\n\nDECLASSIFIED\n" + e.declassified.map(l => `${l.label.toUpperCase()}: ${l.text}`).join("\n") : ""));
     return out.join("\n\n");
-  }
-  if (view.header) out.push(headerText(view.header));
-  if (view.outcome) {
-    const lines = view.outcome.log.map(l => l.tag === "year" ? `  ${l.text.toUpperCase()}` : tags === "none" ? `  ${l.text}` : `  [${l.tag.toUpperCase()}] ${l.text}`);
-    out.push(`LAST YEAR\n${view.outcome.text}${lines.length ? "\n" + lines.join("\n") : ""}`);
   }
   if (view.event) {
     const ev = view.event;

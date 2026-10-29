@@ -257,8 +257,15 @@ function promotionWhy(p, appraisal, pre) {
 function screen(run, opts = {}) {
   const build = getBuild(run.buildHash);
   const S = run.S;
-  if (run.phase === "ending") return { phase: "ending", ending: View.endingCard(build, S) };
   const view = opts.view || "agent";
+  // the phone shows the last choice's outcome (and the last year-end review) before the ending
+  // card, as one more outcome screen: the agent view merges the two, as it does every year
+  if (run.phase === "ending") {
+    const end = { phase: "ending" };
+    if (run.last && view !== "event") { end.header = View.header(build, S, run.last.prev); end.outcome = View.outcomeCard(run.last.outcome, run.last.log); }
+    if (view !== "outcome") end.ending = View.endingCard(build, S);
+    return end;
+  }
   const out = { phase: "event" };
   if (run.turn === 1 && view === "agent") out.start = View.startCard(build, run.origin, run.rival);
   const showOutcome = run.last && view !== "event";

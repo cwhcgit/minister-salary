@@ -149,7 +149,7 @@ function outcomeScreen() {
       <div class="log">${pg.map(l => `
         <div class="li${l.kind === "year" ? " yr" : ""}"><span class="tag t-${l.kind}">${TAG_LABEL[l.kind] || l.kind}</span>
         <span>${esc(l.text)}</span></div>`).join("")}</div>
-      ${k === last ? `<button class="primary" id="next">Confirm Another Year</button>` : `<button class="primary more">Continue</button>`}
+      ${k === last ? `<button class="primary" id="next">${S.ending ? "The Final Position" : "Confirm Another Year"}</button>` : `<button class="primary more">Continue</button>`}
     </div>`).join("");
   app.querySelectorAll(".more").forEach(b => b.onclick = () => {
     const page = b.closest(".page"), k = +page.dataset.p;
@@ -197,7 +197,8 @@ function choose(i) {
   prev = { ...S };
   const r = Engine.advance(content, S, i);
   S = r.state; outcome = r.outcome; log = r.log;
-  phase = S.ending ? "ending" : "outcome";
+  // the last choice's outcome (and the last year-end review) is shown too, before the ending
+  phase = "outcome";
   if (S.ending) rememberRun();
   save(); render();
 }
