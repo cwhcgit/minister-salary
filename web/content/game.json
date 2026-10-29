@@ -368,11 +368,11 @@
     },
     {
       "flag": "hid_annex",
-      "item": "an annex your award does not appear in"
+      "item": "a contract of yours left out of a list given to Parliament"
     },
     {
       "flag": "was_leaker",
-      "item": "a Telegram channel, and a circulation list of eleven"
+      "item": "a leak to a Telegram channel, from a circulation list of eleven"
     },
     {
       "flag": "leaked_deadlock",
@@ -384,7 +384,7 @@
     },
     {
       "flag": "grabbed_box",
-      "item": "a director-level box you secured before your team's postings"
+      "item": "a director's post you secured before your team's postings"
     },
     {
       "flag": "rebranded_scheme",
@@ -499,7 +499,7 @@
           "whistle_said_protect"
         ]
       },
-      "text": "Shown forty-one purchases kept just under the $6,000 line, you did nothing. Years later, asked what to do with a spreadsheet like it, you said: take it up yourself."
+      "text": "Shown forty-one purchases kept just under $6,000, the limit above which quotes were needed, you did nothing. Years later, asked what to do with a spreadsheet like it, you said: take it up yourself."
     },
     {
       "label": "The whistleblower",
@@ -509,7 +509,7 @@
           "whistle_said_leave"
         ]
       },
-      "text": "Shown forty-one purchases kept just under the $6,000 line, you kept them to yourself. Years later, asked about a spreadsheet like it, you said: leave it with me. The advice was not taken."
+      "text": "Shown forty-one purchases kept just under $6,000, the limit above which quotes were needed, you kept them to yourself. Years later, asked about a spreadsheet like it, you said: leave it with me. The advice was not taken."
     },
     {
       "label": "The whistleblower",
@@ -563,7 +563,7 @@
           "whistle_ignored"
         ]
       },
-      "text": "Forty-one purchases, each just under the $6,000 line, shown to you years before the Auditor-General found them."
+      "text": "Forty-one purchases, each just under $6,000, the limit above which quotes were needed, shown to you years before the Auditor-General found them."
     },
     {
       "label": "The whistleblower",
@@ -591,7 +591,7 @@
           "protege_claimed"
         ]
       },
-      "text": "You took the credit for your protégé's best objection, and later backed the promotion. The panel minutes record only the second."
+      "text": "You took the credit for your protégé's best objection, and later backed your protégé's promotion. The panel minutes record only the backing."
     },
     {
       "label": "The protégé",
@@ -663,7 +663,7 @@
           "uturn_position"
         ]
       },
-      "text": "\"The position at the time.\" Hansard keeps the position, the time, and the day it changed."
+      "text": "Your old replies went into the statement as \"the position at the time\". Hansard keeps the position, the time, and the day it changed."
     },
     {
       "label": "The U-turn",
@@ -708,7 +708,7 @@
           "uturn_met"
         ]
       },
-      "text": "Your reply is in Hansard: the policy is sound, or under review, or a set of figures. It is still the position, at the time."
+      "text": "Your replies to nine Parliamentary Questions on the policy are in Hansard, word for word. The policy was never reversed, so they are still the position, at the time."
     },
     {
       "label": "The bond",
@@ -728,7 +728,7 @@
         ],
         "notDuringBond": true
       },
-      "text": "Served in full. Years later you told your own scholar to take the bank's money. PSC thanked you, in writing."
+      "text": "Served in full. Years later you told your own scholar to take the bank's money. PSC thanked you for your time as a mentor, in writing."
     },
     {
       "label": "The bond",
@@ -1113,7 +1113,7 @@
     "quiet": [
       {
         "min": 105,
-        "text": "Two old colleagues still meet you for lunch. Neither mentions the appraisals. They read them."
+        "text": "Two old colleagues still meet you for lunch. Neither mentions your last appraisals, though both read them."
       },
       {
         "min": 0,
@@ -2088,7 +2088,7 @@
             "stays_on"
           ]
         },
-        "text": "Asked to stay past 65, and you stayed, to 70. The Prime Minister's note asking you is in your file. It is two lines long and says \"no pressure\" in both."
+        "text": "Asked to stay past 65, you stayed, to 70. The Prime Minister's note asking you is in your file. It is two lines long and says \"no pressure\" in both."
       },
       {
         "label": "The slate",
@@ -2097,7 +2097,7 @@
             "made_way"
           ]
         },
-        "text": "Asked to stay, you made way anyway. The candidate who took your place on the slate was never told, and the Prime Minister has never said."
+        "text": "Asked to stay, you made way anyway. The candidate who took your place on the slate was never told you had been asked, and the Prime Minister has never said."
       },
       {
         "label": "The slate",
@@ -2169,7 +2169,7 @@
             "pm_back_to_ward"
           ]
         },
-        "text": "No title. Tuesday nights at Meet-the-People Sessions until the next election. The parking fine was waived, on appeal, through the proper channels."
+        "text": "No title. Tuesday nights at Meet-the-People Sessions until the next election. The first resident in the queue had a parking fine, and it was waived, on appeal, through the proper channels."
       },
       {
         "label": "Afterwards",
