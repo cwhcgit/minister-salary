@@ -144,7 +144,7 @@ for (const o of ORIGINS) { const c = ft.origins[o].cepSafeguard;
   line(o, `${c.ceilingRuns} hit it; ${c.reachableAfterCeilingRate ?? '-'}% reachable, ${c.shownAfterCeilingRate ?? '-'}% shown, ${c.takenAfterCeilingRate ?? '-'}% taken`); }
 
 console.log('consequences (first-timer): fired / scheduled (late: waited behind another that fell due the same year; pending: run ended first)');
-for (const [id, c] of Object.entries(ft.consequences).sort()) line(id, `${c.fired}/${c.scheduled} (${c.fireRate}%), late ${c.firedLate} (avg ${c.meanYearsLate}y), dropped ${c.dropped}, pending ${c.pendingAtEnd}`);
+for (const [id, c] of Object.entries(ft.consequences).sort()) line(id, `${c.fired}/${c.scheduled} (${c.fireRate}%), late ${c.firedLate} (avg ${c.meanYearsLate}y), dropped ${c.dropped}, ${c.struck ? `struck ${c.struck}, ` : ''}pending ${c.pendingAtEnd}`);
 
 console.log('origin invariant (PM rate, 95% CI):');
 for (const [bot, r] of [['first-timer', ft], ['knows the win', kw]])

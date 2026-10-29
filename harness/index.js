@@ -109,7 +109,9 @@ function minus(a, b) {
 // `dropped` should therefore always be empty; it is kept as a check.
 function draw(build, S) {
   const n = build.engine.nextEvent(build.content, S);
-  const removed = minus(S.scheduled, n.state.scheduled);
+  // a consequence struck because it poses a decision the career has had is reported, not dropped
+  const struck = minus(n.state.struck || [], S.struck || []);
+  const removed = minus(minus(S.scheduled, n.state.scheduled), struck);
   let source = n.event.id === "__quiet" ? "quiet" : n.event.priority ? "priority" : "random";
   let fired = null, dropped = [];
   if (removed.length) {
@@ -121,7 +123,7 @@ function draw(build, S) {
     else dropped = removed;
   }
   const deferred = n.state.scheduled.filter(x => x.fireYear <= S.year);   // due, waiting their turn
-  return { S: n.state, draw: { source, fired, late: fired ? S.year - fired.fireYear : 0, dropped, deferred } };
+  return { S: n.state, draw: { source, fired, late: fired ? S.year - fired.fireYear : 0, dropped, deferred, struck } };
 }
 
 function newRun(origin, seed, opts = {}) {
@@ -220,6 +222,8 @@ function step(run, choiceId) {
     flagsCleared: pre.flags.filter(f => !S.flags.includes(f)),
     scheduled: addedSched,
     scheduleMissed: (ch.schedule || []).filter(sc => !addedSched.some(a => a.eventId === sc.eventId)),
+    // consequences struck after this card because they pose a decision the career has had
+    struck: minus(S.struck || [], pre.struck || []),
     election: r.trace.election || null,
     passed, yearsPassed: passed.length,                  // decision-free years after this card
     passElection: passed.map(p => p.election).filter(Boolean).pop() || null,

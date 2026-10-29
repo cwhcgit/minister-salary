@@ -224,13 +224,31 @@ the cooldown), with a Meanwhile line for that card and stance. The second full s
 knowing it will not be asked again. `again.keep` and `again.change` are added to the effects of keeping
 the habit and of breaking it, so the second time has its own stakes (rule 5.12).
 
-**Meanwhile lines.** A repeatable card keeps its lines in `montageLines`, keyed by choice index (or by
-stance for a series); a safe re-election has its own list (`autoPlay.lines`). A run never shows the
-same line twice: each card and habit takes its lines in an order drawn from the seed, preferring lines
-the phone has not shown in its last two runs. When a repeatable card's lines for the habit have all
-been shown, the card comes back in full, in a scene the run has not shown; a card with no line and no
-scene left is not drawn again that run. A series, which cannot come back in full, takes its lines
-again in the same order. Write them to rules 2.11, 3.12 and 3.13.
+**Repeatable cards are series.** A card that can come up more than once in a career (the work, a
+quiet year, the appraisal conversation, a late night, a Parliamentary Question, the walkabout) is a
+series of its own or with its siblings, so it never asks its question again as if new (rule 5.15):
+`"series": { "key": "effort", "full": 2, "spend": true }` and `"noMontage": true`, with a `stance` on
+each choice. Shown in full twice, its second showing (`again`) asks whether to keep the habit; with
+`"full": 1`, it is shown once and then passes. Sibling cards that pose the same decision share the
+series: the work and a quiet year are one series (substance, visibility or rest), a late night and
+approved leave another (work or life), and the graduate's and the scholar's first cards open the series
+the new reporting officer closes (`"opens": true`). With `spend`, a card whose lines for the habit
+have all been shown is not drawn again that run; without it (the Budgets, which set the National
+Bonus every cycle), a series card goes on passing once its lines are spent, without a line.
+
+**Meanwhile lines.** A series card keeps its lines in `montageLines`, keyed by stance; a safe
+re-election has its own list (`autoPlay.lines`). A run never shows the same line twice: each card and
+habit takes its lines in an order drawn from the seed, preferring lines the phone has not shown in its
+last two runs. Write at least four per stance (more for a card drawn often), to rules 2.11, 3.12 and
+3.13. (A repeatable card outside a series, keyed by choice index, still works for an old save: it
+comes back in full every fourth time, in a scene the run has not shown. No card is written that way now.)
+
+**One decision, once.** Before a new card goes in, check its decision against the cards it can meet in
+one career (the audit in `reports/duplicates-audit.md` lists every decision by group). When the new card
+poses a decision another card already poses, close matches included, give both `"exclusive": "<group>"`
+(a chain through its first card), or rewrite the new one until its decision is different. When the new
+card would come earlier in a career than the group's best card and starve it, rewrite rather than
+exclude. Rule 5.15 has the details; `node test/duplicates.js` checks the result.
 
 ## 5. The quality bar (every card, every pack)
 
@@ -294,6 +312,7 @@ A pack is `web/content/packs/<id>.json`:
 - [ ] Every card has its hidden witnesses where a believable one exists (rule 5.6), from its own ladder's kinds, with helping and hurting roughly level; cards left without are named, with the reason.
 - [ ] `node test/contexts.js` passes, with zero contradictions.
 - [ ] `node test/similarity.js` passes, with no new near-duplicates.
+- [ ] Every card's decision checked against the audit's groups (rule 5.15): a card that poses one joins its group with `exclusive`, or is rewritten; `node test/duplicates.js` passes.
 - [ ] `node test/harness.test.js` passes; `node test/sim.js` lists no new dominated choice.
 - [ ] Balance: `node test/sim.js regress 800` passes, alone and with the batchmate.
 - [ ] Two careers played through that hit the pack's cards; every screen read.

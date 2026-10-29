@@ -48,6 +48,7 @@ const Engine = (() => {
       fillerSeen: {},    // repeatable events already played in full, for montage years
       habits: {},        // the choice made on each of them, which montage years repeat
       series: {},        // habits shared by sibling cards (see seriesOf): { key: { stance, full, passed } }
+      exclusive: {},     // decisions this career has had (see groupsOf): { group: the card that posed it }
       linesUsed: {},     // Meanwhile lines this run has shown, per card and habit (see pickLine)
       history: [],       // one entry per year, for the Declassified screen
       flags: [],
@@ -1120,6 +1121,8 @@ const Engine = (() => {
     // a series' opening card (series.opens) is its first showing, so it never comes once the
     // series has begun (a save from before the card opened it)
     if (ev.series && ev.series.opens && seriesOf(ev, s)) return false;
+    if (seriesSpent(ev, s)) return false;   // a series card whose lines for the habit are all shown
+    if (excluded(ev, s)) return false;      // a decision this career has already had
     return cardOk(ev, s);
   }
   function tooLate(content, ev, s) {
@@ -1312,19 +1315,68 @@ const Engine = (() => {
   }
 
   // A scheduled consequence waits, still scheduled, until its own requirements hold (a
-  // promotion-board callback never lands on a Minister). It is never silently dropped.
+  // promotion-board callback never lands on a Minister). It is never silently dropped: only struck
+  // (below), and the state keeps what was struck.
   function fits(ev, s) {
-    return !!ev && !(ev.once && s.seen.includes(ev.id)) && cardOk(ev, s);
+    return showable(ev, s) && !excluded(ev, s);
   }
+  const showable = (ev, s) => !!ev && !(ev.once && s.seen.includes(ev.id)) && cardOk(ev, s);
 
   // A scheduled card may list alternates: written for wherever the player has got to by the
   // time it falls due. The first of [card, ...alternates] whose requirements hold fires.
-  function resolve(content, id, s) {
+  function versions(content, id, s) {
     const events = allEvents(content, s);
     const ev = events.find(e => e.id === id);
-    if (!ev) return null;
-    const all = [ev, ...(ev.alternates || []).map(a => events.find(e => e.id === a))];
-    return all.find(x => fits(x, s)) || null;
+    return ev ? [ev, ...(ev.alternates || []).map(a => events.find(e => e.id === a))].filter(Boolean) : [];
+  }
+  function resolve(content, id, s) {
+    return versions(content, id, s).find(x => fits(x, s)) || null;
+  }
+
+  // --- one decision, once --------------------------------------------------------
+  // Cards that pose the same decision in different words share an exclusive group:
+  //   "exclusive": "house_brief"                     one group
+  //   "exclusive": ["bad_number", "announce"]        several
+  //   "exclusive": [{ "group": "house_brief", "requires": { "minRank": 9 } }]
+  //                                                  a group the card poses only while `requires`
+  //                                                  holds (a card whose parts give it another role)
+  // The first card of a group a career is shown in full claims the group (state.exclusive: group ->
+  // card). From then on the group's other cards are never drawn for that career, and a consequence
+  // that would fire one of them is struck rather than left waiting. The card that claimed the group
+  // keeps its own repeat behaviour (a series, a habit). A story chain joins a group through its first
+  // card, so a chain that has started always runs to its end. A save from before the groups is read
+  // back from its history (upgradeExclusive).
+  function groupsOf(ev, s) {
+    const x = ev && ev.exclusive;
+    if (!x) return [];
+    return (Array.isArray(x) ? x : [x])
+      .filter(g => typeof g === "string" || meets(g.requires || {}, s))
+      .map(g => (typeof g === "string" ? g : g.group));
+  }
+  function excluded(ev, s) {
+    const E = s.exclusive || {};
+    return groupsOf(ev, s).some(g => E[g] !== undefined && E[g] !== ev.id);
+  }
+  function claim(ev, s) {
+    const E = (s.exclusive = s.exclusive || {});
+    for (const g of groupsOf(ev, s)) if (E[g] === undefined) E[g] = ev.id;
+  }
+  function upgradeExclusive(content, s) {
+    if (s.exclusive) return;
+    s.exclusive = {};
+    const events = allEvents(content, s);
+    for (const h of s.history || []) {
+      const ev = !h.passed && events.find(e => e.id === h.ev);
+      if (ev) claim(ev, { ...s, rank: h.rank, age: h.age, year: h.year });
+    }
+  }
+  // A due consequence is struck when every version of it poses a decision this career has had, or
+  // when the version written for where the player is now does and no other version fits: it can
+  // never be shown, so it must not wait for ever.
+  function struck(content, id, s) {
+    const all = versions(content, id, s);
+    if (all.length && all.every(x => excluded(x, s))) return true;
+    return !all.some(x => fits(x, s)) && all.some(x => showable(x, s) && excluded(x, s));
   }
 
   function meets(q, s) {
@@ -1382,6 +1434,12 @@ const Engine = (() => {
 
   // info (optional) says where the card came from, for playtest traces.
   function pickEvent(content, s, info = {}) {
+    // a due consequence that can no longer be shown (a decision this career has had) is struck,
+    // and the state says so
+    for (const x of s.scheduled.filter(x => x.fireYear <= s.year && struck(content, x.eventId, s))) {
+      s.scheduled.splice(s.scheduled.indexOf(x), 1);
+      (s.struck = s.struck || []).push({ ...x, year: s.year });
+    }
     // 0. the career's end takes its years (the renewal, the last year, a Prime Minister's
     //    tenure): anything scheduled for them carries over, as below
     const end = endgameCard(content, s);
@@ -1754,8 +1812,24 @@ const Engine = (() => {
     else if (!said.length && opts.moved) parts.push(say(opts.moved > 0 ? "better" : "worse", opts.moved > 0 ? "Your file is stronger than it was a year ago." : "Your file is weaker than it was a year ago."));
     else if (!said.length && opts.lastOff) parts.push(say(opts.lastOff > 0 ? "lastHigh" : "lastLow", opts.lastOff > 0 ? "Last year's grade was higher than your file deserved, and this year's is not." : "Last year's grade was lower than your file deserved, and this year's is not."));
     parts.push(...said);
+    // a year that must be explained (a new grade, a warning), in a long career whose lines are all
+    // spent: a plain line whose words change every year (statWords.whyAgain names the age), so it
+    // never repeats a sentence
+    // (it names the stats, so it counts as the stats in words for the swing line's spacing)
+    if (opts.needed && !parts.filter(Boolean).length && W.whyAgain) {
+      const again = voice(s, "whyAgain", W.whyAgain, t => sayStats(t.replace(/\{age\}/g, ageWords(s.age)), names, { grade: f.grade }));
+      if (again) { parts.push(again); v.wordsAt = s.cardsPlayed || 0; }
+    }
     // (the grade a promotion takes is never stated: players learn it, or don't)
     return parts.filter(Boolean).join(" ");
+  }
+
+  // An age in words ("fifty-four"), for a line that may carry no digits.
+  function ageWords(n) {
+    const ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
+      "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+    const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+    return n < 20 ? ones[n] : tens[Math.floor(n / 10)] + (n % 10 ? "-" + ones[n % 10] : "");
   }
 
   // One quiet line on the outcome screen when a single choice moves a stat by 6 or more: the
@@ -1822,7 +1896,7 @@ const Engine = (() => {
     v.off = Math.sign(order.indexOf(f.fromStats) - order.indexOf(f.grade));
     const warned = log.some(l => l.kind === "warn");
     const text = !prev || warned || s.rank > rank0 || prev.grade !== f.grade
-      ? appraisalWhy(content, s, f, { first: !prev, stats: !prev || warned,
+      ? appraisalWhy(content, s, f, { first: !prev, stats: !prev || warned, needed: !prev || warned || prev.grade !== f.grade,
           moved: base0 === undefined ? 0 : Math.sign(order.indexOf(base0) - order.indexOf(f.fromStats)), lastOff: off0 })
       : "";
     if (text) log[i] = { kind: "why", text }; else log.splice(i, 1);
@@ -2250,6 +2324,15 @@ const Engine = (() => {
     const f = seriesOf(ev, s);
     return !!f && f.full >= (ev.series.full || Infinity) && stanceIndex(ev, f.stance) >= 0;
   }
+  // A series that marks itself "spend": true passes each of its cards only while the card has a
+  // line for the habit this career has not shown; then the card is not drawn again, as a
+  // repeatable card's habit is (spent). Without it, a series card goes on passing once its lines
+  // are spent, without a line (the Budgets, which set the National Bonus every cycle).
+  function seriesSpent(ev, s) {
+    if (!ev.series || !ev.series.spend || !seriesYear(ev, s)) return false;
+    const { key, lines } = linesFor(ev, seriesOf(ev, s).stance);
+    return pickLine(s, key, lines) === null;
+  }
   function addFx(a, b) {
     if (!b) return a;
     const out = { ...(a || {}) };
@@ -2373,6 +2456,13 @@ const Engine = (() => {
   }
   // A card's words as this showing would put them (its version), for quoting a choice.
   const src = (ev, s) => variantOf(ev, s);
+  // A card's words as a past showing put them: its version, or its second-showing scene.
+  function seenAs(ev, variant) {
+    const st = typeof variant === "string" && variant.startsWith("again:") ? variant.slice(6) : null;
+    const sc = st && ev.again && (ev.again.scenes || {})[st];
+    if (sc) return { ...ev, title: sc.title || ev.title, choices: ev.choices.map((c, i) => ({ ...c, text: (sc.choices[i] || {}).text || c.text })) };
+    return applyVariant(ev, typeof variant === "number" ? variant : 0);
+  }
   // pay + appraisal on one line; everything else (promotions, rumours, warnings) as it was
   function compress(log) {
     const pay = log.find(l => l.kind === "pay"), ap = log.find(l => l.kind === "appraisal");
@@ -2413,9 +2503,14 @@ const Engine = (() => {
         const { key, lines: pool } = linesFor(ev, f.stance);
         const li = pickLine(s, key, pool);   // null once the stance's lines are spent: the year passes without one
         pt.line = li === null ? null : pool[li];
-        const shown = src(ev, s);
-        const why = noDecision(content, "series", { title: sub(shown.title, s, content), choice: shown.choices[choice].text });
-        const al = applyChoice(content, s, ev, ch, pt);
+        // the card and the choice as the player last saw them in full; a card first met as a series
+        // year (the habit was set on a sibling) is quoted in its own first words
+        const last = (s.history || []).filter(h => h.ev === ev.id && !h.passed).pop();
+        const shown = seenAs(ev, last ? last.variant : 0);
+        const why = noDecision(content, "series", { title: last ? last.title : sub(shown.title, s, content), choice: sub(shown.choices[choice].text, s, content) });
+        // a consequence the habit already has on its way, or has had, is not scheduled again
+        const again = id => s.scheduled.some(x => x.eventId === id) || (s.seen.includes(id) && (allEvents(content, s).find(e => e.id === id) || {}).once);
+        const al = applyChoice(content, s, ev, ch.schedule ? { ...ch, schedule: ch.schedule.filter(x => !again(x.eventId)) } : ch, pt);
         if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
         f.passed = (f.passed || 0) + 1;
         if (li !== null) useLine(s, key, li, pool[li]);
@@ -2457,9 +2552,11 @@ const Engine = (() => {
     const s = JSON.parse(JSON.stringify(state));   // immutable in, new state out
     upgradePlayer(content, s);                      // a save from before the start screen asked
     if (!s.cast && content.cast) castSync(content, s, null, true);   // a save from before the cast
+    upgradeExclusive(content, s);                   // a save from before exclusive groups
     // the card as shown: a pure function of the state, so the copy reads the same as the original
     const ev = eventOf(content, state);
     const ch = ev.choices[choiceIndex];
+    claim(ev, s);                                   // the decision it poses is now this career's
     // the card's own index for the button pressed (a series' second showing puts the habit first)
     const ci = ev.order ? ev.order[choiceIndex] : choiceIndex;
     const own = ev.own || (ev.order ? ev.choices.map((_, j) => ev.choices[ev.order.indexOf(j)]) : ev.choices);
@@ -2528,6 +2625,7 @@ const Engine = (() => {
     const s = JSON.parse(JSON.stringify(state));
     upgradePlayer(content, s);                      // a save from before the start screen asked
     if (!s.cast && content.cast) castSync(content, s, null, true);   // a save from before the cast
+    upgradeExclusive(content, s);                   // a save from before exclusive groups
     if (s.currentEvent) return { state: s, event: eventOf(content, s) };
     const ev = pickEvent(content, s);
     if (!ev) { s.currentEvent = "__quiet"; return { state: s, event: QUIET_YEAR }; }
@@ -2892,6 +2990,8 @@ const Engine = (() => {
     player, genders, upgradePlayer, playerWords, playerFields, playerTableProblem,
     // cast and card parts, for the immersion lint and the tests
     render, applyVariant, partSlots, partCombos, roleNeeds, optionNeeds, maxRankForAge, personField, TOKEN,
+    // one decision, once: the exclusive groups a card poses now, and whether this career has had one
+    groupsOf, excluded,
     article, STATS, QUIET: QUIET_YEAR };
 })();
 

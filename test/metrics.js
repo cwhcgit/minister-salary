@@ -162,6 +162,7 @@ class Metrics {
         if (t.event.late) { c.late++; c.lateYears += t.event.late; }
       }
       for (const d of t.event.dropped) this.cons(b, d.eventId).dropped++;
+      for (const d of t.struck || []) this.cons(b, d.eventId).struck++;
       // a consequence can also fire in a year that passed by itself (a safe re-election)
       for (const p of (t.passed || [])) if (p.source === "scheduled" && p.fired) this.cons(b, p.fired.eventId).fired++;
       // CEP safeguard
@@ -193,7 +194,7 @@ class Metrics {
     }
   }
 
-  cons(b, id) { return b.consequences[id] || (b.consequences[id] = { scheduled: 0, fired: 0, late: 0, lateYears: 0, dropped: 0, pending: 0 }); }
+  cons(b, id) { return b.consequences[id] || (b.consequences[id] = { scheduled: 0, fired: 0, late: 0, lateYears: 0, dropped: 0, struck: 0, pending: 0 }); }
 
   result() {
     const content = this.content, out = { bots: {} };
@@ -231,11 +232,13 @@ class Metrics {
         const d = b.observedDir[k], n = d.up + d.down;
         r.observedDirection[k] = { upShare: pct(d.up, n), downShare: pct(d.down, n), moved: n };
       }
-      // scheduled = fired + pendingAtEnd (the run ended first) + dropped (must stay 0).
+      // scheduled = fired + pendingAtEnd (the run ended first) + struck (it poses a decision the
+      // career had already had: the version for where the player is now is in a claimed exclusive
+      // group) + dropped (must stay 0).
       // late: fired after its year because another consequence fell due first.
       for (const [id, c] of Object.entries(b.consequences)) {
         r.consequences[id] = { scheduled: c.scheduled, fired: c.fired, firedLate: c.late,
-          meanYearsLate: c.late ? +(c.lateYears / c.late).toFixed(2) : 0, dropped: c.dropped, pendingAtEnd: c.pending,
+          meanYearsLate: c.late ? +(c.lateYears / c.late).toFixed(2) : 0, dropped: c.dropped, struck: c.struck, pendingAtEnd: c.pending,
           fireRate: pct(c.fired, c.scheduled), triggered: this.triggered.includes(id) };
       }
       for (const [id, p] of Object.entries(b.picks)) {

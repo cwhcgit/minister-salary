@@ -310,7 +310,15 @@
             }
           }
         }
-      }
+      },
+      "exclusive": [
+        {
+          "group": "house_brief",
+          "requires": {
+            "minRank": 9
+          }
+        }
+      ]
     },
     {
       "id": "bench_cut",
@@ -469,7 +477,15 @@
             }
           }
         }
-      }
+      },
+      "exclusive": [
+        {
+          "group": "house_brief",
+          "requires": {
+            "minRank": 9
+          }
+        }
+      ]
     },
     {
       "id": "bench_gpc",
@@ -594,7 +610,8 @@
             }
           }
         }
-      }
+      },
+      "exclusive": "bad_number"
     },
     {
       "id": "bench_letters",
@@ -603,8 +620,8 @@
         "writer": [
           {
             "id": "veteran",
-            "text": "Mr Ang, twenty-six years at the folding table",
-            "short": "Mr Ang"
+            "text": "Mr Boey, twenty-six years at the folding table",
+            "short": "Mr Boey"
           },
           {
             "id": "teacher",
@@ -1392,7 +1409,8 @@
             ]
           }
         }
-      }
+      },
+      "exclusive": "declare"
     }
   ]
 }

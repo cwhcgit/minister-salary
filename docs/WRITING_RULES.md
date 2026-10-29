@@ -18,6 +18,7 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 | `node test/sim.js regress` | Missing text, outcomes or scheduled cards; consequences dropped. It also reports dominated choices and stats pushed one way, without failing | CI |
 | `node test/jargon.js` | A player meeting a term before any of its entry points (`web/content/jargon.json`) | Being added |
 | `node test/castlines.js` | A person named outside a card without saying who they are | Being added |
+| `node test/duplicates.js` | Two cards that pose the same decision in one career; a card that repeats outside its series | CI |
 | `node test/repeats.js` | A sentence shown twice in one career (from 1,800 played careers), outside a short list of structural lines | CI |
 | Pages "Validate content" step | Duplicate ids, missing scheduled cards, a choice without text or an outcome | On every deploy |
 
@@ -172,7 +173,7 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 - Check: `test/contexts.js` static check for tokens (also in CI); editor review for the rest.
 
 **3.13 Write enough lines that none repeats, and never a sentence twice.** A career never shows the same sentence twice, from any pool the engine takes lines from: the batchmate's news, cast lines, the stats in words, rumours, warnings, heads-ups, Meanwhile lines, appraisal quotes, review lines. Write each pool longer than the most a career uses it, with one or two to spare, and never let two lines share a sentence, in one pool or across pools. A line whose words change with what it reports (a `{title}`, `{next}` or `{grade}` in every sentence) can come back for a different one; any other line comes once. At least four Meanwhile lines per habit, enough for a long career on a series card, three or four versions of each cast line, and a version of a card for every time a career can show it in full.
-- Why: a player who sees the same sentence twice stops believing the world is written for them. The engine remembers every sentence its pools have shown in a career: when a pool runs out it falls back to a plain line in words that change with the news (engineLines.rivalFallback for the batchmate), or says nothing, and a card shown in full again takes its next version.
+- Why: a player who sees the same sentence twice stops believing the world is written for them. The engine remembers every sentence its pools have shown in a career: when a pool runs out it falls back to a plain line in words that change with the news (engineLines.rivalFallback for the batchmate), or says nothing, and a card shown in full again takes its next version. A repeatable card is a series (rule 5.15): once its lines for the habit are spent, it is not drawn again.
 - Example: the batchmate promoted twice in one career, both times "The group chat from your first year hears about it before you do." → nine small scenes for the news, each used once.
 - Check: `node test/repeats.js` (CI) plays 1,800 careers and fails a sentence of four words or more shown twice in one career, outside a short allowlist of structural lines (the pay line, a year without a decision, a formal warning's terms, the note that a choice counts at appraisal, a promotion's note on pay); `test/contexts.js` and `test/harness.test.js` fail a cast line shown twice; pool sizes are editor review.
 
@@ -294,7 +295,7 @@ Never `{player}` on its own: say which form. Keep the player's tokens out of cho
 - Why: the vetting reads every compromise back.
 - Check: editor review only.
 
-**5.10 Choices come back.** Plant consequences with `schedule`, years later and with a chance. A consequence waits, still scheduled, until its requirements hold.
+**5.10 Choices come back.** Plant consequences with `schedule`, years later and with a chance. A consequence waits, still scheduled, until its requirements hold; one that would pose a decision the career has already had is struck instead (rule 5.15).
 - Why: a choice in year 6 detonating in year 14 is what makes choices feel heavy.
 - Check: `node test/sim.js regress` fails if a consequence is ever silently dropped.
 
@@ -313,6 +314,16 @@ Never `{player}` on its own: say which form. Keep the player's tokens out of cho
 **5.14 Traits (not built) never decide a career.** No trait is required to win, and every origin can take every trait.
 - Why: a trait is flavour and a small edge, not a key.
 - Check: editor review only.
+
+**5.15 One decision, once.** A career meets each decision once. Cards that pose the same decision in different words, close matches included (one shared option is enough: "ask for the hard ministry nobody wants"), share an exclusive group, and a career is shown one card of each group. A card that repeats does so as a series (rule 5.12), never as the same question asked again.
+- Why: in the owner's words, "close enough matches are very immersion breaking, although they happen often in real life… these matching cards should just not repeat". A second card with the first card's question tells the player they are reading a deck, not living a career.
+- How:
+  - Give each card of a group `"exclusive": "<group>"` (or a list of groups). The first card of the group a career is shown in full claims it, and the group's other cards are never drawn for that career; a consequence that would fire one of them is struck (the state keeps a list), never left waiting. The card that claimed the group keeps its own repeat behaviour. A card that poses the decision only in one of its roles names the condition: `{ "group": "house_brief", "requires": { "minRank": 9 } }` (the reply to an adjournment motion, not the motion).
+  - A story chain joins a group through its first card, even when the matching beat comes later (The Pilot is in `bad_number` because its second beat asks for one number for a speech), so a chain that has started always runs to its end. A card a consequence fires is in a group only if it ends its story.
+  - Draw order decides which card of a group a career meets. When a weak duplicate comes earlier in a career than the group's best card and would starve it, turn the weak one into a different decision instead (the CNY lunch now asks what to stop, not what is wrong; farewell drinks no longer asks for the hardest posting, which starved the reshuffle).
+  - A repeatable card is a series: `"series": { "key", "full", "spend": true }`, `"noMontage": true`, and a `stance` on each choice. It is shown in full `full` times a career (two, for a card worth a second look: the second showing asks whether to keep the habit, with `again.keep` and `again.change`); every year after passes by itself with a Meanwhile line for the habit, and once those lines are spent (`spend`) the card is not drawn again. Write the second-showing scene about the habit, not about the card it was set on: a series' first showing may be any of its cards.
+  - A new card that resembles an existing one either joins its group or is rewritten until the decision is different. `docs/CONTENT_PLAN.md` section 4 says how to check.
+- Check: `node test/duplicates.js` (in CI) plays 1,800 careers, random and win-seeking, every origin, alone and with a batchmate, and fails when a career is shown two cards of one group, when a card is shown in full more often than its series allows or its second showing is posed as new, or when a consequence waits for a card the career can no longer see. It also fails a group of one card, a repeatable card outside a series, a series card without a second-showing scene or Meanwhile lines for a stance, and a card a consequence fires that is in a group and schedules a later beat. Whether two cards pose the same decision is editor review: the audit (`reports/duplicates-audit.md`) lists every group and the likenesses weighed and kept apart.
 
 ## 6. Realism and satire
 
