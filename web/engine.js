@@ -362,6 +362,66 @@ const Engine = (() => {
   const isUpper = x => !!x && x.charAt(0) !== x.charAt(0).toLowerCase();
   function hashStr(id) { let h = 2166136261; for (const ch of id) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0; return h; }
 
+  // --- no line twice in a career -------------------------------------------------
+  // The lines the engine takes from a pool (the batchmate's news, the stats in words, rumours,
+  // warnings, heads-ups, Meanwhile lines, appraisal quotes, cast lines and the rest) are never
+  // shown twice in a career, and nor is any sentence in them: the career keeps a hash of every
+  // sentence a pool has shown (s.said), and a pool passes over a line that would repeat one. A
+  // pool that has nothing fresh left falls back to a plain line whose words change with what it
+  // reports, or says nothing. (No lookbehind in the pattern: older phones cannot parse one.)
+  const sentences = t => String(t).replace(/([.!?…]["”’']?)\s+(?=["“‘']?[A-Z0-9$])/g, "$1\u0000")
+    .split("\u0000").map(x => x.trim()).filter(Boolean);
+  // (both are asked often, of the same few hundred lines: the hashes and the set are kept)
+  const HASHES = new Map(), SAID = new WeakMap();
+  function hashes(text) {
+    let h = HASHES.get(text);
+    if (!h) { if (HASHES.size > 20000) HASHES.clear(); HASHES.set(text, h = sentences(text).map(hashStr)); }
+    return h;
+  }
+  function saidSet(s) {
+    const a = s.said || (s.said = []);
+    let set = SAID.get(a);
+    if (!set || set.size !== a.length) SAID.set(a, set = new Set(a));
+    return set;
+  }
+  function isFresh(s, text) {
+    if (!s.said || !s.said.length) return true;
+    const set = saidSet(s);
+    return !hashes(String(text)).some(h => set.has(h));
+  }
+  function markSaid(s, text) {
+    if (!text) return text;
+    const set = saidSet(s);
+    for (const h of hashes(String(text))) if (!set.has(h)) { set.add(h); s.said.push(h); }
+    return text;
+  }
+  // 0..n-1 in an order drawn from the seed on a stream of its own (`key`), so the run's dice never move.
+  function seededOrder(s, key, n) {
+    const r = rng((s.seed ^ hashStr(key)) >>> 0), order = Array.from({ length: n }, (_, i) => i);
+    for (let i = n - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+    return order;
+  }
+  // A line from a pool: the pool's unused lines in the seed's order first, then (once each line
+  // has been shown) any line whose words come out differently this time, then the fallbacks;
+  // never a line with a sentence this career has been shown. `render` turns a raw line into what
+  // the screen shows. Returns { i, text } (i is -1 for a fallback) or null; the caller records
+  // the line as shown (usePool) only if it shows it.
+  function poolLine(s, key, lines, render, fallback = []) {
+    const n = (lines || []).length, used = ((s.poolUsed || {})[key]) || [];
+    const order = seededOrder(s, "pool:" + key, n);
+    for (const i of order.filter(i => !used.includes(i)).concat(order.filter(i => used.includes(i)))) {
+      const text = render(lines[i]);
+      if (text && isFresh(s, text)) return { i, text };
+    }
+    for (const f of fallback || []) { const text = render(f); if (text && isFresh(s, text)) return { i: -1, text }; }
+    return null;
+  }
+  function usePool(s, key, pick) {
+    if (!pick) return null;
+    if (pick.i >= 0) { const u = (s.poolUsed = s.poolUsed || {}); (u[key] = u[key] || []).push(pick.i); }
+    return markSaid(s, pick.text);
+  }
+
   // The highest service rung (0-7) a person of this age may hold (ladder minAge).
   function maxRankForAge(content, age) {
     let r = 0;
@@ -549,13 +609,14 @@ const Engine = (() => {
     const r = rng((s.seed ^ hashStr(role + "." + key)) >>> 0);
     const order = lines.map((_, i) => i);
     for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
-    const i = order.find(k => !used.includes(k));
-    if (i === undefined) return null;
-    const text = sub(lines[i].replace(/\{([A-Za-z]+)\}/g, (m, f) => {
+    const fill = i => sub(lines[i].replace(/\{([A-Za-z]+)\}/g, (m, f) => {
       const v = personField(content, s, role, p, f);
       return v === null ? m : isUpper(f) ? cap(v) : v;
     }), s, content);
-    return { kind: "note", text, cast: role, key, line: i, at: { player: s.rank, rank: p.rank, person: p.id } };
+    // (and never a sentence another pool has already shown this career)
+    const i = order.find(k => !used.includes(k) && isFresh(s, fill(k)));
+    if (i === undefined) return null;
+    return { kind: "note", text: fill(i), cast: role, key, line: i, at: { player: s.rank, rank: p.rank, person: p.id } };
   }
 
   // One cast line per outcome screen, however many years it covers: the one that matters most.
@@ -578,6 +639,7 @@ const Engine = (() => {
     if (best) {
       const u = (s.cast.used = s.cast.used || {}), k = best.cast + "." + best.key;
       (u[k] = u[k] || []).push(best.line);
+      markSaid(s, best.text);
     }
     return log.filter(l => !l.cast || l === best);
   }
@@ -868,13 +930,28 @@ const Engine = (() => {
   function rivalScore(s) {
     return 0.5 * s.competence + 0.3 * s.standing + 0.15 * s.reputation + s.rival.edge + (rivalRoll(s) * 20 - 10) + s.rival.mod;
   }
+  // The batchmate's news (rival.json lines: one pool of small scenes per kind of news). A career
+  // never shows one twice (poolLine): when a kind has run out, a plain line from
+  // engineLines.rivalFallback says the fact, in words that change with it ({title}: their new
+  // grade; {now}: the player's), and if even that would repeat, nothing is said. Null then.
   function rivalLine(content, s, key, extra = {}) {
     const lines = (content.rival.lines || {})[key] || [];
-    const n = (s.rival.lineN = (s.rival.lineN || 0) + 1);
-    let text = lines.length ? lines[(n - 1) % lines.length] : "";
-    for (const [k, v] of Object.entries(extra)) text = text.split("{" + k + "}").join(v);
+    const fill = { now: title(content, s.rank), ...extra };
+    const render = t => {
+      for (const [k, v] of Object.entries(fill)) t = t.split("{" + k + "}").join(v);
+      return sub(t, s, content);
+    };
+    const pk = "rival." + key;
+    const text = usePool(s, pk, poolLine(s, pk, lines, render, (EL(content).rivalFallback || {})[key]));
+    if (!text) return null;
     // `at`: the state the line was written in (one outcome screen can span several years); the UI ignores it
-    return { kind: "rival", key, text: sub(text, s, content), at: { player: s.rank, batchmate: s.rival.rank, status: s.rival.status } };
+    return { kind: "rival", key, text, at: { player: s.rank, batchmate: s.rival.rank, status: s.rival.status } };
+  }
+  // The batchmate's new grade, as their news says it: two rungs can share a title (a Minister is
+  // MR4, then MR3), and the second is then "a more senior Minister" (engineLines.rivalSameTitle).
+  function rivalTitle(content, r) {
+    const t = title(content, r);
+    return r > 0 && title(content, r - 1) === t ? fillT(EL(content).rivalSameTitle || "a more senior {title}", { title: t }) : t;
   }
 
   // A head-to-head right now (one posting, one slot): the player's appraisal-style score,
@@ -907,20 +984,21 @@ const Engine = (() => {
   function rivalYear(content, s, t, playerScore) {
     const v = s.rival, out = { lost: false, log: [] };
     if (!v || v.status !== "active") return out;
+    const tell = (key, extra) => { const l = rivalLine(content, s, key, extra); if (l) out.log.push(l); };
     // Their last year is their last year: retirement comes first, so nobody is promoted,
     // ranked or elected in the same breath as their farewell lunch.
     if (s.age + 1 >= (v.rank >= 8 ? content.politicalRetireAge : content.retireAge) && v.rank !== 16) {
       v.status = "retired";
-      out.log.push(rivalLine(content, s, "retired", { title: title(content, v.rank) }));
+      tell("retired", { title: title(content, v.rank) });
       return out;
     }
     const politicalNow = v.rank >= 8;
     // exits and crossings
     if (s.year > Math.max(v.bondYears, 3) && !(v.rank === 16)) {   // nobody leaves in their first three years
       const x = rivalRoll(s);
-      if (x < 0.0015 && v.rank >= 3) { v.status = "scandal"; out.log.push(rivalLine(content, s, v.rank >= 8 ? "scandalPolitics" : "scandal")); return out; }
+      if (x < 0.0015 && v.rank >= 3) { v.status = "scandal"; tell(v.rank >= 8 ? "scandalPolitics" : "scandal"); return out; }
       if (x < 0.0065 && ((v.rank >= 2 && v.rank <= 7) || (v.rank >= 9 && v.rank <= 14))) {
-        v.status = "consultancy"; out.log.push(rivalLine(content, s, v.rank >= 8 ? "consultancyPolitics" : "consultancy")); return out;
+        v.status = "consultancy"; tell(v.rank >= 8 ? "consultancyPolitics" : "consultancy"); return out;
       }
       // The party talent-spots batches, not individuals: once the player is in Parliament,
       // their batchmate is far likelier to be asked to tea as well.
@@ -932,8 +1010,8 @@ const Engine = (() => {
         if (rivalRoll(s) < 0.78) {
           v.rank = 8; v.yearsInGrade = 0; v.political = true;
           v.cep = clamp(11 + Math.floor(rivalRoll(s) * 6), 11, 16);
-          out.log.push(rivalLine(content, s, ge ? "electedTogether" : "elected"));
-        } else out.log.push(rivalLine(content, s, ge ? "lostSeatTogether" : "lostSeat"));
+          tell(ge ? "electedTogether" : "elected");
+        } else tell(ge ? "lostSeatTogether" : "lostSeat");
         return out;
       }
     }
@@ -956,23 +1034,24 @@ const Engine = (() => {
       v.met++; if (won) v.wonMet++;
       t.ranking = { mine: +mine.toFixed(1), theirs: +score.toFixed(1), won, theyWentUp: !won && promotable };
       const pol = s.rank >= 8;
-      if (won) { promotable = false; out.log.push(rivalLine(content, s, pol ? "winPolitics" : "winService")); }
+      if (won) { promotable = false; tell(pol ? "winPolitics" : "winService"); }
       else {
         out.lost = true;
-        out.log.push(rivalLine(content, s, promotable ? (pol ? "losePolitics" : "loseService") : (pol ? "rankedBelowPolitics" : "rankedBelowService")));
+        tell(promotable ? (pol ? "losePolitics" : "loseService") : (pol ? "rankedBelowPolitics" : "rankedBelowService"));
       }
     }
     if (promotable) {
       v.rank++; v.yearsInGrade = 0;
-      if (v.rank === 16) out.log.push(rivalLine(content, s, "pm"));
+      if (v.rank === 16) tell("pm");
       else if (!out.lost) {
         const apart = (v.rank >= 8) !== (s.rank >= 8);   // one of you in Parliament, the other in the service
-        out.log.push(rivalLine(content, s, apart ? "promotedApart" : v.rank >= 9 ? "appointed" : "promoted", { title: title(content, v.rank) }));
+        tell(apart ? "promotedApart" : v.rank >= 9 ? "appointed" : "promoted", { title: rivalTitle(content, v.rank) });
       }
     }
-    // a Prime Minister batchmate is a closed door
+    // a Prime Minister batchmate is a closed door, every year; it is said once
     if (playerScore !== null && s.rank === 15 && v.rank === 16 && !out.lost) {
-      out.lost = true; out.log.push(rivalLine(content, s, "pmBlocked"));
+      out.lost = true;
+      if (!v.toldBlocked) { v.toldBlocked = true; tell("pmBlocked"); }
     }
     return out;
   }
@@ -1163,19 +1242,26 @@ const Engine = (() => {
     if (!E) return;
     const seen = (s.headsUp = s.headsUp || {});
     const next = E.headsUp ? nextRanking(content, s) : null;
-    const fill = t => t.replace(/\{next\}/g, nextName(content, s.rank)).replace(/\{now\}/g, title(content, s.rank)).replace(/\{need\}/g, s.rank >= 13 ? "an A" : "a B+ or better");
+    const fill = { next: nextName(content, s.rank), now: title(content, s.rank), need: s.rank >= 13 ? "an A" : "a B+ or better" };
+    const once = t => (t && isFresh(s, fillT(t, fill)) ? markSaid(s, fillT(t, fill)) : null);
     if (next === "in" && seen.at !== s.rank) {
       const pol = s.rank >= 8, H = pol ? E.headsUp.politics : E.headsUp.service, k = pol ? "politics" : "service";
-      // the first one on each ladder says how it works; after that, shorter lines
-      const text = s.rank === 15 && H.pm ? H.pm : !seen[k] && H.first ? H.first : endLine(content, s, pol ? "upPolitics" : "upService", H.lines, true);
+      // the first one on each ladder says how it works; after that, shorter lines, none twice in a
+      // career (they name the next rung, so a line can come back for another rung); when they run
+      // out, a plain one (engineLines.headsUpFallback): the heads-up is always given
+      const key = pol ? "upPolitics" : "upService";
+      const text = (s.rank === 15 && H.pm ? once(H.pm) : !seen[k] && H.first ? once(H.first) : null)
+        || endLine(content, s, key, H.lines, fill) || endLine(content, s, key + ":plain", ((EL(content).headsUpFallback || {})[k]) || [], fill);
       seen.at = s.rank; seen[k] = (seen[k] || 0) + 1;
       // (about: for traces and tests; the screen shows only the tag and the text)
-      if (text) log.push({ kind: "note", about: "headsUp", rank: s.rank, text: fill(text) });
+      if (text) log.push({ kind: "note", about: "headsUp", rank: s.rank, text });
     } else if (next === "ceiling" && seen.at !== s.rank && seen.blockedAt !== s.rank) {
-      const H = s.rank >= 8 ? E.headsUp.politics : E.headsUp.service;
-      const text = s.rank === 15 && H.blockedPm ? H.blockedPm : H.blocked;
+      const pol = s.rank >= 8, H = pol ? E.headsUp.politics : E.headsUp.service;
+      // a list of lines, or (an older build) one; never one twice in a career
+      const text = s.rank === 15 && H.blockedPm ? once(H.blockedPm)
+        : endLine(content, s, pol ? "blockedPolitics" : "blockedService", [].concat(H.blocked || []), fill);
       seen.blockedAt = s.rank;
-      if (text) log.push({ kind: "cep", about: "blocked", rank: s.rank, text: fill(text) });
+      if (text) log.push({ kind: "cep", about: "blocked", rank: s.rank, text });
     }
     const L = E.lines || {};
     // the tea: in reach next year (the grade, the bond, the clock, and both stats within a few points)
@@ -1184,14 +1270,14 @@ const Engine = (() => {
       const q = tea.requires || {}, w = (E.teaNear || {}).within || 5;
       const near = s.rank >= (q.minRank || 0) && s.rank <= (q.maxRank ?? 7) && s.year + 1 > (s.bondYears || 0)
         && !tooLate(content, tea, { ...s, age: s.age + 1 }) && Object.entries(q.minStats || {}).every(([k, v]) => s[k] >= v - w);
-      if (near) { seen.tea = true; const text = endLine(content, s, "tea", L.teaNear, true); if (text) log.push({ kind: "note", about: "tea", text }); }
+      if (near) { seen.tea = true; const text = endLine(content, s, "tea", L.teaNear); if (text) log.push({ kind: "note", about: "tea", text }); }
     }
     // a general election next year, in a seat that would not pass as safe
     const F = EARLIEST(s, "re_election"), re = content.events.find(e => e.id === "re_election");
     if (L.seatAtRisk && re && s.rank >= 8 && s.rank < 16 && !leaving && F === s.year + 1 && seen.seat !== F
         && !(re.autoPlay && meets(re.autoPlay.when || {}, s))) {
       seen.seat = F;
-      const text = endLine(content, s, "seat", L.seatAtRisk, true);
+      const text = endLine(content, s, "seat", L.seatAtRisk);
       if (text) log.push({ kind: "note", about: "seat", text });
     }
   }
@@ -1203,19 +1289,26 @@ const Engine = (() => {
     if (!L[r] || next.title !== L[r].title) return next.title;
     return fillT(EL(content).nextSameTitle || "{grade}, the next grade up", { title: next.title, grade: next.grade });
   }
-  // A line from one of the endgame pools, never twice in a run (cycle: taken again in order).
-  function endLine(content, s, key, lines, cycle, fill = {}) {
+  // A line from one of the endgame pools, never twice in a career (pickLine), with any {key} filled
+  // from `fill`; null once the pool has nothing fresh left.
+  function endLine(content, s, key, lines, fill = {}) {
     if (!lines || !lines.length) return null;
-    const i = pickLine(s, "__end:" + key, lines.length, cycle);
-    if (i === null) return null;
-    useLine(s, "__end:" + key, i);
-    return lines[i].replace(/\{(\w+)\}/g, (m, k) => (fill[k] !== undefined ? fill[k] : m));
+    const render = t => fillT(t, fill);
+    const i = pickLine(s, "__end:" + key, lines, render);
+    return i === null ? null : useLine(s, "__end:" + key, i, render(lines[i]));
   }
 
   // A card can be shown when its requirements hold, every cast member its text names is in
   // their role, and its parts (if any) have at least one combination that fits.
   function cardOk(ev, s) {
-    return meets(ev.requires || {}, s) && rolesFilled(roleNeeds(ev), s) && (!ev.parts || partsFit(ev, s));
+    return meets(ev.requires || {}, s) && rolesFilled(roleNeeds(ev), s) && (!ev.parts || partsFit(ev, s)) && twoChoices(ev, s);
+  }
+  // A choice the player cannot take is not shown at all (visibleChoices), so a card is only drawn
+  // while it has at least two choices to show: a decision, never a single button.
+  function twoChoices(ev, s) {
+    let n = 0;
+    for (const c of ev.choices || []) if (choiceAvailable(c, s) && ++n >= 2) return true;
+    return n >= (ev.choices || []).length;   // (a card written with one choice keeps it)
   }
 
   // A scheduled consequence waits, still scheduled, until its own requirements hold (a
@@ -1340,6 +1433,7 @@ const Engine = (() => {
     item: "In the folder: {item}.",
     nothing: "There is nothing to disclose. Your interviewer closes the folder, which takes no time at all.",
     disclosed: "You disclose {item}. The interviewer writes something down.",
+    disclosedPlain: "You disclose {item}.",
     found: "{item}: on day four of the campaign, someone has found it."
   };
   const folderLine = (content, key, item) => fillT((EL(content).folder || {})[key] || FOLDER[key], { item });
@@ -1354,10 +1448,12 @@ const Engine = (() => {
     t.folder = { mode, items: items.length };
     if (mode === "disclose") {
       if (!items.length) log.push({ kind: "folder", text: folderLine(content, "nothing") });
+      // one line per item, each with its own reaction (engineLines.folder.disclosed: a list, or one line)
+      const said = [].concat((EL(content).folder || {}).disclosed || FOLDER.disclosed);
       for (const i of items) {
         s.standing = clamp(s.standing - 5, 0, 100);
         s.integrity = clamp(s.integrity + 2, 0, 100);
-        log.push({ kind: "folder", text: folderLine(content, "disclosed", i) });
+        log.push({ kind: "folder", text: endLine(content, s, "disclosed", said, { item: i }) || fillT(FOLDER.disclosedPlain, { item: i }) });
       }
       if (items.length >= (content.folderLimit || 3)) {
         s.flags.push("tea_withdrawn");
@@ -1506,9 +1602,13 @@ const Engine = (() => {
       } else if (won) {
         const lines = content.reElectionLines || ["The team is returned."];
         s.reElections = (s.reElections || 0) + 1;
-        const i = pickLine(s, "__reElection", lines.length, true);
-        useLine(s, "__reElection", i);
-        log.push({ kind: "promo", text: lines[i] });
+        const i = pickLine(s, "__reElection", lines);
+        let text = i !== null ? useLine(s, "__reElection", i, lines[i]) : null;
+        if (text === null) {   // the lines spent: a plain one, which says which term this is
+          const f = fillT(EL(content).reElectionFallback || "You are returned to Parliament for a {term} term.", { term: ordinal(s.reElections + 1) });
+          if (isFresh(s, f)) text = markSaid(s, f);
+        }
+        if (text) log.push({ kind: "promo", text });
       }
       else s.ending = "lostward";
     } else if (ch.election) {
@@ -1585,18 +1685,14 @@ const Engine = (() => {
   // --- the four stats, in words ---------------------------------------------------
   // The stats are never shown as numbers during play, only in words (content.statWords): the
   // appraisal's "why" line in a year that needs explaining, one quiet line when a single choice
-  // moves a stat a long way, a locked choice's reason, and the verdicts on the ending screen.
-  // Each phrasing is drawn from the seed on its own stream, never twice in a row, so the run's
-  // dice never move.
+  // moves a stat a long way, and the verdicts on the ending screen. Each phrasing is taken from
+  // its pool in an order drawn from the seed on its own stream, so the run's dice never move, and
+  // never twice in a career (voice): a line whose stat names come out differently ({A}, {B}) may
+  // come back, an identical one never. A pool with nothing fresh left says nothing.
   const APPRAISAL = { competence: 0.50, standing: 0.30, reputation: 0.15 };
-  function voice(s, key, lines) {
+  function voice(s, key, lines, render) {
     if (!lines || !lines.length) return null;
-    const v = (s.voice = s.voice || {}), [n, last] = v[key] || [0, -1];
-    const r = rng((s.seed ^ hashStr("voice:" + key + "#" + n)) >>> 0);
-    let i = Math.floor(r() * lines.length);
-    if (i === last && lines.length > 1) i = (i + 1 + Math.floor(r() * (lines.length - 1))) % lines.length;
-    v[key] = [n + 1, i];
-    return lines[i];
+    return usePool(s, "voice:" + key, poolLine(s, "voice:" + key, lines, render));
   }
   // {A} the strong suit, {B} the weak spot, {competence} etc. by name; sentences start with a capital
   function sayStats(text, names, fill) {
@@ -1632,7 +1728,9 @@ const Engine = (() => {
     const W = content.statWords || {}, P = W.why || {}, v = s.voice;
     const names = (W.names || {})[f.rank >= 8 ? "politics" : "service"] || {};
     const order = content.grades.map(g => g.code);   // best first
-    const say = (key, fallback, fill) => sayStats(voice(s, "why." + key, P[key]) || fallback, names, fill || {});
+    // Any line may name this year's grade ({grade}), so the same words can come back for another
+    // grade; null when the pool has nothing fresh. (The fallback: an older build without the pool.)
+    const say = (key, fallback, fill) => voice(s, "why." + key, P[key] && P[key].length ? P[key] : [fallback], t => sayStats(t, names, { grade: f.grade, ...fill }));
     const tails = [];
     if (f.mod < 0) tails.push(f.withChoices !== f.fromStats
       ? say("choiceDown", "A choice this year that counted against you took the grade down to {grade}.", { grade: f.withChoices })
@@ -1645,18 +1743,19 @@ const Engine = (() => {
       tails.push(f.year <= 1 && f.grade === "C" && f.withChoices === "D" ? "A first appraisal never goes below C."
         : say(better ? "luckUp" : "luckDown", better ? "A good year lifted the grade to {grade}." : "A bad year took the grade down to {grade}.", { grade: f.grade }));
     }
-    const parts = [];
-    if (opts.first && W.whyFirst) parts.push(W.whyFirst);
+    const said = tails.filter(Boolean), parts = [];
+    if (opts.first && W.whyFirst) parts.push(markSaid(s, W.whyFirst));
     const sh = statShape(f.stats);
-    if (opts.stats || sh.key !== v.said) {
-      const line = voice(s, "why." + sh.shape, P[sh.shape]);
-      if (line) { parts.push(sayStats(line, names, { A: names[sh.strong], B: names[sh.weak] })); v.said = sh.key; v.wordsAt = s.cardsPlayed || 0; }
-    } else if (!tails.length && opts.moved) parts.push(say(opts.moved > 0 ? "better" : "worse", opts.moved > 0 ? "Your file is stronger than it was a year ago." : "Your file is weaker than it was a year ago."));
-    else if (!tails.length && opts.lastOff) parts.push(say(opts.lastOff > 0 ? "lastHigh" : "lastLow", opts.lastOff > 0 ? "Last year's grade was higher than your file deserved, and this year's is not." : "Last year's grade was lower than your file deserved, and this year's is not."));
-    parts.push(...tails);
-    if (!parts.length) return "";
+    // the stats named, when that is news (a shape whose lines are all spent leaves the year to
+    // the lines after it)
+    const named = opts.stats || sh.key !== v.said
+      ? voice(s, "why." + sh.shape, P[sh.shape], t => sayStats(t, names, { A: names[sh.strong], B: names[sh.weak], grade: f.grade })) : null;
+    if (named) { parts.push(named); v.said = sh.key; v.wordsAt = s.cardsPlayed || 0; }
+    else if (!said.length && opts.moved) parts.push(say(opts.moved > 0 ? "better" : "worse", opts.moved > 0 ? "Your file is stronger than it was a year ago." : "Your file is weaker than it was a year ago."));
+    else if (!said.length && opts.lastOff) parts.push(say(opts.lastOff > 0 ? "lastHigh" : "lastLow", opts.lastOff > 0 ? "Last year's grade was higher than your file deserved, and this year's is not." : "Last year's grade was lower than your file deserved, and this year's is not."));
+    parts.push(...said);
     // (the grade a promotion takes is never stated: players learn it, or don't)
-    return parts.join(" ");
+    return parts.filter(Boolean).join(" ");
   }
 
   // One quiet line on the outcome screen when a single choice moves a stat by 6 or more: the
@@ -1674,16 +1773,10 @@ const Engine = (() => {
     const dir = d > 0 ? "up" : "down";
     const pool = (W[k] || {})[dir] && W[k][dir].length ? W[k][dir] : ((SW.swing || {})[k] || {})[dir];
     if (Math.abs(d) < 6 || !pool) return null;
-    const text = voice(s, `${pool === (W[k] || {})[dir] ? key : "swing"}.${k}.${dir}`, pool);
+    const text = voice(s, `${pool === (W[k] || {})[dir] ? key : "swing"}.${k}.${dir}`, pool, t => sayStats(t, (SW.names || {})[pol ? "politics" : "service"] || {}, {}));
     if (!text) return null;
-    s.voice.wordsAt = s.cardsPlayed || 0;
-    return { kind: "note", about: "swing", text: sayStats(text, (SW.names || {})[pol ? "politics" : "service"] || {}, {}) };
-  }
-
-  // Why a choice is locked, in words: the stat it needs, never the number.
-  function lockedText(content, ch) {
-    const L = (content.statWords || {}).locked || {};
-    return [...new Set(Object.keys(ch.requiresStat || {}).map(k => L[k] || "You are not yet in a position to do this."))].join(" ");
+    (s.voice = s.voice || {}).wordsAt = s.cardsPlayed || 0;
+    return { kind: "note", about: "swing", text };
   }
 
   // The four stats, revealed on the ending screen: each with what it was and what it did to the run.
@@ -1697,17 +1790,19 @@ const Engine = (() => {
 
   // The words for a grade. A grade may list several (labels; label is the fallback): each time
   // the grade comes round in a run it takes the next one, in an order drawn from the seed on its
-  // own stream, so the run's dice never move and a quote only returns after the whole list has
-  // been used. Every label quotes its phrase once, in double quotes, for compress().
+  // own stream, so the run's dice never move. A quote is never given twice in a career: once the
+  // grade has used them all, it returns null, and the review gives the letter alone.
   function gradeLabel(s, grade) {
-    const list = grade.labels && grade.labels.length ? grade.labels : [grade.label];
+    const list = (grade.labels && grade.labels.length ? grade.labels : [grade.label]).filter(Boolean);
     const seen = s.gradeSeen || (s.gradeSeen = {});   // a save from before the labels starts at zero
     const n = seen[grade.code] || 0;
     seen[grade.code] = n + 1;
-    const r = rng((s.seed ^ hashStr("grade:" + grade.code)) >>> 0);
-    const order = list.map((_, i) => i);
-    for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
-    return list[order[n % order.length]];
+    const order = seededOrder(s, "grade:" + grade.code, list.length);
+    for (let k = 0; k < order.length; k++) {
+      const l = list[order[(n + k) % order.length]];
+      if (isFresh(s, l)) return markSaid(s, l);
+    }
+    return null;
   }
 
   // `t` collects what the year-end decided and why, for playtest traces. The UI ignores it.
@@ -1753,17 +1848,22 @@ const Engine = (() => {
   // Three Cs in a row in the service: HR moves the player sideways, to another division at the
   // same grade. The move is real: the reporting officer (and anyone who reported to the player)
   // stays behind in the old division, and the roles refill from next year with new people.
+  // The words: one of engineLines.sideways.lines (never the same twice in a career), then, when
+  // there is a reporting officer to leave behind, engineLines.sideways.named, which names them.
   const DIVISION = ["senior", "junior"];
   function sideways(content, s, t) {
     const L = EL(content).sideways || {}, K = s.cast;
     const was = K && K.on.senior ? personField(content, s, "senior", K.on.senior, "") : null;
     t.sideways = { left: moveOn(s, DIVISION, "sideways") };
-    const text = was
-      ? fillT(L.named || "That's three Cs in a row, so HR moves you sideways: the same grade, in another division. From next year your papers go to a new reporting officer instead of {senior}. It's meant as a fresh start. Nobody there asked for you, but the work is real.", { senior: was })
-      : L.plain || "That's three Cs in a row, so HR moves you sideways: the same grade, in another division, for a fresh start. Nobody there asked for you, but the work is real.";
-    return { kind: "warn", about: "sideways", text };
+    const move = endLine(content, s, "sideways", L.lines || ["That's three Cs in a row, so HR moves you sideways: the same grade, in another division. It's meant as a fresh start. Nobody there asked for you, but the work is real."])
+      || endLine(content, s, "sideways:plain", ["That's three Cs in a row, so HR moves you sideways, to another division at the same grade."]);
+    const who = was && fillT(L.named || "From next year your papers go to a new reporting officer instead of {senior}.", { senior: was });
+    const text = [move, who && isFresh(s, who) ? markSaid(s, who) : null].filter(Boolean).join(" ");
+    return text ? { kind: "warn", about: "sideways", text } : null;
   }
   const months = n => `${n} month${n === 1 ? "" : "s"}`;
+  const ORDINAL = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"];
+  const ordinal = n => ORDINAL[n - 1] || `${n}th`;
   // The years held at the ceiling (counted on each ladder) that bring a ceiling rumour.
   const CEP_SAID = [1, 2, 4, 7, 11, 16, 22, 29];
   // The pay line: the package, the National Bonus in it (office holders), and from the second
@@ -1815,9 +1915,11 @@ const Engine = (() => {
     t.appraisal = { grade: grade.code, score, noise, noted: mod };
     // A choice that was noted shows up here, in the one word that matters.
     const label = gradeLabel(s, grade);
-    // The letter goes first: the euphemism is the joke, the letter is what it means.
-    log.push({ kind: "appraisal", text: `Grade ${grade.code}. ${mod < 0
-      ? `${label} The comments section includes the word "however".` : label}` });
+    // The letter goes first: the euphemism is the joke, the letter is what it means. Each quote
+    // once a career: once a grade's have all been used, the letter stands alone. A grade a choice
+    // pulled down says so in the comments (engineLines.gradeNoted), never in the same words twice.
+    const however = mod < 0 ? endLine(content, s, "gradeNoted", EL(content).gradeNoted || ["The comments section includes the word \"however\"."]) : null;
+    log.push({ kind: "appraisal", text: [`Grade ${grade.code}.`, label, however].filter(Boolean).join(" ") });
     log.push({ kind: "why", facts: whyFacts(content, s, grade, mod) });
     witnessReview(content, s, log, t, grade, score, wit);   // what somebody noticed, if it moved the grade
 
@@ -1838,8 +1940,9 @@ const Engine = (() => {
       const lines = (pol ? content.warnLinesPolitics : content.warnLines) || [pol
         ? "The Whip asks, kindly, whether you have thought about spending more time in your ward. It is phrased as concern."
         : "Your reporting officer asks whether you have considered the private sector. It is phrased as concern."];
-      const w = pickLine(s, key, lines.length, true);
-      useLine(s, key, w);
+      // never the same wording twice in a career; once they are spent, the warning's terms alone
+      const w = pickLine(s, key, lines);
+      const said = w === null ? "" : useLine(s, key, w, lines[w]);
       // a plan cannot be started in a year the career's end has already taken: the warning says
       // what happens instead (endgame.warnLate), and no plan is scheduled
       const late = endNext(content, s, plan) && E && E.warnLate;
@@ -1851,7 +1954,7 @@ const Engine = (() => {
                : " A D is a formal warning: next year you will be put on an improvement plan, and another D after that and you will be asked to leave.")
         : (pol ? " This is your second warning. Another D next year ends your time in office."
                : " This is your second warning. Another D next year and you will be asked to leave.");
-      log.push({ kind: "warn", text: lines[w] + then });
+      log.push({ kind: "warn", text: (said + then).trim() });
       if (planNext) {
         const e = { eventId: "improvement_plan", fireYear: s.year + 1 };
         s.scheduled.push(e);
@@ -1861,8 +1964,13 @@ const Engine = (() => {
     if (s.consecutiveC >= 3) {
       s.consecutiveC = 0;
       s.competence = clamp(s.competence + 3, 0, 100);
-      if (s.rank >= 8) log.push({ kind: "warn", text: "That's three Cs in a row, so the Whip moves you to chair a parliamentary committee nobody wanted to sit on. The work is real, at least." });
-      else log.push(sideways(content, s, t));
+      if (s.rank >= 8) {
+        const text = endLine(content, s, "threeCsPolitics", EL(content).threeCsPolitics || ["That's three Cs in a row, so the Whip moves you to chair a parliamentary committee nobody wanted to sit on. The work is real, at least."]);
+        if (text) log.push({ kind: "warn", text });
+      } else {
+        const sw = sideways(content, s, t);
+        if (sw) log.push(sw);
+      }
     }
 
     // The last two steps are never given on "strong" alone.
@@ -1895,13 +2003,13 @@ const Engine = (() => {
       roll(s);
       const key = pol ? "__cepPolitics" : "__cep";
       const told = (s.cepTold = s.cepTold || {}), n = told[key] = (told[key] || 0) + 1;
-      const i = CEP_SAID.includes(n) ? pickLine(s, key, hints.length, false) : null;
-      if (i !== null) { useLine(s, key, i); log.push({ kind: "cep", text: hints[i] }); }
+      const i = CEP_SAID.includes(n) ? pickLine(s, key, hints) : null;
+      if (i !== null) log.push({ kind: "cep", text: useLine(s, key, i, hints[i]) });
     } else if (promotable && s.rank === 7) {
       // Said a few times, differently, then not again: a Permanent Secretary can be there for years.
       const lines = content.topRungLines || ["There is no rung above this one. The next step is not a promotion; it is a different life."];
       s.topRungTold = (s.topRungTold || 0) + 1;
-      if (s.topRungTold <= lines.length) log.push({ kind: "cep", text: lines[s.topRungTold - 1] });
+      if (s.topRungTold <= lines.length && isFresh(s, lines[s.topRungTold - 1])) log.push({ kind: "cep", text: markSaid(s, lines[s.topRungTold - 1]) });
     } else if (promotable && ageFloored) {
       // The top rungs of the service have an age floor (ladder minAge): a brilliant
       // 29-year-old is told to wait, in the house style.
@@ -1910,7 +2018,7 @@ const Engine = (() => {
       // Said on the 1st, 3rd, 6th and 10th year of waiting, not every year: a wait is quiet.
       s.ageFloorSeen = (s.ageFloorSeen || 0) + 1;
       const k = [1, 3, 6, 10].indexOf(s.ageFloorSeen);
-      if (k >= 0) log.push({ kind: "note", text: lines[k % lines.length] });
+      if (k >= 0 && k < lines.length && isFresh(s, lines[k])) log.push({ kind: "note", text: markSaid(s, lines[k]) });
     } else if (promotable && rv.lost) {
       t.promotion.result = "ranking_lost";
     } else if (promotable && noRoom) {
@@ -1940,9 +2048,10 @@ const Engine = (() => {
       const where = from === 8 ? `, ${s.ministry}` : "";
       // this year was paid at the old grade: the new grade's pay starts next year
       const rise = r.pay > content.ladder[from].pay && (EL(content).payWhy || {}).promoted;
-      log.push({ kind: "promo", text: (doubleJump
-        ? `Promoted two grades: ${r.title} (${r.grade}). This does not normally happen.`
-        : `Promoted: ${r.title} (${r.grade})${where}`) + (rise ? `${doubleJump ? "" : "."} ${rise}` : "") });
+      // a double step says so, never in the same words twice (engineLines.doubleJump)
+      const rare = doubleJump && endLine(content, s, "doubleJump", EL(content).doubleJump || ["This does not normally happen."]);
+      log.push({ kind: "promo", text: [doubleJump ? `Promoted two grades: ${r.title} (${r.grade}).` : `Promoted: ${r.title} (${r.grade})${where}${rise ? "." : ""}`,
+        rare, rise].filter(Boolean).join(" ") });
       // The top job: a short tenure of its own cards follows, then the ending. (A build without
       // them ends here, as it always did.)
       if (s.rank === 16) {
@@ -1962,13 +2071,13 @@ const Engine = (() => {
     }
 
     if (s.heat >= 85) { s.ending = "scandal"; return log; }
-    if (s.heat >= 55) log.push({ kind: "heat", text: "A journalist has been asking around about something old." });
+    heatHint(content, s, log);
 
     // The end coming: a plain line two years and one year before the last year.
     if (E && E.foreboding && plan && !finalYear && s.rank < 16 && plan.last - s.age >= 1 && plan.last - s.age <= 2) {
       const pool = plan.track === "service" ? "service" : s.flags.includes("stays_on") ? "limit" : "renewal";
       const k = plan.last - s.age, lines = (E.foreboding[pool] || [])[2 - k];
-      const text = endLine(content, s, `${pool}:${k}`, lines, false, { retire: content.retireAge, limit: content.politicalRetireAge });
+      const text = endLine(content, s, `${pool}:${k}`, lines, { retire: content.retireAge, limit: content.politicalRetireAge });
       if (text) { log.push({ kind: "note", about: "foreboding", pool, last: plan.last, text }); t.foreboding = { pool, k }; }
     }
     return endOfYear(content, s, log, finalYear, plan);
@@ -1997,7 +2106,7 @@ const Engine = (() => {
     const rv = s.rival ? rivalYear(content, s, t, null) : { log: [] };
     log.push(...rv.log);
     if (s.heat >= 85) { s.ending = "scandal"; return log; }
-    if (s.heat >= 55) log.push({ kind: "heat", text: "A journalist has been asking around about something old." });
+    heatHint(content, s, log);
     // a general election that falls due in the tenure is held in it: the party is returned (a
     // Prime Minister's tenure ends when the tenure does), and the next one is due in a term
     const L = E.lines || {};
@@ -2008,15 +2117,26 @@ const Engine = (() => {
       s.scheduled.push(e);
       (t.added = t.added || []).push(e);
       t.election = { kind: "incumbent", chance: 1, won: true, safe: true, pm: true };
-      const text = endLine(content, s, "pmElection", L.pmElection, true);
+      const text = endLine(content, s, "pmElection", L.pmElection);
       if (text) log.push({ kind: "promo", text });
     }
     // the first review says why there is no grade, the last one packs up; the others are lines from the tenure
     const first = !(s.pmTenure.reviews > 0);
     s.pmTenure.reviews = (s.pmTenure.reviews || 0) + 1;
-    const text = finalYear && L.pmLastYear ? L.pmLastYear : first && L.pmFirstYear ? L.pmFirstYear : endLine(content, s, "pmYears", L.pmYears, false);
+    const text = finalYear && L.pmLastYear ? markSaid(s, L.pmLastYear) : first && L.pmFirstYear ? markSaid(s, L.pmFirstYear) : endLine(content, s, "pmYears", L.pmYears);
     if (text) log.push({ kind: "note", text });
     return endOfYear(content, s, log, finalYear, null);
+  }
+
+  // Heat of 55 or more is a rumour on the review page (heatHints): in the first two years of a
+  // spell that high, then thinning out as the spell goes on (the 4th, 7th, 11th... year), as the
+  // ceiling's rumours do; a new spell starts the count again. Never the same rumour twice in a career.
+  function heatHint(content, s, log) {
+    if (s.heat < 55) { s.heatRun = 0; return; }
+    s.heatRun = (s.heatRun || 0) + 1;
+    if (!CEP_SAID.includes(s.heatRun)) return;
+    const text = endLine(content, s, "heat", content.heatHints || ["A journalist has been asking around about something old."]);
+    if (text) log.push({ kind: "heat", text });
   }
 
   function retirementEnding(s) {
@@ -2054,23 +2174,26 @@ const Engine = (() => {
     if (pool) return { key: `${src.id}:*`, lines: Object.values(pool).flat() };
     return { key: "__year", lines: ["The year passes. Most of them do."] };
   }
-  // The index of the line to show next, or null when every line has been shown this run. With
-  // `cycle`, lines that have all been shown are taken again in the same order: for a series,
-  // which cannot come back in full, and for rumours and election results, which must be said.
-  function pickLine(s, key, n, cycle) {
+  // The index of the line to show next, or null when there is none this career has not been
+  // shown: the lines not yet used, in the seed's order, preferring lines the phone has not shown
+  // in its last runs; then (for a line with words filled in, `render`) a used one that comes out
+  // differently this time. A line with a sentence any pool has shown this career is passed over
+  // (isFresh). Nothing is ever taken round again: a pool that has run out says nothing.
+  function pickLine(s, key, lines, render = x => x) {
+    const n = (lines || []).length;
     if (!n) return null;
-    const used = (s.linesUsed || {})[key] || [];
-    const r = rng((s.seed ^ hashStr("mw:" + key)) >>> 0);
-    const order = Array.from({ length: n }, (_, i) => i);
-    for (let i = n - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
-    const fresh = order.filter(i => !used.includes(i)), recent = s.recent || [];
+    const used = (s.linesUsed || {})[key] || [], recent = s.recent || [];
+    const order = seededOrder(s, "mw:" + key, n), ok = i => isFresh(s, render(lines[i]));
+    const fresh = order.filter(i => !used.includes(i) && ok(i));
     const i = fresh.find(i => !recent.includes(`mw:${key}#${i}`)) ?? fresh[0];
     if (i !== undefined) return i;
-    return cycle ? order[used.length % n] : null;
+    return order.find(i => used.includes(i) && ok(i)) ?? null;
   }
-  function useLine(s, key, i) {
+  // A line taken from a pool and shown: recorded against its pool, and every sentence in it as said.
+  function useLine(s, key, i, text) {
     const u = (s.linesUsed = s.linesUsed || {});
     (u[key] = u[key] || []).push(i);
+    return markSaid(s, text);
   }
 
   // A montage year repeats the player's habit: the effects of what they chose the first
@@ -2078,7 +2201,8 @@ const Engine = (() => {
   function montageOf(content, src, s) {
     const h = (s.habits || {})[src.id];
     const { key, lines } = linesFor(src, h);
-    const line = pickLine(s, key, lines.length, true);
+    // (a habit year is only drawn while it has a fresh line; an old save may land here without one)
+    const line = pickLine(s, key, lines) ?? 0;
     const habit = src.choices[h];
     const effects = habit ? Object.fromEntries(Object.entries(habit.effects || {}).filter(([k]) => k !== "appraisal"))
       : (src.montageEffects || { competence: 1 });
@@ -2091,7 +2215,7 @@ const Engine = (() => {
   const scenesLeft = (ev, s) => (ev.variants || []).length + 1 - (s.history || []).filter(x => x.ev === ev.id && !x.passed).length;
   function freshLine(ev, s) {
     const { key, lines } = linesFor(ev, (s.habits || {})[ev.id]);
-    return pickLine(s, key, lines.length, false) !== null;
+    return pickLine(s, key, lines) !== null;
   }
   function habitYear(ev, s) {
     const n = s.fillerSeen[ev.id] || 0;
@@ -2154,11 +2278,23 @@ const Engine = (() => {
     const hit = SHOWN.get(s);
     if (hit && hit.key === key && hit.content === content) return hit.ev;
     const ev = allEvents(content, s).find(e => e.id === id);
-    const out = ev ? render(content, sceneOf(ev, s), s) : ev;
+    const out = ev ? visibleChoices(render(content, sceneOf(ev, s), s), s) : ev;
     SHOWN.set(s, { key, content, ev: out });
     return out;
   }
   const SHOWN = new WeakMap();
+  // The choices the player can take, in the order they are shown. A choice whose stats the player
+  // does not have (requiresStat) is left off the card altogether: the player cannot tell it was
+  // there. `order` maps each button to the card's own choice (as for a series' second showing),
+  // `own` keeps every choice in the card's own order, and `hidden` lists the ones left off.
+  function visibleChoices(ev, s) {
+    const order = ev.order || ev.choices.map((_, i) => i);   // button -> the card's own index
+    const keep = ev.choices.map((c, i) => i).filter(i => choiceAvailable(ev.choices[i], s));
+    if (keep.length === ev.choices.length) return ev;
+    const own = ev.choices.map((_, j) => ev.choices[order.indexOf(j)]);
+    return { ...ev, choices: keep.map(i => ev.choices[i]), order: keep.map(i => order[i]), own,
+      hidden: order.filter((_, i) => !keep.includes(i)) };
+  }
 
   // --- card versions ---------------------------------------------------------
   // A card may carry variants: the same mechanics, flags and choices in a different scene.
@@ -2218,7 +2354,7 @@ const Engine = (() => {
   function autoLine(ev, s) {
     const own = ev.autoPlay.lines === null;   // a version that brought its own line
     const lines = ev.autoPlay.lines || (ev.autoPlay.line ? [ev.autoPlay.line] : []);
-    const key = `${ev.id}:auto${own ? "#" + ev.variant : ""}`, i = pickLine(s, key, lines.length, true);
+    const key = `${ev.id}:auto${own ? "#" + ev.variant : ""}`, i = pickLine(s, key, lines);
     return i === null ? { text: null } : { text: lines[i], key, i };
   }
 
@@ -2267,7 +2403,7 @@ const Engine = (() => {
         const why = noDecision(content, "habit", { title: last ? last.title : m.title, choice: last ? last.text : src(ev, s).choices[choice].text });
         applyEffects(s, ch.effects);
         s.fillerSeen[ev.id]++;
-        useLine(s, m.lineKey, m.line);
+        useLine(s, m.lineKey, m.line, m.body);
         lines.push(heading, why, { kind: "meanwhile", text: m.body });
         ev = { ...ev, title: m.title };
       } else if (kind === "series") {
@@ -2275,27 +2411,29 @@ const Engine = (() => {
         const f = s.series[ev.series.key];
         choice = stanceIndex(ev, f.stance); ch = ev.choices[choice]; pt.habit = f.stance;
         const { key, lines: pool } = linesFor(ev, f.stance);
-        const li = pickLine(s, key, pool.length, true);
-        pt.line = pool[li];
+        const li = pickLine(s, key, pool);   // null once the stance's lines are spent: the year passes without one
+        pt.line = li === null ? null : pool[li];
         const shown = src(ev, s);
         const why = noDecision(content, "series", { title: sub(shown.title, s, content), choice: shown.choices[choice].text });
         const al = applyChoice(content, s, ev, ch, pt);
         if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
         f.passed = (f.passed || 0) + 1;
-        useLine(s, key, li);
-        lines.push(heading, why, { kind: "meanwhile", text: pool[li] }, ...al);
+        if (li !== null) useLine(s, key, li, pool[li]);
+        lines.push(heading, why, ...(li !== null ? [{ kind: "meanwhile", text: pool[li] }] : []), ...al);
       } else if (kind === "auto") {
         const vev = render(content, variantOf(ev, s), s);
         choice = ev.autoPlay.choice || 0; ch = vev.choices[choice];
         ev = vev;
         const line = autoLine(ev, s);
         const al = applyChoice(content, s, ev, ch, pt, { safe: true });
-        if (line.key) useLine(s, line.key, line.i);
-        lines.push(heading, noDecision(content, "auto", {}), { kind: "meanwhile", text: line.text || ch.outcome }, ...al);
+        // the lines spent, the card's own outcome once, then the noDecision line says it alone
+        const said = line.key ? useLine(s, line.key, line.i, line.text) : isFresh(s, ch.outcome) ? markSaid(s, ch.outcome) : null;
+        lines.push(heading, noDecision(content, "auto", {}), ...(said ? [{ kind: "meanwhile", text: said }] : []), ...al);
       } else {
         ch = QUIET_YEAR.choices[0];
         applyEffects(s, ch.effects);
-        lines.push(heading, noDecision(content, "quiet", {}), { kind: "meanwhile", text: QUIET_YEAR.body });
+        const said = isFresh(s, QUIET_YEAR.body) ? markSaid(s, QUIET_YEAR.body) : null;   // once a career
+        lines.push(heading, noDecision(content, "quiet", {}), ...(said ? [{ kind: "meanwhile", text: said }] : []));
       }
       const yl = s.ending ? [] : yearEnd(content, s, pt);
       heading.head = pageHead(content, s, before);
@@ -2324,7 +2462,8 @@ const Engine = (() => {
     const ch = ev.choices[choiceIndex];
     // the card's own index for the button pressed (a series' second showing puts the habit first)
     const ci = ev.order ? ev.order[choiceIndex] : choiceIndex;
-    const own = ev.order ? ev.choices.map((_, j) => ev.choices[ev.order.indexOf(j)]) : ev.choices;
+    const own = ev.own || (ev.order ? ev.choices.map((_, j) => ev.choices[ev.order.indexOf(j)]) : ev.choices);
+    const hidden = ev.hidden || [];   // choices the player could not take, so never saw
     const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
     const trace = {};
     const log = applyChoice(content, s, ev, ch, trace);
@@ -2348,7 +2487,7 @@ const Engine = (() => {
     }
     if (ev.id.startsWith(MONTAGE)) {
       s.fillerSeen[ev.id.slice(MONTAGE.length)]++;
-      if (ev.line !== null && ev.line !== undefined) useLine(s, ev.lineKey, ev.line);
+      if (ev.line !== null && ev.line !== undefined) useLine(s, ev.lineKey, ev.line, ev.body);
     } else if (isFiller(ev)) {
       s.fillerSeen[ev.id] = (s.fillerSeen[ev.id] || 0) + 1;
       (s.habits = s.habits || {})[ev.id] = ci;   // what habit years will repeat
@@ -2367,10 +2506,11 @@ const Engine = (() => {
     // A card with parts or cast keeps what it showed: the combination (freshness, the next
     // showing's rotation), who it named, and, when the Declassified file may quote an untaken
     // choice from it (one that raised the ceiling), its choices' words as read.
-    const quoted = own.some((c, i) => i !== ci && ((c.effects || {}).cep || 0) > 0);
+    const quoted = own.some((c, i) => i !== ci && !hidden.includes(i) && ((c.effects || {}).cep || 0) > 0);
     const shown = ev.picked || ev.who ? { ...(ev.picked ? { parts: ev.picked } : {}), ...(ev.who ? { who: ev.who } : {}),
       ...(quoted ? { texts: own.map(c => c.text) } : {}) } : {};
     s.history.push({ ...before, ev: ev.id, title: ev.title, choice: ci, text: ch.text, variant: ev.variant || 0, ...shown,
+      ...(hidden.length ? { hidden } : {}),
       grade: (trace.appraisal || {}).grade,
       cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation,
       noted: ((ch.effects || {}).appraisal || 0) < 0,
@@ -2505,11 +2645,10 @@ const Engine = (() => {
     t.witnessMoved = { grade: grade.code, without: lead.landed.without, type: lead.type };   // for traces
     if (witDie(s, `show#${s.year}`) >= (W.show === undefined ? 0.5 : W.show)) return;
     const sign = lead.mod > 0 ? "help" : "hurt", lines = ((W.types[lead.type].review || {})[sign]) || [];
-    const key = `__witness:${lead.type}:${sign}`, i = pickLine(s, key, lines.length, false);
+    const key = `__witness:${lead.type}:${sign}`, i = pickLine(s, key, lines);
     if (i === null) return;   // every line for it has been shown this run: nothing is said
-    useLine(s, key, i);
     lead.landed.shown = true;
-    log.push({ kind: "note", about: "witness", text: lines[i] });
+    log.push({ kind: "note", about: "witness", text: useLine(s, key, i, lines[i]) });
   }
 
   // --- the ending: legacy and the declassified file --------------------------
@@ -2605,16 +2744,18 @@ const Engine = (() => {
     // what the choice did, said in full: which ceiling it moved, and to where
     const said = r => `At ${r.age}, on "${r.title}", you chose "${r.text}" ${r.rank >= 8 ? `That raised the party's estimate to ${ceiling(r.cepAfter, true)}.`
       : r.cepAfter >= 8 ? "That removed your ceiling in the service altogether." : `That raised your ceiling in the service to ${ceiling(r.cepAfter, false)}.`}`;
-    // The first choice that would have raised it, had you taken it.
+    // The first choice that would have raised it, had you taken it: one you were shown (a choice
+    // left off the card, for want of the stats, was never offered).
+    const offered = (h, c, i) => i !== h.choice && !(h.hidden || []).includes(i) && (c.effects || {}).cep > 0;
     const missed = pol => {
       const h = H.filter(h => !h.passed && (pol ? h.rank >= 8 : h.rank < 8)).find(h => {
         const ev = content.events.find(e => e.id === h.ev);
-        return ev && ev.choices.some((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
+        return ev && ev.choices.some((c, i) => offered(h, c, i));
       });
       if (!h) return "None. Nothing you were offered could have raised it.";
       // quoted as the player saw it: the version of the card that run showed, names and all
       const cs = applyVariant(content.events.find(e => e.id === h.ev), h.variant).choices;
-      const i = cs.findIndex((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
+      const i = cs.findIndex((c, i) => offered(h, c, i));
       return `None. At ${h.age}, "${h.texts ? h.texts[i] : cs[i].text}" would have raised it.`;
     };
     const service = raisesIn(false);
@@ -2744,7 +2885,7 @@ const Engine = (() => {
   }
 
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
-    finalLabels, ending, recentKeys, lockedText, statVerdicts, endPlan,
+    finalLabels, ending, recentKeys, statVerdicts, endPlan,
     // the header as data (the event screen, and each page of an outcome), and the next rung's name
     header, nextName,
     // the player's name and gender: the start screen, old saves, the lint and the tests

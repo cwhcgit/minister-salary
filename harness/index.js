@@ -9,7 +9,7 @@
 //
 //   const H = require("./harness");
 //   let run = H.newRun("grad", 42, { name: "Tan Wei Ming", gender: "m" });
-//   while (run.phase !== "ending") run = H.step(run, H.choices(run).find(c => c.available).id);
+//   while (run.phase !== "ending") run = H.step(run, H.choices(run)[0].id);
 //   H.trace(run);
 //
 // No dependencies beyond Node itself.
@@ -146,25 +146,37 @@ function newRun(origin, seed, opts = {}) {
   };
 }
 
+// The choices on the screen, lettered as shown: only those the player can take (a choice the
+// player lacks the stats for is not on the card at all). Each is { id, text }.
 function choices(run) {
   if (run.phase !== "event") return [];
   const build = getBuild(run.buildHash);
   return View.eventCard(build, run.S, currentEvent(build, run.S)).choices;
 }
 
-function sibling(build, S, ev, i) {
-  const c = ev.choices[i];
-  return { id: View.LETTERS[i], available: build.engine.choiceAvailable(c, S), effects: c.effects || {} };
+// The card's choices as the screen letters them: shown[k] is the index in ev.choices of the k-th
+// button. (The engine already leaves off what cannot be taken; an older build's card still lists
+// it, and the screen skips it.)
+const shownChoices = (build, S, ev) => ev.choices.map((_, j) => j).filter(j => build.engine.choiceAvailable(ev.choices[j], S));
+// The card's own letter for a choice: a series' second showing puts the habit first, and a choice
+// left off the card moves the ones after it up (ev.order maps each button back).
+const ownLetter = (ev, i) => View.LETTERS[ev.order ? ev.order[i] : i];
+
+function sibling(build, S, ev, i, k) {
+  return { id: View.LETTERS[k], own: ownLetter(ev, i), available: true, effects: ev.choices[i].effects || {} };
 }
 
+// choiceId: a letter as the screen shows it ("A", "B"...), or a number, the choice's index in the
+// card as engine.eventOf gives it.
 function step(run, choiceId) {
   if (run.phase !== "event") throw new Error(`run is in phase ${run.phase}; nothing to choose`);
   const build = getBuild(run.buildHash);
   const ev = currentEvent(build, run.S);
-  const i = typeof choiceId === "number" ? choiceId : View.LETTERS.indexOf(String(choiceId).trim().toUpperCase());
+  const shown = shownChoices(build, run.S, ev);
+  const i = typeof choiceId === "number" ? choiceId : shown[View.LETTERS.indexOf(String(choiceId).trim().toUpperCase())];
   const ch = ev.choices[i];
-  if (!ch) throw new Error(`no choice ${choiceId} on ${ev.id}`);
-  if (!build.engine.choiceAvailable(ch, run.S)) throw new Error(`choice ${View.LETTERS[i]} on ${ev.id} is locked`);
+  if (!ch || !shown.includes(i)) throw new Error(`no choice ${choiceId} on ${ev.id}`);
+  const k = shown.indexOf(i);   // the button, as the screen letters it
 
   const pre = run.S;
   const r = build.engine.advance(build.content, pre, i);
@@ -198,9 +210,10 @@ function step(run, choiceId) {
              // the scene as shown: which part options were assembled, and which of the run's people it named
              ...(ev.picked ? { parts: ev.picked } : {}),
              ...(ev.who ? { cast: castNames(pre, ev.who) } : {}) },
-    choice: { id: View.LETTERS[i], index: i, effects: ch.effects || {},
-              available: ev.choices.map((_, j) => sibling(build, pre, ev, j)).filter(x => x.available).map(x => x.id) },
-    siblings: ev.choices.map((_, j) => sibling(build, pre, ev, j)),
+    // id: the letter on the screen; own: the card's own letter for it (what metrics count by)
+    choice: { id: View.LETTERS[k], own: ownLetter(ev, i), index: i, effects: ch.effects || {},
+              available: shown.map((_, j) => View.LETTERS[j]) },
+    siblings: shown.map((j, n) => sibling(build, pre, ev, j, n)),
     before, after, delta,
     flagsSet: S.flags.filter(f => !pre.flags.includes(f)),
     castOps: r.trace.cast || null,                 // what the choice did to or for the run's people
@@ -227,7 +240,7 @@ function step(run, choiceId) {
     phase: S.ending ? "ending" : "event",
     S, pendingDraw: nextDraw,
     last: { outcome: r.outcome, log: r.log, prev: before, head: r.head || null },
-    choiceList: run.choiceList.concat(View.LETTERS[i]),
+    choiceList: run.choiceList.concat(View.LETTERS[k]),
     turns: run.turns.concat([rec])
   };
 }

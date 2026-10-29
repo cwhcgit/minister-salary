@@ -25,7 +25,7 @@ for (const p of PERSONAS.filter(x => x.blind)) {
       screens++;
       for (const h of found.slice(0, 3)) hits.push(`${origin} turn ${run.turn}: ${h.why}: "${h.match}"`);
       if (run.phase === "ending") break;
-      const live = H.choices(run).filter(c => c.available);
+      const live = H.choices(run);
       run = H.step(run, live[Math.floor(r() * live.length)].id);
     }
   }

@@ -1,6 +1,7 @@
 // Every line that names one of the run's people outside a card says who they are to you.
 // Cast lines (game.json cast.lines: a colleague retires, a new reporting officer arrives) and the
-// batchmate's lines (rival.json lines) appear on the year-end page, with no card around them to
+// batchmate's lines (rival.json lines, and the plain ones in game.json engineLines.rivalFallback
+// that stand in once a kind is used up) appear on the year-end page, with no card around them to
 // set the person up. So the first {name} (or {rival}) in each line is followed at once by ", "
 // and a short role phrase that ties the person to the player: "{name}, your old reporting
 // officer, retires as {title}", "{rival}, your batchmate, is now {title}". A phrase counts when,
@@ -20,6 +21,9 @@ for (const [role, keys] of Object.entries((game.cast || {}).lines || {}))
   for (const [key, lines] of Object.entries(keys)) pools.push({ where: `game.json cast.lines.${role}.${key}`, token: "{name}", lines });
 if (rival) for (const [key, lines] of Object.entries(rival.lines || {}))
   pools.push({ where: `rival.json lines.${key}`, token: "{rival}", lines });
+// the plain lines the batchmate's news falls back on once a kind of news is used up
+for (const [key, lines] of Object.entries((game.engineLines || {}).rivalFallback || {}))
+  if (key !== "note") pools.push({ where: `game.json engineLines.rivalFallback.${key}`, token: "{rival}", lines });
 
 const RELATION = /\b(you|your|yours|who|whose|whom)\b/i;
 const problems = [];

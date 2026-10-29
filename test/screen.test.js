@@ -68,6 +68,7 @@ server.listen(0, async () => {
     expect('start genders', $$('.gender .g').map(g => g.textContent).join(' | '), View.startCard(build, 'grad').genders.join(' | '));
     expect('start gender chosen', $$('.gender .g').map(g => g.getAttribute('aria-checked')).join(' '), 'true false');
     let screens = 0, payLines = 0, witnessLines = 0;   // (witnesses: seeds vary, so counted, not required)
+    let hiddenScreens = 0;   // cards with a choice left off (counted: whether a career meets one varies)
 
     // three careers without a batchmate, then three with one; as Female and as Male, with a typed
     // name and with the field left blank (a name is drawn for the run)
@@ -111,14 +112,14 @@ server.listen(0, async () => {
           btns.forEach((b, i) => {
             const c = want.choices[i];
             expect(`${where} choice ${c.id}`, own(b), c.text);
-            expect(`${where} choice ${c.id} locked`, b.disabled, !c.available);
-            const why = b.querySelector('.why');
-            expect(`${where} choice ${c.id} requires`, why ? why.textContent : null, c.requires);
+            // every choice on the card can be taken: one the player lacks the stats for is not shown
+            expect(`${where} choice ${c.id} greyed out`, b.disabled, false);
+            expect(`${where} choice ${c.id} reason`, b.textContent, c.text);
           });
+          if ((build.engine.eventOf(build.content, st.S).hidden || []).length) hiddenScreens++;
           screens++;
           prev = st.S;
-          const live = btns.filter(b => !b.disabled);
-          live[Math.floor(pick() * live.length)].click(); await wait(5);
+          btns[Math.floor(pick() * btns.length)].click(); await wait(5);
         } else if (st.phase === 'outcome') {
           const where = `${origin} seed ${prev.seed} y${prev.year} outcome`;
           const want = View.outcomeCard(st.outcome, st.log, st.head, View.header(build, st.S));
@@ -185,6 +186,7 @@ server.listen(0, async () => {
     if (payLines < 50) mismatches.push(`only ${payLines} pay lines from the second year on were checked against last year`);
     else console.log(`✓ ${payLines} pay lines from the second year on each say how they compare with last year`);
     console.log(`✓ ${witnessLines} review lines from hidden witnesses among the screens compared, and none in an ending`);
+    console.log(`✓ ${hiddenScreens} cards with a choice the player could not take, shown without it`);
     if (mismatches.length) {
       console.log(`\n✗ ${mismatches.length} differences between the phone and harness/screen.js:`);
       mismatches.slice(0, 25).forEach(m => console.log('  ' + m));

@@ -67,28 +67,52 @@
     "promoted": [
       "{rival}, your batchmate and your rival for every promotion, is promoted to {title}. The email announcing it is copied to you too, as a courtesy.",
       "{rival}, your batchmate, is now {title}. The group chat from your first year hears about it before you do.",
-      "{rival}, your batchmate, makes {title}. {They} sent round a very nice message, which you have read twice."
+      "{rival}, your batchmate, makes {title}. {They} sent round a very nice message, which you have read twice.",
+      "This year's promotions go out in an HR circular, in alphabetical order. {rival}, your batchmate, is on it as {title}, and three people forward it to you, in case you missed it.",
+      "{rival}, your batchmate, is promoted to {title}. The drinks stall auntie downstairs, who has known you both since your first year, hears before you do, and makes your coffee a little sweeter without being asked.",
+      "{rival}, your batchmate, is promoted to {title} and moves into an office with a door. {rival} tells everyone the door will always be open. It is, whenever you walk past.",
+      "{rival}, your batchmate, becomes {title}. Your intake's yearly dinner moves to a nicer restaurant this time, and {rival} is the one who picks it.",
+      "{rival}, your batchmate, is promoted to {title}, and the new business cards arrive within the week. {rival} gives you one, which no colleague has ever done before.",
+      "The promotions are announced at the ministry's town hall, one slide per name. {rival}, your batchmate, gets a slide as {title}, with a photograph from a retreat at which you were also present, just out of frame."
     ],
     "winService": [
-      "This year there was one promotion slot at your grade, and two of you up for it: you and {rival}, your batchmate and your rival for every promotion. It went to you. {rival} congratulated you within the minute, so the news must have reached {them} first.",
-      "The ranking exercise could promote only one of you at this grade, and it was you. {rival}, your batchmate, took it well, in the sense that nobody saw {them} take it."
+      "This year there was one promotion slot at your grade, and two of you up for it: you and {rival}, your batchmate and your rival for every promotion. It went to you, and {rival} congratulated you within the minute, so the news must have reached {them} first.",
+      "The promotion panel could take only one of you at this grade, and it chose you. {rival}, your batchmate, took it well, in the sense that nobody saw {them} take it.",
+      "The promotion panel had one slot at your grade and two names from the same intake: yours and that of {rival}, your batchmate. Yours went up. The next morning there is a cake on your desk from the good bakery, with no card, and you know exactly who sent it.",
+      "This year's promotions had room for one of the two of you, and the panel chose you over {rival}, your batchmate. Years ago you agreed that whoever lost would buy the coffee, and {rival} remembers, to the cent.",
+      "Only one of you could go up this year, you or {rival}, your batchmate, and the panel picked you. {rival} found out from the HR system before you did, and messaged you a single thumbs-up, which you have looked at more than once.",
+      "One slot, two officers from the same intake: you and {rival}, your batchmate. You got it. That evening {rival} posts a photograph of a long run round the reservoir, at a pace that is clearly a statement.",
+      "The panel could put one of you forward this year, you or {rival}, your batchmate, and put you forward. {rival}'s reporting officer tells {them} it was \"a matter of timing\", a phrase you will one day hear yourself.",
+      "There was room to promote one of you this year, you or {rival}, your batchmate, and it was you. At the next intake gathering {rival} raises a glass to you first, before anyone else can, and makes it sound like a favour."
     ],
     "loseService": [
-      "This year there was one promotion slot at your grade, and two of you up for it: you and {rival}, your batchmate and your rival for every promotion. It went to {rival}. You're told it was \"very close\". That is what everyone is told, probably including {rival}.",
-      "The ranking exercise could promote only one of you at this grade, and it was {rival}, your batchmate. {senior}, your reporting officer, says you are \"next in line\", and doesn't say for what."
+      "There was one promotion slot at your grade this year, with you and {rival}, your batchmate and your rival for every promotion, both up for it, and it went to {rival}. You're told it was \"very close\". That is what everyone is told, probably including {rival}.",
+      "The panel had room for one promotion at your grade, and gave it to {rival}, your batchmate. HR says you are \"next in line\", and doesn't say for what.",
+      "The one promotion at your grade this year went to {rival}, your batchmate, and not to you. {rival} asks you to lunch the same week, and insists on paying, which is worse.",
+      "You and {rival}, your batchmate, were up for the same slot this year, and the panel chose {rival}. HR's note to everyone else calls the field \"exceptionally strong\", and you are part of the field.",
+      "This year's promotion round could move one of the two of you up, and it moved {rival}, your batchmate. Somebody has already redone the seating plan for the division retreat, and you are one table further from the front.",
+      "Only one of you could go up this year, and the panel chose {rival}, your batchmate, over you. {rival} sends you the slides from {their} promotion interview, \"in case they help next time\". They do, annoyingly."
     ],
     "winPolitics": [
-      "There was one appointment open at your level this year, and the choice was between you and {rival}, your batchmate. It went to you. {rival} was the first to shake your hand at the swearing-in, and held it a beat longer than necessary."
+      "There was one appointment open at your level this year, and the choice was between you and {rival}, your batchmate, and it went to you. {rival} was the first to shake your hand at the swearing-in, and held it a beat longer than necessary.",
+      "The Prime Minister had room to move one of you up this year, you or {rival}, your batchmate, and chose you. {rival} sends flowers to your office with a card that says \"Finally\", which could be about either of you.",
+      "{rival}, your batchmate, was the other name for the one appointment open at your level this year, and it went to you. In Parliament the next week, {rival} asks the first question about your new portfolio, very politely, with a follow-up ready.",
+      "When the appointments were decided, it was you or {rival}, your batchmate, and it was you. {rival} writes a note of congratulations on the party's notepaper and signs it with {their} full name, which {rival} has not done since your first week.",
+      "The appointments this year had room for one of you, you or {rival}, your batchmate, and the room was yours. {rival} heard the news on a walkabout, in front of residents, and smiled through every block.",
+      "It came down to you or {rival}, your batchmate, for the one office open at your level, and it went to you. Within the week {rival} has volunteered for three committees, and is clearly not planning to lose twice.",
+      "When the appointments were settled, your name was on the list and that of {rival}, your batchmate, was not. {rival} tells reporters the party has \"a deep bench\", and manages to make it sound like a compliment to you."
     ],
     "losePolitics": [
-      "There was one appointment open at your level this year, and the choice was between you and {rival}, your batchmate. It went to {rival}. The Prime Minister's Office describes the decision as \"finely balanced\"."
+      "The one appointment open at your level this year went to {rival}, your batchmate, and not to you. The Prime Minister's Office describes the decision as \"finely balanced\".",
+      "The Prime Minister could move one of you up this year, you or {rival}, your batchmate, and moved {rival}. Your volunteers take it harder than you do, and say so, at length, over supper.",
+      "When the appointments came out, {rival}, your batchmate, had the one you had both been in line for. {rival} tells you, privately, that you would have been better at it, and seems to mean it, which does not help."
     ],
     "pm": [
       "{rival}, your batchmate, is to be the next Prime Minister. {They} telephoned you before the announcement, or said {they} did."
     ],
     "pmBlocked": [
       "The one job above yours is taken. {rival}, your batchmate, is Prime Minister, and shows no sign of having considered the private sector.",
-      "The one job above yours is still taken. {rival}, your batchmate, has announced a ten-year plan, which you are choosing to read as a policy document."
+      "The one job above yours belongs to {rival}, your batchmate, who is Prime Minister and has just announced a ten-year plan. You are choosing to read it as a policy document."
     ],
     "elected": [
       "{rival}, your batchmate, was introduced at a press conference as a new candidate for Parliament, and won, and is now a Member of Parliament."
@@ -103,31 +127,53 @@
       "{rival}, your batchmate, has resigned, for personal reasons. Everyone has a theory. Nobody says it in the lift."
     ],
     "rankedBelowService": [
-      "The ranking exercise put {rival}, your batchmate and your rival for every promotion, above you this year. Neither of you went up: the slot went to someone from another division whom you have never met.",
-      "You were ranked just below {rival}, your batchmate, this year, and neither of you was promoted. It is the one comparison everyone on the floor made, and nobody made out loud."
+      "The promotion panel put {rival}, your batchmate and your rival for every promotion, ahead of you this year. Neither of you went up: the slot went to someone from another division whom you have never met.",
+      "You were placed just below {rival}, your batchmate, this year, and neither of you was promoted. It is the one comparison everyone on the floor made, and nobody made out loud.",
+      "This year's promotion panel put {rival}, your batchmate, one place above you, and then promoted neither of you. Over lunch the two of you agree that these lists mean nothing. {rival} agrees a little more easily.",
+      "Nobody at your grade went up this year, but the panel's list still had an order, and in it {rival}, your batchmate, came just before you. The order is confidential, and by Friday the whole floor knows it.",
+      "The panel promoted neither you nor {rival}, your batchmate, but put {rival} first. The difference between first and second, you are told, is \"not material\", and it is written down in ink."
     ],
     "rankedBelowPolitics": [
-      "When the appointments were settled, the name of {rival}, your batchmate, was ahead of yours on the list. Neither of you moved. Someone with no government job at all did."
+      "When the appointments were settled, the name of {rival}, your batchmate, was ahead of yours on the list. Neither of you moved. Someone with no government job at all did.",
+      "Neither you nor {rival}, your batchmate, moved up when this year's appointments came out, but every newspaper that guessed at them beforehand put {rival} ahead of you. The newspapers were wrong about everything else, which is no comfort.",
+      "The party's leadership weighed you and {rival}, your batchmate, for the next appointment, put {rival} a little higher, and then gave it to neither of you. Nobody tells you this. Someone at party headquarters mentions it by accident, and asks you to forget it.",
+      "This year's appointments passed over you and {rival}, your batchmate, but {rival} was apparently the nearer miss. {rival} is asked to brief the Prime Minister on something minor, and three different people tell you about the briefing.",
+      "You and {rival}, your batchmate, were both considered for higher office this year, and neither of you got it, though {rival} came closer. The party newsletter runs {their} photograph slightly larger than yours, by about a centimetre, which you measured.",
+      "Nobody from your intake was appointed this year, but the talk in the Members' room is that {rival}, your batchmate, came closer than you. The talk in the Members' room is usually right, and never written down."
     ],
     "appointed": [
       "{rival}, your batchmate, is appointed {title}. The swearing-in photograph is on the front page, and you are in the background of it.",
-      "{rival}, your batchmate, is now {title}. The group chat from your first year hears about it before you do."
+      "{rival}, your batchmate, is appointed {title}. The Prime Minister's press conference runs to forty minutes, and {rival}'s name comes up in the thirty-first.",
+      "The new appointments are announced on a weekday evening. {rival}, your batchmate, becomes {title}, and your phone fills with messages asking how you feel, which is how you find out.",
+      "{rival}, your batchmate, becomes {title}. {Their} first speech in the role quotes a line from your first course in the service, and {rival} looks straight at you while saying it.",
+      "{rival}, your batchmate, is appointed {title}. The papers run a profile headed \"One to watch\", with a photograph from {their} first year in the service, in which you appear as an elbow.",
+      "{rival}, your batchmate, becomes {title}. The party sends round a card of congratulations for every Member to sign, and it reaches you last, with just enough room at the bottom for your name.",
+      "{rival}, your batchmate, is named {title}. The flower stands outside {their} office run the length of the corridor, and the one from your volunteers is the tallest, which they made sure of.",
+      "{rival}, your batchmate, is appointed {title}, with an office at the ministry, staff of {their} own and a diary that other people now keep. {rival} still answers your messages personally, though now at 1am.",
+      "{rival}, your batchmate, becomes {title}. At the next party dinner the two of you are seated together, by someone who thought it would be a nice touch."
     ],
     "promotedApart": [
       "{rival}, your batchmate, is now {title}. You hear about it at a dinner, from someone who assumes you already knew.",
-      "{rival}, your batchmate, is now {title}. The group chat from your first year hears about it before you do."
+      "{rival}, your batchmate, is now {title}, and announces it online in four modest lines. Three hundred people like it within the hour, and you are the three hundred and first, so as not to seem eager.",
+      "Your paths have not crossed at work in years, so the news comes from a friend you both have: {rival}, your batchmate, is now {title}. The friend adds that {rival} asked after you, which you choose to believe.",
+      "{rival}, your batchmate, becomes {title}. You are on different ladders now, so nobody compares the two of you, out loud.",
+      "{rival}, your batchmate, is now {title}. The news reaches you on a Saturday, between a wedding dinner and a funeral wake, and at both someone asks you to pass on their congratulations, as if you saw {rival} every day.",
+      "{rival}, your batchmate, is now {title}. When you call to say well done, {rival} asks about your own work first, for ten minutes, which is either kindness or practice.",
+      "You read it in the papers first: {rival}, your batchmate, is now {title}. You send a message, and the reply comes back within the minute, which tells you {rival} had been waiting for it.",
+      "{rival}, your batchmate, has become {title}. At the next reunion of your intake the seating plan puts the two of you side by side, by someone who meant well.",
+      "{rival}, your batchmate, is now {title}. Your old canteen still has a photograph of your intake on its wall, and someone has drawn a small star next to {rival}'s face."
     ],
     "electedTogether": [
       "{rival}, your batchmate, stood at the same general election, in another constituency, and won, and is now a Member of Parliament too."
     ],
     "lostSeatTogether": [
-      "{rival}, your batchmate, stood at the same general election, in another constituency, and lost. A month later {rival} was back in the service at the same grade, which everyone agreed to call a homecoming."
+      "{rival}, your batchmate, stood at the same general election, in another constituency, and lost. Within the month {rival} was back at {their} old desk in the service, and the division held a welcome-back lunch that nobody called a consolation."
     ],
     "consultancyPolitics": [
       "{rival}, your batchmate, has left Parliament for a seat on a company's board. The papers call it \"an orderly transition\". They call all of them that."
     ],
     "scandalPolitics": [
-      "{rival}, your batchmate, has resigned from Parliament, for personal reasons. Everyone has a theory. Nobody says it in the lobby."
+      "{rival}, your batchmate, has resigned from Parliament, for personal reasons. In the Members' room the theories are many, and every one of them is whispered."
     ],
     "retired": [
       "{rival}, your batchmate, retires as {title}. At the farewell lunch, {rival}'s speech thanks \"my batchmate, {player.given}\". You send a card afterwards, and mean it."

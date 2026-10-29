@@ -18,6 +18,7 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 | `node test/sim.js regress` | Missing text, outcomes or scheduled cards; consequences dropped. It also reports dominated choices and stats pushed one way, without failing | CI |
 | `node test/jargon.js` | A player meeting a term before any of its entry points (`web/content/jargon.json`) | Being added |
 | `node test/castlines.js` | A person named outside a card without saying who they are | Being added |
+| `node test/repeats.js` | A sentence shown twice in one career (from 1,800 played careers), outside a short list of structural lines | CI |
 | Pages "Validate content" step | Duplicate ids, missing scheduled cards, a choice without text or an outcome | On every deploy |
 
 ## 1. Voice and tone
@@ -170,9 +171,10 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 - Example: "A second year of Budget meetings." → "Another year of Budget meetings."
 - Check: `test/contexts.js` static check for tokens (also in CI); editor review for the rest.
 
-**3.13 Write enough lines that none repeats.** At least four Meanwhile lines per habit, enough for a long career on a series card, and three or four versions of each cast line, each sentence used once.
-- Why: a run never shows a line twice; when the lines run out, the card comes back in full, or the change happens with no line.
-- Check: `test/contexts.js` and `test/harness.test.js` fail a cast line shown twice in a run; the counts are editor review.
+**3.13 Write enough lines that none repeats, and never a sentence twice.** A career never shows the same sentence twice, from any pool the engine takes lines from: the batchmate's news, cast lines, the stats in words, rumours, warnings, heads-ups, Meanwhile lines, appraisal quotes, review lines. Write each pool longer than the most a career uses it, with one or two to spare, and never let two lines share a sentence, in one pool or across pools. A line whose words change with what it reports (a `{title}`, `{next}` or `{grade}` in every sentence) can come back for a different one; any other line comes once. At least four Meanwhile lines per habit, enough for a long career on a series card, three or four versions of each cast line, and a version of a card for every time a career can show it in full.
+- Why: a player who sees the same sentence twice stops believing the world is written for them. The engine remembers every sentence its pools have shown in a career: when a pool runs out it falls back to a plain line in words that change with the news (engineLines.rivalFallback for the batchmate), or says nothing, and a card shown in full again takes its next version.
+- Example: the batchmate promoted twice in one career, both times "The group chat from your first year hears about it before you do." → nine small scenes for the news, each used once.
+- Check: `node test/repeats.js` (CI) plays 1,800 careers and fails a sentence of four words or more shown twice in one career, outside a short allowlist of structural lines (the pay line, a year without a decision, a formal warning's terms, the note that a choice counts at appraisal, a promotion's note on pay); `test/contexts.js` and `test/harness.test.js` fail a cast line shown twice; pool sizes are editor review.
 
 **3.14 A story chain is 3-5 cards over years.** Each beat is set up by a flag and scheduled with `inYears` and a chance; branches are mutually exclusive flags; the chain feeds the Folder (a compromise) or Declassified (a line naming the chain) at least once. Order a chain's Declassified entries from the furthest point the story can reach to the nearest.
 - Why: a chain is named at the end by where it finished.
@@ -366,17 +368,18 @@ Never `{player}` on its own: say which form. Keep the player's tokens out of cho
 - Why: the end is where the player learns the rules they were paying for.
 - Check: `test/harness.test.js`.
 
-**7.6 A locked choice gives an in-world reason, never the number it needs.** The words are `statWords.locked` in `game.json`.
-- Example: "Requires Reputation 60." → "You'd need a stronger reputation for this."
-- Check: `test/harness.test.js` and the leak checks.
+**7.6 A choice the player cannot take is not shown.** A choice with `requiresStat` is left off the card while the player lacks the stat, so the player cannot tell it is there: no greyed-out button, no reason, no number. A card is only drawn while it has at least two choices to show, so give every card at least two choices that need no stat: otherwise it waits until the player has the stats, and a scheduled card that waits stalls its story.
+- Why: in the owner's words, "For the hidden options that require a certain stat to be met, do not show them at all, unless the stat is met." A greyed-out button tells the player exactly what they are missing.
+- Example: the election card's single seat needs a strong reputation, so the card also offers two GRC choices that anyone can take.
+- Check: `test/harness.test.js` (no card on screen with fewer than two choices, the hidden one nowhere on the screen, the buttons mapped to the card's own choices), `test/ui.test.js` and `test/screen.test.js`.
 
 **7.7 The ceiling and Heat show only as rumour and euphemism.** Never a number for either, until Declassified at the end.
 - Why: they are the hidden values the player learns to read.
 - Check: the leak checks.
 
-**7.8 Each grade wording quotes exactly one phrase,** in double quotes, and no two wordings quote the same phrase. The review shows the letter first, then the wording.
-- Why: the quoted phrase is the euphemism the player learns to decode; one each keeps every wording distinct, and lets the engine rotate them without a repeat.
-- Check: `test/harness.test.js`.
+**7.8 Each grade wording quotes exactly one phrase,** in double quotes, and no two wordings quote the same phrase. The review shows the letter first, then the wording; a career never gets the same wording twice, and once a grade's wordings are all used, the review gives the letter alone.
+- Why: the quoted phrase is the euphemism the player learns to decode; one each keeps every wording distinct, and a joke told once is a joke, told five times a form letter.
+- Check: `test/harness.test.js`; `node test/repeats.js`.
 
 **7.9 Pay is always shown against last year.** The engine writes it on each year's review page; a card never states the player's pay or bonus.
 - Why: the change is what the player feels, and only the engine knows the figure.

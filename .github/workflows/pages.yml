@@ -57,10 +57,12 @@ jobs:
 
       # Text a newcomer can follow: every term in web/content/jargon.json is introduced before it
       # is used, and every line that names one of the run's people outside a card says who they are.
+      # And no sentence is shown twice in a career, outside a short list of structural lines.
       - name: Content checks
         run: |
           node test/jargon.js
           node test/castlines.js
+          node test/repeats.js
 
       # Seeded, so the same content always gives the same numbers. Fails the deploy if the
       # origin order inverts or PM becomes common for a first-timer.

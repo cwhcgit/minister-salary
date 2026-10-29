@@ -35,7 +35,7 @@ ok("a pack's cards load with their pack tag, are drawn and play through", () => 
     let run = H.newRun("grad", seed, { build: b });
     while (run.phase !== "ending" && run.turn < 95) {
       if (H.currentEvent(b, run.S).id === CARD.id) seen = true;
-      run = H.step(run, H.choices(run).find(c => c.available).id);
+      run = H.step(run, H.choices(run)[0].id);
     }
   }
   assert.ok(seen, "the pack card was never drawn");

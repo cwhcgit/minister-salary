@@ -227,7 +227,15 @@
         "Your performance is described as \"of the highest calibre, with much more to give\".",
         "Your performance is described as \"exemplary, and ready now\".",
         "Your performance is described as \"outstanding, and noticed well beyond the immediate team\".",
-        "Your performance is described as \"a model of what the role can be\"."
+        "Your performance is described as \"a model of what the role can be\".",
+        "Your performance is described as \"an exceptional contributor, ready for the next level\".",
+        "Your performance is described as \"outstanding, with impact well beyond the role\".",
+        "Your performance is described as \"a role model for peers, in every respect\".",
+        "Your performance is described as \"consistently exceptional, and widely sought after\".",
+        "Your performance is described as \"excellent, and stretched well beyond the job description\".",
+        "Your performance is described as \"first among a very strong cohort\".",
+        "Your performance is described as \"outstanding in judgement as well as delivery\".",
+        "Your performance is described as \"a top performer, without reservation\"."
       ]
     },
     {
@@ -242,7 +250,15 @@
         "Your performance is described as \"highly effective, and well regarded by stakeholders\".",
         "Your performance is described as \"a strong year, with clear evidence of impact\".",
         "Your performance is described as \"above expectations in most areas, and well above in one\".",
-        "Your performance is described as \"strong, and increasingly sought out by others\"."
+        "Your performance is described as \"strong, and increasingly sought out by others\".",
+        "Your performance is described as \"very strong, with clear upward momentum\".",
+        "Your performance is described as \"a consistent high performer\".",
+        "Your performance is described as \"valued well beyond the immediate team\".",
+        "Your performance is described as \"strong delivery, and growing influence\".",
+        "Your performance is described as \"regularly exceeding what is asked\".",
+        "Your performance is described as \"very good, and getting better\".",
+        "Your performance is described as \"an effective contributor, increasingly relied upon\".",
+        "Your performance is described as \"above the bar, comfortably\"."
       ]
     },
     {
@@ -257,7 +273,15 @@
         "Your performance is described as \"competent across the board\".",
         "Your performance is described as \"consistent, and well within expectations\".",
         "Your performance is described as \"sound, and much appreciated\".",
-        "Your performance is described as \"good, without qualification\"."
+        "Your performance is described as \"good, without qualification\".",
+        "Your performance is described as \"dependable, and an asset to the team\".",
+        "Your performance is described as \"meeting expectations, steadily\".",
+        "Your performance is described as \"reliable throughout the year\".",
+        "Your performance is described as \"solid in delivery, and well liked\".",
+        "Your performance is described as \"performing at the level of the role\".",
+        "Your performance is described as \"steady, and appreciated by colleagues\".",
+        "Your performance is described as \"good work, delivered as expected\".",
+        "Your performance is described as \"fully effective in the current role\"."
       ]
     },
     {
@@ -272,7 +296,15 @@
         "Your performance is described as \"acceptable, given the circumstances\".",
         "Your performance is described as \"developing, and encouraged to take greater ownership\".",
         "Your performance is described as \"on track in some respects\".",
-        "Your performance is described as \"broadly adequate, in a mixed year\"."
+        "Your performance is described as \"broadly adequate, in a mixed year\".",
+        "Your performance is described as \"meeting the basic requirements of the role\".",
+        "Your performance is described as \"uneven, with some bright spots\".",
+        "Your performance is described as \"partly meeting expectations\".",
+        "Your performance is described as \"adequate, with clear room for improvement\".",
+        "Your performance is described as \"making progress, at a measured pace\".",
+        "Your performance is described as \"satisfactory in parts\".",
+        "Your performance is described as \"still settling into the demands of the role\".",
+        "Your performance is described as \"not quite there yet, though the effort is visible\"."
       ]
     },
     {
@@ -285,7 +317,9 @@
         "Your performance is described as \"not yet where we would hope\".",
         "Your performance is described as \"a concern, which we are confident can be addressed\".",
         "Your performance is described as \"in need of closer support in the coming year\".",
-        "Your performance is described as \"a matter for a candid conversation\"."
+        "Your performance is described as \"a matter for a candid conversation\".",
+        "Your performance is described as \"falling short of the role's requirements\".",
+        "Your performance is described as \"below the level expected, for now\"."
       ]
     }
   ],
@@ -834,6 +868,18 @@
     "No bigger job this year, despite a good one. A newer Member is asked to make the closing speech on the bill you led.",
     "Another strong year, and the same job. A newspaper lists possible future Prime Ministers, and your name is in the last paragraph."
   ],
+  "heatHints": [
+    "A journalist has been asking around about something old.",
+    "A former colleague mentions, too casually, that someone from a newspaper called to ask about your early years.",
+    "An old file of yours has been requested from the archives, and the request form leaves the name blank.",
+    "Someone has been asking your old division for photographs from a project you ran years ago, \"for background\".",
+    "A reporter you have never met knows the name of a vendor you dealt with years ago, and says it to you at a reception, by way of hello.",
+    "Your old assistant, long retired, calls to say a young man from a newspaper visited, and was very polite.",
+    "An anonymous account online has started asking questions about decisions you made years ago. The questions are well researched.",
+    "At a dinner, someone you trust says, quietly, that your name has come up in a newsroom, and not for a profile.",
+    "A journalist emails your office for \"a short comment\" on something from long ago, with three attachments. You were copied on all of them at the time.",
+    "Someone has pulled the minutes of a meeting you chaired years ago, and the people who were at it are being called, one by one."
+  ],
   "ageFloorLines": [
     "The promotion board finds you ready for the next rung but too young for it: \"ready, in time\". Nobody says how much time.",
     "You are told you are too young for the next rung, and need \"a little more seasoning\". The word does not appear in the competency framework.",
@@ -866,67 +912,115 @@
         "{A} is not in question; {B} is.",
         "Nobody doubts {A}. {B} is another matter.",
         "{A} carried the year. {B} held it back.",
-        "There were no complaints about {A}. There were some about {B}."
+        "There were no complaints about {A}. There were some about {B}.",
+        "{A} kept the grade up; {B} kept it from going higher.",
+        "The file is lopsided: strong on {A}, short on {B}."
       ],
       "carried": [
         "{A} did most of the work, and nothing else held the grade back.",
         "{A} is the strong part of your file, and the rest is good enough.",
-        "The grade rests on {A}, and nothing else in the file pulls it down."
+        "The grade rests on {A}, and nothing else in the file pulls it down.",
+        "Most of the grade is {A}, and the rest of the file does not get in its way."
       ],
       "thin": [
         "Nothing in your file is strong yet. {B} needs the most work.",
         "Your file has no strong suit yet, and the first thing to fix is {B}.",
-        "Nothing in your file is carrying you yet, least of all {B}."
+        "Nothing in your file is carrying you yet, least of all {B}.",
+        "No part of your file is carrying the grade yet, and the weakest part is {B}.",
+        "Your file is thin all round, and thinnest on {B}.",
+        "The grade needs something to rest on, and the place to start is {B}."
       ],
       "even": [
         "Your competence, standing and reputation are all middling, and none of them is a problem.",
         "Nothing in your file stands out, good or bad.",
-        "Nobody had a complaint about your work, and nobody had a compliment."
+        "Nobody had a complaint about your work, and nobody had a compliment.",
+        "Nothing in the file pulls the {grade} up, and nothing pulls it down.",
+        "Your file is even, middling, and unremarkable, and the {grade} reflects it."
       ],
       "strong": [
         "Nobody had a complaint about your competence, your standing or your reputation.",
         "There is no weak spot in your file, and people looked.",
-        "{competence}, {standing} and {reputation} are all strong."
+        "{competence}, {standing} and {reputation} are all strong.",
+        "Every part of your file is strong, and the {grade} says so.",
+        "The panel found nothing to mark you down for, and gave you {grade}.",
+        "There is no weak part of the file to point to, and the grade is {grade}.",
+        "Your competence, standing and reputation all hold up, and so does the {grade}."
       ],
       "choiceDown": [
         "A choice this year that counted against you took the grade down to {grade}.",
-        "One choice this year cost you a grade, and it came down to {grade}."
+        "One choice this year cost you a grade, and it came down to {grade}.",
+        "Without one choice this year the grade would have been higher than {grade}.",
+        "A choice this year was held against you at the appraisal, and the grade fell to {grade}."
       ],
       "choiceAgainst": [
         "A choice this year counted against you, though not by a whole grade.",
-        "A choice this year counted against you, but not enough to cost a grade."
+        "A choice this year counted against you, but not enough to cost a grade.",
+        "A choice this year counted against you, and the {grade} survived it.",
+        "One choice this year was held against you, though the grade stayed at {grade}.",
+        "Someone remembered a choice of yours at the appraisal, but not enough to move the {grade}."
       ],
       "choiceUp": [
         "A choice this year that counted in your favour lifted the grade to {grade}.",
-        "One choice this year earned you a grade, and it went up to {grade}."
+        "One choice this year earned you a grade, and it went up to {grade}.",
+        "Without one choice this year the grade would have been lower than {grade}.",
+        "A choice this year was remembered at the appraisal, and the grade rose to {grade}."
       ],
       "choiceFor": [
         "A choice this year counted in your favour, though not by a whole grade.",
-        "A choice this year counted in your favour, but not enough to move the grade."
+        "A choice this year counted in your favour, but not enough to move the grade.",
+        "A choice this year was remembered in your favour, and the grade stayed at {grade}.",
+        "One choice this year counted for you, though the {grade} would have been the same without it.",
+        "Someone remembered a choice of yours kindly at the appraisal; the grade is {grade} either way."
       ],
       "luckUp": [
         "Luck went your way this year, and the grade went up to {grade}.",
-        "The year went your way, and that lifted the grade to {grade}."
+        "The year went your way, and that lifted the grade to {grade}.",
+        "The year was kinder than your file, and the grade came out at {grade}.",
+        "The year broke your way, and the grade landed at {grade}.",
+        "Good timing accounts for part of this year's {grade}; your file accounts for the rest.",
+        "Things outside your control went right this year, and the grade is {grade} for it.",
+        "The panel met you in a good year, and wrote down {grade}.",
+        "Your file did not change much; your luck did, and the grade is {grade}."
       ],
       "luckDown": [
         "Luck went against you this year, and the grade came down to {grade}.",
-        "The year went against you, and that took the grade down to {grade}."
+        "The year went against you, and that took the grade down to {grade}.",
+        "The year was harder on you than your file was, and the grade came out at {grade}.",
+        "The year broke the wrong way, and the grade landed at {grade}.",
+        "Poor timing accounts for part of this year's {grade}, and the file for the rest of it.",
+        "Things outside your control went wrong this year, and the grade is {grade} for it.",
+        "The panel met you in a hard year, and wrote down {grade}.",
+        "Your file held up; your luck did not, and the grade is {grade}."
       ],
       "better": [
         "Your file is stronger than it was a year ago.",
-        "Your file has improved since last year, and the grade has followed it."
+        "Your file has improved since last year, and the grade has followed it.",
+        "Your file is better than last year's, and the {grade} catches up with it.",
+        "The file has moved up since last year, and so has the grade, to {grade}.",
+        "A stronger file this year, and a grade to match: {grade}."
       ],
       "worse": [
         "Your file is weaker than it was a year ago.",
-        "Your file has slipped since last year, and the grade has followed it."
+        "Your file has slipped since last year, and the grade has followed it.",
+        "Your file is weaker than last year's, and the {grade} follows it down.",
+        "The file has slipped since last year, and so has the grade, to {grade}.",
+        "A weaker file this year, and a grade to match: {grade}."
       ],
       "lastHigh": [
         "Last year's grade was higher than your file deserved, and this year's is not.",
-        "Last year's grade flattered you; this year's does not."
+        "Last year's grade flattered you; this year's does not.",
+        "Last year's grade was kind to you; this year's {grade} is what the file is worth.",
+        "Last year's grade ran ahead of your file, and this year's {grade} does not.",
+        "This year's {grade} is the file's true level; last year's was a little generous.",
+        "Last year's grade was the year's luck, and this year's {grade} is the file."
       ],
       "lastLow": [
         "Last year's grade was lower than your file deserved, and this year's is not.",
-        "Last year's grade undersold you; this year's catches up."
+        "Last year's grade undersold you; this year's catches up.",
+        "Last year's grade sold your file short; this year's {grade} does not.",
+        "Last year's grade was the year's bad luck, and this year's {grade} is the file.",
+        "This year's {grade} is where your file has been all along; last year's grade was a little harsh.",
+        "Last year's grade lagged behind your file, and this year's {grade} catches up."
       ]
     },
     "swing": {
@@ -934,48 +1028,64 @@
         "up": [
           "People upstairs will remember this.",
           "Your standing upstairs goes up. Nobody says so, but it does.",
-          "Someone senior has made a note of this, in your favour."
+          "Someone senior has made a note of this, in your favour.",
+          "Your standing upstairs rises, and the corridor greetings get warmer.",
+          "Your standing upstairs is higher after this, and your emails are answered sooner.",
+          "Your name now comes up upstairs, in the right way."
         ],
         "down": [
           "People upstairs will remember this, and not fondly.",
           "Your standing upstairs takes a knock. Nobody will mention it.",
-          "Someone senior has made a note of this. It will not help you."
+          "Someone senior has made a note of this. It will not help you.",
+          "Your standing upstairs slips, and the meetings you are copied into get fewer."
         ]
       },
       "reputation": {
         "up": [
           "Your reputation outside the building grows.",
           "More people outside the building know your name now, for good reasons.",
-          "People outside the building have started to hear your name."
+          "People outside the building have started to hear your name.",
+          "Your reputation outside the building rises, by word of mouth.",
+          "Outside the building, your name is starting to mean something good."
         ],
         "down": [
           "Your reputation outside the building takes a knock.",
           "People outside the building think a little less of you now.",
-          "Outside the building, your name now comes up for the wrong reasons."
+          "Outside the building, your name now comes up for the wrong reasons.",
+          "Your reputation outside the building slips, and you hear about it second-hand."
         ]
       },
       "competence": {
         "up": [
           "You are better at the job after this, and people can see it.",
           "Your competence is no longer in question on this one.",
-          "Your competence grows. The work teaches you more than the last two courses did."
+          "Your competence grows. The work teaches you more than the last two courses did.",
+          "Your competence is clearer to everyone now, you included.",
+          "You know the job better after this, and so does everyone watching."
         ],
         "down": [
           "Questions are now being asked about your competence.",
           "This does your competence no favours, and people noticed.",
-          "You come out of this looking less sure of the job than you went in."
+          "You come out of this looking less sure of the job than you went in.",
+          "Your competence looks shakier now than it did a month ago."
         ]
       },
       "integrity": {
         "up": [
           "Your integrity holds, whatever else this costs you.",
           "You did the right thing. Your integrity is the better for it.",
-          "You can look at yourself in the lift mirror tomorrow. Your integrity is intact."
+          "You can look at yourself in the lift mirror tomorrow. Your integrity is intact.",
+          "Your integrity is the stronger for this, whatever it cost.",
+          "You sleep well after this one. Your integrity has earned it.",
+          "Nobody will thank you for this, and your integrity does not need them to.",
+          "Your integrity comes out of this better than your diary does."
         ],
         "down": [
           "Your integrity takes a knock. You notice, even if nobody else does.",
           "You tell yourself it was necessary. Your integrity is less sure.",
-          "Your integrity pays for this one, and you know it."
+          "Your integrity pays for this one, and you know it.",
+          "Your integrity gives a little here, and you feel where.",
+          "It is a small thing, and your integrity is smaller for it."
         ]
       }
     },
@@ -985,56 +1095,62 @@
         "up": [
           "The party leadership will remember this, in your favour.",
           "{standing} goes up. Nobody says so, but the Whip's notes to you get shorter and friendlier.",
-          "Someone in the party leadership has made a note of this, in your favour."
+          "Someone in the party leadership has made a note of this, in your favour.",
+          "{standing} rises, and you are asked to speak earlier in the debate next time.",
+          "The leadership's view of you improves; your calls are returned on the same day.",
+          "{standing} is the better for this, and it shows in who sits next to you at party dinners."
         ],
         "down": [
           "The party leadership will remember this, and not fondly.",
           "{standing} takes a knock. Nobody will mention it to you.",
-          "Someone in the party leadership has made a note of this. It will not help you."
+          "Someone in the party leadership has made a note of this, and it is not a compliment.",
+          "{standing} slips, and party headquarters is suddenly very busy when you call."
         ]
       },
       "reputation": {
         "up": [
           "{reputation} grows.",
           "More voters know your name now, for good reasons.",
-          "More residents in your ward speak well of you now than a year ago."
+          "More residents in your ward speak well of you now than a year ago.",
+          "{reputation} rises, and strangers at the market start saying hello.",
+          "Your name is mentioned kindly on the radio, by a caller who is not one of your volunteers."
         ],
         "down": [
           "{reputation} takes a knock.",
           "Voters think a little less of you now.",
-          "In the coffee shops in your ward, your name now comes up for the wrong reasons."
+          "In the coffee shops in your ward, your name now comes up for the wrong reasons.",
+          "{reputation} slips, and your volunteers start answering questions you were never asked."
         ]
       },
       "competence": {
         "up": [
-          "You are better at the job after this, and people can see it.",
+          "You come out of this better at the work, and people in the party notice.",
           "{competence} is no longer in question on this one.",
-          "{competence} grows. The work teaches you more than any briefing paper did."
+          "{competence} grows. The work teaches you more than any briefing paper did.",
+          "{competence} rises, and other Members start asking you to read their speeches first."
         ],
         "down": [
-          "Questions are now being asked about your competence.",
-          "This does your competence no favours, and people noticed.",
-          "You come out of this looking less sure of the job than you went in."
+          "Questions are now being asked, in the party and outside it, about {competence}.",
+          "This does {competence} no favours, and people in the party noticed first.",
+          "You come out of this looking less sure of the brief than you went in.",
+          "{competence} takes a knock, and your next speech is checked by two people instead of one."
         ]
       },
       "integrity": {
         "up": [
-          "Your integrity holds, whatever else this costs you.",
-          "You did the right thing. Your integrity is the better for it.",
-          "You can look your volunteers in the eye at the next walkabout. Your integrity is intact."
+          "Your integrity holds, whatever this costs you at the next election.",
+          "You did the right thing, and your integrity knows it, even if the ward never will.",
+          "You can look your volunteers in the eye at the next walkabout. Your integrity is intact.",
+          "Your integrity is intact, which took some doing.",
+          "Your integrity holds. It will not come up at the next election, and it does not need to."
         ],
         "down": [
-          "Your integrity takes a knock. You notice, even if nobody else does.",
-          "You tell yourself it was necessary. Your integrity is less sure.",
-          "Your integrity pays for this one, and the ward will never know."
+          "Your integrity takes a knock, and the party's line makes it easier to ignore.",
+          "You tell yourself it was what the party needed. Your integrity is not convinced.",
+          "Your integrity pays for this one, and the ward will never know.",
+          "Your integrity bends a little here, and you are the only one who will remember it."
         ]
       }
-    },
-    "locked": {
-      "competence": "You haven't shown the competence for this yet.",
-      "standing": "You don't have the standing to ask for this yet.",
-      "reputation": "You'd need a stronger reputation for this.",
-      "integrity": "This would take more integrity than you have."
     },
     "verdicts": {
       "competence": {
@@ -1906,13 +2022,18 @@
     "HR sends you a link to the career transition portal, \"in case it is useful\".",
     "Your reporting officer mentions, twice, that a friend at a bank is hiring. It is phrased as news.",
     "A workshop called \"Planning Your Next Chapter\" appears in your calendar, booked by someone else.",
-    "Your reporting officer says the service is \"not for everyone\", while looking just past your shoulder."
+    "Your reporting officer says the service is \"not for everyone\", while looking just past your shoulder.",
+    "HR invites you to a briefing on \"options outside the service\". You are the only person invited.",
+    "Your reporting officer forwards you a job advertisement from a company in Jurong, with no message at all.",
+    "Someone from HR stops by your desk to ask how you are, really. It is the \"really\" that worries you."
   ],
   "warnLinesPolitics": [
     "The Whip asks, kindly, whether you have thought about spending more time in your ward. It is phrased as concern.",
     "The Whip mentions several former Members who found fulfilling careers outside politics. It is phrased as an anecdote.",
     "The party's organising secretary asks about your plans for the next election. It is years away.",
-    "Your seat on a committee you liked is given to a newer Member, with thanks for your contribution."
+    "Your seat on a committee you liked is given to a newer Member, with thanks for your contribution.",
+    "The Whip suggests you take on less committee work next year, \"to focus\". Nobody says on what.",
+    "The party asks you to help mentor a new face in your ward, \"in case of anything\". Nothing is the matter, you are told."
   ],
   "endgame": {
     "note": "The end of a career, and what comes before it. See engine.js, 'the end of a career'. Retirement from the service at retireAge (64, from 1 July 2026); in politics the party asks Members not to stand at the first general election after renewalAge, unless stayOn holds (then politicalRetireAge, 70, is the stop for everyone). A Prime Minister serves a short tenure of cards (pmTenure: three or four, as many as fit before 70; the top job is not given without room for three). yearsInGrade sets the political ladder's pace (20 years from MP to Prime Minister, was 26), so careers peak at believable ages inside these limits. Lines are taken in an order drawn from the seed and never repeated in a run (headsUp lines cycle).",
@@ -2006,24 +2127,44 @@
     "headsUp": {
       "service": {
         "first": "Next year you'll have served long enough in your grade to be put up for {next} at the ranking, the yearly meeting where your bosses rank officers of the same grade against each other for promotion. Next year's appraisal will count.",
-        "blocked": "Next year you'll have served long enough in your grade for {next}, but your name is not on the list for the ranking, the yearly meeting that decides promotions. Nobody says why.",
+        "blocked": [
+          "Next year you'll have served long enough in your grade for {next}, but your name is not on the list for the ranking, the yearly meeting that decides promotions. Nobody says why.",
+          "By next year you'll have the years in your grade for {next}. The list for the ranking, the yearly meeting where promotions are decided, goes round without your name on it, and nobody mentions the gap.",
+          "Next year you'll be eligible for {next} on years served, but HR's list for the ranking, the yearly meeting that decides promotions, does not include you. You ask once. The answer is \"not this cycle\".",
+          "Your years in the grade will be enough for {next} next year, but your name will not go before the ranking, the yearly meeting that decides promotions. The explanation you get is a list of other people's strengths.",
+          "Next year you'll qualify for {next} on time served, and still not be put up at the ranking, the yearly meeting that decides promotions. HR calls it \"a question of fit\", without saying fit for what."
+        ],
         "lines": [
           "Your name goes forward at next year's ranking, for {next}.",
           "Next year's ranking will consider you for {next}, and next year's grade will be in front of it.",
           "Your file goes to next year's ranking panel, for {next}.",
-          "Next year you're up for {next} at the ranking. It would help to have a good year."
+          "Next year you're up for {next} at the ranking. It would help to have a good year.",
+          "Next year your name is on the ranking list for {next}. The list is confidential, so everyone on it behaves very well.",
+          "Next year the ranking considers you for {next}. People you have never worked with start copying you in on things, to see what you do with them.",
+          "Your file is in next year's ranking, for {next}, and someone has been asked to write a paragraph about you.",
+          "HR asks you to update your career summary before next year's ranking, where you will be considered for {next}. The form has a box for \"key achievements\", and a word limit."
         ]
       },
       "politics": {
-        "first": "Your name goes forward for {next} at the Prime Minister's next reshuffle, when ministers and office holders are moved between jobs: by then you'll have served long enough. Next year's appraisal will count.",
-        "blocked": "Next year you'll have served long enough to be considered for {next}, but your name is not in the papers for the reshuffle, when the Prime Minister moves ministers and office holders between jobs. Nobody says why.",
-        "blockedPm": "Next year you'll have served long enough to be weighed for the top job, but yours is not among the names being weighed. Nobody says why.",
+        "first": "Your name goes forward for {next} at the Prime Minister's next reshuffle, when ministers and office holders are moved between jobs: by then you'll have served long enough. The year ahead will count.",
+        "blocked": [
+          "Next year you'll have served long enough to be considered for {next}, but your name is not in the papers for the reshuffle, when the Prime Minister moves ministers and office holders between jobs. Nobody gives a reason.",
+          "You'll have served long enough for {next} by next year's reshuffle, when the Prime Minister moves ministers and office holders between jobs, but the shortlist the newspapers print leaves you off it. Nobody contradicts the newspapers.",
+          "By next year you'll have the time in office for {next}, but at the reshuffle, when the Prime Minister moves ministers and office holders between jobs, you are expected to \"continue your good work\" where you are.",
+          "Next year you'll be due for {next} on time served, but the reshuffle, when the Prime Minister moves ministers and office holders between jobs, is being planned without you. You can tell from how warmly everyone greets you.",
+          "You'll have served long enough for {next} by next year, but the reshuffle, when the Prime Minister moves ministers and office holders between jobs, will leave you where you are. The party calls you \"invaluable in your present role\"."
+        ],
+        "blockedPm": "Next year you'll have served long enough to be weighed for the top job, but yours is not among the names being weighed. Nobody explains, and you do not ask.",
         "pm": "Next year the party could choose you as its next leader, and so Prime Minister. It will be watching the year closely.",
         "lines": [
           "Your name is on the list for next year's reshuffle, for {next}.",
           "Next year's reshuffle will consider you for {next}, and next year's grade will be in front of it.",
           "The party's Whip, who keeps its Members in line, mentions that your name is in the papers for next year's reshuffle, for {next}.",
-          "Next year you're in line for {next}, if the year goes well."
+          "Next year you're in line for {next}, if the year goes well.",
+          "Next year's reshuffle will look at you for {next}. Your volunteers have heard, somehow, and are already saying \"when\", not \"if\".",
+          "The Prime Minister's Office asks for an updated résumé before next year's reshuffle, in which you are being considered for {next}. It asks politely, and twice.",
+          "Next year you are in the running for {next}. A senior minister you have barely spoken to invites you to lunch, and asks no questions at all, which is the question.",
+          "You are being considered for {next} at next year's reshuffle. The party's research staff ask for a list of your speeches, \"for the file\"."
         ]
       }
     },
@@ -2047,13 +2188,19 @@
       "seatAtRisk": [
         "The party's seat assessment for next year's general election lists your ward as \"competitive\". It is not a compliment.",
         "Your volunteers' own canvass for next year's election comes back closer than last time, and their chairman has started saying \"we\" instead of \"you\".",
-        "Party headquarters sends extra volunteers to your ward a year before the election. It only does that for the wards it is worried about."
+        "Party headquarters sends extra volunteers to your ward a year before the election. It only does that for the wards it is worried about.",
+        "The party's own polling for next year's general election has your ward \"in play\". The phrase is new to you, and you do not like it.",
+        "With next year's general election a year away, your ward is on a list at party headquarters headed \"Attention\". You had hoped for a different list.",
+        "A newer Member from the next ward offers to lend you volunteers for next year's general election. The offer is kind, and tells you everything.",
+        "Your volunteers' chairman asks for a meeting about next year's general election, and brings a spreadsheet. Nobody brings a spreadsheet to a safe seat.",
+        "The coffee shop uncles in your ward have started discussing next year's general election in front of you, as if you were not there. Last time, they discussed it as if you had already won."
       ],
       "pmFirstYear": "There is no appraisal for a Prime Minister, only the newspapers every morning and Parliament on sitting days.",
       "pmLastYear": "Your office starts boxing your papers for the National Archives. The boxes are numbered, and there are more of them than you expected.",
       "pmElection": [
         "The general election falls in your tenure. The party is returned with a clear majority, and the commentary spends a week deciding whether the win was yours or the party's.",
-        "Polling Day comes round while you are Prime Minister. The party is returned, and your own ward's result is the first read out on television, which your volunteers take personally."
+        "Polling Day comes round while you are Prime Minister. The party is returned, and your own ward's result is the first read out on television, which your volunteers take personally.",
+        "A general election comes due while you are Prime Minister, and the party is returned. On the night you speak from a school hall in your own ward, where the ceiling fans are louder than the cheering."
       ],
       "pmYears": [
         "Your diary for next year arrives already full. The one empty afternoon is marked \"hold\" by someone who is not you.",
@@ -2260,16 +2407,94 @@
     "nextSameTitle": "a step up to {grade}, the next grade in Cabinet",
     "rivalTag": "your batchmate",
     "sideways": {
-      "named": "That's three Cs in a row, so HR moves you sideways: the same grade, in another division. From next year your papers go to a new reporting officer instead of {senior}. It's meant as a fresh start. Nobody there asked for you, but the work is real.",
-      "plain": "That's three Cs in a row, so HR moves you sideways: the same grade, in another division, for a fresh start. Nobody there asked for you, but the work is real."
+      "lines": [
+        "That's three Cs in a row, so HR moves you sideways: the same grade, in another division. It's meant as a fresh start. Nobody there asked for you, but the work is real.",
+        "Three Cs in a row means a move, and HR has found you one: the same grade, a different division, and a desk by the window that nobody else wanted.",
+        "After three Cs in a row, HR moves you sideways, to another division at your grade. The transfer letter calls it \"a development opportunity\", in bold.",
+        "That makes three Cs in a row, and the service's answer is a sideways move: another division, the same grade, and a welcome email with your name spelt wrong.",
+        "Three Cs in a row, so you are moved sideways to another division, at the same grade. Your new colleagues are kind, and have clearly been briefed.",
+        "HR's rule after three Cs in a row is a fresh start, so you move sideways: another division, the same grade, and a handover file from someone who left in a hurry.",
+        "Three Cs in a row: HR moves you to another division at your grade, \"to see you in a different light\". The light is fluorescent, as before.",
+        "After a third C in a row you are posted sideways, to a division at the same grade that is short of people. Short enough that nobody asks why you came."
+      ],
+      "named": "From next year your papers go to a new reporting officer instead of {senior}."
     },
     "folder": {
       "note": "The Folder at the tea and the background check. The party's people are unnamed officials: no he or she (WRITING_RULES 4.8). {item} is a folder item from game.json folder.",
       "thin": "The folder on the table is thin. The person reading it seems, very slightly, disappointed.",
       "item": "In the folder: {item}.",
       "nothing": "There is nothing to disclose. Your interviewer closes the folder, which takes no time at all.",
-      "disclosed": "You disclose {item}. The interviewer writes something down.",
+      "disclosed": [
+        "You disclose {item}. The interviewer writes something down.",
+        "You disclose {item}. The interviewer turns a page, and keeps a finger on it.",
+        "You disclose {item}. There is a pause, long enough to count in.",
+        "You disclose {item}. The interviewer nods, as if it were already known, which it may have been.",
+        "You disclose {item}. The note-taker stops writing, then starts again.",
+        "You disclose {item}. The interviewer thanks you for it, which is not the same as being glad.",
+        "You disclose {item}. The interviewer underlines something on a page you cannot see."
+      ],
       "found": "{item}: on day four of the campaign, someone has found it."
-    }
+    },
+    "threeCsPolitics": [
+      "That's three Cs in a row, so the Whip moves you to chair a parliamentary committee nobody wanted to sit on. The work is real, at least.",
+      "That's three Cs in a row, so the Whip finds you a new responsibility: a parliamentary committee whose last report is older than some of its members. Nobody else wanted it, which is why it is yours.",
+      "That's three Cs in a row, so the Whip moves you onto a parliamentary committee that meets on Friday afternoons. It has a great deal of work and no audience at all.",
+      "That's three Cs in a row, so the Whip asks you to lead a parliamentary committee on a subject nobody can explain in one sentence. Eventually, you can."
+    ],
+    "gradeNoted": [
+      "The comments section includes the word \"however\".",
+      "The comments section has a sentence that begins \"While\".",
+      "The comments section runs a paragraph longer than last year's, and the extra paragraph is not praise.",
+      "Someone has added a line to the comments section in a different font.",
+      "The comments section mentions \"judgement\" twice, and not as a strength.",
+      "The comments section ends with the words \"going forward\".",
+      "The comments section refers to \"a recent episode\", and leaves it there.",
+      "The comments section is short, and every sentence in it is carefully neutral."
+    ],
+    "headsUpFallback": {
+      "service": [
+        "You will be considered for {next} at next year's ranking."
+      ],
+      "politics": [
+        "You will be considered for {next} at next year's reshuffle."
+      ]
+    },
+    "reElectionFallback": "You are returned to Parliament for a {term} term.",
+    "rivalSameTitle": "a more senior {title}",
+    "rivalFallback": {
+      "note": "When one kind of the batchmate's news (rival.json lines) has been used up in a career: a plain line, in words that change with the news. {title}: the batchmate's new grade; {now}: the player's. Never shown twice either.",
+      "promoted": [
+        "{rival}, your batchmate, has been promoted to {title}."
+      ],
+      "appointed": [
+        "{rival}, your batchmate, has been appointed {title}."
+      ],
+      "promotedApart": [
+        "{rival}, your batchmate, has moved up to {title}."
+      ],
+      "winService": [
+        "You and {rival}, your batchmate, were both up for promotion from {now} this year, and it went to you."
+      ],
+      "loseService": [
+        "You and {rival}, your batchmate, were both up for promotion from {now} this year, and it went to {rival}."
+      ],
+      "winPolitics": [
+        "You and {rival}, your batchmate, were both in line to move up from {now} this year, and the appointment went to you."
+      ],
+      "losePolitics": [
+        "You and {rival}, your batchmate, were both in line to move up from {now} this year, and the appointment went to {rival}."
+      ],
+      "rankedBelowService": [
+        "At this year's promotions for your grade, {now}, the panel put {rival}, your batchmate, ahead of you, and promoted neither of you."
+      ],
+      "rankedBelowPolitics": [
+        "This year's appointments left you and {rival}, your batchmate, both at {now}, with {rival} the nearer to moving up."
+      ]
+    },
+    "doubleJump": [
+      "This does not normally happen.",
+      "HR checks the paperwork twice before it goes out.",
+      "Your old colleagues need a moment to work out what to call you now."
+    ]
   }
 }

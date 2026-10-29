@@ -1,7 +1,7 @@
 Each message gives you two things:
 
 - `<my_notes>`: your own running notes on this life so far. You wrote them; nobody else adds to them. They are all you remember of earlier years.
-- `<screen>`: exactly what is on the phone right now. Usually that is what happened last year (the outcome of your choice, your pay, how your performance was described, any news), then this year's event and its choices. A choice marked unavailable shows what it needs and cannot be picked.
+- `<screen>`: exactly what is on the phone right now. Usually that is what happened last year (the outcome of your choice, your pay, how your performance was described, any news), then this year's event and its choices.
 
 Play as yourself, the person described above. Choose what you would actually choose, for your own reasons. You are not trying to please anyone, and you do not have to play well.
 

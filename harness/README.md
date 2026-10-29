@@ -6,19 +6,19 @@ Drives the web build's rules engine (`web/engine.js`) headlessly, for the bots i
 const H = require("./harness");
 let run = H.newRun("grad", 42, { name: "Tan Wei Ming", gender: "m" });   // the start screen; a blank name is drawn
 H.screenText(run);                       // what the phone shows: the only thing a blind agent gets
-H.choices(run);                          // [{ id: "A", text, available, requires }]
-run = H.step(run, "B");                  // returns a new run; refuses locked choices
+H.choices(run);                          // [{ id: "A", text }]: only the choices the player can take
+run = H.step(run, "B");                  // returns a new run; a letter as the screen shows it
 H.trace(run);                            // everything else, per turn and per run
 H.replay({ buildHash, origin, seed, name, gender, choices: ["B", "A", …] });   // exact replay
 ```
 
 ## Two records, kept apart
 
-**Screen** (`screen`, `screenText`): the event card, with locked choices shown with their in-world reason exactly as the UI shows them; last year's outcome, pay package, appraisal euphemism, and promotion, warning and rumour lines; the header with rank, age, year, place (the ministry, or a backbencher's seat) and wealth (the four stats are hidden during play, and a stat value on a play screen counts as a leak); the ending card, which reveals the four stats with their verdicts. On the phone a year is two screens: the outcome, as pages (the card's outcome, then one page per year, each opening with a "Year N · Age N" heading and shown under a header dated to that year), then the next event under the current header. The agent view joins them in that order, each page under its own header; `{ view: "event" }` and `{ view: "outcome" }` give each alone. `test/screen.test.js` plays careers through the real DOM and checks every field against this, so the two cannot drift apart unnoticed.
+**Screen** (`screen`, `screenText`): the event card, with only the choices the player can take, lettered as the UI shows them (a choice that needs a stat the player lacks is left off); last year's outcome, pay package, appraisal euphemism, and promotion, warning and rumour lines; the header with rank, age, year, place (the ministry, or a backbencher's seat) and wealth (the four stats are hidden during play, and a stat value on a play screen counts as a leak); the ending card, which reveals the four stats with their verdicts. On the phone a year is two screens: the outcome, as pages (the card's outcome, then one page per year, each opening with a "Year N · Age N" heading and shown under a header dated to that year), then the next event under the current header. The agent view joins them in that order, each page under its own header; `{ view: "event" }` and `{ view: "outcome" }` give each alone. `test/screen.test.js` plays careers through the real DOM and checks every field against this, so the two cannot drift apart unnoticed.
 
 The screen never contains CEP or Heat values, flags, choice effects, scheduled events, event ids or RNG rolls. `test/harness.test.js` enforces this with a field allowlist, and `harness/leak-check.js` scans thousands of generated screens.
 
-**Trace** (`trace`): per turn, the event and where it came from (random draw, priority, a consequence firing, or the empty-pool fallback), the choice and its effects, every sibling's effects and availability, stats before and after, flags set and cleared, consequences scheduled, missed or dropped, the appraisal score and its noise, the promotion check and why it passed or failed, and the election roll. Per run: origin, seed, choices, final state, pending consequences, and the cause chain behind the ending (`endingCause`), which classifies a loss as `choice`, `choice+luck`, `luck` or `drift`.
+**Trace** (`trace`): per turn, the event and where it came from (random draw, priority, a consequence firing, or the empty-pool fallback), the choice (its letter on the screen, and `own`, the card's own letter for it) and its effects, every sibling on the screen and its effects, stats before and after, flags set and cleared, consequences scheduled, missed or dropped, the appraisal score and its noise, the promotion check and why it passed or failed, and the election roll. Per run: origin, seed, choices, final state, pending consequences, and the cause chain behind the ending (`endingCause`), which classifies a loss as `choice`, `choice+luck`, `luck` or `drift`.
 
 The engine reports the appraisal, promotion and election details through a `trace` object it returns from `advance()`. The UI ignores it, and it changes no state and no random draw.
 

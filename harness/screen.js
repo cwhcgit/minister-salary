@@ -44,20 +44,14 @@ function header(build, S) {
     batchmate: S.rival ? build.engine.batchmate(build.content, S) : null, wealth: S.wealth });
 }
 
-// A locked choice gives an in-world reason, never the number (engine.lockedText; same words as ui.js).
-function requirementText(build, ch) {
-  return build.engine.lockedText ? build.engine.lockedText(build.content, ch)
-    : "Requires " + Object.entries(ch.requiresStat).map(([k, v]) => `${k} ${v}`).join(", ");
-}
-
+// The card and the choices the player can take, lettered in the order shown (same as ui.js). A
+// choice the player lacks the stats for is not on the card at all: the engine leaves it off
+// (engine.eventOf). An older build still lists one, so it is left off here too.
 function eventCard(build, S, ev) {
   return {
     title: ev.title,
     body: ev.body,
-    choices: ev.choices.map((c, i) => {
-      const ok = build.engine.choiceAvailable(c, S);
-      return { id: LETTERS[i], text: c.text, available: ok, requires: ok ? null : requirementText(build, c) };
-    })
+    choices: ev.choices.filter(c => build.engine.choiceAvailable(c, S)).map((c, i) => ({ id: LETTERS[i], text: c.text }))
   };
 }
 
@@ -142,7 +136,7 @@ function toText(view, opts = {}) {
   if (view.event) {
     const ev = view.event;
     if (view.header) out.push(headerText(view.header));
-    const ch = ev.choices.map(c => `  ${c.id}) ${c.text}${c.available ? "" : `   [unavailable: ${c.requires}]`}`);
+    const ch = ev.choices.map(c => `  ${c.id}) ${c.text}`);
     out.push(`THIS YEAR: ${ev.title}\n${ev.body}\n\n${ch.join("\n")}`);
   }
   return out.join("\n\n");

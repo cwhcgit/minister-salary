@@ -141,7 +141,7 @@ export async function playSession(ctx: SessionCtx, spec: SessionSpec): Promise<S
       while (run.phase === "event" && run.turn <= ctx.maxTurns) {
         const screen = H.screenText(run, { tags: ctx.tags });
         leakCheck(screen);
-        const available = H.choices(run).filter(x => x.available).map(x => x.id);
+        const available = H.choices(run).map(x => x.id);
         const a = await ask(funTurnText({ screen, meter: meter.value, opener }), available);
         opener = null;
         const shownTurn = run.turn, year = run.S.year;

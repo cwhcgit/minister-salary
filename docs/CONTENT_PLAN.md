@@ -359,7 +359,8 @@ name the person it remembers. An outcome screen carries at most one line about t
 (`cast.lines`): someone you have history with first, then the peer, senior, journalist, junior,
 grassroots leader and fellow MP, a departure before an arrival; nobody who arrives and leaves within
 one screen is mentioned. Each kind of line has three or four versions, taken in an order drawn from
-the seed and never repeated within a run; write new ones there, to rules 3.13 and 4.5.
+the seed; neither a line nor any sentence in it is shown twice in a career, by this pool or any
+other (rule 3.13). Write new ones there, to rules 3.13 and 4.5.
 
 **Worked example: the junior.** `late_night` names the junior and records how you treated them:
 

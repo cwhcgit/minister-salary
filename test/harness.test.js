@@ -15,7 +15,7 @@ function playRandom(origin, seed, opts = {}) {
   const screens = [];
   for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
     if (opts.screens) screens.push({ view: H.screen(run), text: H.screenText(run) });
-    const live = H.choices(run).filter(c => c.available);
+    const live = H.choices(run);
     run = H.step(run, live[Math.floor(r() * live.length)].id);
   }
   if (opts.screens) screens.push({ view: H.screen(run), text: H.screenText(run) });
@@ -98,18 +98,49 @@ ok('build hash is stable, and changes when the content does', () => {
   assert.throws(() => H.replay({ buildHash: '000000000000', origin: 'grad', seed: 1, choices: [] }, { build }));
 });
 
-ok('locked and unknown choices are refused', () => {
-  let found = false;
-  for (let seed = 1; seed < 400 && !found; seed++) {
+ok('a choice the player lacks the stats for is not shown at all, and the buttons map to the card\'s own choices', () => {
+  const E = build.engine, C = build.content;
+  // every card the content can draw keeps at least two choices on screen, or is not drawn
+  let hidden = 0;
+  for (let seed = 1; seed < 400 && hidden < 5; seed++) {
     let run = H.newRun('poly', seed, { build });
-    for (let t = 0; t < 30 && run.phase === 'event'; t++) {
-      const locked = H.choices(run).find(c => !c.available);
-      if (locked) { assert.throws(() => H.step(run, locked.id), /locked/); found = true; break; }
-      run = H.step(run, H.choices(run).find(c => c.available).id);
+    for (let t = 0; t < 40 && run.phase === 'event'; t++) {
+      const ev = H.currentEvent(build, run.S), shown = H.choices(run);
+      assert.ok(shown.length >= 2, `${ev.id}: ${shown.length} choice on screen`);
+      assert.deepStrictEqual(shown.map(c => c.id), View.LETTERS.slice(0, shown.length).split(''), 'the buttons are lettered A, B, C... with no gap');
+      assert.ok(shown.every(c => Object.keys(c).sort().join() === 'id,text'), 'a choice on screen is its letter and its words, nothing else');
+      if ((ev.hidden || []).length) {
+        hidden++;
+        const card = C.events.concat(C.rival ? C.rival.events : []).find(e => e.id === ev.id);
+        for (const i of ev.hidden) assert.ok(!E.choiceAvailable(card.choices[i], run.S), `${ev.id}: choice ${i} hidden but open`);
+        assert.ok(!H.screenText(run).includes(card.choices[ev.hidden[0]].text), `${ev.id}: the hidden choice is on the screen`);
+        assert.throws(() => H.step(run, View.LETTERS[shown.length]), /no choice/, 'a letter past the last button is refused');
+      }
+      run = H.step(run, shown[Math.floor(H.rng(seed * 7 + t)() * shown.length)].id);
     }
   }
-  assert.ok(found, 'expected some locked choice within 400 poly runs');
+  assert.ok(hidden >= 5, `expected cards with a choice left off (${hidden})`);
   assert.throws(() => H.step(H.newRun('grad', 5, { build }), 'Z'), /no choice/);
+  // the mapping: a card whose first choice cannot be taken shows the rest as A, B, and pressing B
+  // is the card's own third choice, as the trace and the history record it
+  const card = { id: 'test_hidden_first', title: 'T', body: 'A test card.', choices: [
+    { text: 'Locked.', requiresStat: { integrity: 101 }, outcome: 'L.', effects: {} },
+    { text: 'Open one.', outcome: 'O1.', effects: { competence: 1 } },
+    { text: 'Open two.', outcome: 'O2.', effects: { standing: 1 } }] };
+  const C2 = { ...C, events: C.events.concat([card]) };
+  const S = { ...E.newGame(C2, 'grad', 'X', 9), currentEvent: card.id };
+  const shown = E.eventOf(C2, S);
+  assert.deepStrictEqual(shown.choices.map(c => c.text), ['Open one.', 'Open two.']);
+  assert.deepStrictEqual([shown.order, shown.hidden], [[1, 2], [0]]);
+  const res = E.advance(C2, S, 1);
+  assert.strictEqual(res.outcome, 'O2.');
+  const h = res.state.history[res.state.history.length - 1];
+  assert.deepStrictEqual([h.choice, h.hidden], [2, [0]], 'the history records the card\'s own choice, and the one that was hidden');
+  // a card that would show one choice is not drawn
+  const one = { ...card, id: 'test_one_open', weight: 1e6, choices: [card.choices[0], card.choices[1]] };
+  const C3 = { ...C, events: C.events.concat([one]) };
+  assert.ok(!E.eligible(one, E.newGame(C3, 'grad', 'X', 9), C3), 'a card with one choice to show is not drawn');
+  assert.ok(E.eligible(one, { ...E.newGame(C3, 'grad', 'X', 9), integrity: 101 }, C3), 'and is drawn once both can be taken');
 });
 
 ok('the screen view carries nothing hidden', () => {
@@ -117,7 +148,7 @@ ok('the screen view carries nothing hidden', () => {
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
     'namePlaceholder', 'genders', 'player', 'gender',   // the start screen's name field and gender choice
     'header', 'rank', 'grade', 'age', 'year', 'place', 'wealth', 'wealthLabel', 'batchmate', 'label',
-    'outcome', 'pages', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
+    'outcome', 'pages', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id',
     'ending', 'epitaph', 'positionLabel', 'position', 'ageLabel', 'lifetimeEarnings',
     // the ending screen's four stats and its Declassified file: the hidden values, revealed on
     // purpose once the run is over
@@ -189,7 +220,7 @@ ok('appraisal quotes: one quoted phrase each, kept on Meanwhile lines, and none 
     const r = H.rng(seed + 1), byGrade = {};
     let run = H.newRun(origin, seed, { build });
     for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
-      const live = H.choices(run).filter(c => c.available);
+      const live = H.choices(run);
       run = H.step(run, live[Math.floor(r() * live.length)].id);
       for (const l of run.last.log) {
         assert.ok(!/Appraisal: noted/.test(l.text), `a Meanwhile line lost its quote: ${l.text}`);
@@ -292,7 +323,7 @@ ok('the run\'s cast: names, pronouns, grades and memory hold for whole careers',
       const ev = H.currentEvent(build, S);
       if (ev.who) named++;
       assert.ok(!/\{[^{}\s]+\}/.test([ev.title, ev.body, ...ev.choices.flatMap(c => [c.text, c.outcome])].join(' ')), `raw token on ${ev.id}`);
-      const live = H.choices(run).filter(c => c.available);
+      const live = H.choices(run);
       run = H.step(run, live[Math.floor(r() * live.length)].id);
     }
   }
@@ -482,13 +513,13 @@ ok('Meanwhile lines: deterministic, and the next run prefers lines this one did 
   assert.ok(memory.some(k => k.startsWith('mw:')), 'the run remembers its Meanwhile lines');
   let a = H.newRun('grad', seed, { build, recent: memory });
   const r = H.rng(9);
-  while (a.phase !== 'ending' && a.turn < 95) { const live = H.choices(a).filter(c => c.available); a = H.step(a, live[Math.floor(r() * live.length)].id); }
+  while (a.phase !== 'ending' && a.turn < 95) { const live = H.choices(a); a = H.step(a, live[Math.floor(r() * live.length)].id); }
   const t = H.trace(a);
   assert.deepStrictEqual(H.trace(H.replay({ buildHash: t.buildHash, origin: 'grad', seed, name: t.name, recent: memory, choices: t.choices })), t);
   // with every line of a habit remembered but one, that one is taken first
   const S = JSON.parse(JSON.stringify(first.S));
   const ev = build.content.events.find(e => e.id === 'the_work');
-  S.linesUsed = {}; S.fillerSeen.the_work = 1; S.habits.the_work = 0; S.currentEvent = '__montage:the_work';
+  S.linesUsed = {}; S.said = []; S.fillerSeen.the_work = 1; S.habits.the_work = 0; S.currentEvent = '__montage:the_work';
   const n = ev.montageLines[0].length;
   S.recent = Array.from({ length: n }, (_, i) => `mw:the_work:0#${i}`).filter(k => k !== `mw:the_work:0#${n - 1}`);
   assert.strictEqual(build.engine.eventOf(build.content, S).body, ev.montageLines[0][n - 1]);
@@ -628,8 +659,7 @@ ok('the four stats in words: the why line only when a grade needs explaining, bi
     let run = H.newRun(origin, seed, { build, rival: seed % 2 === 0 });
     let prevGrade = null, lastSwing = -99, lastWhy = null;
     for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
-      const live = H.choices(run).filter(c => c.available);
-      for (const c of H.choices(run)) if (!c.available) assert.ok(c.requires && !/\d/.test(c.requires), `a locked choice shows a number: ${c.requires}`);
+      const live = H.choices(run);
       run = H.step(run, live[Math.floor(r() * live.length)].id);
       if (run.phase === 'ending') break;
       const log = run.last.log;
@@ -702,7 +732,7 @@ ok('the player\'s name and gender are text only: the same seed plays identically
     sf.forEach((x, i) => {
       if (i > 0 && x.text !== sm[i].text) differ++;   // past the start screen, which names the gender
       assert.deepStrictEqual(Object.keys(x.view), Object.keys(sm[i].view));
-      if (x.view.event) assert.deepStrictEqual(x.view.event.choices.map(c => [c.id, c.available]), sm[i].view.event.choices.map(c => [c.id, c.available]));
+      if (x.view.event) assert.deepStrictEqual(x.view.event.choices.map(c => c.id), sm[i].view.event.choices.map(c => c.id));
     });
     if (runs[0].run.phase === 'ending') {
       endings++;
@@ -935,7 +965,7 @@ ok('hidden witnesses: never named, a nudge and never a jump, landing one to thre
     let run = H.newRun(origin, seed, { build, rival: seed % 2 === 0, name: 'Tan Wei Ling', gender: 'f' });
     const lines = [];
     for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
-      const live = H.choices(run).filter(c => c.available);
+      const live = H.choices(run);
       run = H.step(run, live[Math.floor(r() * live.length)].id);
       const turn = run.turns[run.turns.length - 1];
       if (turn.appraisal && turn.appraisal.witness) assert.ok(Math.abs(turn.appraisal.witness) <= W.cap, 'a year\'s witnesses over the cap');
@@ -1022,7 +1052,7 @@ ok('hidden witnesses in politics: a politics career can show a politics witness 
     let inPolitics = false;
     for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
       // head for politics: take the tea, then play at random
-      const live = H.choices(run).filter(c => c.available);
+      const live = H.choices(run);
       const tea = run.S.currentEvent === 'tea_session' || run.S.currentEvent === 'the_vetting';
       run = H.step(run, (tea ? live[0] : live[Math.floor(r() * live.length)]).id);
       if (run.S.rank >= 8) inPolitics = true;

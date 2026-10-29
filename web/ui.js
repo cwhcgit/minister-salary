@@ -143,12 +143,9 @@ function eventScreen() {
     <div class="card">
       <h2 class="serif">${esc(ev.title)}</h2>
       <div class="body serif">${esc(ev.body)}</div>
-      <div class="choices">${ev.choices.map((c, i) => {
-        const ok = Engine.choiceAvailable(c, S);
-        // a locked choice says why in words, never the number it needs
-        const why = ok ? "" : `<span class="why">${esc(Engine.lockedText(content, c))}</span>`;
-        return `<button class="choice" data-i="${i}" ${ok ? "" : "disabled"}>${esc(c.text)}${why}</button>`;
-      }).join("")}</div>
+      <div class="choices">${ev.choices.map((c, i) =>
+        // only the choices the player can take: the engine leaves the others off the card
+        `<button class="choice" data-i="${i}">${esc(c.text)}</button>`).join("")}</div>
     </div>`;
   app.querySelectorAll(".choice").forEach(b =>
     b.onclick = () => choose(+b.dataset.i));
