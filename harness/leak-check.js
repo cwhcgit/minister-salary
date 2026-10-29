@@ -59,9 +59,11 @@ function screenTerms(build) {
   return [...ids];
 }
 
-// The four stats are hidden during play and revealed only on the ending screen, whose first
-// line is "<NAME> · THE FINAL POSITION" (harness/screen.js). opts.ending overrides the guess.
-const ENDING_LINE = /^[^\n]* · THE FINAL POSITION\n/;
+// The four stats are hidden during play and revealed only on the ending card, whose first line
+// is "<NAME> · THE FINAL POSITION" (harness/screen.js). The ending screen shows the last year's
+// outcome above that card, and the stats stay hidden there, so only the text before the line is
+// checked. opts.ending (no line in the text) treats the whole text as the ending card.
+const ENDING_LINE = /^[^\n]* · THE FINAL POSITION$/m;
 const STAT_VALUES = [
   [/\b(REP|STAND|INTEG|COMP)\s+\(?[+-]?\d/, "stat value during play"],   // the old header labels
   [/\b(reputation|standing|integrity|competence)\b\s*[:=(]?\s*\d{1,3}\b/i, "stat value during play"]
@@ -69,9 +71,10 @@ const STAT_VALUES = [
 
 function checkScreen(text, build, terms = screenTerms(build), opts = {}) {
   const hits = [];
-  const ending = opts.ending !== undefined ? !!opts.ending : ENDING_LINE.test(text);
-  if (!ending) for (const [re, why] of STAT_VALUES) {
-    const m = text.match(re);
+  const at = text.search(ENDING_LINE);
+  const during = at >= 0 ? text.slice(0, at) : opts.ending ? "" : text;   // what is shown before the ending card
+  for (const [re, why] of STAT_VALUES) {
+    const m = during.match(re);
     if (m) hits.push({ why, match: m[0] });
   }
   for (const id of terms) if (text.includes(id)) hits.push({ why: "internal id", match: id });

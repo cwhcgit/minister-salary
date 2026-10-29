@@ -450,6 +450,101 @@ ok('story chains: Declassified names each story once, a bond can be extended, an
   assert.ok(L.indexOf('The test') > L.indexOf('Exposure'), 'story lines come after Exposure');
 });
 
+ok('a cast member\'s aTitle takes "a" or "an" by how the title is said, initialisms by their first letter', () => {
+  const E = build.engine, C = build.content;
+  for (const [w, a] of [['MP', 'an'], ['RC chairman', 'an'], ['SMC', 'an'], ['HDB flat', 'an'], ['FAQ', 'an'], ['CCC chairman', 'a'], ['CCMC chairman', 'a'],
+    ['GRC', 'a'], ['URA officer', 'a'], ['Assistant Director', 'an'], ['Director', 'a'], ['Member of Parliament', 'a'], ['editor', 'an']])
+    assert.strictEqual(E.article(w), a, `${a} ${w}`);
+  // as rendered: a grassroots leader by post, a junior by grade
+  const S = JSON.parse(JSON.stringify(H.newRun('grad', 3, { build }).S));
+  const person = (role, extra) => ({ id: 990, role, nm: { given: 'Kai Wen', formal: 'Pang', full: 'Pang Kai Wen' }, pron: 'm', ageOff: 0, rank: 0, since: 1, rankYear: 1, flags: [], ...extra });
+  for (const [post, want] of [['RC chairman', 'an RC chairman'], ['CCC chairman', 'a CCC chairman'], ['CCMC chairman', 'a CCMC chairman']])
+    assert.strictEqual(E.personField(C, S, 'grassroots', person('grassroots', { post }), 'aTitle'), want);
+  assert.strictEqual(E.personField(C, S, 'junior', person('junior', { rank: 2 }), 'aTitle'), 'an Assistant Director');
+  assert.strictEqual(E.personField(C, S, 'junior', person('junior', { rank: 4 }), 'aTitle'), 'a Director');
+  assert.strictEqual(E.personField(C, S, 'mp', person('mp', { rank: 8 }), 'aTitle'), 'a Member of Parliament');
+});
+
+ok('the end of a career is told: a foreboding line in the last three years and the last year\'s card; renewal, stay-on and the PM tenure keep their rules; no heads-up or foreboding line lies', () => {
+  const E = build.engine, C = build.content, G = C.endgame;
+  const LAST = [G.cards.lastService, G.cards.lastPolitics];
+  const byAge = new Set(['level', 'permsec', 'retired', 'office', 'backbench', 'declined', 'withdrawn']);
+  const score = f => (f.cep||0)*60 + (f.standing||0)*1.5 + (f.competence||0)*1.4 + (f.reputation||0)*1.3 - (f.heat||0)*0.8;
+  const n = { byAge: 0, service: 0, renewal: 0, stayOffered: 0, stayedOn: 0, limit: 0, pm: 0, headsUp: 0, checkedUp: 0, tenure: {} };
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 60; seed++) {
+    const greedy = seed % 2 === 0, r = H.rng(seed * 13 + 5), where = `${origin} ${seed}`;
+    let S = E.nextEvent(C, E.newGame(C, origin, 'T', seed, { rival: seed % 3 === 0 })).state;
+    const reviews = [], cards = [];
+    for (let t = 0; t < 120 && !S.ending; t++) {
+      const ev = E.eventOf(C, S);
+      cards.push({ id: ev.id, age: S.age, rank: S.rank, year: S.year });
+      const live = ev.choices.map((c, i) => [c, i]).filter(([c]) => E.choiceAvailable(c, S));
+      const pick = greedy ? live.reduce((a, b) => score(b[0].effects || {}) > score(a[0].effects || {}) ? b : a)[1] : live[Math.floor(r() * live.length)][1];
+      const res = E.advance(C, S, pick);
+      // one entry per year-end on this outcome screen: its age, its promotion record and its lines
+      let k = -1, first = res.log.length && /Year-end review$/.test((res.log.find(l => l.kind === 'year') || {}).text || '');
+      for (const l of res.log) {
+        if (l.kind === 'year') { k++; reviews.push({ age: +l.text.match(/^Age (\d+)/)[1], promotion: first ? (k === 0 ? res.trace.promotion : (res.trace.passed[k - 1] || {}).promotion) : (res.trace.passed[k] || {}).promotion, lines: [] }); }
+        else if (k >= 0) reviews[reviews.length - 1].lines.push(l);
+      }
+      S = res.state;
+    }
+    assert.ok(S.ending, `${where}: the run never ended`);
+    // the heads-up only when next year's review really considers you, at the same grade
+    reviews.forEach((rv, i) => {
+      const up = rv.lines.find(l => l.about === 'headsUp');
+      if (!up) return;
+      n.headsUp++;
+      const next = reviews[i + 1];
+      if (!next || !next.promotion || next.age !== rv.age + 1) return;   // the run ended first (a choice, an election)
+      if (S.flags.includes('made_way') && next.promotion.result === 'career_ending') return;   // offered the stay, and chose to go
+      n.checkedUp++;
+      const p = next.promotion;
+      assert.ok(p.rank === up.rank && p.yearsInGrade >= p.needYears && !['career_ending', 'age_floor', 'service_ceiling', 'pm_too_late', 'pm_taken', 'top'].includes(p.result),
+        `${where}: at ${rv.age} "${up.text}", but next year ${JSON.stringify(p)}`);
+    });
+    const last = cards[cards.length - 1], forebode = reviews.filter(rv => rv.lines.some(l => l.about === 'foreboding'));
+    const renewal = cards.find(c => c.id === G.cards.renewal || c.id === G.cards.stay);
+    if (byAge.has(S.ending)) {
+      n.byAge++;
+      assert.ok(LAST.includes(last.id), `${where}: ${S.ending} at ${S.age} without the last year's card (last card ${last.id} at ${last.age})`);
+      assert.ok(forebode.some(rv => rv.age >= last.age - 3 && rv.age < last.age), `${where}: ${S.ending} at ${S.age} with no foreboding line in the last three years`);
+      for (const rv of forebode) for (const l of rv.lines.filter(l => l.about === 'foreboding'))
+        if (!(l.pool === 'renewal' && S.flags.includes('stays_on'))) assert.strictEqual(l.last, last.age, `${where}: a foreboding line at ${rv.age} named the wrong last year`);
+      if (last.id === G.cards.lastService) {
+        n.service++;
+        assert.ok(last.rank < 8 && S.age === last.age + 1 && S.age >= C.retireAge && S.age <= C.retireAge + 1, `${where}: the service retired at ${S.age}`);
+      } else {
+        assert.ok(last.rank >= 8 && S.age <= C.politicalRetireAge, `${where}: politics ended at ${S.age}`);
+        if (S.flags.includes('stays_on')) { n.stayedOn++; assert.ok(last.age === C.politicalRetireAge - 1 && S.age === C.politicalRetireAge, `${where}: stayed on, but left at ${S.age}`); }
+        else {
+          assert.ok(renewal && renewal.age === last.age - 1, `${where}: no renewal card the year before the last`);
+          if (S.age === last.age) n.renewal++; else { n.limit++; assert.strictEqual(S.age, C.politicalRetireAge); }
+          assert.ok(S.age >= G.renewalAge, `${where}: renewed at ${S.age}`);
+        }
+      }
+      // nobody is promoted once the party has asked them to make way, or in their last year
+      const from = renewal && !S.flags.includes('stays_on') ? renewal : last;
+      assert.strictEqual(S.rank, from.rank, `${where}: promoted after ${from.id}`);
+    }
+    if (cards.some(c => c.id === G.cards.stay)) {
+      n.stayOffered++;
+      const c = cards.find(c => c.id === G.cards.stay);
+      assert.ok(c.rank >= G.stayOn.minRank, `${where}: asked to stay as rank ${c.rank}`);
+    }
+    if (S.ending === 'pm') {
+      n.pm++;
+      const T = S.pmTenure, tail = cards.slice(-T.cards.length);
+      n.tenure[T.cards.length] = (n.tenure[T.cards.length] || 0) + 1;
+      assert.deepStrictEqual(tail.map(c => c.id), T.cards, `${where}: the tenure's cards`);
+      tail.forEach((c, i) => assert.ok(c.rank === 16 && c.age === T.at + 1 + i, `${where}: tenure card ${c.id} at ${c.age}`));
+      assert.ok(S.age === T.at + T.cards.length && S.age <= C.politicalRetireAge - 1, `${where}: stepped down at ${S.age}`);
+      assert.ok(E.declassify(C, S).some(l => l.label === 'In office'), `${where}: no In office line`);
+    }
+  }
+  assert.ok(n.service > 30 && n.renewal > 10 && n.stayedOn > 5 && n.pm > 5 && n.checkedUp > 100, `expected every path in the sample ${JSON.stringify(n)}`);
+});
+
 ok('the four stats in words: the why line only when a grade needs explaining, big swings rate-limited, no numbers', () => {
   const W = build.content.statWords;
   const swings = new Set(Object.values(W.swing).flatMap(x => [...x.up, ...x.down]));
