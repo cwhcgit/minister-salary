@@ -1532,7 +1532,8 @@
         },
         "outcome": "It's the worst forty minutes of your career, and it ends the matter for good. You're thanked for coming forward, and it's meant. It's also never forgotten."
       }
-    ]
+    ],
+    "once": true
   },
   {
     "id": "ally_returns",
@@ -3853,7 +3854,8 @@
         },
         "outcome": "The quote goes round without you. It turns out to be the most-shared thing you've ever said, and it's years old."
       }
-    ]
+    ],
+    "once": true
   },
   {
     "id": "bonus_vindicated",
