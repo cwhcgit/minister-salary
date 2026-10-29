@@ -4670,7 +4670,7 @@
         "seat_smc"
       ]
     },
-    "body": "A conglomerate wants {post.ask} on its board: four meetings a year, and a fee its annual report puts in a footnote. Office holders may not hold company directorships, so saying yes means leaving politics at the next election. The chairman knows this. He asks only whether you might be free \"after\".",
+    "body": "A conglomerate wants {post.ask} on its board: four meetings a year, and a fee its annual report puts in a footnote. The chairman knows you hold office, and asks only whether you might be free \"after\". Saying yes means leaving politics at the next election.",
     "choices": [
       {
         "text": "{post.leave}",
@@ -4726,7 +4726,7 @@
     },
     "variants": [
       {
-        "body": "At a charity dinner, a company chairman you have met twice steers you to the window. His board needs {post.ask}, whenever suits you. Office holders may not sit on company boards, so saying yes means leaving politics. He names the fee quietly, then again, in case you were being polite.",
+        "body": "At a charity dinner, a company chairman you have met twice steers you to the window. His board needs {post.ask}, once you are out of office. Saying yes means leaving politics at the next election. He names the fee quietly, then again, in case you were being polite.",
         "choices": [
           {
             "text": "{post.leave}",
@@ -4739,7 +4739,7 @@
         ]
       },
       {
-        "body": "A search firm writes, on paper thick enough to stand up by itself, about a client's board seat for {post.ask}, from \"a date convenient to you\". Office holders may not sit on boards, so that date is after you leave politics. The fee is in the second paragraph. The second paragraph is short.",
+        "body": "A search firm writes, on paper thick enough to stand up by itself, about a client's board seat for {post.ask}, from \"a date convenient to you\": after you leave politics. Saying yes means not standing again. The fee is in the second paragraph. The second paragraph is short.",
         "choices": [
           {
             "text": "{post.leave}",
@@ -4766,7 +4766,7 @@
         "seat_grc"
       ]
     },
-    "body": "A conglomerate wants {post.ask} on its board: four meetings a year, and a fee its annual report puts in a footnote. Office holders may not hold company directorships, so saying yes means leaving politics at the next election. The chairman knows this. He asks only whether you might be free \"after\".",
+    "body": "A conglomerate wants {post.ask} on its board: four meetings a year, and a fee its annual report puts in a footnote. The chairman knows you hold office, and asks only whether you might be free \"after\". Saying yes means leaving politics at the next election.",
     "choices": [
       {
         "text": "{post.leave}",
@@ -4822,7 +4822,7 @@
     },
     "variants": [
       {
-        "body": "At a charity dinner, a company chairman you have met twice steers you to the window. His board needs {post.ask}, whenever suits you. Office holders may not sit on company boards, so saying yes means leaving politics. He names the fee quietly, then again, in case you were being polite.",
+        "body": "At a charity dinner, a company chairman you have met twice steers you to the window. His board needs {post.ask}, once you are out of office. Saying yes means leaving politics at the next election. He names the fee quietly, then again, in case you were being polite.",
         "choices": [
           {
             "text": "{post.leave}",
@@ -4835,7 +4835,7 @@
         ]
       },
       {
-        "body": "A search firm writes, on paper thick enough to stand up by itself, about a client's board seat for {post.ask}, from \"a date convenient to you\". Office holders may not sit on boards, so that date is after you leave politics. The fee is in the second paragraph. The second paragraph is short.",
+        "body": "A search firm writes, on paper thick enough to stand up by itself, about a client's board seat for {post.ask}, from \"a date convenient to you\": after you leave politics. Saying yes means not standing again. The fee is in the second paragraph. The second paragraph is short.",
         "choices": [
           {
             "text": "{post.leave}",
