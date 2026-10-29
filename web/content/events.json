@@ -8692,5 +8692,158 @@
         }
       }
     }
+  },
+  {
+    "id": "ps_successor",
+    "title": "The Box Marked Successor",
+    "body": "The Public Service Division, which makes the service's top appointments, asks every Permanent Secretary to name a successor, in confidence, on a form with one box. Your two Deputy Secretaries are the obvious names. One would carry on everything you have built. The other is sharper, and would quietly undo half of it.",
+    "requires": {
+      "minRank": 7,
+      "maxRank": 7
+    },
+    "weight": 9,
+    "once": true,
+    "choices": [
+      {
+        "text": "Name the one who would undo it.",
+        "effects": {
+          "integrity": 6,
+          "competence": 2,
+          "standing": -3
+        },
+        "outcome": "You write the sharper name, and sign before you can reconsider. The Public Service Division thanks you for your \"candour\", the word it uses when someone has surprised it."
+      },
+      {
+        "text": "Name the one who would carry it on.",
+        "effects": {
+          "standing": 5,
+          "reputation": 1,
+          "integrity": -3
+        },
+        "outcome": "You write the loyal name, and the Public Service Division agrees within a week. Everything you built will be safe for years, including the parts that shouldn't be."
+      }
+    ]
+  },
+  {
+    "id": "the_underspend",
+    "title": "Use It or Lose It",
+    "body": "It's February, and your ministry will end the financial year forty million dollars under budget. Money not spent by 31 March goes back to the Finance ministry, and next year's budget will be set on what was spent this year. Every division already has a list of things that could be bought by March.",
+    "requires": {
+      "minRank": 6,
+      "maxRank": 7
+    },
+    "weight": 9,
+    "once": true,
+    "choices": [
+      {
+        "text": "Give it back, and explain why it wasn't needed.",
+        "effects": {
+          "integrity": 7,
+          "competence": 3,
+          "standing": -5
+        },
+        "outcome": "Forty million dollars goes back to Finance with a two-page note. Finance cuts next year's budget by exactly that much, and sends a letter of thanks that nobody in your ministry wants to read."
+      },
+      {
+        "text": "Approve the divisions' lists by March.",
+        "effects": {
+          "standing": 6,
+          "reputation": 1,
+          "integrity": -5
+        },
+        "outcome": "By 31 March the ministry has new laptops, a refurbished auditorium and a study on the future of studies. Next year's budget is safe, and nobody can find a use for the auditorium's second screen."
+      },
+      {
+        "text": "Bring next year's real projects forward.",
+        "effects": {
+          "competence": 6,
+          "standing": 1,
+          "reputation": -2
+        },
+        "outcome": "Three projects planned for next year start in February instead. It takes two weekends of tenders, and the money goes on things you would have bought anyway. Finance notices the timing, and says nothing, this year."
+      }
+    ]
+  },
+  {
+    "id": "union_rep",
+    "title": "The Union Rep",
+    "body": "The public servants' union needs a new representative for your ministry: the person who takes members' complaints to management twice a year and organises Family Day. The last one held the post for nineteen years, and has just retired. Your name has come up, mainly because nobody has been on your grade longer.",
+    "requires": {
+      "minRank": 0,
+      "maxRank": 1,
+      "minAge": 30
+    },
+    "weight": 7,
+    "once": true,
+    "choices": [
+      {
+        "text": "Take it, and take the complaints seriously.",
+        "effects": {
+          "integrity": 4,
+          "reputation": 4,
+          "standing": -3
+        },
+        "outcome": "Twice a year you sit across from management with a folder of complaints, and twice a year two of them get fixed. Family Day has a bouncy castle. Members start stopping you in the lift."
+      },
+      {
+        "text": "Take it, and use the meetings to be noticed.",
+        "effects": {
+          "standing": 4,
+          "reputation": 1,
+          "integrity": -3
+        },
+        "outcome": "The meetings with management are the only room on your grade where directors learn your name. You raise the complaints briefly, and yourself at length. Family Day is held, as usual."
+      },
+      {
+        "text": "Decline. You'd rather be promoted than represented.",
+        "effects": {
+          "competence": 3,
+          "standing": 1,
+          "reputation": -2
+        },
+        "outcome": "Someone two desks away takes it, and is good at it. You put the time into your files instead. The union sends you a Family Day invitation anyway, addressed to \"Member\"."
+      }
+    ]
+  },
+  {
+    "id": "records_purge",
+    "title": "Retention Date",
+    "body": "The division's shared drive is full, and the rule is that files past their retention date are deleted by Friday. Deleting them is your job this week. One folder holds every draft of a policy decided years ago, including the early one that said it wouldn't work. Nobody has opened the folder since.",
+    "requires": {
+      "minRank": 0,
+      "maxRank": 1,
+      "minAge": 30
+    },
+    "weight": 7,
+    "once": true,
+    "choices": [
+      {
+        "text": "Delete it, as the rule says.",
+        "effects": {
+          "competence": 2,
+          "standing": 3,
+          "integrity": -2
+        },
+        "outcome": "The folder goes with four thousand others, and the drive has room again by Friday. Years later someone asks whether the early drafts were kept. They were not, on schedule."
+      },
+      {
+        "text": "Ask for it to be kept, and say why.",
+        "effects": {
+          "integrity": 5,
+          "competence": 1,
+          "standing": -3
+        },
+        "outcome": "You write a short note on why the drafts matter, and the folder is kept by exception. You are now, according to the drive's properties, its owner, and nobody else will ever be."
+      },
+      {
+        "text": "Copy it to your own drive first.",
+        "effects": {
+          "competence": 3,
+          "integrity": -4,
+          "heat": 5
+        },
+        "outcome": "The folder is deleted on schedule, and a copy sits on your personal drive, against the rules, in a folder called Misc. You don't open it either, but you know where it is."
+      }
+    ]
   }
 ]
