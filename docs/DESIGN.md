@@ -154,6 +154,20 @@ You cannot become PM as a civil servant. You must be **spotted**, then resign.
 > below 3.5%, median real income growth 2.5% to below 3.5%, 20th-percentile real income
 > growth 3% to below 4%, real GDP growth 2% to 4%.
 
+### The end of a career
+
+Careers end at real ages, and are told so in advance. The service retires at **64** (the
+statutory age from 1 July 2026). In politics the party asks Members not to stand at the
+**first general election after they turn 65** (the Renewal card, the year before), and that
+election ends the career; a Minister or higher with strong Standing is asked to stay instead,
+and may, to **70**, the stop for everyone. The **Prime Minister** serves a short tenure of
+three or four cards (the Cabinet, the Rally, the successor, stepping down) and then the
+ending; the top job is not given without room for three before 70. The reviews two years and
+one year before the last year say plainly that it is coming, and the last year is a card of its
+own ("The Last Year"). The political ladder is paced to fit: 20 years from MP to Prime
+Minister. The timing and the lines live in `game.json` (`endgame`), the cards in
+`content/packs/endgame.json`.
+
 ### Bonuses (the good part)
 Annual payout = base + **Performance Bonus** (from appraisal grade) + **National Bonus**
 (0-6 months, computed from four socio-economic indicators the player can actually
