@@ -76,8 +76,9 @@ object to `events.json` — no code changes:
 | `bond` | Years a choice adds to the bond (a sponsorship with a bond of its own), served after any bond still running |
 | `{peer}` `{junior.title}` … | The run's recurring people (peer, junior, senior, journalist, grassroots leader, fellow MP), named per run. `requires.cast` and a choice's `cast` read and change what each person remembers |
 | `parts` | Named slots of interchangeable options (`{asker}`, `{want.done}`), one combination per showing |
+| `{player}` `{player.formal}` `{player.their}` … | The player's name ("Mr" or "Ms" and the name, for officials) and pronouns, from the start screen. Only where someone else names or addresses the player: the papers, Hansard, a colleague, the batchmate, the ending |
 
-The cast and card parts are documented for writers in [`docs/CONTENT_PLAN.md`](docs/CONTENT_PLAN.md) section 8.
+The cast, the player's tokens and card parts are documented for writers in [`docs/CONTENT_PLAN.md`](docs/CONTENT_PLAN.md) section 8.
 
 The service worker is cache-first, so an edit shows up on the *next* launch. To force it
 immediately, bump `VERSION` in `web/sw.js`.

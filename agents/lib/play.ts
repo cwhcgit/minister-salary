@@ -12,6 +12,7 @@ export interface Ctx {
   cohort: string;
   persona: Persona;
   playerName: string;
+  playerGender: "f" | "m";    // the start screen's Female / Male
   build: Build;
   llm: Llm;
   spend: Spend;
@@ -61,10 +62,10 @@ export async function playRun(ctx: Ctx, spec: Spec): Promise<RunResult> {
   };
 
   write({ type: "meta", cohort: ctx.cohort, persona: p.id, model: p.model, effort: p.effort, buildHash: ctx.build.hash,
-    canaries: ctx.build.canaries, origin: spec.origin, seed: spec.seed, lineage: spec.lineage ?? null, life: spec.life ?? null,
+    canaries: ctx.build.canaries, origin: spec.origin, seed: spec.seed, name: ctx.playerName, gender: ctx.playerGender, lineage: spec.lineage ?? null, life: spec.life ?? null,
     systemHash: ctx.systemHash, tags: ctx.tags, inheritedNotes: spec.lineageNotes ?? null, startedAt: new Date().toISOString(), mock: ctx.llm.mock });
 
-  let run: Run = H.newRun(spec.origin, spec.seed, { build: ctx.build, name: ctx.playerName });
+  let run: Run = H.newRun(spec.origin, spec.seed, { build: ctx.build, name: ctx.playerName, gender: ctx.playerGender });
   let memory = "";
   const cap = p.turnSchema === "veteran" ? 150 : p.turnSchema === "breaker" ? 200 : DEFAULTS.notesWordCap;
   const hardCap = Math.round(cap * DEFAULTS.notesHardCap / DEFAULTS.notesWordCap);
@@ -80,7 +81,7 @@ export async function playRun(ctx: Ctx, spec: Spec): Promise<RunResult> {
     while (run.phase === "event" && run.turn <= ctx.maxTurns) {
       const screen = H.screenText(run, { tags: ctx.tags });
       if (p.blind) {
-        const hits = Leak.checkScreen(screen, ctx.build, terms);
+        const hits = Leak.checkScreen(screen, ctx.build, terms, { player: { name: run.name, gender: run.gender } });
         if (hits.length) throw new Error(`screen leak on ${name} turn ${run.turn}: ${JSON.stringify(hits)}`);
       }
       const available = H.choices(run).filter(c => c.available).map(c => c.id);

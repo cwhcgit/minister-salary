@@ -143,7 +143,7 @@ async function playFunCohort(job: Job, o: Opts, cap: number): Promise<{ spent: n
   }, null, 1) + "\n");
 
   log(`\n=== ${p.id}: ${sessions.length} sessions of up to ${careers} careers on ${p.model} (${p.effort}${p.thinking ? `, thinking ${p.thinking}` : ""}), build ${builds.plain.hash}, quit at ${p.fun!.quitLine}, cap ${usd(cap)}${o.mock ? ", MOCK" : ""} ===`);
-  const ctx: SessionCtx = { cohort, persona: p, playerName: p.name, builds, llm: o.llm, spend, outDir, maxTurns: o.maxTurns, careers,
+  const ctx: SessionCtx = { cohort, persona: p, playerName: p.name, playerGender: p.gender, builds, llm: o.llm, spend, outDir, maxTurns: o.maxTurns, careers,
     canaryCareers, tags: o.tags, system, systemHash: sha(system), log };
   let streak = 0, stop = false;
   const results = await pool(sessions, o.concurrency, async (spec, i): Promise<SessionResult | null> => {
@@ -191,7 +191,7 @@ async function playLegacyCohort(job: Job, o: Opts, cap: number): Promise<number>
   }, null, 1) + "\n");
 
   log(`\n=== ${p.id}: ${runs.length} runs on ${p.model} (${p.effort}), build ${build.hash}, cap ${usd(cap)}${o.mock ? ", MOCK" : ""} ===`);
-  const ctx: Ctx = { cohort, persona: p, playerName: p.name, build, llm: o.llm, spend, outDir, maxTurns: o.maxTurns, tags: o.tags, system, systemHash: sha(system), log };
+  const ctx: Ctx = { cohort, persona: p, playerName: p.name, playerGender: p.gender, build, llm: o.llm, spend, outDir, maxTurns: o.maxTurns, tags: o.tags, system, systemHash: sha(system), log };
   const results = p.lineage ? await playLineages(ctx, runs, o.concurrency) : await playAll(ctx, runs, o.concurrency);
 
   const summary = summarizeCohort(outDir);

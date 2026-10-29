@@ -23,6 +23,7 @@ export interface SessionCtx {
   cohort: string;
   persona: Persona;
   playerName: string;
+  playerGender: "f" | "m";    // the start screen's Female / Male
   builds: { plain: Build; canary: Build };
   llm: Llm;
   spend: Spend;
@@ -93,13 +94,13 @@ export async function playSession(ctx: SessionCtx, spec: SessionSpec): Promise<S
       if (!terms.has(build.hash)) terms.set(build.hash, Leak.screenTerms(build));
       const leakCheck = (screen: string) => {
         if (!p.blind) return;
-        const hits = Leak.checkScreen(screen, build, terms.get(build.hash));
+        const hits = Leak.checkScreen(screen, build, terms.get(build.hash), { player: { name: run.name, gender: run.gender } });
         if (hits.length) throw new Error(`screen leak on ${name} career ${k + 1}: ${JSON.stringify(hits)}`);
       };
       const recent = memory.flat();
-      let run = H.newRun(c.origin, c.seed, { build, name: ctx.playerName, recent });
+      let run = H.newRun(c.origin, c.seed, { build, name: ctx.playerName, gender: ctx.playerGender, recent });
       const originName = build.content.origins.find((o: any) => o.id === c.origin)?.name ?? c.origin;
-      write({ type: "career_start", career: k + 1, origin: c.origin, seed: c.seed, buildHash: build.hash, canaries: build.canaries, recent, meter: meter.value });
+      write({ type: "career_start", career: k + 1, origin: c.origin, seed: c.seed, name: run.name, gender: run.gender, buildHash: build.hash, canaries: build.canaries, recent, meter: meter.value });
       careersPlayed++;
       const messages: Msg[] = [];
       let opener = funOpener(k, recaps), careerTaps = 0, endingTitle: string | null = null;
@@ -180,7 +181,7 @@ export async function playSession(ctx: SessionCtx, spec: SessionSpec): Promise<S
         if (t.quit) { quit = true; quitAt = { tap: taps, career: k + 1, card: `ending:${ending}`, title: endingTitle, meter: t.after }; }
       }
       const tc = H.trace(run);
-      write({ type: "career_end", career: k + 1, origin: c.origin, seed: c.seed, buildHash: build.hash, ending, endingSeen: !!endingTitle,
+      write({ type: "career_end", career: k + 1, origin: c.origin, seed: c.seed, name: tc.name, gender: tc.gender, buildHash: build.hash, ending, endingSeen: !!endingTitle,
         endingCause: tc.endingCause, cut: !ending && !quit ? "turn_cap" : null, quit, taps: careerTaps, turns: tc.turns.length,
         recent, choices: tc.choices, final: tc.final, meter: meter.value });
       recaps.push({ origin: originName, ending: endingTitle, taps: careerTaps });

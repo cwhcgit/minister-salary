@@ -251,8 +251,11 @@ claim a result the year's own lines may contradict (the pay line shows the bonus
      - **What happened in the run:** a person who left still acting as a colleague; a promoted
        person still at their old grade; a callback that names a stranger as if they were there.
      - **The tone:** a wink, a register break, a line that steps outside the world to nudge you.
-   - The player is gender-neutral, with no assumed family; a batchmate's or cast member's pronoun
-     is fixed per person.
+   - The player chooses a name and Female or Male on the start screen. The game still says "you", so
+     the player's name and gender show only where someone else refers to them, through the
+     `{player}` tokens (section 8). Never write a gendered word for the player into a card ("sir",
+     "madam", "he"), and assume no family. A batchmate's or cast member's pronoun is fixed per
+     person.
 4. **Genuine choices.** At least two choices, each costing something. No choice may be worse on
    every stat (check with the bot dominance metric in `node test/sim.js`). Use three choices when the
    third is a real third way, not a "do nothing" filler.
@@ -294,7 +297,8 @@ who has never worked in government must understand every card on the first read.
    person's first mention where "Name, who ..., " reads naturally (as a subject or object, not inside
    a list), or introduce them yourself (followed by a comma). Never "from your intake". Office holders
    who are not cast members (the Minister, the Permanent Secretary, the Whip, the Prime Minister) get no
-   gendered pronoun, so two cards can never disagree about them.
+   gendered pronoun, so two cards can never disagree about them, unless the office holder is the
+   player: then use the player's tokens.
 6. **The header always names a ministry.** Never put a CEO or a statutory board above the player.
 
 Before and after (approved by the owner):
@@ -434,6 +438,29 @@ Years later, `the_ask` remembers it, but only for that same person (a part optio
 same way: `budget_committee` requires `{ "cast": { "peer": { "flagsAll": ["lost_the_box"] } } }`, so it
 fires only while the peer you beat to the box is still your peer; if they have gone, it never fires.
 
+### The player
+
+The start screen asks for a name and Female or Male (both remembered on the phone). A blank name is
+drawn for the run from `cast.names`, for the chosen gender. Like the cast, both are text only: they
+never use the run's dice, and the same seed plays the same career either way. Nobody in the run shares
+a word of the player's name: a cast member or batchmate who would is given another name.
+
+**Tokens.** `{player}` is the name as entered. `{player.formal}` is "Ms" or "Mr" and the name ("Ms
+Tan Wei Ling"; a name typed with its own honorific, "Dr Tan", is kept as typed). `{player.they}`,
+`{player.them}`, `{player.their}` follow the cast's rule: a subject pronoun only before a past-tense
+verb. Capitalise the role or the field for a capital: `{Player.They}`.
+
+**Where.** The game says "you", so the player is named only where someone else names or addresses
+them, and lightly: the papers and the Forum page ("headlined "{player.formal} candid on scheme
+flaw""), Hansard and the House, a document's footer, an official addressing the player ("Thank
+you, {player.formal}. That was very complete."), the batchmate, a cast line, the ending card and the
+Declassified file. Use `{player.formal}` when an official, the press or a resident addresses or names
+the player, and `{player}` for colleagues and lists. Put the player's name inside the quote or the
+document that carries it, never in the narration ("you", not "{player} walks in"). The tokens are
+filled in card bodies, outcomes and titles, the batchmate's lines, cast lines, the ending card and the
+Declassified file; not in choice text (Declassified quotes it raw), montage or autoplay lines, or the
+Folder.
+
 ### Card parts
 
 A card may declare `parts`: named slots, each with interchangeable options. The card's title, body,
@@ -485,7 +512,12 @@ Write every option so it reads well beside every option of every other slot, or 
   `{token}`, nobody vacant or departed named, every grade beside a name right for that person's rank,
   a senior above you and a junior below, names unique in the run, and every callback that names a role
   checking that it is the person the earlier choice was about.
-- `node harness/leak-check.js` fails on any raw `{token}` on screen.
+- `node test/contexts.js` plays its careers as Female and as Male, under typed names and drawn ones;
+  it fails on a player token with an unknown field, a gendered word addressing the player, the wrong
+  honorific before the player's name, and a cast member or batchmate who shares a word of it.
+- `node harness/leak-check.js` fails on any raw `{token}` on screen, and on the wrong honorific before
+  the player's name; `node agents/leak-check.ts` plays each blind persona's careers under its own name
+  and gender and checks every screen the same way.
 - `node test/similarity.js` reads cards as assembled, with names filled by placeholders.
 - `node test/variety.js` reports next-run overlap by card, by version (card, variant and parts) and by
   scene (version and the people it names).
