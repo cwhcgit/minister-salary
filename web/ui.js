@@ -2,7 +2,7 @@
 (() => {
 const app = document.getElementById("app");
 const SAVE = "ministerSalary.v1";
-let content, S = null, phase = "start", outcome = "", log = [], pickedOrigin = "grad";
+let content, S = null, phase = "start", outcome = "", log = [], head = null, pickedOrigin = "grad";
 // Play with a batchmate: remembered between runs as a convenience, saved inside each run as S.rival.
 let rivalOn = (() => { try { return localStorage.getItem("ms.rival") === "1"; } catch (e) { return false; } })();
 // The player's gender, for how colleagues, the papers and Hansard refer to them: remembered like
@@ -47,30 +47,34 @@ function rememberRun() {
 let contentKey = "";
 function fingerprint(c) { let h = 2166136261; const t = JSON.stringify(c); for (let i = 0; i < t.length; i++) h = Math.imul(h ^ t.charCodeAt(i), 16777619) >>> 0; return h.toString(36); }
 let savedKey = null;
-function save()  { try { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log, v: contentKey })); } catch (e) {} }
+function save()  { try { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log, head, v: contentKey })); } catch (e) {} }
 function wipe()  { try { localStorage.removeItem(SAVE); } catch (e) {} }
 function load()  {
   try {
     const d = JSON.parse(localStorage.getItem(SAVE));
     // a save from before the start screen asked for a gender gets the defaults (Engine.upgradePlayer)
-    if (d && d.S) { S = Engine.upgradePlayer(content, d.S); phase = d.phase; outcome = d.outcome; log = d.log || []; savedKey = d.v || ""; return true; }
+    if (d && d.S) { S = Engine.upgradePlayer(content, d.S); phase = d.phase; outcome = d.outcome; log = d.log || []; head = d.head || null; savedKey = d.v || ""; return true; }
   } catch (e) {}
   return false;
 }
 
 // ---------- header ----------
-// Rank, grade, age, year, ministry and earnings. No stat values: those are kept for the end.
-function header() {
-  const r = Engine.rank(content, S);
+// Rank, grade, age, year, where you are (the ministry, or a backbencher's seat) and earnings, as
+// Engine.header gives them. No stat values: those are kept for the end. `h` is the event
+// screen's header, or an outcome page's, which is dated to that page's year.
+function headerLeft(h) {
+  return `<div>
+        <div class="rank">${esc(h.title)}<span class="grade">${esc(h.grade)}</span></div>
+        <div class="sub">Age ${h.age} &middot; Year ${h.year} &middot; ${esc(h.place)}</div>
+        ${h.batchmate ? `<div class="mate">Batchmate: ${esc(h.batchmate)}</div>` : ""}
+      </div>`;
+}
+function header(h = Engine.header(content, S)) {
   return `<header>
     <div class="rankline">
-      <div>
-        <div class="rank">${esc(r.title)}<span class="grade">${esc(r.grade)}</span></div>
-        <div class="sub">Age ${S.age} &middot; Year ${S.year} &middot; ${esc(S.ministry)}</div>
-        ${S.rival ? `<div class="mate">Batchmate: ${esc(Engine.batchmate(content, S))}</div>` : ""}
-      </div>
-      <div class="cashbox"><div class="cash">${money(S.wealth)}</div><div class="cashlab">lifetime earnings</div>
-        ${phase !== "ending" ? `<button class="newcareer" id="newcareer" type="button">New career</button>` : ""}</div>
+      ${headerLeft(h)}
+      <div class="cashbox"><div class="cash">${money(h.wealth)}</div><div class="cashlab">lifetime earnings</div>
+        ${phase !== "ending" ? `<button class="newcareer" id="newcareer" type="button">Reincarnate</button>` : ""}</div>
     </div>
   </header>`;
 }
@@ -150,13 +154,25 @@ function eventScreen() {
     b.onclick = () => choose(+b.dataset.i));
 }
 
+// An outcome page shows the header as it stood in that page's year: swap in the parts that
+// change, and keep the Reincarnate button as it is.
+function showHeader(h) {
+  const line = app.querySelector(".rankline");
+  if (!line) return;
+  line.firstElementChild.outerHTML = headerLeft(h);
+  app.querySelector(".cash").textContent = money(h.wealth);
+}
+
 function outcomeScreen() {
   // One screen per event: the card's outcome first, then each year's review on its own page.
   // Every page is in the document (one shown at a time), so the log reads the same as before.
+  // Each page has its own header: the first as the choice left it, then each year's as it ended
+  // (a save from before pages had headers shows the current one throughout).
   const pages = [[]];
   log.forEach(l => { if (l.kind === "year") pages.push([l]); else pages[pages.length - 1].push(l); });
   const last = pages.length - 1;
-  app.innerHTML = header() + pages.map((pg, k) => `
+  const heads = pages.map((pg, k) => (k === 0 ? head : pg[0].head) || Engine.header(content, S));
+  app.innerHTML = header(heads[0]) + pages.map((pg, k) => `
     <div class="card page" data-p="${k}"${k ? " hidden" : ""}>
       ${k === 0 ? `<div class="outcome serif">${esc(outcome)}</div>` : ""}
       <div class="log">${pg.map(l => `
@@ -168,6 +184,7 @@ function outcomeScreen() {
     const page = b.closest(".page"), k = +page.dataset.p;
     page.hidden = true;
     app.querySelector(`.page[data-p="${k + 1}"]`).hidden = false;
+    showHeader(heads[k + 1]);
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
   app.querySelector("#next").onclick = nextTurn;
@@ -206,8 +223,8 @@ function endingScreen() {
       <button class="primary ghost" id="share" style="margin-top:8px">Share this ending</button>
     </div>`;
   app.querySelector("#again").onclick = () => { wipe(); S = null; phase = "start"; startScreen(); };
-  const btn = app.querySelector("#share");
-  btn.onclick = () => { btn.disabled = true; shareEnding().finally(() => { btn.disabled = false; }); };
+  // never disabled: each tap opens the share panel afresh
+  app.querySelector("#share").onclick = openShare;
 }
 
 // ---------- sharing the ending ----------
@@ -363,46 +380,94 @@ function copyText(text) {
   try { return navigator.clipboard.writeText(text).then(() => true, () => false); }
   catch (err) { return Promise.resolve(false); }
 }
-function savePng(blob) {
-  try {
-    const a = document.createElement("a"), u = URL.createObjectURL(blob);
-    a.href = u; a.download = "minister-salary.png"; a.style.display = "none";
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(u), 10000);
-    return true;
-  } catch (err) { return false; }
+// The share panel. Tapping Share opens it at once, with the picture as a preview and one button
+// for each way to send it, so every step is a tap of the player's own and the browser never sees
+// a download or a share sheet without one: Save picture (a real download link), Copy text and
+// link, and Share... where the browser can share a file (the system's share sheet, opened from
+// that tap). Nothing waits on the system's sheet. If the picture cannot be made, the words and
+// the link are copied instead, and the panel says so.
+let sharing = null;   // the open panel: { el, url, key }
+function closeShare() {
+  if (!sharing) return;
+  const me = sharing;
+  sharing = null;
+  me.el.remove();
+  document.removeEventListener("keydown", me.key);
+  if (me.url) { try { URL.revokeObjectURL(me.url); } catch (err) {} }
 }
-
-// The share sheet with the picture where the phone allows it; otherwise the picture is saved
-// and the words and link are copied. The words alone are the last resort.
-async function shareEnding() {
-  const card = shareCard(), title = `Minister Salary — ${card.title}`;
-  const words = `${title}\n${card.line}`, plain = `${words}\n${card.url}`;
-  let png = null;
-  try { png = await cardPng(card); } catch (err) { png = null; }
-  if (png) {
-    let file = null;
+function shareFailed(err) {
+  console.error("Minister Salary: sharing failed", err);
+  toast("Sharing didn't work in this browser. Save the picture or copy the text and link instead.");
+}
+function openShare() {
+  closeShare();
+  let card, title, words, plain;
+  try {
+    card = shareCard(); title = `Minister Salary \u2014 ${card.title}`;
+    words = `${title}\n${card.line}`; plain = `${words}\n${card.url}`;
+  } catch (err) {
+    console.error("Minister Salary: could not make the share picture", err);
+    const url = "https://cwhcgit.github.io/minister-salary/";
+    copyText(`Minister Salary\n${url}`).then(ok => toast(ok ? "Couldn't make the picture; copied the link to the game instead." : "Couldn't make the picture. Take a screenshot instead."));
+    return;
+  }
+  const el = document.createElement("div");
+  el.className = "sharepanel";
+  el.setAttribute("role", "dialog"); el.setAttribute("aria-modal", "true"); el.setAttribute("aria-label", "Share this ending");
+  el.innerHTML = `<div class="sheet">
+      <div class="shead"><span>Share this ending</span><button class="sx" id="sclose" type="button" aria-label="Close">&times;</button></div>
+      <div class="sprev"><div class="swait">Making the picture&hellip;</div></div>
+      <a class="primary sbtn" id="ssave" download="minister-salary.png" aria-disabled="true">Save picture</a>
+      <button class="primary ghost sbtn" id="scopy" type="button">Copy text and link</button>
+      <button class="primary ghost sbtn" id="ssys" type="button" hidden>Share&hellip;</button>
+    </div>`;
+  document.body.appendChild(el);
+  const me = sharing = { el, url: null, key: e => { if (e.key === "Escape") closeShare(); } };
+  document.addEventListener("keydown", me.key);
+  el.addEventListener("click", e => { if (e.target === el) closeShare(); });
+  el.querySelector("#sclose").onclick = closeShare;
+  el.querySelector("#scopy").onclick = () => copyText(plain).then(ok =>
+    toast(ok ? "Copied the words and the link, ready to paste." : "This browser wouldn't copy. Take a screenshot instead."));
+  const save = el.querySelector("#ssave");
+  save.onclick = e => { if (!me.url) e.preventDefault(); };
+  try { el.querySelector("#sclose").focus(); } catch (err) {}
+  const noPicture = err => {
+    console.error("Minister Salary: could not make the share picture", err);
+    if (sharing !== me) return;
+    el.querySelector(".sprev").innerHTML = `<div class="swait">No picture this time: copy the words and the link instead.</div>`;
+    save.hidden = true;
+    copyText(plain).then(ok => toast(ok ? "Couldn't make the picture; copied the text and link instead." : "Couldn't make the picture. Tap Copy text and link instead."));
+  };
+  let made;
+  try { made = cardPng(card); } catch (err) { return noPicture(err); }
+  made.then(png => {
+    if (sharing !== me) return;   // closed meanwhile
+    const url = me.url = URL.createObjectURL(png);
+    const img = document.createElement("img");
+    img.alt = `The picture to share: ${card.title}`; img.src = url;
+    const prev = el.querySelector(".sprev");
+    prev.innerHTML = ""; prev.appendChild(img);
+    save.href = url; save.removeAttribute("aria-disabled");
+    // the system's share sheet, only where it takes the picture as a file
+    let file = null, can = false;
     try { file = new File([png], "minister-salary.png", { type: "image/png" }); } catch (err) {}
-    if (file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-      try { await navigator.share({ files: [file], title, text: words, url: card.url }); return; }
-      catch (err) { if (err && err.name === "AbortError") return; }   // the player closed the share sheet
-    }
-    if (savePng(png)) {
-      toast(await copyText(plain) ? "Picture saved. The words and link are copied too." : "Picture saved.");
-      return;
-    }
-  }
-  if (navigator.share) {
-    try { await navigator.share({ text: plain }); return; }
-    catch (err) { if (err && err.name === "AbortError") return; }
-  }
-  toast(await copyText(plain) ? "Copied, ready to paste." : "This browser cannot share. Take a screenshot instead.");
+    try { can = !!(file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })); } catch (err) {}
+    if (!can) return;
+    const sys = el.querySelector("#ssys");
+    sys.hidden = false;
+    sys.onclick = () => {
+      // called straight from the tap, so the browser sees the player's gesture
+      let p;
+      try { p = navigator.share({ files: [file], title, text: words, url: card.url }); } catch (err) { return shareFailed(err); }
+      Promise.resolve(p).catch(err => { if (!err || err.name !== "AbortError") shareFailed(err); });   // AbortError: the player closed the sheet
+    };
+  }, noPicture);
 }
 
 // ---------- turn flow ----------
 function choose(i) {
   const r = Engine.advance(content, S, i);
-  S = r.state; outcome = r.outcome; log = r.log;
+  S = r.state; outcome = r.outcome; log = r.log; head = r.head || null;
   // the last choice's outcome (and the last year-end review) is shown too, before the ending
   phase = "outcome";
   if (S.ending) rememberRun();
@@ -425,7 +490,7 @@ function render() {
   wireNewCareer();
 }
 
-// Abandoning a career takes two taps, so a stray one never costs a run.
+// Abandoning a career (the header's Reincarnate button) takes two taps, so a stray one never costs a run.
 function newCareer() { wipe(); S = null; phase = "start"; startScreen(); }
 function wireNewCareer() {
   const b = document.getElementById("newcareer");
@@ -435,18 +500,18 @@ function wireNewCareer() {
     if (armed) { clearTimeout(armed); return newCareer(); }
     b.textContent = "Tap again to abandon this career";
     b.classList.add("armed");
-    armed = setTimeout(() => { armed = null; b.textContent = "New career"; b.classList.remove("armed"); }, 3000);
+    armed = setTimeout(() => { armed = null; b.textContent = "Reincarnate"; b.classList.remove("armed"); }, 3000);
   };
 }
 
 // A career started on an older version of the game may not add up any more: say so, and offer
-// a fresh start (the default) or carrying on.
+// a fresh start (the default, Reincarnate) or carrying on.
 function oldVersionScreen() {
   app.innerHTML = `
     <div class="card">
       <h2 class="serif">The game has been updated</h2>
       <div class="body serif">This career was started on an older version of Minister Salary. Cards, ages and endings have changed since, so parts of it may no longer add up.</div>
-      <button class="primary" id="fresh">Start a new career</button>
+      <button class="primary" id="fresh">Reincarnate</button>
       <button class="choice" id="carry">Carry on with this one anyway</button>
     </div>`;
   app.querySelector("#fresh").onclick = newCareer;

@@ -87,8 +87,8 @@ ok('the screen view carries nothing hidden', () => {
   // Every key that may appear in a screen object. Anything else is a leak by construction.
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
     'namePlaceholder', 'genders', 'player', 'gender',   // the start screen's name field and gender choice
-    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'batchmate', 'label',
-    'outcome', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
+    'header', 'rank', 'grade', 'age', 'year', 'place', 'wealth', 'wealthLabel', 'batchmate', 'label',
+    'outcome', 'pages', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
     'ending', 'epitaph', 'positionLabel', 'position', 'ageLabel', 'lifetimeEarnings',
     // the ending screen's four stats and its Declassified file: the hidden values, revealed on
     // purpose once the run is over
@@ -366,9 +366,9 @@ ok('series: the Indicators in full at most twice a career, the plan in full ever
         passedInd++;
         const src = C.events.find(e => e.id === p.event), ch = src.choices.find(c => c.stance === p.habit);
         assert.ok(ch, `${p.event}: no choice for the habit ${p.habit}`);
-        const i = log.findIndex(l => l.kind === 'year' && l.text === `Age ${p.age} · A year without a decision`);
+        const i = log.findIndex(l => l.kind === 'year' && l.page === 'passed' && l.age === p.age);
         const pay = log.slice(i + 1).find(l => l.kind === 'pay');
-        const m = pay && pay.text.match(/including (?:a National Bonus of (\d) months?|no National Bonus)/);
+        const m = pay && pay.text.match(/\((?:including a National Bonus of (\d) months?|no National Bonus)\)/);
         assert.ok(m, `${p.event}: the pay line does not show the bonus: ${pay && pay.text}`);
         const months = m[1] === undefined ? 0 : +m[1];
         assert.ok([ch.nationalBonus, (ch.nationalBonusRisk || {}).months].includes(months), `${p.event} as ${p.habit}: ${months} months`);
@@ -487,9 +487,9 @@ ok('the end of a career is told: a foreboding line in the last three years and t
       const pick = greedy ? live.reduce((a, b) => score(b[0].effects || {}) > score(a[0].effects || {}) ? b : a)[1] : live[Math.floor(r() * live.length)][1];
       const res = E.advance(C, S, pick);
       // one entry per year-end on this outcome screen: its age, its promotion record and its lines
-      let k = -1, first = res.log.length && /Year-end review$/.test((res.log.find(l => l.kind === 'year') || {}).text || '');
+      let k = -1, first = res.log.length && (res.log.find(l => l.kind === 'year') || {}).page === 'review';
       for (const l of res.log) {
-        if (l.kind === 'year') { k++; reviews.push({ age: +l.text.match(/^Age (\d+)/)[1], promotion: first ? (k === 0 ? res.trace.promotion : (res.trace.passed[k - 1] || {}).promotion) : (res.trace.passed[k] || {}).promotion, lines: [] }); }
+        if (l.kind === 'year') { k++; reviews.push({ age: l.age, promotion: first ? (k === 0 ? res.trace.promotion : (res.trace.passed[k - 1] || {}).promotion) : (res.trace.passed[k] || {}).promotion, lines: [] }); }
         else if (k >= 0) reviews[reviews.length - 1].lines.push(l);
       }
       S = res.state;
@@ -552,7 +552,6 @@ ok('the end of a career is told: a foreboding line in the last three years and t
 
 ok('the four stats in words: the why line only when a grade needs explaining, big swings rate-limited, no numbers', () => {
   const W = build.content.statWords;
-  const swings = new Set(Object.values(W.swing).flatMap(x => [...x.up, ...x.down]));
   let whys = 0, swung = 0, steady = 0;
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
     const r = H.rng(seed * 5 + 3);
@@ -565,7 +564,7 @@ ok('the four stats in words: the why line only when a grade needs explaining, bi
       if (run.phase === 'ending') break;
       const log = run.last.log;
       // a quiet line at most once every three cards, never two on one screen, and only on the card's own page
-      const sw = log.filter(l => swings.has(l.text));
+      const sw = log.filter(l => l.about === 'swing');
       assert.ok(sw.length <= 1, `${origin} ${seed}: two swing lines on one screen`);
       if (sw.length) {
         assert.ok(t - lastSwing >= 3, `${origin} ${seed}: swing lines ${t - lastSwing} cards apart`);
@@ -838,6 +837,340 @@ ok('hidden witnesses: never named, a nudge and never a jump, landing one to thre
     if (a.witness) noticed++; else { quiet++; assert.deepStrictEqual(JSON.parse(JSON.stringify(a)), JSON.parse(JSON.stringify(b))); }
   }
   assert.ok(quiet >= 1 && noticed > 20 && waiting > 50, `expected careers with and without witnesses (${quiet}, ${noticed}, ${waiting})`);
+});
+
+// --- what the playtesters could not follow (final playtest): the engine's part ---------------
+
+// A careers sampler for the tests below: the engine directly, so every log entry is to hand.
+// greedy: the "knows the win" bot (reaches politics); otherwise random play.
+function careers(n, { greedy = false, origins = ['scholar', 'grad', 'poly'], rival = s => s % 3 === 0 } = {}, visit) {
+  const E = build.engine, C = build.content;
+  const score = f => (f.cep||0)*60 + (f.standing||0)*1.5 + (f.competence||0)*1.4 + (f.reputation||0)*1.3 - (f.heat||0)*0.8;
+  for (const origin of origins) for (let seed = 1; seed <= n; seed++) {
+    const r = H.rng(seed * 17 + 3);
+    let S = E.nextEvent(C, E.newGame(C, origin, 'Tan Wei Ling', seed, { rival: rival(seed), gender: 'f' })).state;
+    for (let t = 0; t < 120 && !S.ending; t++) {
+      const ev = E.eventOf(C, S);
+      const live = ev.choices.map((c, i) => [c, i]).filter(([c]) => E.choiceAvailable(c, S));
+      const pick = greedy ? live.reduce((a, b) => score(b[0].effects || {}) > score(a[0].effects || {}) ? b : a)[1] : live[Math.floor(r() * live.length)][1];
+      const res = E.advance(C, S, pick);
+      visit({ origin, seed, pre: S, ev, res, S: res.state });
+      S = res.state;
+    }
+  }
+}
+
+ok('the sideways move is real: after three Cs the reporting officer stays behind, and someone new is introduced from next year', () => {
+  const E = build.engine, C = build.content;
+  let moves = 0, introduced = 0;
+  const watch = new Map();   // origin+seed -> { old, newId, year }
+  careers(80, {}, ({ origin, seed, pre, ev, res, S }) => {
+    const key = origin + seed, w = watch.get(key);
+    // the first card after the move that names the reporting officer names the new one, introduced
+    if (w && ev.who && ev.who.senior !== undefined && !w.checked) {
+      const now = pre.cast.on.senior;
+      assert.notStrictEqual(ev.who.senior, w.old.id, `${key}: the old reporting officer is still named after the move`);
+      const name = now && E.personField(C, pre, 'senior', now, '');
+      // the introduction is in the body (a card naming them only in a choice has met them)
+      w.checked = true;
+      if (now && now.id === w.newId && ev.body.includes(name)) {
+        assert.ok(ev.body.includes(name + ','), `${key}: the new reporting officer is not introduced on the first card: ${ev.body}`);
+        assert.ok(!ev.body.includes(E.personField(C, pre, 'senior', w.old, '') + ' '), `${key}: the old reporting officer is in the body`);
+        introduced++;
+      }
+    }
+    const warn = res.log.find(l => l.about === 'sideways');
+    if (!warn || !pre.cast.on.senior) return;
+    // the move happened at the year-end of the card's year, or in a year that passed by itself
+    const old = S.cast.past.find(p => p.why === 'sideways' && p.left >= pre.year);
+    assert.ok(old, `${key}: nobody left in the sideways move`);
+    assert.ok(warn.text.includes(E.personField(C, S, 'senior', old, '')), `${key}: the move does not name who stays behind: ${warn.text}`);
+    assert.ok(!/\{[^{}\s]+\}/.test(warn.text) && /new reporting officer/.test(warn.text), warn.text);
+    const now = S.cast.on.senior;
+    if (!S.ending && S.rank < 7) {
+      assert.ok(now && now.id !== old.id, `${key}: no new reporting officer after the move`);
+      assert.ok(now.since > old.left, `${key}: the new reporting officer arrived in the year of the move, not the next`);
+      assert.ok(!now.flags.length && now.met === undefined, `${key}: the new reporting officer has history`);
+      // no arrival line: the move has said it, and the first card introduces them
+      assert.ok(!res.log.some(l => l.cast === 'senior' && l.at.person === now.id), `${key}: an arrival line for the new reporting officer`);
+      moves++;
+      if (!watch.has(key)) watch.set(key, { old, newId: now.id, year: S.year });
+    }
+  });
+  assert.ok(moves > 40 && introduced > 20, `expected sideways moves and introductions (${moves}, ${introduced})`);
+  // in politics the select committee moves nobody
+  const S = build.engine.newGame(C, 'grad', 'X', 5);
+  assert.deepStrictEqual(S.cast.past, []);
+});
+
+ok('a new reporting officer card (replaces) hands {senior} to a newcomer, introduced on the next card that names them', () => {
+  const E = build.engine, C = build.content;
+  const cards = C.events.filter(e => e.replaces);
+  assert.ok(cards.some(e => e.id === 'new_ro'), 'new_ro hands the role on');
+  for (const e of cards) for (const r of e.replaces) assert.ok(C.cast.roles[r], `${e.id}: replaces an unknown role ${r}`);
+  let n = 0;
+  for (const origin of ['grad', 'scholar']) for (let seed = 1; seed <= 60; seed++) {
+    let S = E.newGame(C, origin, 'X', seed);
+    S.rank = 2; S.age = 30; S.year = 5;   // a grade new_ro can be drawn at
+    S = { ...S, cast: undefined }; delete S.cast;
+    S = E.nextEvent(C, { ...S, currentEvent: null }).state;
+    if (!S.cast.on.senior) continue;
+    S.currentEvent = 'new_ro';
+    const ev = E.eventOf(C, S), old = S.cast.on.senior;
+    const res = E.advance(C, S, seed % ev.choices.length);
+    const now = res.state.cast.on.senior;
+    assert.ok(res.state.cast.past.some(p => p.id === old.id && p.why === 'replaced'), 'the old reporting officer leaves the story');
+    if (res.state.ending || res.state.rank > 6) continue;
+    assert.ok(now && now.id !== old.id && now.met === undefined, 'a newcomer holds the role, not yet met');
+    assert.ok(!res.log.some(l => l.cast === 'senior'), 'no arrival line: the card has said it');
+    n++;
+  }
+  assert.ok(n > 50, `expected new_ro to hand over (${n})`);
+});
+
+ok('the header says where you are: a backbencher\'s seat, never a ministry left behind; an office holder\'s ministry', () => {
+  const E = build.engine, C = build.content, M = new Set(C.ministries);
+  const L = C.engineLines.place;
+  let mps = 0, office = 0, candidates = 0, pages = 0;
+  const check = (h, flags, ministry, where) => {
+    if (h.title === C.ladder[8].title) {
+      assert.ok(!M.has(h.place), `${where}: an MP's header names ${h.place}`);
+      assert.strictEqual(h.place, flags.includes('seat_smc') ? L.smc : flags.includes('seat_grc') ? L.grc : L.mp, where);
+      mps++;
+    } else if (C.ladder.findIndex(r => r.title === h.title && r.grade === h.grade) >= 9 && h.grade !== 'PM') {
+      assert.strictEqual(h.place, ministry, `${where}: an office holder's header is not the ministry they serve in`);
+      office++;
+    }
+  };
+  careers(40, { greedy: true }, ({ origin, seed, pre, ev, res, S }) => {
+    const where = `${origin} ${seed} y${pre.year}`;
+    const eh = E.header(C, pre);
+    if (ev.id === 'the_election') { assert.strictEqual(eh.place, L.candidate, `${where}: the election card's header`); candidates++; }
+    else check(eh, pre.flags, pre.ministry, where + ' event');
+    // every page of the outcome, under its own header
+    if (res.head) check(res.head, S.flags, S.ministry, where + ' outcome');
+    for (const l of res.log.filter(l => l.kind === 'year')) { check(l.head, S.flags, S.ministry, `${where} page ${l.year}`); pages++; }
+  });
+  assert.ok(mps > 200 && office > 500 && candidates > 30 && pages > 1000, `expected MPs, office holders and candidates (${mps}, ${office}, ${candidates}, ${pages})`);
+  // a backbencher's first office names its ministry, once
+  const S = { ...E.newGame(C, 'grad', 'X', 3), rank: 8, yearsInGrade: 5, competence: 100, standing: 100, reputation: 100, cep: 15, age: 45, flags: ['seat_grc'] };
+  S.currentEvent = E.nextEvent(C, S).state.currentEvent;
+  const res = E.advance(C, { ...S }, 0);
+  const promo = res.log.find(l => l.kind === 'promo' && /^Promoted/.test(l.text));
+  if (promo) assert.ok(promo.text.includes(S.ministry), promo.text);
+});
+
+ok('a political heads-up or rumour never names a rank the player already holds', () => {
+  const E = build.engine, C = build.content;
+  const esc = x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  for (let r = 0; r < 16; r++) {
+    const name = E.nextName(C, r);
+    assert.notStrictEqual(name, C.ladder[r].title, `the rung above ${C.ladder[r].title} (${C.ladder[r].grade}) is named as the rank itself`);
+    // a rung that shares its title with the one below (Minister MR4, then MR3) is named without it
+    if (C.ladder[r + 1].title === C.ladder[r].title) assert.ok(!new RegExp(`\\b${esc(C.ladder[r].title)}\\b`).test(name), `the rung above ${C.ladder[r].grade} is named "${name}"`);
+    else assert.strictEqual(name, C.ladder[r + 1].title);
+  }
+  let lines = 0, held = 0;
+  careers(40, { greedy: true }, ({ origin, seed, res }) => {
+    // each page's rank is the one its header shows; the lines on it are about the next rung
+    let title = res.head && res.head.title;
+    for (const l of res.log) {
+      if (l.kind === 'year') { title = l.head.title; continue; }
+      if (!['headsUp', 'blocked'].includes(l.about) || l.rank < 8) continue;
+      lines++;
+      if (l.rank === 13) held++;
+      const mine = C.ladder[l.rank].title;
+      assert.strictEqual(mine, title, `${origin} ${seed}: a line about rank ${l.rank} on a page showing ${title}`);
+      assert.ok(!new RegExp(`\\bfor ${esc(mine)}\\b`).test(l.text), `${origin} ${seed}: "${l.text}" names ${mine}, the rank held`);
+    }
+  });
+  assert.ok(lines > 200 && held > 10, `expected political heads-ups, some at MR4 (${lines}, ${held})`);
+});
+
+ok('every outcome page heading carries its year and age, and a year with nothing to decide says why', () => {
+  const C = build.content;
+  let pages = 0, passed = 0, payWhy = 0, falls = 0;
+  const kinds = {};
+  careers(50, {}, ({ origin, seed, pre, res, S }) => {
+    const where = `${origin} ${seed} y${pre.year}`;
+    const ys = res.log.filter(l => l.kind === 'year');
+    ys.forEach((l, i) => {
+      const m = l.text.match(/^Year (\d+) · Age (\d+) · (.+)$/);
+      assert.ok(m, `${where}: a page heading without its year and age: "${l.text}"`);
+      assert.deepStrictEqual([+m[1], +m[2]], [l.year, l.age], where);
+      // the pages run in order, one year each, from the card's own year
+      assert.strictEqual(l.year, pre.year + i + (ys[0].page === 'review' ? 0 : 1), `${where}: page ${i} is year ${l.year}`);
+      assert.strictEqual(l.age - pre.age, l.year - pre.year, `${where}: page ${i}'s age and year disagree`);
+      // and its header is that year's
+      assert.deepStrictEqual([l.head.year, l.head.age], [l.year, l.age], `${where}: page ${i}'s header is not dated to its year`);
+      pages++;
+      if (l.page === 'passed') {
+        passed++;
+        const next = res.log[res.log.indexOf(l) + 1];
+        assert.ok(next && next.about === 'noDecision' && /^No decision was needed this year\./.test(next.text), `${where}: a year without a decision that does not say why: ${next && next.text}`);
+        assert.ok(!/\{[^{}\s]+\}/.test(next.text), next.text);
+        kinds[next.passed] = (kinds[next.passed] || 0) + 1;
+      }
+    });
+    // the first page's header is the year the card was played in
+    assert.deepStrictEqual([res.head.year, res.head.age], [pre.year, pre.age], where);
+    // pay: a reason in words when it moved for a reason the player cannot see; never a stat's number
+    for (const l of res.log.filter(l => l.kind === 'pay')) {
+      if (!/^Annual package: /.test(l.text)) continue;
+      if (/on last year: /.test(l.text)) { payWhy++; assert.ok(!/(competence|standing|reputation|integrity)\W*\d/i.test(l.text), l.text); }
+      if (/, down \$[\d,]+ on last year: /.test(l.text)) falls++;
+    }
+  });
+  assert.ok(pages > 2000 && passed > 500 && payWhy > 300 && falls > 50, `expected pages, passed years and pay reasons (${pages}, ${passed}, ${payWhy}, ${falls})`);
+  assert.ok(kinds.habit > 100 && kinds.series > 0 && kinds.auto > 10, `every kind of quiet year says why: ${JSON.stringify(kinds)}`);
+});
+
+ok('every pay line from the second year says how it compares with last year, and a fall always says why', () => {
+  let checked = 0, falls = 0, same = 0, first = 0;
+  const money = t => +t.replace(/[$,]/g, '');
+  careers(30, { greedy: false }, ({ pre, res }) => {
+    let last = pre.lastPay ? pre.lastPay.total : null;
+    for (const l of res.log) {
+      if (l.kind !== 'pay' || !/^Annual package: /.test(l.text)) continue;
+      const now = money(l.text.match(/^Annual package: (\$[\d,]+)/)[1]);
+      if (last === null) { first++; assert.ok(!/last year/.test(l.text), `the first pay line compares: ${l.text}`); last = now; continue; }
+      checked++;
+      const m = l.text.match(/, (?:(up|down) (\$[\d,]+) on last year|the same as last year)(?:: (.+))?$/);
+      assert.ok(m, `a pay line that does not compare with last year: ${l.text}`);
+      const d = m[1] ? (m[1] === 'up' ? 1 : -1) * money(m[2]) : 0;
+      assert.strictEqual(d, now - last, `the difference is wrong: ${l.text} (last year $${last})`);
+      if (d < 0) { falls++; assert.ok(m[3], `a fall with no reason: ${l.text}`); }
+      if (d === 0) { same++; assert.ok(!m[3], l.text); }
+      last = now;
+    }
+  });
+  assert.ok(checked > 1000 && falls > 100 && same > 10 && first > 50, `expected comparisons, falls and steady years (${checked}, ${falls}, ${same}, ${first})`);
+});
+
+ok('every card says who its people are: the full introduction first, a short tag on later cards, never on the card right after', () => {
+  const E = build.engine, C0 = build.content, R = C0.cast.roles;
+  const card = (id, body, choices) => ({ id, title: 'Test ' + id, body, weight: 0,
+    choices: choices || [{ text: 'Carry on.', effects: {}, outcome: 'You carry on.' }] });
+  const C = { ...C0, events: C0.events.concat([
+    card('t_peer', '{peer} asks you to lunch on Friday.'),
+    card('t_own', '{peer}, the friend who never forgets a birthday, asks you to lunch.'),
+    card('t_none', 'The canteen has a new menu.'),
+    card('t_hidden', 'The canteen has a new menu.', [
+      { text: 'Ask around.', effects: {}, outcome: '{junior} tells you the old one was better.' },
+      { text: 'Eat.', effects: {}, outcome: 'You eat.' }]),
+    card('t_junior', '{junior} brings you the minutes.'),
+    card('t_junior_poss', "{Junior}'s minutes arrive late."),
+    card('t_rival', 'The papers put {rival} on the front page.'),
+    card('t_mp_poss', "{Mp}'s ward is next to yours."),
+    card('t_mp_mid', "Blk 438 is in {mp}'s ward."),
+    card('t_mp_later', "Blk 438 is in {mp}'s ward, but {mp} sends its residents to you.")
+  ]) };
+  // a run at Senior Management Executive with a junior, then in Parliament with a fellow MP
+  const at = rank => { const S = { ...E.newGame(C, 'grad', 'Tan Wei Ling', 4, { rival: true, gender: 'f' }), rank, age: 30, year: 9, cardsPlayed: 8 };
+    delete S.cast; if (rank >= 8) S.flags = ['seat_grc']; return E.nextEvent(C, { ...S, currentEvent: 't_none' }).state; };
+  let S = at(2);
+  const show = (id, St = S) => E.eventOf(C, { ...St, currentEvent: id }).body;
+  const nm = (r, St = S) => E.personField(C, St, r, St.cast.on[r], '');
+  const fill = t => t.replace(/\{(\w+)\.(\w+)\}/g, (m, r, f) => E.personField(C, S, r, S.cast.on[r], f));
+  const set = (role, met, seenCard) => Object.assign(role === 'rival' ? S.rival : S.cast.on[role], { met, seenCard });
+  const peer = nm('peer');
+  set('peer', undefined, undefined);
+  assert.strictEqual(show('t_peer'), `${peer}, ${R.peer.intro}, asks you to lunch on Friday.`, 'the first card gives the full introduction');
+  set('peer', S.year - 1, S.cardsPlayed);
+  assert.strictEqual(show('t_peer'), `${peer} asks you to lunch on Friday.`, 'the card right after does not repeat it');
+  set('peer', S.year - 2, S.cardsPlayed - 1);
+  assert.strictEqual(show('t_peer'), `${peer}, ${R.peer.tag}, asks you to lunch on Friday.`, 'a later card gives the short tag');
+  assert.strictEqual(show('t_own'), `${peer}, the friend who never forgets a birthday, asks you to lunch.`, 'the writer\'s own introduction is kept');
+  set('peer', S.year - 8, S.cardsPlayed - 3);
+  assert.strictEqual(show('t_peer'), `${peer}, ${R.peer.intro}, asks you to lunch on Friday.`, 'after eight years, the full introduction again');
+  // a possessive with no plain mention: a tag that is a clause cannot go in front, so none
+  const jr = nm('junior');
+  set('junior', S.year - 2, S.cardsPlayed - 1);
+  assert.strictEqual(show('t_junior_poss'), `${jr}'s minutes arrive late.`);
+  // what the player read on a card, and the outcome they chose, counts as meeting someone on it;
+  // an outcome they did not choose does not
+  set('junior', undefined, undefined);
+  const skip = E.advance(C, { ...S, currentEvent: 't_hidden' }, 1).state, read = E.advance(C, { ...S, currentEvent: 't_hidden' }, 0).state;
+  const jrOf = St => St.cast.on.junior && St.cast.on.junior.id === S.cast.on.junior.id ? St.cast.on.junior : null;
+  if (jrOf(skip)) assert.strictEqual(jrOf(skip).met, undefined, 'an untaken outcome does not count as meeting them');
+  assert.ok(jrOf(read) && jrOf(read).met === S.year && jrOf(read).seenCard === S.cardsPlayed + 1, 'the chosen outcome counts');
+  assert.strictEqual(show('t_junior'), `${jr}, ${fill(R.junior.intro)}, brings you the minutes.`);
+  // the batchmate: a tag, and not on the card right after
+  const mate = S.rival.name, rt = C0.engineLines.rivalTag;
+  set('rival', undefined, S.cardsPlayed - 2);
+  assert.strictEqual(show('t_rival'), `The papers put ${mate}, ${rt}, on the front page.`);
+  set('rival', undefined, S.cardsPlayed);
+  assert.strictEqual(show('t_rival'), `The papers put ${mate} on the front page.`);
+  const mates = E.advance(C, { ...S, currentEvent: 't_rival' }, 0).state;
+  assert.strictEqual(mates.rival.seenCard, S.cardsPlayed + 1, 'a card naming the batchmate is remembered');
+  // in politics: a possessive takes the tag in front (capitalised to open a sentence), or on the next plain mention
+  S = at(8);
+  const mp = nm('mp'), cap = t => t[0].toUpperCase() + t.slice(1);
+  set('mp', S.year - 2, S.cardsPlayed - 1);
+  assert.strictEqual(show('t_mp_poss'), `${cap(R.mp.tag)} ${mp}'s ward is next to yours.`);
+  assert.strictEqual(show('t_mp_mid'), `Blk 438 is in ${R.mp.tag} ${mp}'s ward.`);
+  assert.strictEqual(show('t_mp_later'), `Blk 438 is in ${mp}'s ward, but ${mp}, ${R.mp.tag}, sends its residents to you.`);
+  set('mp', S.year - 1, S.cardsPlayed);
+  assert.strictEqual(show('t_mp_later'), `Blk 438 is in ${mp}'s ward, but ${mp} sends its residents to you.`);
+  for (const [role, r] of Object.entries(R)) assert.ok(r.tag && !/\{(?!grassroots\.aTitle)/.test(r.tag), `${role} has a tag`);
+
+  // whole careers: a tag only for someone met before and not on the card just before; the card
+  // right after a card that named someone never tags them; and how often tags come up. The same
+  // build with each tag marked shows where the engine put one (a writer's own words may match a tag).
+  const M = JSON.parse(JSON.stringify(build.content));
+  for (const [role, r] of Object.entries(M.cast.roles)) r.tag += ` \u00a7${role}\u00a7`;
+  M.engineLines.rivalTag += ' \u00a7rival\u00a7';
+  let tags = 0, n = 0, after = 0;
+  const per = [];
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
+    const r = H.rng(seed * 13 + 7), greedy = seed % 2 === 0;
+    const score = f => (f.cep||0)*60 + (f.standing||0)*1.5 + (f.competence||0)*1.4 + (f.reputation||0)*1.3 - (f.heat||0)*0.8;
+    let St = E.nextEvent(build.content, E.newGame(build.content, origin, 'Tan Wei Ling', seed, { rival: seed % 3 === 0, gender: 'f' })).state;
+    let prev = {}, mine = 0;
+    for (let t = 0; t < 120 && !St.ending; t++) {
+      const ev = E.eventOf(build.content, St), marked = E.eventOf(M, St);
+      assert.strictEqual(marked.body.replace(/ \u00a7\w+\u00a7/g, ''), ev.body);
+      for (const [, role] of marked.body.matchAll(/\u00a7(\w+)\u00a7/g)) {
+        const p = role === 'rival' ? St.rival : St.cast.on[role];
+        assert.ok(prev[role] === undefined, `${origin} ${seed} y${St.year} ${ev.id}: ${role} tagged on the card right after: ${ev.body}`);
+        if (role !== 'rival') assert.ok(p.met !== undefined && St.year - p.met < 8, `${origin} ${seed} ${ev.id}: a tag where the full introduction was due`);
+        tags++; mine++;
+      }
+      for (const role of Object.keys(prev)) if ((role === 'rival' ? St.rival : St.cast.on[role]) && ev.saw && ev.saw[role] !== undefined) after++;
+      const live = ev.choices.map((c, i) => [c, i]).filter(([c]) => E.choiceAvailable(c, St));
+      const pick = greedy ? live.reduce((a, b) => score(b[0].effects || {}) > score(a[0].effects || {}) ? b : a)[1] : live[Math.floor(r() * live.length)][1];
+      prev = {};
+      for (const [role, id] of Object.entries({ ...(ev.saw || {}), ...(ev.choices[pick].saw || {}) })) prev[role] = id;
+      St = E.advance(build.content, St, pick).state;
+      // someone who left and was replaced since is a new person: forget them
+      for (const role of Object.keys(prev)) if (role !== 'rival' && (!St.cast.on[role] || St.cast.on[role].id !== prev[role])) delete prev[role];
+    }
+    per.push(mine); n++;
+  }
+  per.sort((a, b) => a - b);
+  console.log(`    (tags: ${(tags / n).toFixed(1)} per career, median ${per[n >> 1]}, most ${per[n - 1]}; ${after} cards right after a card naming the same person, none tagged)`);
+  assert.ok(tags > n && after > 100, `expected tags and cards right after (${tags}, ${after})`);
+  assert.ok(per[n - 1] <= 12, `a career with ${per[n - 1]} tags is noisy`);
+});
+
+ok('a swing note in politics speaks of voters and the party, never of upstairs or the building', () => {
+  const W = build.content.statWords;
+  assert.ok(W.swingPolitics, 'statWords.swingPolitics');
+  for (const [k, v] of Object.entries(W.swingPolitics)) if (k !== 'about') for (const d of ['up', 'down']) {
+    assert.ok(v[d] && v[d].length >= 3, `swingPolitics.${k}.${d}: three lines`);
+    for (const l of v[d]) assert.ok(!/upstairs|the building/i.test(l) && !/\{(?!standing\}|reputation\}|competence\})/.test(l), l);
+  }
+  let pol = 0, svc = 0;
+  const said = new Set();
+  careers(40, { greedy: true }, ({ origin, seed, pre, ev, res }) => {
+    const politics = pre.rank >= 8 || res.state.rank >= 8 || ev.id === 'the_election';
+    for (const l of res.log.filter(l => l.about === 'swing')) {
+      assert.ok(!/\{\w+\}/.test(l.text) && /^[A-Z]/.test(l.text), l.text);
+      if (politics) { pol++; said.add(l.text); assert.ok(!/upstairs|the building/i.test(l.text), `${origin} ${seed} ${ev.id}: "${l.text}" in politics`); }
+      else svc++;
+    }
+  });
+  assert.ok(pol > 100 && svc > 100 && said.size > 12, `expected swing notes in politics and the service (${pol}, ${svc}, ${said.size} different)`);
 });
 
 console.log(`\nAll ${passed} harness tests passed.`);

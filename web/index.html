@@ -113,6 +113,20 @@ input{
   max-width:calc(100% - 32px);background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:9px;
   padding:10px 15px;font-size:14px;line-height:1.4;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.4);transition:opacity .4s}
 .toast.out{opacity:0}
+/* the share panel: the picture, then a button for each way to send it */
+.sharepanel{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.62);display:flex;align-items:flex-end;justify-content:center;
+  padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+.sharepanel .sheet{width:100%;max-width:440px;max-height:100%;overflow:auto;background:var(--panel);border:1px solid var(--line);
+  border-radius:12px;padding:12px 16px 16px;animation:rise .25s cubic-bezier(.22,1,.36,1)}
+.shead{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.sx{background:none;border:0;color:var(--dim);font:inherit;font-size:26px;line-height:1;padding:4px 8px;margin-right:-8px;cursor:pointer;letter-spacing:0}
+.sprev{margin-top:8px;background:var(--bg);border:1px solid var(--line);border-radius:9px;min-height:120px;max-height:46vh;overflow:auto;display:flex;justify-content:center}
+.sprev img{display:block;width:100%;height:auto;align-self:flex-start}
+.swait{color:var(--faint);font-size:13.5px;line-height:1.5;padding:40px 16px;text-align:center;align-self:center}
+.sbtn{margin-top:10px}
+a.sbtn{display:block;text-align:center;text-decoration:none}
+.sbtn[aria-disabled=true]{opacity:.4;pointer-events:none}
+.sbtn[hidden]{display:none}
 .declass{text-align:left;margin:18px 0 14px;padding-top:16px;border-top:1px solid var(--line)}
 .declass .lab{margin-bottom:10px}
 .dl{margin:0 0 12px}

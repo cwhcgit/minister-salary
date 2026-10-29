@@ -47,15 +47,15 @@ server.listen(0, async () => {
   function compareHeader(where, h) {
     expect(where + ' rank', own($('.rank')), h.rank);
     expect(where + ' grade', $('.grade').textContent, h.grade);
-    expect(where + ' sub', $('.sub').textContent, `Age ${h.age} · Year ${h.year} · ${h.ministry}`);
+    expect(where + ' sub', $('.sub').textContent, `Age ${h.age} · Year ${h.year} · ${h.place}`);
     expect(where + ' cash', $('.cash').textContent, h.wealth);
     expect(where + ' cash label', $('.cashlab').textContent, h.wealthLabel);
     expect(where + ' batchmate', $('.mate') ? $('.mate').textContent : null, h.batchmate ? `Batchmate: ${h.batchmate}` : null);
     // the four stats are hidden during play: no values, bars or changes anywhere in the header
-    // the New career button is a control, not part of the screen the harness shows
+    // the Reincarnate button is a control, not part of the screen the harness shows
     const hd = $('header').cloneNode(true); hd.querySelectorAll('.newcareer').forEach(b => b.remove());
     expect(where + ' header text', hd.textContent.replace(/\s+/g, ' ').trim(),
-      [`${h.rank}${h.grade}`, `Age ${h.age} · Year ${h.year} · ${h.ministry}`, h.batchmate ? `Batchmate: ${h.batchmate}` : null, h.wealth + h.wealthLabel].filter(Boolean).join(' '));
+      [`${h.rank}${h.grade}`, `Age ${h.age} · Year ${h.year} · ${h.place}`, h.batchmate ? `Batchmate: ${h.batchmate}` : null, h.wealth + h.wealthLabel].filter(Boolean).join(' '));
     expect(where + ' stat bars', $$('header .track, header .stat').length, 0);
   }
 
@@ -67,7 +67,7 @@ server.listen(0, async () => {
     expect('start name placeholder', $('#nm').placeholder, View.startCard(build, 'grad').namePlaceholder);
     expect('start genders', $$('.gender .g').map(g => g.textContent).join(' | '), View.startCard(build, 'grad').genders.join(' | '));
     expect('start gender chosen', $$('.gender .g').map(g => g.getAttribute('aria-checked')).join(' '), 'true false');
-    let screens = 0;
+    let screens = 0, payLines = 0, witnessLines = 0, witnessFiles = 0;   // (witnesses: seeds vary, so counted, not required)
 
     // three careers without a batchmate, then three with one; as Female and as Male, with a typed
     // name and with the field left blank (a name is drawn for the run)
@@ -121,16 +121,33 @@ server.listen(0, async () => {
           live[Math.floor(pick() * live.length)].click(); await wait(5);
         } else if (st.phase === 'outcome') {
           const where = `${origin} seed ${prev.seed} y${prev.year} outcome`;
-          compareHeader(where, View.header(build, st.S));
-          const want = View.outcomeCard(st.outcome, st.log);
+          const want = View.outcomeCard(st.outcome, st.log, st.head, View.header(build, st.S));
           expect(where + ' text', $('.outcome').textContent, want.text);
-          const items = $$('.li');
-          expect(where + ' log length', items.length, want.log.length);
-          items.forEach((li, i) => {
-            const spans = li.querySelectorAll('span');
-            expect(`${where} log ${i} tag`, spans[0].textContent, want.log[i].tag);
-            expect(`${where} log ${i} text`, spans[1].textContent, want.log[i].text);
+          // page by page, as the player taps Continue: each page under its own header
+          const pages = $$('.page');
+          expect(where + ' page count', pages.length, want.pages.length);
+          want.pages.forEach((wp, k) => {
+            const pg = pages[k];
+            if (!pg) return;
+            expect(`${where} page ${k} on show`, pages.filter(x => !x.hidden).map(x => x.dataset.p).join(), String(k));
+            compareHeader(`${where} page ${k}`, wp.header);
+            const items = [...pg.querySelectorAll('.li')];
+            expect(`${where} page ${k} log length`, items.length, wp.log.length);
+            items.forEach((li, i) => {
+              const spans = li.querySelectorAll('span');
+              expect(`${where} page ${k} log ${i} tag`, spans[0].textContent, wp.log[i] && wp.log[i].tag);
+              expect(`${where} page ${k} log ${i} text`, spans[1].textContent, wp.log[i] && wp.log[i].text);
+            });
+            // the pay line, from the second year on, says how it compares with last year
+            const yr = pg.querySelector('.li.yr span:last-child'), year = yr && +(yr.textContent.match(/^Year (\d+) · /) || [])[1];
+            for (const li of items.filter(li => li.querySelector('.t-pay') && /^Annual package: /.test(li.querySelectorAll('span')[1].textContent))) {
+              const t = li.querySelectorAll('span')[1].textContent;
+              if (!year) mismatches.push(`${where} page ${k}: a pay line on a page with no year heading: ${t}`);
+              else if (year >= 2) { payLines++; if (!/, (?:up|down) \$[\d,]+ on last year|, the same as last year/.test(t)) mismatches.push(`${where} page ${k} (year ${year}): the pay line does not compare with last year: ${t}`); }
+            }
+            if (k < pages.length - 1) pg.querySelector('.more').click();
           });
+          witnessLines += (st.log || []).filter(l => l.about === 'witness').length;
           screens++;
           $('#next').click(); await wait(5);
         } else throw new Error('unexpected phase ' + st.phase);
@@ -152,6 +169,8 @@ server.listen(0, async () => {
         expect(`stat ${i} value`, el.querySelector('.rk .v').textContent, want.stats[i].value);
         expect(`stat ${i} verdict`, el.querySelector('.t').textContent, want.stats[i].verdict);
       });
+      const W = build.content.witnesses && build.content.witnesses.lines;
+      if (W) witnessFiles += want.declassified.filter(d => d.label === W.label || d.label === W.restLabel).length;
       const dls = $$('.dl');
       expect('declassified count', dls.length, want.declassified.length);
       dls.forEach((el, i) => {
@@ -162,6 +181,9 @@ server.listen(0, async () => {
       console.log(`✓ ${origin}${rival ? " + batchmate" : ""}, ${gender === 'f' ? 'Female' : 'Male'}, ${typed ? 'typed name' : 'blank name'} (${S.name}): ${S.year - 1} years, ending "${want.title}", every screen matches`);
     }
 
+    if (payLines < 50) mismatches.push(`only ${payLines} pay lines from the second year on were checked against last year`);
+    else console.log(`✓ ${payLines} pay lines from the second year on each say how they compare with last year`);
+    console.log(`✓ ${witnessLines} review lines and ${witnessFiles} Declassified entries from hidden witnesses among the screens compared`);
     if (mismatches.length) {
       console.log(`\n✗ ${mismatches.length} differences between the phone and harness/screen.js:`);
       mismatches.slice(0, 25).forEach(m => console.log('  ' + m));
