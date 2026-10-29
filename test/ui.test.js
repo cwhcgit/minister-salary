@@ -63,7 +63,7 @@ async function shareTests(window, $, $$, wait) {
   $('#share').click(); await wait(60);
   if (shared) throw new Error('shared although the browser cannot share files');
   if (saved !== 'minister-salary.png') throw new Error('the picture was not saved');
-  if (!copied || !copied.includes(window.location.href.split('#')[0])) throw new Error('the link was not copied');
+  if (!copied || !copied.includes('https://cwhcgit.github.io/minister-salary/')) throw new Error('the public link was not copied');
   const toast = $('.toast');
   if (!toast || !/saved/i.test(toast.textContent)) throw new Error('no toast says what happened');
   console.log('✓ share fallback: picture saved, words and link copied, toast:', JSON.stringify(toast.textContent));
