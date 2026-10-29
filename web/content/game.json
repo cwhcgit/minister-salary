@@ -838,10 +838,18 @@
   "probationCards": 6,
   "statWords": {
     "names": {
-      "service": { "competence": "your competence", "standing": "your standing upstairs", "reputation": "your reputation outside the building" },
-      "politics": { "competence": "your competence", "standing": "your standing with the party leadership", "reputation": "your reputation with voters" }
+      "service": {
+        "competence": "your competence",
+        "standing": "your standing upstairs",
+        "reputation": "your reputation outside the building"
+      },
+      "politics": {
+        "competence": "your competence",
+        "standing": "your standing with the party leadership",
+        "reputation": "your reputation with voters"
+      }
     },
-    "whyFirst": "An appraisal weighs your competence most, then your standing upstairs, then a little of your reputation outside the building.",
+    "whyFirst": "Your appraisal is the yearly grade that decides your promotions. It looks at your competence, your standing upstairs and your reputation outside the building.",
     "why": {
       "contrast": [
         "{A} is not in question; {B} is.",
@@ -860,14 +868,14 @@
         "Nothing in your file is carrying you yet, least of all {B}."
       ],
       "even": [
-        "Competence, standing and reputation: all middling, none of them a problem.",
+        "Your competence, standing and reputation are all middling, and none of them is a problem.",
         "Nothing in your file stands out, good or bad.",
         "Nobody had a complaint about your work, and nobody had a compliment."
       ],
       "strong": [
-        "Competence, standing, reputation: nobody had a complaint about any of them.",
+        "Nobody had a complaint about your competence, your standing or your reputation.",
         "There is no weak spot in your file, and people looked.",
-        "{competence}, {standing} and {reputation} all point the same way."
+        "{competence}, {standing} and {reputation} are all strong."
       ],
       "choiceDown": [
         "A choice this year that counted against you took the grade down to {grade}.",
@@ -956,7 +964,7 @@
         "down": [
           "Your integrity takes a knock. You notice, even if nobody else does.",
           "You tell yourself it was necessary. Your integrity is less sure.",
-          "Something gives a little, and it is your integrity."
+          "You bend a rule you once said you never would, and your integrity is the worse for it."
         ]
       }
     },
@@ -969,40 +977,82 @@
     "verdicts": {
       "competence": {
         "label": "Competence",
-        "about": "Half of every appraisal, and your yearly bonus.",
+        "about": "Competence is how good you were at the work itself. Good work earned the good yearly grades that got you promoted, and a bigger bonus every year.",
         "bands": [
-          { "min": 70, "text": "Yours was never the problem." },
-          { "min": 50, "text": "Yours was enough, and rarely more." },
-          { "min": 30, "text": "Yours held both back." },
-          { "min": 0, "text": "Yours cost you grades and money, every year." }
+          {
+            "min": 70,
+            "text": "Your Competence was high: your work was the best thing in your file, and your bonus was near the most it could be."
+          },
+          {
+            "min": 50,
+            "text": "Your Competence was solid: good enough to do the job, but not good enough to win a promotion without help from your Standing and Reputation."
+          },
+          {
+            "min": 30,
+            "text": "Your Competence was below par, so it pulled your grades down and kept your bonus small."
+          },
+          {
+            "min": 0,
+            "text": "Your Competence was very low: it cost you grades and promotions, and it kept your bonus near the minimum."
+          }
         ]
       },
       "standing": {
         "label": "Standing",
-        "about": "How far the people above you trusted you. A third of every appraisal, and one of the two things that get you invited to tea.",
+        "about": "Standing is how far the people above you trusted you: your bosses in the service, or the party leadership once you were in politics. Their trust helped your yearly grade, and the party only invites people to tea once both their Standing and their Reputation are high enough.",
         "bands": [
-          { "min": 70, "text": "Yours was never in question." },
-          { "min": 54, "text": "Yours was high enough for tea." },
-          { "min": 30, "text": "Yours fell short of what tea asks for." },
-          { "min": 0, "text": "Yours pulled down every grade you got." }
+          {
+            "min": 70,
+            "text": "Your Standing was high enough for tea, and high enough to be considered when the party picks its next Prime Minister."
+          },
+          {
+            "min": 54,
+            "text": "Your Standing was high enough for tea, as long as your Reputation was too."
+          },
+          {
+            "min": 30,
+            "text": "Your Standing was too low for tea: the people above you did not trust you enough to put your name forward."
+          },
+          {
+            "min": 0,
+            "text": "Your Standing was very low: the people above you did not trust you, and that held back your grades and kept you far from tea."
+          }
         ]
       },
       "reputation": {
         "label": "Reputation",
-        "about": "What the public thought of you. It wins elections, and it is the other thing that gets you invited to tea.",
+        "about": "Reputation is what the public thought of you. It decided how likely you were to win an election, and the party checks it, alongside Standing, before inviting anyone to tea.",
         "bands": [
-          { "min": 60, "text": "Yours was enough to stand for a seat on your own." },
-          { "min": 35, "text": "Yours was enough for a GRC team, not a seat of your own." },
-          { "min": 0, "text": "Outside the building, almost nobody knew your name." }
+          {
+            "min": 60,
+            "text": "Your Reputation was high enough to ask the party for a single seat of your own, not just a place on a GRC team."
+          },
+          {
+            "min": 35,
+            "text": "Your Reputation was respectable, but too low to ask for a single seat, so at an election you would have run as one of a GRC team."
+          },
+          {
+            "min": 0,
+            "text": "Your Reputation was low. Outside work, almost nobody knew your name, and the party does not invite people nobody knows to tea."
+          }
         ]
       },
       "integrity": {
         "label": "Integrity",
-        "about": "What you did when nobody was checking. It decides most of what people say about you when you leave.",
+        "about": "Integrity is what you did when nobody was checking. It never helped your grade or your promotions, but it decided most of what people said about you when you left.",
         "bands": [
-          { "min": 70, "text": "Yours held." },
-          { "min": 45, "text": "Yours bent, but not often." },
-          { "min": 0, "text": "Yours gave way whenever it was convenient." }
+          {
+            "min": 70,
+            "text": "Your Integrity held: when the right thing cost you something, you usually paid."
+          },
+          {
+            "min": 45,
+            "text": "Your Integrity bent now and then: you cut some corners, but not many."
+          },
+          {
+            "min": 0,
+            "text": "Your Integrity gave way most of the time: whenever the right thing cost you something, you found a reason not to pay."
+          }
         ]
       }
     }
