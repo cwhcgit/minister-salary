@@ -223,8 +223,8 @@ function endingScreen() {
       <button class="primary ghost" id="share" style="margin-top:8px">Share this ending</button>
     </div>`;
   app.querySelector("#again").onclick = () => { wipe(); S = null; phase = "start"; startScreen(); };
-  const btn = app.querySelector("#share");
-  btn.onclick = () => { btn.disabled = true; shareEnding().finally(() => { btn.disabled = false; }); };
+  // never disabled: each tap opens the share panel afresh
+  app.querySelector("#share").onclick = openShare;
 }
 
 // ---------- sharing the ending ----------
@@ -380,40 +380,88 @@ function copyText(text) {
   try { return navigator.clipboard.writeText(text).then(() => true, () => false); }
   catch (err) { return Promise.resolve(false); }
 }
-function savePng(blob) {
-  try {
-    const a = document.createElement("a"), u = URL.createObjectURL(blob);
-    a.href = u; a.download = "minister-salary.png"; a.style.display = "none";
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(u), 10000);
-    return true;
-  } catch (err) { return false; }
+// The share panel. Tapping Share opens it at once, with the picture as a preview and one button
+// for each way to send it, so every step is a tap of the player's own and the browser never sees
+// a download or a share sheet without one: Save picture (a real download link), Copy text and
+// link, and Share... where the browser can share a file (the system's share sheet, opened from
+// that tap). Nothing waits on the system's sheet. If the picture cannot be made, the words and
+// the link are copied instead, and the panel says so.
+let sharing = null;   // the open panel: { el, url, key }
+function closeShare() {
+  if (!sharing) return;
+  const me = sharing;
+  sharing = null;
+  me.el.remove();
+  document.removeEventListener("keydown", me.key);
+  if (me.url) { try { URL.revokeObjectURL(me.url); } catch (err) {} }
 }
-
-// The share sheet with the picture where the phone allows it; otherwise the picture is saved
-// and the words and link are copied. The words alone are the last resort.
-async function shareEnding() {
-  const card = shareCard(), title = `Minister Salary — ${card.title}`;
-  const words = `${title}\n${card.line}`, plain = `${words}\n${card.url}`;
-  let png = null;
-  try { png = await cardPng(card); } catch (err) { png = null; }
-  if (png) {
-    let file = null;
+function shareFailed(err) {
+  console.error("Minister Salary: sharing failed", err);
+  toast("Sharing didn't work in this browser. Save the picture or copy the text and link instead.");
+}
+function openShare() {
+  closeShare();
+  let card, title, words, plain;
+  try {
+    card = shareCard(); title = `Minister Salary \u2014 ${card.title}`;
+    words = `${title}\n${card.line}`; plain = `${words}\n${card.url}`;
+  } catch (err) {
+    console.error("Minister Salary: could not make the share picture", err);
+    const url = "https://cwhcgit.github.io/minister-salary/";
+    copyText(`Minister Salary\n${url}`).then(ok => toast(ok ? "Couldn't make the picture; copied the link to the game instead." : "Couldn't make the picture. Take a screenshot instead."));
+    return;
+  }
+  const el = document.createElement("div");
+  el.className = "sharepanel";
+  el.setAttribute("role", "dialog"); el.setAttribute("aria-modal", "true"); el.setAttribute("aria-label", "Share this ending");
+  el.innerHTML = `<div class="sheet">
+      <div class="shead"><span>Share this ending</span><button class="sx" id="sclose" type="button" aria-label="Close">&times;</button></div>
+      <div class="sprev"><div class="swait">Making the picture&hellip;</div></div>
+      <a class="primary sbtn" id="ssave" download="minister-salary.png" aria-disabled="true">Save picture</a>
+      <button class="primary ghost sbtn" id="scopy" type="button">Copy text and link</button>
+      <button class="primary ghost sbtn" id="ssys" type="button" hidden>Share&hellip;</button>
+    </div>`;
+  document.body.appendChild(el);
+  const me = sharing = { el, url: null, key: e => { if (e.key === "Escape") closeShare(); } };
+  document.addEventListener("keydown", me.key);
+  el.addEventListener("click", e => { if (e.target === el) closeShare(); });
+  el.querySelector("#sclose").onclick = closeShare;
+  el.querySelector("#scopy").onclick = () => copyText(plain).then(ok =>
+    toast(ok ? "Copied the words and the link, ready to paste." : "This browser wouldn't copy. Take a screenshot instead."));
+  const save = el.querySelector("#ssave");
+  save.onclick = e => { if (!me.url) e.preventDefault(); };
+  try { el.querySelector("#sclose").focus(); } catch (err) {}
+  const noPicture = err => {
+    console.error("Minister Salary: could not make the share picture", err);
+    if (sharing !== me) return;
+    el.querySelector(".sprev").innerHTML = `<div class="swait">No picture this time: copy the words and the link instead.</div>`;
+    save.hidden = true;
+    copyText(plain).then(ok => toast(ok ? "Couldn't make the picture; copied the text and link instead." : "Couldn't make the picture. Tap Copy text and link instead."));
+  };
+  let made;
+  try { made = cardPng(card); } catch (err) { return noPicture(err); }
+  made.then(png => {
+    if (sharing !== me) return;   // closed meanwhile
+    const url = me.url = URL.createObjectURL(png);
+    const img = document.createElement("img");
+    img.alt = `The picture to share: ${card.title}`; img.src = url;
+    const prev = el.querySelector(".sprev");
+    prev.innerHTML = ""; prev.appendChild(img);
+    save.href = url; save.removeAttribute("aria-disabled");
+    // the system's share sheet, only where it takes the picture as a file
+    let file = null, can = false;
     try { file = new File([png], "minister-salary.png", { type: "image/png" }); } catch (err) {}
-    if (file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-      try { await navigator.share({ files: [file], title, text: words, url: card.url }); return; }
-      catch (err) { if (err && err.name === "AbortError") return; }   // the player closed the share sheet
-    }
-    if (savePng(png)) {
-      toast(await copyText(plain) ? "Picture saved. The words and link are copied too." : "Picture saved.");
-      return;
-    }
-  }
-  if (navigator.share) {
-    try { await navigator.share({ text: plain }); return; }
-    catch (err) { if (err && err.name === "AbortError") return; }
-  }
-  toast(await copyText(plain) ? "Copied, ready to paste." : "This browser cannot share. Take a screenshot instead.");
+    try { can = !!(file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })); } catch (err) {}
+    if (!can) return;
+    const sys = el.querySelector("#ssys");
+    sys.hidden = false;
+    sys.onclick = () => {
+      // called straight from the tap, so the browser sees the player's gesture
+      let p;
+      try { p = navigator.share({ files: [file], title, text: words, url: card.url }); } catch (err) { return shareFailed(err); }
+      Promise.resolve(p).catch(err => { if (!err || err.name !== "AbortError") shareFailed(err); });   // AbortError: the player closed the sheet
+    };
+  }, noPicture);
 }
 
 // ---------- turn flow ----------
