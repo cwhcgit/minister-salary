@@ -2048,9 +2048,10 @@ const Engine = (() => {
       const where = from === 8 ? `, ${s.ministry}` : "";
       // this year was paid at the old grade: the new grade's pay starts next year
       const rise = r.pay > content.ladder[from].pay && (EL(content).payWhy || {}).promoted;
-      log.push({ kind: "promo", text: (doubleJump
-        ? `Promoted two grades: ${r.title} (${r.grade}). This does not normally happen.`
-        : `Promoted: ${r.title} (${r.grade})${where}`) + (rise ? `${doubleJump ? "" : "."} ${rise}` : "") });
+      // a double step says so, never in the same words twice (engineLines.doubleJump)
+      const rare = doubleJump && endLine(content, s, "doubleJump", EL(content).doubleJump || ["This does not normally happen."]);
+      log.push({ kind: "promo", text: [doubleJump ? `Promoted two grades: ${r.title} (${r.grade}).` : `Promoted: ${r.title} (${r.grade})${where}${rise ? "." : ""}`,
+        rare, rise].filter(Boolean).join(" ") });
       // The top job: a short tenure of its own cards follows, then the ending. (A build without
       // them ends here, as it always did.)
       if (s.rank === 16) {

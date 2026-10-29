@@ -2490,6 +2490,11 @@
       "rankedBelowPolitics": [
         "This year's appointments left you and {rival}, your batchmate, both at {now}, with {rival} the nearer to moving up."
       ]
-    }
+    },
+    "doubleJump": [
+      "This does not normally happen.",
+      "HR checks the paperwork twice before it goes out.",
+      "Your old colleagues need a moment to work out what to call you now."
+    ]
   }
 }
