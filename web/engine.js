@@ -812,9 +812,10 @@ const Engine = (() => {
     const plan = endPlan(content, s);
     if (endNext(content, s, plan) && !(plan.track === "politics" && plan.kind === "election" && s.age + 1 === plan.last - 1
         && !s.flags.includes("stays_on") && stayOffered(content, s, { ...plan }))) return null;
-    if (r === 15 && (s.flags.includes("kingmaker") || (s.rival && s.rival.status === "active" && s.rival.rank === 16) || !pmRoom(content, s, s.age + 1))) return null;
-    // the ceiling comes before the age floor, as it does at the review itself
+    // the ceiling comes first, as it does at the review itself (before the age floor, the
+    // succession given away, a batchmate in the top job, or too little time for a tenure)
     if (r >= s.cep) return "ceiling";
+    if (r === 15 && (s.flags.includes("kingmaker") || (s.rival && s.rival.status === "active" && s.rival.rank === 16) || !pmRoom(content, s, s.age + 1))) return null;
     return floorAge(content, s, r + 1) > s.age + 1 ? null : "in";
   }
   // Signals for next year, each said once: the heads-up before a ranking (or, when only the
