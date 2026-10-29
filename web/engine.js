@@ -1181,7 +1181,7 @@ const Engine = (() => {
         s.flags.push("told_pm_taken");
         log.push({ kind: "note", text: s.flags.includes("backed_batchmate")
           ? "There is no rung above this one that is yours to take. You gave it away, in a room, and it was the right call, mostly."
-          : "There is no rung above this one that is yours to take. You know exactly who is standing on it, because you put him there." });
+          : "There is no rung above this one that is yours to take. You know exactly who is standing on it, because you are the one who put the Prime Minister there." });
       }
     } else if (promotable) {
       // A standout junior officer occasionally skips a grade. This is the only way
