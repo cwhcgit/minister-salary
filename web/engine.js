@@ -807,7 +807,11 @@ const Engine = (() => {
     // a candidate whose election is next year may not be in the service for next year's ranking
     if (entryPending(s) && s.scheduled.some(x => x.eventId === "the_election" && x.fireYear <= s.year + 1)) return null;
     if (r >= 8 && s.leaving !== undefined) return null;
-    if (endNext(content, s, endPlan(content, s))) return null;
+    // the career's end takes next year, unless next year is the party's offer to stay (known
+    // now: rank and Standing do not move before it), when the ranking goes ahead for those who stay
+    const plan = endPlan(content, s);
+    if (endNext(content, s, plan) && !(plan.track === "politics" && plan.kind === "election" && s.age + 1 === plan.last - 1
+        && !s.flags.includes("stays_on") && stayOffered(content, s, { ...plan }))) return null;
     if (r === 15 && (s.flags.includes("kingmaker") || (s.rival && s.rival.status === "active" && s.rival.rank === 16) || !pmRoom(content, s, s.age + 1))) return null;
     // the ceiling comes before the age floor, as it does at the review itself
     if (r >= s.cep) return "ceiling";

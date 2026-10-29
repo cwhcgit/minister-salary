@@ -490,6 +490,7 @@ ok('the end of a career is told: a foreboding line in the last three years and t
       n.headsUp++;
       const next = reviews[i + 1];
       if (!next || !next.promotion || next.age !== rv.age + 1) return;   // the run ended first (a choice, an election)
+      if (S.flags.includes('made_way') && next.promotion.result === 'career_ending') return;   // offered the stay, and chose to go
       n.checkedUp++;
       const p = next.promotion;
       assert.ok(p.rank === up.rank && p.yearsInGrade >= p.needYears && !['career_ending', 'age_floor', 'service_ceiling', 'pm_too_late', 'pm_taken', 'top'].includes(p.result),
