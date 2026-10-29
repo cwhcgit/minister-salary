@@ -82,6 +82,7 @@ function validateContent(content) {
   for (const e of ev) {
     if (!e.choices || !e.choices.length) errors.push(e.id + ": no choices");
     else for (const c of e.choices) if (!c.text || !c.outcome) errors.push(e.id + ": choice missing text/outcome");
+    for (const c of e.choices || []) if (((c.effects || {}).wealth || 0) < 0) errors.push(e.id + ": a choice lowers wealth; lifetime earnings never go down");
   }
   if (content.ladder.length !== 17) errors.push("ladder must have 17 rungs");
   return errors;

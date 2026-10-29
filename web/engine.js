@@ -1291,7 +1291,7 @@ const Engine = (() => {
 
   function applyEffects(s, fx) {
     for (const k of STATS) if (fx[k]) s[k] = clamp(s[k] + fx[k], 0, 100);
-    if (fx.wealth) s.wealth += fx.wealth;
+    if (fx.wealth > 0) s.wealth += fx.wealth;   // lifetime earnings never go down
     if (fx.heat) s.heat = clamp(s.heat + fx.heat, 0, 100);
     if (fx.cep) s.cep = clamp(s.cep + fx.cep, 0, 16);
   }
@@ -1303,7 +1303,7 @@ const Engine = (() => {
     const log = [];
     const fx = ch.effects || {};
     for (const k of STATS) if (fx[k]) s[k] = clamp(s[k] + fx[k], 0, 100);
-    if (fx.wealth) s.wealth += fx.wealth;
+    if (fx.wealth > 0) s.wealth += fx.wealth;   // lifetime earnings never go down
     if (fx.heat) s.heat = clamp(s.heat + fx.heat, 0, 100);
     if (fx.cep) s.cep = clamp(s.cep + fx.cep, 0, 16);
     // "It is noted": a choice that embarrassed someone senior costs this year's appraisal.

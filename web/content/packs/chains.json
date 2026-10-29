@@ -1788,7 +1788,7 @@
         },
         {
           "text": "Do a master's part-time, at night, on your own money.",
-          "effects": { "competence": 5, "integrity": 2, "standing": -1, "wealth": -40000 },
+          "effects": { "competence": 5, "integrity": 2, "standing": -1 },
           "setFlags": ["bond_met", "bond_own"],
           "schedule": [{ "eventId": "bond_bank", "inYears": 2, "chance": 0.85 }],
           "outcome": "Two years of evenings, $40,000 of your own, and not one year added to your bond. The degree is the same degree. Nobody at work asks about it, which was most of the point."

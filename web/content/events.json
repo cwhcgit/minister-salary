@@ -788,7 +788,7 @@
   {
     "id": "national_day_award",
     "title": "The Pingat",
-    "body": "Your name is on this year's National Day Awards list, for a Pingat, a medal with a Malay name your family will practise saying. It is the entry-level one, but it is still a state honour, presented at an investiture, and your family will be extremely proud without quite knowing which medal it is. Your team, who did much of the work behind it, are not on the list.",
+    "body": "This year's National Day Awards, the honours the state gives out every August, include you: a Pingat, the entry-level medal, for the scheme your division delivered. You led it, so your name went on the nomination. Your team, who did most of the work, are not on the list. Your family is already practising how to say \"Pingat\".",
     "requires": {
       "minRank": 3,
       "maxRank": 5
@@ -940,8 +940,7 @@
       {
         "text": "Ballot again like everyone else.",
         "effects": {
-          "integrity": 8,
-          "wealth": -8000
+          "integrity": 8
         },
         "outcome": "Queue number 2,847, for 610 flats. You laugh in the lift. At the next family dinner you explain the scheme much better than before, because now you've also lost."
       },
@@ -967,7 +966,6 @@
       {
         "text": "Buy a resale flat, second-hand. Take the loan.",
         "effects": {
-          "wealth": -120000,
           "competence": 3,
           "integrity": 3
         },

@@ -384,6 +384,8 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 - Why: a blind playtester stands in for a real player, who knows only the screen.
 - Check: `agents/leak-check.ts` (CI). It reads `docs/DESIGN.md` as a secret document, so run it after editing that file.
 
+**7.12 Lifetime earnings never go down.** A card can tell a story about spending money (a resale flat, a master's at night), but it never takes money from the total. Why: the number is a score of what you earned, and a purchase is not interesting enough to cost you it. Checked by `validateContent` in `test/metrics.js`, which rejects a negative `wealth` effect.
+
 ## 8. Never
 
 **8.1 Never a real politician or public figure, even renamed.** No recognisable career path, famous quote, signature trait or event from the news.
