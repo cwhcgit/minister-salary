@@ -1,6 +1,6 @@
 // Cache-first so the game is fully playable with no signal.
 // Bump VERSION whenever content or code changes, or phones will keep the old copy.
-const VERSION = "ms-v30";
+const VERSION = "ms-v31";
 const ASSETS = ["./", "./index.html", "./engine.js", "./ui.js", "./icon.svg",
   "./manifest.webmanifest", "./content/game.json", "./content/events.json", "./content/rival.json",
   "./packs.js", "./content/packs/manifest.json"];
