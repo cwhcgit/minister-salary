@@ -30,7 +30,8 @@ export const funTurnSchema = (verdicts: readonly string[] = FUN_VERDICTS): S => 
   reason: str,
   verdict: oneOf(...verdicts),
   choice: CHOICE,
-  off_tone: nullable(str)
+  off_tone: nullable(str),
+  unclear: nullable(str)
 });
 
 export const TURN: Record<TurnSchema, S> = {
