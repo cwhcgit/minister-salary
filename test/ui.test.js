@@ -238,11 +238,17 @@ server.listen(0, async () => {
     if (nc.textContent !== 'Reincarnate') throw new Error('the header control is not labelled Reincarnate: ' + nc.textContent);
     nc.click(); await wait(5);
     if (t5().includes('Begin')) throw new Error('one tap abandoned the career');
-    if (!d5.querySelector('#newcareer').textContent.includes('Tap again')) throw new Error('the first tap did not ask for a second');
+    if (d5.querySelector('#newcareer').textContent !== 'Tap again to abandon this career') throw new Error('the first tap did not ask for a second: ' + d5.querySelector('#newcareer').textContent);
+    // left alone, the button goes back to Reincarnate, and a later tap asks again
+    await wait(3100);
+    if (d5.querySelector('#newcareer').textContent !== 'Reincarnate' || d5.querySelector('#newcareer').classList.contains('armed')) throw new Error('the button did not go back to Reincarnate: ' + d5.querySelector('#newcareer').textContent);
+    if (t5().includes('Begin')) throw new Error('waiting abandoned the career');
+    d5.querySelector('#newcareer').click(); await wait(5);
+    if (d5.querySelector('#newcareer').textContent !== 'Tap again to abandon this career') throw new Error('a tap after the reset did not ask for a second');
     d5.querySelector('#newcareer').click(); await wait(10);
     if (!t5().includes('Begin')) throw new Error('two taps did not reincarnate (start a new career)');
     if (window.localStorage.getItem('ministerSalary.v1')) throw new Error('the abandoned career is still saved');
-    console.log('✓ an older save is flagged (Reincarnate, or carry on); Reincarnate takes two taps');
+    console.log('✓ an older save is flagged (Reincarnate, or carry on); Reincarnate takes two taps, and resets after three seconds');
     dom5.window.close();
 
     const real = errors.filter(e => e && !/serviceWorker|Not implemented/i.test(e));

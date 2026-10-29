@@ -552,7 +552,6 @@ ok('the end of a career is told: a foreboding line in the last three years and t
 
 ok('the four stats in words: the why line only when a grade needs explaining, big swings rate-limited, no numbers', () => {
   const W = build.content.statWords;
-  const swings = new Set(Object.values(W.swing).flatMap(x => [...x.up, ...x.down]));
   let whys = 0, swung = 0, steady = 0;
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
     const r = H.rng(seed * 5 + 3);
@@ -565,7 +564,7 @@ ok('the four stats in words: the why line only when a grade needs explaining, bi
       if (run.phase === 'ending') break;
       const log = run.last.log;
       // a quiet line at most once every three cards, never two on one screen, and only on the card's own page
-      const sw = log.filter(l => swings.has(l.text));
+      const sw = log.filter(l => l.about === 'swing');
       assert.ok(sw.length <= 1, `${origin} ${seed}: two swing lines on one screen`);
       if (sw.length) {
         assert.ok(t - lastSwing >= 3, `${origin} ${seed}: swing lines ${t - lastSwing} cards apart`);
@@ -948,6 +947,132 @@ ok('every pay line from the second year says how it compares with last year, and
     }
   });
   assert.ok(checked > 1000 && falls > 100 && same > 10 && first > 50, `expected comparisons, falls and steady years (${checked}, ${falls}, ${same}, ${first})`);
+});
+
+ok('every card says who its people are: the full introduction first, a short tag on later cards, never on the card right after', () => {
+  const E = build.engine, C0 = build.content, R = C0.cast.roles;
+  const card = (id, body, choices) => ({ id, title: 'Test ' + id, body, weight: 0,
+    choices: choices || [{ text: 'Carry on.', effects: {}, outcome: 'You carry on.' }] });
+  const C = { ...C0, events: C0.events.concat([
+    card('t_peer', '{peer} asks you to lunch on Friday.'),
+    card('t_own', '{peer}, the friend who never forgets a birthday, asks you to lunch.'),
+    card('t_none', 'The canteen has a new menu.'),
+    card('t_hidden', 'The canteen has a new menu.', [
+      { text: 'Ask around.', effects: {}, outcome: '{junior} tells you the old one was better.' },
+      { text: 'Eat.', effects: {}, outcome: 'You eat.' }]),
+    card('t_junior', '{junior} brings you the minutes.'),
+    card('t_junior_poss', "{Junior}'s minutes arrive late."),
+    card('t_rival', 'The papers put {rival} on the front page.'),
+    card('t_mp_poss', "{Mp}'s ward is next to yours."),
+    card('t_mp_mid', "Blk 438 is in {mp}'s ward."),
+    card('t_mp_later', "Blk 438 is in {mp}'s ward, but {mp} sends its residents to you.")
+  ]) };
+  // a run at Senior Management Executive with a junior, then in Parliament with a fellow MP
+  const at = rank => { const S = { ...E.newGame(C, 'grad', 'Tan Wei Ling', 4, { rival: true, gender: 'f' }), rank, age: 30, year: 9, cardsPlayed: 8 };
+    delete S.cast; if (rank >= 8) S.flags = ['seat_grc']; return E.nextEvent(C, { ...S, currentEvent: 't_none' }).state; };
+  let S = at(2);
+  const show = (id, St = S) => E.eventOf(C, { ...St, currentEvent: id }).body;
+  const nm = (r, St = S) => E.personField(C, St, r, St.cast.on[r], '');
+  const fill = t => t.replace(/\{(\w+)\.(\w+)\}/g, (m, r, f) => E.personField(C, S, r, S.cast.on[r], f));
+  const set = (role, met, seenCard) => Object.assign(role === 'rival' ? S.rival : S.cast.on[role], { met, seenCard });
+  const peer = nm('peer');
+  set('peer', undefined, undefined);
+  assert.strictEqual(show('t_peer'), `${peer}, ${R.peer.intro}, asks you to lunch on Friday.`, 'the first card gives the full introduction');
+  set('peer', S.year - 1, S.cardsPlayed);
+  assert.strictEqual(show('t_peer'), `${peer} asks you to lunch on Friday.`, 'the card right after does not repeat it');
+  set('peer', S.year - 2, S.cardsPlayed - 1);
+  assert.strictEqual(show('t_peer'), `${peer}, ${R.peer.tag}, asks you to lunch on Friday.`, 'a later card gives the short tag');
+  assert.strictEqual(show('t_own'), `${peer}, the friend who never forgets a birthday, asks you to lunch.`, 'the writer\'s own introduction is kept');
+  set('peer', S.year - 8, S.cardsPlayed - 3);
+  assert.strictEqual(show('t_peer'), `${peer}, ${R.peer.intro}, asks you to lunch on Friday.`, 'after eight years, the full introduction again');
+  // a possessive with no plain mention: a tag that is a clause cannot go in front, so none
+  const jr = nm('junior');
+  set('junior', S.year - 2, S.cardsPlayed - 1);
+  assert.strictEqual(show('t_junior_poss'), `${jr}'s minutes arrive late.`);
+  // what the player read on a card, and the outcome they chose, counts as meeting someone on it;
+  // an outcome they did not choose does not
+  set('junior', undefined, undefined);
+  const skip = E.advance(C, { ...S, currentEvent: 't_hidden' }, 1).state, read = E.advance(C, { ...S, currentEvent: 't_hidden' }, 0).state;
+  const jrOf = St => St.cast.on.junior && St.cast.on.junior.id === S.cast.on.junior.id ? St.cast.on.junior : null;
+  if (jrOf(skip)) assert.strictEqual(jrOf(skip).met, undefined, 'an untaken outcome does not count as meeting them');
+  assert.ok(jrOf(read) && jrOf(read).met === S.year && jrOf(read).seenCard === S.cardsPlayed + 1, 'the chosen outcome counts');
+  assert.strictEqual(show('t_junior'), `${jr}, ${fill(R.junior.intro)}, brings you the minutes.`);
+  // the batchmate: a tag, and not on the card right after
+  const mate = S.rival.name, rt = C0.engineLines.rivalTag;
+  set('rival', undefined, S.cardsPlayed - 2);
+  assert.strictEqual(show('t_rival'), `The papers put ${mate}, ${rt}, on the front page.`);
+  set('rival', undefined, S.cardsPlayed);
+  assert.strictEqual(show('t_rival'), `The papers put ${mate} on the front page.`);
+  const mates = E.advance(C, { ...S, currentEvent: 't_rival' }, 0).state;
+  assert.strictEqual(mates.rival.seenCard, S.cardsPlayed + 1, 'a card naming the batchmate is remembered');
+  // in politics: a possessive takes the tag in front (capitalised to open a sentence), or on the next plain mention
+  S = at(8);
+  const mp = nm('mp'), cap = t => t[0].toUpperCase() + t.slice(1);
+  set('mp', S.year - 2, S.cardsPlayed - 1);
+  assert.strictEqual(show('t_mp_poss'), `${cap(R.mp.tag)} ${mp}'s ward is next to yours.`);
+  assert.strictEqual(show('t_mp_mid'), `Blk 438 is in ${R.mp.tag} ${mp}'s ward.`);
+  assert.strictEqual(show('t_mp_later'), `Blk 438 is in ${mp}'s ward, but ${mp}, ${R.mp.tag}, sends its residents to you.`);
+  set('mp', S.year - 1, S.cardsPlayed);
+  assert.strictEqual(show('t_mp_later'), `Blk 438 is in ${mp}'s ward, but ${mp} sends its residents to you.`);
+  for (const [role, r] of Object.entries(R)) assert.ok(r.tag && !/\{(?!grassroots\.aTitle)/.test(r.tag), `${role} has a tag`);
+
+  // whole careers: a tag only for someone met before and not on the card just before; the card
+  // right after a card that named someone never tags them; and how often tags come up. The same
+  // build with each tag marked shows where the engine put one (a writer's own words may match a tag).
+  const M = JSON.parse(JSON.stringify(build.content));
+  for (const [role, r] of Object.entries(M.cast.roles)) r.tag += ` \u00a7${role}\u00a7`;
+  M.engineLines.rivalTag += ' \u00a7rival\u00a7';
+  let tags = 0, n = 0, after = 0;
+  const per = [];
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
+    const r = H.rng(seed * 13 + 7), greedy = seed % 2 === 0;
+    const score = f => (f.cep||0)*60 + (f.standing||0)*1.5 + (f.competence||0)*1.4 + (f.reputation||0)*1.3 - (f.heat||0)*0.8;
+    let St = E.nextEvent(build.content, E.newGame(build.content, origin, 'Tan Wei Ling', seed, { rival: seed % 3 === 0, gender: 'f' })).state;
+    let prev = {}, mine = 0;
+    for (let t = 0; t < 120 && !St.ending; t++) {
+      const ev = E.eventOf(build.content, St), marked = E.eventOf(M, St);
+      assert.strictEqual(marked.body.replace(/ \u00a7\w+\u00a7/g, ''), ev.body);
+      for (const [, role] of marked.body.matchAll(/\u00a7(\w+)\u00a7/g)) {
+        const p = role === 'rival' ? St.rival : St.cast.on[role];
+        assert.ok(prev[role] === undefined, `${origin} ${seed} y${St.year} ${ev.id}: ${role} tagged on the card right after: ${ev.body}`);
+        if (role !== 'rival') assert.ok(p.met !== undefined && St.year - p.met < 8, `${origin} ${seed} ${ev.id}: a tag where the full introduction was due`);
+        tags++; mine++;
+      }
+      for (const role of Object.keys(prev)) if ((role === 'rival' ? St.rival : St.cast.on[role]) && ev.saw && ev.saw[role] !== undefined) after++;
+      const live = ev.choices.map((c, i) => [c, i]).filter(([c]) => E.choiceAvailable(c, St));
+      const pick = greedy ? live.reduce((a, b) => score(b[0].effects || {}) > score(a[0].effects || {}) ? b : a)[1] : live[Math.floor(r() * live.length)][1];
+      prev = {};
+      for (const [role, id] of Object.entries({ ...(ev.saw || {}), ...(ev.choices[pick].saw || {}) })) prev[role] = id;
+      St = E.advance(build.content, St, pick).state;
+      // someone who left and was replaced since is a new person: forget them
+      for (const role of Object.keys(prev)) if (role !== 'rival' && (!St.cast.on[role] || St.cast.on[role].id !== prev[role])) delete prev[role];
+    }
+    per.push(mine); n++;
+  }
+  per.sort((a, b) => a - b);
+  console.log(`    (tags: ${(tags / n).toFixed(1)} per career, median ${per[n >> 1]}, most ${per[n - 1]}; ${after} cards right after a card naming the same person, none tagged)`);
+  assert.ok(tags > n && after > 100, `expected tags and cards right after (${tags}, ${after})`);
+  assert.ok(per[n - 1] <= 12, `a career with ${per[n - 1]} tags is noisy`);
+});
+
+ok('a swing note in politics speaks of voters and the party, never of upstairs or the building', () => {
+  const W = build.content.statWords;
+  assert.ok(W.swingPolitics, 'statWords.swingPolitics');
+  for (const [k, v] of Object.entries(W.swingPolitics)) if (k !== 'about') for (const d of ['up', 'down']) {
+    assert.ok(v[d] && v[d].length >= 3, `swingPolitics.${k}.${d}: three lines`);
+    for (const l of v[d]) assert.ok(!/upstairs|the building/i.test(l) && !/\{(?!standing\}|reputation\}|competence\})/.test(l), l);
+  }
+  let pol = 0, svc = 0;
+  const said = new Set();
+  careers(40, { greedy: true }, ({ origin, seed, pre, ev, res }) => {
+    const politics = pre.rank >= 8 || res.state.rank >= 8 || ev.id === 'the_election';
+    for (const l of res.log.filter(l => l.about === 'swing')) {
+      assert.ok(!/\{\w+\}/.test(l.text) && /^[A-Z]/.test(l.text), l.text);
+      if (politics) { pol++; said.add(l.text); assert.ok(!/upstairs|the building/i.test(l.text), `${origin} ${seed} ${ev.id}: "${l.text}" in politics`); }
+      else svc++;
+    }
+  });
+  assert.ok(pol > 100 && svc > 100 && said.size > 12, `expected swing notes in politics and the service (${pol}, ${svc}, ${said.size} different)`);
 });
 
 console.log(`\nAll ${passed} harness tests passed.`);

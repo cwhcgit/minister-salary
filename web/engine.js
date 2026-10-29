@@ -663,23 +663,32 @@ const Engine = (() => {
   function render(content, ev, s, force) {
     const pick = ev.parts ? (force && force.parts) || pickParts(ev, s) || fallbackParts(ev) : null;
     // who: the people this showing actually names (not every role some other version of it names)
-    const who = {};
-    const named = t => {
+    // saw: the people the player reads on the card itself (title, body, choices; "rival" for the
+    // batchmate). A choice's outcome keeps its own, as the player only reads the one they chose.
+    const who = {}, saw = {};
+    const named = (t, seen) => {
       if (t.indexOf("{") < 0) return t;
-      for (const { name } of tokensIn(t)) { const r = name.toLowerCase(); if (!NOT_ROLES.has(r) && s.cast && s.cast.on[r]) who[r] = s.cast.on[r].id; }
+      for (const { name } of tokensIn(t)) {
+        const r = name.toLowerCase();
+        if (r === "rival") { if (s.rival) seen.rival = true; continue; }
+        if (!NOT_ROLES.has(r) && s.cast && s.cast.on[r]) who[r] = seen[r] = s.cast.on[r].id;
+      }
       return t;
     };
-    const T = t => (typeof t === "string" ? sub(named(fillParts(t, ev, pick)), s, content) : t);
-    const B = t => (typeof t === "string" ? sub(named(introduce(content, s, fillParts(t, ev, pick))), s, content) : t);
+    const T = (t, seen = saw) => (typeof t === "string" ? sub(named(fillParts(t, ev, pick), seen), s, content) : t);
+    const B = t => (typeof t === "string" ? sub(named(introduce(content, s, fillParts(t, ev, pick)), saw), s, content) : t);
     const out = { ...ev, title: T(ev.title), body: B(ev.body),
       choices: ev.choices.map((c, k) => {
-        const x = { ...c, text: T(c.text), outcome: T(c.outcome) };
+        const own = {};
+        const x = { ...c, text: T(c.text), outcome: T(c.outcome, own) };
         if (pick) x.effects = partEffects(c.effects, k, ev, pick);
-        if (c.rival && c.rival.contest) x.rival = { ...c.rival, contest: { ...c.rival.contest, winText: T(c.rival.contest.winText), loseText: T(c.rival.contest.loseText) } };
+        if (c.rival && c.rival.contest) x.rival = { ...c.rival, contest: { ...c.rival.contest, winText: T(c.rival.contest.winText, own), loseText: T(c.rival.contest.loseText, own) } };
+        if (Object.keys(own).length) x.saw = own;
         return x;
       }) };
     if (pick) out.picked = pick;
     if (Object.keys(who).length) out.who = who;
+    if (Object.keys(saw).length) out.saw = saw;
     // a series' second showing: the habit is the default, so it comes first (order maps the
     // buttons back to the card's own choices)
     if (ev.keep > 0) {
@@ -688,22 +697,67 @@ const Engine = (() => {
     }
     return out;
   }
-  // The first card a person appears on says who they are: the first bare mention of them in the
-  // body gets their role's introduction ("Joanne, who joined the service the same week as you,").
-  // So does a person not seen for INTRO_AGAIN years. A mention the writer already followed with
-  // a comma (their own introduction) is left alone, as is a possessive.
+  // Every card says who its people are, so a name never has to be remembered from cards ago.
+  // The first card a person appears on (and the first after INTRO_AGAIN years without them) gives
+  // their role's introduction ("Joanne, who joined the service the same week as you,"). Every
+  // later card gives a short tag instead ("Nurul Huda, your fellow MP,"), unless they were on the
+  // card the player saw just before. Either goes on the first mention of them in the body. A
+  // mention the writer already followed with a comma or a bracket (their own introduction) is left
+  // alone, and so is one inside a quotation. A possessive ("{mp}'s ward") takes neither: the next
+  // plain mention does, or, if there is none, a tag that is a noun phrase goes in front of the name
+  // ("your fellow MP Nurul Huda's ward"). The batchmate ({rival}) has a tag only (engineLines.rivalTag):
+  // the writer introduces them in their own words, and the header names them throughout.
   const INTRO_AGAIN = 8;
+  // Whether a tag reads in front of a name ("your fellow MP Nurul Huda's"): "your ..." or "the ...",
+  // with no clause of its own.
+  const nounTag = t => /^(?:your|the) [^,]+$/i.test(t) && !/\b(?:who|in|from|with|and)\b/.test(t);
+  const inQuote = (text, i) => (text.slice(0, i).match(/"/g) || []).length % 2 === 1
+    || text.lastIndexOf("\u201c", i) > text.lastIndexOf("\u201d", i);
+  // What a card's body says about a person on this showing: "intro", "tag" or nothing.
+  function introKind(content, s, role) {
+    if (role === "rival") return s.rival && s.rival.seenCard !== (s.cardsPlayed || 0) ? "tag" : null;
+    const p = s.cast && s.cast.on[role];
+    if (!p) return null;
+    if (p.met === undefined || s.year - p.met >= INTRO_AGAIN) return "intro";
+    return p.seenCard === (s.cardsPlayed || 0) ? null : "tag";
+  }
   function introduce(content, s, text) {
-    if (!content.cast || !s.cast || text.indexOf("{") < 0) return text;
-    const done = new Set();
-    return text.replace(/\{([A-Za-z]+)\}(?!'s|\u2019s)(?=(.?))/g, (m, name, next) => {
-      const role = name.toLowerCase(), cfg = content.cast.roles[role], p = s.cast.on[role];
-      if (!cfg || !cfg.intro || !p || done.has(role)) return m;
-      done.add(role);
-      if (next === "," || next === "(") return m;
-      if (p.met !== undefined && s.year - p.met < INTRO_AGAIN) return m;
-      return `${m}, ${cfg.intro},`.replace(/,,$/, ",");
-    }).replace(/,(\s*[.?!;:])/g, "$1");
+    if (typeof text !== "string" || text.indexOf("{") < 0) return text;
+    const roles = (content.cast || {}).roles || {};
+    const byRole = new Map();
+    for (const m of text.matchAll(/\{([A-Za-z]+)\}/g)) {
+      const role = m[1].toLowerCase();
+      if (role === "rival" ? !s.rival : !(roles[role] && s.cast && s.cast.on[role])) continue;
+      const end = m.index + m[0].length, after = text.slice(end);
+      if (!byRole.has(role)) byRole.set(role, []);
+      byRole.get(role).push({ at: m.index, end, upper: isUpper(m[1]), poss: /^(?:'s|\u2019s)/.test(after),
+        own: /^\s*[,(]/.test(after), quoted: inQuote(text, m.index) });
+    }
+    const edits = [];   // { at, text } insertions, applied from the end
+    for (const [role, ms] of byRole) {
+      const kind = introKind(content, s, role);
+      if (!kind) continue;
+      const tag = role === "rival" ? (EL(content).rivalTag || "your batchmate") : (roles[role].tag || null);
+      const phrase = kind === "intro" ? roles[role].intro : tag;
+      if (!phrase) continue;
+      const open = ms.filter(x => !x.quoted);
+      const first = open[0];
+      if (!first || first.own) continue;   // the writer introduced them, or only quotes them
+      const plain = first.poss ? open.find(x => !x.poss) : first;
+      if (plain) {
+        if (plain.own) continue;
+        const next = text.charAt(plain.end);
+        edits.push({ at: plain.end, text: `, ${phrase}${/[.?!;:)"\u201d\u2019\u2014]/.test(next) || !next ? "" : ","}` });
+      } else if (tag && nounTag(tag)) {
+        // possessives only: the tag goes in front, capitalised at the start of a sentence
+        const start = first.upper || /(?:^|[.?!]["\u201d]?\s+)$/.test(text.slice(0, first.at));
+        edits.push({ at: first.at, text: `${start ? cap(tag) : tag} ` });
+      }
+    }
+    if (!edits.length) return text;
+    let out = text;
+    for (const e of edits.sort((a, b) => b.at - a.at)) out = out.slice(0, e.at) + e.text + out.slice(e.at);
+    return out;
   }
   // Only for a save made before a card's parts changed: the first option of every slot.
   function fallbackParts(ev) {
@@ -1489,15 +1543,22 @@ const Engine = (() => {
   // One quiet line on the outcome screen when a single choice moves a stat by 6 or more: the
   // biggest move, and only when no line has named a stat in the last two cards (a why line that
   // names them counts too), so the stats come up every few cards, not on every one.
-  function swingLine(content, s, moved) {
-    const W = (content.statWords || {}).swing, at = (s.voice || {}).wordsAt;
+  // In politics (pol: the player was an MP or a candidate when they chose) the lines come from
+  // statWords.swingPolitics where it has them, since "upstairs" and "outside the building" are the
+  // service's; a pool may also name a stat as {standing}, {reputation} or {competence}, in the
+  // phase's own words (statWords.names).
+  function swingLine(content, s, moved, pol) {
+    const SW = content.statWords || {}, at = (s.voice || {}).wordsAt;
+    const W = pol && SW.swingPolitics ? SW.swingPolitics : SW.swing, key = W === SW.swing ? "swing" : "swingPolitics";
     if (!W || (at !== undefined && (s.cardsPlayed || 0) - at < 3)) return null;
     const [k, d] = moved.reduce((a, b) => (Math.abs(b[1]) > Math.abs(a[1]) ? b : a), [null, 0]);
-    if (Math.abs(d) < 6 || !W[k]) return null;
-    const text = voice(s, `swing.${k}.${d > 0 ? "up" : "down"}`, W[k][d > 0 ? "up" : "down"]);
+    const dir = d > 0 ? "up" : "down";
+    const pool = (W[k] || {})[dir] && W[k][dir].length ? W[k][dir] : ((SW.swing || {})[k] || {})[dir];
+    if (Math.abs(d) < 6 || !pool) return null;
+    const text = voice(s, `${pool === (W[k] || {})[dir] ? key : "swing"}.${k}.${dir}`, pool);
     if (!text) return null;
     s.voice.wordsAt = s.cardsPlayed || 0;
-    return { kind: "note", text };
+    return { kind: "note", about: "swing", text: sayStats(text, (SW.names || {})[pol ? "politics" : "service"] || {}, {}) };
   }
 
   // Why a choice is locked, in words: the stat it needs, never the number.
@@ -2138,6 +2199,8 @@ const Engine = (() => {
     const trace = {};
     const log = applyChoice(content, s, ev, ch, trace);
     const moved = STATS.map(k => [k, s[k] - state[k]]);   // what this choice did to the four stats
+    // in politics when they chose: an MP, or a candidate on the election card
+    const pol = state.rank >= 8 || s.rank >= 8 || ev.id === "the_election";
     if (ev.cooldown) (s.cooldowns = s.cooldowns || {})[ev.cooldown] = before.year;
     // a card in a series: what was chosen becomes the habit its later years repeat
     if (ev.series) {
@@ -2148,7 +2211,7 @@ const Engine = (() => {
     const head = header(content, s);
     if (!s.ending) {
       const ye = yearEnd(content, s, trace);
-      const sw = swingLine(content, s, moved);
+      const sw = swingLine(content, s, moved, pol);
       if (sw) log.push(sw);
       if (ye.length) log.push({ ...yearHeading(content, "review", before), head: pageHead(content, s, before) }, ...ye);
     }
@@ -2160,9 +2223,16 @@ const Engine = (() => {
       (s.habits = s.habits || {})[ev.id] = ci;   // what habit years will repeat
     }
     s.cardsPlayed = (s.cardsPlayed || 0) + 1;
-    // only the people the card named: someone who took over the role this year (a sideways move,
-    // a retirement at the year-end) has not been met yet, and is introduced on their first card
-    if (ev.who && s.cast) for (const [r, id] of Object.entries(ev.who)) if (s.cast.on[r] && s.cast.on[r].id === id) s.cast.on[r].met = before.year;
+    // the people the player read on the card and the outcome they chose (not an outcome they did
+    // not choose) have been met, on this card: the next card leaves out their tag (introduce).
+    // Only those people: someone who took over the role this year (a sideways move, a retirement
+    // at the year-end) has not been met yet, and is introduced on their first card.
+    const saw = { ...(ev.saw || {}), ...(ch.saw || {}) };
+    for (const [r, id] of Object.entries(saw)) {
+      if (r === "rival") { if (s.rival) s.rival.seenCard = s.cardsPlayed; continue; }
+      const p = s.cast && s.cast.on[r];
+      if (p && p.id === id) { p.met = before.year; p.seenCard = s.cardsPlayed; }
+    }
     // A card with parts or cast keeps what it showed: the combination (freshness, the next
     // showing's rotation), who it named, and, when the Declassified file may quote an untaken
     // choice from it (one that raised the ceiling), its choices' words as read.
