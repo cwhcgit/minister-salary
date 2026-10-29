@@ -165,7 +165,34 @@
           },
           "outcome": "{owner.c}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": {
+            "chance": 0.4,
+            "react": [
+              2,
+              -2,
+              0
+            ]
+          },
+          "panel": {
+            "chance": 0.3,
+            "react": [
+              -2,
+              2,
+              0
+            ],
+            "requires": {
+              "parts": {
+                "owner": [
+                  "ceo"
+                ]
+              }
+            }
+          }
+        }
+      }
     },
     {
       "id": "and_team",
@@ -285,11 +312,6 @@
         }
       ],
       "witnesses": {
-        "did": [
-          "you asked for every name to go on the next paper",
-          "you replied to say who had really done the work",
-          "you let a month's work go up under somebody else's name"
-        ],
         "by": {
           "floor": {
             "chance": 0.5,
@@ -399,11 +421,6 @@
         }
       ],
       "witnesses": {
-        "did": [
-          "you quietly told a friend their job was about to go",
-          "nothing about the restructuring plan leaked from you",
-          "you reported a confidential email that had reached you by mistake"
-        ],
         "by": {
           "owner": {
             "chance": [
@@ -612,11 +629,6 @@
         }
       ],
       "witnesses": {
-        "did": [
-          "you minuted an awkward remark exactly as it was said",
-          "you left an awkward remark out of the minutes",
-          "you minuted an awkward remark, and pointed it out before the minutes went out"
-        ],
         "by": {
           "agencies": {
             "chance": 0.5,
@@ -686,7 +698,25 @@
           },
           "outcome": "You confirm the record is accurate and add nothing. The footnote appears anyway, and the people at that meeting decide you were no help to anyone, themselves included."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "agencies": {
+            "chance": 0.45,
+            "react": [
+              2,
+              -2
+            ]
+          },
+          "countersigner": {
+            "chance": 0.3,
+            "react": [
+              -1,
+              1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "lucky_draw",
@@ -759,11 +789,6 @@
         }
       ],
       "witnesses": {
-        "did": [
-          "you drew the lucky draw straight",
-          "you quietly took the most important names out of the lucky draw",
-          "you spent the lucky draw's prize money on the food"
-        ],
         "by": {
           "panel": {
             "chance": 0.35,
@@ -839,7 +864,27 @@
           },
           "outcome": "Six pages, retyped by 1:58pm, with two typos, both in the vendor's name. Every keystroke was compliant. When you explain how you did it, nobody believes you."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "owner": {
+            "chance": 0.5,
+            "react": [
+              -3,
+              2,
+              1
+            ]
+          },
+          "countersigner": {
+            "chance": 0.35,
+            "react": [
+              1,
+              -2,
+              1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "station_four",
@@ -899,11 +944,6 @@
         }
       ],
       "witnesses": {
-        "did": [
-          "you told the most important visitor of the year that it didn't work yet",
-          "you told the most important visitor of the year that it was progressing well",
-          "you spent ninety seconds of a planned visit saying what would make it work"
-        ],
         "by": {
           "ministersOffice": {
             "chance": 0.4,
@@ -976,7 +1016,27 @@
           },
           "outcome": "It takes three months of evenings. The division adopts your new procedures, with your name in the version history and nowhere else, and {junior} learns them in a weekend."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": {
+            "chance": 0.5,
+            "react": [
+              3,
+              -3,
+              0
+            ]
+          },
+          "panel": {
+            "chance": 0.3,
+            "react": [
+              0,
+              -1,
+              1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "approved_leave",
@@ -1033,11 +1093,6 @@
         }
       ],
       "witnesses": {
-        "did": [
-          "you cancelled your approved leave to present one slide",
-          "you took your approved leave and let somebody else present your slide",
-          "you presented one slide by video from your holiday"
-        ],
         "by": {
           "panel": {
             "chance": 0.4,

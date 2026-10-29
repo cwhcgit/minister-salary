@@ -31,7 +31,12 @@
           "outcome": "The form asks why you need to read it. {senior}, your reporting officer, has to sign that part, and can't say. The only officer who knows is you, thirty years from now. The form comes back incomplete, and the registry keeps the envelope until you are cleared.",
           "schedule": [{ "eventId": "strange_envelope", "inYears": 12, "chance": 0.6 }]
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "owner": { "chance": 0.5, "react": [2, -3, 1] }
+        }
+      }
     },
     {
       "id": "strange_envelope",
@@ -98,7 +103,13 @@
           "setFlags": ["strange_met"],
           "outcome": "{senior} asks whether you can guarantee that. You can't. Someone else writes the snow section, and lists your view in it, under Risks."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "countersigner": { "chance": 0.35, "react": [-1, 2, -1] },
+          "panel": { "chance": 0.3, "react": [1, 1, -2] }
+        }
+      }
     },
     {
       "id": "strange_ghost",
@@ -126,7 +137,13 @@
           "setFlags": ["strange_met"],
           "outcome": "The working group meets in the eighth month, by which time he has stopped writing in, and recommends reviewing the question in the seventh month next year. It is reviewed then, and every year after."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "panel": { "chance": 0.3, "react": [2, -1, -1] },
+          "countersigner": { "chance": 0.3, "react": [-1, 2, -1] }
+        }
+      }
     },
     {
       "id": "strange_merlion",
@@ -156,7 +173,13 @@
           "outcome": "The working group, with you on it, meets every month for three years at the waterfront, so that the Merlion can attend. It never misses a meeting and, as agreed, says nothing until its talking points are cleared.",
           "schedule": [{ "eventId": "strange_merlion_cleared", "inYears": 7, "chance": 0.7 }]
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "agencies": { "chance": 0.45, "react": [1, -2, 1] },
+          "panel": { "chance": 0.3, "react": [-1, 2, -1] }
+        }
+      }
     },
     {
       "id": "strange_merlion_cleared",
@@ -174,7 +197,12 @@
           "effects": { "competence": 2, "standing": 2, "reputation": -2 },
           "outcome": "The transcript matches the talking points exactly, except for one closing line, annotated in red: \"Not cleared. Well received.\""
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "agencies": { "chance": 0.35, "react": [2, -2] }
+        }
+      }
     },
     {
       "id": "strange_appraisal",
@@ -202,7 +230,13 @@
           "setFlags": ["strange_met"],
           "outcome": "Its development plan has three objectives. It meets all three by Tuesday, then asks, politely, to be more visible. Neither of you can work out to whom."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "countersigner": { "chance": 0.35, "react": [2, -2, 0] },
+          "floor": { "chance": 0.35, "react": [1, -2, 1] }
+        }
+      }
     },
     {
       "id": "strange_clone",
@@ -230,7 +264,13 @@
           "setFlags": ["strange_met"],
           "outcome": "HR has two months to reply under the guidelines, and uses both. The job-share is approved. Within a year your appraisals differ, and neither of you can explain why."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.35, "react": [0, -2, 2] },
+          "panel": { "chance": 0.3, "react": [1, 1, -2] }
+        }
+      }
     },
     {
       "id": "strange_loop",
@@ -258,7 +298,13 @@
           "setFlags": ["strange_met"],
           "outcome": "The Finance officer has noticed too. Finance has been running this meeting on a loop for years, the officer says: it's how budgets stay flat. The officer would be grateful if you didn't mention it."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "agencies": { "chance": 0.4, "react": [-1, 2, -1] },
+          "countersigner": { "chance": 0.3, "react": [2, 0, -2] }
+        }
+      }
     },
     {
       "id": "strange_moon",
@@ -286,7 +332,13 @@
           "setFlags": ["strange_met"],
           "outcome": "The note declines the moon and offers Singapore as a neutral meeting place, as it has been for other summits. The offer is accepted by return. Your ministry is now looking for office space near Changi."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "agencies": { "chance": 0.45, "react": [1, 1, -2] },
+          "ministersOffice": { "chance": 0.3, "react": [-1, 0, 1] }
+        }
+      }
     },
     {
       "id": "strange_dragon",
@@ -314,7 +366,13 @@
           "setFlags": ["strange_met"],
           "outcome": "Officers from all three arrive at 9am, each with a folder showing it is the others'. The dragon hears them out, then asks which of them handles the lighting."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "branch": { "chance": 0.4, "react": [2, -1, -1] },
+          "pressGallery": { "chance": 0.3, "react": [1, -2, 1] }
+        }
+      }
     },
     {
       "id": "strange_hansard",
@@ -342,7 +400,13 @@
           "setFlags": ["strange_met"],
           "outcome": "The request goes to the Standing Orders Committee, which keeps Parliament's rule book. It considers the request at length and finds, on reflection, that it would rather not."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "whips": { "chance": 0.45, "react": [2, -3, 1] },
+          "pressGallery": { "chance": 0.45, "react": [-2, 3, -1] }
+        }
+      }
     },
     {
       "id": "strange_thoughts",
@@ -370,7 +434,12 @@
           "setFlags": ["strange_met"],
           "outcome": "Everyone hears that there is no clash. The meeting adjourns anyway, with great courtesy. Item seven comes back next week with a better paper, and you are inaudible again."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": { "chance": 0.5, "react": [-1, 2, -1] }
+        }
+      }
     },
     {
       "id": "strange_gold",
@@ -398,7 +467,13 @@
           "setFlags": ["strange_met"],
           "outcome": "Finance reminds Cabinet that schemes are funded from the Budget, and that the bars are reserves. The scheme is funded from the Budget. It is very popular."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": { "chance": 0.4, "react": [-2, 2, 0] },
+          "pressGallery": { "chance": 0.3, "react": [0, -1, 1] }
+        }
+      }
     }
   ]
 }

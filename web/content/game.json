@@ -1661,7 +1661,7 @@
     }
   },
   "witnesses": {
-    "note": "Hidden witnesses (engine.js, 'hidden witnesses'). A card lists who could plausibly know what the player did there (its witnesses field: did, one line per choice for Declassified; by, each witness type's chance of noticing, its reaction to each choice in appraisal points, and optionally a rare raise of the ceiling). A witness who notices moves one appraisal one to three years later (delay), several in one year are capped (cap), and no single reaction is bigger than maxStep, so one witness nudges a grade and never jumps two. When a witness moves a grade, the review page shows one of its review lines about half the time (show); the ending's Declassified file lists what was noticed (lines). Player-facing text never says who: no names, titles or role words (test/contexts.js checks). about and values are for writers only.",
+    "note": "Hidden witnesses (engine.js, 'hidden witnesses'). A card lists who could plausibly know what the player did there (its witnesses field, by: each witness type's chance of noticing, its reaction to each choice in appraisal points, and optionally a rare raise of the ceiling). Each type belongs to a ladder (ladder: service, the default, or politics): it sees only what the player does on that ladder, and its judgement lapses if the player is on the other ladder when it falls due. A witness who notices moves one appraisal one to three years later (delay), several in one year are capped (cap), and no single reaction is bigger than maxStep, so one witness nudges a grade and never jumps two. When a witness moves a grade, the review page shows one of its review lines about half the time (show), and the review's why line is left as it is. Nothing else is ever said: the ending never mentions witnesses. Player-facing text never says who: no names, titles or role words, and in politics no \"upstairs\" or \"the building\" (test/contexts.js checks). about and values are for writers only.",
     "show": 0.5,
     "delay": [
       1,
@@ -1669,24 +1669,6 @@
     ],
     "cap": 8,
     "maxStep": 6,
-    "lines": {
-      "label": "Noticed",
-      "restLabel": "Also noticed",
-      "noticed": "Somebody noticed.",
-      "moved": "Your grade {when} was {grade}, not {without}.",
-      "when": [
-        "the year after",
-        "two years later",
-        "three years later"
-      ],
-      "whenMany": "{n} years later",
-      "ceiling": "It raised your ceiling in the service by a grade. Nobody mentioned it.",
-      "ceilingToo": "It also raised your ceiling in the service by a grade. Nobody mentioned that either.",
-      "didFallback": "on \"{title}\", you chose \"{text}\"",
-      "restOne": "One{more} thing you did was noticed, and never changed a grade.",
-      "restTwo": "Two{more} things you did were noticed, and neither changed a grade.",
-      "restMany": "{N}{more} things you did were noticed, and none of them changed a grade."
-    },
     "types": {
       "countersigner": {
         "about": "The officer who countersigns your appraisal: your reporting officer's own boss. Reads your file every year and hears how things went, and you rarely meet.",
@@ -1704,18 +1686,6 @@
             "Your grade came back lower than the draft you were shown. Nobody explains the difference, and the form has no box for asking.",
             "The comments section now includes the phrase \"not yet ready for more\". It wasn't in the draft, and nobody says when it was added."
           ]
-        },
-        "declassified": {
-          "help": [
-            "Somebody noticed, and took it as good judgement.",
-            "Somebody read it as steadiness, and wrote that down.",
-            "Somebody noticed, and decided you could be relied on."
-          ],
-          "hurt": [
-            "Somebody noticed, and took it as a lapse.",
-            "Somebody read it as unreliable, and wrote that down.",
-            "Somebody noticed, and decided you couldn't quite be relied on yet."
-          ]
         }
       },
       "owner": {
@@ -1731,18 +1701,6 @@
             "The comments section uses the word \"discretion\" once, in a sentence that begins \"Would benefit from\". Nobody says whose sentence it is.",
             "You were taken off the mailing list for confidential papers this year. Nobody tells you why, or who decided.",
             "Your appraisal says you should \"take more care with information\". Nobody explains which information."
-          ]
-        },
-        "declassified": {
-          "help": [
-            "Somebody noticed, and took it as discretion.",
-            "Somebody noticed, and decided you could be trusted with things.",
-            "Somebody noticed, and remembered you as someone who can keep a thing quiet."
-          ],
-          "hurt": [
-            "Somebody noticed what happened next, and worked out where it had come from.",
-            "Somebody noticed, and stopped sending you anything confidential.",
-            "Somebody noticed, and never quite trusted you with a secret again."
           ]
         }
       },
@@ -1760,18 +1718,6 @@
             "When the grades were decided this year, your name came up attached to a story. Nobody tells you which one.",
             "Your appraisal says you \"could show more initiative\". It's the only sentence that wasn't in last year's.",
             "You hear, third-hand, that your name drew a pause this year when the grades were decided. Nobody tells you what the pause was about."
-          ]
-        },
-        "declassified": {
-          "help": [
-            "Somebody noticed, and remembered your name when it counted.",
-            "Somebody saw it, and your name stuck.",
-            "Somebody noticed, and took it as initiative."
-          ],
-          "hurt": [
-            "Somebody noticed, and remembered your name for the wrong reason.",
-            "Somebody saw it, and it became the story about you.",
-            "Somebody noticed, and took it as a lack of initiative."
           ]
         }
       },
@@ -1791,18 +1737,6 @@
             "One anonymous comment this year is four words long: \"Not a team player.\" You read it more often than you'd like.",
             "The anonymous feedback from the people around you is cooler this year. Nobody says anything to your face, which is how you know."
           ]
-        },
-        "declassified": {
-          "help": [
-            "Somebody who saw it said so, without signing it.",
-            "Somebody noticed, and it went into the anonymous feedback, warmly.",
-            "Somebody noticed, and took it as fairness."
-          ],
-          "hurt": [
-            "Somebody noticed, and it went into the anonymous feedback, unsigned.",
-            "Somebody saw it, and wrote down what they thought of it, anonymously.",
-            "Somebody noticed, and took it as unfair."
-          ]
         }
       },
       "ministersOffice": {
@@ -1818,16 +1752,6 @@
             "Your name came up this year in a room you've never been in, next to the word \"surprise\". Nobody tells you which one.",
             "Somewhere you've never been, this year, somebody asked who was responsible for an awkward moment. Your name was the answer.",
             "You hear, from nobody in particular, that you're thought of upstairs as \"not quite ready\". Nobody says for what."
-          ]
-        },
-        "declassified": {
-          "help": [
-            "Somebody wrote it down, and remembered it as candour.",
-            "Somebody noticed, and remembered you as someone worth listening to."
-          ],
-          "hurt": [
-            "Somebody wrote it down, and remembered it as a surprise.",
-            "Somebody noticed, and filed it under awkward moments."
           ]
         }
       },
@@ -1845,15 +1769,111 @@
             "An email you weren't copied on this year asked for \"someone else, if possible\". Nobody tells you it was about you, but the grade does.",
             "Your appraisal mentions \"managing relationships\" as an area to work on. Nobody says which relationships."
           ]
-        },
-        "declassified": {
+        }
+      },
+      "leadership": {
+        "ladder": "politics",
+        "about": "The party's leadership and the Prime Minister's office: the few people who decide who goes up, and who read everything that reaches them about you.",
+        "values": "Loyalty in public, sound judgement in office, and nothing that embarrasses the government. Rewards a safe pair of hands; dislikes surprises and disagreement aired where the newspapers can see it.",
+        "review": {
           "help": [
-            "Somebody who was there noticed, and said so to people who mattered.",
-            "Somebody noticed, and trusted you more for it."
+            "Your name came up this year on a list you didn't know existed, among people thought ready for more. You find out only from the grade.",
+            "Somebody asked this year for \"someone who won't need watching\", and your name was the one given. Nobody tells you who asked.",
+            "You hear, from nobody in particular, that you're thought of as \"safe\" by the people whose opinion settles things. You decide to take it as praise.",
+            "A place was found for you this year at a dinner you hadn't expected to be asked to. Nobody says who found it."
           ],
           "hurt": [
-            "Somebody who was there noticed, and mentioned it to people who mattered.",
-            "Somebody noticed, and trusted you less for it."
+            "Somebody used the word \"unhelpful\" this year, in a conversation about you that you weren't part of. Nobody tells you what it was about.",
+            "You hear, at second hand, that you're thought of this year as \"one to watch\". From the tone, it's the other kind.",
+            "A list went round this year of people ready for more. You hear about it only because your name wasn't on it.",
+            "The dinner you were asked to last year doesn't ask you this year. Nobody says why, and the menu was the same."
+          ]
+        }
+      },
+      "whips": {
+        "ladder": "politics",
+        "about": "The Whip's office: keeps the party's Members voting together, counts who turns up, and remembers who made its week harder.",
+        "values": "Discipline: turning up, voting with the party, and disagreeing in private. Rewards the reliable; dislikes surprises in public and anyone who freelances.",
+        "review": {
+          "help": [
+            "This year your name was ticked on a list kept somewhere you've never seen, under the heading \"reliable\". Nobody tells you, but the grade does.",
+            "You hear, from nobody in particular, that you're thought of as \"no trouble at all\". Coming from where it does, it's high praise.",
+            "A message this year thanked you, in three words, for something you don't remember doing. The grade suggests somebody remembers."
+          ],
+          "hurt": [
+            "Your name was added this year to a short list kept somewhere you've never seen. Nobody says what the list is for.",
+            "You hear, from nobody in particular, that you've been described as \"a free spirit\". Nobody who said it meant it kindly.",
+            "The messages you get this year are a word shorter than last year's. You notice, and suspect you were meant to."
+          ]
+        }
+      },
+      "branch": {
+        "ladder": "politics",
+        "about": "Your party branch and its volunteers: the people who run your ward's Tuesday nights, walk the blocks with you and give their weekends to the party. What they think of you travels upwards.",
+        "values": "Showing up for the ward, and for them: staying late, sharing the credit, never leaving them to face residents alone. Dislikes an absent Member and a borrowed success.",
+        "review": {
+          "help": [
+            "More people turn up to help on Saturday mornings this year than last. Nobody says why, and you don't ask.",
+            "Somebody has started saving you a seat at the coffee shop on Tuesday nights. Nobody mentions it, which is how you know it means something.",
+            "What reaches the people who count about your ward this year is warmer than you'd have guessed. You can't tell who passed it on.",
+            "Somebody described you this year, at a meeting you weren't at, as \"one of ours\". It got back to you, and to everyone else."
+          ],
+          "hurt": [
+            "Fewer people turn up to help on Saturday mornings this year. Nobody says why, which is how you know.",
+            "Somebody described you this year, at a meeting you weren't at, as \"hard to find on a Tuesday\". It travelled further than you'd like.",
+            "The seat at the coffee shop that used to be saved for you on Tuesday nights quietly stops being saved. Nobody says anything.",
+            "What reaches the people who count about your ward this year is cooler than you'd hoped. Nobody signs it."
+          ]
+        }
+      },
+      "pressGallery": {
+        "ladder": "politics",
+        "about": "The press gallery: the reporters who cover Parliament and your ministry, watch every answer, and decide which line becomes the story. The people who decide read them.",
+        "values": "Candour and a straight answer. Rewards the quotable truth; punishes the evasion, the stonewall and the spin they can see through.",
+        "review": {
+          "help": [
+            "A Sunday column this year calls you \"refreshingly straight\". It's clipped and passed around by people you'll never meet.",
+            "A profile you didn't know was being written appeared this year. It's kinder than you'd have written yourself.",
+            "Your name turns up this year on a list of people \"worth listening to\". You find out because three people send it to you."
+          ],
+          "hurt": [
+            "A Sunday column this year uses your name in a sentence about \"answers that answer nothing\". It's clipped and passed around.",
+            "A profile you didn't know was being written appeared this year. You read it twice, and then stop reading things.",
+            "Your name turns up this year on a list of people \"who would rather not be asked\". You find out because three people send it to you."
+          ]
+        }
+      },
+      "officials": {
+        "ladder": "politics",
+        "about": "The civil servants who work with you: your ministry's officials once you hold office, and the agencies that answer your letters and questions. From time to time they are asked for a frank view of the politicians they work with.",
+        "values": "Being listened to, being backed in public, and decisions made on evidence. Dislikes a politician who blames them, ignores them, or promises a date they then have to make true.",
+        "review": {
+          "help": [
+            "A frank view of you went in somewhere this year, from people who work with you every day. You never see it, and it helps.",
+            "The papers that reach you this year are noticeably better, and arrive a day earlier. Nobody says why, and you don't ask.",
+            "You hear, at second hand, that you're known as \"someone who reads the annex\". Where you heard it, that's the highest praise."
+          ],
+          "hurt": [
+            "A frank view of you went in somewhere this year, from people who work with you every day. You never see it, and it doesn't help.",
+            "The papers that reach you this year are correct, complete and a day later than they used to be. Nobody says why.",
+            "You hear, at second hand, that you're known as \"a reader of the summary\". Nobody says who started it."
+          ]
+        }
+      },
+      "fellowMPs": {
+        "ladder": "politics",
+        "about": "Your fellow Members of Parliament: your GRC team, the Member for the next ward, the ministers across the table. They talk to each other, and to the people who decide.",
+        "values": "Collegiality: who shares the credit and the hard jobs, who covers for a colleague, and who grandstands or poaches at someone else's expense.",
+        "review": {
+          "help": [
+            "Somebody said, at a lunch you weren't at, that you're \"good to have on the team\". It reached the people who count.",
+            "You hear, third-hand, that your name was mentioned this year as someone who \"makes the rest of us look good\". Nobody says by whom.",
+            "A seat was kept for you this year at a table where you hadn't been asked to sit before. Nobody says who kept it."
+          ],
+          "hurt": [
+            "Somebody said, at a lunch you weren't at, that you're \"always in the photograph\". It reached the people who count.",
+            "You hear, third-hand, that your name drew a sigh this year when it came up. Nobody tells you what the sigh was about.",
+            "The jokes about you this year have an edge they didn't used to have. Nobody says whose jokes they are."
           ]
         }
       }

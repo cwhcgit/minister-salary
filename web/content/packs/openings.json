@@ -45,11 +45,6 @@
         }
       ],
       "witnesses": {
-        "did": [
-          "you wrote, in your first paper, that the scheme wasn't working",
-          "you called a failing scheme \"gaining traction\" in your first paper",
-          "you asked what the answer was meant to be before writing your first paper"
-        ],
         "by": {
           "countersigner": {
             "chance": 0.5,
@@ -112,11 +107,6 @@
         }
       ],
       "witnesses": {
-        "did": [
-          "you asked for harder work, eight months in",
-          "you asked your way into meetings, eight months in",
-          "you kept your head down and cleared the letters, eight months in"
-        ],
         "by": {
           "countersigner": {
             "chance": 0.4,
