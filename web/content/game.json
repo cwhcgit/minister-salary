@@ -1660,6 +1660,204 @@
       }
     }
   },
+  "witnesses": {
+    "note": "Hidden witnesses (engine.js, 'hidden witnesses'). A card lists who could plausibly know what the player did there (its witnesses field: did, one line per choice for Declassified; by, each witness type's chance of noticing, its reaction to each choice in appraisal points, and optionally a rare raise of the ceiling). A witness who notices moves one appraisal one to three years later (delay), several in one year are capped (cap), and no single reaction is bigger than maxStep, so one witness nudges a grade and never jumps two. When a witness moves a grade, the review page shows one of its review lines about half the time (show); the ending's Declassified file lists what was noticed (lines). Player-facing text never says who: no names, titles or role words (test/contexts.js checks). about and values are for writers only.",
+    "show": 0.5,
+    "delay": [
+      1,
+      3
+    ],
+    "cap": 8,
+    "maxStep": 6,
+    "lines": {
+      "label": "Noticed",
+      "restLabel": "Also noticed",
+      "noticed": "Somebody noticed.",
+      "moved": "Your grade {when} was {grade}, not {without}.",
+      "when": [
+        "the year after",
+        "two years later",
+        "three years later"
+      ],
+      "whenMany": "{n} years later",
+      "ceiling": "It raised your ceiling in the service by a grade. Nobody mentioned it.",
+      "ceilingToo": "It also raised your ceiling in the service by a grade. Nobody mentioned that either.",
+      "didFallback": "on \"{title}\", you chose \"{text}\"",
+      "restOne": "One{more} thing you did was noticed, and never changed a grade.",
+      "restMany": "{N}{more} things you did were noticed, and none of them changed a grade."
+    },
+    "types": {
+      "countersigner": {
+        "about": "The officer who countersigns your appraisal: your reporting officer's own boss. Reads your file every year and hears how things went, and you rarely meet.",
+        "values": "Judgement and steady delivery. Dislikes coasting, and spin that later unravels.",
+        "review": {
+          "help": [
+            "Your appraisal comes back with a sentence added under the grade, in handwriting you don't recognise: \"Sound judgement.\" Nobody mentions it.",
+            "Between the draft and the final version, your appraisal gained a phrase: \"a steady pair of hands\". Nobody says who added it.",
+            "The comments section is a paragraph longer than the draft you were shown, and the new paragraph praises your judgement. It isn't signed.",
+            "Your grade came back higher than the draft you were shown. Nobody explains the difference, and you decide not to ask."
+          ],
+          "hurt": [
+            "Your appraisal comes back with one sentence added under the grade: \"Would benefit from greater consistency.\" It's in handwriting you don't recognise.",
+            "Between the draft and the final version, your appraisal lost the word \"reliable\". Nobody tells you who took it out.",
+            "Your grade came back lower than the draft you were shown. Nobody explains the difference, and the form has no box for asking.",
+            "The comments section now includes the phrase \"not yet ready for more\". It wasn't in the draft, and nobody says when it was added."
+          ]
+        },
+        "declassified": {
+          "help": [
+            "Somebody noticed, and took it as good judgement.",
+            "Somebody read it as steadiness, and wrote that down.",
+            "Somebody noticed, and decided you could be relied on."
+          ],
+          "hurt": [
+            "Somebody noticed, and took it as a lapse.",
+            "Somebody read it as unreliable, and wrote that down.",
+            "Somebody noticed, and decided you couldn't quite be relied on yet."
+          ]
+        }
+      },
+      "owner": {
+        "about": "The office a confidential paper or decision belongs to: the sender of the email, the owner of the plan. Knows exactly who was on the list, and sees what happens to its information.",
+        "values": "Discretion.",
+        "review": {
+          "help": [
+            "The comments section mentions your discretion. Nobody tells you who raised it.",
+            "Your appraisal says you \"can be trusted with sensitive material\". You can't remember anyone watching you handle any.",
+            "Somebody asked for you by name this year, for work that was confidential. Nobody says why you."
+          ],
+          "hurt": [
+            "The comments section uses the word \"discretion\" once, in a sentence that begins \"Would benefit from\". Nobody says whose sentence it is.",
+            "You were taken off the mailing list for confidential papers this year. Nobody tells you why, or who decided.",
+            "Your appraisal says you should \"take more care with information\". Nobody explains which information."
+          ]
+        },
+        "declassified": {
+          "help": [
+            "Somebody noticed, and took it as discretion.",
+            "Somebody noticed, and decided you could be trusted with things.",
+            "Somebody noticed, and remembered you as someone who can keep a thing quiet."
+          ],
+          "hurt": [
+            "Somebody noticed what happened next, and worked out where it had come from.",
+            "Somebody noticed, and stopped sending you anything confidential.",
+            "Somebody noticed, and never quite trusted you with a secret again."
+          ]
+        }
+      },
+      "panel": {
+        "about": "The ranking panel: the directors who meet once a year to rank everyone at your grade, most of whom know you only by name. They go on what reaches them: names on papers, faces at meetings, stories.",
+        "values": "Visibility and initiative.",
+        "review": {
+          "help": [
+            "When the grades were decided this year, somebody already knew your name, and that turned out to be enough.",
+            "Your appraisal mentions your \"visible initiative\". You hadn't thought anyone was looking.",
+            "Somebody you've never spoken to described you this year as \"one to watch\". It reached your file.",
+            "You hear, third-hand, that your name was mentioned this year as someone who gets things moving. Nobody says by whom."
+          ],
+          "hurt": [
+            "When the grades were decided this year, your name came up attached to a story. Nobody tells you which one.",
+            "Your appraisal says you \"could show more initiative\". It's the only sentence that wasn't in last year's.",
+            "You hear, third-hand, that your name drew a pause this year when the grades were decided. Nobody tells you what the pause was about."
+          ]
+        },
+        "declassified": {
+          "help": [
+            "Somebody noticed, and remembered your name when it counted.",
+            "Somebody saw it, and your name stuck.",
+            "Somebody noticed, and took it as initiative."
+          ],
+          "hurt": [
+            "Somebody noticed, and remembered your name for the wrong reason.",
+            "Somebody saw it, and it became the story about you.",
+            "Somebody noticed, and took it as a lack of initiative."
+          ]
+        }
+      },
+      "floor": {
+        "about": "The people who work around you: officers at your level and below, and the junior outside your door. Their anonymous feedback goes into your appraisal.",
+        "values": "Fairness to the people around you: who shares the credit, who covers, who leaves others to pick up the work.",
+        "review": {
+          "help": [
+            "This year's anonymous feedback from the people around you includes one comment that is just the word \"fair\". Nobody signs these, which is the point.",
+            "One anonymous comment this year calls you \"the person you go to when it's gone wrong\". You read it twice.",
+            "The anonymous feedback from the people around you is warmer than usual this year. You can't tell whose it is, and you aren't meant to.",
+            "An anonymous comment says you \"share the credit and keep the blame\". It isn't signed. None of them are."
+          ],
+          "hurt": [
+            "One of this year's anonymous comments says you \"take the credit and share the work\". It isn't signed. None of them are.",
+            "The anonymous feedback this year has one sentence in it that nobody would say to your face, and somebody did write it down.",
+            "One anonymous comment this year is four words long: \"Not a team player.\" You read it more often than you'd like.",
+            "The anonymous feedback from the people around you is cooler this year. Nobody says anything to your face, which is how you know."
+          ]
+        },
+        "declassified": {
+          "help": [
+            "Somebody who saw it said so, without signing it.",
+            "Somebody noticed, and it went into the anonymous feedback, warmly.",
+            "Somebody noticed, and took it as fairness."
+          ],
+          "hurt": [
+            "Somebody noticed, and it went into the anonymous feedback, unsigned.",
+            "Somebody saw it, and wrote down what they thought of it, anonymously.",
+            "Somebody noticed, and took it as unfair."
+          ]
+        }
+      },
+      "ministersOffice": {
+        "about": "The Minister's office: the private secretaries and the press secretary who sit with the Minister, take notes in every room, and remember names.",
+        "values": "Being told the truth early, and no surprises. The two do not always agree.",
+        "review": {
+          "help": [
+            "This year your name was mentioned in a room you've never been in, as someone worth listening to. You find out only from the grade.",
+            "Somebody asked this year for \"someone sensible\" for a difficult job, and your name was the one given. You never find out who asked.",
+            "You hear, from nobody in particular, that you're thought of upstairs as \"sound\". In this building it's high praise."
+          ],
+          "hurt": [
+            "Your name came up this year in a room you've never been in, next to the word \"surprise\". Nobody tells you which one.",
+            "Somewhere you've never been, this year, somebody asked who was responsible for an awkward moment. Your name was the answer.",
+            "You hear, from nobody in particular, that you're thought of upstairs as \"not quite ready\". Nobody says for what."
+          ]
+        },
+        "declassified": {
+          "help": [
+            "Somebody wrote it down, and remembered it as candour.",
+            "Somebody noticed, and remembered you as someone worth listening to."
+          ],
+          "hurt": [
+            "Somebody wrote it down, and remembered it as a surprise.",
+            "Somebody noticed, and filed it under awkward moments."
+          ]
+        }
+      },
+      "agencies": {
+        "about": "People from other agencies who were in the room or on the email. They talk to your directors at every inter-agency meeting.",
+        "values": "Straight dealing: being told the truth, and not having their time wasted.",
+        "review": {
+          "help": [
+            "Somebody mentioned you this year, unprompted, as someone who plays it straight. It reached your file, and nobody tells you how.",
+            "An email you weren't copied on this year described you as \"straight with us\". It reached your file anyway.",
+            "Your appraisal says you are \"trusted well beyond the division\". Nobody says by whom."
+          ],
+          "hurt": [
+            "Somebody mentioned your name this year at a meeting you weren't at. It didn't help, and nobody tells you what was said.",
+            "An email you weren't copied on this year asked for \"someone else, if possible\". Nobody tells you it was about you, but the grade does.",
+            "Your appraisal mentions \"managing relationships\" as an area to work on. Nobody says which relationships."
+          ]
+        },
+        "declassified": {
+          "help": [
+            "Somebody who was there noticed, and said so to people who mattered.",
+            "Somebody noticed, and trusted you more for it."
+          ],
+          "hurt": [
+            "Somebody who was there noticed, and mentioned it to people who mattered.",
+            "Somebody noticed, and trusted you less for it."
+          ]
+        }
+      }
+    }
+  },
   "warnLines": [
     "Your reporting officer asks whether you have considered the private sector. It is phrased as concern.",
     "HR sends you a link to the career transition portal, \"in case it is useful\".",

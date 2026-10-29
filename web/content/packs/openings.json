@@ -43,7 +43,32 @@
           },
           "outcome": "{senior} tells you what the Minister thinks, and which numbers to lead with. The paper lands well. You've learned how papers get written here, and you're not sure you like it."
         }
-      ]
+      ],
+      "witnesses": {
+        "did": [
+          "you wrote, in your first paper, that the scheme wasn't working",
+          "you called a failing scheme \"gaining traction\" in your first paper",
+          "you asked what the answer was meant to be before writing your first paper"
+        ],
+        "by": {
+          "countersigner": {
+            "chance": 0.5,
+            "react": [
+              4,
+              -3,
+              1
+            ]
+          },
+          "ministersOffice": {
+            "chance": 0.4,
+            "react": [
+              -3,
+              -2,
+              2
+            ]
+          }
+        }
+      }
     },
     {
       "id": "opening_grad",
@@ -85,7 +110,32 @@
           },
           "outcome": "You clear a hundred and forty replies by December, each one checked twice. Nobody upstairs counts them. {senior} does, and starts sending you the letters nobody else wants to answer."
         }
-      ]
+      ],
+      "witnesses": {
+        "did": [
+          "you asked for harder work, eight months in",
+          "you asked your way into meetings, eight months in",
+          "you kept your head down and cleared the letters, eight months in"
+        ],
+        "by": {
+          "countersigner": {
+            "chance": 0.4,
+            "react": [
+              2,
+              -2,
+              1
+            ]
+          },
+          "panel": {
+            "chance": 0.35,
+            "react": [
+              0,
+              3,
+              -1
+            ]
+          }
+        }
+      }
     }
   ]
 }
