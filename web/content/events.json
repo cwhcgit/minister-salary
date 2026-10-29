@@ -2481,7 +2481,7 @@
   {
     "id": "maiden_speech",
     "title": "The Maiden Speech",
-    "body": "Your maiden speech, your first in Parliament, falls on day three of the debate on the President's Address, which opens each new Parliament. It tells the House, the press and the party what kind of Member you mean to be. You are a backbencher, a Member with no government job, and the Whip, who keeps the party's backbenchers voting together, will read every line. Hansard, the official record, keeps every word. You have three drafts.",
+    "body": "Your maiden speech, your first in Parliament, falls on day three of the debate on the President's Address, which opens each new Parliament. It tells the House, the press and the party what kind of Member you mean to be. You are a backbencher, a Member with no government job, and the Whip, who keeps the party's backbenchers voting together, will read every line. Hansard, the official record, keeps every word. You have written three drafts, and now you must choose which one to give.",
     "requires": {
       "minRank": 8,
       "maxRank": 9
@@ -2529,7 +2529,7 @@
     "priority": "first",
     "variants": [
       {
-        "body": "Day three of the debate on the President's Address, which opens each new Parliament: at 4:40pm you rise in the House to give your maiden speech, your first. It sets how the party and the press see you for years. You are a backbencher, a Member with no government job, and the Whip, who keeps backbenchers voting with the party, will read every line. Hansard, the official record, keeps every word. You have three versions, all finished.",
+        "body": "Day three of the debate on the President's Address, which opens each new Parliament: at 4:40pm you rise in the House to give your maiden speech, your first. It sets how the party and the press see you for years. You are a backbencher, a Member with no government job, and the Whip, who keeps backbenchers voting with the party, will read every line. Hansard, the official record, keeps every word. You have written three versions, all finished, and now you must choose which one to give.",
         "choices": [
           {
             "text": "Give the version about your ward.",
@@ -2546,7 +2546,7 @@
         ]
       },
       {
-        "body": "Your maiden speech, your first in the House, as Members call Parliament, is next week. You are a backbencher, a Member with no government job, and the office of the Whip, who keeps backbenchers voting with the party, has sent guidance on length and tone, and a sample first line: \"I rise in support of the motion.\" Whatever follows it goes into Hansard, the official record, and tells the party what kind of Member you will be. The rest is up to you.",
+        "body": "Your maiden speech, your first in the House, as Members call Parliament, is next week. You are a backbencher, a Member with no government job, and the office of the Whip, who keeps backbenchers voting with the party, has sent guidance on length and tone, and a sample first line: \"I rise in support of the motion.\" Whatever follows it goes into Hansard, the official record, and tells the party what kind of Member you will be. You have written three drafts of what follows it, and now you must choose which one to give.",
         "choices": [
           {
             "text": "Write the rest about your ward.",
