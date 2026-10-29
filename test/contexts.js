@@ -494,6 +494,7 @@ function lint(build, smp) {
   for (const f of [...new Set(smp.floors)]) problems.push(`age floor broken: ${f}`);
   // the cast and card parts
   problems.push(...castStatic(build), ...smp.cast.problems);
+  problems.push(...witnessStatic(build));   // hidden witnesses: never named, never more than a nudge
   const cl = castLint(build, smp, problems);
   lint.last = { renders: cl.renders, dead: cl.dead, shown: smp.cast.shown, named: smp.cast.named, lines: smp.cast.lines };
   return [...new Set(problems)];
@@ -531,4 +532,4 @@ if (require.main === module) {
   } else console.log(`✓ no immersion contradictions: ${cards} cards and ${lineKeys} batchmate lines checked against where they fire; cast and parts checked in every context; age floors held`);
 }
 
-module.exports = { contexts, sample, table, lint, toMarkdown, RULES, castStatic };
+module.exports = { contexts, sample, table, lint, toMarkdown, RULES, castStatic, witnessStatic, witnessTexts, witnessWordProblems };
