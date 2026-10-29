@@ -12,8 +12,11 @@
 // (all of them when there are few, a sample when there are many), and the assembled text is
 // linted. Also checked: no raw {token} survives, nobody vacant or departed is named, a cast
 // member's grade is right for their rank (a senior above you, a junior below, the age floors),
-// names never repeat within a run or match the batchmate's, and a callback only ever names the
-// person the earlier choice was about.
+// names never repeat within a run or match the batchmate's or the player's, and a callback only
+// ever names the person the earlier choice was about. The player's own tokens ({player},
+// {player.formal}, {player.they}...) are checked the same way: careers are played under every
+// choice in game.json's player.genders, with typed names and drawn ones, and no screen may give the
+// player another choice's honorific.
 //
 //   node test/contexts.js [runsPerBotPerOrigin=600] [--json FILE] [--md FILE] [--table]
 //   (the lint always runs; --table prints the per-card table; --check is accepted for old scripts)
@@ -27,6 +30,14 @@ const BOTS = {
 };
 const ORIGINS = ['scholar', 'grad', 'poly'];
 const MONTAGE = '__montage:';
+// The start screen, by run: every gender choice the table has, a blank name (drawn for the run)
+// and typed names that share words with the batchmate's and the cast's pools, so the renames are
+// exercised too.
+const NAMES = ['Sim', '', 'Tan Wei Ming', 'Priya Nair'];
+const playerAt = (build, i) => {
+  const G = build.engine.genders ? build.engine.genders(build.content).map(g => g.id) : ['f'];
+  return [NAMES[i % NAMES.length], G[Math.floor(i / NAMES.length) % G.length]];
+};
 
 // Plays the careers once and returns everything the table and the lint need.
 function sample(build, n = 600, opts = {}) {
@@ -48,7 +59,8 @@ function sample(build, n = 600, opts = {}) {
 
   for (const rival of modes) for (const [bot, score] of Object.entries(BOTS)) for (const origin of ORIGINS) for (let i = 0; i < n; i++) {
     const pick = H.rng((i * 2654435761 + 17 + (rival ? 99991 : 0)) >>> 0);
-    let run = H.newRun(origin, i * 7 + 3, { build, name: 'Sim', rival });
+    const [name, gender] = playerAt(build, i);
+    let run = H.newRun(origin, i * 7 + 3, { build, name, gender, rival });
     const scheduledAt = [];   // { eventId, fireYear, year }
     const touched = {};       // eventId@fireYear -> { role: person id } for the people the scheduling choice changed
     const linesShown = new Set();   // cast line versions this run has shown
@@ -166,6 +178,11 @@ function castInvariants(build, S, problems) {
     words.set(w, p.id);
   }
   if (S.rival) for (const w of S.rival.name.toLowerCase().split(/\s+/)) if (words.has(w)) problems.add(`a cast member shares the batchmate's name "${w}"`);
+  // nobody shares a word with the player's name either
+  if (E.playerWords) for (const w of E.playerWords(S.name, build.content)) {
+    if (words.has(w)) problems.add(`a cast member shares the player's name "${w}"`);
+    if (S.rival && S.rival.name.toLowerCase().split(/\s+/).includes(w)) problems.add(`the batchmate shares the player's name "${w}"`);
+  }
 }
 
 // Ladder titles, longest first, so "Senior Director" is not read as "Director".
@@ -180,6 +197,8 @@ function textProblems(build, S, id, texts, where) {
     if (typeof t !== 'string') continue;
     const m = t.match(RAW);
     if (m) out.push(`${id}: ${where}unfilled token ${m[0]} (a vacant role, or a missing part field)`);
+    const hon = wrongHonorific(build, S, t);
+    if (hon) out.push(`${id}: ${where}calls the player "${hon}"`);
     if (/,\s*,|\s{2,}|\s[,.]/.test(t)) out.push(`${id}: ${where}empty field in "${t.slice(0, 60)}..."`);
     if (/\ba [AEIOU]/.test(t) && (build.__vowelTitles ||= titlesOf(build).filter(x => /^[AEIOU]/.test(x))).some(x => t.includes('a ' + x))) out.push(`${id}: ${where}"a" before a vowel title`);
     for (const [role, p] of Object.entries((S.cast && S.cast.on) || {})) {
@@ -197,6 +216,21 @@ function textProblems(build, S, id, texts, where) {
   }
   return out;
 }
+// Another choice's honorific before the player's name (game.json player.genders): "Mr" for a
+// player who chose Female, and so on for any choice the table has.
+const HON_CACHE = new Map();
+function wrongHonorific(build, S, t) {
+  if (!build.engine.player || !S.name || t.indexOf(S.name) < 0) return null;
+  const key = S.name + '|' + S.gender;
+  if (!HON_CACHE.has(key)) {
+    const T = build.content.player.genders, me = build.engine.player(build.content, S);
+    const mine = T[me.gender].honorific;
+    const wrong = [...new Set(Object.values(T).map(g => g.honorific).filter(h => h && h !== mine))];
+    HON_CACHE.set(key, wrong.length ? new RegExp(`\\b(?:${wrong.map(escRe).join('|')}) ${escRe(me.name)}\\b`) : null);
+  }
+  const re = HON_CACHE.get(key), hit = re && t.match(re);
+  return hit ? hit[0] : null;
+}
 // "<name>, the <grade>" or "<grade> <name>": compiled once per person and name form
 const RE_CACHE = new Map();
 function nameTitleRe(build, p, call) {
@@ -209,7 +243,9 @@ function nameTitleRe(build, p, call) {
   return RE_CACHE.get(key);
 }
 const cardStrings = ev => [ev.title, ev.body, ...ev.choices.flatMap(c => [c.text, c.outcome])];
-const castOrParts = (E, ev) => !!(ev.parts || E.roleNeeds(ev).length);
+const PLAYER_RE = /\{[Pp]layer(?:\.[A-Za-z]+)?\}/;
+const namesPlayer = ev => JSON.stringify([ev.title, ev.body, ev.choices, ev.variants || [], ev.parts || {}]).match(PLAYER_RE);
+const castOrParts = (E, ev) => !!(ev.parts || E.roleNeeds(ev).length || namesPlayer(ev));
 
 // Every displayed card: the text as shown, the person a callback names, and the context kept.
 function castShown(build, S, ev, base, draw, touched, cast) {
@@ -235,7 +271,8 @@ function castShown(build, S, ev, base, draw, touched, cast) {
   const src = build.content.events.concat((build.content.rival || {}).events || []).find(e => e.id === base);
   if (!src || !castOrParts(E, src)) return;
   const keep = cast.states[base] ||= new Map();
-  const sig = `${S.rank}|${S.origin}|${castSig(S)}`;
+  // a card that names the player is kept in both genders' contexts
+  const sig = `${S.rank}|${S.origin}|${namesPlayer(src) ? S.gender + '|' : ''}${castSig(S)}`;
   if (!keep.has(sig) && keep.size < CAP_STATES) keep.set(sig, S);
 }
 
@@ -278,6 +315,8 @@ function castLint(build, smp, problems) {
 function castStatic(build) {
   const E = build.engine, C = build.content, out = [];
   const roles = new Set(Object.keys((C.cast || {}).roles || {}));
+  // {player}'s fields: name, formal and every token field of game.json's player.genders
+  const PF = E.playerFields ? E.playerFields(C) : [];
   const rivalTok = new Set(['rival', 'they', 'them', 'their', 'They', 'Them', 'Their', 'title']);
   const all = C.events.map(e => ({ e, rivalCard: false })).concat(((C.rival || {}).events || []).map(e => ({ e, rivalCard: true })));
   const byId = Object.fromEntries(all.map(x => [x.e.id, x.e]));
@@ -286,7 +325,7 @@ function castStatic(build) {
   for (const { e, rivalCard } of all) {
     const slots = new Map(E.partSlots(e));
     for (const k of slots.keys()) {
-      if (roles.has(k) || rivalTok.has(k)) out.push(`${e.id}: part slot "${k}" has the name of a cast role or a batchmate token`);
+      if (roles.has(k) || rivalTok.has(k) || k === 'player') out.push(`${e.id}: part slot "${k}" has the name of a cast role, a batchmate token or the player`);
       if (k !== k.toLowerCase()) out.push(`${e.id}: part slot "${k}" must be lower case`);
       const ids = slots.get(k).options.map((o, i) => o.id !== undefined ? String(o.id) : String(i));
       if (new Set(ids).size !== ids.length) out.push(`${e.id}: part slot "${k}" has duplicate option ids`);
@@ -299,6 +338,9 @@ function castStatic(build) {
       if (slots.has(low)) {
         // every option of the slot must have the field the text asks for
         for (const o of slots.get(low).options) if (typeof (field ? o[field] : o.text) !== 'string') out.push(`${e.id}: ${raw} but option "${o.id}" of "${low}" has no ${field || 'text'}`);
+      } else if (/^player$/i.test(name)) {
+        // the player: {player}, {player.formal}, and the fields of game.json's player.genders
+        if (!PF.includes(field.toLowerCase())) out.push(`${e.id}: unknown player field ${raw}`);
       } else if (roles.has(name.toLowerCase())) {
         if (field && !['name', 'full', 'given', 'formal', 'title', 'atitle', 'they', 'them', 'their', 'years'].includes(field.toLowerCase())) out.push(`${e.id}: unknown cast field ${raw}`);
       } else if (name === 'ministry' && !field) {
@@ -307,8 +349,7 @@ function castStatic(build) {
       // the pronoun convention: a subject pronoun never comes before a present-tense verb
     }
     for (const t of texts) for (const m of String(t).matchAll(/\{(?:[A-Za-z]+\.)?[Tt]hey\} (\w+)/g))
-      if (/^(is|was|has|does|isn't|wasn't|hasn't|doesn't)$/.test(m[1]) || (/[^s]s$/.test(m[1]) && !/^(always|perhaps|sometimes|this|thus|as|its)$/.test(m[1])))
-        out.push(`${e.id}: subject pronoun before a present-tense verb ("${m[0]}"); use the name, or a past tense`);
+      if (presentVerb(m[1])) out.push(`${e.id}: subject pronoun before a present-tense verb ("${m[0]}"); use the name, or a past tense`);
     // a grade written next to a cast member, which no rank will keep right
     for (const t of texts) {
       const m = String(t).match(new RegExp(`\\{[A-Za-z]+\\}, (?:the |a |an |now )?(${titlesOf(build).map(escRe).join('|')})\\b`));
@@ -336,8 +377,39 @@ function castStatic(build) {
     e.choices.forEach(ch => { for (const r of Object.keys(ch.cast || {})) if (!roles.has(r)) out.push(`${e.id}: choice changes unknown cast role "${r}"`); });
   }
   for (const f of (C.folder || []).concat((C.rival || {}).folder || [])) if (tok(f.item).some(x => roles.has(x.name.toLowerCase()))) out.push(`folder item ${f.flag}: names a cast role (the folder is read years later, when the role may hold someone else)`);
+
+  // The ending card and the Declassified file fill only the player's tokens; a cast line fills
+  // its own person's fields ({name}, {title}, {them}...) and the player's.
+  const fixed = [
+    ...(C.endings || []).flatMap(x => [[`ending ${x.id}`, x.title], [`ending ${x.id}`, x.epitaph]]),
+    ...(C.legacyTiers || []).map((x, i) => [`legacyTiers[${i}]`, x.text]),
+    ...Object.entries(C.legacyByEnding || {}).flatMap(([k, xs]) => xs.map((x, i) => [`legacyByEnding.${k}[${i}]`, x.text])),
+    ...(C.declassifiedFlags || []).concat((C.endgame || {}).declassifiedFlags || []).map(x => [`Declassified "${x.label}"`, x.text])
+  ];
+  const castLines = Object.entries((C.cast || {}).lines || {}).flatMap(([role, kinds]) =>
+    Object.entries(kinds).flatMap(([k, xs]) => xs.map((t, i) => [`cast line ${role}.${k}[${i}]`, t])));
+  const rivalLines = Object.entries((C.rival || {}).lines || {}).flatMap(([k, xs]) => xs.map((t, i) => [`batchmate line ${k}[${i}]`, t]));
+  for (const [where, t] of fixed.concat(castLines)) for (const { name, field, raw } of tok(t)) {
+    if (/^player$/i.test(name)) { if (!PF.includes(field.toLowerCase())) out.push(`${where}: unknown player field ${raw}`); }
+    else if (where.startsWith('cast line') ? !!field : true) out.push(`${where}: token ${raw} is never filled there`);
+  }
+  // the table itself: every choice has a label and an honorific, and the same token fields, so a
+  // token that reads for one choice reads for all of them
+  const T = (C.player || {}).genders || {}, own = ['label', 'pool'];
+  const fieldsOf = g => Object.keys(g).filter(k => !own.includes(k)).sort().join(',');
+  for (const [id, g] of Object.entries(T)) {
+    if (!g.label || !g.honorific) out.push(`player.genders.${id}: needs a label and an honorific`);
+    if (fieldsOf(g) !== fieldsOf(Object.values(T)[0])) out.push(`player.genders.${id}: has fields ${fieldsOf(g)}, but ${Object.keys(T)[0]} has ${fieldsOf(Object.values(T)[0])}`);
+    if (g.pool && !(C.cast || { names: [] }).names.some(n => n.pron === g.pool)) out.push(`player.genders.${id}: no cast name has the pool "${g.pool}"`);
+  }
+  if (Object.keys(T).length && !(C.player.default in T)) out.push(`player.default "${C.player.default}" is not one of the choices`);
+  for (const [where, t] of fixed.concat(castLines, rivalLines))
+    for (const m of String(t).matchAll(/\{(?:[A-Za-z]+\.)?[Tt]hey\} (\w+)/g)) if (presentVerb(m[1]))
+      out.push(`${where}: subject pronoun before a present-tense verb ("${m[0]}"); use the name, or a past tense`);
   return out;
 }
+
+const presentVerb = w => /^(is|was|has|does|isn't|wasn't|hasn't|doesn't)$/.test(w) || (/[^s]s$/.test(w) && !/^(always|perhaps|sometimes|this|thus|as|its)$/.test(w));
 
 function table(build, smp) {
   const ladder = build.content.ladder, out = {};
@@ -373,6 +445,7 @@ const RULES = [
   { re: /\b(the Whip|your ward|your constituents|your GRC|Question Time|by-election)\b/,
     why: 'political phrase in a card that fires in the service', bad: c => c.inService + c.atPermSec > 0 },
   { re: /\b(wife|husband|girlfriend|boyfriend)\b/i, why: 'assumes the player\'s gender or family', bad: () => true },
+  { re: /\b(sir|madam|ma'am)\b/i, why: 'addresses the player by a gendered word; use {player.formal}', bad: () => true },
   { re: /\{(rival|they|them|their|They|Them|Their)\}/, why: 'batchmate placeholder in a card that can fire with no batchmate',
     bad: (c, card) => !card.rivalCard && c.fires > 0 }
 ];

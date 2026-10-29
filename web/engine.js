@@ -17,11 +17,16 @@ const Engine = (() => {
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   const STATS = ["reputation", "standing", "integrity", "competence"];
 
+  // opts.gender: a choice from content.player.genders (the start screen; default: the table's
+  // default). A blank name is drawn from the cast's name pool for it. Both are text only:
+  // neither touches the run's dice.
   function newGame(content, originId, name, seed, opts = {}) {
+    playerTable(content);   // throws on a missing or malformed table: never a quiet default
     const origin = content.origins.find(o => o.id === originId);
     const r = rng(seed);
+    const me = playerOf(content, { name, gender: opts.gender, seed });   // text only
     const g = {
-      seed, name, origin: origin.id,
+      seed, name: me.name, gender: me.gender, origin: origin.id,
       age: origin.startAge,
       year: 1,
       rank: origin.startRank,
@@ -59,7 +64,7 @@ const Engine = (() => {
       currentEvent: null
     };
     g.cepStart = g.cep;
-    if (opts.rival && content.rival) g.rival = newRival(content, origin, seed);
+    if (opts.rival && content.rival) g.rival = newRival(content, origin, seed, playerWords(g.name, content));
     castSync(content, g, null, true);   // the run's people, before the first card
     return g;
   }
@@ -71,9 +76,19 @@ const Engine = (() => {
   // the player's own appraisal baseline plus a small hidden edge and their own luck. They
   // compete with the player for the same slots in the ranking exercise. All their randomness
   // comes from a separate stream (rivalRoll), so a game without a batchmate plays as before.
-  function newRival(content, origin, seed) {
+  // `avoid`: the player's name words. A batchmate who would share one gets another name (the same
+  // pronoun where the pool allows), drawn on a stream of its own, so the batchmate's dice are untouched.
+  function newRival(content, origin, seed, avoid = []) {
     const R = content.rival, r = rng((seed ^ 0x5bd1e995) >>> 0);
-    const who = R.names[Math.floor(r() * R.names.length)];
+    let who = R.names[Math.floor(r() * R.names.length)];
+    const clear = n => n.name.toLowerCase().split(/\s+/).every(w => !avoid.includes(w));
+    if (!clear(who)) {
+      const r2 = rng((seed ^ 0x2545f491) >>> 0);
+      const order = R.names.map((_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r2() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+      const k = order.find(i => R.names[i].pron === who.pron && clear(R.names[i])) ?? order.find(i => clear(R.names[i]));
+      if (k !== undefined) who = R.names[k];
+    }
     const ed = (R.edge || {})[origin.id] || [-3, 5];
     const cep = origin.cep[0] + Math.floor(r() * (origin.cep[1] - origin.cep[0] + 1));
     return { name: who.name, pron: who.pron, rank: origin.startRank, cep, cepStart: cep,
@@ -94,15 +109,141 @@ const Engine = (() => {
   const PRON = { f: { they: "she", them: "her", their: "her" }, m: { they: "he", them: "him", their: "his" } };
   // Every name token on a card: {peer}, {Peer.They}, {asker.short}, {rival}. Card parts are
   // filled first, then the cast, then the batchmate.
+  // The player last of all, so nothing the player typed is ever read as a token.
   function sub(text, s, content) {
     if (typeof text !== "string" || text.indexOf("{") < 0) return text;
     if (s.ministry) text = text.replace(/\{ministry\}/g, s.ministry);
     if (content && s.cast) text = castSub(content, s, text);
-    if (!s.rival) return text;
-    const p = PRON[s.rival.pron] || PRON.f;
-    return text.replace(/\{rival\}/g, s.rival.name)
-      .replace(/\{(They|Them|Their)\}/g, (_, k) => cap(p[k.toLowerCase()]))
-      .replace(/\{(they|them|their)\}/g, (_, k) => p[k]);
+    if (s.rival) {
+      const p = PRON[s.rival.pron] || PRON.f;
+      text = text.replace(/\{rival\}/g, () => s.rival.name)
+        .replace(/\{(They|Them|Their)\}/g, (_, k) => cap(p[k.toLowerCase()]))
+        .replace(/\{(they|them|their)\}/g, (_, k) => p[k]);
+    }
+    return playerSub(text, s, content);
+  }
+
+  // --- the player ------------------------------------------------------------
+  // The game says "you", so the player's name and gender only show where someone else speaks of
+  // or to them: a colleague, Hansard, the papers, the batchmate, the ending card. Every player
+  // token is filled here, by playerSub, which only sub() calls. What each choice fills in is data:
+  // content.player.genders (game.json), in the order the start screen shows them.
+  //   {player}           the name as entered (or drawn, when left blank)
+  //   {player.formal}    the choice's honorific and the name ("Ms Tan Wei Ling")
+  //   {player.<field>}   any other field of the choice: they, them, their, or one a writer adds;
+  //                      capitalised as {Player.They} or {player.They}
+  // As with the cast, a subject pronoun only comes before a past-tense verb ("{player.they} said").
+  // Nothing outside text reads the gender: not the dice, not the draw, not the appraisal.
+  const PLAYER_TOKEN = /\{([Pp]layer)(?:\.([A-Za-z]+))?\}/g;
+  const PLAYER_OWN = ["label", "pool"];   // a choice's fields that are not tokens
+  // The table is the only source: content without it, or with a malformed one, is an error,
+  // never a quiet default. (web/packs.js refuses such a build too, so the phone never loads one.)
+  const CHECKED = new WeakSet();
+  function playerTable(content) {
+    const P = content && content.player;
+    if (P && CHECKED.has(P)) return P;
+    const problem = playerTableProblem(P);
+    if (problem) throw new Error(`game.json player table: ${problem} (see docs/DESIGN.md section 7)`);
+    CHECKED.add(P);
+    return P;
+  }
+  function playerTableProblem(P) {
+    const G = P && P.genders;
+    if (!G || typeof G !== "object" || Array.isArray(G) || !Object.keys(G).length) return "player.genders is missing or empty";
+    for (const [id, g] of Object.entries(G)) {
+      if (!g || typeof g !== "object") return `player.genders.${id} is not an object`;
+      if (typeof g.label !== "string" || !g.label) return `player.genders.${id} has no label`;
+      if (typeof g.honorific !== "string" || !g.honorific) return `player.genders.${id} has no honorific`;
+    }
+    if (!Object.prototype.hasOwnProperty.call(G, P.default)) return `player.default "${P.default}" is not one of player.genders`;
+    return null;
+  }
+  // The start screen's choices, in order: [{ id, label }].
+  function genders(content) {
+    return Object.entries(playerTable(content).genders).map(([id, g]) => ({ id, label: g.label }));
+  }
+  // A choice the table has, or the table's default.
+  function genderId(content, g) {
+    const T = playerTable(content);
+    return Object.prototype.hasOwnProperty.call(T.genders, g) ? g : T.default;
+  }
+  // The token fields a text may use: {player}, {player.name}, {player.formal}, and every field the
+  // table's choices have (other than their own label and pool).
+  function playerFields(content) {
+    const out = new Set(["", "name", "formal"]);
+    for (const g of Object.values(playerTable(content).genders)) for (const k of Object.keys(g)) if (!PLAYER_OWN.includes(k)) out.add(k.toLowerCase());
+    return [...out];
+  }
+  // Honorifics a typed name may already start with ("Dr Tan"): the table's, and the usual ones.
+  function honorifics(content) {
+    const out = new Set(["mr", "ms", "mrs", "mdm", "miss", "dr", "prof"]);
+    for (const g of Object.values(playerTable(content).genders)) if (g.honorific) out.add(String(g.honorific).toLowerCase().replace(/\.$/, ""));
+    return out;
+  }
+  // The words of a typed name that a cast member or the batchmate must not share.
+  function playerWords(name, content) {
+    const hon = honorifics(content);
+    return String(name || "").toLowerCase().replace(/[.,\-]/g, " ").split(/\s+/)
+      .filter(w => w && !NAME_PARTICLES.has(w) && !hon.has(w));
+  }
+  // A name for a blank field: one of the cast pool's names for the choice's pool, in an order
+  // drawn on the player's own stream, clear of any name words in `avoid`.
+  function drawName(content, seed, gender, avoid) {
+    const C = content && content.cast;
+    if (!C || !(C.names || []).length) throw new Error("game.json has no cast.names to draw a blank name from");
+    const r = rng((Math.imul(seed >>> 0, 0x2C1B3C6D) ^ hashStr("player")) >>> 0);
+    const want = playerTable(content).genders[gender].pool || gender;
+    const pool = C.names.filter(n => n.pron === want);
+    const list = pool.length ? pool : C.names;
+    const order = list.map((_, i) => i);
+    for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+    const i = order.find(k => nameWords(list[k]).every(w => !avoid.has(w))) ?? order[0];
+    return list[i].full;
+  }
+  // The player as the text sees them. A save from before the start screen asked has no gender
+  // (it reads as the table's default) and, if its name was left blank, the old placeholder "You":
+  // it gets a name drawn as for a blank field, clear of the run's people as they stand.
+  function playerOf(content, s) {
+    const gender = genderId(content, s.gender);
+    const typed = typeof s.name === "string" ? s.name.trim() : "";
+    if (typed && typed !== "You") return { name: typed, gender };
+    const avoid = new Set();
+    if (s.cast) for (const p of Object.values(s.cast.on).concat(s.cast.past)) if (p) nameWords(p.nm).forEach(w => avoid.add(w));
+    if (s.rival) s.rival.name.toLowerCase().split(/\s+/).forEach(w => avoid.add(w));
+    return { name: drawName(content, s.seed || 0, gender, avoid), gender };
+  }
+  // Fills in an old save's name and gender for good (the defaults above), so they never change.
+  function upgradePlayer(content, s) {
+    if (s) {
+      const me = playerOf(content, s);
+      if (me.gender !== s.gender || me.name !== s.name) { s.name = me.name; s.gender = me.gender; }
+    }
+    return s;
+  }
+  function playerField(content, me, field) {
+    const f = (field || "").toLowerCase(), g = playerTable(content).genders[me.gender];
+    if (f === "" || f === "name") return me.name;
+    if (f === "formal") {
+      const first = me.name.split(/\s+/)[0].toLowerCase().replace(/\.$/, "");
+      return honorifics(content).has(first) ? me.name : `${g.honorific} ${me.name}`;
+    }
+    if (PLAYER_OWN.includes(f)) return null;
+    const k = Object.keys(g).find(x => x.toLowerCase() === f);
+    return k && typeof g[k] === "string" ? g[k] : null;
+  }
+  function playerSub(text, s, content) {
+    if (!/\{[Pp]layer[.}]/.test(text)) return text;
+    const me = playerOf(content, s);
+    return text.replace(PLAYER_TOKEN, (m, nm, field) => {
+      const v = playerField(content, me, field);
+      if (v === null) return m;   // an unknown field stays raw: the lint and the leak check catch it
+      return isUpper(nm) || isUpper(field) ? cap(v) : v;
+    });
+  }
+  // The player for the UI and the checks: name, gender, its label and the formal name.
+  function player(content, s) {
+    const me = playerOf(content, s);
+    return { ...me, label: playerTable(content).genders[me.gender].label, formal: playerField(content, me, "formal") };
   }
 
   // --- the cast ------------------------------------------------------------
@@ -115,7 +256,7 @@ const Engine = (() => {
   // cannot be drawn, and a refill is a new person with no history. What the player did to or for
   // a person is kept on that person (their flags), so callbacks can never land on a stranger.
   const TOKEN = /\{([A-Za-z]+)(?:\.([A-Za-z]+))?\}/g;
-  const NOT_ROLES = new Set(["rival", "they", "them", "their", "title", "ministry"]);
+  const NOT_ROLES = new Set(["rival", "they", "them", "their", "title", "ministry", "player"]);
   const NAME_PARTICLES = new Set(["bin", "binte", "bte", "s/o", "d/o", "a/l", "a/p", "de", "da", "van"]);
   const lc1 = x => x.charAt(0).toLowerCase() + x.slice(1);
   const isUpper = x => !!x && x.charAt(0) !== x.charAt(0).toLowerCase();
@@ -234,7 +375,7 @@ const Engine = (() => {
   }
 
   // A new person for a role: a name nobody else in this run shares a word with (nor the
-  // batchmate), preferring names the phone has not seen in its last runs; age, and where the
+  // batchmate, nor the player), preferring names the phone has not seen in its last runs; age, and where the
   // role has one, a rank.
   function drawPerson(content, s, role) {
     const C = content.cast, cfg = C.roles[role], K = s.cast;
@@ -243,6 +384,7 @@ const Engine = (() => {
     const used = new Set();
     for (const p of Object.values(K.on).concat(K.past)) if (p) nameWords(p.nm).forEach(w => used.add(w));
     if (s.rival) s.rival.name.split(/\s+/).forEach(w => used.add(w.toLowerCase()));
+    playerWords(s.name, content).forEach(w => used.add(w));   // nor the player's own
     const order = C.names.map((_, i) => i);
     for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
     const ok = i => nameWords(C.names[i]).every(w => !used.has(w));
@@ -309,10 +451,10 @@ const Engine = (() => {
     for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
     const i = order.find(k => !used.includes(k));
     if (i === undefined) return null;
-    const text = lines[i].replace(/\{([A-Za-z]+)\}/g, (m, f) => {
+    const text = sub(lines[i].replace(/\{([A-Za-z]+)\}/g, (m, f) => {
       const v = personField(content, s, role, p, f);
       return v === null ? m : isUpper(f) ? cap(v) : v;
-    });
+    }), s, content);
     return { kind: "note", text, cast: role, key, line: i, at: { player: s.rank, rank: p.rank, person: p.id } };
   }
 
@@ -1847,6 +1989,7 @@ const Engine = (() => {
   // the next card is drawn: state.currentEvent is set unless the run has ended.
   function advance(content, state, choiceIndex) {
     const s = JSON.parse(JSON.stringify(state));   // immutable in, new state out
+    upgradePlayer(content, s);                      // a save from before the start screen asked
     if (!s.cast && content.cast) castSync(content, s, null, true);   // a save from before the cast
     // the card as shown: a pure function of the state, so the copy reads the same as the original
     const ev = eventOf(content, state);
@@ -1901,6 +2044,7 @@ const Engine = (() => {
   // first year of a run (and for saves from before years passed by themselves).
   function nextEvent(content, state) {
     const s = JSON.parse(JSON.stringify(state));
+    upgradePlayer(content, s);                      // a save from before the start screen asked
     if (!s.cast && content.cast) castSync(content, s, null, true);   // a save from before the cast
     if (s.currentEvent) return { state: s, event: eventOf(content, s) };
     const ev = pickEvent(content, s);
@@ -1922,7 +2066,7 @@ const Engine = (() => {
     const score = s.integrity + s.reputation / 2 + 8 * marks;
     // an exit that was not a retirement has its own lines: nobody gives a farewell speech for those
     const tiers = (content.legacyByEnding || {})[s.ending] || content.legacyTiers || [];
-    return (tiers.find(x => score >= x.min) || { text: "" }).text;
+    return sub((tiers.find(x => score >= x.min) || { text: "" }).text, s, content);
   }
 
   // The ending card's labels: not every ending is a retirement.
@@ -1943,6 +2087,12 @@ const Engine = (() => {
         : { position: "Last held", age: "At age", share: "lost the election, having been" };
       default: return { position: "Retired as", age: "At age", share: "retired as" };
     }
+  }
+
+  // The ending card's title and epitaph, with the player's name and pronouns filled in.
+  function ending(content, s) {
+    const e = content.endings.find(x => x.id === s.ending);
+    return e && { ...e, title: sub(e.title, s, content), epitaph: sub(e.epitaph, s, content) };
   }
 
   function title(content, r) {
@@ -2091,7 +2241,7 @@ const Engine = (() => {
     for (const d of (content.declassifiedFlags || []).concat((content.endgame || {}).declassifiedFlags || [])) {
       if (told.has(d.label) || !meets(d.requires || {}, s)) continue;
       told.add(d.label);
-      out.push({ label: d.label, text: d.text });
+      out.push({ label: d.label, text: sub(d.text, s, content) });
     }
 
     if (s.rival) out.push(...declassifyRival(content, s));
@@ -2126,15 +2276,17 @@ const Engine = (() => {
         : `You came out ahead ${v.wonMet === 1 ? "once" : v.wonMet === 2 ? "twice" : `${NUM[v.wonMet] || v.wonMet} times`}.`;
       out.push({ label: "Head to head", text: `${times}. ${won}` });
     }
-    const said = v.rel >= 3 ? `"The best colleague I ever had." Usually when you are not there.`
+    const said = v.rel >= 3 ? `"{player} was the best colleague I ever had." Usually when you are not there.`
       : v.rel <= -3 ? "Nothing, in public. In this building, that is a statement."
-      : `"A good colleague." In this building, a complete sentence.`;
-    out.push({ label: `What ${v.name} says`, text: said });
+      : `"{player}? A good colleague." In this building, a complete sentence.`;
+    out.push({ label: `What ${v.name} says`, text: sub(said, s, content) });
     return out;
   }
 
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
-    finalLabels, recentKeys, lockedText, statVerdicts, endPlan,
+    finalLabels, ending, recentKeys, lockedText, statVerdicts, endPlan,
+    // the player's name and gender: the start screen, old saves, the lint and the tests
+    player, genders, upgradePlayer, playerWords, playerFields, playerTableProblem,
     // cast and card parts, for the immersion lint and the tests
     render, applyVariant, partSlots, partCombos, roleNeeds, optionNeeds, maxRankForAge, personField, TOKEN,
     article, STATS, QUIET: QUIET_YEAR };

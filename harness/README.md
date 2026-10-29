@@ -4,12 +4,12 @@ Drives the web build's rules engine (`web/engine.js`) headlessly, for the bots i
 
 ```js
 const H = require("./harness");
-let run = H.newRun("grad", 42, { name: "Tan Wei Ming" });
+let run = H.newRun("grad", 42, { name: "Tan Wei Ming", gender: "m" });   // the start screen; a blank name is drawn
 H.screenText(run);                       // what the phone shows: the only thing a blind agent gets
 H.choices(run);                          // [{ id: "A", text, available, requires }]
 run = H.step(run, "B");                  // returns a new run; refuses locked choices
 H.trace(run);                            // everything else, per turn and per run
-H.replay({ buildHash, origin, seed, choices: ["B", "A", …] });   // exact replay
+H.replay({ buildHash, origin, seed, name, gender, choices: ["B", "A", …] });   // exact replay
 ```
 
 ## Two records, kept apart
@@ -23,5 +23,11 @@ The screen never contains CEP or Heat values, flags, choice effects, scheduled e
 The engine reports the appraisal, promotion and election details through a `trace` object it returns from `advance()`. The UI ignores it, and it changes no state and no random draw.
 
 ## Builds
+
+The player's name and gender (`{ name, gender }`, a key of `game.json` `player.genders`; default
+its `default`, Female) are text only: they
+fill the `{player}` tokens and keep the cast's and the batchmate's names clear of the player's, and
+never touch the run's dice. The same seed plays the same career as Female and as Male; the name
+and gender are part of the replay key only so that the screens replay word for word.
 
 `loadBuild({ root, canaries })` loads an engine and content set and hashes them. Every run carries the hash, and `replay` refuses a run recorded on a different build. `root` points at any copy of `web/`, such as a proposal's patched build. `canaries: true` adds the two planted events in `canaries.json`: one deliberately bland, one that winks at the player. Agent cohorts use them to check that the agents rate honestly.

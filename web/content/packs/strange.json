@@ -334,7 +334,7 @@
           "text": "Let it stand. You meant it.",
           "effects": { "integrity": 5, "reputation": 4, "standing": -5 },
           "setFlags": ["strange_met"],
-          "outcome": "Yours is one of four speeches published as meant. A newspaper reprints it in full. Several colleagues tell you privately that they meant the same, and asked for corrections."
+          "outcome": "Yours is one of four speeches published as meant. A newspaper reprints it in full, under \"What {player.formal} meant\". Several colleagues tell you privately that they meant the same, and asked for corrections."
         },
         {
           "text": "Ask that both versions be published.",

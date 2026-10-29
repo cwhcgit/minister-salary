@@ -300,7 +300,7 @@
     {
       "id": "level",
       "title": "You Found Your Level",
-      "epitaph": "Four decades, give or take, a pewter plate, and a CPF balance that will comfortably outlast you. The scheme you designed in year nine is still running."
+      "epitaph": "Four decades, give or take, and a CPF balance that will comfortably outlast you. The pewter plate says \"{player.formal}, with appreciation\". The scheme you designed in year nine is still running."
     },
     {
       "id": "declined",
@@ -315,17 +315,17 @@
     {
       "id": "scandal",
       "title": "Everything Surfaced",
-      "epitaph": "Everything you had kept quiet came out in one week, which was merciful in its way. The press conference was eleven minutes long."
+      "epitaph": "Everything you had kept quiet came out in one week, which was merciful in its way. The press conference was eleven minutes long, and the next morning's headline was \"{player.formal} resigns\"."
     },
     {
       "id": "quiet",
       "title": "The Quiet Conversation",
-      "epitaph": "You were asked whether you had considered the private sector. No announcement was made. Your pass stopped working on a Friday."
+      "epitaph": "You were asked whether you had considered the private sector. No announcement was made. The email to your colleagues said only that {player} \"has moved on\", and wished {player.them} well. Your pass stopped working on a Friday."
     },
     {
       "id": "backbench",
       "title": "Backbench Lifer",
-      "epitaph": "Never a portfolio. But at your last Meet-the-People Session there was a queue out the door, and half of them had come only to say thank you."
+      "epitaph": "Never a portfolio. But at your last Meet-the-People Session there was a queue out the door, and half of them had come only to say \"Thank you, {player.formal}\"."
     },
     {
       "id": "office",
@@ -794,7 +794,7 @@
     },
     {
       "min": 80,
-      "text": "Spoken of as \"very solid\". Nobody can remember an example, but everyone agrees."
+      "text": "\"{player}? Very solid.\" Nobody can remember an example, but everyone agrees."
     },
     {
       "min": 55,
@@ -802,7 +802,7 @@
     },
     {
       "min": 0,
-      "text": "Your farewell card has forty signatures. Several are in the same handwriting."
+      "text": "Your farewell card says \"Dear {player}\" and has forty signatures. Several are in the same handwriting."
     }
   ],
   "reElectionLines": [
@@ -1072,11 +1072,11 @@
     "scandal": [
       {
         "min": 110,
-        "text": "Three former staff wrote to the papers in your defence. They knew it would not help."
+        "text": "Three former staff wrote to the Forum page in defence of {player.formal} and {player.their} record. They knew it would not help."
       },
       {
         "min": 0,
-        "text": "In the building, your name is still said carefully, like a project that went wrong."
+        "text": "In the building, \"{player}\" is still said carefully, like the name of a project that went wrong."
       }
     ],
     "consultancy": [
@@ -1089,6 +1089,14 @@
         "text": "Your old division still uses your templates. Your new firm bills them for it."
       }
     ]
+  },
+  "player": {
+    "note": "The start screen's choices, in the order shown, and what each one fills in. `label` is the choice as shown; `pool` is the cast.names pronoun a blank name is drawn from (default: the key); `honorific` makes {player.formal}; every other field is a token, {player.<field>}, so a new choice or a new field is a data change. Text only: nothing else in the game reads it. See docs/DESIGN.md section 7 and docs/CONTENT_PLAN.md section 8.",
+    "default": "f",
+    "genders": {
+      "f": { "label": "Female", "pool": "f", "honorific": "Ms", "they": "she", "them": "her", "their": "her" },
+      "m": { "label": "Male", "pool": "m", "honorific": "Mr", "they": "he", "them": "him", "their": "his" }
+    }
   },
   "cast": {
     "note": "The run's recurring people. See docs/CONTENT_PLAN.md section 8 for how cards use them. Names are invented; never add a real public figure, or a batchmate's name (rival.json).",
@@ -1533,7 +1541,7 @@
         "first": [
           "For the first time, someone reports to you: {name}, {aTitle}. On the first morning {name} asks how you like your papers formatted, and you find you have an answer.",
           "{name}, {aTitle}, now reports to you. You write performance objectives for someone else for the first time, and they are better than any you were given.",
-          "You have a direct report: {name}, {aTitle}, who calls you by your first name on day one and by your title on day two, after somebody has a word."
+          "You have a direct report: {name}, {aTitle}, who calls you \"{player}\" on day one and \"{player.formal}\" on day two, after somebody has a word."
         ],
         "arrive": [
           "{name} joins your team as {aTitle}, and asks on the first day where the files from the last reorganisation went. Nobody knows.",
@@ -1575,7 +1583,7 @@
         "retired": [
           "{name} retires from the Straits Times after {years} covering the public service. The last column is about the service, and is kinder than any of the others.",
           "{name} leaves the Straits Times after {years} on the public-service beat. The farewell piece quotes eleven officials, all anonymously, and you recognise three of them.",
-          "{name}, the journalist, retires after {years} at the paper, and sends you a handwritten note: it was a pleasure, mostly.",
+          "{name}, the journalist, retires after {years} at the paper, and sends you a handwritten note: \"Dear {player.formal}, it was a pleasure, mostly.\"",
           "{name} files a last story for the Straits Times after {years} at the paper. It is about a scheme you once ran, and it gets the numbers right."
         ]
       },

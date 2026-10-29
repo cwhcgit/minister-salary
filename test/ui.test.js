@@ -47,6 +47,7 @@ async function shareTests(window, $, $$, wait) {
   if (!(f instanceof window.File) || f.type !== 'image/png' || !f.size) throw new Error('the shared file is not a PNG');
   if (!shared.url || !shared.text.includes(ending.title) || !shared.title.includes('Minister Salary')) throw new Error('the share text or link is missing: ' + JSON.stringify(shared));
   const card = norm(drawn.join(' '));
+  if (/\{[^{}\s]+\}/.test(card)) throw new Error('the share card has a raw token: ' + card.match(/\{[^{}\s]+\}/)[0]);
   const want = ['MINISTER SALARY', 'TAN WEI MING', ending.title, ending.epitaph, 'LIFETIME EARNINGS', $('.final .v[style*=cash]').textContent,
     ...ending.stats.flatMap(([k, v, t]) => [k.toUpperCase(), v, t]), $('.final .k').textContent.toUpperCase(), $('.final .v').textContent, 'ORIGIN'];
   for (const w of want.filter(Boolean)) if (!card.includes(norm(w))) throw new Error('the share card is missing: ' + w);
@@ -107,9 +108,18 @@ server.listen(0, async () => {
     }
     console.log('✓ origin selection works for all three');
 
+    // the gender choice: Female until picked, then remembered like the name
+    const genders = () => $$('.gender .g').map(g => g.textContent + '=' + g.getAttribute('aria-checked')).join(' ');
+    if (genders() !== 'Female=true Male=false') throw new Error('the start screen does not offer Female (chosen) and Male: ' + genders());
+    $$('.gender .g').find(g => g.dataset.g === 'm').click();
+    if (genders() !== 'Female=false Male=true' || window.localStorage.getItem('ms.gender') !== 'm') throw new Error('choosing Male did not register or was not remembered');
+    console.log('✓ the start screen asks for a name and Female or Male, and remembers the choice');
+
     $('#nm').value = 'Tan Wei Ming';
     $('#go').click();
     await wait(60);
+    { const st = JSON.parse(window.localStorage.getItem('ministerSalary.v1')).S;
+      if (st.name !== 'Tan Wei Ming' || st.gender !== 'm') throw new Error('the run did not keep the name and gender: ' + st.name + ' ' + st.gender); }
     if (!$('.choice')) throw new Error('first event card did not render: ' + txt().slice(0,200));
     if ($('header .stat, header .track')) throw new Error('the header shows stats during play');
     if (/\b(Rep|Stand|Integ|Comp)\b/.test($('header').textContent)) throw new Error('the header names a stat: ' + $('header').textContent);
@@ -150,6 +160,20 @@ server.listen(0, async () => {
     // persistence
     $('#again').click(); await wait(30);
     if (!$('#go')) throw new Error('Start Again did not reset');
+    if ($('#nm').value !== 'Tan Wei Ming' || !$$('.gender .g')[1] || $$('.gender .g')[1].getAttribute('aria-checked') !== 'true') throw new Error('the next start screen forgot the name or the gender');
+    // a blank name: one is drawn for the run, for the gender chosen, and the field stays blank next time
+    $$('.gender .g').find(g => g.dataset.g === 'f').click();
+    $('#nm').value = '';
+    $('#go').click(); await wait(30);
+    { const st = JSON.parse(window.localStorage.getItem('ministerSalary.v1')).S;
+      const pool = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'game.json'), 'utf8')).cast.names;
+      if (!pool.some(n => n.full === st.name && n.pron === 'f')) throw new Error('a blank name did not draw a Female name from the pool: ' + st.name);
+      if (window.localStorage.getItem('ms.name') !== '') throw new Error('a blank name was remembered as ' + window.localStorage.getItem('ms.name'));
+      console.log('✓ a blank name draws one for the run: ' + st.name); }
+    $('.choice').click(); await wait(30);
+    while (!$('.ending')) { if ($('.choice')) $$('.choice').filter(b => !b.disabled)[0].click(); else $('#next').click(); await wait(2); }
+    if (!$('.ending .lab').textContent.startsWith(JSON.parse(window.localStorage.getItem('ministerSalary.v1')).S.name + ' ·')) throw new Error('the ending card does not carry the drawn name');
+    $('#again').click(); await wait(30);
     $('#go').click(); await wait(30); $('.choice').click(); await wait(30);
     const saved = JSON.parse(window.localStorage.getItem('ministerSalary.v1'));
     if (!saved || !saved.S) throw new Error('run did not persist');
@@ -164,6 +188,33 @@ server.listen(0, async () => {
       throw new Error('reload lost the saved run');
     console.log('✓ reload resumes mid-run (offline-safe)');
     dom2.window.close();
+
+    // a save from before the start screen asked: name "You", no gender. It loads with the
+    // defaults (Female, a drawn name) and plays on, with no raw token and no "Ms You".
+    const old = JSON.parse(window.localStorage.getItem('ministerSalary.v1'));
+    old.S.name = 'You'; delete old.S.gender;
+    window.localStorage.setItem('ministerSalary.v1', JSON.stringify(old));
+    window.localStorage.setItem('ms.name', 'You'); window.localStorage.removeItem('ms.gender');
+    const dom3 = await JSDOM.fromURL(url, { runScripts:'dangerously', resources:'usable',
+      beforeParse(w) { w.scrollTo=()=>{}; w.alert=()=>{};
+        w.fetch = window.fetch;
+        Object.defineProperty(w,'localStorage',{ value: window.localStorage }); } });
+    await wait(500);
+    const d3 = dom3.window.document, t3 = () => d3.getElementById('app').textContent;
+    if (t3().includes('Begin')) throw new Error('an old save did not load');
+    for (let k = 0; k < 400 && !d3.querySelector('.ending'); k++) {
+      if (/\{[^{}\s]+\}|\b(Ms|Mr) You\b/.test(t3())) throw new Error('an old save shows: ' + t3().slice(0, 200));
+      const live = [...d3.querySelectorAll('.choice')].filter(b => !b.disabled);
+      if (live.length) live[0].click(); else d3.querySelector('#next').click();
+      await wait(2);
+    }
+    const up = JSON.parse(window.localStorage.getItem('ministerSalary.v1')).S;
+    if (up.gender !== 'f' || up.name === 'You') throw new Error('an old save was not given the defaults: ' + up.name + ' ' + up.gender);
+    if (!d3.querySelector('.ending') || !d3.querySelector('.ending .lab').textContent.startsWith(up.name + ' ·')) throw new Error('the old save did not play to an ending under its new name');
+    d3.querySelector('#again').click(); await wait(30);
+    if (d3.querySelector('#nm').value !== '') throw new Error('the old "You" placeholder came back as a name');
+    console.log('✓ a save from before the gender choice loads as Female, named ' + up.name + ', and plays to the end');
+    dom3.window.close();
 
     const real = errors.filter(e => e && !/serviceWorker|Not implemented/i.test(e));
     if (real.length) { console.log('\n✗ runtime errors:'); real.forEach(e=>console.log('  '+e)); process.exit(1); }

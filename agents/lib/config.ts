@@ -57,7 +57,8 @@ export const FUN_DEFAULTS: FunConfig = {
 
 export interface Persona {
   id: string;
-  name: string;                // the player name on the ending card
+  name: string;                // the player name on the start screen and the ending card
+  gender: string;              // the start screen's choice, to match the name: a key of game.json player.genders ("f" Female, "m" Male)
   file: string;                // persona prompt, relative to agents/personas
   blind: boolean;              // true: screen view only. false: mechanics brief + full trace
   model: ModelId;
@@ -79,43 +80,43 @@ const fun = (o: Partial<FunConfig> = {}): FunConfig => ({ ...FUN_DEFAULTS, ...o 
 export const PERSONAS: Persona[] = [
   // Fun-meter sessions: lean turns, one conversation per career, careers back to back until
   // the meter runs out. `runs` is sessions. Blind: the screen and the meter, nothing else.
-  { id: "fun-casual", name: "Jia Hui", file: "fun-casual.md", blind: true, model: "claude-haiku-5-5", effort: "low", thinking: "disabled",
+  { id: "fun-casual", name: "Jia Hui", gender: "f", file: "fun-casual.md", blind: true, model: "claude-haiku-5-5", effort: "low", thinking: "disabled",
     runs: 100, turnSchema: "fun", diarySchema: "fun", canaries: true, titleProbe: false, cohortCapUsd: 2,
     fun: fun({ quitLine: 35, repeatMultiplier: 1.5, origins: "keep" }),
     answers: "How long does a casual mobile player keep tapping, and what makes them stop?" },
-  { id: "fun-insider", name: "Rachel Goh", file: "fun-insider.md", blind: true, model: "claude-haiku-5-5", effort: "low", thinking: "disabled",
+  { id: "fun-insider", name: "Rachel Goh", gender: "f", file: "fun-insider.md", blind: true, model: "claude-haiku-5-5", effort: "low", thinking: "disabled",
     runs: 100, turnSchema: "fun", diarySchema: "fun", canaries: true, titleProbe: false, cohortCapUsd: 2,
     fun: fun({ quitLine: 25 }),
     answers: "Does the satire hold an insider, and which lines break tone or get the service wrong?" },
-  { id: "fun-completionist", name: "Marcus Tan", file: "fun-completionist.md", blind: true, model: "claude-haiku-5-5", effort: "low", thinking: "disabled",
+  { id: "fun-completionist", name: "Marcus Tan", gender: "m", file: "fun-completionist.md", blind: true, model: "claude-haiku-5-5", effort: "low", thinking: "disabled",
     runs: 100, turnSchema: "fun", diarySchema: "fun", canaries: true, titleProbe: false, cohortCapUsd: 2,
     fun: fun({ quitLine: 15 }),
     answers: "Do callbacks and endings pull a patient player through several careers?" },
-  { id: "fun-critic", name: "Priya Nair", file: "fun-critic.md", blind: true, model: "claude-sonnet-5-5", effort: "low", thinking: "between_tools",
+  { id: "fun-critic", name: "Priya Nair", gender: "f", file: "fun-critic.md", blind: true, model: "claude-sonnet-5-5", effort: "low", thinking: "between_tools",
     runs: 15, turnSchema: "fun", diarySchema: "fun", canaries: true, titleProbe: false, cohortCapUsd: 4,
     fun: fun({ quitLine: 25 }),
     answers: "Calibration: does a sharper (and dearer) reader agree with the Haiku players card by card?" },
-  { id: "fun-critic-haiku", name: "Priya Nair", file: "fun-critic.md", blind: true, model: "claude-haiku-5-5", effort: "low", thinking: "disabled",
+  { id: "fun-critic-haiku", name: "Priya Nair", gender: "f", file: "fun-critic.md", blind: true, model: "claude-haiku-5-5", effort: "low", thinking: "disabled",
     runs: 40, turnSchema: "fun", diarySchema: "fun", canaries: true, titleProbe: false, cohortCapUsd: 1,
     fun: fun({ quitLine: 25 }),
     answers: "Calibration: the same critic on Haiku, to compare models card by card without a persona difference." },
-  { id: "blind-insider", name: "Rachel Goh", file: "blind-insider.md", blind: true, model: "claude-sonnet-5-5", effort: "low",
+  { id: "blind-insider", name: "Rachel Goh", gender: "f", file: "blind-insider.md", blind: true, model: "claude-sonnet-5-5", effort: "low",
     runs: 50, turnSchema: "player", diarySchema: "player", canaries: true, titleProbe: true, cohortCapUsd: 14,
     answers: "Does the satire land for insiders? Is the jargon accurate?" },
-  { id: "blind-general", name: "Darren Lim", file: "blind-general.md", blind: true, model: "claude-sonnet-5-5", effort: "low",
+  { id: "blind-general", name: "Darren Lim", gender: "m", file: "blind-general.md", blind: true, model: "claude-sonnet-5-5", effort: "low",
     runs: 50, turnSchema: "player", diarySchema: "player", canaries: true, titleProbe: true, cohortCapUsd: 14,
     answers: "Is it funny and followable without insider knowledge?" },
-  { id: "blind-international", name: "Maya Torres", file: "blind-international.md", blind: true, model: "claude-sonnet-5-5", effort: "low",
+  { id: "blind-international", name: "Maya Torres", gender: "f", file: "blind-international.md", blind: true, model: "claude-sonnet-5-5", effort: "low",
     runs: 50, turnSchema: "player", diarySchema: "player", canaries: true, titleProbe: true, cohortCapUsd: 14,
     answers: "Does it work abroad? Is the title opaque?" },
-  { id: "lineage", name: "Sam Ong", file: "lineage.md", blind: true, model: "claude-sonnet-5-5", effort: "medium",
+  { id: "lineage", name: "Sam Ong", gender: "m", file: "lineage.md", blind: true, model: "claude-sonnet-5-5", effort: "medium",
     runs: 30, lineage: { lineages: 6, runsEach: 5 }, turnSchema: "player", diarySchema: "lineage",
     canaries: true, titleProbe: false, cohortCapUsd: 10,
     answers: "Does knowledge visibly improve outcomes? When is CEP inferred, and does it feel like discovery or unfairness?" },
-  { id: "veteran", name: "Veteran", file: "veteran.md", blind: false, model: "claude-haiku-5-5", effort: "low",
+  { id: "veteran", name: "Veteran", gender: "f", file: "veteran.md", blind: false, model: "claude-haiku-5-5", effort: "low",
     runs: 200, turnSchema: "veteran", diarySchema: "veteran", canaries: false, titleProbe: false, cohortCapUsd: 5,
     answers: "Is the win reachable by skill on every origin?" },
-  { id: "breaker", name: "QA", file: "breaker.md", blind: false, model: "claude-sonnet-5-5", effort: "medium",
+  { id: "breaker", name: "QA", gender: "m", file: "breaker.md", blind: false, model: "claude-sonnet-5-5", effort: "medium",
     runs: 30, turnSchema: "breaker", diarySchema: "breaker", canaries: false, titleProbe: false, cohortCapUsd: 10,
     answers: "Safe Heat farming, vetting or election exploits, degenerate loops" }
 ];

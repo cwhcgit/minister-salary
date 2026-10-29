@@ -54,4 +54,25 @@ ok("a malformed or missing pack is refused", () => {
   assert.throws(() => H.loadBuild({ root }), /ENOENT/);
 });
 
+ok("a missing or malformed player table is refused, by the build and by the engine", () => {
+  const game = read("content/game.json"), events = read("content/events.json");
+  const without = { ...game }; delete without.player;
+  const bads = [
+    [without, /player\.genders is missing/],
+    [{ ...game, player: { ...game.player, genders: {} } }, /player\.genders is missing or empty/],
+    [{ ...game, player: { ...game.player, genders: { ...game.player.genders, x: { label: "X" } } } }, /player\.genders\.x has no honorific/],
+    [{ ...game, player: { ...game.player, genders: { ...game.player.genders, x: { honorific: "Mx" } } } }, /player\.genders\.x has no label/],
+    [{ ...game, player: { ...game.player, default: "z" } }, /player\.default "z"/]
+  ];
+  for (const [g, why] of bads) {
+    assert.throws(() => Packs.assemble(JSON.parse(JSON.stringify(g)), events.slice(), [], null), why);
+    // the engine never falls back to a copy of its own: newGame throws the same reason
+    assert.throws(() => H.getBuild().engine.newGame({ ...H.getBuild().content, player: g.player }, "grad", "", 1), why);
+  }
+  // and a web/ copy whose game.json has no table does not load at all
+  const root = copyWithPack([]);
+  fs.writeFileSync(path.join(root, "content/game.json"), JSON.stringify(without));
+  assert.throws(() => H.loadBuild({ root }), /player\.genders is missing/);
+});
+
 console.log(`\nAll ${n} pack tests passed.`);

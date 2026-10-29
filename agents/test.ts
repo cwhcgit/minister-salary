@@ -30,6 +30,19 @@ await ok("blind prompts pass the leak gate; full-knowledge prompts carry the mec
   }
 });
 
+await ok("every persona starts under its own name and a gender to match, the same one wherever the name recurs", () => {
+  const byName = new Map<string, string>();
+  const b = H.loadBuild();
+  const choices = b.engine.genders(b.content).map((g: { id: string }) => g.id);
+  for (const p of PERSONAS) {
+    assert.ok(p.name && choices.includes(p.gender), `${p.id}: a name, and a gender from the start screen's choices`);
+    assert.strictEqual(byName.get(p.name) ?? p.gender, p.gender, `${p.name} has two genders`);
+    byName.set(p.name, p.gender);
+    const run = H.newRun("grad", 5, { name: p.name, gender: p.gender });
+    assert.deepStrictEqual([run.name, run.gender], [p.name, p.gender]);
+  }
+});
+
 await ok("cohorts share seeds and split origins evenly", () => {
   const byId = (id: string) => PERSONAS.find(p => p.id === id)!;
   const a = runPlan(byId("blind-insider")), c = runPlan(byId("blind-international"));
@@ -60,9 +73,15 @@ await ok("a mock cohort writes complete, hygienic run logs", () => {
         if (manifest.persona.blind) assert.ok(!/\bCEP \d|Heat \d|Pending consequences/.test(t.screen), "blind screen carries no trace view");
       }
       assert.ok(lines.some(l => l.type === "diary"));
-      const replay = H.replay({ buildHash: lines[0].buildHash, origin: lines[0].origin, seed: lines[0].seed, choices: turns.map(t => t.choice) },
+      assert.strictEqual(lines[0].name, manifest.persona.name, "the run starts under the persona's name");
+      assert.strictEqual(lines[0].gender, manifest.persona.gender, "and the persona's gender");
+      const replay = H.replay({ buildHash: lines[0].buildHash, origin: lines[0].origin, seed: lines[0].seed, name: lines[0].name, gender: lines[0].gender, choices: turns.map(t => t.choice) },
         { build: H.loadBuild({ canaries: manifest.canaries }) });
       assert.strictEqual(replay.turns.length, turns.length, "a logged run replays from its choices");
+      // the replay key (with the name and gender) replays the screens too, word for word
+      const diary = lines.find(l => l.type === "diary");
+      assert.ok(diary, "a diary at the end");
+      assert.strictEqual(H.screenText(replay, { tags: manifest.tags }), diary!.finalScreen, "a logged run's last screen replays exactly");
     }
     const s = summarizeCohort(d);
     assert.strictEqual(s.runs, runFiles(d).length);
@@ -209,6 +228,7 @@ await ok("mock fun sessions: careers carry the meter and the repeat memory, a qu
         assert.ok(!quitSeen || ["career_end", "survey", "summary"].includes(l.type), "nothing is played after a quit");
         if (l.type === "career_start") {
           career = l.career;
+          assert.deepStrictEqual([l.name, l.gender], [p.name, p.gender], "a career starts under the persona's name and gender");
           assert.strictEqual(l.meter, lastAfter, "the meter carries into the next career");
           if (career > 1 && lines.some(x => x.type === "career_end" && x.career === career - 1 && x.ending)) assert.ok(l.recent.length > 0, "the phone remembers the last career");
           const session = lines[0].session as number;
@@ -231,8 +251,11 @@ await ok("mock fun sessions: careers carry the meter and the repeat memory, a qu
           const turns = lines.filter(x => x.type === "turn" && x.career === l.career && !x.ending);
           const build = H.loadBuild({ canaries: l.career <= 1 && (lines[0].session as number) % DEFAULTS.canaryEvery === 0 });
           assert.strictEqual(build.hash, l.buildHash);
-          const replay = H.replay({ buildHash: l.buildHash, origin: l.origin, seed: l.seed, choices: l.choices, recent: l.recent }, { build });
+          const replay = H.replay({ buildHash: l.buildHash, origin: l.origin, seed: l.seed, name: l.name, gender: l.gender, choices: l.choices, recent: l.recent }, { build });
           assert.deepStrictEqual(replay.turns.map(t => t.event.id), turns.map(t => t.trace.event.id), "a career replays from its choices and its freshness memory");
+          // and its screens, word for word, from the name and gender as well
+          const shown = lines.filter(x => x.type === "turn" && x.career === l.career).at(-1);
+          if (shown && shown.ending) assert.strictEqual(H.screenText(replay, { tags: manifest.tags }), shown.screen, "the ending screen replays exactly");
         }
       }
       if (sum.quit) quits++;
@@ -287,7 +310,7 @@ await ok("an unusable reply is retried once, then picked at random; the conversa
   const plan = sessionPlan(p, 12), turns: any[] = [];
   let picked: any[] = [];
   for (let i = 0; i < plan.length && !picked.length; i++) {
-    const r = await playSession({ cohort: "failing", persona: p, playerName: "X", builds, llm, spend: new Spend(1), outDir, maxTurns: 30, careers: 1,
+    const r = await playSession({ cohort: "failing", persona: p, playerName: "X", playerGender: "m", builds, llm, spend: new Spend(1), outDir, maxTurns: 30, careers: 1,
       canaryCareers: 0, tags: "phone", system: systemPrompt(p, builds.plain), systemHash: "x", log: () => {} }, plan[i]);
     assert.ok(!r.aborted, String(r.aborted));
     turns.push(...readRun(r.file).filter(l => l.type === "turn"));

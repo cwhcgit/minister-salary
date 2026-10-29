@@ -8,7 +8,7 @@ const require = createRequire(import.meta.url);
 export interface Build { hash: string; root: string; canaries: boolean; content: any; engine: any }
 export interface ChoiceView { id: string; text: string; available: boolean; requires: string | null }
 export interface Run {
-  buildHash: string; origin: string; seed: number; name: string;
+  buildHash: string; origin: string; seed: number; name: string; gender: string;
   turn: number; phase: "event" | "ending";
   S: any; choiceList: string[]; turns: TurnRecord[];
 }
@@ -24,7 +24,7 @@ export interface TurnRecord {
   [k: string]: unknown;
 }
 export interface Trace {
-  buildHash: string; origin: string; seed: number; name: string; choices: string[];
+  buildHash: string; origin: string; seed: number; name: string; gender: string; choices: string[];
   ending: string | null; endingCause: { kind: string; driver: string; chain: unknown[] } | null; recent?: string[];
   start: { cep: number; ministry: string; stats: Record<string, number> };
   final: Record<string, any>; turns: TurnRecord[];
@@ -33,18 +33,18 @@ export interface Trace {
 interface HarnessModule {
   loadBuild(opts?: { root?: string; canaries?: boolean }): Build;
   getBuild(hash?: string): Build;
-  newRun(origin: string, seed: number, opts?: { build?: Build; name?: string; recent?: string[] }): Run;
+  newRun(origin: string, seed: number, opts?: { build?: Build; name?: string; gender?: string; rival?: boolean; recent?: string[] }): Run;
   screen(run: Run, opts?: { view?: string }): unknown;
   screenText(run: Run, opts?: { tags?: "phone" | "none"; view?: string }): string;
   choices(run: Run): ChoiceView[];
   step(run: Run, choiceId: string | number): Run;
   trace(run: Run): Trace;
-  replay(spec: { buildHash?: string; origin: string; seed: number; name?: string; choices: string[]; recent?: string[] }, opts?: { build?: Build }): Run;
+  replay(spec: { buildHash?: string; origin: string; seed: number; name?: string; gender?: string; choices: string[]; recent?: string[] }, opts?: { build?: Build }): Run;
   rng(seed: number): () => number;
 }
 interface LeakModule {
   checkPrompt(text: string, opts: { secret?: Array<{ name: string; text: string }>; public?: string[] }): Array<{ line: number | null; why: string; match: string }>;
-  checkScreen(text: string, build: Build, terms?: string[]): Array<{ why: string; match: string }>;
+  checkScreen(text: string, build: Build, terms?: string[], opts?: { ending?: boolean; player?: { name: string; gender: string } }): Array<{ why: string; match: string }>;
   screenTerms(build: Build): string[];
 }
 
