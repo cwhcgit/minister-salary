@@ -1887,7 +1887,7 @@
       "id": "bond_mentor_pol",
       "triggered": true,
       "title": "Your Old School",
-      "body": "Your old school has asked you, as a former student now in Parliament, to talk to its final-year students about scholarships. The question they sent in most often, the principal writes, is about the bond. You served yours in full, and once said no to a bank that offered to pay it off.",
+      "body": "Years ago you turned down a bank that offered to pay off your scholarship bond, and served the bond in full. Now your old school has asked you, as a former student in Parliament, to talk to its final-year students about scholarships. The question they sent in most often, the principal writes, is about the bond.",
       "requires": { "origin": ["scholar"], "minRank": 8, "flagsAll": ["bond_kept"] },
       "choices": [
         {
