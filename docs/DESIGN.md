@@ -44,21 +44,22 @@ One **card = one year**. A turn is a card, its outcome, then a page for each yea
 2. **The outcome.** What the choice did, and anything it set off: a line saying it will count
    at this year's appraisal, a colleague arriving or leaving, and at most one quiet line when a
    stat moved a long way (§3).
-3. **The year-end review**, on its own page ("Age 31 · Year-end review"): pay, the appraisal
-   (§5), a promotion or not, any warning, rumour or batchmate news, and signals about next
-   year. The player is a year older.
-4. **Years without a decision**, a page each ("Age 32 · A year without a decision"): a
-   repeatable card already played in full (one Meanwhile line that repeats what you chose
-   before), a safe re-election, a series card already shown as often as it may be, or an empty
-   pool. Each still has its pay, appraisal and promotion.
-5. **Confirm Another Year**, on the last page, draws the next card. When the career is over,
-   the button reads **The Final Position** and opens the ending card (§8).
+3. **The year-end review**, on its own page, headed with the age: pay, compared with last
+   year; the appraisal (§5); a promotion or not; any warning, rumour or batchmate news; and
+   signals about next year. The player is a year older.
+4. **Years without a decision**, a page each: a repeatable card already played in full (one
+   Meanwhile line that repeats what you chose before), a safe re-election, a series card
+   already shown as often as it may be, or an empty pool. Each still has its pay, appraisal
+   and promotion.
+5. **Confirm Another Year**, on the last page, goes on to the next card. When the career is
+   over, the button reads **The Final Position** and opens the ending card (§8).
 
 A card with no real decision in it is a failure of content. Years with nothing to decide pass
 by themselves instead.
 
-The header shows rank, grade, age, year, ministry and lifetime earnings. Its **Reincarnate**
-button abandons the current run and goes back to the start screen; it takes two taps.
+The header shows rank, grade, age, year, ministry, the batchmate if there is one, and lifetime
+earnings. Its **Reincarnate** button abandons the current run and goes back to the start
+screen; it takes two taps.
 
 ---
 
@@ -71,8 +72,9 @@ The four stats are not shown as numbers during play. They appear only as words
 (`statWords` in `game.json`): the appraisal's "why" line in a year that needs explaining
 (naming the strong suit and the weak spot only when that is news), one quiet line when a
 single choice moves a stat by 6 or more (at most once every three cards), and a locked
-choice's in-world reason. The ending screen reveals all four, each with a plain verdict on
-what it was and what it did to the run.
+choice's in-world reason. The ending screen reveals all four, each with its number and a plain
+verdict on what it was and what it did to the run. How much each one weighs in the appraisal
+is never shown, not even there.
 
 | Stat | Range | What it is | Pushed up by | Pushed down by |
 |---|---|---|---|---|
@@ -228,7 +230,8 @@ appraisal never goes below C.
 - The year before a ranking, a line says your name goes forward and what grade it takes. If
   only the ceiling stands in the way, the line says instead that your name is not on the list.
 - **C** three times in a row → HR moves you sideways to another division, and you get a new
-  reporting officer. (In politics, the Whip has you chair a select committee.)
+  reporting officer. (In politics, the Whip has you chair a select committee.) The New
+  Reporting Officer card hands you to a new one too.
 - **D** → a formal warning; the next year, the improvement plan card (the Whip's word in
   politics), shown in full every time. A second D in a row after it → the quiet conversation
   (never in the first four years, or before six cards).
@@ -238,6 +241,10 @@ appraisal never goes below C.
 
 The player is shown the grade and its euphemism, and must infer the ceiling. There is no
 setting that shows the numbers.
+
+**Hidden witnesses.** A card can list who could plausibly know what you did. Their judgement,
+for or against you, lands in a later appraisal, sometimes with an anonymous line; they are never
+named, and Declassified says what was noticed, never who (`docs/WRITING_RULES.md` rule 5.6).
 
 ---
 
@@ -301,6 +308,11 @@ cards whose `requires` hold, without `once` cards already seen.
 **Strange Years** (`packs/strange.json`): an impossible premise, processed as routine. About a
 third of careers meet one, and none meets more than one.
 
+**Jargon** (`content/jargon.json`): every term a general player may not know, with its entry
+points, the cards whose story makes its meaning clear. `test/jargon.js` plays simulated careers
+and checks that a player always meets a term at an entry point first (`docs/WRITING_RULES.md`
+rule 2.6).
+
 **Content today:** 180 cards (105 in `events.json`, 75 in packs), 7 batchmate cards and 12
 endings. `docs/CONTENT_PLAN.md` grows it toward about 300.
 
@@ -312,7 +324,7 @@ Three origins. This is where the meritocracy satire lives — as balance, not co
 
 | Origin | Start | Effect |
 |---|---|---|
-| **President's Scholar** | Admin Service, Assistant Director, age 25, bonded | One year in grade instead of two until Director. High CEP: no ceiling inside the service. Bond: no invitation to tea and no private-sector offers for 6 years. Its own opening card and story (The Bond). *Easy.* |
+| **President's Scholar** | Admin Service, Assistant Director, age 25, bonded | One year in grade instead of two until Director. High CEP: no ceiling inside the service. Bond: for 6 years, no invitation to tea and no headhunter (only a bank that offers to buy the bond out). Its own opening card and story (The Bond). *Easy.* |
 | **Local Graduate** | MX13, age 23 | Baseline. Median CEP. Its own opening card. *Normal.* |
 | **Poly, then night classes** | MX13, age 27 | Low starting CEP, hardest climb. More Integrity and Competence, less Reputation and Standing. Three cards only this origin sees. *Hard.* |
 
@@ -332,16 +344,16 @@ say) or a field (`{player.self}`) is a change to the table, with no code change;
 every choice has the same fields. The table is the only source: there is no default copy in code, so a
 missing or malformed table refuses the build (`web/packs.js`) and makes `newGame` throw. Nothing outside text rendering reads the gender: not the dice, the
 draw, the appraisal or any requirement, so the same seed plays the same career under every choice.
-Writers therefore never write a card twice, or gate a card or a choice on the player's gender: they
-write one line with the tokens in it (CONTENT_PLAN section 8).
+Writers therefore write one line with the tokens in it, and never gate anything on gender
+(`docs/WRITING_RULES.md` rules 4.1 and 4.2; the tokens are in CONTENT_PLAN section 8).
 
 ---
 
 ## 8. Endings
 
 Every run ends on an **ending card**: the player's name, the ending's title and epitaph, the
-final position, age and lifetime earnings; then the four stats, revealed with a plain verdict
-each (§3); then **Declassified**, what was really going on: the ceiling and the choice that
+final position, age and lifetime earnings; then the four stats, revealed with a number and a
+plain verdict each (§3); then **Declassified**, what was really going on: the ceiling and the choice that
 raised it (or would have), what the rumours meant, why the tea never came, the peak of Heat,
 the stories the career told, the batchmate, and a legacy line.
 
@@ -364,7 +376,8 @@ The twelve endings (`endings` in `game.json`):
 10. **Retired, Honourably** — retired as a Minister or Deputy Prime Minister.
 11. **The Consultancy** — left for the private sector (a headhunter's offer, or a bank buying
     out a scholar's bond).
-12. **The Invitation Lapsed** — the vetting found too much, and the career ended in the service.
+12. **The Invitation Lapsed** — the vetting found too much, and the career ended in the service,
+    below Permanent Secretary.
 
 **Not built:** a gallery of collected endings, a portrait, a score (lifetime earnings × a legacy
 multiplier), and Leader of the Opposition (§11).
@@ -446,20 +459,10 @@ advance — they get built if and when we do them.
 Practical rules, not hand-wringing. They make the game better *and* keep it shippable
 in the country it is about.
 
-1. **Institutions are real; people are invented.** Ministries, grades, CPF, GRCs, the
-   bonus formula — real and accurately modelled. Every named character is fictional.
-   No real politician is depicted, named, or caricatured.
-2. **Punch at machinery, not at persons.** The comedy is in the process: the appraisal
-   euphemism, the acronym, the twelve-page paper that concludes further study is needed.
-3. **Deadpan.** The game never winks. It states the salary figure and moves on. Funniest
-   line in the design is a number in a table.
-4. **Accuracy is the joke.** Get the grades, acronyms and formulas right. A Singaporean
-   player recognising a real appraisal phrase is worth more than any punchline we write.
-5. **Affection.** This is a game made by someone who knows the system, not someone
-   sneering at it from outside.
-6. **Plain English.** A player who has never worked in government must understand every card
-   on the first read: what is happening first, then why it matters, then the joke
-   (`docs/CONTENT_PLAN.md` section 5a).
+The rules live in one place, [`docs/WRITING_RULES.md`](WRITING_RULES.md), so they cannot
+drift. Tone is its group 1 (voice and tone), group 6 (realism and satire) and group 8
+(never). Group 2 is Plain English, the owner's rule from playing on a phone; the rest cover
+story logic, the cast, choices and what the player is shown.
 
 ---
 
@@ -470,9 +473,9 @@ in the country it is about.
    promotion year. Quarters for Act III were not tried.
 2. **Is CEP too cruel?** *Open.* Mitigations built: the rumours, the line the year before a
    ranking that says your name is not on the list, and Declassified, which names the ceiling
-   and the choice that would have raised it. In about a fifth of the bots' careers that hit
-   the ceiling, no CEP-raising event is left to reach (`reports/baseline/README.md`). Needs
-   playtesting.
+   and the choice that would have raised it. In about a fifth of first-time bot careers that
+   hit the ceiling (17-24% by origin), no CEP-raising event is left to reach
+   (`reports/baseline/README.md`). Needs playtesting.
 3. **Failure pacing** — *mostly settled:* losable, but through choices. Nobody is eased out in
    the first four years or before six cards, or without the improvement plan first; a first
    appraisal never goes below C; a seat is lost only on a card the player saw. The few early

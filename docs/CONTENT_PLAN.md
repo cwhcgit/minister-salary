@@ -3,8 +3,8 @@
 When this plan was written, a second playthrough shared about 60% of its cards with the first, so
 the game was mostly seen after one or two careers. This plan grows it to about 300 cards. The new
 cards come as themed packs, story chains, alternate scenes and traits, written by parallel writer
-agents to one quality bar. It sets the targets and the process; the cards themselves are written
-pack by pack.
+agents to one rulebook, [`WRITING_RULES.md`](WRITING_RULES.md). This plan sets the targets and the
+process; the cards themselves are written pack by pack.
 
 The plan started from `fun/next` (09a28e5): 88 cards in `events.json`, 7 batchmate cards in
 `rival.json`, 11 endings. On `main` today (02b7626): 180 cards (105 in `events.json`, 75 in packs),
@@ -152,7 +152,7 @@ the block party that needs a permit.
 
 **Not built.** The game has no traits yet, and the start screen does not offer one. The plan:
 each trait gives a small stat nudge, sets a flag (`trait_<id>`) and unlocks four cards that need it,
-within rule 5.12 of [`WRITING_RULES.md`](WRITING_RULES.md).
+within rule 5.14 of [`WRITING_RULES.md`](WRITING_RULES.md).
 - **Thick Skin:** candour costs a little less Standing; cards about public criticism.
 - **Knows Everyone's Birthday:** Standing grows quietly; cards about informal networks (and their Heat).
 - **Spreadsheet Person:** Competence edge; cards where the numbers tell a story someone wants untold.
@@ -218,7 +218,7 @@ habit (the stance last chosen) is applied in full, mechanics included (the Natio
 the cooldown), with a Meanwhile line for that card and stance. The second full showing may have its own scene, `"again"`, written per stance in
 `again.scenes`: the habit is the default and is shown first, and the question is whether to break it,
 knowing it will not be asked again. `again.keep` and `again.change` are added to the effects of keeping
-the habit and of breaking it, so the second time has its own stakes (rule 5.10).
+the habit and of breaking it, so the second time has its own stakes (rule 5.12).
 
 **Meanwhile lines.** A repeatable card keeps its lines in `montageLines`, keyed by choice index (or by
 stance for a series); a safe re-election has its own list (`autoPlay.lines`). A run never shows the
@@ -226,103 +226,23 @@ same line twice: each card and habit takes its lines in an order drawn from the 
 the phone has not shown in its last two runs. When a repeatable card's lines for the habit have all
 been shown, the card comes back in full, in a scene the run has not shown; a card with no line and no
 scene left is not drawn again that run. A series, which cannot come back in full, takes its lines
-again in the same order. Write them to rules 2.8, 3.12 and 3.13.
+again in the same order. Write them to rules 2.11, 3.12 and 3.13.
 
 ## 5. The quality bar (every card, every pack)
 
-1. **The tone rules:**
-   - Institutions are real and accurately modelled; people are invented, and no real politician is
-     named, depicted or caricatured.
-   - Punch at the machinery, never at persons.
-   - Deadpan; never wink.
-   - Accuracy is the joke.
-   - Write with affection.
-   - Write in a Singaporean voice: local names and terms as locals say them (HDB, PUB, NParks, GRC,
-     RC, void deck, the Whip), with no glosses or explanations.
-2. **Accuracy.** Check every institutional fact against a primary or official source (PSD, MOF, the
-   Parliament website, statutes, ministry sites). Put the source in the pack's PR description, one line
-   per fact. Facts that change (pay, thresholds, targets, names of schemes) must match today's values.
-   Example: political pay follows the 2026 framework (MR4 $1.8m, PM 2x MR4).
-3. **Believability and congruence.** Plausibility is optional; congruence is not.
-   - **Believability lives in motive, not physics.** Impossible premises are allowed: sci-fi,
-     magical, supernatural. What is not allowed is anyone acting against their own incentives or
-     their institution's habits. That is unbelievable even when it is physically realistic: a
-     ruling-party member founding a society of anarchist groups to settle opposition voices could
-     happen, and no such person would do it. A cast member (section 8) also acts in character for
-     their role and for their history with you in this run: a peer you cut out of a promotion does
-     not ask you for a favour as if nothing happened.
-   - Then the three ways the game can contradict itself. Every line must make sense in every
-     situation the card can fire in; `node test/contexts.js` checks these, with zero contradictions:
-     - **Who you are:** your rank, age, origin and what you did. "Your director" for a Director,
-       a ward for a civil servant, a callback to a choice you did not make.
-     - **What happened in the run:** a person who left still acting as a colleague; a promoted
-       person still at their old grade; a callback that names a stranger as if they were there.
-     - **The tone:** a wink, a register break, a line that steps outside the world to nudge you.
-   - The player chooses a name and Female or Male on the start screen. The game still says "you", so
-     the player's name and gender show only where someone else refers to them, through the
-     `{player}` tokens (section 8). Never write a gendered word for the player into a card ("sir",
-     "madam", "he"), and assume no family. A batchmate's or cast member's pronoun is fixed per
-     person.
-4. **Genuine choices.** At least two choices, each costing something. No choice may be worse on
-   every stat (check with the bot dominance metric in `node test/sim.js`). Use three choices when the
-   third is a real third way, not a "do nothing" filler.
-5. **Length.** Bodies run 30-60 words: setup comes before brevity. Outcomes 15-40. Choice text is one line,
-   up to about 12 words.
-6. **Vary the joke's structure.** Rotate between:
-   - the number;
-   - the euphemism decoded;
-   - the institutional detail as punchline;
-   - the quiet consequence;
-   - the reversal;
-   - the understatement.
-
-   No more than two cards per pack may end on a ", which is ..." clause or open with "It is a ...".
-7. **Similarity.** `node test/similarity.js` must pass. A pack must not add a new near-duplicate,
-   and must not push a phrase or opener over its warning count.
+Every card meets every rule in [`WRITING_RULES.md`](WRITING_RULES.md): voice and tone, Plain
+English, story logic and continuity, the cast, choices and consequences, realism and satire, what
+the player is shown, and the never list. The rulebook names the test that checks each rule, or says
+it is editor review only, and the pack checklist (section 7) runs those tests. Rules are not
+repeated here, so the two files cannot disagree.
 
 ### 5a. Plain English (the owner's rule, from playing on a phone)
 
-Deadpan is the tone; it is never an excuse for a sentence that is words but means nothing. A player
-who has never worked in government must understand every card on the first read.
-
-1. **Setup first.** The body's first sentence says what is happening, explicitly. The next says why
-   it matters to you (the stakes). Only then the joke. Local terms need no gloss (HDB, PSD, GRC), but
-   the logic of the situation must be on the screen: what the document is, who approves it, what
-   happens if it goes wrong.
-2. **No sentence that needs decoding.** If a line only works once you already know what it means,
-   rewrite it. No comma-stacked fragments ("There are six, numbered, and copied to a name you do not
-   recognise"); no pronoun without a clear noun ("the vendor has done *this*").
-3. **Say consequences plainly.** Never end on "It is noted." (the engine now says on the outcome
-   screen when a choice counts at appraisal). Use ", which is ..." endings rarely. An outcome says what
-   happened and what it means for you.
-4. **Links are explicit.** A follow-up card opens by naming its cause in plain words ("Years ago,
-   on the leadership programme, you covered for {peer}..."), and the cause's outcome plants the hook
-   (names the person or thing), so the player recognises it when it returns.
-5. **People are named and consistent.** Your reporting officer is always `{senior}` ("your reporting
-   officer, {senior}"); never an unnamed "supervisor". The engine introduces each person on the first
-   card they appear on, by adding an appositive after the first bare mention in the body, so put a
-   person's first mention where "Name, who ..., " reads naturally (as a subject or object, not inside
-   a list), or introduce them yourself (followed by a comma). Never "from your intake". Office holders
-   who are not cast members (the Minister, the Permanent Secretary, the Whip, the Prime Minister) get no
-   gendered pronoun, so two cards can never disagree about them, unless the office holder is the
-   player: then use the player's tokens.
-6. **The header always names a ministry.** Never put a CEO or a statutory board above the player.
-
-Before and after (approved by the owner):
-
-> Before: "You are taking notes at a meeting between the Permanent Secretary and three agencies. Forty
-> minutes in, the Permanent Secretary says, calmly, that the vendor has done this to two other
-> agencies. The notes are yours, and are cleared before they go out."
->
-> After: "You're taking the minutes at a meeting between the Permanent Secretary and three agencies
-> about a project that is already behind. Forty minutes in, the Permanent Secretary says, calmly,
-> that the vendor building it has already failed two other agencies the same way. Nobody wants that in
-> writing: if it's in the minutes, someone will one day ask why the ministry hired them anyway. You
-> write the draft, and the Permanent Secretary's office approves it before it goes out."
-
-> Before: "Within the month you are put on one, as a member. It is a start, and it is minuted as one."
-> After: "A month later you're put on one, as an ordinary member. Your reporting officer calls it a good
-> first step."
+Now group 2 of [`WRITING_RULES.md`](WRITING_RULES.md), with the owner's before-and-after examples:
+setup first, nothing that needs decoding, every pronoun pointing at something on the same screen,
+jargon introduced from the story before it is used, and consequences said plainly. Its parts about following a story across cards are rules 3.3 and 3.4
+(nothing out of nowhere; a follow-up names its cause), 4.3 and 4.4 (people named, introduced and
+tagged), 4.8 (no pronoun for an office) and 6.4 (the header's ministry).
 
 ## 6. How packs are stored and loaded
 
@@ -358,10 +278,12 @@ A pack is `web/content/packs/<id>.json`:
 
 **Pack checklist** (the writer completes it in the PR description):
 - [ ] Cards match the pack's band, count and both-ways stat targets; seeds used or replaced with better ones.
+- [ ] Every card read against [`WRITING_RULES.md`](WRITING_RULES.md), including the rules checked by editor review only.
 - [ ] Every fact sourced (one line each); no real people.
+- [ ] Every new term of jargon listed in `web/content/jargon.json` with its entry points, and `node test/jargon.js` passes.
 - [ ] `node test/contexts.js` passes, with zero contradictions.
 - [ ] `node test/similarity.js` passes, with no new near-duplicates.
-- [ ] Dominance check: no dominated choice.
+- [ ] `node test/harness.test.js` passes; `node test/sim.js` lists no new dominated choice.
 - [ ] Balance: `node test/sim.js regress 800` passes, alone and with the batchmate.
 - [ ] Two careers played through that hit the pack's cards; every screen read.
 
@@ -404,9 +326,9 @@ grassroots leader as "Ms Chua" or "Mdm Rohani", a journalist by full name). Fiel
 `{peer.full}`, `{peer.given}`, `{peer.formal}`, `{peer.title}` (their grade now, from their rank),
 `{peer.aTitle}` ("an Assistant Director"), `{peer.years}` ("three years" in the role),
 `{peer.they}`, `{peer.them}`, `{peer.their}`. Capitalise the role or the field for a capital:
-`{Peer.They}`. As with the batchmate, a subject pronoun only comes before a past-tense verb
-("{peer.they} said"); otherwise use the name. Never write a grade out next to a cast member
-("{senior}, the Deputy Secretary"): use `{senior.title}`, which is right at every rank.
+`{Peer.They}`. The engine introduces a person on the first card they appear on (each role's `intro`
+in `cast.roles`); how to leave room for that, and the rules for pronouns and grades, are rules 4.4,
+4.6 and 4.7 of [`WRITING_RULES.md`](WRITING_RULES.md).
 
 **Drawing.** A card that names a role in its own text can only be drawn while that role is filled.
 `requires.cast` adds conditions on the person: `{ "peer": { "flagsAll": [...], "flagsNone": [...],
@@ -426,7 +348,7 @@ name the person it remembers. An outcome screen carries at most one line about t
 (`cast.lines`): someone you have history with first, then the peer, senior, journalist, junior,
 grassroots leader and fellow MP, a departure before an arrival; nobody who arrives and leaves within
 one screen is mentioned. Each kind of line has three or four versions, taken in an order drawn from
-the seed and never repeated within a run; write new ones there, each sentence used once.
+the seed and never repeated within a run; write new ones there, to rules 3.13 and 4.5.
 
 **Worked example: the junior.** `late_night` names the junior and records how you treated them:
 
@@ -458,22 +380,16 @@ a word of the player's name: a cast member or batchmate who would is given anoth
 **Tokens.** `{player}` is the name as entered. `{player.formal}` is the choice's honorific and the
 name ("Ms Tan Wei Ling"; a name typed with its own honorific, "Dr Tan", is kept as typed).
 `{player.<field>}` is that field of the player's choice: `{player.they}`, `{player.them}`,
-`{player.their}` today, and any field added to every choice in the table. Pronouns follow the cast's
-rule: a subject pronoun only before a past-tense verb. Capitalise the role or the field for a capital:
-`{Player.They}`. Never write two versions of a line, or a requirement, for the player's gender: the
-tokens are the only place it shows.
+`{player.their}` today, and any field added to every choice in the table. Capitalise the role or the
+field for a capital: `{Player.They}`.
 
 **Where.** The game says "you", so the player is named only where someone else names or addresses
-them, and lightly: the papers and the Forum page ("headlined "{player.formal} candid on scheme
-flaw""), Hansard and the House, a document's footer, an official addressing the player ("Thank
-you, {player.formal}. That was very complete."), the batchmate, a cast line, the ending card and the
-Declassified file. Use `{player.formal}` when an official, the press or a resident addresses or names
-the player, and `{player}` for colleagues and lists. Put the player's name inside the quote or the
-document that carries it, never in the narration ("you", not "{player} walks in"). The tokens are
-filled in card bodies, outcomes and titles, the batchmate's lines, cast lines, Folder items, the
-ending card and the Declassified file. They are never filled in montage or autoplay lines. Keep them
-out of choice text too: Declassified may quote a choice the player did not take as it is written,
-token and all.
+them, and lightly: the papers and the Forum page, Hansard and the House, a document's footer, an
+official addressing the player ("Thank you, {player.formal}. That was very complete."), the
+batchmate, a cast line, the ending card and the Declassified file. The tokens are filled in card
+bodies, outcomes, choice text and titles, the batchmate's lines, cast lines, Folder items, the ending
+card and the Declassified file; never in montage or autoplay lines. Which token to use, and why they
+stay out of choice text anyway, are rules 4.1, 4.2 and 4.7 of [`WRITING_RULES.md`](WRITING_RULES.md).
 
 ### Card parts
 
@@ -488,8 +404,7 @@ choices and outcomes use `{slot}` (the option's `text`), `{Slot}` (capitalised) 
 - **Conditional text.** A slot written `{ "pick": "first", "options": [...] }` takes the first option
   that fits, in order: the way to name someone only if they are still there, with a fallback.
 - **Stakes.** An option may add to the card's choices (`"effects": { "*": {...}, "1": { "standing": -3 } }`)
-  or scale them (`"scale": { "heat": 1.5 }`), so who is asking changes the price. Keep it small; no
-  combination may leave a choice worse on every stat (`node test/harness.test.js` checks all of them).
+  or scale them (`"scale": { "heat": 1.5 }`), so who is asking changes the price, within rule 5.4.
 - **With variants and alternates.** Parts are shared by every version of the card, and a version's
   text may use them. A scheduled card's `alternates` are chosen first, then its parts.
 - **Not in** montage lines, autoplay lines, a repeatable card's title, or the Folder: nothing fills
@@ -515,9 +430,8 @@ choices and outcomes use `{slot}` (the option's `text`), `{Slot}` (capitalised) 
              { "text": "Reply all once more, with an apology and a joke.", "outcome": "{to.joke}", ... } ]
 ```
 
-Write every option so it reads well beside every option of every other slot, or tie them with
-`requires.parts`. Every assembled body still keeps to 30-60 words and every outcome to 15-40
-(section 5).
+Every combination must read well (rule 3.10), and an assembled body or outcome keeps to the usual
+lengths (rules 2.9 and 2.10).
 
 ### Checks
 
