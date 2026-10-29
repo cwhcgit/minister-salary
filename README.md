@@ -74,7 +74,8 @@ card means adding one entry to a file. No code changes are needed:
 
 A card says when it can appear (`requires`), what each choice does to your hidden stats
 (`effects`), and what can come back to bite you years later (`schedule`). Cards can use the
-career's recurring people (`{peer}`, `{senior}`…) and the player's name (`{player}`).
+career's recurring people (`{peer}`, `{senior}`…) and the player's name, as the speaker would say it
+(`{player.given}`, `{player.formal}`, `{player.full}`).
 [`docs/CONTENT_PLAN.md`](docs/CONTENT_PLAN.md) is the full guide for writers. It covers every
 field, the house style, and the plain-English rules.
 

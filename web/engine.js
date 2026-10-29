@@ -25,6 +25,7 @@ const Engine = (() => {
     const origin = content.origins.find(o => o.id === originId);
     const r = rng(seed);
     const me = playerOf(content, { name, gender: opts.gender, seed });   // text only
+    const st = startStats(content, origin, seed);
     const g = {
       seed, name: me.name, gender: me.gender, origin: origin.id,
       age: origin.startAge,
@@ -33,10 +34,10 @@ const Engine = (() => {
       yearsInGrade: 0,
       bondYears: origin.bondYears || 0,
       ministry: content.ministries[Math.floor(r() * content.ministries.length)],
-      reputation: origin.stats.reputation,
-      standing: origin.stats.standing,
-      integrity: origin.stats.integrity,
-      competence: origin.stats.competence,
+      reputation: st.reputation,
+      standing: st.standing,
+      integrity: st.integrity,
+      competence: st.competence,
       wealth: 0,
       cep: origin.cep[0] + Math.floor(r() * (origin.cep[1] - origin.cep[0] + 1)),
       cepStart: null,    // set below; Declassified reads it back at the end
@@ -68,6 +69,21 @@ const Engine = (() => {
     if (opts.rival && content.rival) g.rival = newRival(content, origin, seed, playerWords(g.name, content));
     castSync(content, g, null, true);   // the run's people, before the first card
     return g;
+  }
+
+  // A new career's four starting stats: the origin's own (origins[].stats), each moved by up to
+  // its band either way. The band is data: game.json's startBand.default, or the origin's own
+  // startBand for that stat. Drawn from the seed on a stream of its own, so the same seed starts
+  // the same career and the run's dice (the ministry, the ceiling, every card) are untouched.
+  function startStats(content, origin, seed) {
+    const B = content.startBand || {}, own = origin.startBand || {};
+    const r = rng((Math.imul(seed >>> 0, 0x27D4EB2F) ^ hashStr("stats:" + origin.id)) >>> 0);
+    const out = {};
+    for (const k of STATS) {
+      const b = Math.max(0, Math.floor(own[k] ?? B[k] ?? B.default ?? 0));
+      out[k] = clamp(origin.stats[k] + Math.floor(r() * (2 * b + 1)) - b, 0, 100);   // one draw per stat, whatever the band
+    }
+    return out;
   }
 
   // --- the batchmate ------------------------------------------------------
@@ -128,15 +144,22 @@ const Engine = (() => {
   // The game says "you", so the player's name and gender only show where someone else speaks of
   // or to them: a colleague, Hansard, the papers, the batchmate, the ending card. Every player
   // token is filled here, by playerSub, which only sub() calls. What each choice fills in is data:
-  // content.player.genders (game.json), in the order the start screen shows them.
-  //   {player}           the name as entered (or drawn, when left blank)
-  //   {player.formal}    the choice's honorific and the name ("Ms Tan Wei Ling")
+  // content.player.genders (game.json), in the order the start screen shows them. How people say
+  // the name depends on who is speaking, so the one name field gives three forms (see nameForms):
+  //   {player.given}     what colleagues, friends and the batchmate call you: "Wei Ling"
+  //   {player.formal}    the choice's honorific and the surname: "Ms Lim" (officials, residents,
+  //                      the press); the given name where there is no surname: "Ms Nurul Huda"
+  //   {player.full}      the honorific and the whole name: "Ms Lim Wei Ling" (documents, Hansard)
   //   {player.<field>}   any other field of the choice: they, them, their, or one a writer adds;
   //                      capitalised as {Player.They} or {player.They}
+  //   {player}           the name as entered (or drawn): filled, but content uses one of the three
   // As with the cast, a subject pronoun only comes before a past-tense verb ("{player.they} said").
   // Nothing outside text reads the gender: not the dice, not the draw, not the appraisal.
   const PLAYER_TOKEN = /\{([Pp]layer)(?:\.([A-Za-z]+))?\}/g;
   const PLAYER_OWN = ["label", "pool"];   // a choice's fields that are not tokens
+  const PLAYER_FORMS = ["given", "formal", "full"];   // the name's forms: no choice may have a field of these names
+  // game.json player.names: the lists a typed name is read by (see parseName)
+  const NAME_LISTS = ["chineseSurnames", "chineseGiven", "surnames", "fatherNames", "patronymics", "surnameParticles", "noSurname", "dropFromGiven"];
   // The table is the only source: content without it, or with a malformed one, is an error,
   // never a quiet default. (web/packs.js refuses such a build too, so the phone never loads one.)
   const CHECKED = new WeakSet();
@@ -155,8 +178,13 @@ const Engine = (() => {
       if (!g || typeof g !== "object") return `player.genders.${id} is not an object`;
       if (typeof g.label !== "string" || !g.label) return `player.genders.${id} has no label`;
       if (typeof g.honorific !== "string" || !g.honorific) return `player.genders.${id} has no honorific`;
+      const taken = ["name", ...PLAYER_FORMS].find(k => Object.keys(g).some(x => x.toLowerCase() === k));
+      if (taken) return `player.genders.${id} has a field "${taken}", which is a form of the player's name`;
     }
     if (!Object.prototype.hasOwnProperty.call(G, P.default)) return `player.default "${P.default}" is not one of player.genders`;
+    const N = P.names;
+    if (!N || typeof N !== "object" || Array.isArray(N)) return "player.names is missing (the lists a typed name is read by)";
+    for (const k of NAME_LISTS) if (!Array.isArray(N[k]) || N[k].some(x => typeof x !== "string" || !x)) return `player.names.${k} is not a list of words`;
     return null;
   }
   // The start screen's choices, in order: [{ id, label }].
@@ -168,10 +196,10 @@ const Engine = (() => {
     const T = playerTable(content);
     return Object.prototype.hasOwnProperty.call(T.genders, g) ? g : T.default;
   }
-  // The token fields a text may use: {player}, {player.name}, {player.formal}, and every field the
-  // table's choices have (other than their own label and pool).
+  // The token fields a text may use: {player}, {player.name}, the three forms of the name, and
+  // every field the table's choices have (other than their own label and pool).
   function playerFields(content) {
-    const out = new Set(["", "name", "formal"]);
+    const out = new Set(["", "name", ...PLAYER_FORMS]);
     for (const g of Object.values(playerTable(content).genders)) for (const k of Object.keys(g)) if (!PLAYER_OWN.includes(k)) out.add(k.toLowerCase());
     return [...out];
   }
@@ -221,12 +249,82 @@ const Engine = (() => {
     }
     return s;
   }
+  // --- the player's name, as people say it ---------------------------------------------
+  // One name field gives the three forms. A drawn name, or a typed one that is in the cast pool,
+  // takes the pool's own given and formal. Any other typed name is read by the lists in game.json's
+  // player.names, for Singapore's naming conventions. It does not need to be perfect, only
+  // sensible: every form is made of the words typed, so the text is never broken.
+  //   bin, binte, s/o, d/o ("Nurul Huda binte Rahmat"): no surname; formal uses the given name
+  //   a Chinese surname first ("Lim Wei Ling"): the surname is first, the given name the rest
+  //   a Chinese given name alone ("Jia Hui"): no surname
+  //   a surname last ("Charmaine Ang", "Marcus de Souza"), or a Chinese name after an English
+  //   one ("Charmaine Tan Wei Ling"): the surname is that word, the given name what comes before
+  //   a father's name last ("Kavya Rajan"), or a Malay name without bin ("Nurul Huda"): no surname
+  //   a single word: all three forms are that word
+  //   anything else: the last word is the surname ("Maya Torres")
+  // A typed honorific ("Dr Tan Wei Ling") replaces the choice's; a name typed in one case
+  // ("lim wei ling") is written as a name is. Returns the forms without the choice's honorific:
+  // { hon (typed, or ""), given, formal, full }.
+  const FORMS = new WeakMap(), LISTS = new WeakMap();
+  function nameLists(content) {
+    const N = playerTable(content).names;
+    if (!LISTS.has(N)) LISTS.set(N, Object.fromEntries(NAME_LISTS.map(k => [k, new Set(N[k].map(x => x.toLowerCase()))])));
+    return LISTS.get(N);
+  }
+  function nameForms(content, name) {
+    const N = playerTable(content).names, pool = (content.cast && content.cast.names) || [];
+    let byPool = FORMS.get(N);
+    if (!byPool) FORMS.set(N, (byPool = new WeakMap()));
+    let cache = byPool.get(pool);
+    if (!cache) byPool.set(pool, (cache = new Map()));
+    const key = String(name);
+    if (!cache.has(key)) cache.set(key, parseName(content, key, pool));
+    return cache.get(key);
+  }
+  function parseName(content, name, pool) {
+    const L = nameLists(content), lc = w => w.toLowerCase();
+    let words = name.replace(/,/g, " ").trim().split(/\s+/).filter(Boolean);
+    const letters = words.join("").replace(/[^A-Za-z]/g, "");   // (one word in capitals, "QA", is kept)
+    if (letters && (letters === lc(letters) || (words.length > 1 && letters === letters.toUpperCase())))
+      words = words.map(w => L.patronymics.has(lc(w)) || L.surnameParticles.has(lc(w)) ? lc(w)
+        : lc(w).replace(/(^|[-'])([a-z])/g, (m, a, b) => a + b.toUpperCase()));
+    const hon = words.length > 1 && honorifics(content).has(lc(words[0]).replace(/\.$/, "")) ? words.shift() : "";
+    const whole = words.join(" ");
+    const pooled = pool.find(n => lc(n.full) === lc(whole));
+    if (pooled) return { hon, given: pooled.given, formal: pooled.formal, full: pooled.full };
+    const forms = (given, formal) => ({ hon, given, formal, full: whole });
+    const S = w => L.chineseSurnames.has(lc(w)), G = w => L.chineseGiven.has(lc(w)), O = w => L.surnames.has(lc(w));
+    // the given name as colleagues say it: "Muhammad Faizal" is "Faizal"
+    const plain = ws => { const kept = ws.filter(w => !L.dropFromGiven.has(lc(w))); return (kept.length ? kept : ws).join(" "); };
+    const p = words.findIndex((w, i) => i > 0 && L.patronymics.has(lc(w)));
+    if (p > 0) { const g = plain(words.slice(0, p)); return forms(g, g); }
+    // initials in front ("S. Thangaraj") stand for the father's name: in the full name only
+    let w = words;
+    while (w.length > 1 && /^[A-Za-z]\.?$/.test(w[0])) w = w.slice(1);
+    const n = w.length, first = w[0], last = w[n - 1];
+    // one word: a surname typed with an honorific ("Dr Ong") is what everyone calls you
+    if (n === 1) return forms(hon && (S(first) || O(first)) ? `${hon} ${first}` : first, first);
+    if (S(first)) {
+      const westernOrder = G(first) && (S(last) || O(last)) && !G(last);   // "Siew Ling Tan"
+      const givenAlone = n === 2 && G(first) && G(last);                     // "Kok Leong"
+      if (!westernOrder && !givenAlone) return forms(w.slice(1).join(" "), first);
+    }
+    if (w.every(G)) return n > 2 && S(last) ? forms(w.slice(0, -1).join(" "), last) : forms(w.join(" "), w.join(" "));   // "Mei Ling Kok"; "Jia Hui"
+    for (let i = 1; i < n; i++) {
+      if (i < n - 1 && L.surnameParticles.has(lc(w[i]))) return forms(w.slice(0, i).join(" "), w.slice(i).join(" "));
+      if (i === n - 1 && (S(w[i]) || O(w[i]))) return forms(w.slice(0, i).join(" "), w[i]);
+      if (i < n - 1 && S(w[i]) && !G(first) && w.slice(i + 1).every(G)) return forms(w.slice(0, i).join(" "), w[i]);
+    }
+    if (L.fatherNames.has(lc(last))) { const g = plain(w.slice(0, -1)); return forms(g, g); }
+    if (L.noSurname.has(lc(first))) { const g = plain(w); return forms(g, g); }
+    return forms(w.slice(0, -1).join(" "), last);
+  }
   function playerField(content, me, field) {
     const f = (field || "").toLowerCase(), g = playerTable(content).genders[me.gender];
     if (f === "" || f === "name") return me.name;
-    if (f === "formal") {
-      const first = me.name.split(/\s+/)[0].toLowerCase().replace(/\.$/, "");
-      return honorifics(content).has(first) ? me.name : `${g.honorific} ${me.name}`;
+    if (PLAYER_FORMS.includes(f)) {
+      const x = nameForms(content, me.name);
+      return f === "given" ? x.given : `${x.hon || g.honorific} ${x[f]}`;
     }
     if (PLAYER_OWN.includes(f)) return null;
     const k = Object.keys(g).find(x => x.toLowerCase() === f);
@@ -241,10 +339,12 @@ const Engine = (() => {
       return isUpper(nm) || isUpper(field) ? cap(v) : v;
     });
   }
-  // The player for the UI and the checks: name, gender, its label and the formal name.
+  // The player for the UI and the checks: name, gender, its label, the honorific in use and the
+  // three forms of the name.
   function player(content, s) {
-    const me = playerOf(content, s);
-    return { ...me, label: playerTable(content).genders[me.gender].label, formal: playerField(content, me, "formal") };
+    const me = playerOf(content, s), x = nameForms(content, me.name), g = playerTable(content).genders[me.gender];
+    return { ...me, label: g.label, honorific: x.hon || g.honorific,
+      given: playerField(content, me, "given"), formal: playerField(content, me, "formal"), full: playerField(content, me, "full") };
   }
 
   // --- the cast ------------------------------------------------------------
@@ -2706,9 +2806,9 @@ const Engine = (() => {
         : `You came out ahead ${v.wonMet === 1 ? "once" : v.wonMet === 2 ? "twice" : `${NUM[v.wonMet] || v.wonMet} times`}.`;
       out.push({ label: "Head to head", text: `${times}. ${won}` });
     }
-    const said = v.rel >= 3 ? `"{player} was the best colleague I ever had." Usually when you are not there.`
+    const said = v.rel >= 3 ? `"{player.given} was the best colleague I ever had." Usually when you are not there.`
       : v.rel <= -3 ? "Nothing, in public. In this building, that is a statement."
-      : `"{player}? A good colleague." In this building, a complete sentence.`;
+      : `"{player.given}? A good colleague." In this building, a complete sentence.`;
     out.push({ label: `What ${v.name} says`, text: sub(said, s, content) });
     return out;
   }

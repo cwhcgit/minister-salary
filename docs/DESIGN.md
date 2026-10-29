@@ -338,6 +338,12 @@ Three origins. This is where the meritocracy satire lives — as balance, not co
 | **Local Graduate** | MX13, age 23 | Baseline. Median CEP. Its own opening card. *Normal.* |
 | **Poly, then night classes** | MX13, age 27 | Low starting CEP, hardest climb. More Integrity and Competence, less Reputation and Standing. Three cards only this origin sees. *Hard.* |
 
+Two careers from the same origin do not start identical: each of the four starting stats sits up to
+five either way from the origin's, drawn from the seed on a stream of its own (`startBand` in
+`content/game.json`, with narrower bands for an origin where it sits close to the next). The bands
+keep the origins apart where they are ranked: every scholar starts with more Standing and Reputation
+than any graduate, and every graduate more than any poly entrant.
+
 The start screen also asks for a name and a gender (below), and offers a batchmate: someone
 from your intake who competes with you for the same promotion slots (`content/rival.json`).
 The ministry is not chosen: it is drawn at random, and a reshuffle can later move a minister.
@@ -348,8 +354,10 @@ Birthday*), which are planned in `docs/CONTENT_PLAN.md` section 2.
 and the game still says "you", so they show only where someone else names or addresses the player.
 The choices are data: `player.genders` in `game.json` lists each one (its label on the start screen,
 its honorific, its pronouns, and the cast name pool a blank name is drawn from), the start screen
-builds its buttons from that table, and every `{player}`, `{player.formal}` or `{player.<field>}`
-token is filled by one function, `playerSub`, which only `sub()` calls. Adding a choice (an "Mdm",
+builds its buttons from that table, and every `{player.given}`, `{player.formal}`, `{player.full}` or
+`{player.<field>}` token is filled by one function, `playerSub`, which only `sub()` calls. The three
+forms are read from the one name field (`nameForms`, by the lists in `player.names`): what colleagues
+call you, the honorific and surname, and the whole name. Adding a choice (an "Mdm",
 say) or a field (`{player.self}`) is a change to the table, with no code change; the lint checks that
 every choice has the same fields. The table is the only source: there is no default copy in code, so a
 missing or malformed table refuses the build (`web/packs.js`) and makes `newGame` throw. Nothing outside text rendering reads the gender: not the dice, the
