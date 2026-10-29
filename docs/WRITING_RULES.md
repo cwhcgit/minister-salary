@@ -193,9 +193,9 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 - Why: a recurring person is how a career becomes a story.
 - Check: editor review only.
 
-**4.4 A person's first card introduces them in full; later cards tag them.** On every later card, their first mention carries a short role tag ("Nurul Huda, your fellow MP,"), unless they were on the card just before. The engine adds both (`introduce()` in `engine.js`, from each role's `intro` and `tag` in `cast.roles`), so write `{mp}`, in a place where "Name, who ..., " reads naturally (a subject or an object, not inside a list). Or write your own appositive, followed by a comma, and the engine leaves it alone.
+**4.4 A person's first card introduces them in full; later cards tag them.** On every later card, their first mention carries a short role tag ("Nurul Huda, your fellow MP,"), unless they were on the card just before. The engine adds both (`introduce()` in `engine.js`, from each role's `intro` and `tag` in `cast.roles`), so write `{mp}`, in a place where "Name, who ..., " reads naturally (a subject or an object, not inside a list). Or write your own appositive, followed by a comma, and the engine leaves it alone. A possessive ("{mp}'s ward") takes neither: the next plain mention does, or, with none, a tag that is a noun phrase goes in front ("your fellow MP Nurul Huda's ward"). The batchmate gets a tag too ("your batchmate").
 - Why: players forget names within a few cards.
-- Check: `test/contexts.js` fails an empty field (", ,", a doubled space, a space before a comma or full stop) in assembled text; the rest is editor review.
+- Check: `test/harness.test.js` checks where the engine puts the introduction and the tag, and that the card right after never repeats it; `test/contexts.js` fails an empty field (", ,", a doubled space, a space before a comma or full stop) in assembled text; the rest is editor review.
 
 **4.5 A person named outside a card says who they are.** In a note, a Meanwhile line or a review page, the name is followed at once by an appositive giving who they are to the player.
 - Why: there is no card around the line to say who they are.
@@ -240,6 +240,10 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 **4.14 Names are invented.** The name pools are fictional, across communities, and never a real public figure.
 - Why: see rule 8.1.
 - Check: editor review only (`test/contexts.js` checks that names never repeat within a run).
+
+**4.15 A card that hands a role to someone new never names the newcomer.** A card with `"replaces": ["senior"]` (`new_ro`) gives the role to a new person whichever choice is made, as the sideways move after three Cs does for the reporting officer and the junior. In the card's own text `{senior}` is still the person leaving. The newcomer has no name or pronouns until they arrive, and the engine introduces them on the first card that names them, so the card says "the new reporting officer" or "the newcomer", never "he" or "she".
+- Why: the newcomer is drawn after the choice, so a pronoun on the card could contradict the next one.
+- Check: `test/harness.test.js` (the old holder leaves the story, and a newcomer holds the role from the next card); the wording, editor review.
 
 ## 5. Choices, rewards and consequences
 

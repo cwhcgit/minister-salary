@@ -224,7 +224,7 @@ function step(run, choiceId) {
     turn: run.turn + 1,
     phase: S.ending ? "ending" : "event",
     S, pendingDraw: nextDraw,
-    last: { outcome: r.outcome, log: r.log, prev: before },
+    last: { outcome: r.outcome, log: r.log, prev: before, head: r.head || null },
     choiceList: run.choiceList.concat(View.LETTERS[i]),
     turns: run.turns.concat([rec])
   };
@@ -255,28 +255,28 @@ function promotionWhy(p, appraisal, pre) {
 
 // --- the two views -----------------------------------------------------
 
-// Screen view. On the phone, a turn is two screens: the outcome of last year's choice,
-// then this year's event card. They show the same header, so the agent view merges them:
-// header, last year's outcome, this year's card.
+// Screen view. On the phone, a turn is two screens: the outcome of last year's choice (as
+// pages: the outcome, then one page per year, each under a header dated to that year), then this
+// year's event card under the current header. The agent view joins them, in that order:
+// the outcome's pages, then this year's card.
 // opts.view: "agent" (merged, default) | "event" | "outcome" (each phone screen alone).
 function screen(run, opts = {}) {
   const build = getBuild(run.buildHash);
   const S = run.S;
   const view = opts.view || "agent";
+  const outcome = () => View.outcomeCard(run.last.outcome, run.last.log, run.last.head, View.header(build, S));
   // the phone shows the last choice's outcome (and the last year-end review) before the ending
   // card, as one more outcome screen: the agent view merges the two, as it does every year
   if (run.phase === "ending") {
     const end = { phase: "ending" };
-    if (run.last && view !== "event") { end.header = View.header(build, S, run.last.prev); end.outcome = View.outcomeCard(run.last.outcome, run.last.log); }
+    if (run.last && view !== "event") end.outcome = outcome();
     if (view !== "outcome") end.ending = View.endingCard(build, S);
     return end;
   }
   const out = { phase: "event" };
   if (run.turn === 1 && view === "agent") out.start = View.startCard(build, run.origin, run.rival, { name: run.name, gender: run.gender });
-  const showOutcome = run.last && view !== "event";
-  out.header = View.header(build, S);
-  if (showOutcome) out.outcome = View.outcomeCard(run.last.outcome, run.last.log);
-  if (view !== "outcome") out.event = View.eventCard(build, S, currentEvent(build, S));
+  if (run.last && view !== "event") out.outcome = outcome();
+  if (view !== "outcome") { out.header = View.header(build, S); out.event = View.eventCard(build, S, currentEvent(build, S)); }
   return out;
 }
 

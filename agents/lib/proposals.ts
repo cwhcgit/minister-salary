@@ -35,7 +35,7 @@ const REQ_KEYS = new Set(["minRank", "maxRank", "minStats", "maxStats", "minAge"
 // Everything web/engine.js reads on a card. A field missing here is refused in a proposal.
 const EVENT_KEYS = new Set(["id", "title", "body", "requires", "weight", "once", "priority", "triggered", "choices",
   "alternates", "variants", "standout", "noMontage", "montageLines", "montageEffects", "autoPlay", "cooldown", "rivalCard",
-  "parts", "series", "again"]);
+  "parts", "series", "again", "replaces"]);
 const CHOICE_KEYS = new Set(["text", "effects", "setFlags", "clearFlags", "outcome", "schedule", "requiresStat", "setRank", "election",
   "standout", "pip", "resetWarnings", "readFolder", "folder", "privateSector", "nationalBonus", "nationalBonusRisk", "newMinistry", "markSeen", "rival",
   "cast", "stance"]);

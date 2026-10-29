@@ -1233,6 +1233,9 @@
     },
     "weight": 9,
     "once": true,
+    "replaces": [
+      "senior"
+    ],
     "choices": [
       {
         "text": "Make yourself indispensable on the hardest file.",
