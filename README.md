@@ -86,9 +86,9 @@ field, the house style, and the plain-English rules.
 Push to `main` and the checks run. If a card is malformed or breaks the balance below, the
 change is stopped before it reaches anyone's phone. If it passes, the game is published in a
 few minutes. Bump `VERSION` in `web/sw.js` with every change: the game is stored on phones so
-it plays offline, and the new version number is what tells them to replace the old copy. Then
-run `node tools/deck.js`, which rewrites the deck (`docs/DECK.md`) from the content; the checks
-stop a change whose deck is out of date.
+it plays offline, and the new version number is what tells them to replace the old copy. The
+deck (`docs/DECK.md`) rebuilds itself from the content after every change to `main`; to preview
+it before pushing, run `node tools/deck.js`.
 
 ## Balance
 

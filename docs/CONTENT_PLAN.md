@@ -283,7 +283,9 @@ A pack is `web/content/packs/<id>.json`:
   to; [`DECK-DESIGN.md`](DECK-DESIGN.md) adds who sees each card and what each choice does.
   `node tools/deck.js` writes both from the content (in chapters under `deck/` and `deck-design/`
   when a page would be too big for GitHub); `node tools/deck.js --check` fails on a stale deck, a
-  broken link, a missing card or a raw token, and the Pages checks run it.
+  broken link, a missing card or a raw token. The Pages checks rebuild the deck and check it, so a
+  broken link stops a deploy but a stale copy never does; `.github/workflows/deck.yml` commits the
+  fresh deck to `main` after every content change.
 - **Hidden witnesses:** a card's `witnesses` field lists who could plausibly know what the player
   did there, by kind (`witnesses.types` in `game.json`): `{ "by": { "<type>": { "chance", "react",
   "requires"? } } }`, with one reaction per choice, from -5 to +4. Service cards take the service's
@@ -322,7 +324,7 @@ A pack is `web/content/packs/<id>.json`:
 - [ ] `node test/harness.test.js` passes; `node test/sim.js` lists no new dominated choice.
 - [ ] Balance: `node test/sim.js regress 800` passes, alone and with the batchmate.
 - [ ] Two careers played through that hit the pack's cards; every screen read.
-- [ ] Regenerate the deck: `node tools/deck.js`, and read the pack's cards there in order; `node tools/deck.js --check` passes.
+- [ ] Read the pack's cards in order in the deck: `node tools/deck.js` rebuilds it locally (main rebuilds it by itself); `node tools/deck.js --check` passes.
 
 **Review.** Three steps:
 1. The content auditor (Opus, about $0.20 a pass) audits the pack, with immersion as rule 6. All
