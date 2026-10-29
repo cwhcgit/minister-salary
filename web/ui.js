@@ -189,7 +189,9 @@ function endingScreen() {
 function shareCard() {
   const e = content.endings.find(x => x.id === S.ending), r = Engine.rank(content, S), L = Engine.finalLabels(content, S);
   const o = content.origins.find(x => x.id === S.origin) || { name: S.origin, difficulty: "" };
-  const url = location.href.split("#")[0];
+  // the public game, never a local or preview address
+  const here = location.href.split("#")[0].split("?")[0];
+  const url = /^https:\/\/[^/]*github\.io\//.test(here) ? here : "https://cwhcgit.github.io/minister-salary/";
   return {
     game: "Minister Salary",
     name: S.name && S.name !== "You" ? S.name : "",

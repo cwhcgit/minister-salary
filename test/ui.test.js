@@ -52,8 +52,8 @@ async function shareTests(window, $, $$, wait) {
   for (const w of want.filter(Boolean)) if (!card.includes(norm(w))) throw new Error('the share card is missing: ' + w);
   const origins = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'game.json'), 'utf8')).origins;
   if (!origins.some(o => card.includes(norm(`${o.name} · ${o.difficulty}`)))) throw new Error('the share card has no origin and difficulty');
-  const host = window.location.host;
-  if (!card.includes(host)) throw new Error('the share card has no link in its footer');
+  // a local or preview address is never shared: the card always carries the public game's link
+  if (!card.includes('cwhcgit.github.io/minister-salary')) throw new Error('the share card has no link to the public game in its footer');
   if (/DECLASSIFIED/i.test(card)) throw new Error('the share card carries the Declassified heading');
   for (const [k, t] of ending.declassified) if (card.includes(norm(t)) || card.includes(k.toUpperCase())) throw new Error('the share card carries a Declassified line: ' + k);
   console.log(`✓ share: a PNG through the share sheet, with the link as text; the card draws ${drawn.length} lines and no Declassified line`);

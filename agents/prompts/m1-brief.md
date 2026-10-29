@@ -12,7 +12,7 @@ The current web build is the M1 playtest harness. It exists to answer one questi
 - `test/sim.js` is a working example of a scripted player that drives the game rules directly in Node, without a browser. It has 3 bots × 3 origins. Run it with `node test/sim.js 800`.
 
 ## The player's experience, per turn
-1. **Event card:** a short deadpan scenario with 2-4 choices. Some choices are locked behind a stat minimum, and the requirement is shown.
+1. **Event card:** a short deadpan scenario with 2-4 choices. Some choices are locked behind a stat minimum; the screen gives an in-world reason, not the number. The four stats are hidden during play and revealed on the ending card.
 2. **Outcome screen:**
    - what happened
    - the year's pay package
