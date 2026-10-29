@@ -51,13 +51,10 @@ server.listen(0, async () => {
     expect(where + ' cash', $('.cash').textContent, h.wealth);
     expect(where + ' cash label', $('.cashlab').textContent, h.wealthLabel);
     expect(where + ' batchmate', $('.mate') ? $('.mate').textContent : null, h.batchmate ? `Batchmate: ${h.batchmate}` : null);
-    $$('.stat').forEach((el, i) => {
-      const s = h.stats[i];
-      expect(`${where} stat ${i} label`, el.querySelector('.k').textContent, s.label);
-      const d = el.querySelector('.d');
-      expect(`${where} ${s.key}`, own(el.querySelector('.v')), s.value);
-      expect(`${where} ${s.key} delta`, d ? d.textContent : '', s.delta ? `${s.delta > 0 ? '+' : ''}${s.delta}` : '');
-    });
+    // the four stats are hidden during play: no values, bars or changes anywhere in the header
+    expect(where + ' header text', $('header').textContent.replace(/\s+/g, ' ').trim(),
+      [`${h.rank}${h.grade}`, `Age ${h.age} · Year ${h.year} · ${h.ministry}`, h.batchmate ? `Batchmate: ${h.batchmate}` : null, h.wealth + h.wealthLabel].filter(Boolean).join(' '));
+    expect(where + ' stat bars', $$('header .track, header .stat').length, 0);
   }
 
   try {
@@ -81,12 +78,12 @@ server.listen(0, async () => {
       $('#nm').value = 'Tan Wei Ming';
       $('#go').click(); await wait(30);
 
-      let prev = null;   // the state the UI diffs the outcome screen against
+      let prev = null;   // the state the last choice was made in (names the outcome screen in messages)
       for (let turn = 0; turn < 130 && !$('.ending'); turn++) {
         const st = saved();
         if (st.phase === 'event') {
           const where = `${origin} seed ${st.S.seed} y${st.S.year} event`;
-          compareHeader(where, View.header(build, st.S, null));
+          compareHeader(where, View.header(build, st.S));
           const ev = H.currentEvent(build, st.S);
           const want = View.eventCard(build, st.S, ev);
           expect(where + ' title', $('h2').textContent, want.title);
@@ -106,7 +103,7 @@ server.listen(0, async () => {
           live[Math.floor(pick() * live.length)].click(); await wait(5);
         } else if (st.phase === 'outcome') {
           const where = `${origin} seed ${prev.seed} y${prev.year} outcome`;
-          compareHeader(where, View.header(build, st.S, prev));
+          compareHeader(where, View.header(build, st.S));
           const want = View.outcomeCard(st.outcome, st.log);
           expect(where + ' text', $('.outcome').textContent, want.text);
           const items = $$('.li');
@@ -126,8 +123,17 @@ server.listen(0, async () => {
       expect('ending title', $('.ending h1').textContent, want.title);
       expect('ending epitaph', $('.ending .ep').textContent, want.epitaph);
       const vals = $$('.final .v').map(v => v.textContent);
-      expect('ending values', vals.join(' | '), [want.position, want.age, want.lifetimeEarnings, want.integrity].join(' | '));
-      expect('ending labels', $$('.final .k').map(k => k.textContent).join(' | '), [want.positionLabel, want.ageLabel, 'Lifetime earnings', 'Integrity'].join(' | '));
+      expect('ending values', vals.join(' | '), [want.position, want.age, want.lifetimeEarnings].join(' | '));
+      expect('ending labels', $$('.final .k').map(k => k.textContent).join(' | '), [want.positionLabel, want.ageLabel, 'Lifetime earnings'].join(' | '));
+      // the four stats, revealed only now, each with its verdict
+      expect('stats heading', $('.reveal .lab').textContent, View.STATS_LABEL);
+      const rvs = $$('.rv');
+      expect('stats count', rvs.length, want.stats.length);
+      rvs.forEach((el, i) => {
+        expect(`stat ${i} label`, el.querySelector('.rk .k').textContent, want.stats[i].label);
+        expect(`stat ${i} value`, el.querySelector('.rk .v').textContent, want.stats[i].value);
+        expect(`stat ${i} verdict`, el.querySelector('.t').textContent, want.stats[i].verdict);
+      });
       const dls = $$('.dl');
       expect('declassified count', dls.length, want.declassified.length);
       dls.forEach((el, i) => {
