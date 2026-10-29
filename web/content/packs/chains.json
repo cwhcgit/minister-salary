@@ -567,7 +567,7 @@
           "outcome": "You stick to your speech. In the gallery, an official who sat in your pilot meetings recognises you and nods. That's all the credit there is, and it's plenty."
         },
         {
-          "text": "Use your speech on its weak spot, which you know best.",
+          "text": "Use your speech to ask about the scheme's weak spot, which you know best.",
           "effects": { "competence": 3, "reputation": 2, "standing": -4 },
           "setFlags": ["pilot_warned"],
           "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
@@ -936,7 +936,7 @@
               "id": "protected",
               "requires": { "flagsAll": ["whistle_protected"] },
               "effects": { "0": { "standing": 2 } },
-              "text": "A few years ago {junior} brought you forty-one purchases kept just under the $6,000 line, and you reported them as your own finding, to protect {junior}. The case is closing: a barred vendor, and a retirement nobody announced. The review panel wants to commend whoever first spotted the pattern, and {junior} is copied on its email.",
+              "text": "A few years ago {junior} brought you forty-one purchases kept just under the $6,000 line, and you reported them as your own finding, to protect {junior}. The case is closing: the vendor has been barred, and the officer two floors up who approved the purchases has quietly retired. The review panel wants to commend whoever first spotted the pattern, and {junior} is copied on its email.",
               "a": "Give the panel {junior}'s name.",
               "aOut": "The commendation goes to {junior}, in a paragraph that uses the word \"diligence\" twice. {junior} thanks you in the lift, and does not say whether {junior.they} wanted it.",
               "b": "Keep {junior}'s name out, as you did then.",
@@ -954,7 +954,7 @@
             },
             {
               "id": "reported",
-              "text": "A few years ago you reported {junior}'s spreadsheet of forty-one purchases through the proper channel, with {junior} named as the source. It led to a barred vendor and a quiet retirement two floors up. It also made {junior} the officer whose name was in the Source box. In this year's ranking, {junior} is in the middle again, for the third year running.",
+              "text": "A few years ago you reported {junior}'s spreadsheet of forty-one purchases through the proper channel, with {junior} named as the source. It led to a barred vendor and a quiet retirement two floors up. It also left {junior}'s name in the Source box, where everyone two floors up could read it. In this year's ranking, {junior} is in the middle again, for the third year running.",
               "a": "Argue for {junior} in the ranking.",
               "aOut": "You argue for forty minutes and spend most of your goodwill. {junior} moves up four places and never learns why. Two floors up, someone notes who argued.",
               "b": "Let the ranking be. It was never about the report.",
@@ -1812,7 +1812,7 @@
           ]
         }
       },
-      "body": "You're still serving your scholarship bond, so leaving the service now means paying PSC damages for the years you haven't served. A bank wants you by March, and will pay those damages in full, {left}, and call it a signing bonus. The bond deed it would settle carries your signature, and those of the two sureties who signed with you.",
+      "body": "You're still serving your scholarship bond, so leaving the service now means paying PSC damages for the years you haven't served. A bank wants you by March, and will pay those damages in full, {left}, and call it a signing bonus. Your bond deed was signed by you and by two sureties, usually family, who promised PSC you would serve it out.",
       "requires": { "origin": ["scholar"], "maxRank": 7, "duringBond": true },
       "choices": [
         {

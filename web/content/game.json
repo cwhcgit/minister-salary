@@ -279,12 +279,12 @@
     }
   ],
   "cepHints": [
-    "Your grade would have earned you the next step up, and it doesn't come. Your reporting officer describes your trajectory as \"steady\".",
-    "No step up this year, despite the grade. You are also left off the list for the Leadership Programme. No reason is given for either.",
-    "Your grade was good enough to move up, and you don't. Someone in HR calls you \"a safe pair of hands\". You are not sure this is good.",
-    "A strong grade, and no step up. At the year-end lunch, you are seated at the far end of the table, nearest the door.",
-    "Your grade qualified you to move up, and nothing happens. Your name is on the succession chart, in the third column, headed \"Longer term\".",
-    "A good enough grade, and still no step up. A colleague two years your junior is sent on the Harvard programme instead of you."
+    "Your appraisal grade would have earned you the next step up, and it doesn't come. Your reporting officer describes your trajectory as \"steady\".",
+    "No step up this year, despite a good appraisal. You are also left off the list for the Leadership Programme. No reason is given for either.",
+    "Your appraisal grade was good enough to move up, and you don't. Someone in HR calls you \"a safe pair of hands\". You are not sure this is good.",
+    "A strong appraisal, and no step up. At the year-end lunch, you are seated at the far end of the table, nearest the door.",
+    "Your appraisal grade qualified you to move up, and nothing happens. Your name is on the succession chart, in the third column, headed \"Longer term\".",
+    "A good enough appraisal, and still no step up. A colleague two years your junior is sent on the Harvard programme instead of you."
   ],
   "endings": [
     {
@@ -453,7 +453,7 @@
           "pilot_shared"
         ]
       },
-      "text": "The national scheme landed within two points of your evaluation. You sent the Auditor-General's praise to the people who earned it."
+      "text": "The national scheme landed within two points of your pilot's forecast. You sent the Auditor-General's praise to the people who earned it."
     },
     {
       "label": "The pilot",
@@ -462,7 +462,7 @@
           "pilot_noted"
         ]
       },
-      "text": "The national scheme landed within two points of your evaluation. You sent the Auditor-General's praise upstairs, which also worked."
+      "text": "The national scheme landed within two points of your pilot's forecast. You sent the Auditor-General's praise upstairs, with a note of your own. Upstairs remembered the note."
     },
     {
       "label": "The pilot",
@@ -499,7 +499,7 @@
           "whistle_said_protect"
         ]
       },
-      "text": "Shown forty-one purchases kept just under the $6,000 line, you did nothing. Years later, asked what to do with one like it, you said: take it up yourself."
+      "text": "Shown forty-one purchases kept just under the $6,000 line, you did nothing. Years later, asked what to do with a spreadsheet like it, you said: take it up yourself."
     },
     {
       "label": "The whistleblower",
@@ -509,7 +509,7 @@
           "whistle_said_leave"
         ]
       },
-      "text": "Shown forty-one purchases kept just under the $6,000 line, you kept them to yourself. Years later you gave the same advice. It was not taken."
+      "text": "Shown forty-one purchases kept just under the $6,000 line, you kept them to yourself. Years later, asked about a spreadsheet like it, you said: leave it with me. The advice was not taken."
     },
     {
       "label": "The whistleblower",
@@ -536,7 +536,7 @@
           "whistle_said_leave"
         ]
       },
-      "text": "Years later, asked what to do with a spreadsheet of suspicious purchases, you said: leave it with me. It did not stay there."
+      "text": "Years later, asked what to do with a spreadsheet of suspicious purchases, you said: leave it with me. The spreadsheet did not stay with you."
     },
     {
       "label": "The whistleblower",
@@ -554,7 +554,7 @@
           "whistle_uncorrected"
         ]
       },
-      "text": "Told the night before a Parliamentary Question that paragraph two of your reply was not true, you read it anyway. The file has the date."
+      "text": "Told the night before a Parliamentary Question that paragraph two of your reply was not true, you read it anyway. The file records the date you were told."
     },
     {
       "label": "The whistleblower",
@@ -654,7 +654,7 @@
           "uturn_wrong"
         ]
       },
-      "text": "A policy you defended in the House, reversed two years later, and called wrong in a statement you shaped. Hansard keeps all three."
+      "text": "You defended a policy in the House. Two years later it was reversed, and you had the statement say plainly that it had been wrong. Hansard keeps both."
     },
     {
       "label": "The U-turn",
@@ -672,7 +672,7 @@
           "uturn_cut"
         ]
       },
-      "text": "Your defence of the policy is in Hansard. So is the statement that reversed it, which never mentions your defence. Each can be found alone."
+      "text": "Your defence of the policy is in Hansard. So is the statement that reversed it, which never mentions your defence. A search for one does not find the other."
     },
     {
       "label": "The U-turn",
@@ -690,7 +690,7 @@
           "uturn_argued"
         ]
       },
-      "text": "You argued to keep the policy, from your own replies. The minutes say you \"raised considerations\"."
+      "text": "You argued to keep the policy, quoting your own replies in the House. The minutes say you \"raised considerations\"."
     },
     {
       "label": "The U-turn",
@@ -807,7 +807,7 @@
   ],
   "reElectionLines": [
     "You are re-elected with 58.6%. The swing against you is described as \"within the normal range\".",
-    "You are re-elected with 61.2%. The papers call it \"a clear endorsement\", the phrase they use when a result was close somewhere else.",
+    "You are re-elected with 61.2%. The papers call it \"a clear endorsement\", the phrase they use when another ward's result was close.",
     "You are re-elected with 55.9%. The result is described as \"a timely reminder\". Nobody says of what.",
     "You are re-elected with 63.0%. A newspaper calls your ward \"safe\", and your branch chairman asks you, quietly, never to say that word out loud.",
     "You are re-elected with 57.4%. Your branch chairman calls it \"steady\", and means it as praise, mostly.",
@@ -826,7 +826,7 @@
   "ageFloorLines": [
     "The promotion board finds you ready for the next rung but too young for it: \"ready, in time\". Nobody says how much time.",
     "You are told you are too young for the next rung, and need \"a little more seasoning\". The word does not appear in the competency framework.",
-    "Your promotion file is marked \"strong; timing\". \"Timing\" means your age, and it does all the work.",
+    "Your promotion file is marked \"strong; timing\". \"Timing\" means your age, and it outweighs \"strong\".",
     "You are still too young for the next rung. Someone senior tells you, kindly, that nobody has ever regretted waiting, and says it like someone who waited."
   ],
   "topRungLines": [
@@ -1297,7 +1297,7 @@
     "lines": {
       "peer": {
         "retired": [
-          "{name}, who joined the service with you, retires as {title}. The farewell lunch is at the restaurant where the officers who joined with you held their tenth-anniversary dinner, which nobody planned.",
+          "{name}, who joined the service with you, retires as {title}. The farewell lunch is at the restaurant where the officers who joined with you held their tenth-anniversary dinner. Nobody planned the coincidence.",
           "{name} retires as {title}. You both joined the service the same year, and that year's group chat, silent for a decade, produces forty messages in an hour, mostly photographs nobody remembers being taken.",
           "{name}, who joined the service the same year you did, retires as {title}. You are one of three people at the farewell who knew {them} in the first week.",
           "{name} retires as {title}, and emails everyone who joined the service alongside the two of you a long note about your first week. You appear in it twice, both times kindly."

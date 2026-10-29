@@ -74,7 +74,7 @@
       "The ranking exercise could promote only one of you at this grade, and it was you. {rival} took it well, in the sense that nobody saw {them} take it."
     ],
     "loseService": [
-      "This year there was one promotion slot at your grade, and two of you up for it: you and {rival}, from your intake, your rival for every promotion. It went to {rival}. You're told it was \"very close\". They tell everyone that, probably including {rival}.",
+      "This year there was one promotion slot at your grade, and two of you up for it: you and {rival}, from your intake, your rival for every promotion. It went to {rival}. You're told it was \"very close\". That is what everyone is told, probably including {rival}.",
       "The ranking exercise could promote only one of you at this grade, and it was {rival}. {senior}, your reporting officer, says you are \"next in line\", and doesn't say for what."
     ],
     "winPolitics": [
@@ -188,7 +188,7 @@
             "competence": -1
           },
           "rival": {},
-          "outcome": "The form accepts it. HR's report later notes \"limited peer input\" for your whole division: the only comment that year that is about you."
+          "outcome": "The form accepts it. HR's report later notes \"limited peer input\" for your whole division. Your blank form is one of the reasons."
         }
       ]
     },
@@ -483,7 +483,7 @@
             "kingmaker",
             "backed_batchmate"
           ],
-          "outcome": "{rival} thanks you once, in private, and never again. That is how you know it was understood.",
+          "outcome": "{rival} thanks you once, in private, and never again. That is how you know the deal was understood.",
           "markSeen": [
             "succession"
           ]

@@ -378,7 +378,7 @@
       "id": "copied_in_file",
       "triggered": true,
       "title": "The Cc Line",
-      "body": "Years ago you were copied in, by mistake, on a confidential plan that abolished the job of {peer}, and you said nothing. Now {peer}, looking for something else in an old file, has found that email. Your name is in its cc line, dated six weeks before anyone told {peer.them}.",
+      "body": "Years ago you were copied in, by mistake, on a confidential plan that abolished the job of {peer}, and you said nothing. Now {peer}, looking for something else in an old file, has found that email. It is dated six weeks before anyone told {peer.them}, and your name is on the cc line.",
       "requires": {
         "cast": {
           "peer": {
@@ -402,7 +402,7 @@
               ]
             }
           },
-          "outcome": "You explain: the email was marked Official (Closed), it wasn't yours to share, and you hated the six weeks. {peer} hears you out and says {peer.they} would have done the same. Neither of you is sure that's true."
+          "outcome": "You explain: the email was marked Official (Closed), it wasn't yours to share, and you hated keeping quiet for six weeks. {peer} hears you out and says {peer.they} would have done the same. Neither of you is sure that's true."
         },
         {
           "text": "Point out that it was marked Official (Closed).",

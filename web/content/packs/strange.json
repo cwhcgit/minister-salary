@@ -57,7 +57,7 @@
       "id": "strange_envelope_pol",
       "triggered": true,
       "title": "Cleared",
-      "body": "Years ago, as a junior officer, you were sent an envelope in your own handwriting, dated thirty years ahead and stamped SECRET, and the registry kept it. Now that you've left the service, it rules that the author may read it, and posts it to you: one page, almost all blacked out in your own hand. One line isn't: \"Take the leave.\"",
+      "body": "Years ago, as a junior officer, you were sent an envelope in your own handwriting, dated thirty years ahead and stamped SECRET, and the registry kept it. Now that you've left the service, the registry rules that the author may read it, and posts it to you: one page, almost all blacked out in your own hand. One line isn't: \"Take the leave.\"",
       "requires": { "minRank": 8 },
       "choices": [
         {
@@ -207,7 +207,7 @@
     {
       "id": "strange_clone",
       "title": "Two of You",
-      "body": "A research institute at one-north has reported an accident, and itself, to MOH. The accident is a second you: same memories, same appraisals, same leave balance. HR is clear that there is one post and one desk, and not at all clear which of you they belong to. It wants your proposal by Friday. The other you is writing one too.",
+      "body": "A research institute at one-north has reported an accident, and itself, to MOH. The accident is a second you: same memories, same appraisals, same leave balance. HR is clear that there is one post and one desk, and not at all clear which of you they belong to. HR wants your proposal by Friday. The other you is writing one too.",
       "requires": { "minRank": 3, "maxRank": 6, "flagsNone": ["strange_met"] },
       "weight": 1,
       "once": true,
@@ -281,7 +281,7 @@
           "outcome": "It has ice. PUB has a paper on a fifth national tap by Monday. The note is redrafted to decline the moon and keep the conversation open."
         },
         {
-          "text": "Offer Singapore as a venue for its talks instead.",
+          "text": "Offer Singapore as a neutral venue for talks instead.",
           "effects": { "reputation": 4, "standing": 3, "competence": -4 },
           "setFlags": ["strange_met"],
           "outcome": "The note declines the moon and offers Singapore as a neutral meeting place, as it has been for other summits. The offer is accepted by return. Your ministry is now looking for office space near Changi."
@@ -384,7 +384,7 @@
           "text": "Ask for a higher expected rate of return.",
           "effects": { "standing": 3, "reputation": 3, "integrity": -4 },
           "setFlags": ["strange_met"],
-          "outcome": "The boards that invest the reserves propose a higher rate. The President consults the Council of Presidential Advisers and does not concur, so the twenty-year historical average applies. That average does not include this week."
+          "outcome": "The boards that invest the reserves propose counting the new gold in the expected return, so the Government could spend more. The President consults the Council of Presidential Advisers and does not agree, so the usual twenty-year average applies. That average does not include this week."
         },
         {
           "text": "Leave the framework alone. Let the bars accumulate.",
