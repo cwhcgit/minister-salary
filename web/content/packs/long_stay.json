@@ -1,0 +1,516 @@
+{
+ "id": "long_stay",
+ "title": "The Long Stay",
+ "note": "Officers still on the first rungs (Management Executive, Senior Management Executive) from their late thirties: institutional memory, new systems, new colleagues. One three-year cooldown (long_stay). Being stuck is believable, never the joke (WRITING_RULES 6.3).",
+ "events": [
+  {
+   "id": "ls_eyes",
+   "title": "Eyes and Ears",
+   "requires": {
+    "maxRank": 1,
+    "minAge": 38,
+    "cooldown": {
+     "key": "long_stay",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_stay",
+   "body": "An officer from your intake, who left for a bank long ago, has come back as a deputy director in your division. Over lunch in the first week, your old friend asks one favour: to hear from you, now and then, what the floor really thinks. Nobody on the floor would tell a deputy director.",
+   "choices": [
+    {
+     "text": "Agree. Pass on what the floor thinks.",
+     "effects": {
+      "standing": 5,
+      "competence": 1,
+      "integrity": -4
+     },
+     "outcome": "Every few weeks, over coffee, you report the mood of the floor, names left out. The deputy director's decisions get noticeably better. The floor notices that too, and starts to wonder, out loud, where the ideas come from."
+    },
+    {
+     "text": "Explain how things work here, not who thinks what.",
+     "effects": {
+      "competence": 3,
+      "integrity": 2,
+      "standing": -1
+     },
+     "outcome": "You explain the ministry as it now is: which committee matters, which form gets read, which director replies after nine. Your friend learns fast, and stops asking about people, mostly."
+    },
+    {
+     "text": "Say no, kindly. Have lunch anyway.",
+     "effects": {
+      "integrity": 5,
+      "reputation": 1,
+      "standing": -4
+     },
+     "outcome": "Your friend takes it well, and you have lunch every month, about everything else. The deputy director's first restructuring lands badly, in two ways you could have predicted, and did, to yourself."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "countersigner": {
+      "chance": 0.4,
+      "react": [
+       3,
+       2,
+       -2
+      ]
+     },
+     "floor": {
+      "chance": 0.4,
+      "react": [
+       -4,
+       0,
+       0
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "ls_own_words",
+   "title": "In Your Own Words",
+   "requires": {
+    "maxRank": 1,
+    "minAge": 38,
+    "cooldown": {
+     "key": "long_stay",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_stay",
+   "body": "{senior} has eleven appraisals to write this month, and asks you to draft your own: \"You know your work better than I do.\" It will very likely be signed unchanged, and read by people who have never met you. The form has one box for achievements, and another for areas to develop.",
+   "choices": [
+    {
+     "text": "Write it straight: the good parts and the slow ones.",
+     "effects": {
+      "integrity": 5,
+      "competence": 2,
+      "standing": -3
+     },
+     "outcome": "Your draft is accurate, modest where it should be, and signed unchanged. The people who decide grades read \"consistently reliable\", a phrase they know exactly how to grade. You recognise yourself in it, which is rarer than it should be."
+    },
+    {
+     "text": "Write the year everyone writes: \"transformational\".",
+     "effects": {
+      "standing": 4,
+      "integrity": -4
+     },
+     "outcome": "You use \"transformational\" twice and \"spearheaded\" once. {senior} signs it unchanged. Your form now reads like nine others on the same desk, and is graded, by an instinct older than the form, like nine others."
+    },
+    {
+     "text": "Copy last year's, and change the dates.",
+     "effects": {
+      "standing": 1,
+      "competence": -2,
+      "integrity": -1
+     },
+     "outcome": "Nobody notices, including {senior}, which tells you something about last year's too. The form is signed unchanged. Your grade is the same as last year's, as if the year itself had been copied."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "countersigner": {
+      "chance": 0.4,
+      "react": [
+       2,
+       -2,
+       -1
+      ]
+     },
+     "panel": {
+      "chance": 0.3,
+      "react": [
+       -1,
+       2,
+       0
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "ls_page_three",
+   "title": "The Box on Page Three",
+   "requires": {
+    "maxRank": 1,
+    "minAge": 38,
+    "cooldown": {
+     "key": "long_stay",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_stay",
+   "body": "A new team is redesigning one of the ministry's forms, and wants to remove a box on page three that asks applicants to confirm their address a second time. Nobody remembers why it is there. You do. It was added after a mistake, years ago, and the mistake was yours.",
+   "choices": [
+    {
+     "text": "Tell them the whole story, your part included.",
+     "effects": {
+      "integrity": 5,
+      "reputation": 1,
+      "standing": -4
+     },
+     "outcome": "It takes ten minutes and gets one laugh, at the right moment. The box stays, renamed \"Address (please confirm)\". The story is round the floor by the afternoon, improved in the telling."
+    },
+    {
+     "text": "Say there was a good reason, and leave it there.",
+     "effects": {
+      "standing": 3,
+      "integrity": -3,
+      "competence": -1
+     },
+     "outcome": "The team asks what the reason was, and you say \"an incident\". Nobody can find the incident in any file, so the box goes. Eight months later the incident happens again, to someone else."
+    },
+    {
+     "text": "Say nothing. Write the story into the form's file.",
+     "effects": {
+      "competence": 3,
+      "integrity": 2,
+      "standing": -2
+     },
+     "outcome": "You write one page, dated and signed, and put it in the file. The box goes. Years later, an officer looking into why the mistake has happened again finds your page, and quotes it in full."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "floor": {
+      "chance": 0.4,
+      "react": [
+       2,
+       -1,
+       0
+      ]
+     },
+     "countersigner": {
+      "chance": 0.3,
+      "react": [
+       1,
+       -2,
+       1
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "ls_software",
+   "title": "The Software",
+   "requires": {
+    "maxRank": 1,
+    "minAge": 38,
+    "cooldown": {
+     "key": "long_stay",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_stay",
+   "body": "The ministry is buying software to do what your section does by hand: checking claims against four databases. The vendor needs someone to write down every step, so the software can learn the job. {senior} has put your name forward, as the officer who knows it best. You do, including the steps nobody ever wrote down.",
+   "choices": [
+    {
+     "text": "Write down everything, the unwritten steps too.",
+     "effects": {
+      "competence": 5,
+      "integrity": 3,
+      "standing": -3
+     },
+     "outcome": "Your document runs to ninety pages. The software learns the job in four months, and does a day's work in an hour. Your section shrinks to three officers, and you are one of them, largely because of the ninety pages."
+    },
+    {
+     "text": "Write down the official steps only.",
+     "effects": {
+      "standing": 3,
+      "integrity": -4,
+      "competence": -1
+     },
+     "outcome": "The software learns the official job, which is not the job. For a year every claim it checks comes back to your section to be checked again. The section keeps its size, and is busier than before."
+    },
+    {
+     "text": "Ask to join the team that will run it.",
+     "effects": {
+      "competence": 4,
+      "reputation": 2,
+      "cep": 1,
+      "standing": -4
+     },
+     "outcome": "The project team takes you, its only member who has done the job. You learn more in a year than in many before it. Two colleagues moved to other work by the software stop saying hello at the pantry."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "floor": {
+      "chance": 0.45,
+      "react": [
+       -1,
+       2,
+       -3
+      ]
+     },
+     "countersigner": {
+      "chance": 0.35,
+      "react": [
+       2,
+       -2,
+       2
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "ls_regular",
+   "title": "The Regular",
+   "requires": {
+    "maxRank": 1,
+    "minAge": 38,
+    "cooldown": {
+     "key": "long_stay",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_stay",
+   "body": "For years, the same caller has rung your section's hotline on the first Monday of every month, about a refund the rules say cannot be paid. You know the case by heart. A new rule now lets officers approve exceptions, with a director's signature, and every exception is audited. Nobody has used it yet.",
+   "choices": [
+    {
+     "text": "Write up the first exception, for the caller.",
+     "effects": {
+      "integrity": 5,
+      "competence": 2,
+      "standing": -3
+     },
+     "outcome": "The director signs it after two questions. The refund is paid in March, and the auditors find the file complete. On the first Monday of May, at nine, the phone does not ring, and you notice."
+    },
+    {
+     "text": "Wait for someone else to use the rule first.",
+     "effects": {
+      "standing": 3,
+      "integrity": -3
+     },
+     "outcome": "Another section uses it first, in September, for a weaker case, and spends six months with the auditors. You are glad you waited. The caller rings in October, and again in November."
+    },
+    {
+     "text": "Tell the caller about the rule, and how to apply.",
+     "effects": {
+      "competence": 3,
+      "integrity": 2,
+      "standing": -1
+     },
+     "outcome": "The caller writes in exactly as you explained. The request reaches your desk a fortnight later through the front door, and goes up for a director's signature like any other. It takes two months longer, and is beyond reproach."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "countersigner": {
+      "chance": 0.35,
+      "react": [
+       2,
+       -1,
+       1
+      ]
+     },
+     "floor": {
+      "chance": 0.4,
+      "react": [
+       2,
+       -2,
+       1
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "ls_hot_desk",
+   "title": "Hot Desk",
+   "requires": {
+    "maxRank": 1,
+    "minAge": 38,
+    "cooldown": {
+     "key": "long_stay",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_stay",
+   "body": "Your floor is moving to hot-desking: nobody keeps a desk, and everyone books one each morning on an app. You have had the same desk by the window for years, with three plants, a drawer only you can find things in, and a calendar from a vendor that has since closed. The move is on Monday.",
+   "choices": [
+    {
+     "text": "Book the window desk every morning, the minute the app opens.",
+     "effects": {
+      "competence": 2,
+      "standing": -3
+     },
+     "outcome": "The app opens at 7am. You book the window desk at 7:00:04 every morning for a year, and everybody knows why. The plants survive. The facilities officer asks you, in writing, to stop, and then gives up, also in writing."
+    },
+    {
+     "text": "Give it up. Take the plants home.",
+     "effects": {
+      "reputation": 2,
+      "standing": 2,
+      "competence": -2
+     },
+     "outcome": "The plants go home with you. On Monday you sit beside officers you have never met, and learn more about the ministry in a month than in years at the window. The drawer goes into storage, unopened."
+    },
+    {
+     "text": "Ask for an exemption, for the sake of the files.",
+     "effects": {
+      "competence": 3,
+      "standing": 1,
+      "integrity": -3
+     },
+     "outcome": "The exemption is granted for \"operational reasons\", and yours becomes the only fixed desk on the floor. Visitors on tours of the floor assume you must be senior. The people who work beside you know you are not."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "floor": {
+      "chance": 0.45,
+      "react": [
+       -2,
+       2,
+       -2
+      ]
+     },
+     "countersigner": {
+      "chance": 0.25,
+      "react": [
+       0,
+       1,
+       -1
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "ls_profile",
+   "title": "The Profile",
+   "requires": {
+    "maxRank": 1,
+    "minAge": 38,
+    "cooldown": {
+     "key": "long_stay",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_stay",
+   "body": "The ministry's newsletter wants to profile you, as one of its longest-serving officers. The communications team has already drafted the headline, \"A Passion for Service\", and twelve questions. Question nine asks what keeps you going. The honest answer is the people on your floor, and the dental plan.",
+   "choices": [
+    {
+     "text": "Answer honestly, dental plan and all.",
+     "effects": {
+      "integrity": 3,
+      "reputation": 4,
+      "standing": -3
+     },
+     "outcome": "The profile runs with the dental plan in paragraph four. It is the most-read piece the newsletter has ever published, and three officers write in to agree. The communications team asks you, next time, to talk about purpose."
+    },
+    {
+     "text": "Answer the way the communications team hopes.",
+     "effects": {
+      "standing": 3,
+      "integrity": -3,
+      "reputation": -1
+     },
+     "outcome": "The profile says you are driven by purpose, which is partly true, and shows you at a whiteboard, which is not. Your colleagues pin it up by the pantry, with a dental plan drawn on in pen."
+    },
+    {
+     "text": "Decline. Let them profile somebody else.",
+     "effects": {
+      "integrity": 2,
+      "standing": -1,
+      "reputation": -2
+     },
+     "outcome": "The newsletter profiles someone else, under the same headline, with the same twelve questions. You read it at your desk. Question nine is answered \"the mission\", and you find, to your surprise, that you believe it."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "floor": {
+      "chance": 0.4,
+      "react": [
+       3,
+       -2,
+       0
+      ]
+     },
+     "panel": {
+      "chance": 0.3,
+      "react": [
+       1,
+       2,
+       -1
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "ls_polling",
+   "title": "Polling Day",
+   "requires": {
+    "maxRank": 1,
+    "minAge": 38,
+    "cooldown": {
+     "key": "long_stay",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_stay",
+   "body": "On polling day you are working at a polling station, as at every election for years. At 7:59pm a man comes running for the gate just as the presiding officer, young and new to the job, starts to close it. Anyone in the queue by 8pm may vote. You know this. The presiding officer, clearly, does not.",
+   "choices": [
+    {
+     "text": "Call out the rule, and hold the gate open.",
+     "effects": {
+      "integrity": 5,
+      "competence": 2,
+      "standing": -3
+     },
+     "outcome": "You call it out, loud enough for the station to hear, and hold the gate. The man joins the queue at 7:59:40, and votes. Afterwards the presiding officer thanks you, stiffly, and asks for your name, for the report."
+    },
+    {
+     "text": "Tell the presiding officer quietly, and step back.",
+     "effects": {
+      "competence": 3,
+      "integrity": 2,
+      "reputation": -2
+     },
+     "outcome": "The presiding officer checks the handbook, which takes ninety seconds, while the man waits at the gate, out of breath. He votes at 8:03pm, by the book, and the station closes three minutes late, which also goes in the report."
+    },
+    {
+     "text": "It is not your call. Let the gate close.",
+     "effects": {
+      "standing": 2,
+      "integrity": -5
+     },
+     "outcome": "The gate closes at 7:59:50. The man stands outside it for a minute, then walks away. Nobody else saw, and the report says the station closed on time, which it did, by ten seconds."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "agencies": {
+      "chance": 0.4,
+      "react": [
+       2,
+       1,
+       -3
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

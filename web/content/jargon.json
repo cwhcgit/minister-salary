@@ -366,6 +366,14 @@
       ]
     },
     {
+      "term": "Committee of Inquiry",
+      "meaning": "A panel a minister appoints under the Inquiries Act, usually chaired by a retired judge, to find out what went wrong in a serious failure; it can call witnesses, and its report is published.",
+      "match": "Committee of Inquiry|Committees of Inquiry",
+      "entryPoints": [
+        "ts_terms"
+      ]
+    },
+    {
       "term": "GPC",
       "meaning": "Government Parliamentary Committee: the governing party's backbench MPs who shadow one ministry.",
       "match": "\\bGPCs?\\b|Government Parliamentary Committee",

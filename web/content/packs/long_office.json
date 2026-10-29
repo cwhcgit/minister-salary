@@ -1,0 +1,279 @@
+{
+ "id": "long_office",
+ "title": "Long in Office",
+ "note": "Senior ministers, from Minister to Deputy Prime Minister, in their late fifties and sixties, who can hold office for many years. One three-year cooldown (long_office).",
+ "events": [
+  {
+   "id": "lo_counterpart",
+   "title": "The Counterpart",
+   "requires": {
+    "minRank": 13,
+    "maxRank": 15,
+    "minAge": 55,
+    "cooldown": {
+     "key": "long_office",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_office",
+   "body": "A minister from a neighbouring country, a friend since you were both new in office, rings you on a private number. Your ministry is about to announce a decision that will hurt an industry across the border, where an election is three months away. Your counterpart asks for the announcement to wait until it is over.",
+   "choices": [
+    {
+     "text": "Agree to wait three months.",
+     "effects": {
+      "standing": 3,
+      "integrity": -5,
+      "reputation": -2
+     },
+     "outcome": "The announcement waits. Your counterpart is re-elected, and sends a case of something expensive, which you declare and return. Your own industry, which needed the decision, spends the three months asking why."
+    },
+    {
+     "text": "Announce it on the day planned.",
+     "effects": {
+      "integrity": 4,
+      "competence": 2,
+      "standing": -3
+     },
+     "outcome": "You announce it on schedule. Across the border, your counterpart's party loses two seats and blames you by name. The private number stops ringing, and regional meetings are formal for some years."
+    },
+    {
+     "text": "Announce on schedule, and tell your counterpart the day before.",
+     "effects": {
+      "competence": 3,
+      "reputation": 1,
+      "integrity": -2,
+      "heat": 3
+     },
+     "outcome": "With a day's warning, your counterpart announces a support package first. The two announcements land side by side in the morning papers, looking almost coordinated. The private number keeps ringing, less often."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "leadership": {
+      "chance": 0.4,
+      "react": [
+       -3,
+       1,
+       1
+      ]
+     },
+     "officials": {
+      "chance": 0.4,
+      "react": [
+       -2,
+       2,
+       0
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "lo_pre_agreed",
+   "title": "Pre-Agreed",
+   "requires": {
+    "minRank": 13,
+    "maxRank": 15,
+    "minAge": 55,
+    "cooldown": {
+     "key": "long_office",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_office",
+   "body": "Your officials have learned your preferences so well that their papers now arrive already agreeing with you, with the options you would reject removed before you see them. Decisions that once took a month take a day, and your ministry is the fastest in government. You cannot remember the last paper that surprised you.",
+   "choices": [
+    {
+     "text": "Ask for one paper a month that argues against you.",
+     "effects": {
+      "competence": 4,
+      "integrity": 2,
+      "standing": -3
+     },
+     "outcome": "The first arrives labelled \"Contrary view (as requested)\", and is very good. By the third month, officials compete to write it. Decisions take a week again, and two of them come out differently."
+    },
+    {
+     "text": "Leave it. It works.",
+     "effects": {
+      "standing": 3,
+      "competence": -3,
+      "heat": 3
+     },
+     "outcome": "It does work. Years later an auditor finds a scheme nobody questioned, and asks to see the options paper that went to the Minister. There was only ever one option in it."
+    },
+    {
+     "text": "Bring in an outside panel to test the big decisions.",
+     "effects": {
+      "competence": 3,
+      "reputation": 3,
+      "standing": -4
+     },
+     "outcome": "The panel meets quarterly: a professor, a former banker and a union leader. In its first year it finds a serious flaw, in a scheme your officials had doubted and never mentioned. They are relieved, and a little put out."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "officials": {
+      "chance": 0.45,
+      "react": [
+       3,
+       -2,
+       1
+      ]
+     },
+     "leadership": {
+      "chance": 0.3,
+      "react": [
+       -1,
+       2,
+       -1
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "lo_historian",
+   "title": "The Historian",
+   "requires": {
+    "minRank": 13,
+    "maxRank": 15,
+    "minAge": 55,
+    "cooldown": {
+     "key": "long_office",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_office",
+   "body": "A historian writing the official account of a crisis you helped to handle, years ago, asks to interview you. Your memory of it turns on a decisive phone call you made at 2am. The government's records put the call at 9:40am, and another minister made it. The historian has the records too.",
+   "choices": [
+    {
+     "text": "Check the records first, and correct yourself.",
+     "effects": {
+      "integrity": 5,
+      "competence": 1,
+      "reputation": -2
+     },
+     "outcome": "You spend a weekend with the files, and arrive with your own memory corrected in pencil. The historian is delighted. The book gives you a short, accurate paragraph, and the other minister, long retired, writes to thank you."
+    },
+    {
+     "text": "Tell it the way you remember it.",
+     "effects": {
+      "reputation": 2,
+      "standing": 1,
+      "integrity": -4
+     },
+     "outcome": "It is a good story, and you tell it well. The book quotes it in full, followed by a footnote giving the time from the records. Reviewers enjoy the footnote more than the story."
+    },
+    {
+     "text": "Decline the interview, and send the files.",
+     "effects": {
+      "integrity": 1,
+      "standing": 1,
+      "reputation": -2
+     },
+     "outcome": "The chapter is written from the files alone. It is accurate, dry and short on you. Your 2am phone call survives only in your own telling, at dinners, where nobody brings footnotes."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "officials": {
+      "chance": 0.35,
+      "react": [
+       2,
+       -2,
+       1
+      ]
+     },
+     "fellowMPs": {
+      "chance": 0.35,
+      "react": [
+       2,
+       -2,
+       0
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "lo_podcast",
+   "title": "The Podcast",
+   "requires": {
+    "minRank": 13,
+    "maxRank": 15,
+    "minAge": 55,
+    "cooldown": {
+     "key": "long_office",
+     "years": 3
+    }
+   },
+   "weight": 8,
+   "once": true,
+   "cooldown": "long_office",
+   "body": "Two hosts in their twenties want you on their podcast. Its last guest was a durian seller, and it is the most popular show in the country among people who do not read newspapers. Your press secretary is against it. The hosts promise you can talk about anything, and they mean it.",
+   "choices": [
+    {
+     "text": "Go, and answer anything.",
+     "effects": {
+      "reputation": 6,
+      "integrity": 1,
+      "standing": -5
+     },
+     "outcome": "Ninety minutes, unedited. You are funny about your first election and frank about a policy you would now do differently. The clips travel. At the next Cabinet meeting, two colleagues have clearly listened to the frank part."
+    },
+    {
+     "text": "Go, with the questions agreed in advance.",
+     "effects": {
+      "standing": 2,
+      "reputation": -2
+     },
+     "outcome": "The hosts agree the questions, then ask them in a tone that makes it plain they were agreed. The episode is polite, and loses half its usual audience. Your press secretary calls it a success."
+    },
+    {
+     "text": "Decline, and suggest a younger colleague instead.",
+     "effects": {
+      "standing": 2,
+      "integrity": 1,
+      "reputation": -3
+     },
+     "outcome": "A younger minister goes in your place, is very good, and is now known to a generation that has never heard your name. Your press secretary is relieved. You listen to the episode in the car, twice."
+    }
+   ],
+   "witnesses": {
+    "by": {
+     "pressGallery": {
+      "chance": 0.4,
+      "react": [
+       3,
+       -2,
+       0
+      ]
+     },
+     "leadership": {
+      "chance": 0.35,
+      "react": [
+       -3,
+       1,
+       1
+      ]
+     },
+     "fellowMPs": {
+      "chance": 0.3,
+      "react": [
+       0,
+       0,
+       2
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

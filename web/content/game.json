@@ -458,6 +458,14 @@
     {
       "flag": "protege_claimed",
       "item": "a junior officer's objection, which you said you had asked for"
+    },
+    {
+      "flag": "narrow_terms",
+      "item": "the terms of reference of an inquiry, drafted to stop just short of you"
+    },
+    {
+      "flag": "estate_criterion",
+      "item": "a scoring criterion added in the year a Minister's estates needed one"
     }
   ],
   "folderLimit": 3,
