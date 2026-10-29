@@ -2,6 +2,7 @@
 // and the trace agrees with the engine. No dependencies — run with: node test/harness.test.js
 const assert = require('assert');
 const H = require('../harness');
+const View = require('../harness/screen');
 const { checkScreen, screenTerms } = require('../harness/leak-check');
 
 const build = H.loadBuild();
@@ -85,7 +86,7 @@ ok('locked and unknown choices are refused', () => {
 ok('the screen view carries nothing hidden', () => {
   // Every key that may appear in a screen object. Anything else is a leak by construction.
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
-    'namePlaceholder', 'player', 'gender',   // the start screen's name field and gender choice
+    'namePlaceholder', 'genders', 'player', 'gender',   // the start screen's name field and gender choice
     'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'batchmate', 'label',
     'outcome', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
     'ending', 'epitaph', 'positionLabel', 'position', 'ageLabel', 'lifetimeEarnings',
@@ -640,7 +641,7 @@ ok('the player\'s name and gender are text only: the same seed plays identically
     }
     // nobody shares a word of the player's name: not the batchmate, not the cast
     for (const r of runs) {
-      const S = r.run.S, mine = build.engine.playerWords(S.name);
+      const S = r.run.S, mine = build.engine.playerWords(S.name, build.content);
       if (S.rival) for (const w of S.rival.name.toLowerCase().split(/\s+/)) assert.ok(!mine.includes(w), `${origin} ${seed}: the batchmate shares the player's name "${w}"`);
       for (const p of Object.values(S.cast.on).concat(S.cast.past)) if (p) for (const w of p.nm.full.toLowerCase().split(/\s+/)) assert.ok(!mine.includes(w), `${origin} ${seed}: ${p.nm.full} shares the player's name`);
     }
@@ -680,7 +681,7 @@ ok('the player\'s tokens: name, formal name and pronouns, a blank name drawn for
   assert.strictEqual(up.gender, 'f');
   assert.ok(C.cast.names.some(x => x.full === up.name && x.pron === 'f'), up.name);
   const others = Object.values(old.cast.on).concat(old.cast.past).filter(Boolean).flatMap(p => p.nm.full.toLowerCase().split(/\s+/)).concat(old.rival.name.toLowerCase().split(/\s+/));
-  assert.ok(E.playerWords(up.name).every(w => !others.includes(w)), 'the old save\'s drawn name clashes with its people');
+  assert.ok(E.playerWords(up.name, C).every(w => !others.includes(w)), 'the old save\'s drawn name clashes with its people');
   assert.strictEqual(E.nextEvent(C, old).state.name, up.name);
   assert.strictEqual(E.player(C, old).name, up.name, 'an un-upgraded save reads the same defaults');
   // the lint knows the tokens: an unknown field is flagged, and so is a pronoun before a present tense
@@ -692,6 +693,52 @@ ok('the player\'s tokens: name, formal name and pronouns, a blank name drawn for
   assert.ok(checkScreen('A {player.formal} B', build, []).some(h => /player placeholder/.test(h.why)));
   assert.ok(checkScreen('Thank you, Mr Lim Hui Min.', build, [], { player: { name: 'Lim Hui Min', gender: 'f' } }).some(h => /honorific/.test(h.why)));
   assert.deepStrictEqual(checkScreen('Thank you, Ms Lim Hui Min.', build, [], { player: { name: 'Lim Hui Min', gender: 'f' } }), []);
+});
+
+ok('the player\'s choices are data: a third choice and a new token field need no code, and nothing but text reads the gender', () => {
+  const C = build.content, E = build.engine;
+  // the table in game.json drives the start screen
+  assert.deepStrictEqual(E.genders(C), Object.entries(C.player.genders).map(([id, g]) => ({ id, label: g.label })));
+  assert.deepStrictEqual(View.startCard(build, 'grad').genders, Object.values(C.player.genders).map(g => g.label));
+  // add "Mdm" and a reflexive field, in data only
+  const T = JSON.parse(JSON.stringify(C.player));
+  T.genders.mdm = { label: 'Madam', pool: 'f', honorific: 'Mdm', they: 'she', them: 'her', their: 'her' };
+  for (const [k, g] of Object.entries(T.genders)) g.self = k === 'm' ? 'himself' : 'herself';
+  const C3 = { ...C, player: T }, b3 = { ...build, content: C3 };
+  assert.deepStrictEqual(View.startCard(b3, 'grad').genders, ['Female', 'Male', 'Madam']);
+  const say = (st, t) => E.render(C3, { id: 't', title: 'T', body: t, choices: [{ text: 'A', outcome: 'B' }] }, st).body;
+  const S3 = E.newGame(C3, 'grad', 'Lim Hui Min', 9, { gender: 'mdm' });
+  assert.strictEqual(S3.gender, 'mdm');
+  assert.strictEqual(say(S3, '{player.formal} said {player.they} would do it {player.self}. {Player.Self}.'), 'Mdm Lim Hui Min said she would do it herself. Herself.');
+  const blank = E.newGame(C3, 'grad', '', 9, { gender: 'mdm' });
+  assert.ok(C.cast.names.some(n => n.full === blank.name && n.pron === 'f'), 'a blank name is drawn from the choice\'s pool');
+  assert.strictEqual(E.newGame(C3, 'grad', 'X', 9, { gender: 'nonsense' }).gender, C.player.default, 'an unknown choice reads as the default');
+  const { castStatic } = require('./contexts');
+  const card = { id: 'x_self', title: 'X', body: '{player.formal} did it {player.self}.', choices: [{ text: 'A', outcome: 'B' }] };
+  assert.deepStrictEqual(castStatic({ ...b3, content: { ...C3, events: C.events.concat([card]) } }).filter(x => /x_self|player\./.test(x)), [], 'a new field is a known token');
+  delete T.genders.m.self;
+  assert.ok(castStatic(b3).some(x => /player\.genders\.m: has fields/.test(x)), 'a field missing from one choice is flagged');
+  // the leak check and the lint use the table's honorifics
+  assert.ok(checkScreen('Thank you, Ms Lim Hui Min.', b3, [], { player: { name: 'Lim Hui Min', gender: 'mdm' } }).some(h => /honorific/.test(h.why)));
+  // the same seed plays the same career under every choice: only the text reads the gender
+  const play = (content, gender) => {
+    let s = E.nextEvent(content, E.newGame(content, 'poly', 'Lim Hui Min', 77, { gender, rival: true })).state;
+    const r = H.rng(5);
+    for (let t = 0; t < 60 && !s.ending; t++) {
+      const ev = E.eventOf(content, s), live = ev.choices.map((c, i) => i).filter(i => E.choiceAvailable(ev.choices[i], s));
+      s = E.advance(content, s, live[Math.floor(r() * live.length)]).state;
+    }
+    const x = JSON.parse(JSON.stringify(s)); delete x.gender;
+    return x;
+  };
+  const base = play(C3, 'f');
+  for (const g of ['m', 'mdm']) assert.deepStrictEqual(play(C3, g), base, `the run moved with the choice ${g}`);
+  // and in the engine's source, the gender is read only by the player's text functions
+  const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'web', 'engine.js'), 'utf8');
+  const block = src.slice(src.indexOf('// --- the player ---'), src.indexOf('// --- the cast ---'));
+  const outside = src.replace(block, '').split('\n').filter(l => /\bgender\b/.test(l) && !/^\s*\/\//.test(l));
+  assert.deepStrictEqual(outside.map(l => l.trim()), ['const me = playerOf(content, { name, gender: opts.gender, seed });   // text only', 'seed, name: me.name, gender: me.gender, origin: origin.id,'],
+    'something outside the player\'s text functions reads the gender');
 });
 
 console.log(`\nAll ${passed} harness tests passed.`);

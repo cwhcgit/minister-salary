@@ -70,18 +70,22 @@ const STAT_VALUES = [
   [/\b(reputation|standing|integrity|competence)\b\s*[:=(]?\s*\d{1,3}\b/i, "stat value during play"]
 ];
 
-// "Mr Tan Wei Ming" for a player who chose Female, or "Ms ..." for one who chose Male.
-function wrongHonorific(text, player) {
+// Another choice's honorific before the player's name (game.json player.genders): "Mr Tan Wei
+// Ming" for a player who chose Female, "Ms ..." for one who chose Male, and so on for any choice.
+function wrongHonorific(text, player, build) {
   if (!player || !player.name || text.indexOf(player.name) < 0) return null;
-  const esc = player.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const wrong = player.gender === "m" ? "Ms|Mrs|Mdm|Miss" : "Mr";
-  const m = text.match(new RegExp(`\\b(?:${wrong}) ${esc}\\b`));
+  const T = ((build && build.content.player) || {}).genders;
+  if (!T || !T[player.gender]) return null;
+  const re = x => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const mine = T[player.gender].honorific;
+  const wrong = [...new Set(Object.values(T).map(g => g.honorific).filter(h => h && h !== mine))];
+  const m = wrong.length && text.match(new RegExp(`\\b(?:${wrong.map(re).join("|")}) ${re(player.name)}\\b`));
   return m ? m[0] : null;
 }
 
 function checkScreen(text, build, terms = screenTerms(build), opts = {}) {
   const hits = [];
-  const hon = wrongHonorific(text, opts.player);
+  const hon = wrongHonorific(text, opts.player, build);
   if (hon) hits.push({ why: "wrong honorific for the player", match: hon });
   const at = text.search(ENDING_LINE);
   const during = at >= 0 ? text.slice(0, at) : opts.ending ? "" : text;   // what is shown before the ending card
@@ -109,15 +113,16 @@ function checkScreen(text, build, terms = screenTerms(build), opts = {}) {
 if (require.main === module) {
   const N = +process.argv[2] || 150;
   const build = H.loadBuild({ canaries: true });
-  // the start screen, by run: both genders, a blank name (drawn for the run), and typed names
-  // that share words with the batchmate's and the cast's pools
-  const PLAYERS = [["", "f"], ["Tan Wei Ming", "m"], ["Nur Aisyah", "f"], ["", "m"], ["Kumar", "m"], ["Ong Mei Xuan", "f"]];
+  // the start screen, by run: every gender choice in game.json, a blank name (drawn for the run),
+  // and typed names that share words with the batchmate's and the cast's pools
+  const NAMES = ["", "Tan Wei Ming", "Nur Aisyah", "Kumar", "Ong Mei Xuan"];
+  const GENDERS = build.engine.genders ? build.engine.genders(build.content).map(g => g.id) : [undefined];
   const terms = screenTerms(build);
   let screens = 0, bad = 0;
   for (const origin of ["scholar", "grad", "poly"]) {
     for (let i = 0; i < N; i++) {
       const r = H.rng(i * 31 + 7);
-      const [name, gender] = PLAYERS[i % PLAYERS.length];
+      const name = NAMES[i % NAMES.length], gender = GENDERS[i % GENDERS.length];
       let run = H.newRun(origin, i * 13 + 1, { build, rival: i % 2 === 1, name, gender });   // half with a batchmate
       const player = { name: run.name, gender: run.gender };
       for (let t = 0; t < 95; t++) {

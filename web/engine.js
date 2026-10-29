@@ -17,12 +17,13 @@ const Engine = (() => {
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   const STATS = ["reputation", "standing", "integrity", "competence"];
 
-  // opts.gender: "f" or "m", from the start screen (default "f"). A blank name is drawn from the
-  // cast's name pool for that gender. Both are text only: neither touches the run's dice.
+  // opts.gender: a choice from content.player.genders (the start screen; default: the table's
+  // default). A blank name is drawn from the cast's name pool for it. Both are text only:
+  // neither touches the run's dice.
   function newGame(content, originId, name, seed, opts = {}) {
     const origin = content.origins.find(o => o.id === originId);
     const r = rng(seed);
-    const me = playerOf(content, { name, gender: opts.gender, seed });
+    const me = playerOf(content, { name, gender: opts.gender, seed });   // text only
     const g = {
       seed, name: me.name, gender: me.gender, origin: origin.id,
       age: origin.startAge,
@@ -62,7 +63,7 @@ const Engine = (() => {
       currentEvent: null
     };
     g.cepStart = g.cep;
-    if (opts.rival && content.rival) g.rival = newRival(content, origin, seed, playerWords(g.name));
+    if (opts.rival && content.rival) g.rival = newRival(content, origin, seed, playerWords(g.name, content));
     castSync(content, g, null, true);   // the run's people, before the first card
     return g;
   }
@@ -123,26 +124,58 @@ const Engine = (() => {
 
   // --- the player ------------------------------------------------------------
   // The game says "you", so the player's name and gender only show where someone else speaks of
-  // or to them: a colleague, Hansard, the papers, the batchmate, the ending card.
-  //   {player}         the name as entered (or drawn, when left blank)
-  //   {player.formal}  "Ms" or "Mr" and the name
-  //   {player.they} {player.them} {player.their}, capitalised as {Player.They} or {player.They}
+  // or to them: a colleague, Hansard, the papers, the batchmate, the ending card. Every player
+  // token is filled here, by playerSub, which only sub() calls. What each choice fills in is data:
+  // content.player.genders (game.json), in the order the start screen shows them.
+  //   {player}           the name as entered (or drawn, when left blank)
+  //   {player.formal}    the choice's honorific and the name ("Ms Tan Wei Ling")
+  //   {player.<field>}   any other field of the choice: they, them, their, or one a writer adds;
+  //                      capitalised as {Player.They} or {player.They}
   // As with the cast, a subject pronoun only comes before a past-tense verb ("{player.they} said").
+  // Nothing outside text reads the gender: not the dice, not the draw, not the appraisal.
   const PLAYER_TOKEN = /\{([Pp]layer)(?:\.([A-Za-z]+))?\}/g;
-  const PLAYER_FIELDS = ["", "name", "formal", "they", "them", "their"];
-  const HONORIFICS = new Set(["mr", "ms", "mrs", "mdm", "miss", "dr", "prof"]);
-  // The words of a typed name that a cast member or the batchmate must not share.
-  function playerWords(name) {
-    return String(name || "").toLowerCase().replace(/[.,\-]/g, " ").split(/\s+/)
-      .filter(w => w && !NAME_PARTICLES.has(w) && !HONORIFICS.has(w));
+  const PLAYER_OWN = ["label", "pool"];   // a choice's fields that are not tokens
+  // For content with no table (an old game.json): the two choices the start screen first had.
+  const PLAYER_TABLE = { default: "f", genders: {
+    f: { label: "Female", pool: "f", honorific: "Ms", they: "she", them: "her", their: "her" },
+    m: { label: "Male", pool: "m", honorific: "Mr", they: "he", them: "him", their: "his" } } };
+  const playerTable = content => (content && content.player && content.player.genders ? content.player : PLAYER_TABLE);
+  // The start screen's choices, in order: [{ id, label }].
+  function genders(content) {
+    return Object.entries(playerTable(content).genders).map(([id, g]) => ({ id, label: g.label || id }));
   }
-  // A name for a blank field: one of the cast pool's names for the chosen gender, in an order
+  // A choice the table has, or the table's default.
+  function genderId(content, g) {
+    const T = playerTable(content);
+    return Object.prototype.hasOwnProperty.call(T.genders, g) ? g : (T.default in T.genders ? T.default : Object.keys(T.genders)[0]);
+  }
+  // The token fields a text may use: {player}, {player.name}, {player.formal}, and every field the
+  // table's choices have (other than their own label and pool).
+  function playerFields(content) {
+    const out = new Set(["", "name", "formal"]);
+    for (const g of Object.values(playerTable(content).genders)) for (const k of Object.keys(g)) if (!PLAYER_OWN.includes(k)) out.add(k.toLowerCase());
+    return [...out];
+  }
+  // Honorifics a typed name may already start with ("Dr Tan"): the table's, and the usual ones.
+  function honorifics(content) {
+    const out = new Set(["mr", "ms", "mrs", "mdm", "miss", "dr", "prof"]);
+    for (const g of Object.values(playerTable(content).genders)) if (g.honorific) out.add(String(g.honorific).toLowerCase().replace(/\.$/, ""));
+    return out;
+  }
+  // The words of a typed name that a cast member or the batchmate must not share.
+  function playerWords(name, content) {
+    const hon = honorifics(content);
+    return String(name || "").toLowerCase().replace(/[.,\-]/g, " ").split(/\s+/)
+      .filter(w => w && !NAME_PARTICLES.has(w) && !hon.has(w));
+  }
+  // A name for a blank field: one of the cast pool's names for the choice's pool, in an order
   // drawn on the player's own stream, clear of any name words in `avoid`.
   function drawName(content, seed, gender, avoid) {
     const C = content && content.cast;
     if (!C || !(C.names || []).length) return "You";   // an old build with no name pool
     const r = rng((Math.imul(seed >>> 0, 0x2C1B3C6D) ^ hashStr("player")) >>> 0);
-    const pool = C.names.filter(n => n.pron === gender);
+    const want = playerTable(content).genders[gender].pool || gender;
+    const pool = C.names.filter(n => n.pron === want);
     const list = pool.length ? pool : C.names;
     const order = list.map((_, i) => i);
     for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
@@ -150,10 +183,10 @@ const Engine = (() => {
     return list[i].full;
   }
   // The player as the text sees them. A save from before the start screen asked has no gender
-  // (it reads as "f") and, if its name was left blank, the old placeholder "You": it gets a
-  // name drawn as for a blank field, clear of the run's people as they stand.
+  // (it reads as the table's default) and, if its name was left blank, the old placeholder "You":
+  // it gets a name drawn as for a blank field, clear of the run's people as they stand.
   function playerOf(content, s) {
-    const gender = s.gender === "m" ? "m" : "f";
+    const gender = genderId(content, s.gender);
     const typed = typeof s.name === "string" ? s.name.trim() : "";
     if (typed && typed !== "You") return { name: typed, gender };
     const avoid = new Set();
@@ -163,34 +196,36 @@ const Engine = (() => {
   }
   // Fills in an old save's name and gender for good (the defaults above), so they never change.
   function upgradePlayer(content, s) {
-    if (s && (!["f", "m"].includes(s.gender) || playerOf(content, s).name !== s.name)) {
+    if (s) {
       const me = playerOf(content, s);
-      s.name = me.name; s.gender = me.gender;
+      if (me.gender !== s.gender || me.name !== s.name) { s.name = me.name; s.gender = me.gender; }
     }
     return s;
   }
-  function playerField(me, field) {
-    const f = (field || "").toLowerCase(), P = PRON[me.gender] || PRON.f;
-    switch (f) {
-      case "": case "name": return me.name;
-      case "formal": return /^(mr|ms|mrs|mdm|miss|dr|prof)\.?\s/i.test(me.name) ? me.name : `${me.gender === "m" ? "Mr" : "Ms"} ${me.name}`;
-      case "they": case "them": case "their": return P[f];
-      default: return null;
+  function playerField(content, me, field) {
+    const f = (field || "").toLowerCase(), g = playerTable(content).genders[me.gender] || {};
+    if (f === "" || f === "name") return me.name;
+    if (f === "formal") {
+      const first = me.name.split(/\s+/)[0].toLowerCase().replace(/\.$/, "");
+      return honorifics(content).has(first) || !g.honorific ? me.name : `${g.honorific} ${me.name}`;
     }
+    if (PLAYER_OWN.includes(f)) return null;
+    const k = Object.keys(g).find(x => x.toLowerCase() === f);
+    return k && typeof g[k] === "string" ? g[k] : null;
   }
   function playerSub(text, s, content) {
-    if (typeof text !== "string" || !/\{[Pp]layer[.}]/.test(text)) return text;
+    if (!/\{[Pp]layer[.}]/.test(text)) return text;
     const me = playerOf(content, s);
     return text.replace(PLAYER_TOKEN, (m, nm, field) => {
-      const v = playerField(me, field);
+      const v = playerField(content, me, field);
       if (v === null) return m;   // an unknown field stays raw: the lint and the leak check catch it
       return isUpper(nm) || isUpper(field) ? cap(v) : v;
     });
   }
-  // The player for the UI: name, gender and the formal name.
+  // The player for the UI and the checks: name, gender, its label and the formal name.
   function player(content, s) {
     const me = playerOf(content, s);
-    return { ...me, formal: playerField(me, "formal") };
+    return { ...me, label: (playerTable(content).genders[me.gender] || {}).label || me.gender, formal: playerField(content, me, "formal") };
   }
 
   // --- the cast ------------------------------------------------------------
@@ -331,7 +366,7 @@ const Engine = (() => {
     const used = new Set();
     for (const p of Object.values(K.on).concat(K.past)) if (p) nameWords(p.nm).forEach(w => used.add(w));
     if (s.rival) s.rival.name.split(/\s+/).forEach(w => used.add(w.toLowerCase()));
-    playerWords(s.name).forEach(w => used.add(w));   // nor the player's own
+    playerWords(s.name, content).forEach(w => used.add(w));   // nor the player's own
     const order = C.names.map((_, i) => i);
     for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
     const ok = i => nameWords(C.names[i]).every(w => !used.has(w));
@@ -398,7 +433,7 @@ const Engine = (() => {
     for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
     const i = order.find(k => !used.includes(k));
     if (i === undefined) return null;
-    const text = playerSub(lines[i].replace(/\{([A-Za-z]+)\}/g, (m, f) => {
+    const text = sub(lines[i].replace(/\{([A-Za-z]+)\}/g, (m, f) => {
       const v = personField(content, s, role, p, f);
       return v === null ? m : isUpper(f) ? cap(v) : v;
     }), s, content);
@@ -2013,7 +2048,7 @@ const Engine = (() => {
     const score = s.integrity + s.reputation / 2 + 8 * marks;
     // an exit that was not a retirement has its own lines: nobody gives a farewell speech for those
     const tiers = (content.legacyByEnding || {})[s.ending] || content.legacyTiers || [];
-    return playerSub((tiers.find(x => score >= x.min) || { text: "" }).text, s, content);
+    return sub((tiers.find(x => score >= x.min) || { text: "" }).text, s, content);
   }
 
   // The ending card's labels: not every ending is a retirement.
@@ -2039,7 +2074,7 @@ const Engine = (() => {
   // The ending card's title and epitaph, with the player's name and pronouns filled in.
   function ending(content, s) {
     const e = content.endings.find(x => x.id === s.ending);
-    return e && { ...e, title: playerSub(e.title, s, content), epitaph: playerSub(e.epitaph, s, content) };
+    return e && { ...e, title: sub(e.title, s, content), epitaph: sub(e.epitaph, s, content) };
   }
 
   function title(content, r) {
@@ -2188,7 +2223,7 @@ const Engine = (() => {
     for (const d of (content.declassifiedFlags || []).concat((content.endgame || {}).declassifiedFlags || [])) {
       if (told.has(d.label) || !meets(d.requires || {}, s)) continue;
       told.add(d.label);
-      out.push({ label: d.label, text: playerSub(d.text, s, content) });
+      out.push({ label: d.label, text: sub(d.text, s, content) });
     }
 
     if (s.rival) out.push(...declassifyRival(content, s));
@@ -2226,14 +2261,14 @@ const Engine = (() => {
     const said = v.rel >= 3 ? `"{player} was the best colleague I ever had." Usually when you are not there.`
       : v.rel <= -3 ? "Nothing, in public. In this building, that is a statement."
       : `"{player}? A good colleague." In this building, a complete sentence.`;
-    out.push({ label: `What ${v.name} says`, text: playerSub(said, s, content) });
+    out.push({ label: `What ${v.name} says`, text: sub(said, s, content) });
     return out;
   }
 
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
     finalLabels, ending, recentKeys, lockedText, statVerdicts, endPlan,
     // the player's name and gender: the start screen, old saves, the lint and the tests
-    player, upgradePlayer, playerWords, PLAYER_FIELDS,
+    player, genders, upgradePlayer, playerWords, playerFields,
     // cast and card parts, for the immersion lint and the tests
     render, applyVariant, partSlots, partCombos, roleNeeds, optionNeeds, maxRankForAge, personField, TOKEN,
     article, STATS, QUIET: QUIET_YEAR };

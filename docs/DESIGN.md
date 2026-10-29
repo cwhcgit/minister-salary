@@ -275,6 +275,18 @@ Three origins. This is where the meritocracy satire lives — as balance, not co
 Also chosen: name, ministry preference, and one **Trait** (e.g. *Thick Skin*, *Good Chinese*,
 *Knows Everyone's Birthday*) that unlocks a small pool of exclusive events.
 
+**Name and gender are text, not content branches.** The start screen asks for a name and a gender,
+and the game still says "you", so they show only where someone else names or addresses the player.
+The choices are data: `player.genders` in `game.json` lists each one (its label on the start screen,
+its honorific, its pronouns, and the cast name pool a blank name is drawn from), the start screen
+builds its buttons from that table, and every `{player}`, `{player.formal}` or `{player.<field>}`
+token is filled by one function, `playerSub`, which only `sub()` calls. Adding a choice (an "Mdm",
+say) or a field (`{player.self}`) is a change to the table, with no code change; the lint checks that
+every choice has the same fields. Nothing outside text rendering reads the gender: not the dice, the
+draw, the appraisal or any requirement, so the same seed plays the same career under every choice.
+Writers therefore never write a card twice, or gate a card or a choice on the player's gender: they
+write one line with the tokens in it (CONTENT_PLAN section 8).
+
 ---
 
 ## 8. Endings

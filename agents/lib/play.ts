@@ -12,7 +12,7 @@ export interface Ctx {
   cohort: string;
   persona: Persona;
   playerName: string;
-  playerGender: "f" | "m";    // the start screen's Female / Male
+  playerGender: string;       // the start screen's choice (a key of game.json player.genders)
   build: Build;
   llm: Llm;
   spend: Spend;

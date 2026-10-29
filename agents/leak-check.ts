@@ -12,7 +12,9 @@ const terms = Leak.screenTerms(build);
 let bad = 0;
 for (const p of PERSONAS.filter(x => x.blind)) {
   const hits = leakGate(p, build).map(h => `${h.file}${h.line ? `:${h.line}` : ""}  ${h.why}: "${h.match}"`);
-  if (!["f", "m"].includes(p.gender)) hits.push(`no gender for ${p.name}: give the persona "f" or "m", to match the name`);
+  const choices = build.engine.genders(build.content);
+  const choice = choices.find((g: { id: string; label: string }) => g.id === p.gender);
+  if (!choice) hits.push(`${p.name}'s gender "${p.gender}" is not a start-screen choice (game.json player.genders: ${choices.map((g: { id: string }) => g.id).join(", ")})`);
   let screens = 0;
   for (const [i, origin] of ["scholar", "grad", "poly"].entries()) {
     const r = H.rng(i * 101 + p.id.length);
@@ -31,6 +33,6 @@ for (const p of PERSONAS.filter(x => x.blind)) {
     bad += hits.length;
     console.log(`✗ ${p.id}`);
     for (const h of hits.slice(0, 12)) console.log(`    ${h}`);
-  } else console.log(`✓ ${p.id}: no hidden terms, nothing copied from the secret docs; ${screens} screens as ${p.name} (${p.gender === "f" ? "Female" : "Male"}) clean`);
+  } else console.log(`✓ ${p.id}: no hidden terms, nothing copied from the secret docs; ${screens} screens as ${p.name} (${choice!.label}) clean`);
 }
 process.exit(bad ? 1 : 0);

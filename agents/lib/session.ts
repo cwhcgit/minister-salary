@@ -23,7 +23,7 @@ export interface SessionCtx {
   cohort: string;
   persona: Persona;
   playerName: string;
-  playerGender: "f" | "m";    // the start screen's Female / Male
+  playerGender: string;       // the start screen's choice (a key of game.json player.genders)
   builds: { plain: Build; canary: Build };
   llm: Llm;
   spend: Spend;

@@ -58,7 +58,7 @@ export const FUN_DEFAULTS: FunConfig = {
 export interface Persona {
   id: string;
   name: string;                // the player name on the start screen and the ending card
-  gender: "f" | "m";           // the start screen's Female / Male, to match the name
+  gender: string;              // the start screen's choice, to match the name: a key of game.json player.genders ("f" Female, "m" Male)
   file: string;                // persona prompt, relative to agents/personas
   blind: boolean;              // true: screen view only. false: mechanics brief + full trace
   model: ModelId;

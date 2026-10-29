@@ -129,14 +129,14 @@ function newRun(origin, seed, opts = {}) {
   if (!build.content.origins.some(o => o.id === origin)) throw new Error(`unknown origin ${origin}`);
   // opts.recent: card ids and versions from the player's last runs (the phone's freshness memory)
   const recent = Array.isArray(opts.recent) ? opts.recent : [];
-  // opts.name and opts.gender ("f" or "m"): the start screen's fields. A blank name is drawn for
-  // the gender, as on the phone. Text only: the same seed plays the same either way.
-  const gender = opts.gender === "m" ? "m" : "f";
+  // opts.name and opts.gender (a key of game.json player.genders; the engine falls back to the
+  // table's default): the start screen's fields. A blank name is drawn for the gender, as on the
+  // phone. Text only: the same seed plays the same either way.
   const blank = build.engine.player ? "" : "You";   // an older build's placeholder for a blank name
-  const S0 = build.engine.newGame(build.content, origin, opts.name || blank, seed >>> 0, { rival: !!opts.rival, recent, gender });
+  const S0 = build.engine.newGame(build.content, origin, opts.name || blank, seed >>> 0, { rival: !!opts.rival, recent, gender: opts.gender });
   const { S, draw: d } = draw(build, S0);
   return {
-    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name, gender: S.gender || gender, rival: !!opts.rival, recent,
+    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name, gender: S.gender || null, rival: !!opts.rival, recent,
     turn: 1, phase: S.ending ? "ending" : "event",
     S, pendingDraw: d,
     last: null,          // { outcome, log, prev } shown on the next screen
@@ -289,7 +289,7 @@ function trace(run) {
   const build = getBuild(run.buildHash);
   const S = run.S;
   return {
-    buildHash: run.buildHash, origin: run.origin, seed: run.seed, name: run.name, gender: run.gender || "f",
+    buildHash: run.buildHash, origin: run.origin, seed: run.seed, name: run.name, gender: run.gender || null,
     rival: run.rival || false, batchmate: S.rival || null,   // the batchmate's hidden file, if any
     cast: S.cast || null,                                     // the run's people: who held each role, and what happened to them
     recent: run.recent || [],                                 // freshness memory the run started with (replay key)

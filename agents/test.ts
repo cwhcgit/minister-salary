@@ -32,8 +32,10 @@ await ok("blind prompts pass the leak gate; full-knowledge prompts carry the mec
 
 await ok("every persona starts under its own name and a gender to match, the same one wherever the name recurs", () => {
   const byName = new Map<string, string>();
+  const b = H.loadBuild();
+  const choices = b.engine.genders(b.content).map((g: { id: string }) => g.id);
   for (const p of PERSONAS) {
-    assert.ok(p.name && ["f", "m"].includes(p.gender), `${p.id}: name and gender`);
+    assert.ok(p.name && choices.includes(p.gender), `${p.id}: a name, and a gender from the start screen's choices`);
     assert.strictEqual(byName.get(p.name) ?? p.gender, p.gender, `${p.name} has two genders`);
     byName.set(p.name, p.gender);
     const run = H.newRun("grad", 5, { name: p.name, gender: p.gender });

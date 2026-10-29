@@ -16,9 +16,6 @@ const money = n =>
   Math.abs(n) >= 1e6 ? "$" + (n / 1e6).toFixed(2).replace(/\.?0+$/, "") + "M"
                      : "$" + Math.round(n).toLocaleString();
 
-// The start screen's gender choice, in order (ui.js GENDERS).
-const GENDERS = [["f", "Female"], ["m", "Male"]];
-
 // Text the start screen shows around the origin picker (ui.js startScreen).
 const START = {
   title: "Minister Salary",
@@ -83,11 +80,14 @@ function endingCard(build, S) {
   };
 }
 
+// The gender choices come from game.json player.genders, in order (engine.genders; same as ui.js).
 // player: { name, gender } as the run has them (a blank name field is the name drawn for the run).
 function startCard(build, originId, rival = false, player = null) {
   const o = build.content.origins.find(x => x.id === originId);
+  const E = build.engine;
   const card = { ...START, origin: { name: o.name, difficulty: o.difficulty + (rival ? " + batchmate" : ""), blurb: o.blurb } };
-  if (player) card.player = { name: player.name, gender: (GENDERS.find(([g]) => g === player.gender) || GENDERS[0])[1] };
+  if (E.genders) card.genders = E.genders(build.content).map(g => g.label);
+  if (player && E.player) card.player = { name: player.name, gender: E.player(build.content, { name: player.name, gender: player.gender }).label };
   return card;
 }
 
@@ -128,4 +128,4 @@ function toText(view, opts = {}) {
   return out.join("\n\n");
 }
 
-module.exports = { header, eventCard, outcomeCard, endingCard, startCard, toText, money, LETTERS, STATS_LABEL, GENDERS };
+module.exports = { header, eventCard, outcomeCard, endingCard, startCard, toText, money, LETTERS, STATS_LABEL };

@@ -6,9 +6,9 @@ let content, S = null, phase = "start", outcome = "", log = [], pickedOrigin = "
 // Play with a batchmate: remembered between runs as a convenience, saved inside each run as S.rival.
 let rivalOn = (() => { try { return localStorage.getItem("ms.rival") === "1"; } catch (e) { return false; } })();
 // The player's gender, for how colleagues, the papers and Hansard refer to them: remembered like
-// the name, saved inside each run as S.gender. Text only.
-const GENDERS = [["f", "Female"], ["m", "Male"]];
-let pickedGender = (() => { try { return localStorage.getItem("ms.gender") === "m" ? "m" : "f"; } catch (e) { return "f"; } })();
+// the name, saved inside each run as S.gender. The choices are game.json's player.genders (read
+// once the content has loaded); text only.
+let pickedGender = (() => { try { return localStorage.getItem("ms.gender") || ""; } catch (e) { return ""; } })();
 // The remembered name. Older versions stored "You" for a blank name, which is a blank name.
 const rememberedName = () => { try { const n = localStorage.getItem("ms.name") || ""; return n === "You" ? "" : n; } catch (e) { return ""; } };
 
@@ -72,12 +72,14 @@ function header() {
 
 // ---------- screens ----------
 function startScreen() {
+  const genders = Engine.genders(content);
+  if (!genders.some(g => g.id === pickedGender)) pickedGender = Engine.player(content, {}).gender;   // the table's default
   app.innerHTML = `
     <div class="title serif">Minister<br>Salary</div>
     <div class="tag-line">You join the public service. The formula that sets the Prime Minister's pay is published, and so is the distance between you and it.</div>
     <input id="nm" placeholder="Your name" maxlength="28" value="${esc(rememberedName())}">
-    <div class="gender" role="radiogroup" aria-label="Gender">${GENDERS.map(([g, label]) =>
-      `<div class="g" role="radio" tabindex="0" data-g="${g}" aria-checked="${g === pickedGender}">${label}</div>`).join("")}</div>
+    <div class="gender" role="radiogroup" aria-label="Gender" style="grid-template-columns:repeat(${genders.length},1fr)">${genders.map(g =>
+      `<div class="g" role="radio" tabindex="0" data-g="${esc(g.id)}" aria-checked="${g.id === pickedGender}">${esc(g.label)}</div>`).join("")}</div>
     ${content.origins.map(o => `
       <div class="origin" role="radio" tabindex="0" data-o="${o.id}" aria-checked="${o.id === pickedOrigin}">
         <div class="n"><span>${esc(o.name)}</span><span class="diff">${esc(o.difficulty + (rivalOn ? " + batchmate" : ""))}</span></div>

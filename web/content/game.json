@@ -1090,6 +1090,14 @@
       }
     ]
   },
+  "player": {
+    "note": "The start screen's choices, in the order shown, and what each one fills in. `label` is the choice as shown; `pool` is the cast.names pronoun a blank name is drawn from (default: the key); `honorific` makes {player.formal}; every other field is a token, {player.<field>}, so a new choice or a new field is a data change. Text only: nothing else in the game reads it. See docs/DESIGN.md section 7 and docs/CONTENT_PLAN.md section 8.",
+    "default": "f",
+    "genders": {
+      "f": { "label": "Female", "pool": "f", "honorific": "Ms", "they": "she", "them": "her", "their": "her" },
+      "m": { "label": "Male", "pool": "m", "honorific": "Mr", "they": "he", "them": "him", "their": "his" }
+    }
+  },
   "cast": {
     "note": "The run's recurring people. See docs/CONTENT_PLAN.md section 8 for how cards use them. Names are invented; never add a real public figure, or a batchmate's name (rival.json).",
     "roles": {

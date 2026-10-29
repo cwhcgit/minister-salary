@@ -63,7 +63,7 @@ server.listen(0, async () => {
     expect('start hint', $('.hint').textContent, View.startCard(build, 'grad').hint);
     // the name field and the gender choice (Female first, and chosen until the player picks)
     expect('start name placeholder', $('#nm').placeholder, View.startCard(build, 'grad').namePlaceholder);
-    expect('start genders', $$('.gender .g').map(g => g.textContent).join(' | '), View.GENDERS.map(([, l]) => l).join(' | '));
+    expect('start genders', $$('.gender .g').map(g => g.textContent).join(' | '), View.startCard(build, 'grad').genders.join(' | '));
     expect('start gender chosen', $$('.gender .g').map(g => g.getAttribute('aria-checked')).join(' '), 'true false');
     let screens = 0;
 

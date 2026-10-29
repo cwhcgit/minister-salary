@@ -24,7 +24,8 @@ The engine reports the appraisal, promotion and election details through a `trac
 
 ## Builds
 
-The player's name and gender (`{ name, gender: "f" | "m" }`, default Female) are text only: they
+The player's name and gender (`{ name, gender }`, a key of `game.json` `player.genders`; default
+its `default`, Female) are text only: they
 fill the `{player}` tokens and keep the cast's and the batchmate's names clear of the player's, and
 never touch the run's dice. The same seed plays the same career as Female and as Male; the name
 and gender are part of the replay key only so that the screens replay word for word.

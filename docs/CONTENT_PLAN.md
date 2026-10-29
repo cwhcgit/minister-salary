@@ -440,15 +440,20 @@ fires only while the peer you beat to the box is still your peer; if they have g
 
 ### The player
 
-The start screen asks for a name and Female or Male (both remembered on the phone). A blank name is
-drawn for the run from `cast.names`, for the chosen gender. Like the cast, both are text only: they
+The start screen asks for a name and a gender (both remembered on the phone). The choices are the
+table `player.genders` in `game.json`: each has a `label` (the button), an `honorific`, its pronouns
+and any other token fields, and a `pool` (the `cast.names` pronoun a blank name is drawn from). A
+blank name is drawn for the run from that pool. Like the cast, both are text only: they
 never use the run's dice, and the same seed plays the same career either way. Nobody in the run shares
 a word of the player's name: a cast member or batchmate who would is given another name.
 
-**Tokens.** `{player}` is the name as entered. `{player.formal}` is "Ms" or "Mr" and the name ("Ms
-Tan Wei Ling"; a name typed with its own honorific, "Dr Tan", is kept as typed). `{player.they}`,
-`{player.them}`, `{player.their}` follow the cast's rule: a subject pronoun only before a past-tense
-verb. Capitalise the role or the field for a capital: `{Player.They}`.
+**Tokens.** `{player}` is the name as entered. `{player.formal}` is the choice's honorific and the
+name ("Ms Tan Wei Ling"; a name typed with its own honorific, "Dr Tan", is kept as typed).
+`{player.<field>}` is that field of the player's choice: `{player.they}`, `{player.them}`,
+`{player.their}` today, and any field added to every choice in the table. Pronouns follow the cast's
+rule: a subject pronoun only before a past-tense verb. Capitalise the role or the field for a capital:
+`{Player.They}`. Never write two versions of a line, or a requirement, for the player's gender: the
+tokens are the only place it shows.
 
 **Where.** The game says "you", so the player is named only where someone else names or addresses
 them, and lightly: the papers and the Forum page ("headlined "{player.formal} candid on scheme
