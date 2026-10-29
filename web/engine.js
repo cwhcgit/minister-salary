@@ -1812,8 +1812,24 @@ const Engine = (() => {
     else if (!said.length && opts.moved) parts.push(say(opts.moved > 0 ? "better" : "worse", opts.moved > 0 ? "Your file is stronger than it was a year ago." : "Your file is weaker than it was a year ago."));
     else if (!said.length && opts.lastOff) parts.push(say(opts.lastOff > 0 ? "lastHigh" : "lastLow", opts.lastOff > 0 ? "Last year's grade was higher than your file deserved, and this year's is not." : "Last year's grade was lower than your file deserved, and this year's is not."));
     parts.push(...said);
+    // a year that must be explained (a new grade, a warning), in a long career whose lines are all
+    // spent: a plain line whose words change every year (statWords.whyAgain names the age), so it
+    // never repeats a sentence
+    // (it names the stats, so it counts as the stats in words for the swing line's spacing)
+    if (opts.needed && !parts.filter(Boolean).length && W.whyAgain) {
+      const again = voice(s, "whyAgain", W.whyAgain, t => sayStats(t.replace(/\{age\}/g, ageWords(s.age)), names, { grade: f.grade }));
+      if (again) { parts.push(again); v.wordsAt = s.cardsPlayed || 0; }
+    }
     // (the grade a promotion takes is never stated: players learn it, or don't)
     return parts.filter(Boolean).join(" ");
+  }
+
+  // An age in words ("fifty-four"), for a line that may carry no digits.
+  function ageWords(n) {
+    const ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
+      "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+    const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+    return n < 20 ? ones[n] : tens[Math.floor(n / 10)] + (n % 10 ? "-" + ones[n % 10] : "");
   }
 
   // One quiet line on the outcome screen when a single choice moves a stat by 6 or more: the
@@ -1880,7 +1896,7 @@ const Engine = (() => {
     v.off = Math.sign(order.indexOf(f.fromStats) - order.indexOf(f.grade));
     const warned = log.some(l => l.kind === "warn");
     const text = !prev || warned || s.rank > rank0 || prev.grade !== f.grade
-      ? appraisalWhy(content, s, f, { first: !prev, stats: !prev || warned,
+      ? appraisalWhy(content, s, f, { first: !prev, stats: !prev || warned, needed: !prev || warned || prev.grade !== f.grade,
           moved: base0 === undefined ? 0 : Math.sign(order.indexOf(base0) - order.indexOf(f.fromStats)), lastOff: off0 })
       : "";
     if (text) log[i] = { kind: "why", text }; else log.splice(i, 1);

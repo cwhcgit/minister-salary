@@ -9,7 +9,8 @@
 //   - a repeatable card, or any card of a series, is shown in full more often than its series allows,
 //     or a series' second full showing is not its second-showing scene;
 //   - a consequence is left waiting for a card the career can no longer see, or is dropped without
-//     the state saying it was struck.
+//     the state saying it was struck;
+//   - a group is claimed by a card the career was not shown.
 // It also checks the data: every group has two cards or more, every repeatable card is in a series,
 // every series that shows a card twice has a second-showing scene for each of its stances, and a
 // card that a consequence fires (a triggered card) is in a group only if it ends its story (it
@@ -89,7 +90,7 @@ ok("a save from before the groups reads them back from its history", () => {
     let run = H.newRun("grad", seed, { build });
     const r = H.rng(seed);
     while (run.phase !== "ending" && Object.keys(run.S.exclusive || {}).length < 2) {
-      const live = H.choices(run).filter(c => c.available);
+      const live = H.choices(run);   // the choices on screen
       run = H.step(run, live[Math.floor(r() * live.length)].id);
     }
     if (run.phase === "ending") continue;
@@ -137,6 +138,8 @@ for (const bot of ["random", "win"]) for (const rival of [false, true]) for (con
     stats.seriesPassed += t.passed.filter(p => p.kind === "series").length;
   }
   const S = run.S;
+  // a group is claimed only by a card the career was actually shown
+  for (const [g, id] of Object.entries(S.exclusive || {})) if (met[g] !== id) fail(`${where()}: ${g} claimed by ${id}, which was not shown as its first card (${met[g]})`);
   stats.careers++;
   stats.claimed += Object.keys(S.exclusive || {}).length;
   stats.struck += (S.struck || []).length;

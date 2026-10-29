@@ -3219,7 +3219,11 @@
         "You fix a system in March, it stops producing complaints, and nobody connects the two.",
         "A paper you wrote goes upstairs under someone else's name, and does well there.",
         "You catch an error in a figure three divisions had already passed, and fix it quietly.",
-        "Another ministry copies an approval process you redesigned, and doesn't credit you."
+        "Another ministry copies an approval process you redesigned, and doesn't credit you.",
+        "Your team's system goes live on schedule, and the launch email thanks the vendor.",
+        "You rewrite a policy paper until it is short enough to be read, and it is.",
+        "A year of careful work on a scheme nobody will notice until it fails, and it doesn't.",
+        "You fix the spreadsheet everyone else had learned to work around."
       ],
       "visibility": [
         "You present a scheme your team built at three forums, and by the third, people call it your scheme.",
@@ -3228,7 +3232,11 @@
         "You present your team's work at a lunchtime talk, with your photo on the poster and the team in the footnotes.",
         "A scheme you worked on gets a feature on the intranet, with a photograph of you pointing at a chart.",
         "You sit on four panels this year, three of them about the same scheme.",
-        "A speech you didn't write mentions a scheme you worked on, and you, by name. That part you did arrange."
+        "A speech you didn't write mentions a scheme you worked on, and you, by name. That part you did arrange.",
+        "You present the same good slide at four meetings, and at the fourth someone quotes it back to you.",
+        "Your project's progress report carries your name in the subject line, every month.",
+        "You volunteer to brief the people above you, and the briefing is what they remember of the project.",
+        "A year of being the one who sends the summary email after every meeting."
       ],
       "low": [
         "You do what's asked, on time and not a minute more, and nobody can find anything to complain about.",
@@ -3237,7 +3245,11 @@
         "Your inbox reaches zero twice this year, which on your floor is treated as a rumour.",
         "You attend every meeting on time and speak at none of them.",
         "Your to-do list is shorter in December than in January, mostly by deletion.",
-        "A year of steady work, measured mostly in the emails you didn't send."
+        "A year of steady work, measured mostly in the emails you didn't send.",
+        "You do the year's work at the year's pace, and the work gets done.",
+        "Every deadline this year is met on its last afternoon, and none is missed.",
+        "You keep your head below the parapet all year, and the parapet holds.",
+        "A year of on-time, unremarkable work that nobody has to check twice."
       ]
     },
     "variants": [
@@ -4607,7 +4619,12 @@
         "You spend a quiet year fixing a form nobody asked you to fix, and three people quietly stop complaining.",
         "A quiet year, and you clear a backlog older than anyone in the office, without telling anyone.",
         "You fix the meeting-room booking system in a quiet year, and the queue for the big room disappears.",
-        "In a quiet year you write down a process that existed only in one retiring officer's head."
+        "In a quiet year you write down a process that existed only in one retiring officer's head.",
+        "A quiet year, and you rewrite a form so that it asks each question only once.",
+        "With nothing on fire, you finally fix the shared calendar nobody could find anything in.",
+        "You spend a quiet spring untangling a filing system, and by autumn a file takes seconds to find.",
+        "A slow year, so you write the handover notes your predecessor never left you.",
+        "Nothing urgent comes in, and you use the gap to retire three reports that nobody read."
       ],
       "visibility": [
         "A quiet year and forty lunches, of which you remember thirty: about average.",
@@ -4615,7 +4632,12 @@
         "A quiet year of coffees in the same three cafés, with people who will remember you as \"helpful\".",
         "A quiet year of networking, after which three people you've met once describe you as \"a friend\".",
         "In a quiet year you join two committees, both for the networking and one of them for the food.",
-        "A quiet year of receptions, where you learn to hold a plate, a glass and a business card at once."
+        "A quiet year of receptions, where you learn to hold a plate, a glass and a business card at once.",
+        "A quiet year of kopi with people from other ministries, most of whom now answer your emails.",
+        "You spend a slow year at seminars, and learn the names behind the acronyms.",
+        "With little on your desk, you sit in on other divisions' meetings, and two of them remember you.",
+        "A quiet year, and your name turns up on the guest list of every farewell lunch on the floor.",
+        "You use an uneventful year to say yes to every working group, and leave each with a new contact."
       ],
       "low": [
         "A week on Bintan in June, where you check your email only twice. That's progress.",
@@ -4623,7 +4645,12 @@
         "A quiet year, and you take all your leave, which the leave system flags as unusual.",
         "You rest, and everything keeps running without you. It's reassuring, and very slightly insulting.",
         "A quiet year, and you leave at six without a single email asking where you are.",
-        "A quiet year, and you read three books, none of them about leadership."
+        "A quiet year, and you read three books, none of them about leadership.",
+        "A quiet year: you read the papers in the morning and leave on the stroke of six.",
+        "Nothing much happens, and you let it, from nine to six with an hour for lunch.",
+        "A calm year in which your out-of-office reply gets more use than your outbox.",
+        "You spend a quiet year exactly as busy as the year requires, and no busier.",
+        "An uneventful year of short emails and long lunches, and nobody asks for more."
       ]
     },
     "variants": [

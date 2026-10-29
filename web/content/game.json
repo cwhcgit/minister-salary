@@ -907,6 +907,11 @@
       }
     },
     "whyFirst": "Your appraisal is the yearly grade that decides your promotions. It looks at your competence, your standing upstairs and your reputation outside the building.",
+    "whyAgain": [
+      "At {age}, your grade still rests on {competence}, {standing} and {reputation}, read the way they have been for years.",
+      "At {age}, the panel weighs {competence}, {standing} and {reputation} again, and finds nothing in them it has not weighed before.",
+      "At {age}, {competence}, {standing} and {reputation} are where they were, and so are the reasons for the grade."
+    ],
     "why": {
       "contrast": [
         "{A} is not in question; {B} is.",
