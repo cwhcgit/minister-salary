@@ -410,7 +410,7 @@ ok('the National Bonus card opens the Indicators: it comes first, and every late
   const family = C.events.filter(e => e.series && e.series.key === opener.series.key && e !== opener);
   assert.ok(family.length >= 3, 'the Budget cards');
   // what each stance's second showing names: the choice made on the National Bonus card
-  const names = { headline: /\bGDP\b/, lowest: /\blowest incomes\b/, steady: /\basked Cabinet\b/ };
+  const names = { headline: /\bGDP\b/, lowest: /\blowest incomes\b/, steady: /\basked the other ministers\b/ };
   const explains = /National Bonus|three months' (?:extra )?salary|up to six/;
   for (const c of opener.choices) assert.ok(names[c.stance], `"${c.text}": its stance must be one every Budget card has`);
   for (const e of family) for (const st of Object.keys(names)) {

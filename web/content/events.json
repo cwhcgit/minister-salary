@@ -2310,14 +2310,14 @@
         "stance": "headline"
       },
       {
-        "text": "Ask Cabinet whether ministers should be paid on targets they can move.",
+        "text": "Ask the other ministers whether any of you should be paid on targets you can move.",
         "effects": {
           "integrity": 18,
           "reputation": 12,
           "standing": -14,
           "heat": 8
         },
-        "outcome": "Cabinet hears the question in complete silence. It is minuted, and answered at great length without being answered at all. From then on your colleagues choose their words around you.",
+        "outcome": "You ask at the ministers' weekly meeting. The room hears the question in complete silence. It is minuted, and answered at great length without being answered at all. From then on your colleagues choose their words around you.",
         "schedule": [
           {
             "eventId": "bonus_vindicated",
@@ -2341,7 +2341,7 @@
             "outcome": "Quicker and cleaner, and it moves the figure everyone watches. Your bonus comes in at six months, the most it can be. The annex on who gained is on page nine, and you stop reading at page eight."
           },
           {
-            "text": "Ask Cabinet whether ministers should be paid on targets they can move.",
+            "text": "Ask the other ministers whether any of you should be paid on targets you can move.",
             "outcome": "The question is heard in complete stillness, and minuted. It is answered at length without being answered at all. Colleagues now choose their words near you, and the minute is filed where it can be found."
           }
         ]
@@ -2358,8 +2358,8 @@
             "outcome": "The headline figure moves first and fastest. Your National Bonus comes in at six months, the most the formula allows. The economist's slide on who gained is moved to the appendix."
           },
           {
-            "text": "Ask Cabinet whether this is how ministers should be paid.",
-            "outcome": "Cabinet hears the question in silence and minutes it with care. It is answered fully, and not at all. People adjust how they speak near you, and the minute stays in the file."
+            "text": "Ask the other ministers whether this is how any of you should be paid.",
+            "outcome": "The ministers' weekly meeting hears the question in silence and minutes it with care. It is answered fully, and not at all. People adjust how they speak near you, and the minute stays in the file."
           }
         ]
       }
@@ -4042,7 +4042,7 @@
   {
     "id": "bonus_vindicated",
     "title": "Terms of Reference",
-    "body": "Some years ago you asked Cabinet whether ministers should be paid on targets they can move themselves. Now a committee has been appointed to review political salaries, and your question appears, unattributed, as item three of its terms of reference. The committee is inviting submissions.",
+    "body": "Some years ago you asked the other ministers whether ministers should be paid on targets they can move themselves. Now a committee has been appointed to review political salaries, and your question appears, unattributed, as item three of its terms of reference. The committee is inviting submissions.",
     "triggered": true,
     "choices": [
       {
@@ -4272,7 +4272,7 @@
         },
         "steady": {
           "title": "The National Bonus, Again",
-          "body": "Growth is strong, and the next three Budgets need a plan. Last time you asked Cabinet whether ministers should be paid on targets they can move, and funded neither policy. Your ministry's plan has moved none of the targets since, and your officials have drafted it again. Whatever you sign now becomes the standing plan, rolled over every Budget without coming back to you.",
+          "body": "Growth is strong, and the next three Budgets need a plan. Last time you asked the other ministers whether ministers should be paid on targets they can move, and funded neither policy. Your ministry's plan has moved none of the targets since, and your officials have drafted it again. Whatever you sign now becomes the standing plan, rolled over every Budget without coming back to you.",
           "choices": [
             {
               "text": "Change it. Push headline GDP while the going is good.",
@@ -4280,7 +4280,7 @@
             },
             {
               "text": "Change it. Put the lowest incomes first.",
-              "outcome": "The lowest incomes outgrow the median by the next survey, and that is the standing plan from now on. Your bonus rises with them. You do not ask Cabinet about it a second time."
+              "outcome": "The lowest incomes outgrow the median by the next survey, and that is the standing plan from now on. Your bonus rises with them. You do not ask about it a second time."
             },
             {
               "text": "Let it renew.",
@@ -4396,7 +4396,7 @@
       "scenes": {
         "steady": {
           "title": "The National Bonus, Again, in a Downturn",
-          "body": "The economy has turned down, and the next three Budgets need a plan. Last time you asked Cabinet whether ministers should be paid on targets they can move, and funded neither policy. So your officials' draft chases no target: it only holds on to jobs, under a cover that says \"For signature\", not \"For decision\". Whatever you sign now becomes the standing plan.",
+          "body": "The economy has turned down, and the next three Budgets need a plan. Last time you asked the other ministers whether ministers should be paid on targets they can move, and funded neither policy. So your officials' draft chases no target: it only holds on to jobs, under a cover that says \"For signature\", not \"For decision\". Whatever you sign now becomes the standing plan.",
           "choices": [
             {
               "text": "Sign it. Jobs first.",
@@ -4570,7 +4570,7 @@
         },
         "steady": {
           "title": "The National Bonus, Again, Before an Election",
-          "body": "An election is due, and the next three Budgets need a plan. Last time you asked Cabinet whether ministers should be paid on targets they can move. Your officials' plan moves no target, and its annex on timing is blank. Your party branch, the volunteers who run your campaign, asks by voice note what is in it for the ward. Whatever you sign now becomes the standing plan.",
+          "body": "An election is due, and the next three Budgets need a plan. Last time you asked the other ministers whether ministers should be paid on targets they can move. Your officials' plan moves no target, and its annex on timing is blank. Your party branch, the volunteers who run your campaign, asks by voice note what is in it for the ward. Whatever you sign now becomes the standing plan.",
           "choices": [
             {
               "text": "Fill the annex. Bring the visible measures forward.",
