@@ -83,7 +83,7 @@
           ]
         }
       },
-      "body": "Your division has a year's money for a pilot: {scheme}, in three {scheme.place} of your choosing. Whatever it shows will be in the Minister's Committee of Supply speech in two years.",
+      "body": "Your division has the money for a one-year pilot of {scheme}, in three {scheme.place}, and you choose which three. If it works, the Minister will announce it in the Committee of Supply debate in two years, using the numbers your pilot produces. Where you run it will decide what those numbers look like.",
       "requires": { "minRank": 2, "maxRank": 3 },
       "weight": 9,
       "once": true,
@@ -107,7 +107,7 @@
           "effects": { "competence": 6, "standing": -2, "reputation": -3 },
           "setFlags": ["pilot_met", "pilot_control"],
           "schedule": [{ "eventId": "pilot_results", "inYears": 2, "chance": 0.85 }],
-          "outcome": "Half the sites get the pilot, and half get a letter explaining why they do not. The letters draw more feedback than the pilot. Your evaluation, though, will be very hard to argue with."
+          "outcome": "A lottery picks three {scheme.place} to get the pilot and three more to go without, for comparison. The three without get a letter explaining why, and draw more complaints than the pilot does. Your results, though, will be very hard to argue with."
         }
       ]
     },
@@ -197,23 +197,23 @@
             {
               "id": "easy",
               "requires": { "flagsAll": ["pilot_easy"] },
-              "text": "In your three {scheme.place}, take-up was 71%. Page 40 of the evaluation notes that those three would have taken up almost anything.",
-              "a": "71% goes into the speech on its own, and the Minister reads it with feeling. Page 40 stays where it was, which is page 40.",
+              "text": "In the three {scheme.place} you picked, take-up was 71%. But page 40 of the evaluation points out that those three would have taken up almost anything.",
+              "a": "71% goes into the speech on its own, and the Minister reads it with feeling. The warning stays where it was: on page 40.",
               "b": "71% goes up with its paragraph from page 40, and the speech keeps both: \"in places that were already well served\". No other line in the speech gets less applause.",
-              "c": "The speech goes ahead without your pilot. You spend the year in places that were not picked to like it, and the number you get there is smaller, and yours."
+              "c": "The speech goes ahead without your pilot. You spend another year running it in ordinary {scheme.place}, not ones picked to like it. The number you get there is smaller, and you trust it."
             },
             {
               "id": "hard",
               "requires": { "flagsAll": ["pilot_hard"] },
-              "text": "In your three {scheme.place}, take-up was 23%. For those three, that is remarkable. Out of context, it is 23%.",
-              "a": "You send the take-up at the best of the three: 64%. It is true of that one. The speech does not say which one, and nobody asks.",
+              "text": "In the three hard {scheme.place} you picked, take-up was 23%. For those three, that's remarkable. In a speech, without the context, it's just 23%.",
+              "a": "You send the figure from the best of the three: 64%. It's true of that one. The speech doesn't say which one, and nobody asks.",
               "b": "23% goes up with its context, and the speech uses both. The line gets no applause, and the Minister's office asks, kindly, whether there was a better number.",
               "c": "The speech goes ahead without your pilot. A second year in the same three brings take-up to 31%, which nobody upstairs asks about, and which you believe."
             },
             {
               "id": "control",
               "requires": { "flagsAll": ["pilot_control"] },
-              "text": "Against the control group, the gain is four points: real, measured, and smaller than anyone had hoped.",
+              "text": "Compared with the three {scheme.place} that went without, the pilot raised take-up by four percentage points: a real gain, properly measured, and much smaller than anyone had hoped.",
               "a": "You send the gain in the pilot's best month: nineteen points. Every word is accurate. The speech says \"up to nineteen points\", and the Minister says it twice.",
               "b": "Four points go up with the paragraph explaining why four is good. The speech uses it. A newspaper calls the result \"modest\", and quotes your paragraph correctly.",
               "c": "The speech goes ahead without your pilot. A second year confirms the four points, and finds that they last. Nobody upstairs asks, and you write it up anyway."
@@ -221,11 +221,11 @@
           ]
         }
       },
-      "body": "The evaluation is in, and the Minister's Committee of Supply speech needs one number from it by Friday. {result}",
+      "body": "The pilot you designed, {scheme}, has finished, and its evaluation is in. The Minister's Committee of Supply speech needs one number from it by Friday, and whatever you send is the number the country will hear. {result}",
       "requires": { "maxRank": 7 },
       "choices": [
         {
-          "text": "Send the number that will go furthest.",
+          "text": "Send the most impressive number, on its own.",
           "effects": { "standing": 6, "reputation": 2, "integrity": -5, "heat": 4 },
           "setFlags": ["pilot_flattered"],
           "schedule": [{ "eventId": "pilot_national", "inYears": 2, "chance": 0.85 }],
@@ -328,7 +328,7 @@
           ]
         }
       },
-      "body": "{Scheme.short} will go national next April, and the rollout needs an owner. {peer}'s side of the ministry runs operations, and has asked for it. So, you find, would you. The Deputy Secretary wants your view by Monday.",
+      "body": "{Scheme.short}, the pilot you designed, will go national next April, and someone has to run the rollout. The ministry's operations division has asked for it, with {peer} to lead. You'd like it yourself: whoever runs it owns its success and every complaint. The Deputy Secretary wants your view by Monday.",
       "requires": { "maxRank": 5 },
       "alternates": ["pilot_national_top", "pilot_national_pol"],
       "choices": [
@@ -439,7 +439,7 @@
           ]
         }
       },
-      "body": "{Scheme.short} will go national next April, and the rollout needs an owner. {peer}'s side of the ministry runs operations, and has asked for it. You designed the pilot years ago. The decision, now, is yours.",
+      "body": "{Scheme.short}, the pilot you designed years ago, will go national next April, and someone has to run the rollout. The ministry's operations division has asked for it, with {peer} to lead. You're senior enough now that the decision is yours, and you could keep it with your own people.",
       "requires": { "minRank": 6, "maxRank": 7 },
       "choices": [
         {
@@ -549,11 +549,11 @@
           ]
         }
       },
-      "body": "At the Committee of Supply, the Minister announces that {scheme.short} will go national. You designed the pilot as a civil servant, and nobody in the chamber knows it. Your own cut on the same head is due at four.",
+      "body": "The pilot you designed as a civil servant, {scheme.short}, is going national: the Minister announces it in the Committee of Supply debate. Nobody in the chamber knows it was yours. Your own speech on the same ministry's budget is due at four, and you could mention it.",
       "requires": { "minRank": 8, "maxRank": 10 },
       "choices": [
         {
-          "text": "Say, in your cut, that you designed it.",
+          "text": "Say, in your speech, that you designed it.",
           "effects": { "reputation": 5, "standing": -2, "integrity": -1 },
           "setFlags": ["pilot_claimed"],
           "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
@@ -564,14 +564,14 @@
           "effects": { "integrity": 3, "standing": 2, "reputation": -1 },
           "setFlags": ["pilot_unclaimed"],
           "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
-          "outcome": "You speak to your cut and nothing else. In the gallery, an official who sat in your pilot meetings recognises you and nods. It is all the credit there is, and plenty."
+          "outcome": "You stick to your speech. In the gallery, an official who sat in your pilot meetings recognises you and nods. That's all the credit there is, and it's plenty."
         },
         {
-          "text": "Use your cut on its weak spot, which you know best.",
+          "text": "Use your speech on its weak spot, which you know best.",
           "effects": { "competence": 3, "reputation": 2, "standing": -4 },
           "setFlags": ["pilot_warned"],
           "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
-          "outcome": "You ask, politely, what happens in the {scheme.place} where it was always going to struggle. The Minister promises to look into it, and does, which costs your old ministry a month."
+          "outcome": "You ask, politely, what happens in the {scheme.place} where it was always going to struggle. The Minister promises to look into it, and does. Your old ministry spends a month answering your question."
         }
       ]
     },
@@ -670,7 +670,7 @@
               "text": "64%, from the best of three {scheme.place}",
               "real": "21%"
             },
-            { "id": "control", "text": "nineteen points, from the pilot's best month", "real": "four" }
+            { "id": "control", "text": "nineteen points, from the pilot's best month", "real": "four points" }
           ]
         },
         "front": {
@@ -683,7 +683,7 @@
               "a": "Tell the auditors how the number was chosen.",
               "b": "Point the auditors to the evaluation's caveats.",
               "aOut": "Your note to the auditors runs to one page and uses the word \"chose\" twice. The report blames the evaluation, not its author, and upstairs everyone knows who that is. Your next appraisal says \"candour\".",
-              "bOut": "The reply cites the caveats and the word \"indicative\". The auditors accept it, and add a sentence on indicative figures that every ministry will be quoted for years."
+              "bOut": "The reply cites the caveats and the word \"indicative\". The auditors accept it, and add a sentence about indicative figures that every ministry will have quoted back at it for years."
             },
             {
               "id": "handed",
@@ -699,7 +699,7 @@
               "text": "{peer}'s team ran it, and {peer} is drafting the ministry's reply.",
               "a": "Tell the auditors the number was yours.",
               "b": "Let {peer}'s reply rest on the evaluation's caveats.",
-              "aOut": "You write to the auditors that the number was yours, not {peer}'s. {peer} reads the copy, rings you, and says nothing for several seconds, which is thanks.",
+              "aOut": "You write to the auditors that the number was yours, not {peer}'s. {peer} reads the copy and rings you, then says nothing for several seconds. That is how {peer} says thank you.",
               "bOut": "{peer}'s reply cites the caveats, as you suggested. It works. {peer} does not ask whose number it was, and you notice that {peer} does not need to."
             },
             {
@@ -713,7 +713,7 @@
                   }
                 }
               },
-              "text": "{peer}'s team ran it, though the speech thanked yours. {peer} drafts the reply.",
+              "text": "{peer}'s team ran it, though the Minister's speech thanked yours, and {peer} is drafting the ministry's reply.",
               "a": "Tell the auditors the number was yours.",
               "b": "Let {peer}'s reply rest on the evaluation's caveats.",
               "aOut": "You write to the auditors that the number was yours, not {peer}'s. {peer} reads the copy, and that evening rings you about nothing much, which has not happened since the speech.",
@@ -730,7 +730,7 @@
           ]
         }
       },
-      "body": "The Auditor-General's report has a paragraph on {scheme.short}: budgeted on {number}, it delivered {number.real}, and the gap was paid for. {front}",
+      "body": "Years ago, your pilot of {scheme.short} gave the Minister's speech its best number. The Auditor-General's report now has a paragraph on the national scheme: its budget assumed {number}, and it delivered {number.real}. The ministry paid for the difference. The paragraph names nobody yet. {front}",
       "requires": { "maxRank": 7, "flagsAll": ["pilot_flattered"] },
       "alternates": ["pilot_audit_clean", "pilot_audit_pol", "pilot_audit_clean_pol"],
       "choices": [
@@ -831,7 +831,7 @@
           ]
         }
       },
-      "body": "The Auditor-General's report has a paragraph on {scheme.short}: national take-up came within two points of the pilot's evaluation, \"which set realistic projections\". Nobody in the ministry remembers an audit paragraph without a recommendation.",
+      "body": "Years ago you ran the pilot of {scheme.short}. The Auditor-General's report now has a paragraph on the national scheme: take-up came within two points of your evaluation's forecast, \"which set realistic projections\". Nobody in the ministry can remember an audit paragraph with no recommendation in it.",
       "requires": { "maxRank": 7, "flagsNone": ["pilot_flattered"] },
       "choices": [
         {
@@ -852,7 +852,7 @@
       "id": "pilot_audit_pol",
       "triggered": true,
       "title": "The Paragraph",
-      "body": "The Auditor-General's report traces a costly shortfall in a national scheme to a number in its pilot evaluation, written before you left the service. {journalist} has found your name in the file, and wants a comment by six.",
+      "body": "Years ago, as a civil servant, you sent a flattering number from your pilot into a Minister's speech. The Auditor-General's report now traces an expensive shortfall in the national scheme to that number. {journalist} has found your name in the file, and wants a comment by six.",
       "requires": { "minRank": 8, "flagsAll": ["pilot_flattered"] },
       "choices": [
         {
@@ -865,7 +865,7 @@
           "text": "Say the ministry will respond in due course.",
           "effects": { "standing": 3, "reputation": -2, "heat": 4 },
           "setFlags": ["pilot_caveats"],
-          "outcome": "The ministry responds in due course. The piece runs without your quote and with your name, as the author of the number, who did not comment."
+          "outcome": "The ministry does respond, eventually. The piece runs without your quote but with your name: the author of the number, who \"did not respond to queries\"."
         }
       ]
     },
@@ -873,7 +873,7 @@
       "id": "pilot_audit_clean_pol",
       "triggered": true,
       "title": "The Paragraph",
-      "body": "The Auditor-General's report praises the projections of a national scheme, and the pilot evaluation they came from, which you wrote before you left the service. {journalist} has found your name in the file, and is writing it up for Sunday.",
+      "body": "Years ago, as a civil servant, you ran the pilot of a scheme that has since gone national. The Auditor-General's report praises the scheme for forecasting its own take-up almost exactly, from your pilot's evaluation. {journalist} has found your name in the file, and is writing it up for Sunday.",
       "requires": { "minRank": 8, "flagsNone": ["pilot_flattered"] },
       "choices": [
         {
@@ -893,7 +893,7 @@
     {
       "id": "whistle_spreadsheet",
       "title": "Forty-One Purchases",
-      "body": "{junior} closes your door and opens a spreadsheet: forty-one purchases from one vendor, every one between $5,900 and $5,999, just under the line for a quotation. All were approved two floors up.",
+      "body": "{junior} closes your door and opens a spreadsheet: forty-one purchases from one vendor, each between $5,900 and $5,999. Anything over $6,000 would have needed quotes from other vendors, so every one sits just under the line. All forty-one were approved by someone two floors up. {junior} wants to know what you'll do.",
       "requires": { "minRank": 3, "maxRank": 4, "cast": { "junior": { "flagsNone": ["protege"] } } },
       "weight": 9,
       "once": true,
@@ -904,7 +904,7 @@
           "setFlags": ["whistle_met", "whistle_protected"],
           "cast": { "junior": { "flags": ["brought_purchases", "kept_out"] } },
           "schedule": [{ "eventId": "whistle_panel", "inYears": 3, "chance": 0.85 }],
-          "outcome": "You send it up under your own name, retyped so the formatting is yours. Two floors up, someone stops saying good morning to you. {junior} thanks you once, and never mentions it again."
+          "outcome": "You send it up under your own name, retyped so that nothing points back to {junior}. Two floors up, someone stops saying good morning to you. {junior} thanks you once, and never mentions it again."
         },
         {
           "text": "Thank {junior}, and leave it where it is.",
@@ -912,7 +912,7 @@
           "setFlags": ["whistle_met", "whistle_ignored"],
           "cast": { "junior": { "flags": ["brought_purchases", "left_with_you"] } },
           "schedule": [{ "eventId": "whistle_panel", "inYears": 3, "chance": 0.85 }],
-          "outcome": "You thank {junior} for being thorough, and say you will keep an eye on it. {junior} watches you keeping an eye on it for about a month, then stops."
+          "outcome": "You thank {junior} for being thorough, and say you'll keep an eye on it. That evening {junior} emails you a note of the meeting, for the record. You never reply, and after a month {junior} stops asking."
         },
         {
           "text": "Report it through the proper channel, naming {junior} as the source.",
@@ -936,25 +936,25 @@
               "id": "protected",
               "requires": { "flagsAll": ["whistle_protected"] },
               "effects": { "0": { "standing": 2 } },
-              "text": "The audit you started has become a review panel, a barred vendor and a retirement nobody announced. The panel wants to commend whoever first found the pattern. {junior}, who did, is copied on the email.",
+              "text": "A few years ago {junior} brought you forty-one purchases kept just under the $6,000 line, and you reported them as your own finding, to protect {junior}. The case is closing: a barred vendor, and a retirement nobody announced. The review panel wants to commend whoever first spotted the pattern, and {junior} is copied on its email.",
               "a": "Give the panel {junior}'s name.",
               "aOut": "The commendation goes to {junior}, in a paragraph that uses the word \"diligence\" twice. {junior} thanks you in the lift, and does not say whether {junior.they} wanted it.",
-              "b": "Keep {junior}'s name out, as you promised.",
+              "b": "Keep {junior}'s name out, as you did then.",
               "bOut": "The panel commends you, since the report went up under your name. {junior} replies all with congratulations, and is the first to clap at the townhall."
             },
             {
               "id": "ignored",
               "requires": { "flagsAll": ["whistle_ignored"] },
               "effects": { "0": { "heat": -8, "standing": -2 }, "1": { "heat": 6 } },
-              "text": "The Auditor-General's report has found forty-one purchases, each just under $6,000, all from one vendor. A review panel wants to know when the ministry first knew. {junior} has been interviewed already, and kept the email.",
-              "a": "Tell the panel you were told, three years ago.",
+              "text": "A few years ago {junior} showed you forty-one purchases from one vendor, each just under the $6,000 line, and you left it there. Now the Auditor-General has found them too, and a review panel wants to know when the ministry first knew. {junior} has already been interviewed, and kept the email.",
+              "a": "Tell the panel you were shown them years ago.",
               "aOut": "The panel records the date, and the word \"candour\". Its paragraph on supervision is about you, without your name in it. {junior} is not called again.",
               "b": "Tell the panel you do not recall.",
               "bOut": "The panel records that you do not recall. It also has {junior}'s email, which recalls everything, with a timestamp. Nothing further is said to you in writing."
             },
             {
               "id": "reported",
-              "text": "Your report led to a barred vendor and a quiet retirement two floors up. It also made {junior} the officer whose name was in the box. In this year's ranking, {junior} is in the middle again, for the third year.",
+              "text": "A few years ago you reported {junior}'s spreadsheet of forty-one purchases through the proper channel, with {junior} named as the source. It led to a barred vendor and a quiet retirement two floors up. It also made {junior} the officer whose name was in the Source box. In this year's ranking, {junior} is in the middle again, for the third year running.",
               "a": "Argue for {junior} in the ranking.",
               "aOut": "You argue for forty minutes and spend most of your goodwill. {junior} moves up four places and never learns why. Two floors up, someone notes who argued.",
               "b": "Let the ranking be. It was never about the report.",
@@ -996,29 +996,29 @@
             {
               "id": "protected",
               "requires": { "flagsAll": ["whistle_protected"] },
-              "text": "A review panel at your old ministry is closing its file on forty-one purchases you once reported as your own finding. It would like to commend whoever first found the pattern, and has written to Parliament to ask if that was you.",
+              "text": "Years ago, as a civil servant, you reported forty-one purchases kept just under the $6,000 line as your own finding, to protect the junior officer who found them. A review panel at your old ministry is now closing the case. It wants to commend whoever first spotted the pattern, and has written to ask if that was you.",
               "a": "Give the panel the officer's name.",
               "aOut": "The officer is commended in a paragraph that uses the word \"diligence\" twice. A card arrives at your Meet-the-People Session with no message in it, only a signature.",
-              "b": "Keep the name out, as you promised.",
+              "b": "Keep the officer's name out, as you did then.",
               "bOut": "The panel commends you instead, which in Parliament is worth a line in a newsletter. Somewhere in your old ministry, the officer reads the line, and does not write."
             },
             {
               "id": "ignored",
               "requires": { "flagsAll": ["whistle_ignored"] },
               "effects": { "0": { "heat": -8 }, "1": { "heat": 6 } },
-              "text": "The Auditor-General has found forty-one purchases you were once shown and did not report. A review panel at your old ministry asks when you first knew. The officer who brought you the spreadsheet kept the email.",
-              "a": "Tell the panel you were told, three years ago.",
+              "text": "Years ago, as a civil servant, you were shown forty-one purchases kept just under the $6,000 line, and did nothing. The Auditor-General has now found them. A review panel at your old ministry has written to ask when you first knew. The officer who showed you the spreadsheet kept the email.",
+              "a": "Tell the panel you were shown them years ago.",
               "aOut": "Your answer goes into the report with its date attached. The report's paragraph on supervision is about you, and does not need your name to be.",
               "b": "Tell the panel you do not recall.",
               "bOut": "Not recalling is minuted, politely. The officer's email, which recalls everything, is attached to the minute. Nothing further reaches you, except, once, a journalist."
             },
             {
               "id": "reported",
-              "text": "A review panel at your old ministry is closing its file on forty-one purchases you once reported, with the officer who found them named as the source. Its report will thank \"an officer\". It asks whether you would like the officer named.",
+              "text": "Years ago, as a civil servant, you reported forty-one purchases kept just under the $6,000 line, naming the junior officer who found them as the source. A review panel at your old ministry is now closing the case. Its report will thank \"an officer\", and the panel asks whether you'd like that officer named.",
               "a": "Ask that the officer be named, and thanked.",
-              "aOut": "The officer is named and thanked, three years late, in a report nobody outside the ministry reads. Inside it, everybody does.",
+              "aOut": "The officer is named and thanked, years late, in a report nobody outside the ministry reads. Inside it, everybody does.",
               "b": "Leave it as \"an officer\". It is safer.",
-              "bOut": "The report thanks \"an officer\". In your old ministry everyone knows which one, as they have for three years, and nobody says so."
+              "bOut": "The report thanks \"an officer\". In your old ministry everyone knows which one, as they have for years, and nobody says so."
             }
           ]
         }
@@ -1066,14 +1066,14 @@
             },
             {
               "id": "reported",
-              "a": "\"Not the box?\" {junior} asks. You say: not the box. {junior} takes it upstairs the next morning under {junior.their} own name, and the officer's appears nowhere.",
+              "a": "\"Not the Source box?\" {junior} asks. You say: not the box. {junior} takes it upstairs the next morning under {junior.their} own name, and the officer's name appears nowhere.",
               "b": "{junior} nods. \"I was in that box for three years.\" {junior} fills in the form, writes the officer's name in the box, and then, beside it, {junior.their} own.",
               "c": "{junior} laughs, once, then sees that you meant it. The spreadsheet leaves with {junior}, and by Friday it is in the channel, with two names in the box, neither of them yours."
             }
           ]
         }
       },
-      "body": "{junior}, {junior.aTitle} now, asks for ten minutes and closes the door. An officer of {junior.their} own has brought {junior.them} a spreadsheet. {Junior} has not decided what to do, and would like to know what you would do.",
+      "body": "{junior}, who once brought you forty-one purchases kept just under the $6,000 line, is {junior.aTitle} now. {junior} asks for ten minutes and closes your door. An officer of {junior.their} own has brought {junior.them} a spreadsheet much like that one. {Junior} hasn't decided what to do, and wants to know what you would do.",
       "requires": { "maxRank": 7, "cast": { "junior": { "flagsAll": ["panel_heard"], "minRank": 2 } } },
       "alternates": ["whistle_return_pol"],
       "choices": [
@@ -1108,27 +1108,27 @@
             {
               "id": "protected",
               "requires": { "flagsAll": ["whistle_protected"] },
-              "text": "At the briefing for tomorrow's Parliamentary Question, one director stays behind after the others have gone.",
+              "text": "At the briefing for tomorrow's Parliamentary Question, the director stays behind after the others have gone.",
               "says": "the director says",
               "b": "You read paragraph two as drafted, and nobody asks. In the gallery the director writes nothing down, and you find that worse than a note."
             },
             {
               "id": "ignored",
               "requires": { "flagsAll": ["whistle_ignored"] },
-              "text": "The night before tomorrow's Parliamentary Question, one director sends you a note, copied to the file.",
+              "text": "The night before tomorrow's Parliamentary Question, the director sends you a note, copied to the file.",
               "says": "the note says",
               "b": "You read paragraph two as drafted, and nobody asks. In the file, beside the reply, is a note dated the night before, which anyone may one day read."
             },
             {
               "id": "reported",
-              "text": "The night before tomorrow's Parliamentary Question, a minute reaches you through the proper channel, from one director.",
+              "text": "The night before tomorrow's Parliamentary Question, a minute from the director reaches you through the proper channel.",
               "says": "the minute says",
               "b": "You read paragraph two as drafted, and nobody asks. The minute is on the file, through the proper channel, with your name in the copy line."
             }
           ]
         }
       },
-      "body": "{how} Paragraph two of your reply, {how.says}, is not quite true. The director is the officer who once brought you forty-one purchases.",
+      "body": "The junior officer who once brought you forty-one purchases, kept just under the $6,000 line, is now a director in your ministry. {how} Paragraph two of your reply, {how.says}, is not quite true. Read as drafted, it goes into Hansard.",
       "requires": { "minRank": 9, "flagsNone": ["moved_ministry"] },
       "choices": [
         {
@@ -1148,7 +1148,7 @@
     {
       "id": "protege_ask",
       "title": "An Hour a Fortnight",
-      "body": "At the end of a one-to-one, {junior} asks whether you would be {junior.their} mentor. Not the scheme with the forms and the lunch vouchers: the real thing, an hour a fortnight, and the truth when {junior} needs it.",
+      "body": "At the end of your one-to-one, {junior} asks whether you would be {junior.their} mentor. Not the official scheme, with its forms and lunch vouchers: the real thing, an hour a fortnight, and the truth when {junior} needs it. You don't have the hours, and upstairs will judge you partly by how {junior} turns out.",
       "requires": { "minRank": 4, "maxRank": 5, "cast": { "junior": { "flagsNone": ["brought_purchases"] } } },
       "weight": 14,
       "once": true,
@@ -1181,7 +1181,7 @@
       "id": "protege_dissent",
       "triggered": true,
       "title": "In Front of Forty",
-      "body": "At the ministry's strategy retreat, {junior} stands up during your presentation and says, politely and with figures, that your paper's central assumption is wrong. {Junior} is mostly right. Forty people wait to see what you do.",
+      "body": "A few years ago you agreed to mentor {junior}. Today, at the ministry's strategy retreat, {junior} stands up during your presentation and says, politely and with figures, that your paper's central assumption is wrong. {Junior} is mostly right. Forty colleagues, several of them senior to you, wait to see what you do.",
       "requires": { "maxRank": 7, "cast": { "junior": { "flagsAll": ["protege"] } } },
       "choices": [
         {
@@ -1238,7 +1238,7 @@
           ]
         }
       },
-      "body": "The promotion panel is considering {junior}, and wants your view first. {Junior} is younger than you were at the same point, and faster, and everyone at the table can do the arithmetic.",
+      "body": "{junior}, whom you have mentored for years and who once corrected your paper in front of forty people, is up for promotion. The panel wants your view first. {Junior} is younger than you were at the same grade, and rising faster: everyone at the table can work out who will be senior to whom in ten years.",
       "requires": { "maxRank": 7, "cast": { "junior": { "flagsAll": ["dissented"] } } },
       "choices": [
         {
@@ -1330,7 +1330,7 @@
           ]
         }
       },
-      "body": "Nine Members have filed questions on {policy}, and the replies are yours. The draft ends by saying the policy \"remains under review\". Your officials have bracketed the phrase, and asked which you prefer.",
+      "body": "Nine MPs have filed Parliamentary Questions on one of your ministry's policies, {policy}, and you will give the replies in the House. Your officials' draft ends by saying the policy \"remains under review\", in square brackets: keep the phrase, or cut it? Whatever you say will be in Hansard, under your name, for good.",
       "requires": { "minRank": 9, "maxRank": 10, "flagsNone": ["moved_ministry"] },
       "weight": 8,
       "once": true,
@@ -1347,14 +1347,14 @@
           "effects": { "reputation": 3, "standing": -4 },
           "setFlags": ["uturn_met", "uturn_review"],
           "schedule": [{ "eventId": "uturn_reversal", "inYears": 2, "chance": 0.85 }],
-          "outcome": "\"Under review\" satisfies the House and worries the officials who designed the policy, who ask what exactly you are reviewing. By Friday, you find that you are."
+          "outcome": "\"Under review\" satisfies the House and worries the officials who designed the policy, who ask what exactly you are reviewing. By Friday, you find that you are reviewing it."
         },
         {
           "text": "Strike the adjectives too. Answer with figures only.",
           "effects": { "competence": 4, "standing": 1, "reputation": -2 },
           "setFlags": ["uturn_met", "uturn_figures"],
           "schedule": [{ "eventId": "uturn_reversal", "inYears": 2, "chance": 0.85 }],
-          "outcome": "Your replies run to nine figures and no adjectives. Members find little to quote and less to supplement. Hansard records the most accurate answers of the sitting, unread."
+          "outcome": "Your replies run to nine figures and no adjectives. Members find little to quote and no supplementary questions to ask. Hansard records the most accurate answers of the sitting, unread."
         }
       ]
     },
@@ -1443,7 +1443,7 @@
             {
               "id": "minister",
               "requires": { "minRank": 13, "flagsNone": ["moved_ministry"] },
-              "text": "It needs your signature to go in, and the Prime Minister has asked, kindly, when it will."
+              "text": "As Minister, you must sign it before it goes to Cabinet, and the Prime Minister has asked, kindly, when you will."
             },
             {
               "id": "junior",
@@ -1457,7 +1457,7 @@
           ]
         }
       },
-      "body": "Two years of feedback on {policy.short} have become one Cabinet paper, drafted by officials, recommending that it be reversed. {room}",
+      "body": "Two years ago, answering MPs in the House, you defended {policy}. Since then the feedback on {policy.short} has turned into a Cabinet paper, drafted by officials, recommending that it be reversed. {room}",
       "requires": { "minRank": 8 },
       "choices": [
         {
@@ -1472,14 +1472,14 @@
           "effects": { "standing": 4, "integrity": -2 },
           "setFlags": ["uturn_agreed"],
           "schedule": [{ "eventId": "uturn_statement", "inYears": 1, "chance": 0.9 }],
-          "outcome": "You agree, and say it should go before the next sitting. Everyone is relieved. Nobody mentions your replies, which is a courtesy, and is noticed."
+          "outcome": "You agree, and say it should go before the next sitting. Everyone is relieved. Nobody mentions your old replies: a courtesy, and you notice it."
         },
         {
           "text": "Propose a phase-out, so nobody has to say \"reverse\".",
           "effects": { "competence": 3, "standing": 2, "integrity": -3 },
           "setFlags": ["uturn_phased"],
           "schedule": [{ "eventId": "uturn_statement", "inYears": 1, "chance": 0.9 }],
-          "outcome": "The paper is amended: the policy will be \"phased out\" over six months, which is about how long reversing it would have taken. Everyone agrees this is different."
+          "outcome": "The paper is amended: the policy will be \"phased out\" over six months, about as long as reversing it would have taken. Everyone agrees that this is different."
         }
       ]
     },
@@ -1575,7 +1575,7 @@
             {
               "id": "self",
               "requires": { "minRank": 13, "flagsNone": ["moved_ministry"] },
-              "text": "You will deliver it.",
+              "text": "As Minister, you will deliver it yourself.",
               "a": "You read paragraph four as rewritten: \"We got this wrong.\" Members rise for clarifications and, for once, find little to clarify. The sentence is quoted for a week, mostly kindly.",
               "b": "\"The position at the time\" gets you through Tuesday. In clarifications, a Member asks what the position is now. You say it is the position now, and sit down.",
               "c": "Paragraph four goes. On Tuesday the first Member to seek clarification reads your old reply aloud from Hansard, in full, so that nobody is without a reminder."
@@ -1598,7 +1598,7 @@
           ]
         }
       },
-      "body": "The ministerial statement on {word} {policy.short} is set for Tuesday, after Question Time. {who} Paragraph four quotes your reply in Hansard as \"the position at the time\".",
+      "body": "Cabinet has decided that the policy you defended in the House will go. A ministerial statement on {word} {policy.short} is set for Tuesday, after Question Time. {who} Paragraph four quotes your old replies from Hansard as \"the position at the time\".",
       "requires": { "minRank": 8 },
       "choices": [
         {
@@ -1738,11 +1738,11 @@
           ]
         }
       },
-      "body": "{mp} sends you a draft speech for tomorrow's debate, proud of paragraph three: your reply on {policy.short}, quoted in full from Hansard as an example of {quote}. {mp} found it by searching. The search stopped there.",
+      "body": "{mp} sends you a draft speech for tomorrow's debate, proud of paragraph three. It quotes, in full from Hansard, your old reply on {policy.short}, as an example of {quote}. {mp} found it by searching Hansard, and stopped there: the search never reached the statement, years later, that reversed the policy.",
       "requires": { "minRank": 8 },
       "choices": [
         {
-          "text": "Tell {mp} about the statement.",
+          "text": "Tell {mp} the policy was later reversed.",
           "effects": { "integrity": 3, "standing": 1, "reputation": -1 },
           "setFlags": ["uturn_told_mp"],
           "cast": { "mp": { "flags": ["you_told_them"] } },
@@ -1766,7 +1766,7 @@
           { "id": "blavatnik", "text": "the Blavatnik School at Oxford" }
         ]
       },
-      "body": "The Public Service Division would like to sponsor your master's: a year at {school}, fees and allowance paid. The sponsorship comes with a bond of its own, two years, served after the one you are already serving.",
+      "body": "The Public Service Division offers to sponsor a master's degree for you: a year at {school}, with fees and an allowance paid. It comes with a bond of its own: two more years in the service, served after your scholarship bond ends. Leaving before then would mean paying back the cost, with damages.",
       "requires": { "origin": ["scholar"], "minRank": 2, "maxRank": 4, "minAge": 26, "maxAge": 28, "duringBond": true },
       "weight": 12,
       "once": true,
@@ -1777,7 +1777,7 @@
           "bond": 2,
           "setFlags": ["bond_met", "bond_extended"],
           "schedule": [{ "eventId": "bond_bank", "inYears": 2, "chance": 0.85 }],
-          "outcome": "Twelve months, officials from forty countries, and a seminar in which you are asked to explain Singapore. You come back with a master's, a bond that ends at thirty-two, and someone else on your file."
+          "outcome": "Twelve months, officials from forty countries, and a seminar in which you are asked to explain Singapore. You come back with a master's, a bond that ends at thirty-two, and someone else in your old job."
         },
         {
           "text": "Decline. Your division needs you this year.",
@@ -1812,7 +1812,7 @@
           ]
         }
       },
-      "body": "A bank wants you by March. It will pay your liquidated damages in full, {left}, and call the payment a signing bonus. The deed it would settle has two sureties' signatures on it, beside yours.",
+      "body": "You're still serving your scholarship bond, so leaving the service now means paying PSC damages for the years you haven't served. A bank wants you by March, and will pay those damages in full, {left}, and call it a signing bonus. The bond deed it would settle carries your signature, and those of the two sureties who signed with you.",
       "requires": { "origin": ["scholar"], "maxRank": 7, "duringBond": true },
       "choices": [
         {
@@ -1827,7 +1827,7 @@
           "effects": { "integrity": 5, "standing": 2 },
           "setFlags": ["bond_kept"],
           "schedule": [{ "eventId": "bond_mentor", "inYears": 8, "chance": 0.85 }],
-          "outcome": "You decline in two lines. The bank replies that the offer stands, which it does, until a younger officer takes it in June. You hear about that at a wedding."
+          "outcome": "You decline in two lines, and keep the bank's letter in a drawer. The offer stands until June, when a younger officer takes it. You hear about that at a wedding."
         }
       ]
     },
@@ -1859,7 +1859,7 @@
           ]
         }
       },
-      "body": "PSC made you a mentor to one of its scholars, now three years into a six-year bond. Your scholar asks to meet: a bank has offered to pay it off, and wants an answer by Friday. Your scholar wants to know what you did.",
+      "body": "Years ago a bank offered to pay off your scholarship bond, and you said no. Since then PSC has made you a mentor to one of its scholars, now three years into a six-year bond. Your scholar asks to meet: a bank has offered to pay off that bond too, and wants an answer by Friday. Your scholar wants to know what you did.",
       "requires": { "origin": ["scholar"], "maxRank": 7, "flagsAll": ["bond_kept"] },
       "alternates": ["bond_mentor_pol"],
       "choices": [
@@ -1887,7 +1887,7 @@
       "id": "bond_mentor_pol",
       "triggered": true,
       "title": "Your Old School",
-      "body": "Your old school asks you to speak to its final-year students about scholarships, as a former student now in Parliament. The question they have sent in most often, the principal writes, is about the bond.",
+      "body": "Your old school has asked you, as a former student now in Parliament, to talk to its final-year students about scholarships. The question they sent in most often, the principal writes, is about the bond. You served yours in full, and once said no to a bank that offered to pay it off.",
       "requires": { "origin": ["scholar"], "minRank": 8, "flagsAll": ["bond_kept"] },
       "choices": [
         {

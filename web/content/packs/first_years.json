@@ -25,23 +25,23 @@
           {
             "id": "discuss",
             "text": "Discuss.",
-            "a": "Your second version is better, and goes up on Thursday. It comes back with the same word. \"Discuss\", you eventually learn, was never about the paper. It meant come upstairs.",
+            "a": "Your second version is better, and goes up on Thursday. It comes back with the same word. You learn, eventually, that \"Discuss\" was never about the paper. It meant: come upstairs and talk to me.",
             "b": "{senior} reads the paper while you wait, agrees with all four pages, and tells you to send it on as it is. That was the discussion. It took six minutes.",
-            "c": "Your reply says: \"Happy to discuss.\" It comes back: \"Discuss.\" The paper goes up and down the building three more times before anyone books a room."
+            "c": "Your reply says: \"Happy to discuss.\" It comes back: \"Discuss.\" The paper goes back and forth between your desk and {senior}'s three more times before either of you books a meeting room."
           },
           {
             "id": "why",
             "text": "Why?",
             "a": "The new version opens with the answer to \"Why?\" in one paragraph. {senior} reads that paragraph, approves the paper, and returns the other three pages unread.",
-            "b": "{senior} explains that \"Why?\" meant why now, not why at all, and that the answer is a budget cycle you have not yet heard of. You write it down.",
+            "b": "{senior} explains that \"Why?\" meant \"why now?\": the answer depends on a budget cycle you haven't heard of yet. You write that down, and add a paragraph about it.",
             "c": "Your reply is one line long, and answers the question. {senior} writes \"OK\" beneath it. You keep the page in a drawer for years, for no reason you could explain."
           },
           {
             "id": "noted",
             "text": "Noted.",
-            "a": "Four pages become two. The new version is also noted. You learn that \"Noted\" means read, agreed with, and not to be acted on in this financial year.",
+            "a": "Four pages become two. The new version also comes back marked \"Noted.\" You learn that it means read, agreed with, and not to be acted on this financial year.",
             "b": "{senior} is surprised to see you, and explains kindly that \"Noted\" is a complete reply. It means the paper was read. It does not mean anything will happen, and nothing does.",
-            "c": "Your reply asks what happens next. It is also noted. Eighteen months later the paper is found in a file, sent up again by someone else, and approved."
+            "c": "Your reply asks what happens next, and comes back marked \"Noted.\" as well. Eighteen months later someone else finds your paper in a file, sends it up again, and it is approved."
           },
           {
             "id": "seeme",
@@ -54,12 +54,12 @@
             "id": "shorter",
             "text": "Shorter.",
             "a": "Four pages become one. {senior} approves it and sends it upstairs, where the next reader writes \"Pls elaborate\" across the top.",
-            "b": "{senior} explains that the paper is fine, but the person above reads everything on a phone, in a car, between meetings. You learn to write for the car.",
+            "b": "{senior} explains that the paper is fine, but the person it goes to next reads everything on a phone, in a car, between meetings. You learn to write for the car.",
             "c": "Your one-line reply reads, in full: \"Noted.\" It is the shortest thing you have ever sent upstairs, and {senior} approves the paper on the strength of it."
           }
         ]
       },
-      "body": "Your minute paper on {topic} took a week and runs to four pages. It comes back from {senior}'s office the next morning with one word in the margin: \"{word}\"",
+      "body": "You spent a week on a minute paper for {senior}, your reporting officer, on {topic}. It runs to four pages, and it's the first paper of yours meant to go further upstairs. It comes back the next morning with one word in the margin, in {senior}'s handwriting: \"{word}\"",
       "requires": {
         "minRank": 0,
         "maxRank": 1
@@ -76,7 +76,7 @@
           "outcome": "{word.a}"
         },
         {
-          "text": "Go up and ask what the word means.",
+          "text": "Go up and ask {senior} what the word means.",
           "effects": {
             "standing": 5,
             "reputation": 2,
@@ -104,7 +104,7 @@
             "id": "ceo",
             "text": "with the Permanent Secretary's name",
             "a": "On Monday the Permanent Secretary's PA writes to ask, politely, about a yoghurt. Your reply quotes paragraph 3. The circular is reissued the following week, with a new paragraph 4, on exemptions.",
-            "b": "The yoghurt survives six more Fridays. Nothing else in the fridge does, and the floor draws its own conclusions about paragraph 3, mostly at the pantry sink, mostly while you are there.",
+            "b": "The yoghurt survives six more Fridays while everyone else's lunch goes in the bin. The floor draws its own conclusion about who paragraph 3 applies to, and shares it at the pantry sink, while you're there.",
             "c": "The Permanent Secretary replies to all forty of you: \"Mine. Pls bin. Thanks for checking.\" It becomes the most forwarded email on the floor that year, and the friendliest.",
             "effects": {
               "0": {
@@ -117,7 +117,7 @@
           },
           {
             "id": "peer",
-            "text": "with {peer}'s name and a smiley face",
+            "text": "with a smiley face and the name of {peer}",
             "a": "{peer} finds the empty shelf on Monday, laughs, and pins a copy of the circular to the fridge door with paragraph 3 highlighted and your initials in the margin.",
             "b": "You bin everyone's food but {peer}'s. Nobody says anything. On Monday morning somebody has labelled the milk, the butter and the chilli sauce with {peer}'s name too.",
             "c": "Forty people now know that {peer} keeps a yoghurt for eleven days. {peer} collects it from your desk in person, to applause, and bins it."
@@ -125,13 +125,13 @@
           {
             "id": "nobody",
             "text": "\"DO NOT THROW\", in capitals, and nothing else",
-            "a": "You bin it. On Monday a second yoghurt appears, labelled \"DO NOT THROW. I MEAN IT.\" Paragraph 3 holds, and so, it turns out, does whoever it is.",
-            "b": "The yoghurt stays. By March it has outlasted two committee members and a fridge thermostat, and the floor refers to it, without irony, as the tenant.",
+            "a": "You bin it. On Monday a new yoghurt appears, labelled \"DO NOT THROW. I MEAN IT.\" You bin that one on Friday too. Neither of you gives up before the quarter ends.",
+            "b": "The yoghurt stays. By March it has outlasted two office managers and the fridge's thermostat, and the floor calls it, without irony, \"the tenant\".",
             "c": "Nobody claims it. Three people reply to say it is not theirs, and one to ask what paragraph 3 says. At 5pm it goes into the bin anyway."
           }
         ]
       },
-      "body": "The pantry fridge is cleared at 5pm every Friday, under paragraph 3 of a circular, and this quarter the clearing falls to you. Behind the milk sits a yoghurt, eleven days past its date, labelled {owner}.",
+      "body": "The office pantry fridge is cleared at 5pm every Friday, under paragraph 3 of an office circular: anything past its date goes in the bin. This quarter, the clearing is your job. Behind the milk sits a yoghurt, eleven days past its date, labelled {owner}.",
       "requires": {
         "minRank": 0,
         "maxRank": 1
@@ -378,7 +378,7 @@
       "id": "copied_in_file",
       "triggered": true,
       "title": "The Cc Line",
-      "body": "{peer}, looking for something else in an old file, has found the email about the restructuring that abolished {peer.their} post. Your name is in its cc line, dated six weeks before anyone told {peer.them}.",
+      "body": "Years ago you were copied in, by mistake, on a confidential plan that abolished the job of {peer}, and you said nothing. Now {peer}, looking for something else in an old file, has found that email. Your name is in its cc line, dated six weeks before anyone told {peer.them}.",
       "requires": {
         "cast": {
           "peer": {
@@ -402,7 +402,7 @@
               ]
             }
           },
-          "outcome": "You explain the cc line, and Official (Closed), and the six weeks. {peer} hears you out and says {peer.they} would have done the same. Neither of you is sure that is true."
+          "outcome": "You explain: the email was marked Official (Closed), it wasn't yours to share, and you hated the six weeks. {peer} hears you out and says {peer.they} would have done the same. Neither of you is sure that's true."
         },
         {
           "text": "Point out that it was marked Official (Closed).",
@@ -417,7 +417,7 @@
               ]
             }
           },
-          "outcome": "{peer} agrees that it was. The conversation is short and entirely correct. After it, {peer} is perfectly cordial to you in every meeting for years, and never once in the lift."
+          "outcome": "{peer} agrees that it was. The conversation is short and entirely correct. For years afterwards {peer} is perfectly cordial to you in every meeting, and says nothing to you at all in the lift."
         }
       ]
     },
@@ -425,7 +425,7 @@
       "id": "copied_in_repaid",
       "triggered": true,
       "title": "Face Down",
-      "body": "{peer} comes by, closes the door, and puts a printout on your desk, face down. \"You told me once,\" {peer} says. The header shows through the paper, backwards: next year's postings.",
+      "body": "A few years ago, you quietly warned {peer} that a restructuring would abolish {peer.their} job. Today {peer} closes your door and puts a printout on your desk, face down: next year's postings, which nobody is meant to see until April. \"You told me once,\" {peer} says.",
       "requires": {
         "maxRank": 7,
         "cast": {
@@ -448,7 +448,7 @@
             "integrity": -3,
             "heat": 4
           },
-          "outcome": "You are going somewhere difficult, in April. You have three months to make it look like your idea, and you manage it. Nobody upstairs ever learns that you knew first."
+          "outcome": "Your name is on it: you're being posted somewhere difficult in April. With three months' notice you ask for that posting yourself, so it looks like your idea. Nobody upstairs ever learns that you knew first."
         },
         {
           "text": "Leave it face down, and thank {peer}.",
@@ -699,7 +699,7 @@
           }
         ]
       },
-      "body": "A vendor has sent {file} as a download link. Your work laptop is not on the internet, by design, and the division's internet laptop is booked until three. {senior} wants it at two.",
+      "body": "A vendor has sent {file} as a download link, and {senior}, your reporting officer, wants it by 2pm. Your work laptop can't open the link: government work laptops are kept off the internet, for security. The division's one internet laptop is booked until 3pm. There is a quick way round this, and it breaks the IT rules.",
       "requires": {
         "minRank": 0,
         "maxRank": 1
@@ -715,16 +715,16 @@
             "integrity": -4,
             "heat": 5
           },
-          "outcome": "{senior} has it at 1:52pm. The next quarter's IT security review reaches you: a forty-minute refresher on IM8, with a quiz at the end and a certificate."
+          "outcome": "{senior} has it at 1:52pm. Three months later the IT security review finds your email, and you're sent on a forty-minute refresher course on the government's IT rules, with a quiz at the end and a certificate."
         },
         {
-          "text": "Ask the vendor to send it the long way.",
+          "text": "Ask the vendor to email it as an attachment instead.",
           "effects": {
             "integrity": 5,
             "standing": -3,
             "competence": -1
           },
-          "outcome": "The vendor sends it as one attachment, which is too large, then as six, the fourth of which is quarantined. {senior} has it on Thursday, and asks what happened to Tuesday."
+          "outcome": "The vendor emails it as one attachment, which bounces for being too large, then as six, one of which the virus scanner quarantines. {senior} gets it on Thursday, two days late, and asks what happened."
         },
         {
           "text": "Read it on your phone, and retype it.",
@@ -798,7 +798,7 @@
     {
       "id": "real_sop",
       "title": "Standard Operating Procedure",
-      "body": "{junior} has joined your section and been given the standard operating procedures: forty-one pages, last revised two reorganisations ago. You keep your own version on one page of a notebook. Yours is the one that works.",
+      "body": "{junior} has just joined your section, and has been handed the official standard operating procedures: forty-one pages, last updated two reorganisations ago, and mostly out of date. You keep your own version on one page of a notebook. It's the reason you get things done faster than anyone else on the floor.",
       "requires": {
         "minRank": 1,
         "maxRank": 1
@@ -845,7 +845,7 @@
             "reputation": 2,
             "standing": -1
           },
-          "outcome": "Three months of evenings. The new procedures are adopted across the division, with your name in the version history and nowhere else, and {junior} reads them in a weekend."
+          "outcome": "It takes three months of evenings. The division adopts your new procedures, with your name in the version history and nowhere else, and {junior} learns them in a weekend."
         }
       ]
     },
@@ -868,7 +868,7 @@
           }
         ]
       },
-      "body": "Your leave was approved in January. In September the Work Plan Seminar is moved onto its second week by the person who approved it. This year's theme is Staff Well-being, and your section's slide has nobody else to present it.",
+      "body": "In January, {senior} approved your two weeks' leave for September, and you booked your flights. Now {senior} has moved the division's Work Plan Seminar, where each section presents next year's plans, into the second week of your leave. This year's theme is Staff Well-being, and nobody else can present your section's slide.",
       "requires": {
         "minRank": 0,
         "maxRank": 1
@@ -882,7 +882,7 @@
             "standing": 6,
             "competence": -1
           },
-          "outcome": "Your slide, \"Rest as a Strategic Enabler\", is on at 4:40pm, and the Deputy Secretary leaves at 4:42. The airline turns your fare into a voucher, valid for a year, which you also never use."
+          "outcome": "You cancel the trip. Your slide, \"Rest as a Strategic Enabler\", is on at 4:40pm, and the Deputy Secretary leaves at 4:42. The airline gives you a voucher instead of a refund, and it expires unused, like the leave."
         },
         {
           "text": "Go. Someone else can present it.",
@@ -891,7 +891,7 @@
             "competence": 4,
             "standing": -4
           },
-          "outcome": "In your absence your reporting officer presents it and tells the room you are \"role-modelling the theme\". Two directors write that down. You come back rested, and do the best work of your year."
+          "outcome": "{senior} presents your slide for you, and tells the room you are \"role-modelling the theme\". Two directors write that down. You come back rested, and do the best work of your year."
         },
         {
           "text": "Present it by video, from the holiday.",
