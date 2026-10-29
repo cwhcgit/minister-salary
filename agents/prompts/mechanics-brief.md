@@ -22,7 +22,7 @@ Promoted at year end when all of these hold:
 - grade A, or grade B+ below rank 13 (Cabinet rungs need an A);
 - years in grade at least 2, plus 1 from rank 10, plus 1 more from 13, plus 1 more from 15 (the scholar's fast lane: 1 below rank 4);
 - age at least the next rung's floor: 28 for Director, 35 for Deputy Secretary, 40 for Permanent Secretary. A file marked "exceptional" (two standout choices in the service, below rank 8) lowers the top two to 33 and 38; nothing goes below 38 for Permanent Secretary;
-- rank below CEP. At or above CEP the player gets a rumour line instead (the CEP hint), and the promotion never comes until CEP rises.
+- rank below CEP. At or above CEP the player gets a rumour line instead (the CEP hint: in the first two years held there, then less often, never the same line twice), and the promotion never comes until CEP rises.
 
 Rank 7 (Permanent Secretary) is the top of the civil service: there is no promotion from it. The only way further is politics.
 
@@ -38,9 +38,9 @@ Scandal exposure. Raised by corner-cutting choices, lowered by disclosure. From 
 
 ### Which event comes up
 
-1. A scheduled consequence due this year fires first. Only one fires a year: if several fall due together, the earliest fires and the rest carry over to the following years, in order.
-2. Otherwise a priority event fires as soon as it qualifies (the tea session, the succession).
-3. Otherwise a weighted random draw among events whose requirements the player meets. One-time events never repeat; filler events can. Cards the phone showed in its last two runs weigh 0.35 of normal, and a card with several versions prefers one not seen recently. Some cards belong to the player's ministry and only come up there. The Budget cards (the Indicators) come up at most once per three-year cycle, in the variant that fits the economy and the election calendar.
+1. A new Member's maiden speech comes first, in their first year in Parliament. Then a scheduled consequence due this year fires. Only one fires a year: if several fall due together, the earliest fires and the rest carry over to the following years, in order.
+2. Otherwise a priority event fires as soon as it qualifies (the tea session, the National Bonus card in the first year as Minister of State, the succession).
+3. Otherwise a weighted random draw among events whose requirements the player meets. One-time events never repeat; filler events can. Cards the phone showed in its last two runs weigh 0.35 of normal, and a card with several versions prefers one not seen recently. Some cards belong to the player's ministry and only come up there. The Budget cards (the Indicators) come up at most once per three-year cycle, in the variant that fits the economy and the election calendar. They follow the National Bonus card as one decision: the first Budget card names what was chosen on the National Bonus card and asks whether to keep it; after that the plan renews itself.
 
 ### The crossing
 

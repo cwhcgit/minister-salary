@@ -938,6 +938,9 @@ const Engine = (() => {
     if (ev.once && s.seen.includes(ev.id)) return false;
     if (spent(ev, s)) return false;   // a repeatable card with nothing new to say this run
     if (content && tooLate(content, ev, s)) return false;
+    // a series' opening card (series.opens) is its first showing, so it never comes once the
+    // series has begun (a save from before the card opened it)
+    if (ev.series && ev.series.opens && seriesOf(ev, s)) return false;
     return cardOk(ev, s);
   }
   function tooLate(content, ev, s) {
@@ -1190,6 +1193,10 @@ const Engine = (() => {
     //    tenure): anything scheduled for them carries over, as below
     const end = endgameCard(content, s);
     if (end) { info.source = "priority"; info.endgame = end.id; return end; }
+    // 0b. a card that opens a chapter ("priority": "first": the maiden speech, a new Member's
+    //     first card) comes before anything scheduled, which waits its turn as below
+    const opener = allEvents(content, s).find(e => e.priority === "first" && eligible(e, s, content));
+    if (opener) { info.source = "priority"; return opener; }
     // 1. scheduled consequences pre-empt everything. One fires a year; when several fall
     //    due together, the rest carry over to the following years, earliest first.
     const due = s.scheduled.filter(x => x.fireYear <= s.year && resolve(content, x.eventId, s));
@@ -1226,21 +1233,31 @@ const Engine = (() => {
     return list.filter(f => s.flags.includes(f.flag)).map(f => sub(f.item, s, content));
   }
 
+  // The folder's lines (engineLines.folder). The party's people are unnamed officials, so no line
+  // gives them a "he" or "she" (WRITING_RULES 4.8).
+  const FOLDER = {
+    thin: "The folder on the table is thin. The person reading it seems, very slightly, disappointed.",
+    item: "In the folder: {item}.",
+    nothing: "There is nothing to disclose. Your interviewer closes the folder, which takes no time at all.",
+    disclosed: "You disclose {item}. The interviewer writes something down.",
+    found: "{item}: on day four of the campaign, someone has found it."
+  };
+  const folderLine = (content, key, item) => fillT((EL(content).folder || {})[key] || FOLDER[key], { item });
   function readFolder(content, s) {
     const items = folderItems(content, s);
-    if (!items.length) return [{ kind: "folder", text: "The folder on the table is thin. He seems, very slightly, disappointed." }];
-    return items.map(i => ({ kind: "folder", text: `In the folder: ${i}.` }));
+    if (!items.length) return [{ kind: "folder", text: folderLine(content, "thin") }];
+    return items.map(i => ({ kind: "folder", text: folderLine(content, "item", i) }));
   }
 
   function answerFolder(content, s, mode, t) {
     const items = folderItems(content, s), log = [];
     t.folder = { mode, items: items.length };
     if (mode === "disclose") {
-      if (!items.length) log.push({ kind: "folder", text: "There is nothing to disclose. He closes the folder, which takes no time at all." });
+      if (!items.length) log.push({ kind: "folder", text: folderLine(content, "nothing") });
       for (const i of items) {
         s.standing = clamp(s.standing - 5, 0, 100);
         s.integrity = clamp(s.integrity + 2, 0, 100);
-        log.push({ kind: "folder", text: `You disclose ${i}. The interviewer writes something down.` });
+        log.push({ kind: "folder", text: folderLine(content, "disclosed", i) });
       }
       if (items.length >= (content.folderLimit || 3)) {
         s.flags.push("tea_withdrawn");
@@ -1258,13 +1275,13 @@ const Engine = (() => {
   }
 
   // Concealed items surface during the campaign, more often the higher the Heat.
-  function campaignSurfacing(s, t) {
+  function campaignSurfacing(content, s, t) {
     const log = [];
     for (const i of (s.concealed || [])) {
       if (roll(s) < 0.2 + s.heat / 250) {
         s.reputation = clamp(s.reputation - 7, 0, 100);
         s.heat = clamp(s.heat + 6, 0, 100);
-        log.push({ kind: "folder", text: `${cap(i)}: on day four of the campaign, someone has found it.` });
+        log.push({ kind: "folder", text: folderLine(content, "found", cap(i)) });
       }
     }
     t.surfaced = log.length;
@@ -1358,7 +1375,7 @@ const Engine = (() => {
       s.ministry = others[Math.floor(roll(s) * others.length)];
       // a story that began in the old ministry must not carry on as if it were in this one
       if (!s.flags.includes("moved_ministry")) s.flags.push("moved_ministry");
-      log.push({ kind: "note", text: `You are moved to the ${s.ministry}. The handover notes run to 140 pages, and the first one says "for information".` });
+      log.push({ kind: "note", text: `You are moved to the ${s.ministry}. The handover notes run to 140 pages, and the first page says "for information".` });
     }
 
     // The Folder: the vetting reads back every compromise the player made.
@@ -1395,7 +1412,7 @@ const Engine = (() => {
       }
       else s.ending = "lostward";
     } else if (ch.election) {
-      log.push(...campaignSurfacing(s, t));
+      log.push(...campaignSurfacing(content, s, t));
       const chance = ch.election === "grc"
         ? 0.60 + s.reputation / 400 + s.standing / 500
         : 0.28 + s.reputation / 200;
@@ -1566,7 +1583,7 @@ const Engine = (() => {
   // Why a choice is locked, in words: the stat it needs, never the number.
   function lockedText(content, ch) {
     const L = (content.statWords || {}).locked || {};
-    return Object.keys(ch.requiresStat || {}).map(k => L[k] || `You don't have the ${k} for this yet.`).join(" ");
+    return [...new Set(Object.keys(ch.requiresStat || {}).map(k => L[k] || "You are not yet in a position to do this."))].join(" ");
   }
 
   // The four stats, revealed on the ending screen: each with what it was and what it did to the run.
@@ -1647,6 +1664,8 @@ const Engine = (() => {
     return { kind: "warn", about: "sideways", text };
   }
   const months = n => `${n} month${n === 1 ? "" : "s"}`;
+  // The years held at the ceiling (counted on each ladder) that bring a ceiling rumour.
+  const CEP_SAID = [1, 2, 4, 7, 11, 16, 22, 29];
   // The pay line: the package, the National Bonus in it (office holders), and from the second
   // year on how it compares with last year, in dollars ("up $6,000 on last year", "the same as last
   // year"). When the player could not tell why it moved, a reason follows: their first year on a
@@ -1742,7 +1761,7 @@ const Engine = (() => {
     if (s.consecutiveC >= 3) {
       s.consecutiveC = 0;
       s.competence = clamp(s.competence + 3, 0, 100);
-      if (s.rank >= 8) log.push({ kind: "warn", text: "That's three Cs in a row, so the Whip moves you to chair a select committee nobody wanted to sit on. The work is real, at least." });
+      if (s.rank >= 8) log.push({ kind: "warn", text: "That's three Cs in a row, so the Whip moves you to chair a parliamentary committee nobody wanted to sit on. The work is real, at least." });
       else log.push(sideways(content, s, t));
     }
 
@@ -1769,12 +1788,15 @@ const Engine = (() => {
 
     if (promotable && s.rank >= s.cep) {
       const pol = s.rank >= 8 && content.cepHintsPolitics, hints = pol ? content.cepHintsPolitics : content.cepHints;
-      // the rumours are taken like Meanwhile lines, none twice until all have been heard; the
-      // die this used to read is still rolled, so the run's other dice fall where they did
+      // the rumours are taken like Meanwhile lines, and never twice in a career: the first two
+      // years held at the ceiling say so, then the rumours thin out (the 4th, 7th, 11th... such
+      // year), as a wait does. The die this used to read is still rolled, so the run's other
+      // dice fall where they did.
       roll(s);
-      const key = pol ? "__cepPolitics" : "__cep", i = pickLine(s, key, hints.length, true);
-      useLine(s, key, i);
-      log.push({ kind: "cep", text: hints[i] });
+      const key = pol ? "__cepPolitics" : "__cep";
+      const told = (s.cepTold = s.cepTold || {}), n = told[key] = (told[key] || 0) + 1;
+      const i = CEP_SAID.includes(n) ? pickLine(s, key, hints.length, false) : null;
+      if (i !== null) { useLine(s, key, i); log.push({ kind: "cep", text: hints[i] }); }
     } else if (promotable && s.rank === 7) {
       // Said a few times, differently, then not again: a Permanent Secretary can be there for years.
       const lines = content.topRungLines || ["There is no rung above this one. The next step is not a promotion; it is a different life."];
@@ -1984,15 +2006,20 @@ const Engine = (() => {
   }
 
   // --- series ------------------------------------------------------------------
-  // Sibling cards can share one habit: the Indicators in a strong year, in a downturn and before
-  // an election are one decision, made in three weathers. Each card says
-  // "series": { "key": "indicators", "full": 2 }, and each of its choices names its "stance".
+  // Sibling cards can share one habit: the National Bonus and the Budgets after it (the Indicators
+  // in a strong year, in a downturn and before an election) are one decision, made in different
+  // weather. Each card says "series": { "key": "indicators", "full": 2 }, and each of its choices
+  // names its "stance".
   // The series is shown in full `full` times a career. After that, a card of the series passes
   // as a Meanwhile year that repeats the habit in full, its mechanics included (the National
   // Bonus it sets, the protection an improvement plan gives), with a line for that card and stance.
   // The second full showing may have its own scene, `again`: the habit from the first is the
   // default and comes first, and the question is whether to break it. `again.keep` and
   // `again.change` are added to the effects of keeping the habit and of breaking it.
+  // A card with "opens": true in its series is the series' first showing: it is drawn only
+  // before the series has begun (see eligible). The National Bonus card opens the Indicators: a
+  // priority card in the first year as an office holder who is paid the bonus, so the Budgets
+  // after it are always second showings, which name the choice made on it.
   function seriesOf(ev, s) { return ev && ev.series ? (s.series || {})[ev.series.key] || null : null; }
   const stanceIndex = (ev, stance) => stance === undefined ? -1 : ev.choices.findIndex(c => c.stance === stance);
   function seriesYear(ev, s) {
@@ -2481,16 +2508,16 @@ const Engine = (() => {
     if (s.cepStart >= 7 && reachedPS)
       return "There wasn't one. On your first day the service marked you as able to reach Permanent Secretary, the top grade. You did.";
     if (s.rank >= 8) return raised
-      ? `${day1}, the highest grade the service would have given you, as set on your first day. It did not apply in politics.`
-      : `${day1}, the highest grade the service would ever have given you. Set on your first day. It did not apply in politics.`;
-    if (raised) return `On your first day, the service decided the highest grade it would give you: ${day1}. Never mentioned.`;
+      ? `On your first day, the service decided the highest grade it would give you: ${day1}. It did not apply in politics.`
+      : `On your first day, the service decided the highest grade it would ever give you: ${day1}. It did not apply in politics.`;
+    if (raised) return `On your first day, the service decided the highest grade it would give you: ${day1}. Nobody mentioned it.`;
     // sat at it: reached the day-one ceiling, stayed there 3 years or more, and heard a ceiling rumour there
     const hints = [...content.cepHints, ...(content.cepHintsPolitics || [])];
     const up = H.find(h => h.rankAfter === s.cepStart && h.rank < s.cepStart);
     const stuck = s.cepStart < 7 && s.rank === s.cepStart && up && s.age - (up.age + 1) >= 3
       && H.some(h => h.rank === s.cepStart && h.hints.some(x => x.startsWith("cep|") && hints.includes(x.slice(4))));
-    if (stuck) return `${day1}, decided on your first day. You reached it at ${up.age}. That is why the promotions stopped.`;
-    return `The highest grade the service would ever give you: ${day1}. Decided on your first day. Never mentioned.`;
+    if (stuck) return `On your first day, the service decided the highest grade it would give you: ${day1}. You reached it at ${up.age}, and that is why the promotions stopped.`;
+    return `On your first day, the service decided the highest grade it would ever give you: ${day1}. Nobody mentioned it.`;
   }
 
   // Each line is one idea, short enough to read at a glance: the label names it, the text says it.
@@ -2515,7 +2542,7 @@ const Engine = (() => {
     // at the raise that made its last rung possible.
     const last = xs => xs.reduce((a, b) => (b.cepAfter >= a.cepAfter ? b : a));
     // what the choice did, said in full: which ceiling it moved, and to where
-    const said = r => `${r.title}, age ${r.age}. "${r.text}" ${r.rank >= 8 ? `That raised the party's estimate to ${ceiling(r.cepAfter, true)}.`
+    const said = r => `At ${r.age}, on "${r.title}", you chose "${r.text}" ${r.rank >= 8 ? `That raised the party's estimate to ${ceiling(r.cepAfter, true)}.`
       : r.cepAfter >= 8 ? "That removed your ceiling in the service altogether." : `That raised your ceiling in the service to ${ceiling(r.cepAfter, false)}.`}`;
     // The first choice that would have raised it, had you taken it.
     const missed = pol => {
@@ -2546,8 +2573,8 @@ const Engine = (() => {
     const isHint = x => x.startsWith("cep|") && allHints.includes(x.slice(4));
     const blocked = H.filter(h => h.hints.some(isHint)).length;
     if (blocked) out.push({ label: blocked === 1 ? "The rumour" : "The rumours", text: blocked === 1
-      ? "It meant: promotion earned, ceiling said no."
-      : `${blocked === 2 ? "Both" : `All ${count(blocked)}`} meant the same: promotion earned, ceiling said no.` });
+      ? "It meant you had earned the promotion, and your ceiling stopped it."
+      : `You heard ${count(blocked)}. Each time, you had earned the promotion, and your ceiling stopped it.` });
 
     // Why the tea never came, for a career that stayed in the service and was never asked.
     // One reason, the one that fell furthest short.
@@ -2581,9 +2608,9 @@ const Engine = (() => {
         .find(x => x.h && L[x.r].minAge && x.h.age < L[x.r].minAge);
       const x = s.exceptionalAt;
       // what the mark is for: the top grades' minimum ages give way for it
-      const what = `Marked "exceptional" at ${x.age}, which lets the top grades take an officer younger than their usual minimum age.`;
+      const what = `Your file was marked "exceptional" at ${x.age}, which lets the top grades take an officer younger than their usual minimum age.`;
       out.push({ label: "The exception", text: early
-        ? `${what} Hence ${L[early.r].title} at ${early.h.age}, not ${L[early.r].minAge}.`
+        ? `${what} That is how you became ${article(L[early.r].title)} ${L[early.r].title} at ${early.h.age}, when the usual minimum is ${L[early.r].minAge}.`
         : x.age >= (L[7].minAge || 0) ? `${what} By then you were old enough anyway.`
         : `${what} It never came to that.` });
     }
@@ -2593,7 +2620,7 @@ const Engine = (() => {
     if (["level", "backbench", "office"].includes(s.ending) && ownCeiling > s.rank) {
       const gs = H.map(h => h.grade).filter(Boolean);
       const low = gs.filter(g => !["A", "B+"].includes(g)).length;
-      out.push({ label: "What stopped you", text: `Appraisals, not the ceiling. ${low} of ${gs.length} came in below "strong".` });
+      out.push({ label: "What stopped you", text: `Your appraisals, not the ceiling: ${low} of your ${gs.length} grades were below B+.` });
     }
 
     // The top job: when you took it, and how long it lasted.
@@ -2635,9 +2662,9 @@ const Engine = (() => {
     const ranks = v.ahead + v.behind === 0 ? (level
         ? `Level with you for ${yrs(level)}. Neither outranked the other.`
         : "Never on the same ladder long enough to compare.")
-      : !v.behind ? `Outranked you ${yrs(v.ahead)}. Never the reverse.`
-      : !v.ahead ? `You outranked ${p.them} ${yrs(v.behind)}. Never the reverse.`
-      : `Outranked you ${yrs(v.ahead)}; you outranked ${p.them} ${v.behind}.`;
+      : !v.behind ? `Outranked you for ${yrs(v.ahead)}. Never the reverse.`
+      : !v.ahead ? `You outranked ${p.them} for ${yrs(v.behind)}. Never the reverse.`
+      : `Outranked you for ${yrs(v.ahead)}; you outranked ${p.them} for ${yrs(v.behind)}.`;
     out.push({ label: v.name, text: `${where} ${ranks}` });
     out.push({ label: `${v.name}'s ceiling`, text: v.cepStart >= 8 ? `None inside the service. Not mentioned to ${p.them} either.`
       : `${v.cepStart === 7 ? "Permanent Secretary" : title(content, v.cepStart)}. Not mentioned to ${p.them} either.` });

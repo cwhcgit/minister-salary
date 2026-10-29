@@ -2220,6 +2220,14 @@
     "sideways": {
       "named": "That's three Cs in a row, so HR moves you sideways: the same grade, in another division. From next year your papers go to a new reporting officer instead of {senior}. It's meant as a fresh start. Nobody there asked for you, but the work is real.",
       "plain": "That's three Cs in a row, so HR moves you sideways: the same grade, in another division, for a fresh start. Nobody there asked for you, but the work is real."
+    },
+    "folder": {
+      "note": "The Folder at the tea and the background check. The party's people are unnamed officials: no he or she (WRITING_RULES 4.8). {item} is a folder item from game.json folder.",
+      "thin": "The folder on the table is thin. The person reading it seems, very slightly, disappointed.",
+      "item": "In the folder: {item}.",
+      "nothing": "There is nothing to disclose. Your interviewer closes the folder, which takes no time at all.",
+      "disclosed": "You disclose {item}. The interviewer writes something down.",
+      "found": "{item}: on day four of the campaign, someone has found it."
     }
   }
 }
