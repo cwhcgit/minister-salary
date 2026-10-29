@@ -260,6 +260,12 @@ A pack is `web/content/packs/<id>.json`:
   (`player` in `game.json`) stops the build.
 - **Offline:** the service worker caches the listed packs for offline play.
 - **Starter file:** `example.json` is an empty pack to copy.
+- **Hidden witnesses:** a card's `witnesses` field lists who could plausibly know what the player
+  did there, by kind (`witnesses.types` in `game.json`): `{ "by": { "<type>": { "chance", "react",
+  "requires"? } } }`, with one reaction per choice, from -5 to +4. Service cards take the service's
+  kinds (`countersigner`, `owner`, `panel`, `floor`, `ministersOffice`, `agencies`); politics cards
+  take the politics kinds (`leadership`, `whips`, `branch`, `pressGallery`, `officials`,
+  `fellowMPs`); a card shown on both ladders may list both. Rule 5.6 says which cards get them.
 
 ## 7. Writing workflow (parallel writer agents)
 
@@ -285,6 +291,7 @@ A pack is `web/content/packs/<id>.json`:
 - [ ] Every card read against [`WRITING_RULES.md`](WRITING_RULES.md), including the rules checked by editor review only.
 - [ ] Every fact sourced (one line each); no real people.
 - [ ] Every new term of jargon listed in `web/content/jargon.json` with its entry points, and `node test/jargon.js` passes.
+- [ ] Every card has its hidden witnesses where a believable one exists (rule 5.6), from its own ladder's kinds, with helping and hurting roughly level; cards left without are named, with the reason.
 - [ ] `node test/contexts.js` passes, with zero contradictions.
 - [ ] `node test/similarity.js` passes, with no new near-duplicates.
 - [ ] `node test/harness.test.js` passes; `node test/sim.js` lists no new dominated choice.

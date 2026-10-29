@@ -109,7 +109,13 @@
           "schedule": [{ "eventId": "pilot_results", "inYears": 2, "chance": 0.85 }],
           "outcome": "A lottery picks three {scheme.place} to get the pilot and three more to go without, for comparison. The three without get a letter explaining why, and draw more complaints than the pilot does. Your results, though, will be very hard to argue with."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "panel": { "chance": 0.35, "react": [2, -1, -1] },
+          "countersigner": { "chance": 0.35, "react": [-2, 1, 1] }
+        }
+      }
     },
     {
       "id": "pilot_results",
@@ -245,7 +251,13 @@
           "schedule": [{ "eventId": "pilot_national", "inYears": 3, "chance": 0.85 }],
           "outcome": "{result.c}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "ministersOffice": { "chance": 0.45, "react": [2, 0, -2] },
+          "countersigner": { "chance": 0.35, "react": [-2, 2, 0] }
+        }
+      }
     },
     {
       "id": "pilot_national",
@@ -356,7 +368,13 @@
           "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
           "outcome": "The speech thanks your division for \"designing\" it and {peer}'s for \"supporting\" it. {peer} reads the transcript, and from then on copies you on everything, carefully."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.45, "react": [-1, 3, -2] },
+          "panel": { "chance": 0.3, "react": [2, -2, 0] }
+        }
+      }
     },
     {
       "id": "pilot_national_top",
@@ -466,7 +484,13 @@
           "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
           "outcome": "The speech thanks your people for \"designing\" it and {peer}'s for \"supporting\" it. {peer} reads the transcript, and from then on copies you on everything, carefully."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.45, "react": [-1, 3, -2] },
+          "panel": { "chance": 0.3, "react": [2, -2, 0] }
+        }
+      }
     },
     {
       "id": "pilot_national_pol",
@@ -573,7 +597,13 @@
           "schedule": [{ "eventId": "pilot_audit", "inYears": 4, "chance": 0.85 }],
           "outcome": "You ask, politely, what happens in the {scheme.place} where it was always going to struggle. The Minister promises to look into it, and does. Your old ministry spends a month answering your question."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": { "chance": 0.45, "react": [-2, 2, 0] },
+          "pressGallery": { "chance": 0.3, "react": [1, -1, 0] }
+        }
+      }
     },
     {
       "id": "pilot_audit",
@@ -748,7 +778,13 @@
           "cast": { "peer": { "flags": ["left_with_the_number"] } },
           "outcome": "{front.bOut}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "countersigner": { "chance": 0.4, "react": [3, -3] },
+          "floor": { "chance": 0.45, "react": [2, -2], "requires": { "parts": { "front": ["handed", "named", "team"] } } }
+        }
+      }
     },
     {
       "id": "pilot_audit_clean",
@@ -846,7 +882,13 @@
           "setFlags": ["pilot_noted"],
           "outcome": "Your note is three lines long and never uses the word \"I\". It does not need to. The paragraph comes up in the next ranking, and so do you."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.45, "react": [2, -2] },
+          "panel": { "chance": 0.3, "react": [-2, 2] }
+        }
+      }
     },
     {
       "id": "pilot_audit_pol",
@@ -867,7 +909,13 @@
           "setFlags": ["pilot_caveats"],
           "outcome": "The ministry does respond, eventually. The piece runs without your quote but with your name: the author of the number, who \"did not respond to queries\"."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "pressGallery": { "chance": 0.45, "react": [2, -2] },
+          "officials": { "chance": 0.35, "react": [2, -2] }
+        }
+      }
     },
     {
       "id": "pilot_audit_clean_pol",
@@ -888,7 +936,13 @@
           "setFlags": ["pilot_noted"],
           "outcome": "The piece runs on Sunday as a profile, with a photograph of you at a coffee shop that has nothing to do with the scheme. The officers who ran it read it on their phones."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": { "chance": 0.45, "react": [2, -2] },
+          "pressGallery": { "chance": 0.3, "react": [-1, 1] }
+        }
+      }
     },
     {
       "id": "whistle_spreadsheet",
@@ -922,7 +976,13 @@
           "schedule": [{ "eventId": "whistle_panel", "inYears": 3, "chance": 0.85 }],
           "outcome": "The form has a box marked \"Source\", and {junior}'s name goes in it, as the form requires. Within a week the whole floor knows about the box, and who was in it."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.5, "react": [3, -2, -2] },
+          "countersigner": { "chance": 0.35, "react": [1, -2, 2] }
+        }
+      }
     },
     {
       "id": "whistle_panel",
@@ -983,7 +1043,12 @@
           "schedule": [{ "eventId": "whistle_return", "inYears": 5, "chance": 0.85 }],
           "outcome": "{branch.bOut}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.45, "react": [2, -2] }
+        }
+      }
     },
     {
       "id": "whistle_panel_pol",
@@ -1040,7 +1105,12 @@
           "schedule": [{ "eventId": "whistle_return", "inYears": 5, "chance": 0.85 }],
           "outcome": "{branch.bOut}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": { "chance": 0.45, "react": [2, -2] }
+        }
+      }
     },
     {
       "id": "whistle_return",
@@ -1095,7 +1165,12 @@
           "setFlags": ["whistle_said_leave"],
           "outcome": "{past.c}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.45, "react": [2, 1, -3] }
+        }
+      }
     },
     {
       "id": "whistle_return_pol",
@@ -1143,7 +1218,13 @@
           "setFlags": ["whistle_uncorrected"],
           "outcome": "{how.b}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": { "chance": 0.45, "react": [3, -2] },
+          "pressGallery": { "chance": 0.3, "react": [0, -2] }
+        }
+      }
     },
     {
       "id": "protege_ask",
@@ -1175,7 +1256,13 @@
           "cast": { "junior": { "flags": ["no_mentor"] } },
           "outcome": "{junior} says {junior.they} understood, and plainly did. The hours you kept go into a paper that is very good. {junior} finds a mentor on the next floor, who has the hours."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.45, "react": [2, 0, -2] },
+          "panel": { "chance": 0.3, "react": [-1, 2, -1] }
+        }
+      }
     },
     {
       "id": "protege_dissent",
@@ -1208,7 +1295,13 @@
           "schedule": [{ "eventId": "protege_panel", "inYears": 4, "chance": 0.85 }],
           "outcome": "\"Exactly the challenge I asked {junior} to bring,\" you say, and the room is impressed with you both. {junior} smiles, and brings nothing to the next one-to-one."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.5, "react": [2, -1, -3] },
+          "panel": { "chance": 0.4, "react": [-1, 1, 2] }
+        }
+      }
     },
     {
       "id": "protege_panel",
@@ -1255,7 +1348,13 @@
           "cast": { "junior": { "flags": ["held_back"] } },
           "outcome": "{past.b}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": { "chance": 0.45, "react": [2, -2] },
+          "panel": { "chance": 0.3, "react": [-1, 1] }
+        }
+      }
     },
     {
       "id": "uturn_questions",
@@ -1356,7 +1455,13 @@
           "schedule": [{ "eventId": "uturn_reversal", "inYears": 2, "chance": 0.85 }],
           "outcome": "Your replies run to nine figures and no adjectives. Members find little to quote and no follow-up questions to ask. Hansard records the most accurate answers of the sitting, unread."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": { "chance": 0.45, "react": [2, -3, 1] },
+          "pressGallery": { "chance": 0.35, "react": [2, 0, -2] }
+        }
+      }
     },
     {
       "id": "uturn_reversal",
@@ -1481,7 +1586,13 @@
           "schedule": [{ "eventId": "uturn_statement", "inYears": 1, "chance": 0.9 }],
           "outcome": "The paper is amended: the policy will be \"phased out\" over six months, about as long as reversing it would have taken. Everyone agrees that this is different."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "fellowMPs": { "chance": 0.4, "react": [-1, 2, -1] },
+          "officials": { "chance": 0.35, "react": [-2, 1, 1] }
+        }
+      }
     },
     {
       "id": "uturn_statement",
@@ -1622,7 +1733,13 @@
           "schedule": [{ "eventId": "uturn_hansard", "inYears": 5, "chance": 0.85 }],
           "outcome": "{who.c}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "pressGallery": { "chance": 0.45, "react": [3, -1, -2] },
+          "leadership": { "chance": 0.35, "react": [-2, 1, 1] }
+        }
+      }
     },
     {
       "id": "uturn_hansard",
@@ -1755,7 +1872,12 @@
           "cast": { "mp": { "flags": ["quoted_you"] } },
           "outcome": "{said.b}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "fellowMPs": { "chance": 0.5, "react": [2, -2] }
+        }
+      }
     },
     {
       "id": "bond_masters",
@@ -1793,7 +1915,13 @@
           "schedule": [{ "eventId": "bond_bank", "inYears": 2, "chance": 0.85 }],
           "outcome": "Two years of evenings, $40,000 of your own, and not one year added to your bond. The degree is the same degree. Nobody at work asks about it, which was most of the point."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "panel": { "chance": 0.35, "react": [-1, 2, -1] },
+          "floor": { "chance": 0.3, "react": [-1, 1, 0] }
+        }
+      }
     },
     {
       "id": "bond_bank",

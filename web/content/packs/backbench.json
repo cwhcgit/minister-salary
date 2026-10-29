@@ -112,7 +112,34 @@
           },
           "outcome": "The Whip replies at 7am: \"Not this one.\" You vote with the party. The Whip now keeps a short list of the bills you would like to be this one."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "whips": {
+            "chance": 0.45,
+            "react": [
+              2,
+              -2,
+              0
+            ]
+          },
+          "pressGallery": {
+            "chance": 0.35,
+            "react": [
+              -1,
+              2,
+              0
+            ],
+            "requires": {
+              "parts": {
+                "role": [
+                  "bench"
+                ]
+              }
+            }
+          }
+        }
+      }
     },
     {
       "id": "bench_adjournment",
@@ -231,7 +258,59 @@
           },
           "outcome": "{role.cOut}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "fellowMPs": {
+            "chance": 0.4,
+            "react": [
+              -1,
+              2,
+              -1
+            ],
+            "requires": {
+              "parts": {
+                "role": [
+                  "mover"
+                ]
+              }
+            }
+          },
+          "pressGallery": {
+            "chance": 0.5,
+            "react": [
+              2,
+              -1,
+              -1
+            ],
+            "requires": {
+              "parts": {
+                "role": [
+                  "mover"
+                ],
+                "house": [
+                  "press"
+                ]
+              }
+            }
+          },
+          "officials": {
+            "chance": 0.4,
+            "react": [
+              -2,
+              2,
+              0
+            ],
+            "requires": {
+              "parts": {
+                "role": [
+                  "reply"
+                ]
+              }
+            }
+          }
+        }
+      }
     },
     {
       "id": "bench_cut",
@@ -326,7 +405,71 @@
           },
           "outcome": "{role.cOut}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "branch": {
+            "chance": 0.45,
+            "react": [
+              2,
+              -1,
+              -1
+            ],
+            "requires": {
+              "parts": {
+                "role": [
+                  "mover"
+                ]
+              }
+            }
+          },
+          "whips": {
+            "chance": 0.35,
+            "react": [
+              -1,
+              -1,
+              2
+            ],
+            "requires": {
+              "parts": {
+                "role": [
+                  "mover"
+                ]
+              }
+            }
+          },
+          "officials": {
+            "chance": 0.4,
+            "react": [
+              -2,
+              1,
+              1
+            ],
+            "requires": {
+              "parts": {
+                "role": [
+                  "reply"
+                ]
+              }
+            }
+          },
+          "fellowMPs": {
+            "chance": 0.4,
+            "react": [
+              1,
+              1,
+              -2
+            ],
+            "requires": {
+              "parts": {
+                "role": [
+                  "reply"
+                ]
+              }
+            }
+          }
+        }
+      }
     },
     {
       "id": "bench_gpc",
@@ -424,7 +567,34 @@
           },
           "outcome": "{role.cOut}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": {
+            "chance": 0.4,
+            "react": [
+              2,
+              -1,
+              -1
+            ]
+          },
+          "fellowMPs": {
+            "chance": 0.35,
+            "react": [
+              2,
+              -1,
+              -1
+            ],
+            "requires": {
+              "parts": {
+                "role": [
+                  "office"
+                ]
+              }
+            }
+          }
+        }
+      }
     },
     {
       "id": "bench_letters",
@@ -500,7 +670,27 @@
           },
           "outcome": "Your Tuesdays now end at one in the morning. The letters are accurate, and slightly less persuasive. {Writer.short} brings you kopi at eleven, and you understand it to be a review."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "branch": {
+            "chance": 0.5,
+            "react": [
+              -1,
+              2,
+              -1
+            ]
+          },
+          "officials": {
+            "chance": 0.4,
+            "react": [
+              2,
+              -3,
+              1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "bench_site",
@@ -578,7 +768,35 @@
           },
           "outcome": "{Site.short} shrinks by a fifth, the residents get a fitness corner, and the agency gets its site a year late. Everyone describes this as a win, separately."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": {
+            "chance": 0.45,
+            "react": [
+              2,
+              -2,
+              0
+            ]
+          },
+          "branch": {
+            "chance": 0.4,
+            "react": [
+              -2,
+              2,
+              0
+            ]
+          },
+          "fellowMPs": {
+            "chance": 0.35,
+            "react": [
+              1,
+              -2,
+              1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "bench_arrears",
@@ -638,7 +856,27 @@
           },
           "outcome": "Nobody goes to court. Arrears rise for a quarter, then fall below where they began. The agent presents the chart to three Town Councils as a warning, and to a fourth as advice."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "branch": {
+            "chance": 0.4,
+            "react": [
+              -2,
+              1,
+              1
+            ]
+          },
+          "fellowMPs": {
+            "chance": 0.35,
+            "react": [
+              1,
+              -2,
+              1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "bench_next_ward",
@@ -719,7 +957,27 @@
           },
           "outcome": "Every fourth Tuesday, Blk 438 gets both of you at one table. Residents explain each case twice, once to each MP, and leave sure it will be done twice as fast."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "fellowMPs": {
+            "chance": 0.55,
+            "react": [
+              -3,
+              2,
+              1
+            ]
+          },
+          "branch": {
+            "chance": 0.4,
+            "react": [
+              2,
+              -1,
+              -1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "bench_other_candidate",
@@ -778,7 +1036,35 @@
           },
           "outcome": "They accept. You talk about the lifts for an hour and agree on most of it. The photograph is online by noon, and the Whip asks, kindly, whose idea it was."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "branch": {
+            "chance": 0.5,
+            "react": [
+              2,
+              -2,
+              0
+            ]
+          },
+          "pressGallery": {
+            "chance": 0.35,
+            "react": [
+              -1,
+              0,
+              2
+            ]
+          },
+          "whips": {
+            "chance": 0.35,
+            "react": [
+              0,
+              1,
+              -2
+            ]
+          }
+        }
+      }
     },
     {
       "id": "bench_date",
@@ -914,7 +1200,27 @@
           },
           "outcome": "{promise.made}"
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "officials": {
+            "chance": 0.5,
+            "react": [
+              1,
+              2,
+              -3
+            ]
+          },
+          "pressGallery": {
+            "chance": 0.35,
+            "react": [
+              2,
+              -1,
+              -1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "bench_stand_in",
@@ -989,7 +1295,27 @@
           },
           "outcome": "Your own childhood, unrehearsed, is less tidy than the Minister's. It gets the only real laugh of the night. The Minister's office asks for a copy, for the files."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "pressGallery": {
+            "chance": 0.35,
+            "react": [
+              -2,
+              0,
+              2
+            ]
+          },
+          "officials": {
+            "chance": 0.35,
+            "react": [
+              1,
+              0,
+              -1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "bench_tea",
@@ -1054,7 +1380,19 @@
           },
           "outcome": "Nobody asks, and you are fair, mostly. {peer} is not fielded, and stays in the service. A year later, at a wedding, {peer} thanks you for the panel, in front of two people who were also on it."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "fellowMPs": {
+            "chance": 0.5,
+            "react": [
+              1,
+              2,
+              -3
+            ]
+          }
+        }
+      }
     }
   ]
 }
