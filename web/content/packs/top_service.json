@@ -254,9 +254,8 @@
      "text": "Ask {junior} which list to be on.",
      "effects": {
       "integrity": 4,
-      "reputation": 3,
-      "competence": 1,
-      "standing": -4
+      "competence": 2,
+      "standing": -3
      },
      "cast": {
       "junior": {
@@ -374,8 +373,7 @@
      "text": "Keep the scoring. Eleventh is eleventh.",
      "effects": {
       "integrity": 6,
-      "reputation": 3,
-      "standing": -5
+      "standing": -4
      },
      "outcome": "The list goes up as scored. The Minister approves it without comment, and mentions the block a third time, at a dinner, to someone else. Your officers notice that the scoring held, and say so in the lift."
     },
@@ -572,7 +570,8 @@
      "text": "Show the whole ministry the results, and ask why.",
      "effects": {
       "reputation": 6,
-      "integrity": 4,
+      "integrity": 3,
+      "competence": 1,
       "standing": -2
      },
      "outcome": "You present the slide yourself, lowest score first. The silence lasts eleven seconds. Then come the questions, more than you wanted, some of them fair. The next survey is better, and so is the ministry."
@@ -581,8 +580,8 @@
      "text": "Talk it through with your Deputy Secretaries only.",
      "effects": {
       "competence": 3,
-      "standing": 2,
-      "reputation": -2
+      "standing": 1,
+      "integrity": -2
      },
      "outcome": "Your Deputy Secretaries agree that the score is unfair. Then, one at a time over the next month, each tells you privately about a meeting where it was not. You change two habits."
     },

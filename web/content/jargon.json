@@ -375,6 +375,14 @@
       ]
     },
     {
+      "term": "Singpass",
+      "meaning": "The government's digital identity app, used to log in to public services; it also carries a digital identity card, accepted at polling stations.",
+      "match": "\\bSingpass\\b",
+      "entryPoints": [
+        "ls_polling"
+      ]
+    },
+    {
       "term": "GPC",
       "meaning": "Government Parliamentary Committee: the governing party's backbench MPs who shadow one ministry.",
       "match": "\\bGPCs?\\b|Government Parliamentary Committee",
