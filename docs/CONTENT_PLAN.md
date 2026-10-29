@@ -1,46 +1,52 @@
 # Content plan: from 88 cards to about 300
 
-Today a second playthrough shares about 60% of its cards with the first, so the game is mostly
-seen after one or two careers. This plan grows it to about 300 cards. The new cards come as themed
-packs, story chains, alternate scenes and traits, written by parallel writer agents to one quality bar.
-It sets the targets and the process; the cards themselves are written pack by pack.
+When this plan was written, a second playthrough shared about 60% of its cards with the first, so
+the game was mostly seen after one or two careers. This plan grows it to about 300 cards. The new
+cards come as themed packs, story chains, alternate scenes and traits, written by parallel writer
+agents to one quality bar. It sets the targets and the process; the cards themselves are written
+pack by pack.
 
-Measured on `fun/next` (09a28e5): 88 cards in `events.json`, 7 batchmate cards in `rival.json`,
-11 endings. Re-run the numbers with `node test/variety.js` (once `fun/variety` lands),
+The plan started from `fun/next` (09a28e5): 88 cards in `events.json`, 7 batchmate cards in
+`rival.json`, 11 endings. On `main` today (02b7626): 180 cards (105 in `events.json`, 75 in packs),
+the same 7 batchmate cards, 12 endings. Re-run the numbers with `node test/variety.js`,
 `node test/contexts.js` and `node test/similarity.js`.
 
-## 1. What exists today
+## 1. Where the plan started, and where it is now
 
-| Kind | Cards | Notes |
-| --- | --- | --- |
-| Drawable pool, civil service only | 32 | 12 of the 47 pool cards are repeatable fillers |
-| Drawable pool, politics (MP and up) | 14 | |
-| Drawable pool, spans both | 1 | |
-| Structural (tea, vetting, election, re-election, succession) | 5 | in every political career |
-| Consequences and callbacks | 29 | fire only after a choice |
-| Alternate scenes (rank variants) | 7 | of `ally_returns` and `scholar_returns` |
-| Origin-only (poly) | 3 | none for scholar or grad |
-| Batchmate (`rival.json`) | 7 | only with the start-screen option |
+| Kind | Cards at 09a28e5 | Now | Notes |
+| --- | --- | --- | --- |
+| Drawable pool, civil service only | 32 | 64 | repeatable fillers: 12 of the 47 pool cards then, 12 of 103 now |
+| Drawable pool, politics (MP and up) | 14 | 36 | |
+| Drawable pool, spans both | 1 | 3 | |
+| Structural (tea, vetting, election, re-election, succession) | 5 | 5 | in every political career |
+| Consequences and callbacks | 29 | 47 | fire only after a choice |
+| Alternate scenes (rank variants) | 7 | 17 | a scheduled card's `alternates` |
+| The end of a career (`endgame`) | 0 | 8 | drawn by the engine, never at random |
+| Origin-only | 3 (poly) | 9 | poly 3, scholar 5, graduate 1 |
+| Batchmate (`rival.json`) | 7 | 7 | only with the start-screen option |
 
 Where the pool cards can appear, by rank band (a card can cover several bands):
 
-| Rank band | Pool cards reachable |
-| --- | --- |
-| Management Executive, Senior ME (0-1) | 12 |
-| Assistant Director, Deputy Director (2-3) | 31 |
-| Director, Senior Director (4-5) | 30 |
-| Deputy Secretary, Permanent Secretary (6-7) | 16 |
-| MP, Parliamentary Secretary, Senior Parliamentary Secretary (8-10) | 8 |
-| Minister of State up to Prime Minister (11-16) | 14 |
+| Rank band | Pool cards reachable at 09a28e5 | Now |
+| --- | --- | --- |
+| Management Executive, Senior ME (0-1) | 12 | 37 |
+| Assistant Director, Deputy Director (2-3) | 31 | 50 |
+| Director, Senior Director (4-5) | 30 | 49 |
+| Deputy Secretary, Permanent Secretary (6-7) | 16 | 31 |
+| MP, Parliamentary Secretary, Senior Parliamentary Secretary (8-10) | 8 | 29 |
+| Minister of State up to Prime Minister (11-16) | 14 | 24 |
 
-**Gaps.** These are the places a returning player will notice repetition first.
-- **The first years:** 12 cards for ranks 0-1, which every career passes through.
-- **The top of the service:** 16 cards for Deputy Secretary and Permanent Secretary.
-- **Backbench to Senior Parliamentary Secretary:** 8 cards.
-- **No ministry content:** ten ministries exist, but only `fun/variety` adds cards for four of them.
+**Gaps.** These are the places a returning player will notice repetition first. Figures in
+italics are today's.
+- **The first years:** 12 cards for ranks 0-1, which every career passes through. *(Now 37.)*
+- **The top of the service:** 16 cards for Deputy Secretary and Permanent Secretary. *(Now 31;
+  its own pack is not written.)*
+- **Backbench to Senior Parliamentary Secretary:** 8 cards. *(Now 29.)*
+- **Ministry content:** ten ministries exist; four of them (Health, Manpower, National
+  Development, Education) have three cards each, from `fun/variety`.
 - **One crisis card** in the whole game (`the_crisis`).
 - **Life outside work** is two cards (`bto_queue`, `late_night`).
-- **No traits,** and no origin content for scholars or graduates.
+- **No traits.** Scholars and graduates now have an opening card, and scholars The Bond.
 - **Few new sources of Heat** outside the original compromise cards.
 
 ## 2. The packs
@@ -48,33 +54,38 @@ Where the pool cards can appear, by rank band (a card can cover several bands):
 Each pack is one file, `web/content/packs/<pack>.json` (section 6). The table's counts are new
 distinct cards. Alternate scenes are extra and counted in section 5.
 
-| Pack | New cards | Rank and act bands | Pushes both ways |
-| --- | --- | --- | --- |
-| Ministries (10 packs, one per ministry) | 50 (5 each; 12 of them come from `fun/variety`) | service 2-7, office holders 11-16; split where the text differs | Standing vs Integrity; Competence vs Reputation; Heat both |
-| The first years | 12 | 0-1 | Competence vs Standing; Integrity both |
-| Postings and statutory boards | 12 | 2-6 | Competence vs Standing; ceiling up via proving grounds |
-| Overseas postings | 8 | 3-6 | Competence and ceiling vs Standing (out of sight) |
-| The top of the service | 10 | 6-7 | Standing vs Integrity; Reputation both |
-| Backbench and junior office | 12 | 8-10 | Reputation vs Standing (with the Whip) |
-| Cabinet life and portfolios | 10 | 11-16 | Standing vs Integrity; Reputation both; National Bonus |
-| Crises | 12 | 3-16, split service/office | Competence and Reputation vs Heat; ceiling for standouts |
-| Life outside work | 12 | all, by age | Integrity vs Wealth; Competence (time) both |
-| Scandals and Heat | 8 | 3-16 | Heat up and down; Folder items |
-| Grassroots and constituency | 8 | 4-16 | Reputation vs Standing; Integrity both |
-| Traits (6 traits x 4 cards) | 24 | by trait | each trait's own axis |
-| Story chains (section 3) | 35 | across acts | see each chain |
-| **New total** | **213** | | |
+| Pack | New cards | Rank and act bands | Pushes both ways | Written |
+| --- | --- | --- | --- | --- |
+| Ministries (10 packs, one per ministry) | 50 (5 each; 12 of them come from `fun/variety`) | service 2-7, office holders 11-16; split where the text differs | Standing vs Integrity; Competence vs Reputation; Heat both | the 12 from `fun/variety`, in `events.json` |
+| The first years | 12 | 0-1 | Competence vs Standing; Integrity both | 13 (`first_years`) |
+| Postings and statutory boards | 12 | 2-6 | Competence vs Standing; ceiling up via proving grounds | |
+| Overseas postings | 8 | 3-6 | Competence and ceiling vs Standing (out of sight) | |
+| The top of the service | 10 | 6-7 | Standing vs Integrity; Reputation both | |
+| Backbench and junior office | 12 | 8-10 | Reputation vs Standing (with the Whip) | 12 (`backbench`) |
+| Cabinet life and portfolios | 10 | 11-16 | Standing vs Integrity; Reputation both; National Bonus | |
+| Crises | 12 | 3-16, split service/office | Competence and Reputation vs Heat; ceiling for standouts | |
+| Life outside work | 12 | all, by age | Integrity vs Wealth; Competence (time) both | |
+| Scandals and Heat | 8 | 3-16 | Heat up and down; Folder items | |
+| Grassroots and constituency | 8 | 4-16 | Reputation vs Standing; Integrity both | |
+| Traits (6 traits x 4 cards) | 24 | by trait | each trait's own axis | not built |
+| Story chains (section 3) | 35 | across acts | see each chain | 25 cards, 5 chains (`chains`) |
+| **New total** | **213** | | | |
 
-That's 95 today plus 213 new: **about 308 distinct cards**, before alternate scenes.
+That's 95 at the start plus 213 new: **about 308 distinct cards**, before alternate scenes.
+
+Three packs outside this table have also been written: **Openings** (`openings`, 2 cards: the
+scholar's and the graduate's first year), **Strange Years** (`strange`, 15 cards: one impossible
+premise, processed as routine, in about a third of careers) and **The end of a career**
+(`endgame`, 8 cards; DESIGN.md section 4).
 
 ### Seeds (one-line premises; writers turn these into cards)
 
 **Ministries**, five each. All institutions are real; all people are invented. The four `fun/variety`
-covers (Health, Manpower, National Development, Education) need two more each.
+covered (Health, Manpower, National Development, Education; three cards each) need two more each.
 - **Finance:** the Budget lockdown week; a ministry asks for a supplementary budget in October; the
   reserves question nobody may answer in public; GST vouchers' wording; a fiscal rule a Minister
   wants to "interpret".
-- **Trade and Industry:** an investment pitch against a neighbour's tax holiday; a free trade agreement
+- **Energy, Trade and Industry:** an investment pitch against a neighbour's tax holiday; a free trade agreement
   chapter on rules of origin; a plant closure announced on a Friday; Budget day productivity grants
   nobody applies for; a supply-chain scare.
 - **Manpower:** a dormitory inspection; the Employment Pass salary threshold review; a Workplace
@@ -139,8 +150,9 @@ the block party that needs a permit.
 
 ### Traits (chosen at the start, one per run; 6 traits x 4 cards)
 
-Each trait gives a small stat nudge, sets a flag (`trait_<id>`) and unlocks four cards that need it.
-Traits must never be required to win, and every origin can take every trait.
+**Not built.** The game has no traits yet, and the start screen does not offer one. The plan:
+each trait gives a small stat nudge, sets a flag (`trait_<id>`) and unlocks four cards that need it,
+within rule 5.12 of [`WRITING_RULES.md`](WRITING_RULES.md).
 - **Thick Skin:** candour costs a little less Standing; cards about public criticism.
 - **Knows Everyone's Birthday:** Standing grows quietly; cards about informal networks (and their Heat).
 - **Spreadsheet Person:** Competence edge; cards where the numbers tell a story someone wants untold.
@@ -153,9 +165,8 @@ small and separate. It follows the batchmate option's pattern.)
 
 ## 3. Story chains
 
-Each chain is 3-5 cards over years. A choice sets a flag; the next card is scheduled with `inYears`
-and a chance; branches are mutually exclusive flags. Each chain feeds the Folder (a compromise) or
-Declassified (a line naming the chain) at least once. Ten chains, 35 cards (the existing election card serves as one beat of The Boundary).
+Each chain is written to rule 3.14 of [`WRITING_RULES.md`](WRITING_RULES.md): 3-5 cards over years,
+linked by flags. Ten chains, 35 cards (the existing election card serves as one beat of The Boundary).
 
 | Chain | Beats (years apart) | Flags and branches | Pays off in |
 | --- | --- | --- | --- |
@@ -168,31 +179,29 @@ Declassified (a line naming the chain) at least once. Ten chains, 35 cards (the 
 | **The Protégé** | you mentor someone → they disagree with you in public (4y) → they outrank you (6y) | `backed_protege` / `checked_protege` | Standing; legacy; batchmate-like rivalry without the option |
 | **The U-Turn** | you defend a policy in the House → it is reversed (2y) → you deliver the ministerial statement → Hansard remembers (5y) | `defended_hard` / `hedged` | Reputation vs Standing |
 | **The Boundary** | the Electoral Boundaries Review Committee redraws your seat → your team is formed (1y) → the campaign → the result | `asked_for_smc` / `stayed_in_grc` | Election odds; a seat-specific re-election card |
-| **The Bond** (scholar only) | the overseas master's offer (bond extended) → a bank offers to pay the bond (2y) → you sponsor the next cohort (10y) | `extended_bond` / `bought_out` / `stayed_bonded` | Scholar origin content (none exists today) |
+| **The Bond** (scholar only) | the overseas master's offer (bond extended) → a bank offers to pay the bond (2y) → you sponsor the next cohort (10y) | `extended_bond` / `bought_out` / `stayed_bonded` | Scholar origin content (there was none when this was planned) |
 
 **Written so far** (`web/content/packs/chains.json`): The Pilot, The Whistleblower, The Protégé, The U-Turn
 and The Bond, with 25 cards in all, counting alternates. Changes from the table:
 - The Protégé's beats are at 3 and 4 years. Its last beat is the promotion panel that would put the protégé level with you.
 - The U-Turn starts with a Parliamentary Secretary or Senior Parliamentary Secretary answering questions. The Minister usually delivers the statement, and you decide what its paragraph four says about you. When the U-Turn started at any office holder's rank, its beats took the years in which the reshuffle is drawn, and the knows-the-win rate fell about 4 points.
 - The Bond's mentor beat is 8 years after the bank's offer.
+- Flag names start with the chain's name (`whistle_protected`, `protege_backed`, `bond_kept`), not
+  the table's; the pack file is the source.
 
 Measured over 400 runs per bot per origin, a chain is started in 4-17% of careers, and 50-67% of started chains reach their last beat. The Bond is started in about 20% of scholar careers.
 
 **Engine hooks for chains.**
-- **Declassified.** `declassifiedFlags` in `game.json` is a list of `{ "label", "requires", "text" }`. At the end of a run, for each label, the first entry whose `requires` hold adds one line, after Exposure. Order the entries from the furthest point a story can reach to the nearest, so a chain is named by where it finished.
+- **Declassified.** `declassifiedFlags` in `game.json` is a list of `{ "label", "requires", "text" }`. At the end of a run, for each label, the first entry whose `requires` hold adds one line, after Exposure (order them by rule 3.14).
 - **A move between ministries.** When a choice moves the player to another ministry (`newMinistry`), the engine sets `moved_ministry`. A chain that starts in a ministry can require it to be absent at its first beat. A later beat then knows whether the player is still there.
 - **The bond.** A choice's `bond: N` adds N years to the bond, served after any bond still running, and `notDuringBond` cards wait for them. `requires.duringBond` holds only while a bond runs.
 
-## 4. Rules for alternate scenes
+## 4. Alternate scenes, series and Meanwhile lines
 
 A card gets two or three alternate scenes when it appears in more than about 40% of runs
-(`test/variety.js`), or when it is structural (tea, vetting, election, succession).
-- **Mechanically identical.** Every scene keeps the same id family, requires, choice count and order,
-  effects, flags, schedules and election kinds. Only the body, outcomes and choice wording change. Callbacks,
-  the Folder and the harness all see one card.
-- **Different scene, same decision.** A different room, person, weather or document, not a reworded
-  sentence. Sibling scenes should stay below 0.35 on the similarity check's 4-gram measure. The
-  check exempts families from worn-phrase counts but not from this.
+(`test/variety.js`), or when it is structural (tea, vetting, election, succession). Write them to
+rules 3.8 and 3.9 of [`WRITING_RULES.md`](WRITING_RULES.md): the same decision, mechanically
+identical, in a different scene.
 - **Deterministic.** Scenes live in a card's `variants` list. The first showing in a run is picked from
   the seed, preferring a scene the phone has not shown in its last two runs; a card shown again in the
   same run (a repeat card) moves on to its next scene. The freshness memory is part
@@ -203,27 +212,25 @@ A card gets two or three alternate scenes when it appears in more than about 40%
 weather: the Indicators in a strong year, in a downturn and before an election; the improvement plan
 and the Whip's word. Each card says `"series": { "key": "indicators", "full": 2 }`, and each choice names
 its `"stance"` (the same stance names on every card of the series). The series is shown in full `full`
-times a career (the Indicators twice, the plan once). After that, a card of the series passes as a
-Meanwhile year: the habit (the stance last chosen) is applied in full, mechanics included (the National
-Bonus it sets, the protection a plan gives, the cooldown), with a Meanwhile line for that card and
-stance. The second full showing may have its own scene, `"again"`, written per stance in
+times a career: the Indicators twice; the improvement plan and the Whip's word say `"full": 99`, so
+they are always shown in full. After that, a card of the series passes as a Meanwhile year: the
+habit (the stance last chosen) is applied in full, mechanics included (the National Bonus it sets,
+the cooldown), with a Meanwhile line for that card and stance. The second full showing may have its own scene, `"again"`, written per stance in
 `again.scenes`: the habit is the default and is shown first, and the question is whether to break it,
 knowing it will not be asked again. `again.keep` and `again.change` are added to the effects of keeping
-the habit and of breaking it, so the second time has its own stakes; no choice may be dominated.
+the habit and of breaking it, so the second time has its own stakes (rule 5.10).
 
-**Meanwhile lines.** A Meanwhile line is one sentence of glance-able payoff, at most about 20 words.
-Every montage card has at least four per habit (`montageLines`, keyed by choice index, or by stance for
-a series), a safe re-election has its own list (`autoPlay.lines`), and none of them uses a token.
-A run never shows the same line twice: each card and habit takes its lines in an order drawn from the
-seed, preferring lines the phone has not shown in its last two runs. When a repeatable card's lines for
-the habit have all been shown, the card comes back in full, in a scene the run has not shown; a card
-with no line and no scene left is not drawn again that run. A series, which cannot come back in full,
-takes its lines again in the same order, so give it enough lines for a long career. Write lines that do not count ("another", not "a second"), and that do not
-claim a result the year's own lines may contradict (the pay line shows the bonus).
+**Meanwhile lines.** A repeatable card keeps its lines in `montageLines`, keyed by choice index (or by
+stance for a series); a safe re-election has its own list (`autoPlay.lines`). A run never shows the
+same line twice: each card and habit takes its lines in an order drawn from the seed, preferring lines
+the phone has not shown in its last two runs. When a repeatable card's lines for the habit have all
+been shown, the card comes back in full, in a scene the run has not shown; a card with no line and no
+scene left is not drawn again that run. A series, which cannot come back in full, takes its lines
+again in the same order. Write them to rules 2.8, 3.12 and 3.13.
 
 ## 5. The quality bar (every card, every pack)
 
-1. **The five tone rules:**
+1. **The tone rules:**
    - Institutions are real and accurately modelled; people are invented, and no real politician is
      named, depicted or caricatured.
    - Punch at the machinery, never at persons.
@@ -322,28 +329,29 @@ Before and after (approved by the owner):
 A pack is `web/content/packs/<id>.json`:
 `{ "id": "<id>", "title": "...", "events": [ cards in the events.json format ] }`.
 - **Loading order:** packs are listed in `web/content/packs/manifest.json` and loaded in that order
-  after `events.json`, by `web/packs.js`. The phone (`ui.js`), the harness and the Pages content check
-  all assemble through it.
+  after `events.json`, by `web/packs.js`. The phone (`ui.js`) and the harness assemble through it;
+  the Pages content check reads the same manifest.
 - **Tagging and checks:** each card is tagged with its pack. A duplicate id anywhere (events,
-  packs, batchmate cards), a malformed pack or a missing pack file stops the build.
+  packs, batchmate cards), a malformed pack, a missing pack file or a malformed player table
+  (`player` in `game.json`) stops the build.
 - **Offline:** the service worker caches the listed packs for offline play.
 - **Starter file:** `example.json` is an empty pack to copy.
 
 ## 7. Writing workflow (parallel writer agents)
 
 **Order.** Gaps first, then the packs that multiply variety:
-1. The first years.
+1. The first years. *(Written.)*
 2. Ministries (the six `fun/variety` does not cover first).
-3. Backbench and junior office.
+3. Backbench and junior office. *(Written.)*
 4. The top of the service.
 5. Crises.
-6. Story chains.
+6. Story chains. *(Five of ten written.)*
 7. Life outside work.
 8. Postings and overseas.
 9. Cabinet life.
 10. Scandals.
 11. Grassroots.
-12. Traits, once the trait mechanism lands.
+12. Traits, once the trait mechanism lands (not built).
 
 **One agent per pack, one file per pack, one branch per batch of packs.** Writers never edit
 `events.json`, `game.json` or another pack's file, so they can run in parallel without conflicts.
@@ -423,12 +431,12 @@ the seed and never repeated within a run; write new ones there, each sentence us
 **Worked example: the junior.** `late_night` names the junior and records how you treated them:
 
 ```json
-"body": "The clearance has come back with comments for the fourth time. {junior} is still at {junior.their} desk, waiting to see what you decide. The dinner you promised to be home for was at eight.",
+"body": "It's 11:40pm, and your paper has come back for the fourth time with comments from the people who have to clear it. It's due upstairs in the morning. {junior} is still at {junior.their} desk, waiting to see what you decide. The dinner you promised to be home for was at eight.",
 "choices": [
   { "text": "Finish it tonight.", "cast": { "junior": { "flags": ["kept_late"] } },
-    "outcome": "Cleared at 1:20am, with {junior} proofreading the annexes. You are both thanked in one email of one word. ..." },
+    "outcome": "It's cleared at 1:20am, with {junior} proofreading the annexes. You're both thanked in one email of one word. ..." },
   { "text": "Go. Send it in the morning.", "cast": { "junior": { "flags": ["sent_home"] } },
-    "outcome": "You send {junior} home first, and make it home yourself for dessert. ..." }
+    "outcome": "You send {junior} home first, and make it home yourself in time for dessert. ..." }
 ]
 ```
 
@@ -462,9 +470,10 @@ you, {player.formal}. That was very complete."), the batchmate, a cast line, the
 Declassified file. Use `{player.formal}` when an official, the press or a resident addresses or names
 the player, and `{player}` for colleagues and lists. Put the player's name inside the quote or the
 document that carries it, never in the narration ("you", not "{player} walks in"). The tokens are
-filled in card bodies, outcomes and titles, the batchmate's lines, cast lines, the ending card and the
-Declassified file; not in choice text (Declassified quotes it raw), montage or autoplay lines, or the
-Folder.
+filled in card bodies, outcomes and titles, the batchmate's lines, cast lines, Folder items, the
+ending card and the Declassified file. They are never filled in montage or autoplay lines. Keep them
+out of choice text too: Declassified may quote a choice the player did not take as it is written,
+token and all.
 
 ### Card parts
 
@@ -492,7 +501,7 @@ choices and outcomes use `{slot}` (the option's `text`), `{Slot}` (capitalised) 
 "parts": {
   "sent": [ { "id": "draft", "text": "your draft reply, with your notes to yourself still in square brackets", "fix": "Your correction is two lines long. ..." },
             { "id": "attachment", "text": "last year's figures, attached instead of this year's", "fix": "..." },
-            { "id": "aside", "text": "a reply meant for one person, which reads in full: \"Is this serious?\"", "fix": "..." } ],
+            { "id": "aside", "text": "the words \"Is this serious?\" in a reply meant for one person", "fix": "..." } ],
   "to": [ { "id": "division", "text": "the whole division", "joke": "..." },
           { "id": "agencies", "text": "forty-one agencies", "joke": "..." },
           { "id": "minister", "text": "the Minister's office", "joke": "...", "effects": { "0": { "standing": -1 }, "2": { "standing": -3 } } } ],
@@ -500,14 +509,15 @@ choices and outcomes use `{slot}` (the option's `text`), `{Slot}` (capitalised) 
                { "id": "senior", "text": "{senior} replies to all, \"Noted, thanks,\" which keeps the thread alive into the weekend." },
                { "id": "nobody", "text": "Nobody says anything. Everyone has read it." } ]
 },
-"body": "At 4:52pm on a Friday, you send {to} {sent}. {noticed}",
+"body": "At 4:52pm on a Friday, you accidentally send {to} {sent}. Email recalls rarely work, and on Monday everyone will remember whose name was on it. {noticed}",
 "choices": [ { "text": "Send a short correction to everyone, now.", "outcome": "{sent.fix}", ... },
              { "text": "Recall it, and hope.", "outcome": "The recall reaches the people who had not opened it. ...", ... },
              { "text": "Reply all once more, with an apology and a joke.", "outcome": "{to.joke}", ... } ]
 ```
 
 Write every option so it reads well beside every option of every other slot, or tie them with
-`requires.parts`. Every assembled body still keeps to 25-45 words and every outcome to 15-35.
+`requires.parts`. Every assembled body still keeps to 30-60 words and every outcome to 15-40
+(section 5).
 
 ### Checks
 

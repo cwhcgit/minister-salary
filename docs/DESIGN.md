@@ -3,20 +3,22 @@
 **Working title:** Minister Salary
 *(alternates: "Million Dollar Minister", "Confirmed & Substantive", "CEP")*
 
-**Platform:** Android (Kotlin + Jetpack Compose)
+**Platform:** the web, played on a phone (`web/`). It installs to the home screen and plays
+offline. A native Android build (Kotlin + Jetpack Compose) was the original target; it is not
+built (§9).
 **Genre:** Text-driven life/career simulator, turn-based (BitLife-like)
 **Setting:** Singapore's public service and political system, played satirically
-**Status:** M0 — design. No code yet.
+**Status:** playable. 180 cards and 12 endings; content grows pack by pack (`docs/CONTENT_PLAN.md`).
 
 ---
 
 ## 1. The pitch
 
-You are a fresh graduate joining the Singapore public service at the bottom of the
-grade ladder. You did not get the scholarship. Over roughly forty in-game years you
-claw upward through statutory boards, ministries, an appraisal system that will not
-tell you what it thinks of you, and eventually an invitation to tea — toward the only
-job in the country whose salary is set by a published formula.
+You join the Singapore public service as a President's Scholar, a local graduate, or a poly
+diploma holder finishing a degree at night (§7). Over roughly forty in-game years you claw
+upward through statutory boards, ministries, an appraisal system that will not tell you what
+it thinks of you, and eventually an invitation to tea — toward the only job in the country
+whose salary is set by a published formula.
 
 The joke is never "politicians bad." The joke is the machinery: the appraisal
 euphemisms, the bonus indicators, the acronyms, the serene institutional confidence.
@@ -27,28 +29,36 @@ Climbing a ladder whose rungs are invisible to you, and discovering the rules on
 by paying for them.
 
 ### Session shape
-30 seconds to a few minutes. One tap advances a year. Full run: 25-45 minutes.
-Endings are collectible; replay is the point.
+30 seconds to a few minutes. Each card is one year. A year with nothing to decide passes
+without a card and is shown as its own page (§2). A career is about 20-35 cards. Twelve
+endings; replay is the point.
 
 ---
 
 ## 2. Core loop
 
-One **turn = one year**. The player taps **Confirm Another Year**.
+One **card = one year**. A turn is a card, its outcome, then a page for each year-end review:
 
-```
-  ┌─────────────────────────────────────────────┐
-  │ 1. PAYOUT      salary + bonus → Wealth      │
-  │ 2. MAIN EVENT  one card, 2-4 choices        │
-  │ 3. MINOR BEATS 0-2 flavour lines, no choice │
-  │ 4. APPRAISAL   performance grade → promote? │
-  │ 5. CONSEQUENCE scheduled events may fire    │
-  │ 6. AGE         +1 year; check endings       │
-  └─────────────────────────────────────────────┘
-```
+1. **The card.** One decision, two or three choices. A choice the player cannot take yet is
+   shown locked, with an in-world reason ("You'd need a stronger reputation for this.").
+2. **The outcome.** What the choice did, and anything it set off: a line saying it will count
+   at this year's appraisal, a colleague arriving or leaving, and at most one quiet line when a
+   stat moved a long way (§3).
+3. **The year-end review**, on its own page ("Age 31 · Year-end review"): pay, the appraisal
+   (§5), a promotion or not, any warning, rumour or batchmate news, and signals about next
+   year. The player is a year older.
+4. **Years without a decision**, a page each ("Age 32 · A year without a decision"): a
+   repeatable card already played in full (one Meanwhile line that repeats what you chose
+   before), a safe re-election, a series card already shown as often as it may be, or an empty
+   pool. Each still has its pay, appraisal and promotion.
+5. **Confirm Another Year**, on the last page, draws the next card. When the career is over,
+   the button reads **The Final Position** and opens the ending card (§8).
 
-A turn that produces nothing is a failure of content, not a valid outcome. Every year
-must give the player at least one thing to read.
+A card with no real decision in it is a failure of content. Years with nothing to decide pass
+by themselves instead.
+
+The header shows rank, grade, age, year, ministry and lifetime earnings. Its **Reincarnate**
+button abandons the current run and goes back to the start screen; it takes two taps.
 
 ---
 
@@ -61,15 +71,15 @@ The four stats are not shown as numbers during play. They appear only as words
 (`statWords` in `game.json`): the appraisal's "why" line in a year that needs explaining
 (naming the strong suit and the weak spot only when that is news), one quiet line when a
 single choice moves a stat by 6 or more (at most once every three cards), and a locked
-choice's in-world reason. The ending screen reveals all four, each with a verdict on what
-it was and what it did to the run.
+choice's in-world reason. The ending screen reveals all four, each with a plain verdict on
+what it was and what it did to the run.
 
 | Stat | Range | What it is | Pushed up by | Pushed down by |
 |---|---|---|---|---|
-| **Reputation** | 0-100 | Public recognition. Gates electability. | Visible wins, media, constituency work | Scandal, invisibility, unpopular policy |
-| **Standing** | 0-100 | How much the machine trusts you. Gates promotion and the tea session. | Loyalty, discretion, delivering | Dissent, leaks, embarrassing your Perm Sec |
-| **Integrity** | 0-100 | Private moral ledger. Player-facing conscience. | Refusing, disclosing, protecting juniors | Burying, spinning, throwing staff under the bus |
-| **Competence** | 0-100 | Whether you can actually do the job. Drives performance grade and policy outcomes. | Hard postings, training, doing the work | Coasting, delegating everything, burnout |
+| **Reputation** | 0-100 | Public recognition. Counts a little in the appraisal, sets election odds, and with Standing gates the tea. | Visible wins, media, constituency work | Scandal, invisibility, unpopular policy |
+| **Standing** | 0-100 | How much the machine trusts you. Counts in the appraisal; gates the tea, the succession and staying on past 65. | Loyalty, discretion, delivering | Dissent, leaks, embarrassing your Perm Sec |
+| **Integrity** | 0-100 | Private moral ledger. Never counts in the appraisal; decides most of the legacy line. | Refusing, disclosing, protecting juniors | Burying, spinning, throwing staff under the bus |
+| **Competence** | 0-100 | Whether you can actually do the job. Weighs most in the appraisal and sets the yearly performance bonus. | Hard postings, training, doing the work | Coasting, delegating everything, burnout |
 
 **Wealth ($)** — running total. Not a gate; it is the **score**. The salary table is the
 satire, so the number must always be on screen.
@@ -78,36 +88,41 @@ satire, so the number must always be on screen.
 
 **CEP — Currently Estimated Potential.** The real mechanic and the heart of the game.
 An internal estimate of the highest grade you will ever reach. It **caps your ladder**:
-you cannot be promoted past your CEP, no matter your stats. It is never shown as a
-number — only surfaced as rumour, euphemism and inference:
+you cannot be promoted past your CEP, no matter your stats. Winning the first election
+replaces it with the party's own estimate, worked out from Standing and Reputation. It is
+never shown as a number during play — only surfaced as rumour, euphemism and inference:
 
 > *"Your reporting officer describes your trajectory as 'steady'."*
 > *"You were not on the list for the Leadership Programme. No reason was given."*
 > *"Someone in HR called you 'a safe pair of hands'. You are not sure this is good."*
 
 Raising CEP requires standout events, not grinding stats. Learning to read the
-euphemisms **is** the skill the game teaches.
+euphemisms **is** the skill the game teaches. The ending's Declassified file says what it
+was (§8).
 
 **Heat** — 0-100 scandal exposure. Accumulates from every corner cut. High Heat makes
-buried things resurface at the worst time. Also invisible; telegraphed by flavour text
-("a journalist has been asking around about the 2029 tender").
+concealed things likelier to surface during an election campaign. Also invisible: at 55 a
+year-end line warns ("A journalist has been asking around about something old."), and at 85
+the career ends (Everything Surfaced).
 
 ---
 
 ## 4. The ladder
 
-### Act I — The Service (age 23 → ~50)
+The # is the rank number content uses (`requires.minRank` and `maxRank`, 0-16).
+
+### Act I — The Service (age 23 → 64)
 
 | # | Rank | Grade | Ballpark pay | Notes |
 |---|---|---|---|---|
-| 1 | Management Executive | MX13 | $3.8k/mo | Statutory board. You photocopy things. |
-| 2 | Senior Management Executive | MX12 | $5.5k/mo | |
-| 3 | Assistant Director | MX11 | $7.5k/mo | First time you chair anything |
-| 4 | Deputy Director | MX10 | $10k/mo | |
-| 5 | Director | MX9 | $14k/mo | |
-| 6 | Senior Director | Superscale | $20k/mo | |
-| 7 | Deputy Secretary | Superscale | $35k/mo | |
-| 8 | **Permanent Secretary** | Staff Grade | ~$1M/yr | Top of the civil service |
+| 0 | Management Executive | MX13 | $3.8k/mo | Statutory board. You photocopy things. |
+| 1 | Senior Management Executive | MX12 | $5.5k/mo | |
+| 2 | Assistant Director | MX11 | $7.5k/mo | First time you chair anything |
+| 3 | Deputy Director | MX10 | $10k/mo | |
+| 4 | Director | MX9 | $14k/mo | |
+| 5 | Senior Director | Superscale | $20k/mo | |
+| 6 | Deputy Secretary | Superscale | $35k/mo | |
+| 7 | **Permanent Secretary** | Staff Grade | ~$1M/yr | Top of the civil service |
 
 **The Administrative Service fast lane.** Scholars enter the Admin Service as Assistant
 Directors at 25, skipping the statutory-board rungs, and need one year in each grade
@@ -124,27 +139,32 @@ Permanent Secretary at 38. Nothing ever goes below 38 for Permanent Secretary.
 
 You cannot become PM as a civil servant. You must be **spotted**, then resign.
 
-- **The Tea Session** — an event chain, not a single roll. Gated on Standing + Reputation + CEP.
-  Vetting, a background check that surfaces your buried choices, an interview where
-  the questions are gentle and the silences are not.
-- **The GRC** — you are slotted into a Group Representation Constituency team.
-  Winning is mostly not about you. Losing ends Act II immediately.
-  An SMC is offered only to high-Reputation players: higher risk, far higher standing if won.
-- Lose the election → **ending**, or a long cold walk back via a statutory board chairmanship.
+- **The Tea Session** — offered, ahead of the random draw, to an officer at Director or above
+  with Standing 54 and Reputation 44, once any bond is served and not within three years of
+  retirement. The year before, a line hints that the party is interested. Saying no leads, at
+  retirement, to The Tea Was Declined.
+- **The vetting** — a background check that reads back the Folder: every compromise you made.
+  Disclose it all (each item costs Standing; three or more and the invitation quietly lapses),
+  or answer only what is asked (each hidden item may surface during the campaign, likelier with
+  high Heat). An officer waiting for the election has resigned to stand; the service's clock
+  waits for the result.
+- **The general election** — run in a Group Representation Constituency team, where winning is
+  mostly not about you, or, with Reputation 60 or more, ask for a single seat: riskier, and
+  decided by Reputation. Losing ends the career (Lost the Ward). There is no way back.
 
 ### Act III — Politics
 
 | # | Office | Ballpark pay |
 |---|---|---|
-| 9 | Member of Parliament | $259k/yr ($18,500/month allowance × 14) |
-| 10 | Parliamentary Secretary | ~$810k (0.45× MR4) |
-| 11 | Senior Parliamentary Secretary | ~$810k (same merged grade: a promotion with no pay rise) |
-| 12 | Minister of State | ~$1.26M (0.7×, derived) |
-| 13 | Senior Minister of State | ~$1.53M (0.85×, derived) |
-| 14 | **Minister (MR4)** | **~$1.8M/yr** — the title drop |
-| 15 | Minister (MR3/MR2 merged), or Second Minister | ~$2.34M (1.3×) |
-| 16 | Deputy Prime Minister (MR1) | ~$2.88M (1.6×, derived) |
-| 17 | **PRIME MINISTER** | **$3.6M, 2× MR4** |
+| 8 | Member of Parliament | $259k/yr ($18,500/month allowance × 14) |
+| 9 | Parliamentary Secretary | ~$810k (0.45× MR4) |
+| 10 | Senior Parliamentary Secretary | ~$810k (same merged grade: a promotion with no pay rise) |
+| 11 | Minister of State | ~$1.26M (0.7×, derived) |
+| 12 | Senior Minister of State | ~$1.53M (0.85×, derived) |
+| 13 | **Minister (MR4)** | **~$1.8M/yr** — the title drop |
+| 14 | Minister (MR3/MR2 merged), or Second Minister | ~$2.34M (1.3×) |
+| 15 | Deputy Prime Minister (MR1) | ~$2.88M (1.6×, derived) |
+| 16 | **PRIME MINISTER** | **$3.6M, 2× MR4** |
 
 > Pay figures follow the 2026 political salary review (accepted 8 Sep 2026, effective
 > 15 Oct 2026): MR4 is the median income of the top 1,000 earners less 40%. Mayors, Senior
@@ -153,6 +173,9 @@ You cannot become PM as a civil servant. You must be **spotted**, then resign.
 > four equally weighted indicators; from 1 Jan 2027 the target bands are unemployment 3% to
 > below 3.5%, median real income growth 2.5% to below 3.5%, 20th-percentile real income
 > growth 3% to below 4%, real GDP growth 2% to 4%.
+
+Re-election comes every five years, and Reputation raises the odds. A safe seat (Reputation 60
+or more, low Heat) passes by itself as a year without a decision, and is won.
 
 ### The end of a career
 
@@ -169,16 +192,16 @@ Minister. The timing and the lines live in `game.json` (`endgame`), the cards in
 `content/packs/endgame.json`.
 
 ### Bonuses (the good part)
-Annual payout = base + **Performance Bonus** (from appraisal grade) + **National Bonus**
-(0-6 months, computed from four socio-economic indicators the player can actually
-influence once they hold a portfolio: real median income growth, income growth of the
-lowest 20th percentile, unemployment, real GDP growth).
+Annual payout = base + **Performance Bonus** (10% to 45% of base, set by Competence) +
+**National Bonus** (from Minister of State up: 0-6 months, set by four socio-economic
+indicators: real median income growth, income growth of the lowest 20th percentile,
+unemployment, real GDP growth), less about 18% for tax and CPF.
 
-Once the player is a Minister, **their own policy choices move their own bonus.** The
-game never comments on this. It just shows the number. The choice comes as The Indicators,
-twice a career: the second time, the plan from the first is the default and the question is
-whether to break it. After that the ministry rolls the habit over by itself, and every year's
-pay line still shows the months it earned.
+Once the player is a Minister of State or above, **their own policy choices move their own
+bonus.** The game never comments on this. It just shows the number. The choice comes as The
+Indicators, twice a career: the second time, the plan from the first is the default and the
+question is whether to break it. After that the ministry rolls the habit over by itself, and
+every year's pay line still shows the months it earned.
 
 ---
 
@@ -187,27 +210,42 @@ pay line still shows the months it earned.
 End of each year:
 
 ```
-performanceScore = 0.5·Competence + 0.3·Standing + 0.15·Reputation + noise(±10)
-              → grade A / B+ / B / C / D  (displayed in euphemism, never as a letter)
+performanceScore = 0.5·Competence + 0.3·Standing + 0.15·Reputation + noise(±5) + this year's "noted" choices
+              → grade A (72+) / B+ (58+) / B (42+) / C (28+) / D
 ```
 
-- **A / B+** → promotion eligible, if `currentRank < CEP`
-- **C** twice consecutively → lateral transfer to a posting nobody wants
-- **D** → a warning; the next year, the improvement plan card (once a career: a later plan
-  passes as a Meanwhile year that does what you did with the first). Two Ds in a row after it →
-  the quiet conversation (never in the first four years, or before six cards)
-- `currentRank == CEP` → *"You are described as having found your level."* Promotion
-  never comes. Player must find a CEP-raising event or accept the ceiling.
+The review shows the letter first, then a euphemism for it ("Grade B+. Your performance is
+described as 'strong, consistently exceeding expectations'."); each grade has several
+wordings. In a year that needs explaining (the first appraisal, a change of grade, a promotion
+or a warning), a "why" line says in words which stats carried or cost the grade, and whether a
+choice or the year's luck moved it. The weightings and the score are never shown. A first
+appraisal never goes below C.
 
-The player is shown the euphemism and must infer the grade. A settings toggle can
-reveal raw numbers for players who want the spreadsheet.
+- **A / B+** → promotion eligible (an A only, from Minister up), if `currentRank < CEP`, the
+  years in grade are served and the age floor allows. With a batchmate at the same grade, the
+  ranking exercise gives the slot to one of you. A very high A at Director or below can skip a
+  grade.
+- The year before a ranking, a line says your name goes forward and what grade it takes. If
+  only the ceiling stands in the way, the line says instead that your name is not on the list.
+- **C** three times in a row → HR moves you sideways to another division, and you get a new
+  reporting officer. (In politics, the Whip has you chair a select committee.)
+- **D** → a formal warning; the next year, the improvement plan card (the Whip's word in
+  politics), shown in full every time. A second D in a row after it → the quiet conversation
+  (never in the first four years, or before six cards).
+- `currentRank == CEP` → a rumour instead of the promotion (*"Someone in HR calls you 'a safe
+  pair of hands'."*). Promotion never comes. Player must find a CEP-raising event or accept
+  the ceiling.
+
+The player is shown the grade and its euphemism, and must infer the ceiling. There is no
+setting that shows the numbers.
 
 ---
 
 ## 6. Events — the content system
 
-Events are **data, not code** — JSON in `assets/content/`. Anyone can write content
-without touching Kotlin.
+Events are **data, not code** — JSON in `web/content/events.json` and the packs in
+`web/content/packs/` (`docs/CONTENT_PLAN.md` sections 6 and 8). Anyone can write content
+without touching the engine.
 
 ```json
 {
@@ -215,7 +253,7 @@ without touching Kotlin.
   "title": "The Inconvenient Figure",
   "body": "Your director asks whether the audit's utilisation figure might be presented as a range rather than a number.",
   "requires": {
-    "minRank": "MX11", "maxRank": "MX9",
+    "minRank": 2, "maxRank": 4,
     "minStats": { "competence": 30 },
     "flagsNone": ["whistleblower"]
   },
@@ -240,12 +278,14 @@ without touching Kotlin.
 
 **Deferred consequences** (`schedule`) are the mechanism that makes choices feel heavy.
 A choice in year 6 detonating in year 14 is the single highest-value feature in the
-design; it ships in M1, not later.
+design; it shipped in M1.
 
-**Selection:** filter the pool by `requires` against current state → weighted random →
-suppress `once` events already seen. Scheduled events pre-empt the random pool.
+**Selection**, each year: a card the career's end decides (§4) comes first; then a scheduled
+consequence that has fallen due (one a year; the rest wait their turn, earliest first); then a
+priority card that qualifies (the tea, the succession); then a weighted random draw from the
+cards whose `requires` hold, without `once` cards already seen.
 
-**Variety.** A second career should not replay the first. Three mechanisms, measured by
+**Variety.** A second career should not replay the first. Four mechanisms, measured by
 `test/variety.js`:
 - *Versions.* A card may carry `variants`: the same mechanics in a different scene (title,
   body, choice text and outcomes change; effects, flags and consequences do not). A run's
@@ -255,10 +295,14 @@ suppress `once` events already seen. Scheduled events pre-empt the random pool.
   are drawn at 0.35 of their weight.
 - *Ministry decks.* Some cards require the player's ministry (Health, Manpower, National
   Development, Education), so two careers in different ministries see different work.
+- *Cast and parts.* Each run draws its own recurring people, and a card may assemble its
+  scene from interchangeable parts (`docs/CONTENT_PLAN.md` section 8).
 
-**Content targets**
-- M1: ~25 events, enough to reach Director
-- M3: 120+ events, full ladder, 8-10 endings
+**Strange Years** (`packs/strange.json`): an impossible premise, processed as routine. About a
+third of careers meet one, and none meets more than one.
+
+**Content today:** 180 cards (105 in `events.json`, 75 in packs), 7 batchmate cards and 12
+endings. `docs/CONTENT_PLAN.md` grows it toward about 300.
 
 ---
 
@@ -268,12 +312,15 @@ Three origins. This is where the meritocracy satire lives — as balance, not co
 
 | Origin | Start | Effect |
 |---|---|---|
-| **President's Scholar** | Admin Service, Assistant Director, age 25, bonded | One year in grade instead of two until Director. High CEP. Bond = cannot resign for 6 years. *Easy mode.* |
-| **Local graduate** | MX13, age 23 | Baseline. Median CEP. *Normal.* |
-| **Poly → night-class degree** | MX13, age 27, lower start | Low starting CEP, hardest climb. Unique events unavailable to the others. *Hard mode, best endings.* |
+| **President's Scholar** | Admin Service, Assistant Director, age 25, bonded | One year in grade instead of two until Director. High CEP: no ceiling inside the service. Bond: no invitation to tea and no private-sector offers for 6 years. Its own opening card and story (The Bond). *Easy.* |
+| **Local Graduate** | MX13, age 23 | Baseline. Median CEP. Its own opening card. *Normal.* |
+| **Poly, then night classes** | MX13, age 27 | Low starting CEP, hardest climb. More Integrity and Competence, less Reputation and Standing. Three cards only this origin sees. *Hard.* |
 
-Also chosen: name, ministry preference, and one **Trait** (e.g. *Thick Skin*, *Good Chinese*,
-*Knows Everyone's Birthday*) that unlocks a small pool of exclusive events.
+The start screen also asks for a name and a gender (below), and offers a batchmate: someone
+from your intake who competes with you for the same promotion slots (`content/rival.json`).
+The ministry is not chosen: it is drawn at random, and a reshuffle can later move a minister.
+**Not built:** a ministry preference, and **Traits** (e.g. *Thick Skin*, *Knows Everyone's
+Birthday*), which are planned in `docs/CONTENT_PLAN.md` section 2.
 
 **Name and gender are text, not content branches.** The start screen asks for a name and a gender,
 and the game still says "you", so they show only where someone else names or addresses the player.
@@ -292,72 +339,90 @@ write one line with the tokens in it (CONTENT_PLAN section 8).
 
 ## 8. Endings
 
-Every run ends on a shareable **ending card**: portrait, final title, lifetime earnings,
-one-line epitaph. Collected in a gallery — the main replay driver.
+Every run ends on an **ending card**: the player's name, the ending's title and epitaph, the
+final position, age and lifetime earnings; then the four stats, revealed with a plain verdict
+each (§3); then **Declassified**, what was really going on: the ceiling and the choice that
+raised it (or would have), what the rumours meant, why the tea never came, the peak of Heat,
+the stories the career told, the batchmate, and a legacy line.
 
-1. **Prime Minister** — the win. Score = lifetime earnings × legacy multiplier.
-2. **Permanent Secretary** — topped out on the civil side. Quietly the most respected ending.
-3. **Found Your Level** — CEP ceiling. Retire as Deputy Director. Pewter plate. Good CPF balance.
-4. **The Tea Was Declined** — spotted, and said no. Rare, high-Integrity.
-5. **Lost the Ward** — election defeat with no way back.
-6. **POFMA'd Into The Sea** — Heat maxed out. Everything surfaces at once.
-7. **The Quiet Conversation** — asked to resign. No announcement is made.
-8. **Backbench Lifer** — MP for thirty years, never a portfolio, beloved locally.
+**Share this ending** turns the card into a picture, with the game's link, for the phone's
+share sheet (or saves it). The picture leaves out Declassified, so it never spoils the game for
+whoever receives it.
+
+The twelve endings (`endings` in `game.json`):
+
+1. **Prime Minister** — the win. A short tenure, then stepping down.
+2. **Permanent Secretary** — retired at the top of the civil service. Quietly the most respected ending.
+3. **You Found Your Level** — retired in the service, below Permanent Secretary. Pewter plate. Good CPF balance.
+4. **The Tea Was Declined** — spotted, and said no.
+5. **Lost the Ward** — lost an election, the first or a re-election.
+6. **Everything Surfaced** — Heat reached 85. Everything surfaces at once.
+7. **The Quiet Conversation** — asked to leave after the improvement plan. No announcement is made.
+8. **Backbench Lifer** — retired as an MP, never a portfolio, beloved locally.
 9. **Never Quite Cabinet** — retired as a junior office-holder (Parliamentary Secretary to
    Senior Minister of State). Answered the Questions; never sat at the table.
-10. *(stretch)* **Leader of the Opposition** — see §11.
+10. **Retired, Honourably** — retired as a Minister or Deputy Prime Minister.
+11. **The Consultancy** — left for the private sector (a headhunter's offer, or a bank buying
+    out a scholar's bond).
+12. **The Invitation Lapsed** — the vetting found too much, and the career ended in the service.
+
+**Not built:** a gallery of collected endings, a portrait, a score (lifetime earnings × a legacy
+multiplier), and Leader of the Opposition (§11).
 
 ---
 
 ## 9. Architecture
 
-Two Gradle modules. The split exists for one concrete reason: **the entire game can be
-built and tested on plain JVM before the Android SDK is even installed**, and the rules
-stay testable forever without an emulator.
+The game is a web build. The rules are one plain JavaScript file with no DOM and no I/O, so
+they run the same on the phone, in Node for the bots (`test/sim.js`) and in the agent harness.
 
 ```
-:engine   pure Kotlin, zero Android deps, 100% unit-testable
-  model/     GameState, Stats, Rank, Flags, Origin
-  content/   Event, Choice, Requirement, EventLoader, CareerLadder
-  rules/     TurnEngine, EventSelector, Appraisal, Salary, CepRules, Endings
-
-:app      Android + Compose, thin
-  ui/        MainScreen, EventCard, StatBar, AppraisalDialog, EndingCard, theme/
-  save/      SaveStore (JSON → app files dir)
-  assets/content/events/*.json
+web/
+  engine.js      the rules: pure, no DOM, no I/O
+  ui.js          rendering and taps; holds no game rules
+  packs.js       assembles the content: game.json + events.json + packs + rival.json
+  content/       game.json (ladder, pay, origins, grades, endings, words), events.json,
+                 packs/, rival.json
+  sw.js          offline cache: bump VERSION whenever anything changes
+harness/         drives the engine headlessly, for the bots and the agents
+test/            balance sims, content checks, UI tests
+agents/          Claude playtesters, analyst and designer (agents/README.md)
 ```
 
 **The one rule that keeps this clean:**
 
-```kotlin
-fun advanceYear(state: GameState, choice: Choice?): TurnResult
+```js
+Engine.advance(content, state, choiceIndex)   // → { state, outcome, log, trace }
 ```
 
-`TurnEngine` is a **pure function** — no randomness injected implicitly (seeded `Random`
-is passed in), no I/O, no Android types. Same input, same output, always. That makes
-the rules deterministic, replayable, and trivially unit-testable, and it means the UI
-holds no game logic whatsoever: Compose renders `GameState` and emits `Choice`.
-Nothing else.
+`advance` is a **pure function**: the dice come from the state's seed, there is no I/O, and a
+new state comes out. Same input, same output, always. That makes the rules deterministic,
+replayable and testable, and it means the UI holds no game logic whatsoever: it renders the
+state and sends back the index of the choice tapped.
 
-`GameState` is one immutable data class and is the single source of truth. Save = serialise it.
+The state is one plain object and is the single source of truth. Save = serialise it: the
+phone keeps it in `localStorage` with a fingerprint of the content. A save started on an older
+version of the game is flagged when it loads ("The game has been updated"), with a fresh start
+offered and carrying on allowed.
 
-**Toolchain note:** no Android SDK, Flutter, or adb on this machine; Java 11 is installed
-(AGP prefers 17). M1 needs none of that. M2 does — budget a setup step.
+**Not built: the native port.** The original plan was two Gradle modules, `:engine` (pure
+Kotlin, mirroring `engine.js`) and `:app` (Compose, thin), with the same pure `advanceYear`.
+Nothing of it exists yet.
 
 ---
 
 ## 10. Milestones
 
-| | Deliverable | Needs Android SDK? |
+| | Deliverable | Status |
 |---|---|---|
-| **M0** | This document | no |
-| **M1** | `:engine` + JSON content + JVM tests + console harness you can actually play in the terminal | **no** |
-| **M2** | Java 17 + Android SDK; Compose UI; save/load; debug APK on device | yes |
-| **M3** | Content to 120+ events, full ladder, all endings, balance pass | yes |
-| **M4** | Art, sound, ending-card sharing, Play Store packaging | yes |
+| **M0** | This document | Done |
+| **M1** | Rules engine + JSON content + tests + a build you can actually play | Done, as the web build in `web/` (in place of a terminal harness) |
+| **M2** | Native Android: Compose UI, save/load, debug APK on device | Not started. The web build saves on the phone and installs to the home screen |
+| **M3** | Content to 120+ events, full ladder, all endings, balance pass | Done: 180 cards, 12 endings, `node test/sim.js regress` in CI. More content per `docs/CONTENT_PLAN.md` |
+| **M4** | Art, sound, ending-card sharing, Play Store packaging | Sharing done (a picture of the ending card). Art, sound and the store: not built |
 
-M1 is the real de-risking step: if the loop is not fun in a terminal with no art, it will
-not be fun with art.
+M1 was the real de-risking step: if the loop is not fun with no art, it will not be fun with
+art.
 
 ---
 
@@ -370,7 +435,7 @@ advance — they get built if and when we do them.
   Strong idea, doubles the content burden. v2.
 - Multiplayer / leaderboards
 - Monetisation
-- iOS
+- A native iOS app
 - A fifth stat ("Network"). Folded into Standing for now. Split it only if playtesting
   shows Standing is doing two jobs badly.
 
@@ -392,16 +457,26 @@ in the country it is about.
    player recognising a real appraisal phrase is worth more than any punchline we write.
 5. **Affection.** This is a game made by someone who knows the system, not someone
    sneering at it from outside.
+6. **Plain English.** A player who has never worked in government must understand every card
+   on the first read: what is happening first, then why it matters, then the joke
+   (`docs/CONTENT_PLAN.md` section 5a).
 
 ---
 
 ## 13. Open questions
 
-1. **Turn granularity** — one year is clean but a promotion year and a coasting year
-   feel identical. Worth prototyping quarters for Act III (parliament moves faster)?
-2. **Is CEP too cruel?** A hard invisible ceiling may read as unfair rather than pointed.
-   Mitigation: always leave at least one CEP-raising event reachable. Needs playtesting.
-3. **Failure pacing** — should a run be losable at year 5, or should Act I always
-   complete? Leaning: losable, but only through active choices, never bad luck.
-4. **Title.** "Minister Salary" is plain and matches the repo. "Confirmed & Substantive"
-   is funnier to the target audience and opaque to everyone else.
+1. **Turn granularity** — *settled for now.* A card is still a year, but a year with nothing
+   to decide passes by itself as its own page (§2), so a coasting year no longer reads like a
+   promotion year. Quarters for Act III were not tried.
+2. **Is CEP too cruel?** *Open.* Mitigations built: the rumours, the line the year before a
+   ranking that says your name is not on the list, and Declassified, which names the ceiling
+   and the choice that would have raised it. In about a fifth of the bots' careers that hit
+   the ceiling, no CEP-raising event is left to reach (`reports/baseline/README.md`). Needs
+   playtesting.
+3. **Failure pacing** — *mostly settled:* losable, but through choices. Nobody is eased out in
+   the first four years or before six cards, or without the improvement plan first; a first
+   appraisal never goes below C; a seat is lost only on a card the player saw. The few early
+   losses (about 3% of first-time scholars) are still mostly the election's luck.
+4. **Title.** *Open.* The game ships as "Minister Salary", plain and matching the repo.
+   "Confirmed & Substantive" is funnier to the target audience and opaque to everyone else.
+   The blind agent cohorts still ask.
