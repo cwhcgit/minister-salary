@@ -357,7 +357,7 @@ Never `{player}` on its own: say which form. Keep the player's tokens out of cho
 - Why: a word that comes now and then is a clue; on every card it is a scoreboard.
 - Check: `test/harness.test.js` (swing lines at least three cards apart, no numbers in the stat words); outcomes, editor review.
 
-**7.4 Appraisal weightings and fractions are never stated.**
+**7.4 Appraisal weightings, fractions and the grade a promotion takes are never stated.** Players learn what a promotion takes, or don't; a heads-up may say the ranking is coming and that the year counts, never which grade it needs.
 - Why: the player infers what the appraisal values, as officers do.
 - Example: "Competence counts for half your grade." → "Your appraisal looks at your competence, your standing upstairs and your reputation outside the building."
 - Check: editor review; `test/harness.test.js` fails a "why" line with a number.
