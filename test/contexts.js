@@ -302,11 +302,14 @@ function castLint(build, smp, problems) {
       }
     }
   }
-  // part options no sampled context could draw (a warning: a requirement may be too tight)
+  // part options no sampled context could draw (a warning: a requirement may be too tight). An
+  // option drawn in play counts too: the re-renders keep at most CAP_STATES contexts a card, and
+  // their signature leaves out the ministry, so a ministry's option can be missed by them alone.
   const dead = [];
   for (const ev of C.events.filter(e => e.parts)) for (const [slot, sl] of E.partSlots(ev)) sl.options.forEach((o, k) => {
     const key = slot + '=' + (o.id !== undefined ? o.id : k);
-    if (smp.cards[ev.id] && !(reachable[ev.id] || new Set()).has(key)) dead.push(`${ev.id} ${key}`);
+    const drawn = (smp.cast.options[ev.id] || new Set()).has(key);
+    if (smp.cards[ev.id] && !drawn && !(reachable[ev.id] || new Set()).has(key)) dead.push(`${ev.id} ${key}`);
   });
   return { renders, dead };
 }

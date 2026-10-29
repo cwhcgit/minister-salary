@@ -259,8 +259,7 @@
         "bench_letters",
         "model_ward",
         "bench_next_ward",
-        "strange_dragon",
-        "the_indicators_downturn"
+        "strange_dragon"
       ]
     },
     {
@@ -337,8 +336,7 @@
       "meaning": "The day candidates file their papers to stand at an election; the campaign starts then.",
       "match": "Nomination Day",
       "entryPoints": [
-        "re_election",
-        "the_indicators_election"
+        "re_election"
       ]
     },
     {
@@ -453,9 +451,6 @@
       "match": "National Bonus",
       "entryPoints": [
         "the_bonus_reveal",
-        "the_indicators",
-        "the_indicators_downturn",
-        "the_indicators_election",
         "game.json:engineLines.payWhy.withBonus"
       ]
     },
@@ -490,7 +485,6 @@
       "meaning": "The standing partnership of government, unions and employers, which settles wage guidelines together.",
       "match": "\\b[Tt]ripartite\\b",
       "entryPoints": [
-        "the_indicators",
         "mom_wages"
       ]
     },

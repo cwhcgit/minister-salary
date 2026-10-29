@@ -403,6 +403,47 @@ ok('every second-showing scene renders whole, with the habit first and no domina
   assert.ok(n >= 9, `expected the Indicators' nine second-showing scenes (${n})`);
 });
 
+ok('the National Bonus card opens the Indicators: it comes first, and every later Budget card names the choice made on it, never explaining the bonus again', () => {
+  const C = build.content;
+  const opener = C.events.find(e => e.id === 'the_bonus_reveal');
+  assert.ok(opener.series && opener.series.opens && opener.priority, 'the National Bonus card opens its series, in the first year it can');
+  const family = C.events.filter(e => e.series && e.series.key === opener.series.key && e !== opener);
+  assert.ok(family.length >= 3, 'the Budget cards');
+  // what each stance's second showing names: the choice made on the National Bonus card
+  const names = { headline: /\bGDP\b/, lowest: /\blowest incomes\b/, steady: /\basked the other ministers\b/ };
+  const explains = /National Bonus|three months' (?:extra )?salary|up to six/;
+  for (const c of opener.choices) assert.ok(names[c.stance], `"${c.text}": its stance must be one every Budget card has`);
+  for (const e of family) for (const st of Object.keys(names)) {
+    const sc = (e.again.scenes || {})[st];
+    assert.ok(sc && e.choices.some(c => c.stance === st), `${e.id}: no second showing for ${st}`);
+    assert.ok(/\bLast time\b/.test(sc.body) && names[st].test(sc.body), `${e.id} ${st}: the second showing does not name the choice made on the National Bonus card`);
+    assert.ok(!explains.test(sc.body), `${e.id} ${st}: explains the bonus again`);
+  }
+  // careers: the card comes before any Budget card, the next Budget card is its second showing,
+  // and nothing in the series is ever shown in full as if new
+  const ids = new Set(family.map(e => e.id)), state = new Map();
+  let opened = 0, again = 0, passed = 0;
+  const visit = mode => ({ origin, seed, pre, ev, res }) => {
+    const key = `${mode} ${origin} ${seed}`, st = state.get(key) || {};
+    state.set(key, st);
+    if (ev.id === opener.id) { opened++; st.stance = res.state.series[opener.series.key].stance; st.full = 1; }
+    if (ids.has(ev.id)) {
+      assert.ok(pre.seen.includes(opener.id), `${key}: ${ev.id} before the National Bonus card`);
+      assert.strictEqual(String(ev.variant), 'again:' + st.stance, `${key}: ${ev.id} shown in full as if new (${ev.variant})`);
+      assert.ok(names[st.stance].test(ev.body) && !explains.test(ev.body), `${key}: ${ev.id} does not name the earlier choice: ${ev.body}`);
+      assert.ok(++st.full <= 2, `${key}: a third full showing`);
+      again++;
+    }
+    for (const p of res.trace.passed || []) if (ids.has(p.ev)) {
+      assert.ok(st.stance !== undefined && st.full === 2, `${key}: ${p.ev} passed before its second showing`);
+      passed++;
+    }
+  };
+  careers(70, { greedy: true }, visit('greedy'));
+  careers(70, {}, visit('random'));
+  assert.ok(opened > 60 && again > 40 && passed > 20, `expected the card, second showings and passed years (${opened}, ${again}, ${passed})`);
+});
+
 ok('Meanwhile lines: deterministic, and the next run prefers lines this one did not show', () => {
   // the replay key includes the phone's memory: the same memory replays the same lines
   const passes = run => run.turns.flatMap(t => t.passed).filter(p => p.kind !== 'quiet').length;
@@ -1171,6 +1212,83 @@ ok('a swing note in politics speaks of voters and the party, never of upstairs o
     }
   });
   assert.ok(pol > 100 && svc > 100 && said.size > 12, `expected swing notes in politics and the service (${pol}, ${svc}, ${said.size} different)`);
+});
+
+ok('the folder\'s lines give the party\'s unnamed officials no he or she', () => {
+  const C = build.content, E = build.engine;
+  const gendered = /\b(?:he|she|him|her|his|hers|himself|herself)\b/i;
+  for (const [k, t] of Object.entries(C.engineLines.folder)) if (k !== 'note') assert.ok(!gendered.test(t), `engineLines.folder.${k}: ${t}`);
+  for (const f of C.folder) assert.ok(!gendered.test(f.item), `folder item ${f.flag}: ${f.item}`);
+  // as the engine writes them: the folder read at tea, and the background check, empty and full
+  const tea = C.events.find(e => e.id === 'tea_session'), vet = C.events.find(e => e.id === 'the_vetting');
+  const read = tea.choices.findIndex(c => c.readFolder), tell = vet.choices.findIndex(c => c.folder === 'disclose');
+  let lines = 0;
+  for (const flags of [[], C.folder.slice(0, 2).map(f => f.flag)]) for (const [id, i] of [['tea_session', read], ['the_vetting', tell]]) {
+    const S = JSON.parse(JSON.stringify(H.newRun('grad', 5, { build }).S));
+    Object.assign(S, { rank: 5, age: 40, flags: S.flags.concat(flags), currentEvent: id });
+    for (const l of E.advance(C, S, i).log.filter(l => l.kind === 'folder')) { lines++; assert.ok(!gendered.test(l.text), l.text); }
+  }
+  assert.ok(lines >= 6, `expected the folder's lines (${lines})`);
+});
+
+ok('a new Member\'s first card is the maiden speech: nothing scheduled, and no promotion, comes before it', () => {
+  const first = new Map();
+  const visit = mode => ({ origin, seed, pre, ev }) => {
+    const key = `${mode} ${origin} ${seed}`;
+    if (pre.rank >= 8 && !first.has(key)) first.set(key, { id: ev.id, rank: pre.rank, endgame: !!ev.endgame });
+  };
+  careers(70, { greedy: true }, visit('greedy'));
+  careers(70, {}, visit('random'));
+  let mps = 0;
+  for (const [key, f] of first) {
+    mps++;
+    assert.ok(f.id === 'maiden_speech' || f.endgame, `${key}: a new Member's first card is ${f.id}`);
+    assert.strictEqual(f.rank, 8, `${key}: promoted before the maiden speech`);
+  }
+  assert.ok(mps > 50, `expected new Members (${mps})`);
+});
+
+ok('a ceiling rumour is never said twice in a career, and the rumours thin out the longer the wait', () => {
+  const C = build.content, hints = new Set([...C.cepHints, ...(C.cepHintsPolitics || [])]);
+  const heard = new Map();
+  let total = 0, long = 0;
+  const visit = mode => ({ origin, seed, res }) => {
+    const key = `${mode} ${origin} ${seed}`, h = heard.get(key) || new Set();
+    heard.set(key, h);
+    for (const l of res.log) if (l.kind === 'cep' && hints.has(l.text)) {
+      assert.ok(!h.has(l.text), `${key}: the rumour "${l.text}" again`);
+      h.add(l.text); total++;
+    }
+    const told = res.state.cepTold || {};
+    if (Object.values(told).some(n => n >= 8)) long++;
+  };
+  careers(80, { greedy: true }, visit('greedy'));
+  careers(80, {}, visit('random'));
+  assert.ok(total > 100 && long > 10, `expected rumours, and careers held at the ceiling for years (${total}, ${long})`);
+});
+
+ok('on a review page, the why line never says luck moved the grade one way while a witness line says it went the other', () => {
+  const C = build.content, P = C.statWords.why, W = C.witnesses.types;
+  const sign = new Map();
+  for (const t of Object.values(W)) for (const s of ['help', 'hurt']) for (const l of (t.review || {})[s] || []) sign.set(l, s);
+  const stem = l => l.split('{grade}')[0];
+  const luck = { help: P.luckUp.map(stem), hurt: P.luckDown.map(stem) };
+  let pages = 0, both = 0;
+  careers(80, { rival: () => false }, ({ origin, seed, res }) => {
+    let page = [];
+    const check = pg => {
+      const w = pg.find(l => sign.has(l.text)), why = pg.find(l => l.kind === 'why');
+      if (!w) return;
+      pages++;
+      const said = why && ['help', 'hurt'].find(s => luck[s].some(x => why.text.includes(x)));
+      if (!said) return;
+      both++;
+      assert.strictEqual(said, sign.get(w.text), `${origin} ${seed}: "${why.text}" beside "${w.text}"`);
+    };
+    for (const l of res.log) { if (l.kind === 'year') { check(page); page = []; } page.push(l); }
+    check(page);
+  });
+  assert.ok(pages > 20 && both > 5, `expected witness lines, some beside a luck line (${pages}, ${both})`);
 });
 
 console.log(`\nAll ${passed} harness tests passed.`);

@@ -1292,7 +1292,7 @@
     "variants": [
       {
         "title": "Standing Up",
-        "body": "Your new reporting officer starts on Monday, and {senior}, who had the job until now, will only countersign your appraisals. The newcomer spent twenty-two years in the army, holds the morning meeting standing up, and has brought two officers from the old unit. Nobody has briefed the newcomer on the year's most urgent file: the legal opinion that a decision due in March rests on.",
+        "body": "Your new reporting officer starts on Monday, and {senior}, who had the job until now, has moved up a floor to run something bigger. The newcomer spent twenty-two years in the army, holds the morning meeting standing up, and has brought two officers from the old unit. Nobody has briefed the newcomer on the year's most urgent file: the legal opinion that a decision due in March rests on.",
         "choices": [
           {
             "text": "Brief the newcomer on the legal opinion yourself.",
@@ -2134,7 +2134,7 @@
         }
       }
     ],
-    "priority": true,
+    "priority": "first",
     "variants": [
       {
         "body": "Day three of the debate on the President's Address, which opens each new Parliament: at 4:40pm you rise in the House to give your maiden speech, your first. It sets how the party and the press see you for years. You are a backbencher, a Member with no government job, and the Whip, who keeps backbenchers voting with the party, will read every line. Hansard, the official record, keeps every word. You have three versions, all finished.",
@@ -2279,6 +2279,12 @@
     },
     "weight": 10,
     "once": true,
+    "priority": true,
+    "series": {
+      "key": "indicators",
+      "full": 2,
+      "opens": true
+    },
     "choices": [
       {
         "text": "Fund the policy that lifts the lowest incomes.",
@@ -2288,7 +2294,8 @@
           "wealth": 180000,
           "standing": -5
         },
-        "outcome": "It is expensive, unglamorous and slow, and it works: the lowest incomes rise. Your bonus rises too, but no one talks about it."
+        "outcome": "It is expensive, unglamorous and slow, and it works: the lowest incomes rise. Your bonus rises too, but no one talks about it.",
+        "stance": "lowest"
       },
       {
         "text": "Fund the policy that lifts GDP.",
@@ -2299,24 +2306,26 @@
           "integrity": -6
         },
         "outcome": "GDP moves first and fastest, and your bonus comes in at six months, the most it can be. There is an annex on who gained. You skip the annex.",
-        "nationalBonus": 6
+        "nationalBonus": 6,
+        "stance": "headline"
       },
       {
-        "text": "Ask Cabinet whether ministers should be paid on targets they can move.",
+        "text": "Ask the other ministers whether any of you should be paid on targets you can move.",
         "effects": {
           "integrity": 18,
           "reputation": 12,
           "standing": -14,
           "heat": 8
         },
-        "outcome": "Cabinet hears the question in complete silence. It is minuted, and answered at great length without being answered at all. From then on your colleagues choose their words around you.",
+        "outcome": "You ask at the ministers' weekly meeting. The room hears the question in complete silence. It is minuted, and answered at great length without being answered at all. From then on your colleagues choose their words around you.",
         "schedule": [
           {
             "eventId": "bonus_vindicated",
             "inYears": 3,
             "chance": 0.45
           }
-        ]
+        ],
+        "stance": "steady"
       }
     ],
     "variants": [
@@ -2332,13 +2341,13 @@
             "outcome": "Quicker and cleaner, and it moves the figure everyone watches. Your bonus comes in at six months, the most it can be. The annex on who gained is on page nine, and you stop reading at page eight."
           },
           {
-            "text": "Ask Cabinet whether ministers should be paid on targets they can move.",
+            "text": "Ask the other ministers whether any of you should be paid on targets you can move.",
             "outcome": "The question is heard in complete stillness, and minuted. It is answered at length without being answered at all. Colleagues now choose their words near you, and the minute is filed where it can be found."
           }
         ]
       },
       {
-        "body": "Your ministry's chief economist explains the National Bonus on a whiteboard: three months' extra salary when the country hits four targets for jobs, growth and incomes, up to six when it beats them. She is brisk until she reaches the line saying the bonus is paid to ministers, including you. Then she slows down. One policy on your desk lifts the lowest incomes, another lifts GDP, and there is money for one.",
+        "body": "Your ministry's chief economist explains the National Bonus on a whiteboard: three months' extra salary when the country hits four targets for jobs, growth and incomes, up to six when it beats them. The explanation is brisk until it reaches the line saying the bonus is paid to ministers, including you. Then it slows down. One policy on your desk lifts the lowest incomes, another lifts GDP, and there is money for one.",
         "choices": [
           {
             "text": "Choose the policy that lifts the lowest incomes.",
@@ -2349,8 +2358,8 @@
             "outcome": "The headline figure moves first and fastest. Your National Bonus comes in at six months, the most the formula allows. The economist's slide on who gained is moved to the appendix."
           },
           {
-            "text": "Ask Cabinet whether this is how ministers should be paid.",
-            "outcome": "Cabinet hears the question in silence and minutes it with care. It is answered fully, and not at all. People adjust how they speak near you, and the minute stays in the file."
+            "text": "Ask the other ministers whether this is how any of you should be paid.",
+            "outcome": "The ministers' weekly meeting hears the question in silence and minutes it with care. It is answered fully, and not at all. People adjust how they speak near you, and the minute stays in the file."
           }
         ]
       }
@@ -4033,7 +4042,7 @@
   {
     "id": "bonus_vindicated",
     "title": "Terms of Reference",
-    "body": "Some years ago you asked Cabinet whether ministers should be paid on targets they can move themselves. Now a committee has been appointed to review political salaries, and your question appears, unattributed, as item three of its terms of reference. The committee is inviting submissions.",
+    "body": "Some years ago you asked the other ministers whether ministers should be paid on targets they can move themselves. Now a committee has been appointed to review political salaries, and your question appears, unattributed, as item three of its terms of reference. The committee is inviting submissions.",
     "triggered": true,
     "choices": [
       {
@@ -4154,7 +4163,7 @@
   },
   {
     "id": "the_indicators",
-    "title": "The Indicators",
+    "title": "The National Bonus",
     "noMontage": true,
     "cooldown": "budget",
     "requires": {
@@ -4166,7 +4175,7 @@
       "economy": "strong",
       "electionDue": false
     },
-    "body": "Your ministry must settle its plan for the next three Budgets, and the plan sets part of your pay. Office holders get a National Bonus: three months' salary when the country hits its targets for growth, jobs, typical incomes and the incomes of the lowest-paid fifth of workers, up to six when it beats them. Growth is strong. You can push one target, not all of them.",
+    "body": "Growth is strong, and your ministry must settle its plan for the next three Budgets. The plan moves the national targets your National Bonus is paid on, and you can push one of them, not all.",
     "choices": [
       {
         "text": "Push headline GDP.",
@@ -4211,59 +4220,6 @@
       }
     ],
     "weight": 16,
-    "variants": [
-      {
-        "body": "Finance writes to every ministry: growth is strong, so the next three Budgets have room in them. Your Permanent Secretary has drafted three plans and stacked them on your desk, in an order that is a recommendation. Whichever you sign also sets your National Bonus: three months' salary for hitting the national targets on growth, jobs and incomes, up to six for beating them.",
-        "choices": [
-          {
-            "text": "Sign the plan that backs the investment push.",
-            "outcome": "Two plants and a data centre are brought forward, growth comes in above forecast, and your bonus is five months. The lowest incomes rise a little, carried along. The other plans go into a drawer."
-          },
-          {
-            "text": "Sign the one for wage support at the bottom.",
-            "outcome": "Wage support for the lowest-paid goes into the Budget, their incomes outgrow the median by the next survey, and your bonus is four months. Finance writes, twice, to ask whether the support is temporary."
-          },
-          {
-            "text": "Sign the one that changes nothing.",
-            "outcome": "The plan that changes nothing changes nothing, on schedule. Every target is met, so your bonus is the standard three months. Your Permanent Secretary files the other two drafts in a folder marked \"Later\"."
-          }
-        ]
-      },
-      {
-        "body": "Your ministry's chief economist has one chart for the next three Budgets: growth strong, the lowest incomes flat. \"You can move either line,\" the economist says. \"Not both, at this price.\" Both lines feed your National Bonus, which pays three months' salary when the national targets are met and up to six when they are beaten.",
-        "choices": [
-          {
-            "text": "Move the growth line.",
-            "outcome": "The growth line climbs above forecast, and your bonus is five months. The lowest-incomes line rises a little too, out of politeness. The economist relabels the chart \"broad-based\"."
-          },
-          {
-            "text": "Move the lowest-incomes line.",
-            "outcome": "The lower line overtakes the median's growth and holds, and your bonus is four months. The economist prints the chart on A3, which economists do not do."
-          },
-          {
-            "text": "Move neither. Hit the targets as planned.",
-            "outcome": "Both lines stay inside their target bands, which pays the standard three months. The economist calls it the most boring chart of the decade, and is privately proud of it."
-          }
-        ]
-      },
-      {
-        "body": "At a tripartite dinner, a union leader and an employers' federation president sit either side of you, each with a plan for your ministry's next three Budgets. The employers' plan pushes growth; the union's pushes the lowest wages. Either moves your National Bonus, which pays three months' salary for hitting the national targets and up to six for beating them.",
-        "choices": [
-          {
-            "text": "Back the employers' plan for growth.",
-            "outcome": "The investment push lands, growth comes in strong, and your bonus is five months. At the next dinner the union leader sits across the room, and raises a glass to you anyway."
-          },
-          {
-            "text": "Back the union's plan for the lowest-paid.",
-            "outcome": "Wages at the bottom outgrow the median, and your bonus is four months. The federation's president sends a note of congratulations that is mostly about costs."
-          },
-          {
-            "text": "Back neither. Keep the plan you have.",
-            "outcome": "Both send notes saying they understand. The targets are met, so your bonus is the standard three months. The two notes are filed together, which neither of them would like."
-          }
-        ]
-      }
-    ],
     "series": {
       "key": "indicators",
       "full": 2
@@ -4279,8 +4235,8 @@
       },
       "scenes": {
         "headline": {
-          "title": "The Indicators, Again",
-          "body": "Growth is strong again, and the next three Budgets need a plan. Last time you went for the biggest headline numbers, and your officials have redrafted that plan with the dates changed in pen. Whatever you sign now becomes the ministry's standing plan, rolled over every Budget from here on, in good years and bad, without coming back to you.",
+          "title": "The National Bonus, Again",
+          "body": "Growth is strong, and the next three Budgets need a plan. Last time you funded the policy that lifts GDP, and your officials have redrafted it with the dates changed in pen. Whatever you sign now becomes the ministry's standing plan, rolled over every Budget from here on, in good years and bad, without coming back to you.",
           "choices": [
             {
               "text": "Sign it as it is.",
@@ -4288,7 +4244,7 @@
             },
             {
               "text": "Cross it out. Put the lowest incomes first.",
-              "outcome": "Your officials redraft three years of work in a fortnight, and Finance asks in writing why a working plan has changed. The lowest incomes outgrow the median by spring, and this is now the standing plan."
+              "outcome": "Your officials redraft the whole plan in a fortnight, and Finance asks in writing why a working plan has changed. The lowest incomes outgrow the median by spring, and this is now the standing plan."
             },
             {
               "text": "Cross it out. Bank the targets instead.",
@@ -4297,12 +4253,12 @@
           ]
         },
         "lowest": {
-          "title": "The Indicators, Again",
-          "body": "Growth is strong, and the next three Budgets need a plan. Last time you put the lowest incomes first, and that chart now hangs in the ministry lobby, framed. Your officials' draft keeps it climbing. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, in good years and bad, without being put to you again.",
+          "title": "The National Bonus, Again",
+          "body": "Growth is strong, and the next three Budgets need a plan. Last time you funded the policy that lifts the lowest incomes, and a chart of their rise now hangs in the ministry lobby, framed. Your officials' draft keeps it climbing. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, without being put to you again.",
           "choices": [
             {
               "text": "Take the chart down. Push headline GDP this time.",
-              "outcome": "The chart comes down on a Saturday, so nobody sees it go. Growth comes in above forecast, and growth-first is now the standing plan. Your chief economist asks, in a long email, what the last three years were for."
+              "outcome": "The chart comes down on a Saturday, so nobody sees it go. Growth comes in above forecast, and growth-first is now the standing plan. The officials who drew the chart ask, in a long email, what it was for."
             },
             {
               "text": "Sign it. Keep the chart climbing.",
@@ -4315,16 +4271,16 @@
           ]
         },
         "steady": {
-          "title": "The Indicators, Again",
-          "body": "Growth is strong, and the next three Budgets need a plan. Last time you chose the safe plan, protecting what already worked, and it did exactly what it said; other ministries now borrow it. Your officials have drafted it again. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, in good years and bad, without coming back to you.",
+          "title": "The National Bonus, Again",
+          "body": "Growth is strong, and the next three Budgets need a plan. Last time you asked the other ministers whether ministers should be paid on targets they can move, and funded neither policy. Your ministry's plan has moved none of the targets since, and your officials have drafted it again. Whatever you sign now becomes the standing plan, rolled over every Budget without coming back to you.",
           "choices": [
             {
-              "text": "Stop it. Push headline GDP while the going is good.",
-              "outcome": "Growth comes in above forecast, and growth-first is the standing plan from now on. The ministries that borrowed your old plan have to give it back, and your officials rewrite three years of documents in three weeks."
+              "text": "Change it. Push headline GDP while the going is good.",
+              "outcome": "Growth comes in above forecast, your bonus is five months, and growth-first is now the standing plan. Your question is still in Cabinet's minutes. Nobody brings it up."
             },
             {
-              "text": "Stop it. Put the lowest incomes first.",
-              "outcome": "The lowest incomes outgrow the median by the next survey, and that is the standing plan from now on. The ministries that borrowed your old plan ask, in writing, whether they must change theirs."
+              "text": "Change it. Put the lowest incomes first.",
+              "outcome": "The lowest incomes outgrow the median by the next survey, and that is the standing plan from now on. Your bonus rises with them. You do not ask about it a second time."
             },
             {
               "text": "Let it renew.",
@@ -4360,7 +4316,7 @@
   },
   {
     "id": "the_indicators_downturn",
-    "title": "The Indicators, in a Downturn",
+    "title": "The National Bonus, in a Downturn",
     "noMontage": true,
     "cooldown": "budget",
     "requires": {
@@ -4372,7 +4328,7 @@
       "economy": "downturn",
       "electionDue": false
     },
-    "body": "Exports are down for a third quarter and \"retrenchment\" is back in the papers. Your ministry must settle its plan for the next three Budgets now, and the plan sets your National Bonus: three months' salary when the country hits its targets for growth, jobs and incomes, less when it misses. In a downturn the country will miss at least one. You choose what to protect.",
+    "body": "Exports are down for a third quarter and \"retrenchment\" is back in the papers. Your ministry must settle its plan for the next three Budgets now, and in a downturn the country will miss at least one of the targets your National Bonus is paid on. You choose what to protect.",
     "choices": [
       {
         "text": "Protect jobs first.",
@@ -4424,59 +4380,6 @@
       }
     ],
     "weight": 16,
-    "variants": [
-      {
-        "body": "The downturn is in its fourth quarter, and Finance wants your ministry's plan for the next three Budgets by Friday. The plan also sets your National Bonus, which pays three months' salary when the national targets for growth, jobs and incomes are met, and less in a year like this. Your Permanent Secretary has drafted three versions, and has not slept much.",
-        "choices": [
-          {
-            "text": "Send the wage support, for jobs.",
-            "outcome": "The wage support goes into the Budget, firms keep workers they had already listed for retrenchment, and your bonus is two months. The firms fill in the forms to say so, in triplicate, grumbling."
-          },
-          {
-            "text": "Send the projects, brought forward.",
-            "outcome": "Projects are brought forward and cranes go up in the west. Growth recovers ahead of the region and your bonus is four months. Finance's letter of thanks mentions the cranes, twice."
-          },
-          {
-            "text": "Send the cash for the lowest incomes.",
-            "outcome": "The cash goes out in March and is spent within a month on rent, school shoes and hawker food, as the economists had predicted to the week. Your bonus is one month."
-          }
-        ]
-      },
-      {
-        "body": "At Tuesday's Meet-the-People Session, your weekly evening of residents' problems, three of the first ten cases are retrenchments. On Thursday your ministry settles its plan for the next three Budgets, and the plan also sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are hit, less in a downturn. The three files are still in your bag.",
-        "choices": [
-          {
-            "text": "Plan for jobs.",
-            "outcome": "The plan keeps people in work, and your bonus is two months. By spring, retrenchment cases at your Tuesday session are down to one in twenty, and that one wanted to leave anyway."
-          },
-          {
-            "text": "Plan for growth. The jobs will follow it.",
-            "outcome": "Growth recovers ahead of the region and your bonus is four months. Two of the three residents find work in the new projects by spring. The third finds it in another industry, and prefers it."
-          },
-          {
-            "text": "Plan for the lowest incomes first.",
-            "outcome": "The lowest incomes hold steady and your bonus is one month. The three residents are still looking for work at Chinese New Year, but their rent is paid, and they tell you so, at length."
-          }
-        ]
-      },
-      {
-        "body": "Finance's officials take you through the downturn package line by line, until they reach your ministry's line. It is blank: your plan for the next three Budgets, which also sets your National Bonus, is not yet decided. The bonus pays three months' salary when the national targets are met, less when they are missed. Three options are pencilled beside the line. Everyone waits, with pens.",
-        "choices": [
-          {
-            "text": "Write in the jobs scheme.",
-            "outcome": "The jobs scheme goes in, in ink. Unemployment holds through the downturn and your bonus is two months. Growth does not hold, and Finance's officials note this, in pencil."
-          },
-          {
-            "text": "Write in the growth projects.",
-            "outcome": "The projects go in, in ink, growth recovers ahead of the region, and your bonus is four months. An official with a very good eraser rubs out the other two options."
-          },
-          {
-            "text": "Write in the cash for the lowest incomes.",
-            "outcome": "The cash goes in, in ink, the lowest incomes hold steady, and your bonus is one month. Finance's officials ask, twice, whether it is temporary. You say yes both times."
-          }
-        ]
-      }
-    ],
     "series": {
       "key": "indicators",
       "full": 2
@@ -4492,12 +4395,12 @@
       },
       "scenes": {
         "steady": {
-          "title": "The Indicators, Again, in a Downturn",
-          "body": "The economy has turned down and the next three Budgets need a plan. Last time you chose the safe plan, and your officials have drafted this one the same way: jobs first, under a cover that says \"For signature\", not \"For decision\". Whatever you sign now becomes the standing plan, rolled over every Budget from here on, without coming back to you.",
+          "title": "The National Bonus, Again, in a Downturn",
+          "body": "The economy has turned down, and the next three Budgets need a plan. Last time you asked the other ministers whether ministers should be paid on targets they can move, and funded neither policy. So your officials' draft chases no target: it only holds on to jobs, under a cover that says \"For signature\", not \"For decision\". Whatever you sign now becomes the standing plan.",
           "choices": [
             {
-              "text": "Sign it. Jobs first, again.",
-              "outcome": "Unemployment holds through the downturn, your bonus is two months, and jobs-first is now the plan for good. The press release is last cycle's, with the year changed by hand."
+              "text": "Sign it. Jobs first.",
+              "outcome": "Unemployment holds through the downturn, your bonus is two months, and jobs-first is now the plan for good. The cover is changed to \"For information\"."
             },
             {
               "text": "Write \"For decision\" on it. Push growth through.",
@@ -4510,8 +4413,8 @@
           ]
         },
         "headline": {
-          "title": "The Indicators, Again, in a Downturn",
-          "body": "Exports have turned down, and the next three Budgets need a plan. Last time you went for the biggest headline numbers, and your ministry now has a growth unit, with a logo. Its draft pushes growth through the downturn. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, without coming back to you. The unit would like to continue existing.",
+          "title": "The National Bonus, Again, in a Downturn",
+          "body": "Exports have turned down, and the next three Budgets need a plan. Last time you funded the GDP policy, and your ministry now has a growth unit, with a logo. Its draft pushes growth through the downturn. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, without coming back to you. The unit would like to continue existing.",
           "choices": [
             {
               "text": "Overrule the unit. Protect jobs first.",
@@ -4519,7 +4422,7 @@
             },
             {
               "text": "Sign it. The unit knows what it is doing.",
-              "outcome": "Growth recovers ahead of the region again, your bonus is four months, and the plan will now renew itself. The unit's logo goes on the Budget slide, and the papers run a shorter story than last time."
+              "outcome": "Growth recovers ahead of the region again, your bonus is four months, and the plan will now renew itself. The unit's logo goes on the Budget slide, and the unit goes on existing."
             },
             {
               "text": "Turn the unit to the lowest incomes.",
@@ -4528,8 +4431,8 @@
           ]
         },
         "lowest": {
-          "title": "The Indicators, Again, in a Downturn",
-          "body": "The downturn is official, and the next three Budgets need a plan. Last time you put the lowest incomes first, and the payment system built for it is still running, idle, at some expense. Your officials' draft switches it back on. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, without coming back to you.",
+          "title": "The National Bonus, Again, in a Downturn",
+          "body": "The downturn is official, and the next three Budgets need a plan. Last time you funded the policy for the lowest incomes, and the payment system built for it is still running, idle, at some expense. Your officials' draft switches it back on. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, without coming back to you.",
           "choices": [
             {
               "text": "Repurpose it for wage support, to keep people in work.",
@@ -4558,7 +4461,7 @@
         "In a downturn your standing plan pushes growth through it again, and the cranes go up in the west on schedule.",
         "Your growth-first plan is rolled over into the downturn, with a new cover that says \"Resilience\".",
         "Projects are brought forward again, from a list that has not changed since the last downturn.",
-        "Exports fall and your ministry pushes growth anyway, as the standing plan says, reusing the speech about resilience."
+        "Exports fall and your ministry pushes growth anyway, as the standing plan says, with a speech about resilience."
       ],
       "lowest": [
         "The cash for the lowest incomes goes out again within a week of the Budget, as your standing plan says.",
@@ -4570,7 +4473,7 @@
   },
   {
     "id": "the_indicators_election",
-    "title": "The Indicators, Before an Election",
+    "title": "The National Bonus, Before an Election",
     "noMontage": true,
     "cooldown": "budget",
     "requires": {
@@ -4581,7 +4484,7 @@
       },
       "electionDue": true
     },
-    "body": "A general election is due within the year, and your ministry must settle its plan for the next three Budgets before Nomination Day, when the candidates file their papers. The plan sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are met, up to six when they are beaten. The chairman of your party branch, which runs the party's volunteers in your ward, has sent, unasked, a list of what the ward would like announced.",
+    "body": "A general election is due within the year, and your ministry must settle its plan for the next three Budgets before Nomination Day, when the candidates file their papers. The plan moves your National Bonus. The chairman of your party branch, which runs the party's volunteers in your ward, has sent, unasked, a list of what the ward would like announced.",
     "choices": [
       {
         "text": "Spread the gains widely before polling day.",
@@ -4633,42 +4536,6 @@
       }
     ],
     "weight": 16,
-    "variants": [
-      {
-        "body": "Your Permanent Secretary is briefing you on the ministry's plan for the next three Budgets, which also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them. The briefing pauses, politely, at a slide titled \"Timing\". Everyone in the room knows a general election is due within the year. Nobody has said so for forty minutes, though your party branch, the volunteers who run your campaign, has said little else.",
-        "choices": [
-          {
-            "text": "Bring everything forward, before polling day.",
-            "outcome": "The slide titled \"Timing\" becomes the whole plan. The measures land in every block in time, your bonus is three months, and your Permanent Secretary minutes the decision with great care."
-          },
-          {
-            "text": "Keep the timing as it was.",
-            "outcome": "The plan goes ahead on its original schedule, after polling day. The targets are met and your bonus is four months. Your branch learns about the measures from the newspapers, like everyone else."
-          },
-          {
-            "text": "Use the timing for the lowest incomes.",
-            "outcome": "Support for the lowest incomes lands before polling day, and your bonus is three months. The lowest-incomes chart rises, and is reprinted on a flyer at a size the economists would not approve."
-          }
-        ]
-      },
-      {
-        "body": "A general election is due, and the party's election committee asks every office holder for \"one thing residents can feel by polling day\". Your ministry's plan for the next three Budgets has three versions, each felt by different residents. Whichever you choose also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them. Your party branch, the volunteers who run your campaign, would like something it can print.",
-        "choices": [
-          {
-            "text": "Give them something everyone can feel.",
-            "outcome": "Everyone feels it, briefly, and your bonus is three months. The committee puts it on a poster, and at a walkabout a resident tells you she felt it, and would like it again."
-          },
-          {
-            "text": "Give them the targets, met.",
-            "outcome": "The committee thanks you for the targets, met, and your bonus is four months. Asked whether you have anything else, you do not, so the committee finds something in another ministry."
-          },
-          {
-            "text": "Give them the lowest incomes, raised.",
-            "outcome": "The lowest incomes rise, your bonus is three months, and the chart goes on a flyer. Residents who are not on the chart ask what is in it for them. Residents who are on it do not need the flyer."
-          }
-        ]
-      }
-    ],
     "series": {
       "key": "indicators",
       "full": 2
@@ -4684,8 +4551,8 @@
       },
       "scenes": {
         "headline": {
-          "title": "The Indicators, Again, Before an Election",
-          "body": "A general election is due within the year, and the next three Budgets need a plan. Last time you went for the biggest, most visible numbers, and your branch has reprinted the flyer that boasted about them. Your officials' draft matches the flyer. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, without coming back to you.",
+          "title": "The National Bonus, Again, Before an Election",
+          "body": "A general election is due, and the next three Budgets need a plan. Last time you put your ministry's money behind GDP, and your party branch, the volunteers who run your campaign, has reprinted the flyer that boasted about the growth. Your officials' draft matches the flyer, with measures every block will feel before polling day. Whatever you sign now becomes the standing plan.",
           "choices": [
             {
               "text": "Run it as written.",
@@ -4702,8 +4569,8 @@
           ]
         },
         "steady": {
-          "title": "The Indicators, Again, Before an Election",
-          "body": "Polling day is within the year, and the next three Budgets need a plan. Last time you chose the safe plan, and your officials have sent it again, with its annex on timing left blank. Your branch secretary asks, by voice note, what is in it for the ward. Whatever you sign now becomes the standing plan, rolled over every Budget without coming back to you.",
+          "title": "The National Bonus, Again, Before an Election",
+          "body": "An election is due, and the next three Budgets need a plan. Last time you asked the other ministers whether ministers should be paid on targets they can move. Your officials' plan moves no target, and its annex on timing is blank. Your party branch, the volunteers who run your campaign, asks by voice note what is in it for the ward. Whatever you sign now becomes the standing plan.",
           "choices": [
             {
               "text": "Fill the annex. Bring the visible measures forward.",
@@ -4711,17 +4578,17 @@
             },
             {
               "text": "Sign it, blank annex and all.",
-              "outcome": "The targets are met, your bonus is four months, and the safe plan will now renew itself. Your branch secretary sends a second voice note, mostly a sigh, and the campaign leads on the new lifts instead."
+              "outcome": "The targets are met, your bonus is four months, and the plan will now renew itself. The branch sends a second voice note, mostly a sigh, and the campaign leads on lift upgrading instead."
             },
             {
               "text": "Fill the annex. The lowest incomes, before polling day.",
-              "outcome": "Support for the lowest incomes lands before polling day, and that is the standing plan now. Your branch secretary sends a thumbs-up, the first in years, and asks for the chart in three more languages."
+              "outcome": "Support for the lowest incomes lands before polling day, and that is the standing plan now. The branch sends a thumbs-up, the first in years, and asks for a chart of it in three more languages."
             }
           ]
         },
         "lowest": {
-          "title": "The Indicators, Again, Before an Election",
-          "body": "Polling day is within the year, and the next three Budgets need a plan. Last time you put the lowest incomes first, and your branch wants that chart on its flyer. Your officials' draft keeps it, under a covering note that calls it \"settled policy\". Whatever you sign now becomes the standing plan, rolled over every Budget without coming back to you.",
+          "title": "The National Bonus, Again, Before an Election",
+          "body": "Polling day is within the year, and the next three Budgets need a plan. Last time you put your ministry's money behind the lowest incomes, and they rose. Your party branch, the volunteers who run your campaign, wants a chart of the rise on its flyer. Your officials' draft carries the same policy on, under a covering note that calls it \"settled policy\". Whatever you sign now becomes the standing plan.",
           "choices": [
             {
               "text": "Unsettle it. Spread the gains wider before polling day.",
@@ -4733,7 +4600,7 @@
             },
             {
               "text": "Leave it settled.",
-              "outcome": "The lowest incomes outgrow the median again, your bonus is three months, and the plan now renews itself. The chart goes on another flyer, and residents who were on it last time say they have seen it."
+              "outcome": "The lowest incomes outgrow the median again, your bonus is three months, and the plan now renews itself. The chart goes on the flyer. The residents on the chart did not need the flyer to tell them."
             }
           ]
         }

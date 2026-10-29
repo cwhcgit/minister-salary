@@ -294,9 +294,9 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 - Why: anything missing breaks the screen or the story.
 - Check: `node test/sim.js regress` and the Pages content check.
 
-**5.12 A series is one decision in different weather.** Every card of a series uses the same stance names. A second showing (`again`) makes the habit the default and gives keeping and breaking it their own stakes (`again.keep`, `again.change`).
+**5.12 A series is one decision in different weather.** Every card of a series uses the same stance names. A second showing (`again`) makes the habit the default and gives keeping and breaking it their own stakes (`again.keep`, `again.change`). When a series has an opening card (`"opens": true`, as the National Bonus card opens the Indicators), the opening card explains the stakes once; every second showing names the choice made on it and never explains them again.
 - Why: the second time is the real question: will you change course, knowing you will not be asked again?
-- Check: `test/harness.test.js` (each second-showing scene renders whole, habit first, with no dominated choice).
+- Check: `test/harness.test.js` (each second-showing scene renders whole, habit first, with no dominated choice; after the National Bonus card, every Budget card is a second showing that names its choice).
 
 **5.13 Let the engine say a choice counts at appraisal.** Use the `appraisal` effect; the outcome screen then says the choice will count, for or against.
 - Why: the line is the engine's, so the outcome stays free for what happened.

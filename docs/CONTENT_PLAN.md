@@ -209,11 +209,15 @@ identical, in a different scene.
   still pick by state.
 
 **Series: one decision that comes back.** Some sibling cards are one decision made in different
-weather: the Indicators in a strong year, in a downturn and before an election; the improvement plan
-and the Whip's word. Each card says `"series": { "key": "indicators", "full": 2 }`, and each choice names
-its `"stance"` (the same stance names on every card of the series). The series is shown in full `full`
-times a career: the Indicators twice; the improvement plan and the Whip's word say `"full": 99`, so
-they are always shown in full. After that, a card of the series passes as a Meanwhile year: the
+weather: the National Bonus and the Budgets after it (the Indicators in a strong year, in a downturn
+and before an election); the improvement plan and the Whip's word. Each card says
+`"series": { "key": "indicators", "full": 2 }`, and each choice names its `"stance"` (the same stance
+names on every card of the series). The series is shown in full `full` times a career: the National
+Bonus card and one Budget; the improvement plan and the Whip's word say `"full": 99`, so they are
+always shown in full. A card with `"opens": true` in its series is the series' first showing, drawn only
+before the series has begun: the National Bonus card opens the Indicators (it is a priority card), so
+every Budget card is a second showing, which names the choice made on it and never explains the bonus
+again. After that, a card of the series passes as a Meanwhile year: the
 habit (the stance last chosen) is applied in full, mechanics included (the National Bonus it sets,
 the cooldown), with a Meanwhile line for that card and stance. The second full showing may have its own scene, `"again"`, written per stance in
 `again.scenes`: the habit is the default and is shown first, and the question is whether to break it,

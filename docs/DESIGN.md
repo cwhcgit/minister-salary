@@ -200,10 +200,15 @@ indicators: real median income growth, income growth of the lowest 20th percenti
 unemployment, real GDP growth), less about 18% for tax and CPF.
 
 Once the player is a Minister of State or above, **their own policy choices move their own
-bonus.** The game never comments on this. It just shows the number. The choice comes as The
-Indicators, twice a career: the second time, the plan from the first is the default and the
-question is whether to break it. After that the ministry rolls the habit over by itself, and
-every year's pay line still shows the months it earned.
+bonus.** The game never comments on this. It just shows the number. The choice comes twice a
+career, as one story. The first time is the National Bonus card, in the first year as Minister
+of State: it explains the bonus, and asks which policy to fund (the lowest incomes, or GDP), or
+whether to ask Cabinet if ministers should be paid on targets they can move. The second time is
+a later Budget (the Indicators, in a strong year, a downturn or before an election): it names
+the earlier choice, makes it the default, and asks whether to break it (asking Cabinet counts as
+funding neither policy, so the default is the plan that moves no target). After that the
+ministry rolls the habit over by itself, and every year's pay line still shows the months it
+earned.
 
 ---
 
@@ -230,14 +235,15 @@ appraisal never goes below C.
 - The year before a ranking, a line says your name goes forward and what grade it takes. If
   only the ceiling stands in the way, the line says instead that your name is not on the list.
 - **C** three times in a row → HR moves you sideways to another division, and you get a new
-  reporting officer. (In politics, the Whip has you chair a select committee.) The New
+  reporting officer. (In politics, the Whip has you chair a parliamentary committee.) The New
   Reporting Officer card hands you to a new one too.
 - **D** → a formal warning; the next year, the improvement plan card (the Whip's word in
   politics), shown in full every time. A second D in a row after it → the quiet conversation
   (never in the first four years, or before six cards).
 - `currentRank == CEP` → a rumour instead of the promotion (*"Someone in HR calls you 'a safe
   pair of hands'."*). Promotion never comes. Player must find a CEP-raising event or accept
-  the ceiling.
+  the ceiling. The rumour comes in the first two years held there, then less and less often,
+  and never twice in a career.
 
 The player is shown the grade and its euphemism, and must infer the ceiling. There is no
 setting that shows the numbers.
@@ -287,10 +293,11 @@ without touching the engine.
 A choice in year 6 detonating in year 14 is the single highest-value feature in the
 design; it shipped in M1.
 
-**Selection**, each year: a card the career's end decides (§4) comes first; then a scheduled
-consequence that has fallen due (one a year; the rest wait their turn, earliest first); then a
-priority card that qualifies (the tea, the succession); then a weighted random draw from the
-cards whose `requires` hold, without `once` cards already seen.
+**Selection**, each year: a card the career's end decides (§4) comes first; then a card that
+opens a chapter (a new Member's maiden speech); then a scheduled consequence that has fallen due
+(one a year; the rest wait their turn, earliest first); then a priority card that qualifies (the
+tea, the National Bonus, the succession); then a weighted random draw from the cards whose
+`requires` hold, without `once` cards already seen.
 
 **Variety.** A second career should not replay the first. Four mechanisms, measured by
 `test/variety.js`:
