@@ -541,7 +541,7 @@
           }
         ]
       },
-      "body": "A ministry has picked a site in your ward for {site}. {objection} The agency wants its MP beside it at Saturday's dialogue with residents, and the residents who vote for you will see where you stand.",
+      "body": "A ministry has picked a site in your ward for {site}. {objection} The agency running it wants you, as the ward's MP, beside it at Saturday's dialogue with residents, and the residents who vote for you will see where you stand.",
       "requires": {
         "minRank": 8,
         "maxRank": 10

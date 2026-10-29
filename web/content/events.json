@@ -787,7 +787,7 @@
           "standing": 5,
           "reputation": 4
         },
-        "outcome": "You are told this year's list is fixed. So at the division meeting you give the medal's mention entirely to your team. A mention is not a medal, everyone knows it, and it still lands.",
+        "outcome": "You are told this year's list is fixed. So at the division meeting you give your team the credit, by name. A mention is not a medal, and everyone knows it, but it still lands.",
         "setFlags": [
           "team_recognised"
         ]
@@ -1661,7 +1661,7 @@
   {
     "id": "ally_returns_pol",
     "title": "The Officer You Nominated",
-    "body": "Years ago you nominated the quiet officer who did all the actual work for the leadership programme, instead of the obvious scholar. She is a Permanent Secretary now. From time to time the Prime Minister's office asks Permanent Secretaries for a frank view of the politicians they work with, before deciding who goes up. She has been asked about you.",
+    "body": "Over a decade ago, you put forward the quiet officer who did your old division's real work for the leadership programme, instead of yourself. She is a Permanent Secretary now. From time to time the Prime Minister's office asks Permanent Secretaries for a frank view of the politicians they work with, before deciding who goes up. She has been asked about you.",
     "triggered": true,
     "requires": {
       "minRank": 8
@@ -1677,13 +1677,13 @@
         "outcome": "She gives it, and you never see it. At the next reshuffle the commentary calls you someone the civil service rates. That is the one review a politician never gets to read, and it helps."
       },
       {
-        "text": "Tell her, before she is asked, that she owes you nothing.",
+        "text": "Tell her, before she answers, that she owes you nothing.",
         "effects": {
           "cep": 1,
           "standing": 4,
           "integrity": 6
         },
-        "outcome": "She says she knows, and gives her honest view anyway. It is how you finally learn the difference between a debt and a judgement."
+        "outcome": "She says she knows, and gives her honest view anyway, which is how you finally learn the difference between a debt and a judgement."
       }
     ]
   },
@@ -1784,7 +1784,7 @@
   {
     "id": "scholar_returns_pol",
     "title": "The Officer You Taught",
-    "body": "Years ago, the young scholar you were supervising asked you to review his paper, and you told him plainly that it was bad. He is a Permanent Secretary now. After briefing a group of MPs on a bill, he waits until the room has emptied and says, without preamble, \"You were the only person who ever told me my work was bad.\"",
+    "body": "The young scholar you once supervised is a Permanent Secretary now. Back then you told him plainly that his first big paper wasn't good, and spent an afternoon showing him why. After briefing a group of MPs on a bill, he waits until the room has emptied and says, without preamble, \"You were the only person who ever told me my work was bad.\"",
     "triggered": true,
     "requires": {
       "minRank": 8
@@ -1854,7 +1854,7 @@
         "setFlags": [
           "declined_tea"
         ],
-        "outcome": "You write three sentences and delete two of them. The reply thanks you for your candour. You will not be asked again, and you will think about this for the rest of your life.",
+        "outcome": "You write three sentences and delete two of them. The reply thanks you for your candour. Others invited that year say yes. You will not be asked again, and you will think about this for the rest of your life.",
         "schedule": [
           {
             "eventId": "other_life",
@@ -1866,7 +1866,7 @@
     ],
     "variants": [
       {
-        "body": "A phone call: a warm, unhurried voice, with no surname, asks if you are free for lunch on Thursday. You are suddenly very free. This is how the party sounds out people it might field at the next general election. Go, and they will look closely at your past. Say no, and nobody calls again.",
+        "body": "A phone call: a warm, unhurried voice, which gives no surname, asks if you are free for lunch on Thursday. You are suddenly very free. This is how the party sounds out people it might field at the next general election. Go, and they will look closely at your past. Say no, and nobody calls again.",
         "choices": [
           {
             "text": "Go.",
@@ -1874,12 +1874,12 @@
           },
           {
             "text": "Decline, politely.",
-            "outcome": "You say you are honoured, but committed to the service. The voice says it understands completely. It is the most understanding voice you will ever hear, and you never hear it again."
+            "outcome": "You say you are honoured, but committed to the service. The voice understands completely, and moves on to the next name on its list. Others invited that year say yes, and you never hear the voice again."
           }
         ]
       },
       {
-        "body": "A hand-delivered envelope on your desk asks whether you might spare an hour for a conversation \"about the future\". It does not say whose. It does not need to: this is the party's first approach to someone it may field at the next election. Accept, and your past will be examined. Decline, and the future goes ahead without you.",
+        "body": "A hand-delivered envelope on your desk asks whether you might spare an hour for a conversation \"about the future\". It does not say who sent it. It does not need to: this is the party's first approach to someone it may field at the next election. Accept, and your past will be examined. Decline, and the future goes ahead without you.",
         "choices": [
           {
             "text": "Go.",
@@ -1887,7 +1887,7 @@
           },
           {
             "text": "Decline, politely.",
-            "outcome": "You reply by hand, because it seems right, and say no. A handwritten thank-you arrives within a day. Then the future happens, without you in it."
+            "outcome": "You reply by hand, because it seems right, and say no. A handwritten thank-you arrives within a day. Others invited that year say yes, and the future happens without you in it."
           }
         ]
       }
@@ -1897,7 +1897,7 @@
     "id": "the_vetting",
     "triggered": true,
     "title": "The Background Check",
-    "body": "Before the party puts you up for election, it checks everything that could come out in a campaign. The man from the tea is back with the same folder. Whatever you admit counts against you, and admit too much and the invitation quietly lapses. Whatever you hide may surface during the campaign. He does not say which parts he means.",
+    "body": "Before the party puts you up for election, it checks everything that could come out in a campaign. The man from the tea is back with the same folder. Whatever you admit counts against you; admit too much and the invitation quietly lapses. Whatever you hide may surface during the campaign. He does not say which parts of the folder worry him.",
     "choices": [
       {
         "text": "Disclose everything, including the things they may not have.",
@@ -1921,7 +1921,7 @@
           "standing": 3
         },
         "folder": "conceal",
-        "outcome": "The questions are precise and so are your answers. He thanks you. Nobody mentions the folder again, so you know it is still there, and that anything in it can still come out."
+        "outcome": "The questions are precise and so are your answers. He thanks you. Nobody mentions the folder again. It is still there, and anything in it can still come out."
       }
     ],
     "variants": [
@@ -1939,7 +1939,7 @@
         ]
       },
       {
-        "body": "The party's background check starts as a form: forty-two questions, three about companies you have never heard of and one about a company you have. Then a meeting with the man from the tea, to \"go through it together\". What you admit now costs you, and too much ends the invitation. What you leave out may come out in the campaign.",
+        "body": "The party's background check starts as a form: forty-two questions, three about companies you have never heard of and one, question thirty-one, about a company you have. Then a meeting with the man from the tea, to \"go through it together\". What you admit now costs you, and too much ends the invitation. What you leave out may come out in the campaign.",
         "choices": [
           {
             "text": "Go through all of it, including question thirty-one.",
@@ -2008,7 +2008,7 @@
           },
           {
             "text": "Ask for the single-member seat.",
-            "outcome": "A single seat, a real opponent, and nobody to share the swing with. Yours is the only name on your posters. It is thrilling for exactly one day."
+            "outcome": "A single seat, a real opponent, and nobody to share the result with. Yours is the only name on your posters. It is thrilling for exactly one day."
           }
         ]
       },
@@ -2056,7 +2056,7 @@
           "standing": -5,
           "appraisal": -6
         },
-        "outcome": "It is quoted, and two of the quotations are the lines you meant. A Minister you have never met sends a note: \"That needed saying.\" The Whip sends a longer note, about what government backbenchers say in public.",
+        "outcome": "It is quoted, and for once the quoted line is the one you meant: \"If a form needs a helpline, the form is the problem.\" A Minister you have never met sends a note: \"That needed saying.\" The Whip sends a longer note, about what government backbenchers say in public.",
         "schedule": [
           {
             "eventId": "speech_vindicated",
@@ -2086,7 +2086,7 @@
           },
           {
             "text": "Give the version with the thing you believe.",
-            "outcome": "Eleven minutes on what you believed in the service and could never say there. The House goes quiet, the good kind. Afterwards the Whip's note to you is longer than your best line."
+            "outcome": "Eleven minutes on what you believed in the service and could never say there: \"If a form needs a helpline, the form is the problem.\" The House goes quiet, the good kind. Afterwards the Whip's note to you is longer than that line."
           },
           {
             "text": "Give the version praising the policy you once doubted.",
@@ -2103,7 +2103,7 @@
           },
           {
             "text": "Write the rest about what you believe.",
-            "outcome": "The rest is the thing you believed in the service and never said. It is quoted, mostly correctly. The Whip's office sends further guidance, this time addressed to you alone."
+            "outcome": "The rest is the thing you believed in the service and never said: \"If a form needs a helpline, the form is the problem.\" It is quoted, mostly correctly. The Whip's office sends further guidance, this time addressed to you alone."
           },
           {
             "text": "Write the rest in the same spirit, and keep your doubts.",
@@ -2250,7 +2250,7 @@
           "standing": -14,
           "heat": 8
         },
-        "outcome": "The question is received with great seriousness and complete stillness, and minuted. It is answered thoroughly and not at all. You are now a particular kind of colleague, and the minute stays on file.",
+        "outcome": "The question is received with great seriousness and complete stillness, and minuted. It is answered thoroughly and not at all. Colleagues now treat you as someone who asks that kind of question, and the minute stays on file.",
         "schedule": [
           {
             "eventId": "bonus_vindicated",
@@ -2366,7 +2366,7 @@
   {
     "id": "reshuffle",
     "title": "The Reshuffle",
-    "body": "A Cabinet reshuffle is coming: the Prime Minister will move ministers between ministries, and has asked to see you on Thursday to hear where you would like to go. Taking on a hard ministry and surviving it is how ministers reach the top jobs. Staying put is comfortable, and rarely leads further. {mp} has already told you it is good news. {mp} does not know either.",
+    "body": "A Cabinet reshuffle is coming: the Prime Minister will move ministers between ministries, and has asked to see you on Thursday to hear where you would like to go. Taking on a hard ministry and surviving it is how ministers reach the top jobs. Staying put is comfortable, and rarely leads further. {mp} has already told you it is good news, though {mp} knows no more than you do.",
     "requires": {
       "minRank": 12,
       "maxRank": 14
@@ -3016,7 +3016,7 @@
           "competence": 2,
           "reputation": -3
         },
-        "outcome": "You leave at ten, and the speech goes well in the House. The volunteers stay until one. By Thursday a resident has posted about the evening, and the post is about ten o'clock."
+        "outcome": "You leave at ten, and the speech goes well in the House. The volunteers stay until one. By Thursday a resident has posted about the evening, and the post is about what time you left."
       }
     ],
     "montageEffects": {
@@ -3078,7 +3078,7 @@
           },
           {
             "text": "Write about the lift properly, tonight.",
-            "outcome": "Your letter names the contractor, the start date and the eleven months. A new completion date arrives within the week, and is met. Volunteers saw the residents, and the residents noticed."
+            "outcome": "Your letter names the contractor, the start date and the eleven months. A new completion date arrives within the week, and is met. Volunteers saw the residents, and the residents noticed that you did not."
           },
           {
             "text": "Let the volunteers take the rest.",
@@ -3149,7 +3149,7 @@
         "You take numbers at walkabouts and call them at night, and your call log becomes the best map of the ward.",
         "Three phone numbers on a napkin from the wet market, and you call all three that evening, off camera.",
         "You call a stallholder back about her rent, and she tells the next stall, and the next.",
-        "A resident you called one night tells the whole RC, and that is now what the RC knows you for.",
+        "A resident you called one night tells the whole RC, and the RC now knows you as the MP who calls back.",
         "Your evening calls now take longer than the walkabouts, and settle more.",
         "A hawker you called back about her lease tells you the next week that it was renewed, as if you did it."
       ]
@@ -3161,7 +3161,7 @@
         "choices": [
           {
             "text": "Sit down and hear him out.",
-            "outcome": "Twenty minutes, one kopi going cold, and a written follow-up on his rent. The one photographer who stayed gets the best picture of the day. The next three stalls get none."
+            "outcome": "Twenty minutes, one kopi going cold, and a written follow-up on his rent. The one photographer who stayed gets the best picture of the day. The next three stalls get none of your time."
           },
           {
             "text": "Buy a kopi, smile, and keep moving.",
@@ -3211,7 +3211,7 @@
           "standing": -4,
           "competence": 3
         },
-        "outcome": "You concede the point and say what you are doing about it. The follow-up question is gentler than it would have been, because there is nothing left to prise open. Your answer goes into Hansard, word for word.",
+        "outcome": "You concede the point: \"The scheme is not reaching the people it was built for, and we will change it by June.\" The follow-up question is gentler, because there is nothing left to prise open. The line goes into Hansard, word for word.",
         "schedule": [
           {
             "eventId": "speech_vindicated",
@@ -3277,7 +3277,7 @@
         "choices": [
           {
             "text": "Say it is under review, and what is being looked at.",
-            "outcome": "You say so, plainly, and name the three things being looked at. The Member thanks you. The announcement in March makes smaller news than it would have, backdrop and all."
+            "outcome": "You say so, plainly: \"Yes, it is under review, and here are the three things we are looking at.\" Then you name them. The Member thanks you. The announcement in March makes smaller news than it would have, backdrop and all."
           },
           {
             "text": "Say the ministry keeps all its rules under review.",
@@ -3295,7 +3295,7 @@
         "choices": [
           {
             "text": "Answer it straight, without the brief.",
-            "outcome": "You say you do not have the figure to hand, then say what you do know. It is enough. Your officials send a note that reads, in full, \"Well handled.\""
+            "outcome": "You say, \"I do not have that figure, and I will not guess it in this House,\" then say what you do know. It is enough. Your officials send a note that reads, in full, \"Well handled.\""
           },
           {
             "text": "Answer a nearby question the brief does cover.",
@@ -3335,7 +3335,7 @@
           "integrity": -4,
           "reputation": -2
         },
-        "outcome": "You speak warmly about wellbeing and the importance of a sustainable pace. Four hundred officers understand precisely what has happened, and so does the question board."
+        "outcome": "You speak warmly about wellbeing and the importance of a sustainable pace. Four hundred officers understand precisely what has happened, and the question's upvotes keep climbing."
       }
     ],
     "montageEffects": {
@@ -3344,9 +3344,9 @@
     },
     "montageLines": {
       "0": [
-        "The workload question tops the townhall board again, you read it out again, and the upvotes stop being anonymous in spirit.",
+        "The workload question tops the townhall board again, you read it out again, and this time the room applauds before you answer.",
         "Four hundred officers, one microphone, and a rude question read out in full: the only part of the townhall anyone repeats.",
-        "An officer thanks you at the lift for reading the rude townhall question out, in a whisper, in case it counts.",
+        "An officer thanks you at the lift for reading the rude townhall question out, in a whisper, in case anyone is listening.",
         "You read the townhall's top question out in full, and the next year one officer signs her name to hers.",
         "The townhall question about workload is read out again, and this time a director in the front row nods."
       ],
@@ -3991,7 +3991,7 @@
       "economy": "strong",
       "electionDue": false
     },
-    "body": "Your ministry must settle its plan for the next three Budgets, and it sets part of your pay. Office holders get a National Bonus: three months' salary when the country hits its targets for growth, jobs, median incomes and incomes at the 20th percentile, up to six when it beats them. Growth is strong. You can push one line, not all of them.",
+    "body": "Your ministry must settle its plan for the next three Budgets, and the plan sets part of your pay. Office holders get a National Bonus: three months' salary when the country hits its targets for growth, jobs, median incomes and incomes at the 20th percentile, up to six when it beats them. Growth is strong. You can push one target, not all of them.",
     "choices": [
       {
         "text": "Push headline GDP.",
@@ -4019,7 +4019,7 @@
         "nationalBonusRisk": {
           "chance": 0.3,
           "months": 0,
-          "outcome": "The 20th-percentile figure misses its target by a tenth of a point, and the formula pays no National Bonus at all. The chart is still a good chart."
+          "outcome": "The 20th-percentile figure misses its target by a tenth of a point, and the formula pays no National Bonus at all. Your officials' chart of it is still a good chart."
         },
         "outcome": "Incomes at the 20th percentile grow faster than the median, which has not happened in six years, and your bonus is four months. The chart goes into the Budget speech, in colour.",
         "stance": "lowest"
@@ -4197,7 +4197,7 @@
       "economy": "downturn",
       "electionDue": false
     },
-    "body": "Exports are down for a third quarter and \"retrenchment\" is back in the papers. Your ministry must settle its plan for the next three Budgets now, and the plan sets your National Bonus: three months' salary when the country hits its targets for growth, jobs and incomes, less when it misses. In a downturn it will miss something. You choose what to protect.",
+    "body": "Exports are down for a third quarter and \"retrenchment\" is back in the papers. Your ministry must settle its plan for the next three Budgets now, and the plan sets your National Bonus: three months' salary when the country hits its targets for growth, jobs and incomes, less when it misses. In a downturn the country will miss at least one. You choose what to protect.",
     "choices": [
       {
         "text": "Protect jobs first.",
@@ -4255,7 +4255,7 @@
         "choices": [
           {
             "text": "Send the wage support, for jobs.",
-            "outcome": "The wage support goes into the Budget, firms keep workers they had already listed, and your bonus is two months. The firms fill in the forms to say so, in triplicate, grumbling."
+            "outcome": "The wage support goes into the Budget, firms keep workers they had already listed for retrenchment, and your bonus is two months. The firms fill in the forms to say so, in triplicate, grumbling."
           },
           {
             "text": "Send the projects, brought forward.",
@@ -5264,7 +5264,7 @@
           "competence": 4,
           "standing": -2
         },
-        "outcome": "The Prime Minister agrees before you finish the sentence. Someone had been hoped for, and it is you."
+        "outcome": "The Prime Minister had been hoping someone would ask, and agrees before you finish the sentence."
       }
     ]
   },
