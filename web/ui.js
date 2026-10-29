@@ -43,13 +43,17 @@ function rememberRun() {
 }
 
 // Storage can be blocked (private windows, embedded previews); the game must still play.
-function save()  { try { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log })); } catch (e) {} }
+// The game's content changes between versions; a save remembers which version started it.
+let contentKey = "";
+function fingerprint(c) { let h = 2166136261; const t = JSON.stringify(c); for (let i = 0; i < t.length; i++) h = Math.imul(h ^ t.charCodeAt(i), 16777619) >>> 0; return h.toString(36); }
+let savedKey = null;
+function save()  { try { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log, v: contentKey })); } catch (e) {} }
 function wipe()  { try { localStorage.removeItem(SAVE); } catch (e) {} }
 function load()  {
   try {
     const d = JSON.parse(localStorage.getItem(SAVE));
     // a save from before the start screen asked for a gender gets the defaults (Engine.upgradePlayer)
-    if (d && d.S) { S = Engine.upgradePlayer(content, d.S); phase = d.phase; outcome = d.outcome; log = d.log || []; return true; }
+    if (d && d.S) { S = Engine.upgradePlayer(content, d.S); phase = d.phase; outcome = d.outcome; log = d.log || []; savedKey = d.v || ""; return true; }
   } catch (e) {}
   return false;
 }
@@ -65,7 +69,8 @@ function header() {
         <div class="sub">Age ${S.age} &middot; Year ${S.year} &middot; ${esc(S.ministry)}</div>
         ${S.rival ? `<div class="mate">Batchmate: ${esc(Engine.batchmate(content, S))}</div>` : ""}
       </div>
-      <div class="cashbox"><div class="cash">${money(S.wealth)}</div><div class="cashlab">lifetime earnings</div></div>
+      <div class="cashbox"><div class="cash">${money(S.wealth)}</div><div class="cashlab">lifetime earnings</div>
+        ${phase !== "ending" ? `<button class="newcareer" id="newcareer" type="button">New career</button>` : ""}</div>
     </div>
   </header>`;
 }
@@ -414,9 +419,38 @@ function nextTurn() {
 
 function render() {
   if (phase === "start")   return startScreen();
-  if (phase === "event")   return eventScreen();
-  if (phase === "outcome") return outcomeScreen();
-  if (phase === "ending")  return endingScreen();
+  if (phase === "event")   eventScreen();
+  else if (phase === "outcome") outcomeScreen();
+  else if (phase === "ending")  return endingScreen();
+  wireNewCareer();
+}
+
+// Abandoning a career takes two taps, so a stray one never costs a run.
+function newCareer() { wipe(); S = null; phase = "start"; startScreen(); }
+function wireNewCareer() {
+  const b = document.getElementById("newcareer");
+  if (!b) return;
+  let armed = null;
+  b.onclick = () => {
+    if (armed) { clearTimeout(armed); return newCareer(); }
+    b.textContent = "Tap again to abandon this career";
+    b.classList.add("armed");
+    armed = setTimeout(() => { armed = null; b.textContent = "New career"; b.classList.remove("armed"); }, 3000);
+  };
+}
+
+// A career started on an older version of the game may not add up any more: say so, and offer
+// a fresh start (the default) or carrying on.
+function oldVersionScreen() {
+  app.innerHTML = `
+    <div class="card">
+      <h2 class="serif">The game has been updated</h2>
+      <div class="body serif">This career was started on an older version of Minister Salary. Cards, ages and endings have changed since, so parts of it may no longer add up.</div>
+      <button class="primary" id="fresh">Start a new career</button>
+      <button class="choice" id="carry">Carry on with this one anyway</button>
+    </div>`;
+  app.querySelector("#fresh").onclick = newCareer;
+  app.querySelector("#carry").onclick = () => { save(); render(); };
 }
 
 // ---------- boot ----------
@@ -434,7 +468,9 @@ Promise.all([
   optional(Packs.DIR + "manifest.json").then(m => Promise.all(((m && m.packs) || []).map(pack)))
 ]).then(([g, ev, rv, packs]) => {
   content = Packs.assemble(g, ev, packs, rv);
-  if (load() && S) render(); else startScreen();
+  contentKey = fingerprint(content);
+  if (load() && S) { if (savedKey !== contentKey && phase !== "ending") oldVersionScreen(); else render(); }
+  else startScreen();
 }).catch(err => {
   app.innerHTML = `<div class="card"><h2>Could not load content</h2>
     <div class="body">${esc(err.message)}</div></div>`;
