@@ -15,7 +15,7 @@
           "text": "Return it to the registry unopened.",
           "effects": { "integrity": 5, "standing": 3, "competence": -2 },
           "setFlags": ["strange_met"],
-          "outcome": "The registry logs it, and will hold it until you are cleared for SECRET or it is declassified at twenty-five years old. Since it is dated thirty years from now, the second would take fifty-five years.",
+          "outcome": "The registry logs it, and will keep it until you are cleared for SECRET, or until it is declassified, twenty-five years after its date. Its date is thirty years away, so that would take fifty-five years.",
           "schedule": [{ "eventId": "strange_envelope", "inYears": 12, "chance": 0.6 }]
         },
         {
@@ -340,14 +340,14 @@
           "text": "Ask that both versions be published.",
           "effects": { "competence": 3, "reputation": 2, "standing": -2 },
           "setFlags": ["strange_met"],
-          "outcome": "The request goes to the Standing Orders Committee. It meets eighteen months later and finds, on reflection, that it would rather not."
+          "outcome": "The request goes to the Standing Orders Committee, which considers it at length and finds, on reflection, that it would rather not."
         }
       ]
     },
     {
       "id": "strange_thoughts",
       "title": "Open Minds",
-      "body": "For one Tuesday, everyone in the room with you can hear your thoughts. It's the day of your ministry's weekly senior management meeting. Items one to six take nineteen minutes, and nobody sits beside you. Item seven is a proposal your officials have worked on for a year, and you have doubts about it.",
+      "body": "For one Tuesday, everyone in the room with you can hear your thoughts. It's the day of your ministry's weekly senior management meeting. Word has got round, so nobody sits beside you, and items one to six take nineteen minutes. Item seven is a proposal your officials have worked on for a year, and you have doubts about it.",
       "requires": { "minRank": 11, "maxRank": 15, "flagsNone": ["strange_met"] },
       "weight": 0.7,
       "once": true,

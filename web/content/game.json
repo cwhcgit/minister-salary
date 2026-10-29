@@ -739,7 +739,7 @@
         ],
         "notDuringBond": true
       },
-      "text": "Eight years in all: six for the degree, two for a master's, and one bank's offer declined in the middle."
+      "text": "An eight-year bond in all: six years of service for the degree, two more for the master's, and one bank's offer to buy you out, declined along the way."
     },
     {
       "label": "The bond",
@@ -964,7 +964,7 @@
         "down": [
           "Your integrity takes a knock. You notice, even if nobody else does.",
           "You tell yourself it was necessary. Your integrity is less sure.",
-          "You bend a rule you once said you never would, and your integrity is the worse for it."
+          "Your integrity pays for this one, and you know it."
         ]
       }
     },
@@ -1707,7 +1707,7 @@
     },
     "headsUp": {
       "service": {
-        "first": "Your name goes forward at next year's ranking, for {next}: by then you'll have served long enough in your grade. To be promoted, you need {need} that year.",
+        "first": "Next year, when your bosses rank officers against each other for promotion, you'll have served long enough in your grade to be put up for {next}. To be promoted, you need {need} that year.",
         "blocked": "Next year you'll have served long enough in your grade for {next}, but your name is not on the list for the ranking. Nobody says why.",
         "lines": [
           "Your name goes forward at next year's ranking, for {next}. It takes {need}.",
@@ -1744,7 +1744,7 @@
         "At a community event, a party activist asks for your card, and keeps it. In your experience, people do not keep cards.",
         "Someone you have never met asks your office for a copy of your CV, \"for a newsletter\". There is no newsletter.",
         "Your name appears on the guest list for a dinner where most of the other guests are MPs. Nobody tells you why you were asked.",
-        "A grassroots adviser you met once sends a handwritten note saying how much they enjoyed your remarks. You did not make any remarks."
+        "A grassroots adviser you met once sends a handwritten note praising remarks you never made. The note isn't about the remarks: the party has taken an interest in you."
       ],
       "seatAtRisk": [
         "The party's seat assessment for next year's general election lists your ward as \"competitive\". It is not a compliment.",

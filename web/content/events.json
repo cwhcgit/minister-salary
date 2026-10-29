@@ -87,7 +87,7 @@
   {
     "id": "consultant_report",
     "title": "The Report",
-    "body": "Your ministry paid a consultancy $1.9 million to work out why one of its schemes isn't working. Their final deck recommends exactly what you proposed two years ago in a minute paper nobody acted on, minus your paragraph four, the one that said how it could go wrong. The Deputy Secretary who hired them loves the deck.",
+    "body": "Your ministry paid a consultancy $1.9 million to work out why one of its schemes isn't working. Today they present their final deck: exactly what you proposed in an earlier minute paper nobody acted on, minus your paragraph four, on how it could go wrong. The Deputy Secretary who hired them loves it.",
     "requires": {
       "minRank": 2,
       "maxRank": 5
@@ -129,7 +129,7 @@
           "standing": -4,
           "heat": 3
         },
-        "outcome": "The consultancy's partner checks the appendix and reads out the source: a minute paper from your division, two years old. Yours. The room enjoys this more than the partner does."
+        "outcome": "The consultancy's partner checks the appendix and reads out the source: a minute paper from your division, written before the consultants were hired. Yours. The room enjoys this more than the partner does."
       }
     ]
   },
@@ -257,7 +257,7 @@
   {
     "id": "cep_discovery",
     "title": "A Word You Have Not Heard Before",
-    "body": "Over lunch, a friend who works in HR mentions your \"CEP\" in passing, as if you'd know what that is. You don't, so you ask. It's clear she has seen yours. She pauses a beat too long, then asks whether you've tried the new chicken rice stall downstairs.",
+    "body": "Over lunch, a friend who works in HR mentions your \"CEP\" as if you'd know the term. You don't, so she explains: Currently Estimated Potential, HR's private estimate of the highest grade you'll ever reach, set early in your career and never told to you. She has clearly seen yours, and changes the subject to the new chicken rice stall downstairs.",
     "requires": {
       "minRank": 1,
       "maxRank": 5,
@@ -269,7 +269,7 @@
     "once": true,
     "choices": [
       {
-        "text": "Press her on it.",
+        "text": "Ask her what yours says.",
         "effects": {
           "integrity": -2,
           "competence": 5
@@ -277,7 +277,7 @@
         "setFlags": [
           "knows_cep"
         ],
-        "outcome": "She tells you, very quietly: Currently Estimated Potential, the highest grade the service thinks you'll ever reach. It's reviewed every year, and never shown to you. You think about it in the lift, and on most days after that.",
+        "outcome": "She won't tell you the grade. Very quietly, she says only that it's reviewed every year, and can still move. You think about it in the lift, and on most days after that.",
         "schedule": [
           {
             "eventId": "farewell_drinks",
@@ -435,7 +435,7 @@
   {
     "id": "forum_letter",
     "title": "The Forum Page",
-    "body": "A member of the public has written to the Straits Times Forum page about a scheme your division runs. His letter is 340 words long, very angry, and right about every fact. {senior} wants the ministry's reply drafted by Friday, and the paper will print whatever goes out.",
+    "body": "A member of the public has written to the Straits Times Forum page about a scheme your division runs. His letter is 340 words long, very angry, and right about every fact. Drafting the ministry's reply is your job, due to {senior} by Friday, and the paper will print whatever goes out.",
     "requires": {
       "minRank": 2,
       "maxRank": 5
@@ -736,7 +736,7 @@
         ]
       },
       {
-        "text": "It was you.",
+        "text": "Say nothing. The leak was yours, and you'd do it again.",
         "effects": {
           "integrity": 8,
           "heat": 25,
@@ -749,7 +749,7 @@
         "requiresStat": {
           "integrity": 70
         },
-        "outcome": "It was you, for what you still believe were good reasons. The inquiry doesn't find you. You'll spend years finding out whether that holds.",
+        "outcome": "You leaked it, for what you still believe were good reasons, and you sit through the inquiry saying nothing. It doesn't find you. You'll spend years finding out whether that holds.",
         "schedule": [
           {
             "eventId": "leak_resurfaces",
@@ -837,7 +837,7 @@
   {
     "id": "the_committee",
     "title": "The Inter-Ministry Committee",
-    "body": "You're the secretariat for an Inter-Ministry Committee: you write its papers and its minutes. It has met eleven times to settle a question three ministries disagree on, and its interim finding is that \"further study is warranted\". No ministry wants to be the one that gave way.",
+    "body": "You're the secretariat for an Inter-Ministry Committee: you write its papers and its minutes. It has met eleven times to settle a question three ministries disagree on, and its interim finding is that \"further study is warranted\". No ministry wants to be the one that gave way, and {journalist} has started asking you why.",
     "requires": {
       "minRank": 2,
       "maxRank": 4
@@ -872,7 +872,7 @@
         "outcome": "Your minutes are widely admired. The committee meets fourteen more times. At the end you're commended \"for your support of the committee's work\", and the question is still open."
       },
       {
-        "text": "Tell {journalist}, a friendly {journalist.title}, about the deadlock.",
+        "text": "Tell {journalist} about the deadlock.",
         "effects": {
           "reputation": 6,
           "integrity": -8,
@@ -903,7 +903,7 @@
   {
     "id": "bto_queue",
     "title": "The Ballot",
-    "body": "You've applied for a new HDB flat for the fourth time: a four-room BTO in a non-mature estate. Every ballot you lose is another year of waiting. At work you are, technically, the government, and you know someone at HDB.",
+    "body": "You've applied for a new HDB flat for the fourth time: a four-room BTO in a non-mature estate. Every ballot you lose is another year of waiting. At work you are, technically, the government, and a friend from school now works at HDB.",
     "requires": {
       "minRank": 0,
       "maxRank": 4,
@@ -952,7 +952,7 @@
     "variants": [
       {
         "title": "The Prime Launch",
-        "body": "You're applying for a new HDB flat again, this time in a Prime project: central and cheaper now, but you'd have to live there ten years and repay part of the subsidy when you sell. Thousands have applied, and the queue is already longer than the estate. You also know someone at HDB.",
+        "body": "You're applying for a new HDB flat in a Prime project: central and cheaper now, but you'd have to live there ten years and repay part of the subsidy when you sell. Thousands have applied, and the queue is already longer than the estate. A friend from school now works at HDB.",
         "choices": [
           {
             "text": "Apply, and take your chances.",
@@ -970,7 +970,7 @@
       },
       {
         "title": "The Fifth Ballot",
-        "body": "You've applied for a new HDB flat five times now and lost every ballot. The results page remembers your login. Your queue numbers, added together, would house a small town. Each lost ballot is another year of rent, and you do know someone at HDB.",
+        "body": "You've applied for a new HDB flat five times now and lost every ballot. The results page remembers your login. Your queue numbers, added together, would house a small town. Each lost ballot is another year of rent, and a friend from school now works at HDB.",
         "choices": [
           {
             "text": "Ballot again.",
@@ -978,7 +978,7 @@
           },
           {
             "text": "Ask a friend at HDB what is coming up.",
-            "outcome": "He walks you through next quarter's launches over kopi, and every word goes on the website three weeks later. Technically, all you got early was public information, and a kopi. Your sixth application succeeds."
+            "outcome": "He walks you through next quarter's launches over kopi, and every word is on the website three weeks later. You apply for the quietest launch, and your sixth application succeeds. All you got early was public information, and a kopi."
           },
           {
             "text": "Buy resale. Take the loan.",
@@ -1226,7 +1226,7 @@
   {
     "id": "new_ro",
     "title": "The New Reporting Officer",
-    "body": "{senior}, your reporting officer until now, has been given more to run, so from this month you report to someone new. The new reporting officer comes from a different ministry, knows nothing about you, and has brought along two trusted people from the old job. The newcomer writes your appraisals from now on; {senior} only signs them.",
+    "body": "{senior}, your reporting officer until now, has been given more to run, so you now report to someone new from another ministry, who knows nothing about you and has brought two trusted people along. The newcomer will write your appraisals. Meanwhile the division's hardest file, a review the Permanent Secretary wants by December, has nobody on it.",
     "requires": {
       "minRank": 1,
       "maxRank": 6
@@ -1240,7 +1240,7 @@
           "competence": 8,
           "standing": 6
         },
-        "outcome": "It takes eight months, and it works. Your new reporting officer rates you strictly on what you've done, which turns out to be rarer than you'd thought, and your next appraisal is the best you've had."
+        "outcome": "The review takes eight months, and goes in before December. Your new reporting officer rates you strictly on what you've done, which turns out to be rarer than you'd thought, and your next appraisal is the best you've had."
       },
       {
         "text": "Be useful to the newcomer's two people.",
@@ -1249,7 +1249,7 @@
           "competence": -2,
           "integrity": -2
         },
-        "outcome": "You become the person who knows where things are and whom to ask. It's a real position and a small one, and you hold it for four years."
+        "outcome": "You become the person they ask where things are and whom to see. It's a real position and a small one, and you hold it for as long as they stay."
       },
       {
         "text": "Keep your head down until the newcomer leaves.",
@@ -1258,35 +1258,35 @@
           "competence": 3,
           "integrity": 2
         },
-        "outcome": "The newcomer stays five years. Your appraisals for all five are a flat line, and every promotion board for the rest of your career will see it."
+        "outcome": "The newcomer is in no hurry to leave. Meanwhile your appraisals go flat, and every promotion board for the rest of your career will see the line."
       }
     ],
     "variants": [
       {
         "title": "Standing Up",
-        "body": "Your new reporting officer starts on Monday, and {senior}, who had the job until now, will only countersign your appraisals. The newcomer spent twenty-two years in the SAF, holds the morning meeting standing up, and has brought across two officers he once commanded. From Monday, he writes your grades.",
+        "body": "Your new reporting officer starts on Monday, and {senior}, who had the job until now, will only countersign your appraisals. The newcomer spent twenty-two years in the SAF, holds the morning meeting standing up, and has brought two officers from the old unit. Nobody has briefed the newcomer on the year's most urgent file, a legal opinion a March decision rests on.",
         "choices": [
           {
             "text": "Take the file nobody has briefed the newcomer on.",
-            "outcome": "The file turns out to hold the legal opinion everything depends on. You brief your new reporting officer on it in nine minutes, standing. From then on he asks for you by surname, which in his vocabulary is a commendation."
+            "outcome": "You brief your new reporting officer on the legal opinion in nine minutes, standing, and the March decision goes through. From then on you're asked for by surname, which in the newcomer's vocabulary is a commendation."
           },
           {
             "text": "Make yourself useful to the newcomer's two officers.",
-            "outcome": "They know the newcomer; you know the building. By Christmas you're the fourth chair at their lunch table, and you keep it for four years. It's the chair by the window."
+            "outcome": "They know the newcomer; you know the building. By Christmas you're the fourth chair at their lunch table, and you keep it. It's the chair by the window."
           },
           {
-            "text": "Stand easy until the newcomer moves on.",
-            "outcome": "The newcomer's two-year stint is extended twice. Your appraisals for those six years read like a parade state: present, correct, in line, and visible to every promotion board after."
+            "text": "Do as you're told, and wait for the newcomer to move on.",
+            "outcome": "The newcomer shows no sign of moving on. Your appraisals start to read like a parade state: present, correct, in line, and visible to every promotion board after."
           }
         ]
       },
       {
         "title": "The Deck",
-        "body": "{senior}, your reporting officer until now, is too busy to supervise you directly, so you're getting a new one: a mid-career hire from a consulting firm, who calls the work \"the portfolio\", has brought two former colleagues in on contract, and wants everything as a deck. From now on your appraisals are written by someone who has never seen one.",
+        "body": "{senior}, your reporting officer until now, is too busy to supervise you, so you're getting a new one: a mid-career hire from a consulting firm who wants everything as a deck, and has brought two former colleagues in on contract. This year's biggest decision rests on a file that won't fit on a slide: an Act, two amendments and a court case.",
         "choices": [
           {
             "text": "Take the file that won't fit on a slide.",
-            "outcome": "The file is the statutory one: an Act, two amendments and a court case. You walk your new reporting officer through it in an afternoon. She's quick, and from then on rates you on what you know."
+            "outcome": "You walk your new reporting officer through the Act, the amendments and the court case in an afternoon. The newcomer is quick, and from then on rates you on what you know."
           },
           {
             "text": "Make yourself useful to the two consultants.",
@@ -1294,7 +1294,7 @@
           },
           {
             "text": "Wait for the new boss to go back to the private sector.",
-            "outcome": "Your new boss stays nine years, and likes it. Your appraisals don't change by a word in that time, and every promotion board after reads the nine identical years as one."
+            "outcome": "Your new boss likes it here, and stays. Your appraisals stop changing by so much as a word, and every promotion board after reads the identical years as one."
           }
         ]
       }
@@ -1482,7 +1482,7 @@
         "options": [
           {
             "id": "source",
-            "text": "You once told {journalist} about a deadlock you weren't supposed to discuss. Now {journalist.formal} rings, without naming anyone, to warn you that a reporter at another paper is rebuilding that old story from everyone who was on the circulation list. The reporter has your number.",
+            "text": "Years ago, as the secretariat of an Inter-Ministry Committee, you told {journalist} about its deadlock, which you weren't supposed to discuss. Now {journalist.formal} rings, without naming anyone, to warn you that a reporter at another paper is rebuilding that old story from everyone who was on the circulation list. The reporter has your number.",
             "requires": {
               "cast": {
                 "journalist": {
@@ -2014,7 +2014,7 @@
         ]
       },
       {
-        "body": "The party's candidates are photographed in a school hall that smells of floor polish. You have left the service to stand, and if you lose there is no way back. Across the hall, a candidate you once sat beside at a seminar is being photographed for the other side, and waves. The party asks where you will stand: with a GRC team, or alone.",
+        "body": "The party's candidates are photographed in a school hall that smells of floor polish. You have resigned from the service to stand, and if you lose, it will not take you back. Across the hall, a candidate you once sat beside at a seminar is being photographed for the other side, and waves. The party asks where you will stand: with a GRC team, or alone.",
         "choices": [
           {
             "text": "Stand with the team in the GRC.",
@@ -2301,7 +2301,7 @@
   {
     "id": "pofma_moment",
     "title": "The Correction Direction",
-    "body": "A post about your ministry's scheme is going viral. It is wrong in two places and, awkwardly, right in the third. Under POFMA you can have a correction notice attached to it, fixing the two wrong points in public and saying nothing about the third. Or you can answer the post yourself, and admit the point it got right.",
+    "body": "A post about your ministry's scheme is going viral. It is wrong in two places and, awkwardly, right in the third. Under POFMA you can direct whoever posted it to attach a correction notice, fixing the two wrong points in public and saying nothing about the third. Or you can answer the post yourself, and admit the point it got right.",
     "requires": {
       "minRank": 11
     },
@@ -2337,7 +2337,7 @@
     ],
     "variants": [
       {
-        "body": "A HardwareZone thread about your ministry's scheme has reached its fortieth page. The first post, which everyone quotes, is wrong about the eligibility age, wrong about the payout, and right about the waiting time. A POFMA correction direction would fix the two errors in public and leave the waiting time standing. You could also reply yourself.",
+        "body": "A HardwareZone thread about your ministry's scheme is on its fortieth page. The first post, which everyone quotes, is wrong about the eligibility age and the payout, and right about the waiting time. Under POFMA you can direct the forum to pin a correction notice above it, fixing the two errors and leaving the waiting time standing. Or you can reply yourself.",
         "choices": [
           {
             "text": "Issue the correction direction.",
@@ -2350,14 +2350,14 @@
         ]
       },
       {
-        "body": "A retired officer from your ministry has posted a long critique of its scheme, with three diagrams. Two are wrong. The third is right, to the decimal: he has redrawn, from memory, a chart from an internal paper he once worked on. A POFMA correction direction would fix the two wrong diagrams and leave the right one up.",
+        "body": "A retired officer from your ministry has posted a long critique of its scheme, with three diagrams. Two are wrong. The third is right, to the decimal: he has redrawn it from memory, from an internal paper he once worked on. Under POFMA you can direct him to attach a correction notice that fixes the two wrong ones and says nothing about the third.",
         "choices": [
           {
             "text": "Issue the correction direction.",
             "outcome": "The correction notice runs above the post and fixes two diagrams. The third stays up, uncorrected, and becomes the most widely shared chart your ministry has ever produced."
           },
           {
-            "text": "Redraw the third diagram yourself, in public.",
+            "text": "Post the third diagram yourself, and admit what it shows.",
             "outcome": "You post the third diagram again, with the real numbers and a sentence admitting the problem. The retired officer shares it with one word, \"Better.\" Your officials do not share it."
           }
         ]
@@ -2537,16 +2537,16 @@
         "The system you fixed in March stops producing complaints, and nobody connects the two.",
         "A paper you wrote goes upstairs under someone else's name, and does well there.",
         "You catch an error in a figure three divisions had already passed, and fix it quietly.",
-        "Another ministry copies a process you redesigned, without crediting yours."
+        "Another ministry copies an approval process you redesigned, and doesn't credit you."
       ],
       "1": [
-        "You present the scheme at three forums, and by the third, people call it your scheme.",
+        "You present a scheme your team built at three forums, and by the third, people call it your scheme.",
         "Your name is on the slide, the email and the photograph, for work that was mostly last year's.",
         "Someone from another ministry greets you by name in the lift. Being seen is working.",
-        "You present the scheme at a lunchtime talk, with your photo on the poster and the team in the footnotes.",
-        "Your scheme gets a feature on the intranet, with a photograph of you pointing at a chart.",
+        "You present your team's work at a lunchtime talk, with your photo on the poster and the team in the footnotes.",
+        "A scheme you worked on gets a feature on the intranet, with a photograph of you pointing at a chart.",
         "You sit on four panels this year, three of them about the same scheme.",
-        "A speech you didn't write mentions your scheme, and you, by name. That part you did arrange."
+        "A speech you didn't write mentions a scheme you worked on, and you, by name. That part you did arrange."
       ],
       "2": [
         "You do what's asked, on time and not a minute more, and nobody can find anything to complain about.",
@@ -2568,7 +2568,7 @@
           },
           {
             "text": "Do the work, and make sure the right people see it.",
-            "outcome": "Your one-page note on the three fields goes round upstairs as \"a good example of citizen-centric design\". You'll be asked to give the talk."
+            "outcome": "Three fields go, and your one-page note on them goes round upstairs as \"a good example of citizen-centric design\". You'll be asked to give the talk."
           },
           {
             "text": "Let the agencies sort it out among themselves.",
@@ -2647,7 +2647,7 @@
           "competence": 2,
           "integrity": 4
         },
-        "outcome": "\"That's not really something we discuss,\" {senior} says, kindly. It's a complete answer."
+        "outcome": "\"Ceilings aren't really something we discuss,\" {senior} says, kindly. It's a complete answer."
       },
       {
         "text": "Agree to be more visible.",
@@ -2663,7 +2663,7 @@
           "competence": 5,
           "standing": 4
         },
-        "outcome": "{senior} thinks for a moment, then tells you something real. You do it. That one answer was worth the other thirty-nine minutes."
+        "outcome": "{senior} thinks for a moment, then names something real: a backlog nobody owns. You clear it by June. That one answer was worth the other thirty-nine minutes."
       }
     ],
     "montageEffects": {
@@ -2672,11 +2672,11 @@
     },
     "montageLines": {
       "0": [
-        "Your ceiling, you're told again, is \"not a helpful way to think about it\", the most precise answer yet.",
+        "You ask where you stand, and are told it's \"not a helpful way to think about it\", the most precise answer yet.",
         "Forty minutes, six competency areas, and one question from you that nobody writes down.",
-        "You ask about your ceiling once more, and are offered a coaching session on curiosity.",
-        "Your question about your ceiling is recorded under \"Officer's Aspirations\", a box on the form.",
-        "You ask about your ceiling at the end of the forty minutes, when there are two left."
+        "You ask how far you can go, and are offered a coaching session on curiosity.",
+        "You ask about your ceiling, and the question is recorded under \"Officer's Aspirations\", a box on the form.",
+        "You ask where you stand at the end of the forty minutes, when there are two left."
       ],
       "1": [
         "You agree again to be more visible, and at the next appraisal you're told that you have been.",
@@ -2690,7 +2690,7 @@
         "You ask what would have helped in this year's \"very tight\" ranking, and, unusually, you're told.",
         "The things nobody was doing become your things, each with a thank-you for asking.",
         "The list of work nobody is doing gets shorter by March and longer by June, with your name at the top.",
-        "You ask what's needed, a great deal is, and now it's on your list instead of anyone else's."
+        "You ask what needs doing. A great deal does, and now it's on your list instead of anyone else's."
       ]
     },
     "variants": [
@@ -2707,7 +2707,7 @@
           },
           {
             "text": "Ask which of the four areas actually counts.",
-            "outcome": "After a pause, an honest answer: \"Ownership.\" So you spend the year taking charge of things nobody else wanted. It shows, and it's noticed."
+            "outcome": "{senior} pauses, then says which area really counts: \"Ownership.\" So you spend the year taking charge of things nobody else wanted. It shows, and it's noticed."
           }
         ]
       },
@@ -2746,19 +2746,19 @@
         ]
       },
       {
-        "body": "This year your appraisal includes anonymous feedback from the people who work around you, and {senior} reads it out. One comment says you \"never say no to anything from upstairs\". It's meant, you think, as a complaint, and it will go in your file.",
+        "body": "This year your appraisal includes anonymous feedback from the people who work around you, and {senior} reads it out. One comment says you \"never say no to anything from upstairs\", so the extra work lands on everyone else. Fair or not, it will go in your file.",
         "choices": [
           {
             "text": "Ask what the comment means for your ceiling.",
             "outcome": "{senior} says it's \"a development point, not a ceiling point\", and then that ceilings aren't discussed. Both halves are true, and only one of them was an answer."
           },
           {
-            "text": "Say you'll be more visible, sideways as well as up.",
+            "text": "Say you'll be more visible to the people around you, not just upstairs.",
             "outcome": "You start a monthly lunch for the people around you. Attendance is excellent. Next year's anonymous comment is about the lunches, and it's fond."
           },
           {
             "text": "Ask what {senior} needs you to say no to.",
-            "outcome": "{senior} names two things at once. You drop them both, and everyone around you notices before {senior} does."
+            "outcome": "{senior} names two jobs you could stop doing for upstairs. You stop both, and the people around you notice before {senior} does."
           }
         ]
       }
@@ -2892,7 +2892,7 @@
         "outcome": "You get seventy per cent of exactly what you needed, because the process assumes everyone pads their bid, and punishes you for not padding."
       },
       {
-        "text": "Don't bid. Absorb it.",
+        "text": "Don't bid. Absorb the extra work within your existing budget.",
         "effects": {
           "standing": 5,
           "competence": -4,
@@ -2910,7 +2910,7 @@
         "You bid for eleven and get four: the reason you bid for eleven.",
         "Budget season: every line justified, footnoted and cut by a third, as planned.",
         "You bid big again, defend every line, and are cut back to the number you had in mind all along.",
-        "You bid for eleven officers and a system, and are given the system, which needs eleven officers."
+        "In the budget round you bid for eleven officers and a system, and get only the system, which needs eleven officers."
       ],
       "1": [
         "You bid for exactly what you need and get two-thirds of it, described to you as a good outcome.",
@@ -2919,10 +2919,10 @@
         "Your exact bid is cut by a third, because every bid is cut by a third, and yours was exact."
       ],
       "2": [
-        "You absorb the cut again, and a note of thanks arrives: the only increase you get.",
+        "You make do within your existing budget again, and a note of thanks arrives: the only increase you get.",
         "Budget season, and you learn a new way to say \"absorb\".",
-        "No bid again. Your people absorb it with you, and one of them updates a LinkedIn profile.",
-        "You absorb the cut so quietly that next year's budget is smaller, as a vote of confidence."
+        "No bid again. Your people absorb the extra work with you, and one of them updates a LinkedIn profile.",
+        "You absorb the extra work so quietly that next year's budget is smaller, as a vote of confidence."
       ]
     },
     "variants": [
@@ -2940,7 +2940,7 @@
           },
           {
             "text": "Let the one per cent go.",
-            "outcome": "You absorb it. Your one per cent funds someone else's new and emerging priority. Two years later that priority is merged into your division, without its officers."
+            "outcome": "You absorb the cut within your existing budget. Your one per cent funds someone else's new and emerging priority. Two years later that priority is merged into your division, without its officers."
           }
         ]
       },
@@ -2975,7 +2975,7 @@
             "outcome": "Tab 9 says nil, with a note explaining why. The spreadsheet won't accept a nil, so IT enters a zero for you and the note is lost. The bid is funded at two-thirds."
           },
           {
-            "text": "Close the spreadsheet. Absorb it.",
+            "text": "Close the spreadsheet. Absorb the work within your existing budget.",
             "outcome": "No bid, no tab 9. The year-end summary lists your division under \"units not requiring additional resources\", in a slightly larger font than the others."
           }
         ]
@@ -3572,7 +3572,7 @@
   {
     "id": "old_colleague",
     "title": "Someone From Before",
-    "body": "At a meeting of several agencies, you recognise the person chairing it. Years ago, before your degree, the two of you sat two desks apart at a statutory board, on the same grade. She's three grades above you now, and her committees decide who gets noticed.",
+    "body": "At a meeting of several agencies, you recognise the person chairing it. Years ago, before your degree, the two of you worked side by side at a public service counter, on the same grade. She's three grades above you now, and her committees decide who gets noticed.",
     "requires": {
       "origin": [
         "poly"
@@ -3598,14 +3598,14 @@
           "integrity": 2,
           "standing": -3
         },
-        "outcome": "She hadn't moved on; she simply didn't see you. You think about the two desks for a week, and then you stop."
+        "outcome": "She hadn't moved on; she simply didn't see you. You think about the counter for a week, and then you stop."
       }
     ]
   },
   {
     "id": "second_look",
     "title": "The Board Takes a Second Look",
-    "body": "Your work has been rated well above your grade for years, and someone has noticed. A promotion board has been asked, unusually, to look again at an officer whose record doesn't match their grade, and at the estimate of how far that officer will go. The officer is you.",
+    "body": "Someone on a promotion board has read several of your papers, and thinks your work is better than your grade suggests. Unusually, the board has been asked to look again at your file, and at HR's private estimate of the highest grade you'll ever reach, which is never shown to you.",
     "requires": {
       "minRank": 2,
       "maxRank": 6,
@@ -3633,7 +3633,7 @@
           "cep": 1,
           "integrity": 6
         },
-        "outcome": "The record does speak. It's a good record, and it moves the board slightly less than four pages would have."
+        "outcome": "The record does speak, in the dry language of appraisal forms, and it moves the board slightly less than four pages would have."
       }
     ]
   },
@@ -3810,7 +3810,7 @@
   {
     "id": "pofma_vindicated",
     "title": "The Third Point",
-    "body": "A while ago you publicly admitted the one point that a viral post about your ministry's scheme got right. Now the scheme has been quietly amended to fix exactly that. {journalist}, {journalist.aTitle} at the paper, has noticed that you were the only office holder who admitted it, and asks you about it on the record.",
+    "body": "Some time ago, a viral post about your ministry's scheme got two points wrong and one right, and you publicly admitted the one it got right. Now the scheme has been quietly amended to fix exactly that. {journalist}, {journalist.aTitle} at the paper, has noticed that you were the only office holder who admitted it, and asks about it on the record.",
     "triggered": true,
     "choices": [
       {
@@ -3969,11 +3969,11 @@
       },
       "lines": [
         "Another general election, and on the campaign lorry you read out the ward's numbers, some of them yours.",
-        "The thank-you lorry takes the same route as last time, down to the stop for kopi at the same coffee shop.",
+        "The lorry that carries you round the ward to thank voters takes the same route as last time, kopi stop included.",
         "Nine days of campaigning, one rally, and a sample count that tells everyone the result before the real one does.",
         "Your ward's result is among the first in, and your branch treats this as a personal achievement.",
         "Election posters go up at the first permitted minute and come down by the date on the permit.",
-        "On Cooling-off Day nobody may campaign, so you spend it reading the comments, and wish you could.",
+        "On Cooling-off Day nobody may campaign, so you spend it reading the comments online, and wish you could reply.",
         "Nomination Day, nine days of walkabouts, and a result your branch chairman predicted, in writing, to within a point.",
         "By the end of the campaign you can rank every coffee shop in the ward by its kopi, privately."
       ]
@@ -4230,7 +4230,7 @@
           "months": 0,
           "outcome": "The push does not take. Growth stays flat, the 20th percentile falls, and there is no National Bonus. Nobody calls it a gamble, because it was a plan."
         },
-        "outcome": "Growth recovers ahead of the region and your bonus is four months. The speech about resilience writes itself. The jobs come back eighteen months later, in other industries, for other people.",
+        "outcome": "Growth recovers ahead of the region and your bonus is four months. The speech about resilience writes itself. The jobs do come back, in time, in other industries, for other people.",
         "stance": "headline"
       },
       {
@@ -4612,7 +4612,7 @@
           "cep": 1,
           "integrity": -2
         },
-        "outcome": "HR records your \"market value\" and, for one ranking round, takes you more seriously. It also records that you were the kind of officer who mentioned it."
+        "outcome": "The service doesn't match a bank's offer: your pay stays what your grade pays. HR quietly raises its private estimate of how far you'll go. Your bosses hear you were shopping around, and it shows in this year's appraisal."
       },
       {
         "text": "Decline. You're not finished here.",
@@ -5046,7 +5046,7 @@
   {
     "id": "farewell_drinks",
     "title": "Farewell Drinks",
-    "body": "Your friend in HR, the one who once let slip what a CEP is, is leaving the service. At her farewell drinks, on her second glass, she tells you how yours gets reviewed: every year, by people who mostly read your last two postings. The hard postings, she says, get read twice.",
+    "body": "Your friend in HR, who once told you about your CEP, HR's private estimate of the highest grade you'll ever reach, is leaving the service. At her farewell drinks, on her second glass, she tells you how yours gets reviewed: every year, by people who mostly read your last two postings. The hard postings, she says, get read twice.",
     "triggered": true,
     "requires": {
       "maxRank": 6
@@ -5059,7 +5059,7 @@
           "standing": -3,
           "competence": 3
         },
-        "outcome": "You ask the next morning. HR says it will note your interest, and does. Eighteen months later you're sent somewhere difficult, and that posting is read twice."
+        "outcome": "You ask the next morning. HR says it will note your interest, and does: your next posting is a difficult one, and it gets read twice."
       },
       {
         "text": "Thank her, and let her enjoy her drinks.",
@@ -5330,7 +5330,7 @@
   {
     "id": "model_ward",
     "title": "A Model Ward",
-    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, the new lifts and a weak opponent.",
+    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, your Tuesday-night Meet-the-People Sessions and a weak opponent.",
     "triggered": true,
     "once": true,
     "requires": {
@@ -5349,14 +5349,14 @@
         "outcome": "You teach them to listen to a stallholder on camera without looking like someone listening on camera. Two of them get it. The paper is reprinted with their photographs."
       },
       {
-        "text": "Teach them Tuesday nights. That is what worked.",
+        "text": "Teach them Meet-the-People on Tuesday nights. That is what worked.",
         "effects": {
           "integrity": 5,
           "reputation": 4,
           "competence": 1,
           "standing": -2
         },
-        "outcome": "You take them to a Tuesday session. One stays until midnight writing a letter that argues the case, and you recognise the look. The paper is not revised."
+        "outcome": "You take them to your Tuesday Meet-the-People Session. One stays until midnight writing a letter that argues the case, and you recognise the look. The paper is not revised."
       },
       {
         "text": "Send them to your volunteers instead of you.",
@@ -6429,7 +6429,7 @@
         {
           "id": "mp",
           "text": "{mp}, the MP for the next ward,",
-          "where": "is waiting with a spare pair of scissors",
+          "where": "has come with a spare pair of scissors, hoping to share the photograph",
           "give": "Hand {mp} the scissors, and stand at the back.",
           "saw": "{mp} leaves halfway, and is in none of the photographs.",
           "left": "{mp} stays for the rest of it, and is in every photograph.",

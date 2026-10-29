@@ -96,7 +96,7 @@
           "outcome": "You pick three {scheme.place} with busy volunteers and short queues. The launch has a ribbon, a banner and a photographer, and the photograph goes upstairs captioned \"Good start.\""
         },
         {
-          "text": "Pick the three likeliest to make it fail.",
+          "text": "Pick the three hardest, to learn what breaks it.",
           "effects": { "competence": 5, "integrity": 3, "standing": -4 },
           "setFlags": ["pilot_met", "pilot_hard"],
           "schedule": [{ "eventId": "pilot_results", "inYears": 2, "chance": 0.85 }],
@@ -1221,13 +1221,13 @@
             {
               "id": "conceded",
               "requires": { "cast": { "junior": { "flagsAll": ["you_conceded"] } } },
-              "a": "The panel takes your word. {junior} is promoted within the month and posted to a division elsewhere. At the farewell kopi, {junior} thanks you for the retreat, specifically.",
+              "a": "The panel takes your word. {junior} is promoted within the month and posted to a division elsewhere. At the farewell kopi, {junior} thanks you for conceding the point at the strategy retreat, in front of forty people.",
               "b": "The minutes record your view: \"not yet\". {junior} hears about it within the day, as everyone does, and is at the next one-to-one on time, with questions."
             },
             {
               "id": "held",
               "requires": { "cast": { "junior": { "flagsAll": ["you_held"] } } },
-              "a": "The panel takes your word. {junior} is promoted within the month and posted elsewhere. At the farewell kopi, {junior} mentions the retreat, and the kopi after it, kindly.",
+              "a": "The panel takes your word. {junior} is promoted within the month and posted elsewhere. At the farewell kopi, {junior} mentions, kindly, the strategy retreat where you held your line, and the kopi after it where you gave way.",
               "b": "The minutes record \"not yet\". {junior} stays another year under you and does the best work of {junior.their} career so far, in a way that is hard to take as a compliment."
             },
             {
@@ -1812,7 +1812,7 @@
           ]
         }
       },
-      "body": "You're still serving your scholarship bond, so leaving the service now means paying PSC damages for the years you haven't served. A bank wants you by March, and will pay those damages in full, {left}, and call it a signing bonus. Your bond deed was signed by you and by two sureties, usually family, who promised PSC you would serve it out.",
+      "body": "You're still serving your scholarship bond, so leaving the service now means paying PSC damages for the years you haven't served. A bank wants you by March, and will pay those damages in full, {left}, and call it a signing bonus. Two sureties, usually family, also signed your bond deed, guaranteeing to PSC that you would serve it out.",
       "requires": { "origin": ["scholar"], "maxRank": 7, "duringBond": true },
       "choices": [
         {
@@ -1842,7 +1842,7 @@
             {
               "id": "extended",
               "requires": { "flagsAll": ["bond_extended"] },
-              "a": "You tell it plainly: the bank, the letter, the two years added for a master's, the eight in all. Your scholar listens, thanks you, and does not say which way that pointed.",
+              "a": "You tell it plainly: the bank, the letter, the two years added for a master's, eight years of bond in all. Your scholar listens, thanks you, and does not say which way that pointed.",
               "b": "You make the case for staying, with your own master's as Exhibit A. Your scholar stays, and asks, a month later, how one applies for the sponsorship."
             },
             {

@@ -41,7 +41,7 @@
             "text": "Noted.",
             "a": "Four pages become two. The new version also comes back marked \"Noted.\" You learn that it means read, agreed with, and not to be acted on this financial year.",
             "b": "{senior} is surprised to see you, and explains kindly that \"Noted\" is a complete reply. It means the paper was read. It does not mean anything will happen, and nothing does.",
-            "c": "Your reply asks what happens next, and comes back marked \"Noted.\" as well. Eighteen months later someone else finds your paper in a file, sends it up again, and it is approved."
+            "c": "Your reply asks what happens next, and comes back marked \"Noted.\" as well. Long afterwards, someone else finds your paper in a file, sends it up again, and it is approved."
           },
           {
             "id": "seeme",
@@ -337,7 +337,7 @@
               "chance": 0.6
             }
           ],
-          "outcome": "Over kopi, without mentioning any email, you tell {peer} it might be a good time to look around. {peer} applies for two other jobs that week, gets one, and never asks how you knew."
+          "outcome": "Over kopi, without mentioning any email, you tell {peer} it might be a good time to look around. {peer} applies for two other jobs in the service that week, gets one, and never asks how you knew."
         },
         {
           "text": "Say nothing. It wasn't sent to you to share.",
@@ -642,7 +642,7 @@
           }
         ]
       },
-      "body": "You missed the meeting where the D&D committee was picked, so you're on it. The theme is {theme}. The top prize is {prize}, and the box for the lucky draw holds every name in the division, directors included.",
+      "body": "You missed the meeting where the committee for the division's dinner-and-dance was picked, so you're on it. The theme is {theme}. The top prize is {prize}, and the box for the lucky draw holds every name in the division, directors included.",
       "requires": {
         "minRank": 0,
         "maxRank": 1
@@ -748,7 +748,7 @@
           },
           {
             "id": "app",
-            "text": "a tablet running the new app"
+            "text": "a tablet running the division's new booking app"
           },
           {
             "id": "counter",

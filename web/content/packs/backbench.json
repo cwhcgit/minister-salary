@@ -1020,7 +1020,7 @@
               ]
             }
           },
-          "outcome": "The tea goes ahead without you, and you hear nothing about it, correctly. {peer} never mentions it either, which you take as good manners, or good news."
+          "outcome": "The tea goes ahead without you, and you hear nothing about it, correctly. The party does not field {peer}, who stays in the service and never mentions the tea, which you take as good manners."
         },
         {
           "text": "Say that you know {peer}, and sit anyway.",
@@ -1036,7 +1036,7 @@
               ]
             }
           },
-          "outcome": "The panel lets you stay. You ask {peer} about the folder, gently, in the voice that once asked you. {peer} answers it better than you did."
+          "outcome": "The panel lets you stay. You ask {peer} about the folder, gently, in the voice that once asked you. {peer} answers it better than you did, and the party still decides not to field {peer}."
         },
         {
           "text": "Sit, and say nothing about knowing {peer}.",
@@ -1052,7 +1052,7 @@
               ]
             }
           },
-          "outcome": "Nobody asks, and you are fair, mostly. A year later, at a wedding, {peer} thanks you for being on the panel, in front of two people who were also on it."
+          "outcome": "Nobody asks, and you are fair, mostly. {peer} is not fielded, and stays in the service. A year later, at a wedding, {peer} thanks you for the panel, in front of two people who were also on it."
         }
       ]
     }
