@@ -269,7 +269,7 @@
           "text": "Spend the last months on the handover, not the farewells.",
           "effects": { "competence": 3, "integrity": 2, "reputation": -3 },
           "setFlags": ["pm_handover"],
-          "outcome": "You skip three of the five farewell dinners and spend the evenings with your successor instead, going through every file that will never be in the newspapers. At the swearing-in, your successor thanks you by name."
+          "outcome": "You skip three of the five farewell dinners and spend the evenings with your successor instead, going through every file that will never be in the newspapers. At the swearing-in, your successor's speech begins: \"I thank {player.formal}.\""
         }
       ]
     }

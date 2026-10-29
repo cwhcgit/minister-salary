@@ -418,7 +418,7 @@
         "choices": [
           {
             "text": "Take the pen: the 6pm statement, and the apology in it.",
-            "outcome": "Eleven drafts, the last four about a single word: \"regret\". The Minister keeps it. On Friday the Head of Civil Service asks who chose the word, is told, and writes your name down."
+            "outcome": "Eleven drafts, the last four about a single word: \"regret\". The Minister keeps it. On Friday the Head of Civil Service asks who chose the word, is told \"{player.formal}\", and writes it down."
           },
           {
             "text": "Take the ops room: lifts first, then everything else.",
@@ -797,7 +797,7 @@
   {
     "id": "cny_lohei",
     "title": "Lo Hei",
-    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of tossing yusheng and shouting good wishes, the Permanent Secretary turns to you and asks, properly: \"So, what do you actually think we're getting wrong?\"",
+    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of tossing yusheng and shouting good wishes, the Permanent Secretary turns to you and asks, properly: \"So, {player.formal}, what do you actually think we're getting wrong?\"",
     "requires": {
       "minRank": 2,
       "maxRank": 6
@@ -1419,7 +1419,7 @@
         ]
       }
     },
-    "body": "Years ago, when your scheme's usage came in at 31%, you put it on a slide as \"30-60%\". Now the Auditor-General's Office is auditing the scheme and has asked for the original figure for that year. The request is routine, it's addressed to you by name, and the auditors will compare it with the slide.",
+    "body": "Years ago, when your scheme's usage came in at 31%, you put it on a slide as \"30-60%\". Now the Auditor-General's Office is auditing the scheme and has asked for the original figure for that year. The request is routine and addressed to {player.formal}, and the auditors will compare it with the slide.",
     "choices": [
       {
         "text": "Send the real figure, and explain the slide.",
@@ -1930,7 +1930,7 @@
         "choices": [
           {
             "text": "Tell them everything, including what is not in the folder.",
-            "outcome": "You talk for forty minutes and the colleague fills four pages. At the end the man says, \"Thank you. That was very complete.\" It sounds like the highest praise either of them is allowed to give."
+            "outcome": "You talk for forty minutes and the colleague fills four pages. At the end the man says, \"Thank you, {player.formal}. That was very complete.\" It sounds like the highest praise either of them is allowed to give."
           },
           {
             "text": "Answer the questions you are asked, and only those.",
@@ -2401,7 +2401,7 @@
     ],
     "variants": [
       {
-        "body": "A Cabinet reshuffle, moving ministers between ministries, will be announced on Monday. On Friday the Prime Minister's principal private secretary calls to ask whether you have \"any preference you would like noted\". A hard ministry is where ministers are tested for the top jobs; staying is safe. The call lasts ninety seconds. {mp} has already heard about it.",
+        "body": "A Cabinet reshuffle, moving ministers between ministries, will be announced on Monday. On Friday the Prime Minister's principal private secretary calls: \"{player.formal}, is there any preference you would like noted?\" A hard ministry is where ministers are tested for the top jobs; staying is safe. The call lasts ninety seconds. {mp} has already heard about it.",
         "choices": [
           {
             "text": "Note a preference for the hardest ministry going.",
@@ -3780,7 +3780,7 @@
   {
     "id": "committee_vindicated",
     "title": "The Decision Paper",
-    "body": "When you were secretariat to a deadlocked Inter-Ministry Committee, you wrote a paper that forced it to decide. That committee has now been dissolved, and its replacement has adopted your paper as its terms of reference. Your name is still in the footer, and the paper is about to go to every ministry.",
+    "body": "When you were secretariat to a deadlocked Inter-Ministry Committee, you wrote a paper that forced it to decide. That committee has now been dissolved, and its replacement has adopted your paper as its terms of reference. The footer still says \"Prepared by {player}, Secretariat\", and the paper is about to go to every ministry.",
     "triggered": true,
     "choices": [
       {
@@ -3818,7 +3818,7 @@
           "reputation": 10,
           "standing": 6
         },
-        "outcome": "The piece runs on a Sunday. Its headline calls you \"candid\", a word your press secretary asks you never to be again."
+        "outcome": "The piece runs on a Sunday, headlined \"{player.formal} candid on scheme flaw\". Candid is a word your press secretary asks you never to be again."
       },
       {
         "text": "Credit the post's author.",
@@ -3834,7 +3834,7 @@
   {
     "id": "speech_vindicated",
     "title": "Hansard",
-    "body": "Years ago you stood up in the House and said plainly what you thought, when a safer version was ready in front of you. Your answer went into Hansard, word for word. This week a newer Member quotes it in her own speech, with your name. Someone on the front bench looks up the original, and so does the press gallery.",
+    "body": "Years ago you stood up in the House and said plainly what you thought, when a safer version was ready in front of you. Your answer went into Hansard, word for word. This week a newer Member quotes it in her own speech, beginning \"As {player.formal} said in this House\". Someone on the front bench looks up the original, and so does the press gallery.",
     "triggered": true,
     "choices": [
       {
@@ -5153,7 +5153,7 @@
             ]
           }
         },
-        "outcome": "What changed was the word \"Enhanced\", and you say so. The piece runs with your quote in the headline, and is, against all expectation, quite kind."
+        "outcome": "What changed was the word \"Enhanced\", and you say so. The headline is \"Only the name has changed, says {player.formal}\", and the piece is, against all expectation, quite kind."
       }
     ]
   },
@@ -5328,7 +5328,7 @@
   {
     "id": "model_ward",
     "title": "A Model Ward",
-    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits your walkabouts. The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, the new lifts and a weak opponent.",
+    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, the new lifts and a weak opponent.",
     "triggered": true,
     "once": true,
     "requires": {

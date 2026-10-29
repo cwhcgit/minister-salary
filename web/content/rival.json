@@ -130,7 +130,7 @@
       "{rival} has resigned from Parliament, for personal reasons. Everyone has a theory. Nobody says it in the lobby."
     ],
     "retired": [
-      "{rival} retires as {title}. There is a farewell lunch. You send a card, and mean it."
+      "{rival} retires as {title}. At the farewell lunch, {rival}'s speech thanks \"my batchmate, {player}\". You send a card afterwards, and mean it."
     ]
   },
   "folder": [
@@ -402,7 +402,7 @@
           "rival": {
             "rel": 3
           },
-          "outcome": "Six blocks, two markets, and one auntie who assumes you are {rival}'s campaign manager and tells you exactly what she thinks of {them}. The letters to the Forum stop by March."
+          "outcome": "Six blocks, two markets, and one auntie who assumes you are {rival}'s campaign manager and tells you exactly what she thinks of {them}. The letters to the Forum stop by March. The last one thanks \"the MP from the next ward, {player.formal}\"."
         },
         {
           "text": "Send your volunteers instead.",
@@ -449,7 +449,7 @@
           "maxRank": 15
         }
       },
-      "body": "Who becomes the next Prime Minister, first among equals, is being settled informally by the Cabinet, in a room. It has come down to two names, as your intake joked it would at its first dinner: yours and {rival}'s.",
+      "body": "Who becomes the next Prime Minister, first among equals, is being settled informally by the Cabinet, in a room. It has come down to two names, as your intake joked it would at its first dinner: {player} and {rival}.",
       "choices": [
         {
           "text": "Put yourself forward.",
