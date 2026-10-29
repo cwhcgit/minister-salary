@@ -368,9 +368,10 @@ Never `{player}` on its own: say which form. Keep the player's tokens out of cho
 - Why: the end is where the player learns the rules they were paying for.
 - Check: `test/harness.test.js`.
 
-**7.6 A locked choice gives an in-world reason, never the number it needs.** The words are `statWords.locked` in `game.json`.
-- Example: "Requires Reputation 60." → "You'd need a stronger reputation for this."
-- Check: `test/harness.test.js` and the leak checks.
+**7.6 A choice the player cannot take is not shown.** A choice with `requiresStat` is left off the card while the player lacks the stat, so the player cannot tell it is there: no greyed-out button, no reason, no number. A card is only drawn while it has at least two choices to show, so give every card at least two choices that need no stat: otherwise it waits until the player has the stats, and a scheduled card that waits stalls its story.
+- Why: in the owner's words, "For the hidden options that require a certain stat to be met, do not show them at all, unless the stat is met." A greyed-out button tells the player exactly what they are missing.
+- Example: the election card's single seat needs a strong reputation, so the card also offers two GRC choices that anyone can take.
+- Check: `test/harness.test.js` (no card on screen with fewer than two choices, the hidden one nowhere on the screen, the buttons mapped to the card's own choices), `test/ui.test.js` and `test/screen.test.js`.
 
 **7.7 The ceiling and Heat show only as rumour and euphemism.** Never a number for either, until Declassified at the end.
 - Why: they are the hidden values the player learns to read.

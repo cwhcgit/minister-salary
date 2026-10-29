@@ -1301,7 +1301,14 @@ const Engine = (() => {
   // A card can be shown when its requirements hold, every cast member its text names is in
   // their role, and its parts (if any) have at least one combination that fits.
   function cardOk(ev, s) {
-    return meets(ev.requires || {}, s) && rolesFilled(roleNeeds(ev), s) && (!ev.parts || partsFit(ev, s));
+    return meets(ev.requires || {}, s) && rolesFilled(roleNeeds(ev), s) && (!ev.parts || partsFit(ev, s)) && twoChoices(ev, s);
+  }
+  // A choice the player cannot take is not shown at all (visibleChoices), so a card is only drawn
+  // while it has at least two choices to show: a decision, never a single button.
+  function twoChoices(ev, s) {
+    let n = 0;
+    for (const c of ev.choices || []) if (choiceAvailable(c, s) && ++n >= 2) return true;
+    return n >= (ev.choices || []).length;   // (a card written with one choice keeps it)
   }
 
   // A scheduled consequence waits, still scheduled, until its own requirements hold (a
@@ -1770,12 +1777,6 @@ const Engine = (() => {
     if (!text) return null;
     (s.voice = s.voice || {}).wordsAt = s.cardsPlayed || 0;
     return { kind: "note", about: "swing", text };
-  }
-
-  // Why a choice is locked, in words: the stat it needs, never the number.
-  function lockedText(content, ch) {
-    const L = (content.statWords || {}).locked || {};
-    return [...new Set(Object.keys(ch.requiresStat || {}).map(k => L[k] || "You are not yet in a position to do this."))].join(" ");
   }
 
   // The four stats, revealed on the ending screen: each with what it was and what it did to the run.
@@ -2276,11 +2277,23 @@ const Engine = (() => {
     const hit = SHOWN.get(s);
     if (hit && hit.key === key && hit.content === content) return hit.ev;
     const ev = allEvents(content, s).find(e => e.id === id);
-    const out = ev ? render(content, sceneOf(ev, s), s) : ev;
+    const out = ev ? visibleChoices(render(content, sceneOf(ev, s), s), s) : ev;
     SHOWN.set(s, { key, content, ev: out });
     return out;
   }
   const SHOWN = new WeakMap();
+  // The choices the player can take, in the order they are shown. A choice whose stats the player
+  // does not have (requiresStat) is left off the card altogether: the player cannot tell it was
+  // there. `order` maps each button to the card's own choice (as for a series' second showing),
+  // `own` keeps every choice in the card's own order, and `hidden` lists the ones left off.
+  function visibleChoices(ev, s) {
+    const order = ev.order || ev.choices.map((_, i) => i);   // button -> the card's own index
+    const keep = ev.choices.map((c, i) => i).filter(i => choiceAvailable(ev.choices[i], s));
+    if (keep.length === ev.choices.length) return ev;
+    const own = ev.choices.map((_, j) => ev.choices[order.indexOf(j)]);
+    return { ...ev, choices: keep.map(i => ev.choices[i]), order: keep.map(i => order[i]), own,
+      hidden: order.filter((_, i) => !keep.includes(i)) };
+  }
 
   // --- card versions ---------------------------------------------------------
   // A card may carry variants: the same mechanics, flags and choices in a different scene.
@@ -2448,7 +2461,8 @@ const Engine = (() => {
     const ch = ev.choices[choiceIndex];
     // the card's own index for the button pressed (a series' second showing puts the habit first)
     const ci = ev.order ? ev.order[choiceIndex] : choiceIndex;
-    const own = ev.order ? ev.choices.map((_, j) => ev.choices[ev.order.indexOf(j)]) : ev.choices;
+    const own = ev.own || (ev.order ? ev.choices.map((_, j) => ev.choices[ev.order.indexOf(j)]) : ev.choices);
+    const hidden = ev.hidden || [];   // choices the player could not take, so never saw
     const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
     const trace = {};
     const log = applyChoice(content, s, ev, ch, trace);
@@ -2491,10 +2505,11 @@ const Engine = (() => {
     // A card with parts or cast keeps what it showed: the combination (freshness, the next
     // showing's rotation), who it named, and, when the Declassified file may quote an untaken
     // choice from it (one that raised the ceiling), its choices' words as read.
-    const quoted = own.some((c, i) => i !== ci && ((c.effects || {}).cep || 0) > 0);
+    const quoted = own.some((c, i) => i !== ci && !hidden.includes(i) && ((c.effects || {}).cep || 0) > 0);
     const shown = ev.picked || ev.who ? { ...(ev.picked ? { parts: ev.picked } : {}), ...(ev.who ? { who: ev.who } : {}),
       ...(quoted ? { texts: own.map(c => c.text) } : {}) } : {};
     s.history.push({ ...before, ev: ev.id, title: ev.title, choice: ci, text: ch.text, variant: ev.variant || 0, ...shown,
+      ...(hidden.length ? { hidden } : {}),
       grade: (trace.appraisal || {}).grade,
       cepAfter: s.cep, heatAfter: s.heat, rankAfter: s.rank, standing: s.standing, reputation: s.reputation,
       noted: ((ch.effects || {}).appraisal || 0) < 0,
@@ -2728,16 +2743,18 @@ const Engine = (() => {
     // what the choice did, said in full: which ceiling it moved, and to where
     const said = r => `At ${r.age}, on "${r.title}", you chose "${r.text}" ${r.rank >= 8 ? `That raised the party's estimate to ${ceiling(r.cepAfter, true)}.`
       : r.cepAfter >= 8 ? "That removed your ceiling in the service altogether." : `That raised your ceiling in the service to ${ceiling(r.cepAfter, false)}.`}`;
-    // The first choice that would have raised it, had you taken it.
+    // The first choice that would have raised it, had you taken it: one you were shown (a choice
+    // left off the card, for want of the stats, was never offered).
+    const offered = (h, c, i) => i !== h.choice && !(h.hidden || []).includes(i) && (c.effects || {}).cep > 0;
     const missed = pol => {
       const h = H.filter(h => !h.passed && (pol ? h.rank >= 8 : h.rank < 8)).find(h => {
         const ev = content.events.find(e => e.id === h.ev);
-        return ev && ev.choices.some((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
+        return ev && ev.choices.some((c, i) => offered(h, c, i));
       });
       if (!h) return "None. Nothing you were offered could have raised it.";
       // quoted as the player saw it: the version of the card that run showed, names and all
       const cs = applyVariant(content.events.find(e => e.id === h.ev), h.variant).choices;
-      const i = cs.findIndex((c, i) => i !== h.choice && (c.effects || {}).cep > 0);
+      const i = cs.findIndex((c, i) => offered(h, c, i));
       return `None. At ${h.age}, "${h.texts ? h.texts[i] : cs[i].text}" would have raised it.`;
     };
     const service = raisesIn(false);
@@ -2867,7 +2884,7 @@ const Engine = (() => {
   }
 
   return { newGame, advance, nextEvent, eventOf, choiceAvailable, eligible, rank, declassify, legacy, batchmate,
-    finalLabels, ending, recentKeys, lockedText, statVerdicts, endPlan,
+    finalLabels, ending, recentKeys, statVerdicts, endPlan,
     // the header as data (the event screen, and each page of an outcome), and the next rung's name
     header, nextName,
     // the player's name and gender: the start screen, old saves, the lint and the tests

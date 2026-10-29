@@ -77,7 +77,7 @@
     ],
     "winService": [
       "This year there was one promotion slot at your grade, and two of you up for it: you and {rival}, your batchmate and your rival for every promotion. It went to you, and {rival} congratulated you within the minute, so the news must have reached {them} first.",
-      "The promotion panel could take only one of you at this grade, and it took you. {rival}, your batchmate, took it well, in the sense that nobody saw {them} take it.",
+      "The promotion panel could take only one of you at this grade, and it chose you. {rival}, your batchmate, took it well, in the sense that nobody saw {them} take it.",
       "The promotion panel had one slot at your grade and two names from the same intake: yours and that of {rival}, your batchmate. Yours went up. The next morning there is a cake on your desk from the good bakery, with no card, and you know exactly who sent it.",
       "This year's promotions had room for one of the two of you, and the panel chose you over {rival}, your batchmate. Years ago you agreed that whoever lost would buy the coffee, and {rival} remembers, to the cent.",
       "Only one of you could go up this year, you or {rival}, your batchmate, and the panel picked you. {rival} found out from the HR system before you did, and messaged you a single thumbs-up, which you have looked at more than once.",
@@ -149,7 +149,7 @@
       "{rival}, your batchmate, is appointed {title}. The papers run a profile headed \"One to watch\", with a photograph from {their} first year in the service, in which you appear as an elbow.",
       "{rival}, your batchmate, becomes {title}. The party sends round a card of congratulations for every Member to sign, and it reaches you last, with just enough room at the bottom for your name.",
       "{rival}, your batchmate, is named {title}. The flower stands outside {their} office run the length of the corridor, and the one from your volunteers is the tallest, which they made sure of.",
-      "{rival}, your batchmate, is appointed {title}, with a car, a press secretary and a diary that other people now keep. {rival} still answers your messages personally, though now at 1am.",
+      "{rival}, your batchmate, is appointed {title}, with an office at the ministry, staff of {their} own and a diary that other people now keep. {rival} still answers your messages personally, though now at 1am.",
       "{rival}, your batchmate, becomes {title}. At the next party dinner the two of you are seated together, by someone who thought it would be a nice touch."
     ],
     "promotedApart": [

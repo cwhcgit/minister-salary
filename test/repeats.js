@@ -68,7 +68,7 @@ for (const rival of [false, true]) for (const [bot, score] of Object.entries(BOT
   for (let t = 0; t < 200 && run.phase !== "ending"; t++) {
     const ev = H.currentEvent(build, run.S), view = H.screen(run, { view: "event" }).event;
     read(view.body, `${ev.id} (body)`);
-    const live = H.choices(run).filter(c => c.available !== false);
+    const live = H.choices(run);
     let k = 0;
     if (!score) k = Math.floor(pick() * live.length);
     else {

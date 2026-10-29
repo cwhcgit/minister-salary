@@ -39,7 +39,7 @@ function career(origin, seed, recent, score) {
   let office = false;
   while (run.phase !== 'ending' && run.turn < 95) {
     if (run.S.rank >= 11) office = true;
-    const live = H.choices(run).filter(c => c.available), ev = H.currentEvent(build, run.S);
+    const live = H.choices(run), ev = H.currentEvent(build, run.S);
     let pick;
     if (!score) pick = live[Math.floor(r() * live.length)].id;
     else {

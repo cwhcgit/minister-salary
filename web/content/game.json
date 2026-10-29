@@ -1152,12 +1152,6 @@
         ]
       }
     },
-    "locked": {
-      "competence": "You haven't shown the competence for this yet.",
-      "standing": "You don't have the standing to ask for this yet.",
-      "reputation": "You'd need a stronger reputation for this.",
-      "integrity": "This would take more integrity than you have."
-    },
     "verdicts": {
       "competence": {
         "label": "Competence",

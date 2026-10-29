@@ -84,7 +84,7 @@ export async function playRun(ctx: Ctx, spec: Spec): Promise<RunResult> {
         const hits = Leak.checkScreen(screen, ctx.build, terms, { player: { name: run.name, gender: run.gender } });
         if (hits.length) throw new Error(`screen leak on ${name} turn ${run.turn}: ${JSON.stringify(hits)}`);
       }
-      const available = H.choices(run).filter(c => c.available).map(c => c.id);
+      const available = H.choices(run).map(c => c.id);
       const blocks = turnBlocks({ lineageNotes: spec.lineageNotes, memory, screen, trace: p.blind ? undefined : traceView(run) });
       const askRewrite = words(memory) > cap;
       if (askRewrite) blocks.push({ text: `Your notes are ${words(memory)} words, over the ${cap}-word limit. Rewrite them in \`rewrite_notes\` this turn.` });

@@ -2390,7 +2390,7 @@
     "id": "the_election",
     "triggered": true,
     "title": "The General Election",
-    "body": "The party is fielding you at the general election. You have resigned from the service to stand, and if you lose, the service will not take you back. Now the party asks which kind of seat you will run in. In a GRC you are one of a team of five, and voters elect the whole team together. In a single seat you run alone, against one opponent.",
+    "body": "The party is fielding you at the general election. You have resigned from the service to stand, and if you lose, the service will not take you back. Now the party asks which kind of seat you will run in. In a GRC you are one of a team of five, each looking after a division of it, and voters elect the whole team together. In a single seat you run alone, against one opponent.",
     "choices": [
       {
         "text": "Join the GRC team: share the risk, and the credit.",
@@ -2399,6 +2399,24 @@
         },
         "election": "grc",
         "outcome": "Nine days of walkabouts, meeting voters at every market and coffee shop, with your name fourth on the poster. You shake eleven thousand hands and understand, with total clarity, that almost none of this is about you.",
+        "schedule": [
+          {
+            "eventId": "re_election",
+            "inYears": 5
+          }
+        ],
+        "setFlags": [
+          "seat_grc"
+        ]
+      },
+      {
+        "text": "Join the GRC team, and take the division the opposition is fighting for.",
+        "effects": {
+          "reputation": 1,
+          "standing": 3
+        },
+        "election": "grc",
+        "outcome": "Nine days of walkabouts in the four blocks the opposition has decided to win, while your teammates take the friendlier ones. The minister leading your team calls every evening to ask how it is going, and listens to the answer.",
         "schedule": [
           {
             "eventId": "re_election",
@@ -2433,11 +2451,15 @@
     ],
     "variants": [
       {
-        "body": "Polling Day is announced on a Monday, and the party names you as a candidate. You have resigned from the service to stand, so losing ends your career: the service will not take you back. Now you choose the seat. A GRC is a large ward that elects a team of five together. A single seat is yours alone, against one opponent.",
+        "body": "Polling Day is announced on a Monday, and the party names you as a candidate. You have resigned from the service to stand, so losing ends your career: the service will not take you back. Now you choose the seat. A GRC is a large ward, split into divisions, that elects a team of five together. A single seat is yours alone, against one opponent.",
         "choices": [
           {
             "text": "Stand with the GRC team: shared risk, shared credit.",
             "outcome": "Nine days of walkabouts, meeting voters block by block, teach you which blocks have lifts that stop on every floor. The minister leading your team does the rally speeches. You do the lifts."
+          },
+          {
+            "text": "Stand with the GRC team, in its hardest division.",
+            "outcome": "Nine days of walkabouts, block by block, in the division the other side has picked to fight for. Your name is fourth on the poster and first on every complaint, and the team notices which of you went where."
           },
           {
             "text": "Stand alone in a single seat: your risk, your credit.",
@@ -2446,11 +2468,15 @@
         ]
       },
       {
-        "body": "The party's candidates are photographed in a school hall that smells of floor polish. You have resigned from the service to stand, and if you lose, the service will not take you back. The party asks which kind of seat you want: a place on a GRC team of five, which voters elect together, or a single seat, alone against one opponent.",
+        "body": "The party's candidates are photographed in a school hall that smells of floor polish. You have resigned from the service to stand, and if you lose, the service will not take you back. The party asks which kind of seat you want: a place on a GRC team of five, each with a division of their own, which voters elect together, or a single seat, alone against one opponent.",
         "choices": [
           {
             "text": "Take a place on the GRC team.",
             "outcome": "Nine days of walkabouts in a team of five, through markets, coffee shops and lift lobbies, meeting voters. At every coffee shop someone asks which one you are. By the end of the campaign, you can answer."
+          },
+          {
+            "text": "Take a place on the GRC team, in the division nobody wants.",
+            "outcome": "Nine days of walkabouts in the division the opposition is targeting, where residents have their questions ready before you reach the lift. Nobody on the team says thank you. Everyone on it knows."
           },
           {
             "text": "Take the single seat, alone.",
@@ -2465,6 +2491,7 @@
           "chance": 0.4,
           "react": [
             2,
+            1,
             -2
           ]
         },
@@ -2472,6 +2499,7 @@
           "chance": 0.35,
           "react": [
             -1,
+            1,
             1
           ]
         }
@@ -3733,7 +3761,7 @@
           },
           {
             "text": "Leave the volunteers to finish. Read your papers.",
-            "outcome": "You leave at ten and are word-perfect in the House. The volunteers stay until one. The following Tuesday, the void deck man asks, pointedly, whether you are staying tonight."
+            "outcome": "You leave at ten and are word-perfect in the House. Your volunteers see the last resident out after midnight. The following Tuesday, the void deck man asks, pointedly, whether you are staying tonight."
           }
         ]
       },
