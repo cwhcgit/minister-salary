@@ -82,7 +82,27 @@
         },
         "outcome": "You give up the weekend for eleven slides nobody asked for: the number, and how to fix it. {senior} presents them as {senior.their} own. The scheme survives. So do you."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            -3,
+            1,
+            2
+          ]
+        },
+        "floor": {
+          "chance": 0.4,
+          "react": [
+            -3,
+            2,
+            1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "consultant_report",
@@ -131,7 +151,27 @@
         },
         "outcome": "The consultancy's partner checks the appendix and reads out the source: a minute paper from your division, written before the consultants were hired. Yours. The room enjoys this more than the partner does."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            1,
+            2,
+            -3
+          ]
+        },
+        "panel": {
+          "chance": 0.4,
+          "react": [
+            -2,
+            0,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "postit_workshop",
@@ -254,11 +294,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you said out loud, at a planning day, what everyone in the room was thinking",
-        "you gave a planning day something catchy to remember it by",
-        "you volunteered to do the work a planning day left behind"
-      ],
       "by": {
         "floor": {
           "chance": 0.5,
@@ -371,7 +406,27 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.45,
+          "react": [
+            -3,
+            -1,
+            4
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            2,
+            0,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_crisis",
@@ -455,7 +510,35 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "agencies": {
+          "chance": 0.45,
+          "react": [
+            -2,
+            3,
+            -1
+          ]
+        },
+        "ministersOffice": {
+          "chance": 0.4,
+          "react": [
+            3,
+            0,
+            0
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            0,
+            0,
+            -3
+          ]
+        }
+      }
+    }
   },
   {
     "id": "forum_letter",
@@ -505,7 +588,43 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "owner": {
+          "chance": 0.5,
+          "react": [
+            0,
+            0,
+            -4
+          ]
+        },
+        "ministersOffice": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -2,
+            0
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            0,
+            3,
+            0
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            0,
+            2,
+            0
+          ]
+        }
+      }
+    }
   },
   {
     "id": "overseas_posting",
@@ -546,7 +665,19 @@
         },
         "outcome": "It's deferred. It's never offered again. Nobody tells you it won't be; you simply notice, eventually, that it hasn't been."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "panel": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -2,
+            0
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_tender",
@@ -607,7 +738,27 @@
         },
         "outcome": "The other vendor wins, on a score you had to adjust twice. The project runs eleven months late. You were right to worry about how it looked, and wrong to let that decide it."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.45,
+          "react": [
+            -2,
+            3,
+            0
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            0,
+            2,
+            -3
+          ]
+        }
+      }
+    }
   },
   {
     "id": "mps_duty",
@@ -712,7 +863,27 @@
         },
         "outcome": "By morning it's a good paper with the scholar's name on it, and you're thanked for it. The scholar never learns to write, and it turns out never needs to."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -3,
+            1
+          ]
+        },
+        "floor": {
+          "chance": 0.35,
+          "react": [
+            2,
+            0,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_leak",
@@ -783,7 +954,19 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "owner": {
+          "chance": 0.4,
+          "react": [
+            3,
+            0,
+            -4
+          ]
+        }
+      }
+    }
   },
   {
     "id": "national_day_award",
@@ -817,7 +1000,25 @@
           "team_recognised"
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.5,
+          "react": [
+            -3,
+            3
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            1,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "cny_lohei",
@@ -857,7 +1058,27 @@
         },
         "outcome": "The answer is long, thoughtful and very good, and you learn a great deal. You've told the Permanent Secretary nothing about yourself, though, and that was what the question was for."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "panel": {
+          "chance": 0.4,
+          "react": [
+            3,
+            -2,
+            -1
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            -2,
+            0,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_committee",
@@ -923,7 +1144,35 @@
           "leaked_deadlock"
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "agencies": {
+          "chance": 0.5,
+          "react": [
+            -2,
+            3,
+            0
+          ]
+        },
+        "owner": {
+          "chance": 0.4,
+          "react": [
+            0,
+            0,
+            -3
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            3,
+            -1,
+            0
+          ]
+        }
+      }
+    }
   },
   {
     "id": "bto_queue",
@@ -1106,7 +1355,27 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "ministersOffice": {
+          "chance": 0.45,
+          "react": [
+            -1,
+            1,
+            2
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -3,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "reorg",
@@ -1182,7 +1451,35 @@
         },
         "outcome": "Nine months of thankless plumbing: files, systems, seating plans. It goes unusually smoothly, so nobody notices, except the two people whose opinion of you decides your next five years."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.55,
+          "react": [
+            4,
+            -4,
+            0
+          ]
+        },
+        "countersigner": {
+          "chance": 0.4,
+          "react": [
+            -1,
+            -2,
+            3
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            -1,
+            2,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "dialogue_session",
@@ -1244,7 +1541,35 @@
           "raw_feedback"
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "ministersOffice": {
+          "chance": 0.4,
+          "react": [
+            -2,
+            2,
+            -3
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            3,
+            -2,
+            0
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            0,
+            0,
+            3
+          ]
+        }
+      }
+    }
   },
   {
     "id": "new_ro",
@@ -1326,11 +1651,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you took the hardest file, the year someone new began writing your appraisals",
-        "you made yourself useful to the new arrivals, the year someone new began writing your appraisals",
-        "you kept your head down, the year someone new began writing your appraisals"
-      ],
       "by": {
         "countersigner": {
           "chance": 0.6,
@@ -1402,7 +1722,27 @@
         },
         "outcome": "You stay where people can see you, doing work that doesn't much matter. Being seen doing that turns out to count for less than a hard job nobody was watching."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "agencies": {
+          "chance": 0.45,
+          "react": [
+            3,
+            -3,
+            0
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            -2,
+            0,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "grassroots_invite",
@@ -1498,7 +1838,25 @@
           "raw_file_lost"
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.4,
+          "react": [
+            3,
+            -3
+          ]
+        },
+        "officials": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -3
+          ]
+        }
+      }
+    }
   },
   {
     "id": "tender_questions",
@@ -1526,7 +1884,25 @@
           "hid_annex"
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "owner": {
+          "chance": 0.4,
+          "react": [
+            3,
+            -4
+          ]
+        },
+        "officials": {
+          "chance": 0.4,
+          "react": [
+            3,
+            -4
+          ]
+        }
+      }
+    }
   },
   {
     "id": "leak_resurfaces",
@@ -2082,7 +2458,25 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "fellowMPs": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -2
+          ]
+        },
+        "leadership": {
+          "chance": 0.35,
+          "react": [
+            -1,
+            1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "maiden_speech",
@@ -2168,7 +2562,35 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "branch": {
+          "chance": 0.45,
+          "react": [
+            3,
+            -1,
+            -1
+          ]
+        },
+        "pressGallery": {
+          "chance": 0.4,
+          "react": [
+            -1,
+            3,
+            -2
+          ]
+        },
+        "officials": {
+          "chance": 0.3,
+          "react": [
+            0,
+            1,
+            -3
+          ]
+        }
+      }
+    }
   },
   {
     "id": "town_council",
@@ -2266,7 +2688,27 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "branch": {
+          "chance": 0.5,
+          "react": [
+            -2,
+            3,
+            0
+          ]
+        },
+        "leadership": {
+          "chance": 0.3,
+          "react": [
+            1,
+            -3,
+            0
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_bonus_reveal",
@@ -2361,7 +2803,27 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "officials": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -1,
+            1
+          ]
+        },
+        "fellowMPs": {
+          "chance": 0.45,
+          "react": [
+            0,
+            1,
+            -3
+          ]
+        }
+      }
+    }
   },
   {
     "id": "pofma_moment",
@@ -2427,7 +2889,25 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "pressGallery": {
+          "chance": 0.45,
+          "react": [
+            -3,
+            3
+          ]
+        },
+        "leadership": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "reshuffle",
@@ -2492,7 +2972,18 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "fellowMPs": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "succession",
@@ -2543,7 +3034,18 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "fellowMPs": {
+          "chance": 0.5,
+          "react": [
+            -2,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_work",
@@ -2694,11 +3196,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you did a year's work well and said nothing about it",
-        "you made sure the right people saw your year's work",
-        "you coasted through a year"
-      ],
       "by": {
         "countersigner": {
           "chance": 0.4,
@@ -2867,11 +3364,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you asked, at your appraisal, where you really stood",
-        "you used your appraisal conversation to make yourself more visible",
-        "you asked, at your appraisal, what actually needed doing"
-      ],
       "by": {
         "panel": {
           "chance": 0.35,
@@ -2994,7 +3486,30 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.45,
+          "react": [
+            -2,
+            2
+          ],
+          "requires": {
+            "variants": [
+              0
+            ]
+          }
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            1,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "budget_round",
@@ -3113,7 +3628,27 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.5,
+          "react": [
+            1,
+            1,
+            -3
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            1,
+            -1,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_mps_night",
@@ -3220,7 +3755,27 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "branch": {
+          "chance": 0.5,
+          "react": [
+            3,
+            0,
+            -3
+          ]
+        },
+        "whips": {
+          "chance": 0.35,
+          "react": [
+            -1,
+            0,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_walkabout",
@@ -3325,7 +3880,27 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "pressGallery": {
+          "chance": 0.45,
+          "react": [
+            2,
+            -2,
+            0
+          ]
+        },
+        "branch": {
+          "chance": 0.4,
+          "react": [
+            -1,
+            2,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_pq",
@@ -3441,7 +4016,35 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "pressGallery": {
+          "chance": 0.45,
+          "react": [
+            3,
+            -2,
+            -1
+          ]
+        },
+        "officials": {
+          "chance": 0.35,
+          "react": [
+            -2,
+            1,
+            1
+          ]
+        },
+        "leadership": {
+          "chance": 0.35,
+          "react": [
+            -2,
+            2,
+            0
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_townhall",
@@ -3521,7 +4124,18 @@
           }
         ]
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "officials": {
+          "chance": 0.55,
+          "react": [
+            3,
+            -3
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_quiet_year",
@@ -3625,11 +4239,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you spent a quiet year fixing something nobody had asked you to fix",
-        "you spent a quiet year getting to know the right people",
-        "you spent a quiet year resting"
-      ],
       "by": {
         "countersigner": {
           "chance": 0.35,
@@ -3645,6 +4254,22 @@
             0,
             3,
             -1
+          ]
+        },
+        "leadership": {
+          "chance": 0.3,
+          "react": [
+            3,
+            -1,
+            -2
+          ]
+        },
+        "fellowMPs": {
+          "chance": 0.3,
+          "react": [
+            0,
+            2,
+            -2
           ]
         }
       }
@@ -3692,10 +4317,6 @@
     ],
     "priority": true,
     "witnesses": {
-      "did": [
-        "you told a design team, from four years at a counter, why their design would fail",
-        "you said nothing, and let a pilot fail the way you knew it would"
-      ],
       "by": {
         "countersigner": {
           "chance": 0.4,
@@ -3871,7 +4492,25 @@
     "requires": {
       "maxRank": 6
     },
-    "standout": true
+    "standout": true,
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.45,
+          "react": [
+            -2,
+            2
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            2,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "minute_vindicated",
@@ -3897,7 +4536,25 @@
         "outcome": "You're allowed to. It takes a year, and then a consultancy is hired to evaluate your fix."
       }
     ],
-    "standout": true
+    "standout": true,
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            -1,
+            1
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            1,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "cos_vindicated",
@@ -3927,7 +4584,18 @@
     "requires": {
       "maxRank": 6
     },
-    "standout": true
+    "standout": true,
+    "witnesses": {
+      "by": {
+        "ministersOffice": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "dialogue_vindicated",
@@ -3956,7 +4624,25 @@
     "requires": {
       "maxRank": 6
     },
-    "standout": true
+    "standout": true,
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            -1,
+            2
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            1,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "committee_vindicated",
@@ -3985,7 +4671,25 @@
     "requires": {
       "maxRank": 6
     },
-    "standout": true
+    "standout": true,
+    "witnesses": {
+      "by": {
+        "panel": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -1
+          ]
+        },
+        "agencies": {
+          "chance": 0.35,
+          "react": [
+            -2,
+            1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "pofma_vindicated",
@@ -4010,7 +4714,25 @@
         },
         "outcome": "The post's author is astonished, then gracious, then a reliable critic of yours for the rest of your career. You decide to take that as a compliment."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "pressGallery": {
+          "chance": 0.45,
+          "react": [
+            2,
+            -1
+          ]
+        },
+        "leadership": {
+          "chance": 0.35,
+          "react": [
+            -2,
+            1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "speech_vindicated",
@@ -4035,7 +4757,25 @@
         "outcome": "The quote goes round without you. It turns out to be the most-shared thing you've ever said, and it's years old."
       }
     ],
-    "once": true
+    "once": true,
+    "witnesses": {
+      "by": {
+        "fellowMPs": {
+          "chance": 0.4,
+          "react": [
+            1,
+            -1
+          ]
+        },
+        "pressGallery": {
+          "chance": 0.35,
+          "react": [
+            -1,
+            1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "bonus_vindicated",
@@ -4060,7 +4800,25 @@
         },
         "outcome": "Item three does very little work on its own. But you were seen not to make a fuss, and among colleagues that counts for something."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "fellowMPs": {
+          "chance": 0.45,
+          "react": [
+            -3,
+            2
+          ]
+        },
+        "pressGallery": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "secondment_verdict",
@@ -4089,7 +4847,25 @@
     "requires": {
       "maxRank": 6
     },
-    "standout": true
+    "standout": true,
+    "witnesses": {
+      "by": {
+        "agencies": {
+          "chance": 0.45,
+          "react": [
+            -2,
+            2
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            2,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "re_election",
@@ -4157,6 +4933,24 @@
         "Nomination Day, when the candidates file their papers, then nine days of walkabouts, and a result your campaign manager predicted, in writing, to within a point.",
         "By the end of the campaign you can rank every coffee shop in the ward by its kopi, privately."
       ]
+    },
+    "witnesses": {
+      "by": {
+        "branch": {
+          "chance": 0.5,
+          "react": [
+            -2,
+            2
+          ]
+        },
+        "pressGallery": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -2
+          ]
+        }
+      }
     }
   },
   {
@@ -4310,6 +5104,26 @@
         "Your officials renew the steady plan, and a training course adds it to its slide titled \"Good Practice\".",
         "The steady plan renews itself for three more Budgets, and its only new feature is a page number."
       ]
+    },
+    "witnesses": {
+      "by": {
+        "leadership": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -2,
+            0
+          ]
+        },
+        "officials": {
+          "chance": 0.35,
+          "react": [
+            -1,
+            -1,
+            2
+          ]
+        }
+      }
     }
   },
   {
@@ -4467,6 +5281,26 @@
         "The plan for the lowest incomes is renewed through the downturn, and Finance asks once, out of habit, whether it is temporary.",
         "The downturn cash goes out in March under your standing plan, and is spent on rent, school shoes and hawker food."
       ]
+    },
+    "witnesses": {
+      "by": {
+        "leadership": {
+          "chance": 0.35,
+          "react": [
+            0,
+            2,
+            -2
+          ]
+        },
+        "branch": {
+          "chance": 0.35,
+          "react": [
+            1,
+            -2,
+            1
+          ]
+        }
+      }
     }
   },
   {
@@ -4623,6 +5457,26 @@
         "Your branch prints the lowest-incomes chart again, and residents on it say they did not need the flyer.",
         "The plan for the lowest incomes renews itself in an election year, and a volunteer translates the chart's caption again."
       ]
+    },
+    "witnesses": {
+      "by": {
+        "branch": {
+          "chance": 0.5,
+          "react": [
+            3,
+            -3,
+            0
+          ]
+        },
+        "pressGallery": {
+          "chance": 0.35,
+          "react": [
+            -2,
+            1,
+            1
+          ]
+        }
+      }
     }
   },
   {
@@ -4932,6 +5786,34 @@
     ],
     "requires": {
       "maxRank": 7
+    },
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.4,
+          "react": [
+            0,
+            0,
+            -3
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            2,
+            0,
+            -1
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            0,
+            2,
+            0
+          ]
+        }
+      }
     }
   },
   {
@@ -4960,7 +5842,18 @@
         },
         "outcome": "Your old officer says very little in the board itself, having said it all at lunch beforehand, to the chair, in one sentence about a reorganisation."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            2,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "small_favour",
@@ -4997,7 +5890,27 @@
         },
         "outcome": "You mention the flat. There's a pause on the line, then a laugh: that was public information, three weeks early. You agree that it was. Neither of you mentions the nephew again."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "owner": {
+          "chance": 0.35,
+          "react": [
+            -3,
+            2,
+            1
+          ]
+        },
+        "officials": {
+          "chance": 0.35,
+          "react": [
+            -3,
+            2,
+            1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "block_party",
@@ -5025,7 +5938,18 @@
         },
         "outcome": "This is true. She tells them you are being modest, and now the modesty is part of the story too. It goes round the block faster than you can walk it."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "branch": {
+          "chance": 0.4,
+          "react": [
+            -2,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "budget_committee",
@@ -5079,7 +6003,27 @@
         },
         "outcome": "Two of the other four remember the reorganisation too, and one of them owes you. You spend a week arranging to be owed slightly more, and the bid passes."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.3,
+          "react": [
+            0,
+            2,
+            0
+          ]
+        },
+        "panel": {
+          "chance": 0.35,
+          "react": [
+            0,
+            0,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "farewell_drinks",
@@ -5195,7 +6139,32 @@
         },
         "outcome": "What changed was the word \"Enhanced\", and you say so. The headline is \"Only the name has changed, says {player.formal}\", and the piece is, against all expectation, quite kind."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "ministersOffice": {
+          "chance": 0.45,
+          "react": [
+            2,
+            -2
+          ]
+        },
+        "pressGallery": {
+          "chance": 0.4,
+          "react": [
+            -2,
+            2
+          ]
+        },
+        "leadership": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "raw_data",
@@ -5225,6 +6194,24 @@
     ],
     "requires": {
       "maxRank": 6
+    },
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -2
+          ]
+        },
+        "owner": {
+          "chance": 0.35,
+          "react": [
+            -2,
+            2
+          ]
+        }
+      }
     }
   },
   {
@@ -5252,7 +6239,25 @@
         },
         "outcome": "Officer A stays a better person than you, because Officer A never has to do anything else. You find you don't mind."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.5,
+          "react": [
+            -2,
+            0
+          ]
+        },
+        "panel": {
+          "chance": 0.35,
+          "react": [
+            3,
+            0
+          ]
+        }
+      }
+    }
   },
   {
     "id": "lanterns",
@@ -5306,7 +6311,18 @@
         },
         "outcome": "The Prime Minister had been hoping someone would ask, and agrees before you finish the sentence."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "fellowMPs": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "other_life",
@@ -5405,7 +6421,27 @@
           "standing": -4
         }
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "branch": {
+          "chance": 0.45,
+          "react": [
+            -2,
+            1,
+            2
+          ]
+        },
+        "leadership": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -1,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "improvement_plan",
@@ -5552,6 +6588,18 @@
         "Your written reply cites the previous plan by paragraph number, which nobody on the panel can find.",
         "The new improvement plan comes with a box for your comments, and your comments come with an annex."
       ]
+    },
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -1,
+            -1
+          ]
+        }
+      }
     }
   },
   {
@@ -5620,6 +6668,26 @@
         "Another word from the Whip, and another polite reply about the ward, filed with the others.",
         "You tell the Whip the ward comes first, and your attendance record agrees, which is the difficulty."
       ]
+    },
+    "witnesses": {
+      "by": {
+        "branch": {
+          "chance": 0.45,
+          "react": [
+            0,
+            -1,
+            2
+          ]
+        },
+        "leadership": {
+          "chance": 0.3,
+          "react": [
+            1,
+            0,
+            -3
+          ]
+        }
+      }
     }
   },
   {
@@ -5660,7 +6728,35 @@
         },
         "outcome": "It's the right answer and the less announceable one. The hospitals like it. The press office asks whether there's a version with a number in it."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "ministersOffice": {
+          "chance": 0.4,
+          "react": [
+            0,
+            2,
+            -2
+          ]
+        },
+        "agencies": {
+          "chance": 0.4,
+          "react": [
+            0,
+            -2,
+            2
+          ]
+        },
+        "countersigner": {
+          "chance": 0.3,
+          "react": [
+            2,
+            -2,
+            0
+          ]
+        }
+      }
+    }
   },
   {
     "id": "moh_premiums",
@@ -5700,7 +6796,35 @@
         },
         "outcome": "Two days in a room with the actuaries. You come out understanding medical cost inflation better than anyone in your division, and slightly worried about it."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -2,
+            0
+          ]
+        },
+        "ministersOffice": {
+          "chance": 0.35,
+          "react": [
+            1,
+            -3,
+            0
+          ]
+        },
+        "agencies": {
+          "chance": 0.35,
+          "react": [
+            0,
+            0,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "moh_waiting",
@@ -5741,7 +6865,35 @@
         },
         "outcome": "It was too long, and you say so in nine words. The clip is on the evening news. Your colleagues' faces suggest you used about eight words too many."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "pressGallery": {
+          "chance": 0.45,
+          "react": [
+            1,
+            -2,
+            2
+          ]
+        },
+        "officials": {
+          "chance": 0.35,
+          "react": [
+            -1,
+            2,
+            -1
+          ]
+        },
+        "leadership": {
+          "chance": 0.35,
+          "react": [
+            0,
+            1,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "mom_dorms",
@@ -5781,7 +6933,35 @@
         },
         "outcome": "Everyone is relieved, including you, briefly. New dormitories meet the new standard. The old ones keep to the old one, for longer than anyone said they would."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            2,
+            0,
+            -2
+          ]
+        },
+        "floor": {
+          "chance": 0.4,
+          "react": [
+            1,
+            1,
+            -2
+          ]
+        },
+        "ministersOffice": {
+          "chance": 0.35,
+          "react": [
+            0,
+            -2,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "mom_wages",
@@ -5822,7 +7002,27 @@
         },
         "outcome": "They choose the steeper one and ask for it sooner. You write that down exactly, and it goes into the paper sent upstairs. Workers' own words rarely get that far."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            -1,
+            2,
+            -1
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            0,
+            -2,
+            2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "mom_retirement",
@@ -5862,7 +7062,35 @@
         },
         "outcome": "He answers it well, with a detail about re-employment contracts you did not know. The photograph in the newsletter is of him, answering it."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "officials": {
+          "chance": 0.35,
+          "react": [
+            -1,
+            2,
+            0
+          ]
+        },
+        "pressGallery": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -1,
+            -1
+          ]
+        },
+        "fellowMPs": {
+          "chance": 0.3,
+          "react": [
+            0,
+            -1,
+            1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "mnd_classification",
@@ -5903,7 +7131,27 @@
         },
         "outcome": "Your note asks a question nobody wanted asked. It's answered eventually, in a way you can live with, by someone more senior who takes the credit for the question."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "agencies": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -2,
+            0
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            0,
+            1,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "mnd_lease",
@@ -5944,7 +7192,19 @@
         },
         "outcome": "They come, all eleven of them, with a folder. Their folder is better organised than yours."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "agencies": {
+          "chance": 0.35,
+          "react": [
+            1,
+            1,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "mnd_million",
@@ -5984,7 +7244,27 @@
         },
         "outcome": "You do mean it, it shows, and the clip travels. A colleague says, kindly, that understanding is not a policy. You think it is a start."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "pressGallery": {
+          "chance": 0.4,
+          "react": [
+            -2,
+            0,
+            2
+          ]
+        },
+        "leadership": {
+          "chance": 0.35,
+          "react": [
+            1,
+            1,
+            -2
+          ]
+        }
+      }
+    }
   },
   {
     "id": "moe_mergers",
@@ -6025,7 +7305,27 @@
         },
         "outcome": "The names are hyphenated. The school songs aren't, and the first combined assembly is, by every account, loud."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "ministersOffice": {
+          "chance": 0.4,
+          "react": [
+            -2,
+            2,
+            0
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            2,
+            -2,
+            0
+          ]
+        }
+      }
+    }
   },
   {
     "id": "moe_banding",
@@ -6065,7 +7365,27 @@
         },
         "outcome": "You spend a week with a timetable on a wall the size of a car park, and come back with three changes that fit on one page. They work."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            1,
+            -2,
+            1
+          ]
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            1,
+            0,
+            -1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "moe_psle",
@@ -6105,7 +7425,27 @@
         },
         "outcome": "Everyone in the room understands the chart. Nobody in the room is reassured by it. You suspect the chart was never the problem."
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "pressGallery": {
+          "chance": 0.4,
+          "react": [
+            2,
+            -1,
+            -1
+          ]
+        },
+        "officials": {
+          "chance": 0.35,
+          "react": [
+            -2,
+            1,
+            1
+          ]
+        }
+      }
+    }
   },
   {
     "id": "the_ask",
@@ -6425,7 +7765,53 @@
         },
         "outcome": "{want.c} {asker.no}"
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "floor": {
+          "chance": 0.45,
+          "react": [
+            2,
+            -2,
+            0
+          ],
+          "requires": {
+            "parts": {
+              "asker": [
+                "peer",
+                "peer_box",
+                "junior",
+                "junior_late",
+                "junior_home"
+              ]
+            }
+          }
+        },
+        "panel": {
+          "chance": 0.3,
+          "react": [
+            0,
+            2,
+            -2
+          ]
+        },
+        "countersigner": {
+          "chance": 0.35,
+          "react": [
+            2,
+            0,
+            -2
+          ],
+          "requires": {
+            "parts": {
+              "asker": [
+                "senior"
+              ]
+            }
+          }
+        }
+      }
+    }
   },
   {
     "id": "the_ribbon",
@@ -6587,7 +7973,49 @@
         },
         "outcome": "{host.gave}"
       }
-    ]
+    ],
+    "witnesses": {
+      "by": {
+        "branch": {
+          "chance": 0.45,
+          "react": [
+            2,
+            -3,
+            1
+          ]
+        },
+        "fellowMPs": {
+          "chance": 0.5,
+          "react": [
+            0,
+            -2,
+            2
+          ],
+          "requires": {
+            "parts": {
+              "host": [
+                "mp"
+              ]
+            }
+          }
+        },
+        "pressGallery": {
+          "chance": 0.5,
+          "react": [
+            2,
+            -1,
+            -1
+          ],
+          "requires": {
+            "parts": {
+              "host": [
+                "journalist"
+              ]
+            }
+          }
+        }
+      }
+    }
   },
   {
     "id": "reply_all",
@@ -6729,11 +8157,6 @@
       }
     ],
     "witnesses": {
-      "did": [
-        "you sent a short correction to everyone, at once",
-        "you recalled an email, and hoped",
-        "you replied all again, with an apology and a joke"
-      ],
       "by": {
         "floor": {
           "chance": 0.4,

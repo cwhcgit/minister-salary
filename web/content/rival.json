@@ -248,7 +248,27 @@
           ],
           "outcome": "You are thanked for your rigour. {rival} thanks you too, later, in the corridor, in a tone the minutes would not have captured."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "panel": {
+            "chance": 0.35,
+            "react": [
+              0,
+              0,
+              3
+            ]
+          },
+          "floor": {
+            "chance": 0.4,
+            "react": [
+              0,
+              0,
+              -3
+            ]
+          }
+        }
+      }
     },
     {
       "id": "rival_posting",
@@ -321,7 +341,27 @@
           },
           "outcome": "The Director listens, nods, and promises to \"bear it in mind\". That is the most anyone has ever got out of that office."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": {
+            "chance": 0.4,
+            "react": [
+              2,
+              0,
+              -2
+            ]
+          },
+          "panel": {
+            "chance": 0.3,
+            "react": [
+              -1,
+              0,
+              1
+            ]
+          }
+        }
+      }
     },
     {
       "id": "rival_views",
@@ -375,7 +415,27 @@
           ],
           "outcome": "The panel finds your view \"balanced\". {rival} learns of it eventually, the way everyone here learns everything: from someone who was not supposed to say."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "floor": {
+            "chance": 0.4,
+            "react": [
+              2,
+              0,
+              -3
+            ]
+          },
+          "panel": {
+            "chance": 0.3,
+            "react": [
+              -1,
+              0,
+              2
+            ]
+          }
+        }
+      }
     },
     {
       "id": "rival_ward",
@@ -426,7 +486,27 @@
           },
           "outcome": "Your ward is pleased to see you. {rival} manages without you, and remembers the Saturday."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "fellowMPs": {
+            "chance": 0.45,
+            "react": [
+              2,
+              0,
+              -2
+            ]
+          },
+          "branch": {
+            "chance": 0.45,
+            "react": [
+              -2,
+              0,
+              2
+            ]
+          }
+        }
+      }
     },
     {
       "id": "rival_first",
@@ -489,7 +569,18 @@
           ]
         }
       ],
-      "priority": true
+      "priority": true,
+      "witnesses": {
+        "by": {
+          "fellowMPs": {
+            "chance": 0.45,
+            "react": [
+              -2,
+              2
+            ]
+          }
+        }
+      }
     },
     {
       "id": "rival_name",

@@ -248,9 +248,12 @@ appraisal never goes below C.
 The player is shown the grade and its euphemism, and must infer the ceiling. There is no
 setting that shows the numbers.
 
-**Hidden witnesses.** A card can list who could plausibly know what you did. Their judgement,
-for or against you, lands in a later appraisal, sometimes with an anonymous line; they are never
-named, and Declassified says what was noticed, never who (`docs/WRITING_RULES.md` rule 5.6).
+**Hidden witnesses.** A card can list who could plausibly know what you did: in the service, the
+people who sign, rank and sit around you; in politics, the party, its volunteers, the press, the
+officials and your fellow Members. Each judges by its own motive. Their judgement, for or against
+you, lands in a later appraisal, sometimes with an anonymous line; the service's lapses once you
+are in politics. They are never named, and the ending never mentions them
+(`docs/WRITING_RULES.md` rule 5.6).
 
 ---
 

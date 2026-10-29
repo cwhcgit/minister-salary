@@ -900,24 +900,36 @@ ok('the player\'s choices are data: a third choice and a new token field need no
     'something outside the player\'s text functions reads the gender');
 });
 
-ok('hidden witnesses: never named, a nudge and never a jump, landing one to three years on, a review line only when a grade moved, Declassified says what was noticed; a run where nobody notices plays as before', () => {
+ok('hidden witnesses: never named, a nudge and never a jump, landing one to three years on, on the ladder they were made on, a review line only when a grade moved; a run where nobody notices plays as before', () => {
   const C = build.content, E = build.engine, W = C.witnesses;
   const { witnessStatic, witnessWordProblems } = require('./contexts');
   assert.deepStrictEqual(witnessStatic(build), []);
-  // the lint catches a witness given away: a role, a name, a pronoun, a number, a token
+  // the lint catches a witness given away: a role, a name, a pronoun, a number, a token; and a
+  // politics line in the service's words
   const T = JSON.parse(JSON.stringify(W));
-  T.types.panel.review.hurt.push('Your reporting officer, Ong Mei Xuan, says he had doubts. Four out of 5.');
-  const leaky = { ...C, witnesses: T, events: C.events.map(e => e.id === 'copied_in' ? { ...e, witnesses: { ...e.witnesses, did: ['you told {peer}', 'x', 'y'] } } : e) };
-  const found = witnessStatic({ ...build, content: leaky });
-  for (const why of ['"reporting" says who', 'a name, "Ong Mei Xuan"', '"he" says who', 'a number', 'token {peer}'])
+  T.types.panel.review.hurt.push('Your reporting officer, Ong Mei Xuan, says he had doubts about {peer}. Four out of 5.');
+  T.types.branch.review.hurt.push('Your volunteers tell the party that you are never upstairs.');
+  T.types.pressGallery.review.help.push('A reporter writes that you are candid.');
+  const found = witnessStatic({ ...build, content: { ...C, witnesses: T } });
+  for (const why of ['"reporting" says who', 'a name, "Ong Mei Xuan"', '"he" says who', 'a number', 'token {peer}',
+    '"volunteers" says who', '"party" says who', 'the service\'s words ("upstairs")', '"reporter" says who'])
     assert.ok(found.some(x => x.includes(why)), `the lint missed ${why}: ${JSON.stringify(found)}`);
   assert.ok(witnessStatic({ ...build, content: { ...C, witnesses: { ...W, maxStep: 9 } } }).some(x => /maxStep/.test(x)), 'a reaction big enough to jump a grade is flagged');
+  // ...a politics witness on a card only shown in the service, and a "did" line, which nothing reads
+  const misplaced = { ...C, events: C.events.map(e => e.id === 'copied_in'
+    ? { ...e, witnesses: { did: ['x', 'y', 'z'], by: { ...e.witnesses.by, branch: { chance: 0.5, react: [1, -1, 0] } } } } : e) };
+  const f2 = witnessStatic({ ...build, content: misplaced });
+  assert.ok(f2.some(x => /^copied_in: witness branch: a politics witness/.test(x)), JSON.stringify(f2));
+  assert.ok(f2.some(x => /^copied_in: witnesses\.did is not read/.test(x)), JSON.stringify(f2));
+  // every type has its lines, and the politics ones are their own
+  const ladder = t => W.types[t].ladder || 'service';
+  for (const t of ['leadership', 'whips', 'branch', 'pressGallery', 'officials', 'fellowMPs']) assert.strictEqual(ladder(t), 'politics', t);
 
   // careers: what the witnesses did, against the screens
   const pool = {};
   for (const [type, x] of Object.entries(W.types)) for (const sign of ['help', 'hurt']) for (const l of x.review[sign]) pool[l] = { type, sign };
-  const shownSigns = new Set();
-  let landed = 0, moved = 0, shown = 0, endings = 0;
+  const shownSigns = new Set(), shownLadders = new Set();
+  let landed = 0, moved = 0, shown = 0, lapsed = 0;
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
     const r = H.rng(seed * 11 + 5);
     let run = H.newRun(origin, seed, { build, rival: seed % 2 === 0, name: 'Tan Wei Ling', gender: 'f' });
@@ -936,7 +948,9 @@ ok('hidden witnesses: never named, a nudge and never a jump, landing one to thre
         assert.ok(pool[l.text], `not a witness line: ${l.text}`);
         assert.deepStrictEqual(witnessWordProblems(build, l.text), []);
         assert.ok(H.screenText(run).includes(l.text), 'the line is on the screen');
-        lines.push(l.text); shownSigns.add(pool[l.text].sign);
+        // a politics witness speaks only on a politician's review page, and the service's only on an officer's
+        assert.strictEqual(ladder(pool[l.text].type) === 'politics', run.S.rank >= 8, `${origin} ${seed}: "${l.text}" on the wrong ladder`);
+        lines.push(l.text); shownSigns.add(pool[l.text].sign); shownLadders.add(ladder(pool[l.text].type));
       });
     }
     assert.strictEqual(new Set(lines).size, lines.length, `${origin} ${seed}: a witness line twice in one career`);
@@ -944,6 +958,9 @@ ok('hidden witnesses: never named, a nudge and never a jump, landing one to thre
     for (const e of seen) {
       assert.ok(e.due - e.year >= W.delay[0] && e.due - e.year <= W.delay[1], 'a judgement lands one to three years on');
       assert.ok(Math.abs(e.mod) <= W.maxStep);
+      assert.strictEqual(e.service, ladder(e.type) === 'service', 'a judgement belongs to its witness\'s ladder');
+      assert.ok(!('did' in e) && !('title' in e) && !('text' in e), 'a judgement keeps nothing for the ending');
+      if (e.lapsed) { lapsed++; assert.ok(!e.landed, 'a judgement both lapsed and landed'); }
       if (!e.landed) continue;
       landed++;
       assert.strictEqual(e.landed.year, e.due, 'a judgement lands at the appraisal it was due at');
@@ -954,30 +971,24 @@ ok('hidden witnesses: never named, a nudge and never a jump, landing one to thre
       if (e.landed.without) assert.strictEqual(Math.abs(order.indexOf(e.landed.grade) - order.indexOf(e.landed.without)), 1);
     }
     assert.strictEqual(seen.filter(e => e.landed && e.landed.shown).length, lines.length, 'every line shown is one judgement that moved a grade');
-    // the ending: what was noticed, never who
-    const D = build.engine.declassify(C, run.S).filter(x => x.label === W.lines.label || x.label === W.lines.restLabel);
-    if (seen.length) assert.ok(D.length, `${origin} ${seed}: witnesses noticed, and Declassified says nothing`);
-    for (const d of D) {
-      assert.deepStrictEqual(witnessWordProblems(build, d.text.replace(/^At \d+, /, '')), [], d.text);
-      if (d.label === W.lines.label && /^At \d+, /.test(d.text)) assert.ok(/Your grade .* was an? \S+, not an? \S+\.|ceiling/.test(d.text), d.text);
-    }
-    const listed = D.filter(d => /^At \d+, /.test(d.text)).length;
-    assert.strictEqual(listed, seen.filter(e => (e.landed && e.landed.without) || (e.ceiling && e.service && Math.min(e.ceiling[1], 8) > Math.min(e.ceiling[0], 8))).length);
-    if (listed) {
-      endings++;
-      assert.ok(H.screenText(run).includes('DECLASSIFIED') && D.every(d => H.screenText(run).includes(d.text)), 'the entries are on the ending screen');
+    // the ending never mentions witnesses: Declassified reads the same with or without them
+    if (run.S.witness) {
+      const D = E.declassify(C, run.S), bare = E.declassify(C, { ...run.S, witness: undefined });
+      assert.deepStrictEqual(D, bare, `${origin} ${seed}: the ending changes with the witnesses`);
+      for (const d of D) assert.ok(!/notic/i.test(d.label) && !Object.keys(pool).some(l => d.text.includes(l)), `${origin} ${seed}: ${d.label}: ${d.text}`);
     }
   }
   assert.ok(shownSigns.has('help') && shownSigns.has('hurt'), 'expected seeded runs to show a helping and a hurting line');
-  assert.ok(endings > 20, `expected endings with witness entries under Declassified (${endings})`);
   assert.ok(shown > 0.3 * moved && shown < 0.7 * moved, `a line about half the time a grade moved (${shown} of ${moved})`);
   assert.ok(moved < landed, 'most judgements nudge the score without moving a grade');
+  assert.ok(lapsed > 0, 'expected some of the service\'s judgements to lapse when the player left for politics');
 
   // same seed, same career: a run where nobody notices anything plays exactly as without witnesses,
   // and one where somebody does plays the same until the first judgement lands
-  const bare = { ...C, events: C.events.map(e => { if (!e.witnesses) return e; const x = { ...e }; delete x.witnesses; return x; }) };
-  let quiet = 0, noticed = 0, waiting = 0;   // (about one career in thirty is quiet: 60 seeds an origin finds some)
-  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 60; seed++) {
+  const strip = e => { if (!e.witnesses) return e; const x = { ...e }; delete x.witnesses; return x; };
+  const bare = { ...C, events: C.events.map(strip), rival: C.rival && { ...C.rival, events: (C.rival.events || []).map(strip) } };
+  let quiet = 0, noticed = 0, waiting = 0;
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 30; seed++) {
     let a = E.nextEvent(C, E.newGame(C, origin, 'Sim', seed, { rival: seed % 2 === 1 })).state;
     let b = E.nextEvent(bare, E.newGame(bare, origin, 'Sim', seed, { rival: seed % 2 === 1 })).state;
     const r = H.rng(seed * 3 + 1);
@@ -996,7 +1007,40 @@ ok('hidden witnesses: never named, a nudge and never a jump, landing one to thre
     }
     if (a.witness) noticed++; else { quiet++; assert.deepStrictEqual(JSON.parse(JSON.stringify(a)), JSON.parse(JSON.stringify(b))); }
   }
-  assert.ok(quiet >= 1 && noticed > 20 && waiting > 50, `expected careers with and without witnesses (${quiet}, ${noticed}, ${waiting})`);
+  assert.ok(noticed > 60 && waiting > 50, `expected careers where somebody noticed (${quiet}, ${noticed}, ${waiting})`);
+});
+
+ok('hidden witnesses in politics: a politics career can show a politics witness line, and the service\'s judgements lapse there', () => {
+  const C = build.content, W = C.witnesses;
+  const pol = new Map();
+  for (const [type, x] of Object.entries(W.types)) if (x.ladder === 'politics') for (const sign of ['help', 'hurt']) for (const l of x.review[sign]) pol.set(l, type);
+  let careers = 0, politicians = 0, shown = 0, types = new Set(), lapsedOnEntry = 0;
+  for (let seed = 1; seed <= 400 && shown < 12; seed++) for (const origin of ['scholar', 'grad', 'poly']) {
+    const r = H.rng(seed * 7 + 2);
+    let run = H.newRun(origin, seed, { build, name: 'Sim' });
+    careers++;
+    let inPolitics = false;
+    for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
+      // head for politics: take the tea, then play at random
+      const live = H.choices(run).filter(c => c.available);
+      const tea = run.S.currentEvent === 'tea_session' || run.S.currentEvent === 'the_vetting';
+      run = H.step(run, (tea ? live[0] : live[Math.floor(r() * live.length)]).id);
+      if (run.S.rank >= 8) inPolitics = true;
+      for (const l of run.last.log) if (l.about === 'witness' && pol.has(l.text)) {
+        assert.ok(run.S.rank >= 8, `a politics line in the service: ${l.text}`);
+        shown++; types.add(pol.get(l.text));
+      }
+    }
+    if (inPolitics) {
+      politicians++;
+      // what the service noticed and had not landed by the election lapsed at the first appraisal in politics
+      lapsedOnEntry += ((run.S.witness || { seen: [] }).seen).filter(e => e.service && e.lapsed).length;
+    }
+  }
+  assert.ok(politicians > 10, `expected careers in politics (${politicians} of ${careers})`);
+  assert.ok(shown > 0, `no politics career showed a politics witness line (${politicians} politicians)`);
+  assert.ok(lapsedOnEntry > 0, 'expected the service\'s judgements to lapse in politics');
+  console.log(`    (${shown} politics witness lines from ${types.size} types, in ${politicians} careers in politics)`);
 });
 
 // --- what the playtesters could not follow (final playtest): the engine's part ---------------

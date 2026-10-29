@@ -481,27 +481,31 @@ const presentVerb = w => /^(is|was|has|does|isn't|wasn't|hasn't|doesn't)$/.test(
 
 // --- hidden witnesses ------------------------------------------------------------------
 // A witness is never named, during play or at the end: what was noticed, never who noticed it
-// (docs/WRITING_RULES.md 5.6). Every line a player can read from the witnesses (the review lines,
-// the Declassified lines and the cards' "did" lines) is checked for a cast name, the batchmate's, a
-// grade's title, a word for a role or a pronoun that would give a person away, a number, and a
-// token nothing fills.
+// (docs/WRITING_RULES.md 5.6). Every line a player can read from the witnesses (the review lines;
+// the ending never mentions them) is checked for a cast name, the batchmate's, a grade's title, a
+// word for a role or a pronoun that would give a person away, a number, and a token, which nothing
+// fills there. A politics witness's lines are also checked for the service's words: "upstairs",
+// "the building", "appraisal".
 const WITNESS_ROLE_WORDS = ['officer', 'officers', 'director', 'directors', 'secretary', 'secretaries', 'minister', 'ministers',
   'ministerial', 'hr', 'panel', 'panels', 'board', 'boards', 'boss', 'bosses', 'supervisor', 'supervisors', 'manager', 'managers',
   'colleague', 'colleagues', 'junior', 'juniors', 'senior', 'seniors', 'peer', 'peers', 'batchmate', 'intern', 'interns',
   'assistant', 'pa', 'sender', 'senders', 'countersign', 'countersigns', 'countersigned', 'countersigning', 'countersigner',
   'reporting', 'mentor', 'deputy', 'chief', 'chair', 'chairman', 'chairwoman', 'mp', 'mps', 'journalist', 'journalists',
   'correspondent', 'editor', 'whip', 'auditor', 'newcomer', 'scholar', 'he', 'she', 'him', 'her', 'his', 'hers', 'himself',
-  'herself', 'mr', 'ms', 'mrs', 'mdm', 'dr', 'sir', 'madam'];
-// the placeholders the engine fills in witnesses.lines
-const WITNESS_FILLS = new Set(['when', 'grade', 'without', 'n', 'N', 'more', 'title', 'text']);
-// [where, text, may it hold placeholders] for every player-facing witness line
+  'herself', 'mr', 'ms', 'mrs', 'mdm', 'dr', 'sir', 'madam',
+  // politics: the people and the bodies a politics witness belongs to
+  'whips', 'member', 'members', 'backbencher', 'backbenchers', 'volunteer', 'volunteers', 'activist', 'activists', 'leader',
+  'leaders', 'leadership', 'pm', 'premier', 'official', 'officials', 'civil', 'servant', 'servants', 'reporter', 'reporters',
+  'columnist', 'columnists', 'editors', 'press', 'party', 'branch', 'cabinet', 'speaker', 'clerk', 'clerks', 'adviser', 'advisers'];
+const WITNESS_SERVICE_WORDS = /\bupstairs\b|\bthe building\b|\bthis building\b|\bappraisals?\b/i;
+// the cards that can list witnesses: events.json, the packs and the batchmate's
+const witnessCards = build => build.content.events.concat((build.content.rival || {}).events || []);
+// [where, text, ladder] for every player-facing witness line
 function witnessTexts(build) {
   const W = build.content.witnesses, out = [];
   if (!W) return out;
-  for (const [k, v] of Object.entries(W.lines || {})) [].concat(v).forEach((t, i) => out.push([`witnesses.lines.${k}${Array.isArray(v) ? `[${i}]` : ''}`, t, true]));
-  for (const [type, x] of Object.entries(W.types || {})) for (const part of ['review', 'declassified'])
-    for (const sign of ['help', 'hurt']) (((x[part] || {})[sign]) || []).forEach((t, i) => out.push([`witnesses.types.${type}.${part}.${sign}[${i}]`, t, false]));
-  for (const e of build.content.events) if (e.witnesses) (e.witnesses.did || []).forEach((t, i) => out.push([`${e.id}: witnesses.did[${i}]`, t, false]));
+  for (const [type, x] of Object.entries(W.types || {}))
+    for (const sign of ['help', 'hurt']) (((x.review || {})[sign]) || []).forEach((t, i) => out.push([`witnesses.types.${type}.review.${sign}[${i}]`, t, x.ladder || 'service']));
   return out;
 }
 // What would give a witness away in one line: [] when it is clean.
@@ -517,9 +521,11 @@ function witnessWordProblems(build, text) {
   if (/\d/.test(t)) out.push('a number');
   return out;
 }
+// The ranks a card can be shown at, from its own requirements: [lowest, highest].
+const cardRanks = e => [((e.requires || {}).minRank) || 0, (e.requires || {}).maxRank !== undefined ? e.requires.maxRank : 16];
 function witnessStatic(build) {
   const C = build.content, W = C.witnesses, out = [];
-  const cards = C.events.filter(e => e.witnesses);
+  const cards = witnessCards(build).filter(e => e.witnesses);
   if (!W) return cards.length ? [`${cards.length} cards list witnesses, but game.json has no witnesses block`] : [];
   const types = W.types || {}, max = W.maxStep || 6, cap = W.cap || 8;
   // one witness nudges a grade and never jumps two: no reaction is half a grade wide, and no year's
@@ -527,17 +533,23 @@ function witnessStatic(build) {
   const bands = C.grades.slice(0, -1).map((g, i) => g.min - C.grades[i + 1].min);
   if (max >= Math.min(...bands) / 2) out.push(`witnesses.maxStep ${max} is half a grade or more`);
   if (cap >= Math.min(...bands)) out.push(`witnesses.cap ${cap} could move a grade by two`);
+  for (const [type, x] of Object.entries(types))
+    if (x.ladder !== undefined && !['service', 'politics'].includes(x.ladder)) out.push(`witnesses.types.${type}: ladder must be "service" or "politics"`);
   const used = {};
   const use = (type, sign) => (used[type] = used[type] || new Set()).add(sign);
   for (const e of cards) {
     const n = e.choices.length, by = e.witnesses.by || {};
-    if (!Array.isArray(e.witnesses.did) || e.witnesses.did.length !== n || e.witnesses.did.some(x => typeof x !== 'string' || !x))
-      out.push(`${e.id}: witnesses.did needs one line per choice (Declassified would otherwise quote the choice, names and all)`);
+    for (const k of Object.keys(e.witnesses)) if (k !== 'by') out.push(`${e.id}: witnesses.${k} is not read (a card lists only who could know: witnesses.by)`);
     if (!Object.keys(by).length) out.push(`${e.id}: witnesses.by lists nobody`);
     const slots = new Map(build.engine.partSlots(e));
+    const [lo, hi] = cardRanks(e);
     for (const [type, w] of Object.entries(by)) {
       const at = `${e.id}: witness ${type}`;
       if (!types[type]) { out.push(`${at}: no such type in game.json witnesses.types`); continue; }
+      // a witness sees only what is done on its own ladder (rank 8 and up is politics)
+      const pol = types[type].ladder === 'politics', q0 = w.requires || {};
+      const wlo = Math.max(lo, q0.minRank || 0), whi = Math.min(hi, q0.maxRank !== undefined ? q0.maxRank : 16);
+      if (pol ? whi < 8 : wlo >= 8) out.push(`${at}: a ${pol ? 'politics' : 'service'} witness on a card only shown in ${pol ? 'the service' : 'politics'} never sees anything`);
       if (Array.isArray(w.chance) && w.chance.length !== n) out.push(`${at}: chance needs one number per choice`);
       if ([].concat(w.chance).some(x => typeof x !== 'number' || x <= 0 || x > 1)) out.push(`${at}: chance must be above 0 and at most 1`);
       if (!Array.isArray(w.react) || w.react.length !== n || w.react.some(x => !Number.isInteger(x))) out.push(`${at}: react needs one whole number per choice`);
@@ -545,10 +557,9 @@ function witnessStatic(build) {
         if (Math.abs(x) > max) out.push(`${at}: choice ${'ABCD'[i]} moves ${x}, more than maxStep ${max}`);
         if (x) use(type, x > 0 ? 'help' : 'hurt');
       });
-      // the ceiling only ever goes up here: Declassified's ceiling line tells a raise, not a fall
+      // the ceiling only ever goes up here
       if (w.cep !== undefined) {
         if (!Array.isArray(w.cep) || w.cep.length !== n || w.cep.some(x => x !== 0 && x !== 1)) out.push(`${at}: cep needs a 0 or 1 per choice`);
-        else if (w.cep.some(x => x)) use(type, 'help');
       }
       const q = w.requires || {};
       for (const v of q.variants || []) if (!Number.isInteger(v) || v < 0 || v > (e.variants || []).length) out.push(`${at}: the card has no version ${v}`);
@@ -559,13 +570,14 @@ function witnessStatic(build) {
       }
     }
   }
-  // a type that helps or hurts somewhere has lines to say so, on the review page and at the end
-  for (const [type, signs] of Object.entries(used)) for (const sign of signs) for (const part of ['review', 'declassified'])
-    if (((((types[type] || {})[part]) || {})[sign] || []).length < 2) out.push(`witnesses.types.${type}.${part}.${sign}: needs at least two lines`);
+  // a type that helps or hurts somewhere has lines to say so on the review page
+  for (const [type, signs] of Object.entries(used)) for (const sign of signs)
+    if (((((types[type] || {}).review) || {})[sign] || []).length < 2) out.push(`witnesses.types.${type}.review.${sign}: needs at least two lines`);
   const seen = new Map();
-  for (const [where, t, fills] of witnessTexts(build)) {
+  for (const [where, t, ladder] of witnessTexts(build)) {
     for (const p of witnessWordProblems(build, t)) out.push(`${where}: ${p} ("${String(t).slice(0, 60)}")`);
-    for (const m of String(t).matchAll(/\{(\w+)\}/g)) if (!fills || !WITNESS_FILLS.has(m[1])) out.push(`${where}: token ${m[0]} is never filled there`);
+    for (const m of String(t).matchAll(/\{(\w+)\}/g)) out.push(`${where}: token ${m[0]} is never filled there`);
+    if (ladder === 'politics' && WITNESS_SERVICE_WORDS.test(t)) out.push(`${where}: a politics line in the service's words ("${String(t).match(WITNESS_SERVICE_WORDS)[0]}")`);
     if (seen.has(t)) out.push(`${where}: the same line as ${seen.get(t)}`); else seen.set(t, where);
   }
   return out;

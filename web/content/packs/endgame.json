@@ -109,7 +109,13 @@
           "setFlags": ["made_way"],
           "outcome": "You thank the Prime Minister and say no: the slate needs the room more than it needs you. The Prime Minister accepts at once, which you try not to read anything into."
         }
-      ]
+      ],
+      "witnesses": {
+        "by": {
+          "branch": { "chance": 0.4, "react": [-2, 0] },
+          "leadership": { "chance": 0.35, "react": [2, 0] }
+        }
+      }
     },
     {
       "id": "endgame_last_politics",
