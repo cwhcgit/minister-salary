@@ -664,7 +664,7 @@ ok('the four stats in words: the why line only when a grade needs explaining, bi
           if (prevGrade === null) assert.ok(why.text.startsWith(W.whyFirst), 'the first appraisal explains what an appraisal weighs');
           if (pg.some(l => l.kind === 'warn')) assert.ok(/competence|standing|reputation/i.test(why.text), 'a warning year names the stats');
           // no phrasing twice in a row (the promotion reminder is a fixed rule, not a phrasing)
-          const said = why.text.replace(W.whyFirst, '').replace(' Promotion needs B+ or better.', '').trim().split(/(?<=[.;])\s/);
+          const said = why.text.replace(W.whyFirst, '').trim().split(/(?<=[.;])\s/);
           for (const x of said) if (lastWhy) assert.ok(!lastWhy.includes(x), `${origin} ${seed}: "${x}" twice in a row`);
           lastWhy = said;
           if (sw.length && /competence|standing|reputation/i.test(why.text.replace(W.whyFirst, ''))) assert.ok(pages.indexOf(pg) > 0, 'no swing line on a card whose own year-end names the stats');

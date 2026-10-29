@@ -2005,25 +2005,25 @@
     },
     "headsUp": {
       "service": {
-        "first": "Next year you'll have served long enough in your grade to be put up for {next} at the ranking, the yearly meeting where your bosses rank officers of the same grade against each other for promotion. To be promoted, you need {need} that year.",
+        "first": "Next year you'll have served long enough in your grade to be put up for {next} at the ranking, the yearly meeting where your bosses rank officers of the same grade against each other for promotion. Next year's appraisal will count.",
         "blocked": "Next year you'll have served long enough in your grade for {next}, but your name is not on the list for the ranking, the yearly meeting that decides promotions. Nobody says why.",
         "lines": [
-          "Your name goes forward at next year's ranking, for {next}. It takes {need}.",
-          "Next year's ranking will consider you for {next}. It takes {need}.",
-          "Your file goes to next year's ranking panel, for {next}. It takes {need}.",
-          "Next year you're up for {next} at the ranking. It takes {need}."
+          "Your name goes forward at next year's ranking, for {next}.",
+          "Next year's ranking will consider you for {next}, and next year's grade will be in front of it.",
+          "Your file goes to next year's ranking panel, for {next}.",
+          "Next year you're up for {next} at the ranking. It would help to have a good year."
         ]
       },
       "politics": {
-        "first": "Your name goes forward for {next} at the Prime Minister's next reshuffle, when ministers and office holders are moved between jobs: by then you'll have served long enough. To be moved up, you need {need} that year.",
+        "first": "Your name goes forward for {next} at the Prime Minister's next reshuffle, when ministers and office holders are moved between jobs: by then you'll have served long enough. Next year's appraisal will count.",
         "blocked": "Next year you'll have served long enough to be considered for {next}, but your name is not in the papers for the reshuffle, when the Prime Minister moves ministers and office holders between jobs. Nobody says why.",
         "blockedPm": "Next year you'll have served long enough to be weighed for the top job, but yours is not among the names being weighed. Nobody says why.",
-        "pm": "Next year the party could choose you as its next leader, and so Prime Minister. It takes an A that year.",
+        "pm": "Next year the party could choose you as its next leader, and so Prime Minister. It will be watching the year closely.",
         "lines": [
-          "Your name is on the list for next year's reshuffle, for {next}. It takes {need}.",
-          "Next year's reshuffle will consider you for {next}. It takes {need}.",
-          "The party's Whip, who keeps its Members in line, mentions that your name is in the papers for next year's reshuffle, for {next}. It takes {need}.",
-          "Next year you're in line for {next}, if the year earns {need}."
+          "Your name is on the list for next year's reshuffle, for {next}.",
+          "Next year's reshuffle will consider you for {next}, and next year's grade will be in front of it.",
+          "The party's Whip, who keeps its Members in line, mentions that your name is in the papers for next year's reshuffle, for {next}.",
+          "Next year you're in line for {next}, if the year goes well."
         ]
       }
     },

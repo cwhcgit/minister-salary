@@ -1713,7 +1713,7 @@ const Engine = (() => {
     else if (!tails.length && opts.lastOff) parts.push(say(opts.lastOff > 0 ? "lastHigh" : "lastLow", opts.lastOff > 0 ? "Last year's grade was higher than your file deserved, and this year's is not." : "Last year's grade was lower than your file deserved, and this year's is not."));
     parts.push(...tails);
     if (!parts.length) return "";
-    if (f.rank < 8 && order.indexOf(f.grade) > order.indexOf("B+")) parts.push("Promotion needs B+ or better.");
+    // (the grade a promotion takes is never stated: players learn it, or don't)
     return parts.join(" ");
   }
 
