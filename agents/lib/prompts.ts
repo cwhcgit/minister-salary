@@ -129,14 +129,24 @@ export function funTemplates(): string {
   ].join("\n\n");
 }
 
+// The designer's deck (tools/deck.js): every card with its mechanics, and every card's text,
+// which also makes it the whole player's deck. One page, or an index and its chapters.
+function designDeck(): Array<{ name: string; text: string }> {
+  const files = ["docs/DECK-DESIGN.md"];
+  const dir = path.join(REPO, "docs/deck-design");
+  if (fs.existsSync(dir)) for (const f of fs.readdirSync(dir).sort()) if (f.endsWith(".md")) files.push(`docs/deck-design/${f}`);
+  return files.filter(f => fs.existsSync(path.join(REPO, f))).map(f => ({ name: f, text: fs.readFileSync(path.join(REPO, f), "utf8") }));
+}
+
 // Fails a blind cohort before launch if any prompt it will send carries hidden terms or
-// copies the mechanics brief, the playtest brief or the design doc.
+// copies the mechanics brief, the playtest brief, the design doc or the designer's deck.
 export function leakGate(p: Persona, build: Build): Array<{ file: string; line: number | null; why: string; match: string }> {
   if (!p.blind) return [];
   const secret = [
     { name: "prompts/mechanics-brief.md", text: mechanics(build) },
     { name: "prompts/m1-brief.md", text: read("prompts/m1-brief.md") },
-    { name: "docs/DESIGN.md", text: fs.readFileSync(path.join(REPO, "docs/DESIGN.md"), "utf8") }
+    { name: "docs/DESIGN.md", text: fs.readFileSync(path.join(REPO, "docs/DESIGN.md"), "utf8") },
+    ...designDeck()
   ];
   const pub = [read("prompts/store-page.md")];
   const parts: Array<[string, string]> = [

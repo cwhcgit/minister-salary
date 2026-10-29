@@ -3,7 +3,7 @@ name: Deploy game to Pages
 on:
   push:
     branches: [main]
-    paths: ['web/**', '.github/workflows/pages.yml']
+    paths: ['web/**', 'tools/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -60,12 +60,16 @@ jobs:
       # And no sentence is shown twice in a career, outside a short list of structural lines.
       # One decision, once: no career meets two cards that pose the same decision, and a card that
       # repeats does so as a series (docs/WRITING_RULES.md 5.15).
+      # The deck (docs/DECK.md, docs/DECK-DESIGN.md) is every card in order, generated from the
+      # content. It is rebuilt here so its links, cards and tokens are checked against this content;
+      # a stale copy in the repo never blocks a deploy (deck.yml commits the fresh one to main).
       - name: Content checks
         run: |
           node test/jargon.js
           node test/castlines.js
           node test/duplicates.js
           node test/repeats.js
+          node tools/deck.js && node tools/deck.js --check
 
       # Seeded, so the same content always gives the same numbers. Fails the deploy if the
       # origin order inverts or PM becomes common for a first-timer.
