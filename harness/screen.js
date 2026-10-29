@@ -25,15 +25,23 @@ const START = {
 };
 
 // The four stats are hidden during play: the header carries no values, bars or changes.
-function header(build, S) {
-  const r = build.engine.rank(build.content, S);
+// engine.header gives it as data (rank, grade, age, year, place, earnings, batchmate): for the
+// event screen, and for each page of an outcome (the header there is dated to that page's year).
+function headerOf(h) {
   return {
-    rank: r.title, grade: r.grade,
-    age: S.age, year: S.year, ministry: S.ministry,
+    rank: h.title, grade: h.grade,
+    age: h.age, year: h.year, place: h.place,
     // same as ui.js: the batchmate line appears only in a run with a batchmate
-    ...(S.rival ? { batchmate: build.engine.batchmate(build.content, S) } : {}),
-    wealth: money(S.wealth), wealthLabel: "lifetime earnings"
+    ...(h.batchmate ? { batchmate: h.batchmate } : {}),
+    wealth: money(h.wealth), wealthLabel: "lifetime earnings"
   };
+}
+function header(build, S) {
+  if (build.engine.header) return headerOf(build.engine.header(build.content, S));
+  // an older build (a proposal's copy): the ministry, as it always showed
+  const r = build.engine.rank(build.content, S);
+  return headerOf({ title: r.title, grade: r.grade, age: S.age, year: S.year, place: S.ministry,
+    batchmate: S.rival ? build.engine.batchmate(build.content, S) : null, wealth: S.wealth });
 }
 
 // A locked choice gives an in-world reason, never the number (engine.lockedText; same words as ui.js).
@@ -55,8 +63,17 @@ function eventCard(build, S, ev) {
 
 // String() as the template literals in ui.js do, so a malformed log entry shows here
 // exactly as broken as on the phone (and the leak check catches it).
-function outcomeCard(outcome, log) {
-  return { text: outcome, log: log.map(l => ({ tag: TAG_LABEL[l.kind] || String(l.kind), text: String(l.text) })) };
+// The phone shows an outcome as pages: the card's outcome first, then one page per year, each
+// opening with its heading. Each page has its own header (ui.js outcomeScreen): `head` is the
+// first page's (engine.advance), a year heading carries its page's; `fallback` is for a log
+// from an older build, which had neither (the phone then shows the current header throughout).
+function outcomeCard(outcome, log, head, fallback) {
+  const pages = [{ header: head ? headerOf(head) : fallback, log: [] }];
+  for (const l of log) {
+    if (l.kind === "year") pages.push({ header: l.head ? headerOf(l.head) : fallback, log: [] });
+    pages[pages.length - 1].log.push({ tag: TAG_LABEL[l.kind] || String(l.kind), text: String(l.text) });
+  }
+  return { text: outcome, pages };
 }
 
 function endingCard(build, S) {
@@ -96,7 +113,7 @@ function startCard(build, originId, rival = false, player = null) {
 // opts.tags: "phone" (default, as displayed) or "none" (drop the tag labels).
 
 function headerText(h) {
-  return `${h.rank} [${h.grade}]   ${h.wealth} ${h.wealthLabel.toUpperCase()}\nAge ${h.age} · Year ${h.year} · ${h.ministry}`
+  return `${h.rank} [${h.grade}]   ${h.wealth} ${h.wealthLabel.toUpperCase()}\nAge ${h.age} · Year ${h.year} · ${h.place}`
     + (h.batchmate ? `\nBatchmate: ${h.batchmate}` : "");
 }
 
@@ -107,11 +124,13 @@ function toText(view, opts = {}) {
     const me = view.start.player ? `Your name: ${view.start.player.name} (${view.start.player.gender})\n` : "";
     out.push(`${view.start.title}\n${view.start.tagline}\n\n${me}You chose: ${view.start.origin.name} (${view.start.origin.difficulty.toUpperCase()})\n${view.start.origin.blurb}\n\n${view.start.hint}`);
   }
-  if (view.header) out.push(headerText(view.header));
-  if (view.outcome) {
-    const lines = view.outcome.log.map(l => l.tag === "year" ? `  ${l.text.toUpperCase()}` : tags === "none" ? `  ${l.text}` : `  [${l.tag.toUpperCase()}] ${l.text}`);
-    out.push(`LAST YEAR\n${view.outcome.text}${lines.length ? "\n" + lines.join("\n") : ""}`);
-  }
+  // the outcome's pages in the order the phone shows them, each under its own header; the card's
+  // outcome is the first page ("LAST YEAR"), and every later page opens with its year's heading
+  if (view.outcome) view.outcome.pages.forEach((pg, k) => {
+    const lines = pg.log.map(l => l.tag === "year" ? `  ${l.text.toUpperCase()}` : tags === "none" ? `  ${l.text}` : `  [${l.tag.toUpperCase()}] ${l.text}`);
+    const top = k === 0 ? [`LAST YEAR\n${view.outcome.text}`] : [];
+    out.push(`${headerText(pg.header)}\n\n${top.concat(lines).join("\n")}`);
+  });
   // the ending card comes after the last outcome (ui.js shows it on the next screen)
   if (view.ending) {
     const e = view.ending;
@@ -122,6 +141,7 @@ function toText(view, opts = {}) {
   }
   if (view.event) {
     const ev = view.event;
+    if (view.header) out.push(headerText(view.header));
     const ch = ev.choices.map(c => `  ${c.id}) ${c.text}${c.available ? "" : `   [unavailable: ${c.requires}]`}`);
     out.push(`THIS YEAR: ${ev.title}\n${ev.body}\n\n${ch.join("\n")}`);
   }

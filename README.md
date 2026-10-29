@@ -74,6 +74,7 @@ object to `events.json` — no code changes:
 | `effects` | `reputation` `standing` `integrity` `competence` (0-100), plus `wealth`, `heat`, `cep` |
 | `schedule` | Deferred consequences — the mechanism that makes choices matter |
 | `bond` | Years a choice adds to the bond (a sponsorship with a bond of its own), served after any bond still running |
+| `replaces` | On a card: roles whose holder the card's story hands to someone new (`["senior"]` for a new reporting officer). Whichever choice is made, that person leaves the story, and a newcomer holds the role from the next card, introduced on first appearance |
 | `{peer}` `{junior.title}` … | The run's recurring people (peer, junior, senior, journalist, grassroots leader, fellow MP), named per run. `requires.cast` and a choice's `cast` read and change what each person remembers |
 | `parts` | Named slots of interchangeable options (`{asker}`, `{want.done}`), one combination per showing |
 | `{player}` `{player.formal}` `{player.their}` … | The player's name ("Mr" or "Ms" and the name, for officials) and pronouns, from the start screen. Only where someone else names or addresses the player: the papers, Hansard, a colleague, the batchmate, the ending |

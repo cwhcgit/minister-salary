@@ -87,8 +87,8 @@ ok('the screen view carries nothing hidden', () => {
   // Every key that may appear in a screen object. Anything else is a leak by construction.
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
     'namePlaceholder', 'genders', 'player', 'gender',   // the start screen's name field and gender choice
-    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'batchmate', 'label',
-    'outcome', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
+    'header', 'rank', 'grade', 'age', 'year', 'place', 'wealth', 'wealthLabel', 'batchmate', 'label',
+    'outcome', 'pages', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
     'ending', 'epitaph', 'positionLabel', 'position', 'ageLabel', 'lifetimeEarnings',
     // the ending screen's four stats and its Declassified file: the hidden values, revealed on
     // purpose once the run is over
@@ -366,9 +366,9 @@ ok('series: the Indicators in full at most twice a career, the plan in full ever
         passedInd++;
         const src = C.events.find(e => e.id === p.event), ch = src.choices.find(c => c.stance === p.habit);
         assert.ok(ch, `${p.event}: no choice for the habit ${p.habit}`);
-        const i = log.findIndex(l => l.kind === 'year' && l.text === `Age ${p.age} · A year without a decision`);
+        const i = log.findIndex(l => l.kind === 'year' && l.page === 'passed' && l.age === p.age);
         const pay = log.slice(i + 1).find(l => l.kind === 'pay');
-        const m = pay && pay.text.match(/including (?:a National Bonus of (\d) months?|no National Bonus)/);
+        const m = pay && pay.text.match(/\((?:including a National Bonus of (\d) months?|no National Bonus)\)/);
         assert.ok(m, `${p.event}: the pay line does not show the bonus: ${pay && pay.text}`);
         const months = m[1] === undefined ? 0 : +m[1];
         assert.ok([ch.nationalBonus, (ch.nationalBonusRisk || {}).months].includes(months), `${p.event} as ${p.habit}: ${months} months`);
@@ -487,9 +487,9 @@ ok('the end of a career is told: a foreboding line in the last three years and t
       const pick = greedy ? live.reduce((a, b) => score(b[0].effects || {}) > score(a[0].effects || {}) ? b : a)[1] : live[Math.floor(r() * live.length)][1];
       const res = E.advance(C, S, pick);
       // one entry per year-end on this outcome screen: its age, its promotion record and its lines
-      let k = -1, first = res.log.length && /Year-end review$/.test((res.log.find(l => l.kind === 'year') || {}).text || '');
+      let k = -1, first = res.log.length && (res.log.find(l => l.kind === 'year') || {}).page === 'review';
       for (const l of res.log) {
-        if (l.kind === 'year') { k++; reviews.push({ age: +l.text.match(/^Age (\d+)/)[1], promotion: first ? (k === 0 ? res.trace.promotion : (res.trace.passed[k - 1] || {}).promotion) : (res.trace.passed[k] || {}).promotion, lines: [] }); }
+        if (l.kind === 'year') { k++; reviews.push({ age: l.age, promotion: first ? (k === 0 ? res.trace.promotion : (res.trace.passed[k - 1] || {}).promotion) : (res.trace.passed[k] || {}).promotion, lines: [] }); }
         else if (k >= 0) reviews[reviews.length - 1].lines.push(l);
       }
       S = res.state;
@@ -739,6 +739,215 @@ ok('the player\'s choices are data: a third choice and a new token field need no
   const outside = src.replace(block, '').split('\n').filter(l => /\bgender\b/.test(l) && !/^\s*\/\//.test(l));
   assert.deepStrictEqual(outside.map(l => l.trim()), ['const me = playerOf(content, { name, gender: opts.gender, seed });   // text only', 'seed, name: me.name, gender: me.gender, origin: origin.id,'],
     'something outside the player\'s text functions reads the gender');
+});
+
+
+// --- what the playtesters could not follow (final playtest): the engine's part ---------------
+
+// A careers sampler for the tests below: the engine directly, so every log entry is to hand.
+// greedy: the "knows the win" bot (reaches politics); otherwise random play.
+function careers(n, { greedy = false, origins = ['scholar', 'grad', 'poly'], rival = s => s % 3 === 0 } = {}, visit) {
+  const E = build.engine, C = build.content;
+  const score = f => (f.cep||0)*60 + (f.standing||0)*1.5 + (f.competence||0)*1.4 + (f.reputation||0)*1.3 - (f.heat||0)*0.8;
+  for (const origin of origins) for (let seed = 1; seed <= n; seed++) {
+    const r = H.rng(seed * 17 + 3);
+    let S = E.nextEvent(C, E.newGame(C, origin, 'Tan Wei Ling', seed, { rival: rival(seed), gender: 'f' })).state;
+    for (let t = 0; t < 120 && !S.ending; t++) {
+      const ev = E.eventOf(C, S);
+      const live = ev.choices.map((c, i) => [c, i]).filter(([c]) => E.choiceAvailable(c, S));
+      const pick = greedy ? live.reduce((a, b) => score(b[0].effects || {}) > score(a[0].effects || {}) ? b : a)[1] : live[Math.floor(r() * live.length)][1];
+      const res = E.advance(C, S, pick);
+      visit({ origin, seed, pre: S, ev, res, S: res.state });
+      S = res.state;
+    }
+  }
+}
+
+ok('the sideways move is real: after three Cs the reporting officer stays behind, and someone new is introduced from next year', () => {
+  const E = build.engine, C = build.content;
+  let moves = 0, introduced = 0;
+  const watch = new Map();   // origin+seed -> { old, newId, year }
+  careers(80, {}, ({ origin, seed, pre, ev, res, S }) => {
+    const key = origin + seed, w = watch.get(key);
+    // the first card after the move that names the reporting officer names the new one, introduced
+    if (w && ev.who && ev.who.senior !== undefined && !w.checked) {
+      const now = pre.cast.on.senior;
+      assert.notStrictEqual(ev.who.senior, w.old.id, `${key}: the old reporting officer is still named after the move`);
+      const name = now && E.personField(C, pre, 'senior', now, '');
+      // the introduction is in the body (a card naming them only in a choice has met them)
+      w.checked = true;
+      if (now && now.id === w.newId && ev.body.includes(name)) {
+        assert.ok(ev.body.includes(name + ','), `${key}: the new reporting officer is not introduced on the first card: ${ev.body}`);
+        assert.ok(!ev.body.includes(E.personField(C, pre, 'senior', w.old, '') + ' '), `${key}: the old reporting officer is in the body`);
+        introduced++;
+      }
+    }
+    const warn = res.log.find(l => l.about === 'sideways');
+    if (!warn || !pre.cast.on.senior) return;
+    // the move happened at the year-end of the card's year, or in a year that passed by itself
+    const old = S.cast.past.find(p => p.why === 'sideways' && p.left >= pre.year);
+    assert.ok(old, `${key}: nobody left in the sideways move`);
+    assert.ok(warn.text.includes(E.personField(C, S, 'senior', old, '')), `${key}: the move does not name who stays behind: ${warn.text}`);
+    assert.ok(!/\{[^{}\s]+\}/.test(warn.text) && /new reporting officer/.test(warn.text), warn.text);
+    const now = S.cast.on.senior;
+    if (!S.ending && S.rank < 7) {
+      assert.ok(now && now.id !== old.id, `${key}: no new reporting officer after the move`);
+      assert.ok(now.since > old.left, `${key}: the new reporting officer arrived in the year of the move, not the next`);
+      assert.ok(!now.flags.length && now.met === undefined, `${key}: the new reporting officer has history`);
+      // no arrival line: the move has said it, and the first card introduces them
+      assert.ok(!res.log.some(l => l.cast === 'senior' && l.at.person === now.id), `${key}: an arrival line for the new reporting officer`);
+      moves++;
+      if (!watch.has(key)) watch.set(key, { old, newId: now.id, year: S.year });
+    }
+  });
+  assert.ok(moves > 40 && introduced > 20, `expected sideways moves and introductions (${moves}, ${introduced})`);
+  // in politics the select committee moves nobody
+  const S = build.engine.newGame(C, 'grad', 'X', 5);
+  assert.deepStrictEqual(S.cast.past, []);
+});
+
+ok('a new reporting officer card (replaces) hands {senior} to a newcomer, introduced on the next card that names them', () => {
+  const E = build.engine, C = build.content;
+  const cards = C.events.filter(e => e.replaces);
+  assert.ok(cards.some(e => e.id === 'new_ro'), 'new_ro hands the role on');
+  for (const e of cards) for (const r of e.replaces) assert.ok(C.cast.roles[r], `${e.id}: replaces an unknown role ${r}`);
+  let n = 0;
+  for (const origin of ['grad', 'scholar']) for (let seed = 1; seed <= 60; seed++) {
+    let S = E.newGame(C, origin, 'X', seed);
+    S.rank = 2; S.age = 30; S.year = 5;   // a grade new_ro can be drawn at
+    S = { ...S, cast: undefined }; delete S.cast;
+    S = E.nextEvent(C, { ...S, currentEvent: null }).state;
+    if (!S.cast.on.senior) continue;
+    S.currentEvent = 'new_ro';
+    const ev = E.eventOf(C, S), old = S.cast.on.senior;
+    const res = E.advance(C, S, seed % ev.choices.length);
+    const now = res.state.cast.on.senior;
+    assert.ok(res.state.cast.past.some(p => p.id === old.id && p.why === 'replaced'), 'the old reporting officer leaves the story');
+    if (res.state.ending || res.state.rank > 6) continue;
+    assert.ok(now && now.id !== old.id && now.met === undefined, 'a newcomer holds the role, not yet met');
+    assert.ok(!res.log.some(l => l.cast === 'senior'), 'no arrival line: the card has said it');
+    n++;
+  }
+  assert.ok(n > 50, `expected new_ro to hand over (${n})`);
+});
+
+ok('the header says where you are: a backbencher\'s seat, never a ministry left behind; an office holder\'s ministry', () => {
+  const E = build.engine, C = build.content, M = new Set(C.ministries);
+  const L = C.engineLines.place;
+  let mps = 0, office = 0, candidates = 0, pages = 0;
+  const check = (h, flags, ministry, where) => {
+    if (h.title === C.ladder[8].title) {
+      assert.ok(!M.has(h.place), `${where}: an MP's header names ${h.place}`);
+      assert.strictEqual(h.place, flags.includes('seat_smc') ? L.smc : flags.includes('seat_grc') ? L.grc : L.mp, where);
+      mps++;
+    } else if (C.ladder.findIndex(r => r.title === h.title && r.grade === h.grade) >= 9 && h.grade !== 'PM') {
+      assert.strictEqual(h.place, ministry, `${where}: an office holder's header is not the ministry they serve in`);
+      office++;
+    }
+  };
+  careers(40, { greedy: true }, ({ origin, seed, pre, ev, res, S }) => {
+    const where = `${origin} ${seed} y${pre.year}`;
+    const eh = E.header(C, pre);
+    if (ev.id === 'the_election') { assert.strictEqual(eh.place, L.candidate, `${where}: the election card's header`); candidates++; }
+    else check(eh, pre.flags, pre.ministry, where + ' event');
+    // every page of the outcome, under its own header
+    if (res.head) check(res.head, S.flags, S.ministry, where + ' outcome');
+    for (const l of res.log.filter(l => l.kind === 'year')) { check(l.head, S.flags, S.ministry, `${where} page ${l.year}`); pages++; }
+  });
+  assert.ok(mps > 200 && office > 500 && candidates > 30 && pages > 1000, `expected MPs, office holders and candidates (${mps}, ${office}, ${candidates}, ${pages})`);
+  // a backbencher's first office names its ministry, once
+  const S = { ...E.newGame(C, 'grad', 'X', 3), rank: 8, yearsInGrade: 5, competence: 100, standing: 100, reputation: 100, cep: 15, age: 45, flags: ['seat_grc'] };
+  S.currentEvent = E.nextEvent(C, S).state.currentEvent;
+  const res = E.advance(C, { ...S }, 0);
+  const promo = res.log.find(l => l.kind === 'promo' && /^Promoted/.test(l.text));
+  if (promo) assert.ok(promo.text.includes(S.ministry), promo.text);
+});
+
+ok('a political heads-up or rumour never names a rank the player already holds', () => {
+  const E = build.engine, C = build.content;
+  const esc = x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  for (let r = 0; r < 16; r++) {
+    const name = E.nextName(C, r);
+    assert.notStrictEqual(name, C.ladder[r].title, `the rung above ${C.ladder[r].title} (${C.ladder[r].grade}) is named as the rank itself`);
+    // a rung that shares its title with the one below (Minister MR4, then MR3) is named without it
+    if (C.ladder[r + 1].title === C.ladder[r].title) assert.ok(!new RegExp(`\\b${esc(C.ladder[r].title)}\\b`).test(name), `the rung above ${C.ladder[r].grade} is named "${name}"`);
+    else assert.strictEqual(name, C.ladder[r + 1].title);
+  }
+  let lines = 0, held = 0;
+  careers(40, { greedy: true }, ({ origin, seed, res }) => {
+    // each page's rank is the one its header shows; the lines on it are about the next rung
+    let title = res.head && res.head.title;
+    for (const l of res.log) {
+      if (l.kind === 'year') { title = l.head.title; continue; }
+      if (!['headsUp', 'blocked'].includes(l.about) || l.rank < 8) continue;
+      lines++;
+      if (l.rank === 13) held++;
+      const mine = C.ladder[l.rank].title;
+      assert.strictEqual(mine, title, `${origin} ${seed}: a line about rank ${l.rank} on a page showing ${title}`);
+      assert.ok(!new RegExp(`\\bfor ${esc(mine)}\\b`).test(l.text), `${origin} ${seed}: "${l.text}" names ${mine}, the rank held`);
+    }
+  });
+  assert.ok(lines > 200 && held > 10, `expected political heads-ups, some at MR4 (${lines}, ${held})`);
+});
+
+ok('every outcome page heading carries its year and age, and a year with nothing to decide says why', () => {
+  const C = build.content;
+  let pages = 0, passed = 0, payWhy = 0, falls = 0;
+  const kinds = {};
+  careers(50, {}, ({ origin, seed, pre, res, S }) => {
+    const where = `${origin} ${seed} y${pre.year}`;
+    const ys = res.log.filter(l => l.kind === 'year');
+    ys.forEach((l, i) => {
+      const m = l.text.match(/^Year (\d+) · Age (\d+) · (.+)$/);
+      assert.ok(m, `${where}: a page heading without its year and age: "${l.text}"`);
+      assert.deepStrictEqual([+m[1], +m[2]], [l.year, l.age], where);
+      // the pages run in order, one year each, from the card's own year
+      assert.strictEqual(l.year, pre.year + i + (ys[0].page === 'review' ? 0 : 1), `${where}: page ${i} is year ${l.year}`);
+      assert.strictEqual(l.age - pre.age, l.year - pre.year, `${where}: page ${i}'s age and year disagree`);
+      // and its header is that year's
+      assert.deepStrictEqual([l.head.year, l.head.age], [l.year, l.age], `${where}: page ${i}'s header is not dated to its year`);
+      pages++;
+      if (l.page === 'passed') {
+        passed++;
+        const next = res.log[res.log.indexOf(l) + 1];
+        assert.ok(next && next.about === 'noDecision' && /^No decision was needed this year\./.test(next.text), `${where}: a year without a decision that does not say why: ${next && next.text}`);
+        assert.ok(!/\{[^{}\s]+\}/.test(next.text), next.text);
+        kinds[next.passed] = (kinds[next.passed] || 0) + 1;
+      }
+    });
+    // the first page's header is the year the card was played in
+    assert.deepStrictEqual([res.head.year, res.head.age], [pre.year, pre.age], where);
+    // pay: a reason in words when it moved for a reason the player cannot see; never a stat's number
+    for (const l of res.log.filter(l => l.kind === 'pay')) {
+      if (!/^Annual package: /.test(l.text)) continue;
+      if (/on last year: /.test(l.text)) { payWhy++; assert.ok(!/(competence|standing|reputation|integrity)\W*\d/i.test(l.text), l.text); }
+      if (/, down \$[\d,]+ on last year: /.test(l.text)) falls++;
+    }
+  });
+  assert.ok(pages > 2000 && passed > 500 && payWhy > 300 && falls > 50, `expected pages, passed years and pay reasons (${pages}, ${passed}, ${payWhy}, ${falls})`);
+  assert.ok(kinds.habit > 100 && kinds.series > 0 && kinds.auto > 10, `every kind of quiet year says why: ${JSON.stringify(kinds)}`);
+});
+
+ok('every pay line from the second year says how it compares with last year, and a fall always says why', () => {
+  let checked = 0, falls = 0, same = 0, first = 0;
+  const money = t => +t.replace(/[$,]/g, '');
+  careers(30, { greedy: false }, ({ pre, res }) => {
+    let last = pre.lastPay ? pre.lastPay.total : null;
+    for (const l of res.log) {
+      if (l.kind !== 'pay' || !/^Annual package: /.test(l.text)) continue;
+      const now = money(l.text.match(/^Annual package: (\$[\d,]+)/)[1]);
+      if (last === null) { first++; assert.ok(!/last year/.test(l.text), `the first pay line compares: ${l.text}`); last = now; continue; }
+      checked++;
+      const m = l.text.match(/, (?:(up|down) (\$[\d,]+) on last year|the same as last year)(?:: (.+))?$/);
+      assert.ok(m, `a pay line that does not compare with last year: ${l.text}`);
+      const d = m[1] ? (m[1] === 'up' ? 1 : -1) * money(m[2]) : 0;
+      assert.strictEqual(d, now - last, `the difference is wrong: ${l.text} (last year $${last})`);
+      if (d < 0) { falls++; assert.ok(m[3], `a fall with no reason: ${l.text}`); }
+      if (d === 0) { same++; assert.ok(!m[3], l.text); }
+      last = now;
+    }
+  });
+  assert.ok(checked > 1000 && falls > 100 && same > 10 && first > 50, `expected comparisons, falls and steady years (${checked}, ${falls}, ${same}, ${first})`);
 });
 
 console.log(`\nAll ${passed} harness tests passed.`);

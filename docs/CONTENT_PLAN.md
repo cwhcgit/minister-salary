@@ -299,7 +299,8 @@ who has never worked in government must understand every card on the first read.
    who are not cast members (the Minister, the Permanent Secretary, the Whip, the Prime Minister) get no
    gendered pronoun, so two cards can never disagree about them, unless the office holder is the
    player: then use the player's tokens.
-6. **The header always names a ministry.** Never put a CEO or a statutory board above the player.
+6. **The header always names a ministry** in the service (in politics it names a backbencher's seat,
+   or the ministry an office holder serves in). Never put a CEO or a statutory board above the player.
 
 Before and after (approved by the owner):
 
@@ -419,6 +420,14 @@ name the person it remembers. An outcome screen carries at most one line about t
 grassroots leader and fellow MP, a departure before an arrival; nobody who arrives and leaves within
 one screen is mentioned. Each kind of line has three or four versions, taken in an order drawn from
 the seed and never repeated within a run; write new ones there, each sentence used once.
+
+**Moves.** Two things hand a role to a new person outside that lifecycle. Three Cs in a row in the
+service move the player sideways to another division: the reporting officer (and anyone who reports to
+the player) stays behind, and the roles refill from next year. A card with `"replaces": ["senior"]`
+(`new_ro`) hands the role to a newcomer whichever choice is made. Either way the newcomer arrives with
+no line of their own (the move or the card has said it) and is introduced on the first card whose body
+names them. So a card that hands a role on never names the newcomer itself: in its own text `{senior}`
+is still the person leaving, and the newcomer's name and pronouns are not known until they arrive.
 
 **Worked example: the junior.** `late_night` names the junior and records how you treated them:
 

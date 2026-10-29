@@ -1925,5 +1925,44 @@
         "text": "Your successor's first year had no surprises in it. The evenings you spent going through the files together are why."
       }
     ]
+  },
+  "engineLines": {
+    "about": "Lines the engine writes around the cards: each outcome page's heading, the line that says why a year needed no decision, why the pay moved, where the header says you are, and the sideways move. Plain English (CONTENT_PLAN 5a). Never a stat's name with a number: the stats are hidden during play.",
+    "yearHeading": {
+      "review": "Year {year} · Age {age} · Year-end review",
+      "passed": "Year {year} · Age {age} · A year without a decision"
+    },
+    "noDecision": {
+      "habit": "No decision was needed this year. \"{title}\" came round again, and you did what you chose last time: \"{choice}\"",
+      "series": "No decision was needed this year. \"{title}\" came up, and the plan you chose before still stands: \"{choice}\"",
+      "auto": "No decision was needed this year. A general election came, and your seat was safe.",
+      "quiet": "No decision was needed this year. Nothing came up that needed you."
+    },
+    "payWhy": {
+      "line": "Annual package: {pay}{bonus}",
+      "withBonus": " (including a National Bonus of {months})",
+      "noBonus": " (no National Bonus)",
+      "none": "none",
+      "same": ", the same as last year",
+      "up": ", up {diff} on last year",
+      "down": ", down {diff} on last year",
+      "rank": "this was your first year paid as {aTitle}",
+      "bonus": "the National Bonus went from {was} to {now}, because of how the national targets went",
+      "work": "your bonus follows how good your work was",
+      "workRise": 0.03,
+      "promoted": "Your pay rises from next year."
+    },
+    "place": {
+      "grc": "Member for a GRC",
+      "smc": "Member for a single seat",
+      "mp": "Member of Parliament",
+      "pm": "Prime Minister's Office",
+      "candidate": "Resigned from the service to stand for election"
+    },
+    "nextSameTitle": "{grade}, the next Cabinet grade up",
+    "sideways": {
+      "named": "That's three Cs in a row, so HR moves you sideways: the same grade, in another division. From next year your papers go to a new reporting officer instead of {senior}. It's meant as a fresh start. Nobody there asked for you, but the work is real.",
+      "plain": "That's three Cs in a row, so HR moves you sideways: the same grade, in another division, for a fresh start. Nobody there asked for you, but the work is real."
+    }
   }
 }

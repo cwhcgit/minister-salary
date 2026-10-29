@@ -2,7 +2,7 @@
 (() => {
 const app = document.getElementById("app");
 const SAVE = "ministerSalary.v1";
-let content, S = null, phase = "start", outcome = "", log = [], pickedOrigin = "grad";
+let content, S = null, phase = "start", outcome = "", log = [], head = null, pickedOrigin = "grad";
 // Play with a batchmate: remembered between runs as a convenience, saved inside each run as S.rival.
 let rivalOn = (() => { try { return localStorage.getItem("ms.rival") === "1"; } catch (e) { return false; } })();
 // The player's gender, for how colleagues, the papers and Hansard refer to them: remembered like
@@ -47,29 +47,33 @@ function rememberRun() {
 let contentKey = "";
 function fingerprint(c) { let h = 2166136261; const t = JSON.stringify(c); for (let i = 0; i < t.length; i++) h = Math.imul(h ^ t.charCodeAt(i), 16777619) >>> 0; return h.toString(36); }
 let savedKey = null;
-function save()  { try { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log, v: contentKey })); } catch (e) {} }
+function save()  { try { if (S) localStorage.setItem(SAVE, JSON.stringify({ S, phase, outcome, log, head, v: contentKey })); } catch (e) {} }
 function wipe()  { try { localStorage.removeItem(SAVE); } catch (e) {} }
 function load()  {
   try {
     const d = JSON.parse(localStorage.getItem(SAVE));
     // a save from before the start screen asked for a gender gets the defaults (Engine.upgradePlayer)
-    if (d && d.S) { S = Engine.upgradePlayer(content, d.S); phase = d.phase; outcome = d.outcome; log = d.log || []; savedKey = d.v || ""; return true; }
+    if (d && d.S) { S = Engine.upgradePlayer(content, d.S); phase = d.phase; outcome = d.outcome; log = d.log || []; head = d.head || null; savedKey = d.v || ""; return true; }
   } catch (e) {}
   return false;
 }
 
 // ---------- header ----------
-// Rank, grade, age, year, ministry and earnings. No stat values: those are kept for the end.
-function header() {
-  const r = Engine.rank(content, S);
+// Rank, grade, age, year, where you are (the ministry, or a backbencher's seat) and earnings, as
+// Engine.header gives them. No stat values: those are kept for the end. `h` is the event
+// screen's header, or an outcome page's, which is dated to that page's year.
+function headerLeft(h) {
+  return `<div>
+        <div class="rank">${esc(h.title)}<span class="grade">${esc(h.grade)}</span></div>
+        <div class="sub">Age ${h.age} &middot; Year ${h.year} &middot; ${esc(h.place)}</div>
+        ${h.batchmate ? `<div class="mate">Batchmate: ${esc(h.batchmate)}</div>` : ""}
+      </div>`;
+}
+function header(h = Engine.header(content, S)) {
   return `<header>
     <div class="rankline">
-      <div>
-        <div class="rank">${esc(r.title)}<span class="grade">${esc(r.grade)}</span></div>
-        <div class="sub">Age ${S.age} &middot; Year ${S.year} &middot; ${esc(S.ministry)}</div>
-        ${S.rival ? `<div class="mate">Batchmate: ${esc(Engine.batchmate(content, S))}</div>` : ""}
-      </div>
-      <div class="cashbox"><div class="cash">${money(S.wealth)}</div><div class="cashlab">lifetime earnings</div>
+      ${headerLeft(h)}
+      <div class="cashbox"><div class="cash">${money(h.wealth)}</div><div class="cashlab">lifetime earnings</div>
         ${phase !== "ending" ? `<button class="newcareer" id="newcareer" type="button">Reincarnate</button>` : ""}</div>
     </div>
   </header>`;
@@ -150,13 +154,25 @@ function eventScreen() {
     b.onclick = () => choose(+b.dataset.i));
 }
 
+// An outcome page shows the header as it stood in that page's year: swap in the parts that
+// change, and keep the Reincarnate button as it is.
+function showHeader(h) {
+  const line = app.querySelector(".rankline");
+  if (!line) return;
+  line.firstElementChild.outerHTML = headerLeft(h);
+  app.querySelector(".cash").textContent = money(h.wealth);
+}
+
 function outcomeScreen() {
   // One screen per event: the card's outcome first, then each year's review on its own page.
   // Every page is in the document (one shown at a time), so the log reads the same as before.
+  // Each page has its own header: the first as the choice left it, then each year's as it ended
+  // (a save from before pages had headers shows the current one throughout).
   const pages = [[]];
   log.forEach(l => { if (l.kind === "year") pages.push([l]); else pages[pages.length - 1].push(l); });
   const last = pages.length - 1;
-  app.innerHTML = header() + pages.map((pg, k) => `
+  const heads = pages.map((pg, k) => (k === 0 ? head : pg[0].head) || Engine.header(content, S));
+  app.innerHTML = header(heads[0]) + pages.map((pg, k) => `
     <div class="card page" data-p="${k}"${k ? " hidden" : ""}>
       ${k === 0 ? `<div class="outcome serif">${esc(outcome)}</div>` : ""}
       <div class="log">${pg.map(l => `
@@ -168,6 +184,7 @@ function outcomeScreen() {
     const page = b.closest(".page"), k = +page.dataset.p;
     page.hidden = true;
     app.querySelector(`.page[data-p="${k + 1}"]`).hidden = false;
+    showHeader(heads[k + 1]);
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
   app.querySelector("#next").onclick = nextTurn;
@@ -402,7 +419,7 @@ async function shareEnding() {
 // ---------- turn flow ----------
 function choose(i) {
   const r = Engine.advance(content, S, i);
-  S = r.state; outcome = r.outcome; log = r.log;
+  S = r.state; outcome = r.outcome; log = r.log; head = r.head || null;
   // the last choice's outcome (and the last year-end review) is shown too, before the ending
   phase = "outcome";
   if (S.ending) rememberRun();
