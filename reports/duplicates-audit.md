@@ -1,12 +1,12 @@
 # One decision, once: the audit of duplicate decisions
 
-Every card a career can meet, read for the decision it poses, then checked against simulated careers for which ones a single career actually meets together. "Today" is `main` after PR #47 (fadabc2); "after" is the branch `fun/one-decision-once`. Each count is the share of 7,200 careers that are shown two or more cards posing the group's decision in full.
+Every card a career can meet, read for the decision it poses, then checked against simulated careers for which ones a single career actually meets together. "Today" is `main` after PR #48 (2163272); "after" is the branch `fun/one-decision-once`. Each count is the share of 7,200 careers that are shown two or more cards posing the group's decision in full.
 
 ## Summary
 
 - **187 cards read** (105 in `events.json`, 75 in the packs, 7 in `rival.json`), each given a one-line decision signature (appendix).
 - **26 groups a single career can meet**: 17 groups of different cards that pose one decision, and 9 repeatable cards (alone or with their siblings) whose later showings posed their decision again as if new.
-- **The biggest**, by share of careers that met the decision twice today: effort 68.6%; candour_up 43.6%; work_life 24.8%; bad_number 24.3%; ceiling_ask 16.4%; footing 13.2%; house_brief 11.0%; private_offer 10.2%.
+- **The biggest**, by share of careers that met the decision twice today: effort 68.5%; candour_up 43.6%; work_life 24.8%; bad_number 24.3%; ceiling_ask 16.4%; footing 13.2%; house_brief 11.0%; private_offer 10.2%.
 - **Careers that meet at least one decision twice: 94.3% today, 0.0% after.**
 - Resolved three ways: an exclusive group (a career meets the first card of the group it is shown, and never the others); a series (a card that repeats does so as a habit: shown in full once or twice, the second time asking whether to keep the habit, then passing by itself); or a rewrite, where a weak duplicate would have starved its group's best card or broken a story, and became a different decision.
 
@@ -25,19 +25,19 @@ The first card of a group a career is shown claims the group; the others are nev
 | --- | --- | --- | --- | --- | --- |
 | `bad_number` | Your scheme's number is bad: present it straight, or flattered (to a superior or the public) | `bench_gpc`, `inconvenient_figure`, `moh_premiums`, `pilot_design` (for `pilot_results`), ~~`opening_scholar`~~ (rewritten), ~~`the_townhall`~~ (rewritten) | 24.3% → 0.0% | `inconvenient_figure` + `opening_scholar` 7.7%, `opening_scholar` + `the_townhall` 5.5%, `opening_scholar` + `pilot_results` 5.3% | The Pilot joins through `pilot_design`. `opening_scholar` and the townhall's survey version were rewritten instead (below). |
 | `announce` | The Minister needs something to announce: oversell it, dress it up, or hold back | `cos_speech`, `moh_beds`, `pilot_design` (for `pilot_results`) | 3.4% → 0.0% | `cos_speech` + `pilot_results` 2.2%, `cos_speech` + `moh_beds` 0.86%, `moh_beds` + `pilot_results` 0.38% | `pilot_design` is in both this group and `bad_number`. |
-| `house_brief` | Answer in the House: concede the point (or correct the record), or read the officials' brief | `bench_adjournment`, `bench_cut`, `the_pq`, `uturn_questions`, `whistle_return_pol` | 11.0% → 0.0% | `the_pq` + `uturn_questions` 3.5%, `bench_adjournment` + `the_pq` 3.5%, `bench_cut` + `the_pq` 2.9% | `the_pq` is a series too. `bench_adjournment` and `bench_cut` pose it only in their reply role (rank 9+: `{ "group", "requires": { "minRank": 9 } }`). `whistle_return_pol` ends its chain, so striking it cuts nothing. |
-| `viral_post` | A post or headline goes viral, partly wrong: correct its errors, or concede what it got right | `mnd_million`, `moh_waiting`, `pofma_moment` | 7.8% → 0.0% | `moh_waiting` + `pofma_moment` 4.0%, `mnd_million` + `pofma_moment` 3.9%, `mnd_million` + `moh_waiting` 0.29% | `moh_waiting` and `mnd_million` meet only after a reshuffle into the other ministry. |
+| `house_brief` | Answer in the House: concede the point (or correct the record), or read the officials' brief | `bench_adjournment`, `bench_cut`, `the_pq`, `uturn_questions`, `whistle_return_pol` | 11.0% → 0.0% | `bench_adjournment` + `the_pq` 3.5%, `the_pq` + `uturn_questions` 3.5%, `bench_cut` + `the_pq` 2.9% | `the_pq` is a series too. `bench_adjournment` and `bench_cut` pose it only in their reply role (rank 9+: `{ "group", "requires": { "minRank": 9 } }`). `whistle_return_pol` ends its chain, so striking it cuts nothing. |
+| `viral_post` | A post or headline goes viral, partly wrong: correct its errors, or concede what it got right | `mnd_million`, `moh_waiting`, `pofma_moment` | 7.9% → 0.0% | `moh_waiting` + `pofma_moment` 4.0%, `mnd_million` + `pofma_moment` 3.9%, `mnd_million` + `moh_waiting` 0.32% | `moh_waiting` and `mnd_million` meet only after a reshuffle into the other ministry. |
 | `private_offer` | Leave for private-sector money | `bond_masters` (for `bond_bank`), `headhunter_early`, `headhunter_mid`, `headhunter_political`, `headhunter_political_grc` | 10.2% → 0.0% | `headhunter_early` + `headhunter_mid` 3.6%, `headhunter_early` + `headhunter_political` 2.5%, `headhunter_mid` + `headhunter_political` 2.4% | The Bond joins through `bond_masters` (its beat 2 is the bank's offer). Fewer careers end in the consultancy: a career that declined one offer is not asked again. |
-| `hard_job` | Ask for the hard job nobody wants | `reshuffle`, ~~`farewell_drinks`~~ (rewritten), ~~`first_cabinet`~~ (rewritten) | 6.5% → 0.0% | `farewell_drinks` + `reshuffle` 5.4%, `first_cabinet` + `reshuffle` 1.2%, `farewell_drinks` + `first_cabinet` 0.03% | Resolved by rewriting `farewell_drinks` and `first_cabinet`: as a group, the early `farewell_drinks` starved the reshuffle, and the win bot's graduate PM rate fell about 9 points. |
+| `hard_job` | Ask for the hard job nobody wants | `reshuffle`, ~~`farewell_drinks`~~ (rewritten), ~~`first_cabinet`~~ (rewritten) | 6.5% → 0.0% | `farewell_drinks` + `reshuffle` 5.4%, `first_cabinet` + `reshuffle` 1.1%, `farewell_drinks` + `first_cabinet` 0.03% | Resolved by rewriting `farewell_drinks` and `first_cabinet`: as a group, the early `farewell_drinks` starved the reshuffle, and the win bot's graduate PM rate fell about 9 points. |
 | `not_yet` | Back someone who will overtake you, or say "not yet" | `protege_panel`, `rival_views` | 0.08% → 0.0% | `protege_panel` + `rival_views` 0.08% | `rival_views` is also in `peer_review`; `protege_panel` ends its chain. |
 | `peer_review` | Your batchmate's file or work: help, stay out, or undercut | `rival_360`, `rival_annex`, `rival_views` | 4.2% → 0.0% | `rival_360` + `rival_annex` 3.1%, `rival_annex` + `rival_views` 0.90%, `rival_360` + `rival_views` 0.68% | The batchmate's help / stay out / undercut triad. |
 | `one_slot` | One career-making slot between you and someone else: put yourself forward, or step aside | `leadership_programme`, `reorg`, `rival_posting` | 2.1% → 0.0% | `leadership_programme` + `reorg` 1.5%, `leadership_programme` + `rival_posting` 0.32%, `reorg` + `rival_posting` 0.31% | `succession` and `rival_first` pose the same decision at the top, and are kept: they are the career's climax (kept-apart list). |
 | `credit_taken` | Someone else gets the credit for your work: let it go, or reclaim it | `and_team`, `consultant_report` | 8.5% → 0.0% | `and_team` + `consultant_report` 8.5% |  |
 | `candour_up` | Someone senior asks you straight: the true answer, the expected one, or something useful | `postit_workshop`, `station_four`, ~~`cny_lohei`~~ (rewritten) | 43.6% → 0.0% | `postit_workshop` + `station_four` 30.4%, `cny_lohei` + `postit_workshop` 20.8%, `cny_lohei` + `station_four` 12.1% | `cny_lohei` (the third card) was rewritten: as a group member it came last in a career, and its standout moment (a ceiling raise) was starved; the win bot's graduate PM rate fell about 4 points. |
-| `declare` | You sit in judgement on someone you know: declare it, or not | `bench_tea`, `promotion_board`, `the_tender` | 2.3% → 0.0% | `bench_tea` + `the_tender` 2.1%, `promotion_board` + `the_tender` 0.15%, `bench_tea` + `promotion_board` 0.07% |  |
+| `declare` | You sit in judgement on someone you know: declare it, or not | `bench_tea`, `promotion_board`, `the_tender` | 2.3% → 0.0% | `bench_tea` + `the_tender` 2.1%, `promotion_board` + `the_tender` 0.15%, `bench_tea` + `promotion_board` 0.06% |  |
 | `mentor_hardway` | A newer officer's work: teach them, let them learn the hard way, or do it yourself | `real_sop`, `the_scholar` | 1.2% → 0.0% | `real_sop` + `the_scholar` 1.2% |  |
 | `own_up` | Your good deed surfaces without your name: put your name to it, or stay quiet | `bonus_vindicated`, `committee_vindicated`, `figure_vindicated`, `for_the_record_audit`, `officer_a` | 1.4% → 0.0% | `figure_vindicated` + `for_the_record_audit` 0.49%, `committee_vindicated` + `for_the_record_audit` 0.32%, `for_the_record_audit` + `officer_a` 0.22% | Consequences that end their stories. |
-| `share_credit` | You are credited for what others did: keep the credit, or pass it on | `block_party`, `national_day_award`, `pofma_vindicated` | 2.2% → 0.0% | `national_day_award` + `pofma_vindicated` 1.8%, `block_party` + `national_day_award` 0.28%, `block_party` + `pofma_vindicated` 0.25% | Consequences that end their stories, and the Pingat. `model_ward` is kept apart (below). |
+| `share_credit` | You are credited for what others did: keep the credit, or pass it on | `block_party`, `national_day_award`, `pofma_vindicated` | 2.2% → 0.0% | `national_day_award` + `pofma_vindicated` 1.8%, `block_party` + `national_day_award` 0.28%, `block_party` + `pofma_vindicated` 0.26% | Consequences that end their stories, and the Pingat. `model_ward` is kept apart (below). |
 | `floor_question` | An awkward question from the floor at a public dialogue: answer it, or take it offline | `moe_psle`, `mom_retirement` | 0.0% → 0.0% | never together | Ministry decks: meet only after a reshuffle into the other ministry. |
 | `ceiling_ask` | Ask to be told your ceiling | `cep_discovery`, ~~`the_appraisal_talk`~~ (rewritten) | 16.4% → 0.0% | `cep_discovery` + `the_appraisal_talk` 16.4% | Resolved by rewriting the appraisal's ceiling question to "where you stand" (two of its versions already asked that). |
 
@@ -47,14 +47,14 @@ Every repeatable card is now a series (`series` with `spend`, `noMontage`, a `st
 
 | Series | The decision | Cards | `full` | Shown it as new twice or more, today → after | Second showing (the habit question), after |
 | --- | --- | --- | --- | --- | --- |
-| `effort` | This year's work: substance, visibility or rest | `the_work`, `the_quiet_year` | 2 | 68.6% → 0.0% | 84.6% |
-| `footing` | How you go about getting on: the hard work first, the right people, or your head down | `opening_grad` and `opening_scholar` (opens), `new_ro` | 2 | 13.2% → 0.0% | 23.9% |
-| `house` | (the_pq's own scenes) a Parliamentary Question: answer straight, read the brief, or write | `the_pq` | 2 | 1.4% → 0.0% | 17.1% |
-| `work_life` | Work or life: finish it tonight (cancel the leave), or go home (go) | `late_night`, `approved_leave` | 2 | 24.8% → 0.0% | 36.6% |
+| `effort` | This year's work: substance, visibility or rest | `the_work`, `the_quiet_year` | 2 | 68.5% → 0.0% | 84.4% |
+| `footing` | How you go about getting on: the hard work first, the right people, or your head down | `opening_grad` and `opening_scholar` (opens), `new_ro` | 2 | 13.2% → 0.0% | 23.7% |
+| `house` | (the_pq's own scenes) a Parliamentary Question: answer straight, read the brief, or write | `the_pq` | 2 | 1.3% → 0.0% | 17.0% |
+| `work_life` | Work or life: finish it tonight (cancel the leave), or go home (go) | `late_night`, `approved_leave` | 2 | 24.8% → 0.0% | 36.1% |
 | `appraisal` | (its own scenes) the appraisal conversation: ask where you stand, be more visible, or ask what needs doing | `the_appraisal_talk` | 2 | 6.6% → 0.0% | 40.8% |
 | `mps_night` | (its own scenes) Meet-the-People night: everyone, the hardest cases, or the speech | `the_mps_night` | 1 | 2.8% → 0.0% | - |
 | `walkabout` | (its own scenes) the walkabout: hear them out, keep moving, or call back | `the_walkabout` | 1 | 1.4% → 0.0% | - |
-| `townhall` | (its own scenes) the townhall's awkward question: face it, or deflect | `the_townhall` | 1 | 0.83% → 0.0% | - |
+| `townhall` | (its own scenes) the townhall's awkward question: face it, or deflect | `the_townhall` | 1 | 0.79% → 0.0% | - |
 | `budget_round` | (its own scenes) the budget bid: big, exact, or absorb | `budget_round` | 1 | 0.0% → 0.0% | - |
 
 How each repeatable card is handled:
@@ -158,21 +158,21 @@ Second-showing scenes were written for every series with `full: 2` (19 scenes on
 
 Close matches count, so each of these was weighed. They stay apart because the decision differs, because the cards are a consequence and its cause, or because the card is structural. Shares are careers shown both cards, today → after.
 
-- `forum_letter` + `pofma_moment` (7.4% → 7.0%): An accurate letter (admit it, or the standard reply) against a post that is partly wrong (correct the errors, or concede the point). The letter has no error to correct, and its third option is a misuse of records.
+- `forum_letter` + `pofma_moment` (7.3% → 7.0%): An accurate letter (admit it, or the standard reply) against a post that is partly wrong (correct the errors, or concede the point). The letter has no error to correct, and its third option is a misuse of records.
 - `dialogue_session` + `inconvenient_figure` (4.5% → 4.1%): Whose frame the public's feedback goes in (add a pillar, spread it, publish it raw) against a bad performance number. Judged different; the closest call in the audit.
 - `the_townhall` + `the_walkabout` (27.3% → 28.6%): Facing a rude question in front of your officers against how much time one voter gets.
 - `bto_queue` + `town_council` (9.8% → 11.1%): A friend's early word for your own flat against a waived tender for residents' lift.
-- `pm_cabinet` + `reshuffle` (15.1% → 14.9%): As Prime Minister, whom to give the hardest ministry against asking for it yourself.
-- `secondment` + `reshuffle` (5.1% → 5.2%): Fix, coast or refuse a troubled board against the reshuffle's ask.
+- `pm_cabinet` + `reshuffle` (15.2% → 14.8%): As Prime Minister, whom to give the hardest ministry against asking for it yourself.
+- `secondment` + `reshuffle` (5.0% → 5.2%): Fix, coast or refuse a troubled board against the reshuffle's ask.
 - `reorg` + `succession` (4.9% → 4.7%): The succession (and `rival_first`, its batchmate version) is the career's climax: kept. `reorg`, `leadership_programme` and `rival_posting` are one group among themselves.
 - `pilot_national` + `succession` (4.2% → 3.4%): The Pilot's rollout (run it, or hand it over) is the bridge to its audit; striking it would let a flattered number escape its consequence.
 - `bench_whip` + `maiden_speech` (5.8% → 5.3%): The maiden speech says what kind of Member you will be (every Member's first card); the Whip's text is one vote.
-- `model_ward` + `pofma_vindicated` (12.0% → 9.5%): The party's paper credits your walkabouts for a swing: the decision is what to teach new candidates, the paper's story or what actually worked; sending them to your volunteers is one option of three. It was in `share_credit` in a first draft, which struck it in a quarter of the careers that had earned it with an election swing; on a second read its decision is honesty about what worked, not credit.
+- `model_ward` + `pofma_vindicated` (11.9% → 9.5%): The party's paper credits your walkabouts for a swing: the decision is what to teach new candidates, the paper's story or what actually worked; sending them to your volunteers is one option of three. It was in `share_credit` in a first draft, which struck it in a quarter of the careers that had earned it with an election swing; on a second read its decision is honesty about what worked, not credit.
 - `the_ribbon` + `model_ward` (3.5% → 4.1%): The ribbon is about how long you stay; handing over the scissors is one option of three.
 - `the_appraisal_talk` + `the_work` (59.7% → 57.6%): Both have a "be seen" option; the appraisal is what you ask your reporting officer for, the work is how you do the year's project.
 - `opening_grad` + `the_work` (31.8% → 29.8%): Getting on (harder work, the right people, head down) against how you do a project; `opening_grad` and `new_ro` are their own series, `footing`.
-- `cep_discovery` + `the_appraisal_talk` (24.7% → 24.3%): Kept apart by the rewrite: the appraisal now asks where you stand this year, not for the ceiling.
-- `second_look` + `the_appraisal_talk` (14.6% → 14.3%): Making your own case to a board against asking your reporting officer.
+- `cep_discovery` + `the_appraisal_talk` (24.7% → 24.0%): Kept apart by the rewrite: the appraisal now asks where you stand this year, not for the ceiling.
+- `second_look` + `the_appraisal_talk` (14.6% → 14.1%): Making your own case to a board against asking your reporting officer.
 - `the_counter` + `station_four` (17.0% → 11.7%): Telling your team why a design will fail (the poly's opener) against answering the Minister about your own exhibit.
 - `cos_speech` + `station_four` (8.1% → 4.6%): Telling the Minister early that nothing is ready against "not yet, Minister" at a visit. Loose: one is planning, one is a question on the spot.
 - `whistle_spreadsheet` + `whistle_return` (5.0% → 5.5%): A mirror by design: the junior you once dealt with asks what you would do now. Same for `bond_bank` + `bond_mentor` and the vetting + `younger_officer` (the advice cards).
@@ -180,7 +180,7 @@ Close matches count, so each of these was weighed. They stay apart because the d
 - `budget_round` + `strange_loop` (0.51% → 0.56%): A Strange Year parodies the budget meeting; its choices are about the loop.
 - `internet_laptop` + `town_council` (5.8% → 6.7%): Breaking a rule for speed, at the bottom and at the Town Council: different stakes and different people.
 - `ps_successor` + `pm_successor` (0.0% → 0.07%): The new card: merit against legacy in choosing a successor. The Prime Minister's card is about the process (let them choose, name one, keep it open).
-- `cny_lohei` + `budget_round` (8.0% → 8.2%): The rewritten lunch: what to stop, against how much to bid.
+- `cny_lohei` + `budget_round` (8.0% → 8.1%): The rewritten lunch: what to stop, against how much to bid.
 - **Consequences that come back** (`come_clean`): `figure_resurfaces`, `tender_questions`, `leak_resurfaces`, `two_names`, `raw_data`, `citizens_panel`, `pilot_audit`, `uturn_statement` and others all ask "own up, or keep covering?" Each is the return of a different compromise the player made, named on the card (rule 3.4), and striking one would let that compromise go unpunished (rule 5.10). Today 9.6% of careers meet two; kept. This is the judgement call most worth a second look.
 - **Never in one career**: `succession` / `rival_first`, `endgame_last_service` / `endgame_last_politics`, `endgame_renewal` / `endgame_stay`, the Strange Year cards (one a career), `headhunter_political` / `headhunter_political_grc` (one per seat type).
 
@@ -190,43 +190,43 @@ Close matches count, so each of these was weighed. They stay apart because the d
 
 | Bot | scholar | grad | poly |
 | --- | --- | --- | --- |
-| first-timer | 4.8% [3.1-7.3] → 5.3% [3.5-7.9] | 0.5% [0.1-1.8] → 0.3% [0-1.4] | 0.3% [0-1.4] → 0% [0-1] |
+| first-timer | 5% [3.3-7.6] → 4.3% [2.7-6.7] | 0.5% [0.1-1.8] → 0.3% [0-1.4] | 0.5% [0.1-1.8] → 0% [0-1] |
 | knows the win | 48.5% [43.6-53.4] → 51.3% [46.4-56.1] | 42.8% [38-47.6] → 37.5% [32.9-42.3] | 21% [17.3-25.3] → 20.3% [16.6-24.5] |
-| first-timer + batchmate | 1.3% [0.5-2.9] → 2% [1-3.9] | 0% [0-1] → 0% [0-1] | 0% [0-1] → 0% [0-1] |
+| first-timer + batchmate | 1.5% [0.7-3.2] → 2% [1-3.9] | 0% [0-1] → 0% [0-1] | 0% [0-1] → 0% [0-1] |
 | knows the win + batchmate | 36.5% [31.9-41.3] → 34.3% [29.8-39] | 24.5% [20.5-28.9] → 23% [19.1-27.4] | 11% [8.3-14.4] → 12.8% [9.8-16.4] |
 
 Per act (first-timer | knows the win): taps per career, years passed by themselves, repeated cards (share of taps on a card already shown in full), dead turns; main → branch, 400 runs:
 
 | Act | first-timer | knows the win |
 | --- | --- | --- |
-| I | 22.07 → 21.5 taps; 7.05 → 8.41 passed; 5.6% → 6.1% repeated; 0.01 → 0 dead | 14.27 → 14.83 taps; 1.7 → 1.4 passed; 0.6% → 4.9% repeated; 0 → 0 dead |
-| II | 1.12 → 1.04 taps; 0.11 → 0.11 passed; 0% → 0% repeated; 0.23 → 0.22 dead | 2.99 → 2.99 taps; 0 → 0 passed; 0% → 0% repeated; 0.97 → 0.97 dead |
-| III | 2.93 → 2.88 taps; 1.26 → 1.37 passed; 2.1% → 4.5% repeated; 0 → 0 dead | 14.4 → 14.1 taps; 7.09 → 7.04 passed; 0.9% → 2.7% repeated; 0 → 0 dead |
+| I | 22.07 → 21.34 taps; 7.05 → 8.59 passed; 5.6% → 6.2% repeated; 0.01 → 0 dead | 14.27 → 14.83 taps; 1.7 → 1.4 passed; 0.6% → 4.9% repeated; 0 → 0 dead |
+| II | 1.12 → 1.04 taps; 0.11 → 0.11 passed; 0% → 0% repeated; 0 → 0 dead | 2.99 → 2.99 taps; 0 → 0 passed; 0% → 0% repeated; 0 → 0 dead |
+| III | 2.98 → 2.86 taps; 1.27 → 1.31 passed; 2.2% → 4.6% repeated; 0 → 0 dead | 14.4 → 14.1 taps; 7.09 → 7.04 passed; 0.9% → 2.7% repeated; 0 → 0 dead |
 
 **`node test/sim.js regress 1200`** (PM rate, 95% CI; main → branch):
 
 | Bot | scholar | grad | poly |
 | --- | --- | --- | --- |
-| first-timer | 3.5% [2.6-4.7] → 5.3% [4.2-6.8] | 0.3% [0.1-0.7] → 0.5% [0.2-1.1] | 0.1% [0-0.5] → 0.1% [0-0.5] |
+| first-timer | 4% [3-5.3] → 5.1% [4-6.5] | 0.2% [0-0.6] → 0.3% [0.1-0.7] | 0.2% [0-0.6] → 0.1% [0-0.5] |
 | knows the win | 46.7% [43.9-49.5] → 49.2% [46.3-52] | 42.1% [39.3-44.9] → 38.7% [36-41.5] | 20.1% [17.9-22.4] → 20.1% [17.9-22.4] |
-| first-timer + batchmate | 2% [1.3-3] → 3% [2.2-4.1] | 0.2% [0-0.6] → 0.1% [0-0.5] | 0% [0-0.3] → 0% [0-0.3] |
+| first-timer + batchmate | 2% [1.3-3] → 2.9% [2.1-4] | 0.2% [0-0.6] → 0.1% [0-0.5] | 0% [0-0.3] → 0% [0-0.3] |
 | knows the win + batchmate | 32.6% [30-35.3] → 33.4% [30.8-36.1] | 25.2% [22.8-27.7] → 22.8% [20.5-25.2] | 11.9% [10.2-13.9] → 11% [9.4-12.9] |
 
 Per act (first-timer | knows the win): taps per career, years passed by themselves, repeated cards (share of taps on a card already shown in full), dead turns; main → branch, 1200 runs:
 
 | Act | first-timer | knows the win |
 | --- | --- | --- |
-| I | 22.19 → 21.48 taps; 6.99 → 8.31 passed; 5.4% → 6.1% repeated; 0.01 → 0 dead | 14.18 → 14.89 taps; 1.67 → 1.42 passed; 0.5% → 4.9% repeated; 0 → 0 dead |
-| II | 1.13 → 1.04 taps; 0.1 → 0.1 passed; 0% → 0% repeated; 0.24 → 0.22 dead | 2.99 → 2.99 taps; 0 → 0 passed; 0% → 0% repeated; 0.97 → 0.96 dead |
-| III | 2.94 → 2.9 taps; 1.25 → 1.35 passed; 2.8% → 4.8% repeated; 0 → 0 dead | 14.37 → 14.01 taps; 7.2 → 7.06 passed; 0.9% → 2.6% repeated; 0 → 0 dead |
+| I | 22.19 → 21.34 taps; 6.99 → 8.48 passed; 5.4% → 6.2% repeated; 0.01 → 0 dead | 14.18 → 14.89 taps; 1.67 → 1.42 passed; 0.5% → 4.9% repeated; 0 → 0 dead |
+| II | 1.13 → 1.04 taps; 0.1 → 0.1 passed; 0% → 0% repeated; 0 → 0 dead | 2.99 → 2.99 taps; 0 → 0 passed; 0% → 0% repeated; 0 → 0 dead |
+| III | 2.96 → 2.89 taps; 1.24 → 1.31 passed; 2.9% → 4.9% repeated; 0 → 0 dead | 14.37 → 14.01 taps; 7.2 → 7.06 passed; 0.9% → 2.6% repeated; 0 → 0 dead |
 
-Fullness, from the 7,200 audit careers (main → branch): 29.1 → 28.84 taps per career; 8.58 → 9.11 years that passed by themselves; careers with a run of five or more such years in a row 16.0% → 27.2% (ten or more: 0.6% → 8.0%). At Permanent Secretary, the grade careers stay in longest, 4.9 → 4.7 taps and 3.86 → 4.57 passed years per career that reaches it. Those years used to be filled by the same few cards coming back in full; one new card (`ps_successor`) fills part of the gap.
+Fullness, from the 7,200 audit careers (main → branch): 29.11 → 28.76 taps per career; 8.56 → 9.19 years that passed by themselves; careers with a run of five or more such years in a row 16.0% → 27.6% (ten or more: 0.5% → 9.2%). At Permanent Secretary, the grade careers stay in longest, 4.9 → 4.68 taps and 3.86 → 4.61 passed years per career that reaches it. Those years used to be filled by the same few cards coming back in full; one new card (`ps_successor`) fills part of the gap.
 
 On fresh seeds (`i*11+5`, 1,500 graduate careers, knows the win, alone): main 38.8%, branch 37.5%. The regress seeds show a larger dip for that one cell (42.1% → 38.7% at 1,200); the intervals overlap at both sizes, and the regression rule passes.
 
 "Repeated" counts a tap on a card already shown in full. It rises because a series' second showing is the same card: it now asks whether to keep the habit, where before the card came back every fourth draw to ask its first question again. The share of careers that meet a decision twice is the measure of the change (94% → 0%).
 
-The cost is long stays. A career that waits years in one grade (a Permanent Secretary who does not go to tea, an officer still on the first rungs at forty) used to be filled by the same cards coming back in full; now its years pass by themselves, with a Meanwhile line each. New cards for those stays are the remedy, written against this audit: the content plan's unwritten "top of the service" pack is where they belong. Three candidates written for this change were dropped because each came too close to a group here (an underspend card to the budget bid, a union representative to Meet-the-People duty, a records purge to the minutes no one wants).
+The cost is long stays. A career that waits years in one grade (a Permanent Secretary who does not go to tea, an officer still on the first rungs at forty) used to be filled by the same cards coming back in full; now its years pass by themselves, with a Meanwhile line each (28 more lines were written for the two cards such a stay leans on). New cards for those stays are the remedy, written against this audit: the content plan's unwritten "top of the service" pack is where they belong. Three candidates written for this change were dropped because each came too close to a group here (an underspend card to the budget bid, a union representative to Meet-the-People duty, a records purge to the minutes no one wants).
 
 ## Appendix: every card's decision signature
 
