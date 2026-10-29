@@ -18,7 +18,7 @@
               "a": "Vote with the party. Send your view to the GPC.",
               "aOut": "You vote with the party and email your view to the GPC chairman, who replies with a thumbs-up. The bill passes. Your view is filed with the thumbs-up.",
               "b": "Speak against {bill.short}. Then vote for the bill.",
-              "bOut": "Your eleven minutes on {bill.short} go into Hansard. So does your vote, an hour later. A resident writes to ask which one you meant. You write back: both."
+              "bOut": "Your eleven minutes against {bill.short} go into Hansard. So does your vote for the bill, an hour later. A resident writes to ask which one you meant. You write back: both."
             },
             {
               "id": "office",
@@ -78,7 +78,7 @@
           }
         ]
       },
-      "body": "At 10:52pm the Whip texts: {msg} Tomorrow's bill brings in {bill}. You have a view on it, and the party has a different one.",
+      "body": "At 10:52pm the Whip texts: {msg} Tomorrow's bill brings in {bill}. You think it is wrong; the party supports it. Members vote the party line unless the Whip lifts the whip, and crossing the Whip costs you standing.",
       "requires": {
         "minRank": 8,
         "maxRank": 10
@@ -126,7 +126,7 @@
               "requires": {
                 "maxRank": 8
               },
-              "body": "You win the ballot for the adjournment motion: twenty minutes, at the end of a long sitting, on {topic}. {house}",
+              "body": "You have won the ballot for tonight's adjournment motion: twenty minutes, at the end of a long sitting, to raise {topic}, and a minister must reply. Backbenchers rarely get to pick the subject. {house}",
               "a": "Speak for the full twenty minutes.",
               "aOut": "Twenty minutes on {topic.short}, at 9:40pm. The reply takes ten. Then Parliament does now adjourn, exactly as your motion proposed, and everyone goes home.",
               "b": "Cut it to five. Let the House go home.",
@@ -139,7 +139,7 @@
               "requires": {
                 "minRank": 9
               },
-              "body": "{mp} has won the ballot for tonight's adjournment motion, on a matter your ministry handles, so the reply is yours: ten minutes, at about ten o'clock. {draft}",
+              "body": "{mp} has won the ballot for tonight's adjournment motion, a twenty-minute speech on something your ministry handles. The reply falls to you: ten minutes, at about ten o'clock, answering a colleague from your own party in public. {draft}",
               "a": "Concede the point {mp} is right about.",
               "aOut": "You concede it in your second minute and spend the other eight on what will change. {mp} thanks you across the floor. Your officials thank you less.",
               "b": "Read the draft, at a steady pace.",
@@ -169,7 +169,7 @@
         "house": [
           {
             "id": "press",
-            "text": "{journalist}, in the press gallery, has brought a sandwich."
+            "text": "{journalist}, the only reporter left in the press gallery, has brought a sandwich."
           },
           {
             "id": "empty",
@@ -177,7 +177,7 @@
           },
           {
             "id": "wait",
-            "text": "Most of those still there will be waiting for the next item, which is home."
+            "text": "Most Members still there are waiting for the item after yours: going home."
           }
         ],
         "draft": [
@@ -191,7 +191,7 @@
           },
           {
             "id": "early",
-            "text": "The draft reply was finished before the speech was."
+            "text": "Your officials finished the draft reply before the speech it answers was written."
           }
         ]
       },
@@ -245,7 +245,7 @@
               "requires": {
                 "maxRank": 8
               },
-              "body": "Committee of Supply. So that you may speak, you have filed a cut of $100 to {head}'s budget, as Standing Orders allow. You have a few minutes, a ward that wants {head.ward}, and a harder question.",
+              "body": "At the Committee of Supply, the yearly debate on each ministry's budget, you want a few minutes to speak. To get them, you have filed a motion to cut {head}'s budget by $100, as Standing Orders allow. Nobody expects the cut to pass. Your ward wants {head.ward}. You also have a harder question.",
               "a": "Ask for what your ward wants.",
               "aOut": "The Minister promises, by name, to study {head.ward}. In your ward, that counts as delivery. You ask leave to withdraw your amendment. Leave is granted.",
               "b": "Ask the harder question.",
@@ -258,7 +258,7 @@
               "requires": {
                 "minRank": 9
               },
-              "body": "Committee of Supply. Members have filed eleven cuts of $100 to your ministry's budget, and four of the replies are yours. One Member wants something for a ward. Another has asked the harder question.",
+              "body": "At the Committee of Supply, the yearly debate on each ministry's budget, Members have filed eleven token cuts of $100 to your ministry's budget, the usual way to get time to speak, and four of the replies are yours. One Member wants something for a ward. Another has asked a harder question.",
               "a": "Promise the Member a study, naming the ward.",
               "aOut": "You promise, naming the ward, to study it. Its residents count that as delivery. Your officials count it as a new workstream, with a deadline you have just set.",
               "b": "Answer the harder cut properly, past your time.",
@@ -340,24 +340,24 @@
               "requires": {
                 "maxRank": 8
               },
-              "body": "Your GPC is briefed, behind closed doors, on a scheme you once worked on. The briefer is {peer}, who joined the service with you and is now {peer.aTitle}. Slide nine leaves out what you would have left out too.",
+              "body": "Your GPC is briefed, behind closed doors, on a scheme you worked on in the service. The briefer is {peer}, {peer.aTitle} now, who started in the service the same week as you. Slide nine leaves out the scheme's weakest number, just as you would have. Asking about it would put {peer} on the spot in front of MPs.",
               "a": "Ask about what slide nine leaves out.",
               "aOut": "{peer} answers it fully, with a figure you recognise. Afterwards {peer} sends one word: \"Thanks.\" Slide nine, you realise, was left that way for somebody to ask.",
               "b": "Thank {peer} for a comprehensive briefing.",
-              "bOut": "The GPC thanks {peer}, and {peer} thanks the GPC. The scheme goes ahead as briefed, slide nine and all. GPCs publish no minutes, so the thanks are the record.",
+              "bOut": "The GPC thanks {peer}, and {peer} thanks the GPC. The scheme goes ahead as briefed, weak number and all. GPCs publish no minutes, so the thanks are the only record.",
               "c": "Ask {peer} about it afterwards, over kopi.",
-              "cOut": "{peer} comes for kopi, talks about your intake's reunion for forty minutes, and says of the scheme only: \"It's in the briefing.\" It was."
+              "cOut": "{peer} comes for kopi, talks about old colleagues for forty minutes, and says of the scheme only: \"It's in the briefing.\" It was, on page forty of the annex."
             },
             {
               "id": "office",
               "requires": {
                 "minRank": 9
               },
-              "body": "You are to brief a GPC, behind closed doors, on a scheme your ministry runs. The slides are by {peer}, who joined the service with you and is now {peer.aTitle}. Slide nine leaves out what you would have left out too.",
+              "body": "As an office holder you must brief a GPC of backbench MPs, behind closed doors, on a scheme your ministry runs. The slides are by {peer}, {peer.aTitle} now, who started in the service the same week as you. Slide nine leaves out the scheme's weakest number. The MPs will not know unless you tell them.",
               "a": "Tell them what slide nine leaves out.",
-              "aOut": "In a closed room, out loud, you name what is missing, and the GPC asks better questions for an hour. Afterwards {peer} sends one word: \"Thanks.\" The slide was left that way for you.",
+              "aOut": "In a closed room, out loud, you name what is missing, and the GPC asks better questions for an hour. Afterwards {peer} sends one word: \"Thanks.\" The slide had been left that way for you.",
               "b": "Present the slides as written.",
-              "bOut": "The GPC thanks you, and you thank the GPC. The scheme goes ahead as briefed, slide nine and all. GPCs publish no minutes, so the thanks are the record.",
+              "bOut": "The GPC thanks you, and you thank the GPC. The scheme goes ahead as briefed, weak number and all. GPCs publish no minutes, so the thanks are the only record.",
               "c": "Ask {peer} to take slide nine.",
               "cOut": "{peer} presents slide nine flawlessly and takes the hard question for you. Afterwards {peer} asks, lightly, whether you will be needing anyone for slide ten."
             }
@@ -462,7 +462,7 @@
           }
         ]
       },
-      "body": "An agency's reply notes, politely, a discrepancy. It leads to your best letter writer, {writer}. {trick} The letters work better than anyone else's.",
+      "body": "At your weekly Meet-the-People Session, volunteers write residents' appeals to agencies. One agency's reply notes, politely, a discrepancy that leads to your best letter writer, {writer}. {trick} The letters work better than anyone else's, and every one goes out on your letterhead.",
       "requires": {
         "minRank": 8,
         "maxRank": 10
@@ -498,7 +498,7 @@
             "standing": -2,
             "reputation": -1
           },
-          "outcome": "Tuesdays now end at one in the morning. The letters are accurate, and slightly less persuasive. {Writer.short} brings you kopi at eleven. You understand it to be a review."
+          "outcome": "Your Tuesdays now end at one in the morning. The letters are accurate, and slightly less persuasive. {Writer.short} brings you kopi at eleven, and you understand it to be a review."
         }
       ]
     },
@@ -541,7 +541,7 @@
           }
         ]
       },
-      "body": "The ministry has picked a site in your ward for {site}. {objection} The agency wants you beside it at Saturday's dialogue.",
+      "body": "A ministry has picked a site in your ward for {site}. {objection} The agency wants its MP beside it at Saturday's dialogue with residents, and the residents who vote for you will see where you stand.",
       "requires": {
         "minRank": 8,
         "maxRank": 10
@@ -602,7 +602,7 @@
           }
         ]
       },
-      "body": "At the Town Council meeting, the managing agent proposes taking households more than six months behind on S&CC to court. Forty are on the list. One of them is {who}.",
+      "body": "At your Town Council meeting, the managing agent proposes taking households more than six months behind on their S&CC to court. Forty are on the list, and it needs the council's approval. One of them is {who}.",
       "requires": {
         "minRank": 8,
         "maxRank": 10
@@ -659,7 +659,7 @@
           }
         ]
       },
-      "body": "Blk 438 is in {mp}'s ward, one of the team's, but its residents come to your Meet-the-People Session because {reason}. {mp} has mentioned this at the team's breakfast, as a joke, twice.",
+      "body": "Your GRC is split into wards, one for each MP on the team. Blk 438 is in {mp}'s ward, but its residents come to your Meet-the-People Session because {reason}. {mp} has mentioned this at the team's breakfast, as a joke, twice. It sounds less like a joke the second time.",
       "requires": {
         "minRank": 8,
         "maxRank": 10,
@@ -684,7 +684,7 @@
               ]
             }
           },
-          "outcome": "Blk 438 keeps coming. {mp} stops mentioning it at breakfast, which is worse. In the team's newsletter photograph you stand at one end and {mp} at the other."
+          "outcome": "Blk 438 keeps coming. {mp} stops mentioning it at breakfast. That is worse. In the team's newsletter photograph you stand at one end and {mp} at the other."
         },
         {
           "text": "Send them to {mp}, with a note on every case.",
@@ -740,7 +740,7 @@
           }
         ]
       },
-      "body": "The candidate you beat at the last election has not stopped walking your ward: {where}, in a party T-shirt, shaking hands you shook first. Your branch chairman would like you out there too, in yours.",
+      "body": "The opposition candidate you beat at the last election has not stopped campaigning in your ward: {where}, in a party T-shirt, shaking hands you shook first. If residents warm to them, your single seat is at risk next time. Your branch chairman would like you out there too, in your own T-shirt.",
       "requires": {
         "minRank": 8,
         "maxRank": 10,
@@ -877,7 +877,7 @@
           }
         ]
       },
-      "body": "On a visit, the Minister tells a crowd of residents that {promise}. Your officials, standing behind you, have told you it will be {promise.real}. The cameras are still on.",
+      "body": "On a visit with your Minister, the Minister tells a crowd of residents that {promise}. Your officials, standing behind you, have told you it will really be {promise.real}. The cameras are still on, and the residents will hold the ministry to the date they just heard.",
       "requires": {
         "minRank": 9,
         "maxRank": 10
@@ -892,7 +892,7 @@
             "reputation": 3,
             "standing": -6
           },
-          "outcome": "You say, gently, that it will be {promise.real}. The Minister says, \"Better to under-promise,\" without missing a beat. The clip is of the Minister. The car is quiet."
+          "outcome": "You say, gently, that it will be {promise.real}. The Minister says, \"Better to under-promise,\" without missing a beat. The clip is of the Minister. The car ride back is quiet."
         },
         {
           "text": "Tell the Minister in the car.",
@@ -902,7 +902,7 @@
             "standing": 2,
             "reputation": -2
           },
-          "outcome": "The Minister thanks you, and gives the right date at the next visit, crediting your officials. The residents at the first visit keep the first date, and ask after it."
+          "outcome": "The Minister thanks you, and gives the right date at the next visit, crediting your officials. The residents at the first visit remember the first date, and keep asking after it."
         },
         {
           "text": "Ask your officials to make the date.",
@@ -951,11 +951,11 @@
             "id": "shop",
             "text": "a grandmother's provision shop and its abacus",
             "short": "behind a shop counter",
-            "guest": "Afterwards a guest asks whether the shop is still there. Gone, you say, which is true of some shop, somewhere."
+            "guest": "Afterwards a guest asks whether the shop is still there. Gone, you say. It is true of some shop, somewhere."
           }
         ]
       },
-      "body": "The Minister is overseas, so tonight's speech at {event} is yours. It was written for the Minister. Paragraph three is the Minister's childhood, in the first person: {story}.",
+      "body": "Your Minister is overseas, so tonight's speech at {event} is yours. It was written for the Minister, and nobody has changed it: paragraph three is the Minister's own childhood, in the first person, {story}. You are on in ten minutes.",
       "requires": {
         "minRank": 9,
         "maxRank": 10
@@ -994,7 +994,7 @@
     {
       "id": "bench_tea",
       "title": "The Other Side of the Table",
-      "body": "You are asked to sit in on a tea for a possible candidate. The file is thin and very good. The candidate is {peer}, who joined the service with you and is now {peer.aTitle}, who does not know you will be there.",
+      "body": "The party asks you to sit on the panel at a tea, its first, informal look at a possible election candidate. The candidate is {peer}, {peer.aTitle} now, who started in the service the same week as you and does not know you will be there. The file is thin and very good. Knowing a candidate is meant to be declared.",
       "requires": {
         "minRank": 11,
         "maxRank": 16,
