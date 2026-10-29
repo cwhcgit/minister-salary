@@ -224,7 +224,7 @@ Fullness, from the 7,200 audit careers (main → branch): 29.1 → 28.84 taps pe
 
 On fresh seeds (`i*11+5`, 1,500 graduate careers, knows the win, alone): main 38.8%, branch 37.5%. The regress seeds show a larger dip for that one cell (42.1% → 38.7% at 1,200); the intervals overlap at both sizes, and the regression rule passes.
 
-"Repeated" counts a tap on a card already shown in full. It rises because a series' second showing is the same card: it now asks whether to keep the habit, where before the card came back every fourth draw to ask its first question again. The share of careers that meet a decision twice is the measure of the change (95% → 0%).
+"Repeated" counts a tap on a card already shown in full. It rises because a series' second showing is the same card: it now asks whether to keep the habit, where before the card came back every fourth draw to ask its first question again. The share of careers that meet a decision twice is the measure of the change (94% → 0%).
 
 The cost is long stays. A career that waits years in one grade (a Permanent Secretary who does not go to tea, an officer still on the first rungs at forty) used to be filled by the same cards coming back in full; now its years pass by themselves, with a Meanwhile line each. New cards for those stays are the remedy, written against this audit: the content plan's unwritten "top of the service" pack is where they belong. Three candidates written for this change were dropped because each came too close to a group here (an underspend card to the budget bid, a union representative to Meet-the-People duty, a records purge to the minutes no one wants).
 
