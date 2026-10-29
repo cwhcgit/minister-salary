@@ -129,7 +129,7 @@
           "standing": -4,
           "heat": 3
         },
-        "outcome": "The partner checks the appendix and reads out the source: a minute paper from your division, two years old. Yours. The room enjoys this more than the partner does."
+        "outcome": "The consultancy's partner checks the appendix and reads out the source: a minute paper from your division, two years old. Yours. The room enjoys this more than the partner does."
       }
     ]
   },
@@ -204,7 +204,7 @@
         "choices": [
           {
             "text": "Say what the division actually needs: more officers.",
-            "outcome": "You say the division needs three more officers, not a fourth value. The room agrees in silence, and the scribe doesn't write it down. It reaches the Permanent Secretary anyway, through the scribe."
+            "outcome": "You say the division needs three more officers, not a fourth value. The room agrees in silence, and the scribe doesn't write it down. Your point reaches the Permanent Secretary anyway, because the scribe repeats it over coffee."
           },
           {
             "text": "Propose a new value.",
@@ -222,7 +222,7 @@
         "choices": [
           {
             "text": "Say \"budget\" at 11:15.",
-            "outcome": "You point out that all four futures assume today's headcount. The facilitator writes \"resourcing\" outside the matrix, in a corner that belongs to no future at all, and the Deputy Secretary at the back makes a note."
+            "outcome": "You point out that all four futures assume today's headcount. The facilitator writes \"resourcing\" on the whiteboard outside all four futures, in a corner that belongs to none of them, and the Deputy Secretary at the back makes a note."
           },
           {
             "text": "Give the four futures names.",
@@ -390,13 +390,13 @@
           "integrity": 2,
           "competence": 2
         },
-        "outcome": "It wasn't your division. When the task force stands down, its thank-you lunch has forty-one names on the list. You know every one of them."
+        "outcome": "It wasn't your division. When the task force stands down, its thank-you lunch has forty-one names on the list, and you know every one of them. None of them is yours."
       }
     ],
     "variants": [
       {
         "title": "The Siren",
-        "body": "At 4:10am on a Saturday, every Public Warning System siren on the island sounds the Important Message signal, and no message follows. By Monday three ministries have a task force, and there's a 6pm press conference to explain that nothing happened. It isn't your division, but somebody has to write it.",
+        "body": "At 4:10am on a Saturday, every Public Warning System siren on the island sounds the Important Message signal, and no message follows. By Monday three ministries have a task force, and there's a 6pm press conference to explain that nothing happened. It isn't your division's job, but somebody has to write the statement.",
         "choices": [
           {
             "text": "Take the pen: explain, at 6pm, that nothing happened.",
@@ -561,7 +561,7 @@
           "standing": -4,
           "competence": -3
         },
-        "outcome": "You declare the card and step off the panel, with a one-page memo saying why. The panel picks the same firm without you, and the project goes to someone who wasn't in the room. Your memo is the best thing in the file.",
+        "outcome": "You declare the card and step off the panel, with a one-page memo saying why. The panel picks the same firm without you, and running the project goes to a colleague instead of you. Your memo is the best thing in the file.",
         "setFlags": [
           "recused"
         ],
@@ -886,7 +886,7 @@
             ]
           }
         },
-        "outcome": "{journalist}'s story runs that weekend, and a decision follows within a month. You were right about what needed to happen and wrong about how, and only one of those is survivable.",
+        "outcome": "{journalist}'s story runs that weekend, and a decision follows within a month. You were right about what needed to happen, and wrong to make it happen through the press. The service remembers the second part for longer.",
         "schedule": [
           {
             "eventId": "leak_resurfaces",
@@ -978,7 +978,7 @@
           },
           {
             "text": "Ask a friend at HDB what is coming up.",
-            "outcome": "He walks you through next quarter's launches over kopi, and every word goes on the website three weeks later. Technically, you only had your kopi early. Your sixth application succeeds."
+            "outcome": "He walks you through next quarter's launches over kopi, and every word goes on the website three weeks later. Technically, all you got early was public information, and a kopi. Your sixth application succeeds."
           },
           {
             "text": "Buy resale. Take the loan.",
@@ -1335,7 +1335,7 @@
           "standing": 2,
           "integrity": -2
         },
-        "outcome": "You go, do what's asked and nothing more, and the board stays in trouble. That's how it becomes a siding. Nobody assigns you to one; you accept it."
+        "outcome": "You go, do what's asked and nothing more, and the board stays in trouble. That's how a posting becomes a siding. Nobody parks you there; you park yourself."
       },
       {
         "text": "Refuse it and stay where you are visible.",
@@ -1344,7 +1344,7 @@
           "reputation": 2,
           "competence": -2
         },
-        "outcome": "You stay where people can see you, doing work that doesn't much matter. It turns out to be a worse place to be seen than a hard job nobody was watching."
+        "outcome": "You stay where people can see you, doing work that doesn't much matter. Being seen doing that turns out to count for less than a hard job nobody was watching."
       }
     ]
   },
@@ -1521,10 +1521,10 @@
           "heat": 8,
           "standing": 3
         },
-        "outcome": "The story runs without you in it, this time. You spend a fortnight finding out how much of your calm was borrowed against never being asked."
+        "outcome": "The story runs without you in it, this time. You spend a fortnight finding out how much of your calm depended on nobody ever asking."
       },
       {
-        "text": "Tell the most senior person you answer to, yourself, first.",
+        "text": "Tell the most senior person you answer to, before the reporter does.",
         "effects": {
           "heat": -30,
           "integrity": 12,
@@ -2482,7 +2482,7 @@
   {
     "id": "the_work",
     "title": "The Work",
-    "body": "{peer} has spent the year building a new scheme with you and three others, and it launches on time. It'll go out under the ministry's name, not yours; nobody's name is ever on a real one. Whether anyone upstairs learns who did the work is, this once, up to you.",
+    "body": "{peer} is building a new scheme this year with you and three others, and it has to launch on time. It'll go out under the ministry's name, not yours: no officer's name ever goes on a government scheme. Whether anyone upstairs learns who did the work is, this once, up to you.",
     "requires": {
       "minRank": 0,
       "maxRank": 7
@@ -2539,7 +2539,7 @@
         "Another ministry copies a process you redesigned, without crediting yours."
       ],
       "1": [
-        "You present the scheme at three forums, and by the third you're the scheme.",
+        "You present the scheme at three forums, and by the third, people call it your scheme.",
         "Your name is on the slide, the email and the photograph, for work that was mostly last year's.",
         "Someone from another ministry greets you by name in the lift. Being seen is working.",
         "You present the scheme at a lunchtime talk, with your photo on the poster and the team in the footnotes.",
@@ -2685,7 +2685,7 @@
         "Your visibility is discussed for forty minutes, in a room with no windows."
       ],
       "2": [
-        "You ask what isn't being done, and by March it's done and you're on a new list.",
+        "You ask what isn't being done, and by March it's done and your name is on the list for the next good posting.",
         "You ask what would have helped in this year's \"very tight\" ranking, and, unusually, you're told.",
         "The things nobody was doing become your things, each with a thank-you for asking.",
         "The list of work nobody is doing gets shorter by March and longer by June, with your name at the top.",
@@ -2723,7 +2723,7 @@
           },
           {
             "text": "Ask what {senior} wants done while away.",
-            "outcome": "{senior} lists three things. You finish two of them before the plane lands, and {senior} mentions it at the ranking meeting, the only meeting that matters."
+            "outcome": "{senior} lists three things. You finish two of them before {senior} flies home, and {senior} mentions it at the ranking meeting, the only meeting that matters."
           }
         ]
       },
@@ -2825,7 +2825,7 @@
         "You leave at seven and send things in the morning, and the building doesn't fall down.",
         "A birthday dinner, attended, while the fourth draft's comments wait until morning, as they always could.",
         "You've stopped apologising for leaving on time, and two people on your floor have started doing the same.",
-        "You leave at six, the work is in by nine the next morning, and nobody can tell it from midnight.",
+        "You leave at six, the work is in by nine the next morning, and nobody can tell it wasn't written at midnight.",
         "You leave on time, and the comments come back anyway. They're the same comments.",
         "Dinner at eight, as promised, and the fourth draft is none the worse for a night in the outbox.",
         "You go home at seven again, and the midnight reply-all happens without you in it."
@@ -3421,7 +3421,7 @@
           "competence": -1,
           "reputation": -1
         },
-        "outcome": "You rest. It turns out you needed it more than anyone needed the other two options."
+        "outcome": "You rest. It turns out you needed the rest more than anything needed fixing, or anyone needed lunch with you."
       }
     ],
     "montageEffects": {
@@ -3769,7 +3769,7 @@
           "competence": 8,
           "reputation": 6
         },
-        "outcome": "The next national conversation uses your follow-up as its template, and is built from the start around four pillars."
+        "outcome": "The next national conversation uses your follow-up as its template, and this time nobody announces the pillars until the feedback is in."
       }
     ],
     "requires": {
@@ -3834,7 +3834,7 @@
   {
     "id": "speech_vindicated",
     "title": "Hansard",
-    "body": "Something you said plainly in the House years ago went into Hansard, like everything said there. This week a newer Member quotes it in her own speech, word for word, with your name. Someone on the front bench looks up the original, and so does the press gallery.",
+    "body": "Years ago you stood up in the House and said plainly what you thought, when a safer version was ready in front of you. Your answer went into Hansard, word for word. This week a newer Member quotes it in her own speech, with your name. Someone on the front bench looks up the original, and so does the press gallery.",
     "triggered": true,
     "choices": [
       {
@@ -4862,7 +4862,7 @@
           "standing": -4,
           "heat": -12
         },
-        "outcome": "He considers this for a long time, then says that in thirty years of teaching he looked up many addresses, and hopes you were at least as worried as he usually was. The panel's report is fair. He wrote most of it."
+        "outcome": "He considers this for a long time, then says that in thirty years of teaching he looked up many pupils' addresses, usually because he was worried about them, and he hopes you were at least that worried. The panel's report is fair. He wrote most of it."
       },
       {
         "text": "Thank him for his letter, in front of the panel.",
@@ -5057,7 +5057,7 @@
           "standing": -3,
           "competence": 3
         },
-        "outcome": "You ask the next morning. HR says it will note your interest, and does. Eighteen months later you're sent somewhere difficult, and someone reads it twice."
+        "outcome": "You ask the next morning. HR says it will note your interest, and does. Eighteen months later you're sent somewhere difficult, and that posting is read twice."
       },
       {
         "text": "Thank her, and let her enjoy her drinks.",
@@ -5092,7 +5092,7 @@
           "integrity": 4,
           "standing": -1
         },
-        "outcome": "{peer} asks you two fair questions and one hard one, and you answer all three. Whether {peer} knows is still, as far as you can tell, entirely your problem."
+        "outcome": "{peer} asks you two fair questions and one hard one, and you answer all three. Whether {peer} knows that you know is still, as far as you can tell, something only you lie awake over."
       },
       {
         "text": "Let {peer} understand, very quietly, that you know.",
@@ -5112,7 +5112,7 @@
         "setFlags": [
           "quiet_word"
         ],
-        "outcome": "You mention, in passing, a Telegram channel. {peer} doesn't react at all, and that's how you know it landed. You get the post. You also have a colleague who now owes you silence, and won't forgive you for it."
+        "outcome": "You mention, in passing, a Telegram channel. {peer} doesn't react at all, and that's how you know it landed. You get the post. You also have a colleague who now depends on your silence, and won't forgive you for saying so."
       }
     ]
   },
@@ -5271,19 +5271,19 @@
   {
     "id": "other_life",
     "title": "The Other Life",
-    "body": "You declined the party's invitation to tea, years ago, when it wanted to sound you out about politics. Someone invited the same year went, and is now a Minister. On the evening news she announces a scheme your people designed, and thanks the public service, correctly, in general terms.",
+    "body": "You declined the party's invitation to tea, years ago, when it wanted to sound you out about politics. Someone invited the same year went, and is now a Minister. On the evening news, that Minister announces a scheme your people designed, and thanks the public service, correctly, in general terms.",
     "triggered": true,
     "requires": {
       "maxRank": 7
     },
     "choices": [
       {
-        "text": "Send her a note of congratulations.",
+        "text": "Send the Minister a note of congratulations.",
         "effects": {
           "standing": 4,
           "reputation": 2
         },
-        "outcome": "She replies by hand. She remembers the year you were both invited, and says she has wondered since which of you chose right. She doesn't say which way she has decided."
+        "outcome": "The Minister replies by hand, remembering the year you were both invited and wondering since which of you chose right. The reply doesn't say which way the Minister has decided."
       },
       {
         "text": "Turn off the television and go back to the file.",
@@ -5298,7 +5298,7 @@
   {
     "id": "younger_officer",
     "title": "The Younger Officer",
-    "body": "Years ago the party invited you to tea too. You told its vetting everything in your folder, and never heard from the party again. Now a younger officer asks you over kopi whether she should go: she has just been invited. She knows none of this.",
+    "body": "Years ago the party invited you to tea too. At the background check that followed, you told them everything, including what wasn't in their folder on you, and you never heard from the party again. Now a younger officer asks you over kopi whether she should go: she has just been invited. She knows none of this.",
     "triggered": true,
     "requires": {
       "maxRank": 7,
