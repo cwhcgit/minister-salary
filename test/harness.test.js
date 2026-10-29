@@ -443,4 +443,19 @@ ok('story chains: Declassified names each story once, a bond can be extended, an
   assert.ok(L.indexOf('The test') > L.indexOf('Exposure'), 'story lines come after Exposure');
 });
 
+ok('a cast member\'s aTitle takes "a" or "an" by how the title is said, initialisms by their first letter', () => {
+  const E = build.engine, C = build.content;
+  for (const [w, a] of [['MP', 'an'], ['RC chairman', 'an'], ['SMC', 'an'], ['HDB flat', 'an'], ['FAQ', 'an'], ['CCC chairman', 'a'], ['CCMC chairman', 'a'],
+    ['GRC', 'a'], ['URA officer', 'a'], ['Assistant Director', 'an'], ['Director', 'a'], ['Member of Parliament', 'a'], ['editor', 'an']])
+    assert.strictEqual(E.article(w), a, `${a} ${w}`);
+  // as rendered: a grassroots leader by post, a junior by grade
+  const S = JSON.parse(JSON.stringify(H.newRun('grad', 3, { build }).S));
+  const person = (role, extra) => ({ id: 990, role, nm: { given: 'Kai Wen', formal: 'Pang', full: 'Pang Kai Wen' }, pron: 'm', ageOff: 0, rank: 0, since: 1, rankYear: 1, flags: [], ...extra });
+  for (const [post, want] of [['RC chairman', 'an RC chairman'], ['CCC chairman', 'a CCC chairman'], ['CCMC chairman', 'a CCMC chairman']])
+    assert.strictEqual(E.personField(C, S, 'grassroots', person('grassroots', { post }), 'aTitle'), want);
+  assert.strictEqual(E.personField(C, S, 'junior', person('junior', { rank: 2 }), 'aTitle'), 'an Assistant Director');
+  assert.strictEqual(E.personField(C, S, 'junior', person('junior', { rank: 4 }), 'aTitle'), 'a Director');
+  assert.strictEqual(E.personField(C, S, 'mp', person('mp', { rank: 8 }), 'aTitle'), 'a Member of Parliament');
+});
+
 console.log(`\nAll ${passed} harness tests passed.`);

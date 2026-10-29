@@ -149,11 +149,18 @@ const Engine = (() => {
       case "given": return p.nm.given;
       case "formal": return `${hon} ${p.nm.formal}`;
       case "title": return personTitle(content, cfg, p, s);
-      case "atitle": { const t = personTitle(content, cfg, p, s); return (/^[aeiou]/i.test(t) ? "an " : "a ") + t; }
+      case "atitle": { const t = personTitle(content, cfg, p, s); return article(t) + " " + t; }
       case "they": case "them": case "their": return P[f];
       case "years": { const n = s.year - p.since; return n < 1 ? "less than a year" : n === 1 ? "a year" : `${NUM_WORDS[n] || n} years`; }
       default: return null;
     }
+  }
+  // "a" or "an", by how the word is said. An initialism is read letter by letter, so it goes by
+  // its first letter's name: an MP, an RC, an SMC, an HDB flat; a CCC, a GRC, a URA.
+  function article(t) {
+    const w = (String(t).match(/^[A-Za-z]+/) || [""])[0];
+    if (w.length >= 2 && w === w.toUpperCase()) return /^[AEFHILMNORSX]/.test(w) ? "an" : "a";
+    return /^[aeiou]/i.test(w) ? "an" : "a";
   }
   const NUM_WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
   function castSub(content, s, text) {
@@ -1765,7 +1772,7 @@ const Engine = (() => {
     finalLabels, recentKeys,
     // cast and card parts, for the immersion lint and the tests
     render, applyVariant, partSlots, partCombos, roleNeeds, optionNeeds, maxRankForAge, personField, TOKEN,
-    STATS, QUIET: QUIET_YEAR };
+    article, STATS, QUIET: QUIET_YEAR };
 })();
 
 if (typeof module !== "undefined") module.exports = Engine;
