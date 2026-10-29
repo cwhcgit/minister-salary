@@ -67,7 +67,7 @@ server.listen(0, async () => {
     expect('start name placeholder', $('#nm').placeholder, View.startCard(build, 'grad').namePlaceholder);
     expect('start genders', $$('.gender .g').map(g => g.textContent).join(' | '), View.startCard(build, 'grad').genders.join(' | '));
     expect('start gender chosen', $$('.gender .g').map(g => g.getAttribute('aria-checked')).join(' '), 'true false');
-    let screens = 0, payLines = 0;
+    let screens = 0, payLines = 0, witnessLines = 0, witnessFiles = 0;   // (witnesses: seeds vary, so counted, not required)
 
     // three careers without a batchmate, then three with one; as Female and as Male, with a typed
     // name and with the field left blank (a name is drawn for the run)
@@ -147,6 +147,7 @@ server.listen(0, async () => {
             }
             if (k < pages.length - 1) pg.querySelector('.more').click();
           });
+          witnessLines += (st.log || []).filter(l => l.about === 'witness').length;
           screens++;
           $('#next').click(); await wait(5);
         } else throw new Error('unexpected phase ' + st.phase);
@@ -168,6 +169,8 @@ server.listen(0, async () => {
         expect(`stat ${i} value`, el.querySelector('.rk .v').textContent, want.stats[i].value);
         expect(`stat ${i} verdict`, el.querySelector('.t').textContent, want.stats[i].verdict);
       });
+      const W = build.content.witnesses && build.content.witnesses.lines;
+      if (W) witnessFiles += want.declassified.filter(d => d.label === W.label || d.label === W.restLabel).length;
       const dls = $$('.dl');
       expect('declassified count', dls.length, want.declassified.length);
       dls.forEach((el, i) => {
@@ -180,6 +183,7 @@ server.listen(0, async () => {
 
     if (payLines < 50) mismatches.push(`only ${payLines} pay lines from the second year on were checked against last year`);
     else console.log(`✓ ${payLines} pay lines from the second year on each say how they compare with last year`);
+    console.log(`✓ ${witnessLines} review lines and ${witnessFiles} Declassified entries from hidden witnesses among the screens compared`);
     if (mismatches.length) {
       console.log(`\n✗ ${mismatches.length} differences between the phone and harness/screen.js:`);
       mismatches.slice(0, 25).forEach(m => console.log('  ' + m));

@@ -1458,10 +1458,12 @@ const Engine = (() => {
   function appraise(content, s) {
     const noise = (roll(s) * 10) - 5;
     const mod = s.appraisalMod;
-    const score = 0.50 * s.competence + 0.30 * s.standing + 0.15 * s.reputation + noise + mod;
+    const wit = witnessDue(content, s);   // hidden witnesses whose judgement lands this year
+    const score = 0.50 * s.competence + 0.30 * s.standing + 0.15 * s.reputation + noise + mod + wit.mod;
     s.appraisalMod = 0;
-    return { grade: content.grades.find(g => score >= g.min), score, noise, mod };
+    return { grade: gradeAt(content, score), score, noise, mod, wit };
   }
+  const gradeAt = (content, x) => content.grades.find(g => x >= g.min) || content.grades[content.grades.length - 1];
 
   // --- the four stats, in words ---------------------------------------------------
   // The stats are never shown as numbers during play, only in words (content.statWords): the
@@ -1688,7 +1690,7 @@ const Engine = (() => {
     if (plan && !finalYear && plan.last <= s.age) plan.last = s.age + 1;
     // A Prime Minister has no appraisal: the year is the tenure's card, the package and the news.
     if (s.rank === 16 && s.pmTenure) return pmYearEnd(content, s, t, log, finalYear);
-    let { grade, score, noise, mod } = appraise(content, s);
+    let { grade, score, noise, mod, wit } = appraise(content, s);
     // The first appraisal comes after months in the job, not years: it can be middling, not a D.
     if (s.year <= 1 && grade.code === "D") grade = content.grades.find(g => g.code === "C") || grade;
     t.appraisal = { grade: grade.code, score, noise, noted: mod };
@@ -1698,6 +1700,7 @@ const Engine = (() => {
     log.push({ kind: "appraisal", text: `Grade ${grade.code}. ${mod < 0
       ? `${label} The comments section includes the word "however".` : label}` });
     log.push({ kind: "why", facts: whyFacts(content, s, grade, mod) });
+    witnessReview(content, s, log, t, grade, score, wit);   // what somebody noticed, if it moved the grade
 
     // the last review: nothing that follows from a grade (a warning, a plan, a move) is to come
     if (grade.code === "C" && !finalYear) s.consecutiveC++; else s.consecutiveC = 0;
@@ -2198,6 +2201,7 @@ const Engine = (() => {
     const before = { year: s.year, age: s.age, cep: s.cep, heat: s.heat, rank: s.rank };
     const trace = {};
     const log = applyChoice(content, s, ev, ch, trace);
+    witnessSee(content, s, ev, ci, ch, trace);            // who, unseen, noticed what was chosen
     const moved = STATS.map(k => [k, s[k] - state[k]]);   // what this choice did to the four stats
     // in politics when they chose: an MP, or a candidate on the election card
     const pol = state.rank >= 8 || s.rank >= 8 || ev.id === "the_election";
@@ -2268,6 +2272,157 @@ const Engine = (() => {
     s.currentEvent = ev.id;
     return { state: s, event: eventOf(content, s) };
   }
+
+  // --- hidden witnesses ----------------------------------------------------------
+  // Somebody is always watching whom you don't expect: the officer who countersigns your
+  // appraisal, the office whose email it was, the panel that ranks you, the people around you.
+  // A card lists who could plausibly know what the player did there (card.witnesses), and each
+  // kind of witness (game.json witnesses.types) judges by its own motive, so the same act can help
+  // with one and hurt with another. It is an add-on: a card's own effects are untouched.
+  //
+  //   "witnesses": {
+  //     "did": ["nothing about the plan leaked from you", ...],   one per choice, for Declassified
+  //     "by": { "<type>": { "chance": 0.5 | [one per choice],     how likely they are to notice
+  //                         "react": [3, -4, 0],                   per choice: appraisal points, later
+  //                         "cep": [0, 1, 0],                      optional, rare: the ceiling, now
+  //                         "requires": { "variants": [0], "parts": { "to": ["minister"] }, ... } } }
+  //   }
+  //
+  // When the player chooses, each witness who could be there for this showing (the version, the
+  // part options and any card requirement) has its chance of noticing. One who notices and cares
+  // moves one later appraisal, one to three years on (witnesses.delay), once: like a "noted"
+  // choice, but late and unannounced. Several landing in one year are capped (witnesses.cap). A
+  // witness from the service has no say once the player is in Parliament: its judgement lapses.
+  // A rare, strong case raises the ceiling by a grade when it is noticed (Declassified then names
+  // the card as the move, as for any choice that raised it).
+  //   Nobody is ever named. When a witness moves a grade, the review page says what was noticed
+  // about half the time (witnesses.show), in a line from that witness's own pool that this run has
+  // not shown; otherwise nothing is said. The ending's Declassified file lists what was noticed.
+  //   Every die here is drawn on the witnesses' own stream, keyed by the card, the year and the
+  // witness, so the run's own dice never move, and a run that meets no witness who notices
+  // anything plays exactly as it did before.
+  const WIT = content => content.witnesses || null;
+  const witDie = (s, key) => rng((s.seed ^ hashStr("witness:" + key)) >>> 0)();
+  const perChoice = (x, ci) => (Array.isArray(x) ? x[ci] : x) || 0;
+  const witLine = (W, key, fallback) => (((W && W.lines) || {})[key]) || fallback;
+
+  // The witnesses a card lists who could be there for this showing.
+  function witnessesOn(content, s, ev) {
+    const W = WIT(content), by = ev && ev.witnesses && ev.witnesses.by;
+    if (!W || !by) return [];
+    const variant = typeof ev.variant === "number" ? ev.variant : 0;
+    return Object.entries(by).filter(([type, w]) => {
+      const q = w.requires || {};
+      if (!W.types[type]) return false;
+      if (q.variants && !q.variants.includes(variant)) return false;
+      for (const [slot, ids] of Object.entries(q.parts || {})) if (!ev.picked || !ids.includes(ev.picked[slot])) return false;
+      return meets(q, s);
+    });
+  }
+
+  // After a choice: who noticed. Each is kept with the year their judgement lands.
+  function witnessSee(content, s, ev, ci, ch, t) {
+    const W = WIT(content), on = witnessesOn(content, s, ev);
+    if (!on.length) return;
+    const [d0, d1] = W.delay || [1, 3], key = `${ev.id}#${s.year}`;
+    for (const [type, w] of on) {
+      const mod = perChoice(w.react, ci), cep = perChoice(w.cep, ci);
+      if (!mod && !cep) continue;                                           // they saw it, and didn't mind
+      if (witDie(s, `${key}:${type}:seen`) >= perChoice(w.chance, ci)) continue;   // nobody noticed
+      const delay = d0 + Math.floor(witDie(s, `${key}:${type}:delay`) * (d1 - d0 + 1));
+      const did = ((ev.witnesses.did || [])[ci]) || null;
+      const e = { card: ev.id, title: ev.title, choice: ci, text: ch.text, did, type, mod, age: s.age, year: s.year,
+        service: s.rank < 8, due: s.year + delay };
+      if (cep) { e.ceiling = [s.cep, clamp(s.cep + cep, 0, 16)]; s.cep = e.ceiling[1]; }
+      (s.witness = s.witness || { seen: [] }).seen.push(e);
+      (t.witness = t.witness || []).push({ type, mod, cep: cep || 0, due: e.due });
+    }
+  }
+
+  // At an appraisal: the judgements due by this year, on the ladder they were made on; the rest of
+  // those due lapse. Returns the total (capped) and the entries.
+  function witnessDue(content, s) {
+    const W = WIT(content), all = (s.witness && s.witness.seen) || [];
+    const here = [];
+    if (W) for (const e of all) {
+      if (e.landed || e.lapsed || !e.mod || e.due > s.year) continue;
+      if (e.service !== (s.rank < 8)) e.lapsed = s.year; else here.push(e);
+    }
+    const cap = W && W.cap || 8;
+    return { mod: clamp(here.reduce((n, e) => n + e.mod, 0), -cap, cap), due: here };
+  }
+
+  // The review page: whether this year's judgements moved the grade, and, about half the time when
+  // they did, one line saying what was noticed. Each judgement keeps what it did, for the ending.
+  function witnessReview(content, s, log, t, grade, score, wit) {
+    if (!wit || !wit.due.length) return;
+    const W = WIT(content), cap = W.cap || 8;
+    const bare = score - wit.mod, without = gradeAt(content, bare).code;
+    t.appraisal.witness = wit.mod;
+    let lead = null;
+    for (const e of wit.due) {
+      // the grade without this one: alone, or as the biggest of several that moved it together
+      const other = clamp(wit.due.reduce((n, x) => n + x.mod, 0) - e.mod, -cap, cap);
+      const alone = gradeAt(content, bare + other).code;
+      e.landed = { year: s.year, age: s.age, grade: grade.code, without: alone !== grade.code ? alone : null };
+      if (e.landed.without && (!lead || Math.abs(e.mod) > Math.abs(lead.mod))) lead = e;
+    }
+    if (!lead && without !== grade.code) {
+      lead = wit.due.filter(e => Math.sign(e.mod) === Math.sign(wit.mod)).sort((a, b) => Math.abs(b.mod) - Math.abs(a.mod))[0];
+      if (lead) lead.landed.without = without;
+    }
+    if (!lead) return;
+    t.witnessMoved = { grade: grade.code, without: lead.landed.without, type: lead.type };   // for traces
+    if (witDie(s, `show#${s.year}`) >= (W.show === undefined ? 0.5 : W.show)) return;
+    const sign = lead.mod > 0 ? "help" : "hurt", lines = ((W.types[lead.type].review || {})[sign]) || [];
+    const key = `__witness:${lead.type}:${sign}`, i = pickLine(s, key, lines.length, false);
+    if (i === null) return;   // every line for it has been shown this run: nothing is said
+    useLine(s, key, i);
+    lead.landed.shown = true;
+    log.push({ kind: "note", about: "witness", text: lines[i] });
+  }
+
+  // The ending: one line for each judgement that moved a grade or the ceiling, saying what was
+  // noticed and what it did, then one for the rest. Never who.
+  function declassifyWitnesses(content, s) {
+    const W = WIT(content), all = (s.witness && s.witness.seen) || [];
+    if (!W || !all.length) return [];
+    const art = g => `${article(g)} ${g}`;
+    const told = new Map();   // each witness's Declassified lines, in an order drawn from the seed
+    const typeLine = (type, sign) => {
+      const lines = (((W.types[type] || {}).declassified || {})[sign]) || [];
+      if (!lines.length) return witLine(W, "noticed", "Somebody noticed.");
+      const k = `${type}:${sign}`, n = told.get(k) || 0;
+      told.set(k, n + 1);
+      const r = rng((s.seed ^ hashStr("witness-file:" + k)) >>> 0), order = lines.map((_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+      return lines[order[n % order.length]];
+    };
+    const when = n => (witLine(W, "when", [])[n - 1]) || fillW(witLine(W, "whenMany", "{n} years later"), { n: NUM[n] || n });
+    const raised = e => e.ceiling && Math.min(e.ceiling[1], 8) > Math.min(e.ceiling[0], 8) && e.service;
+    const telling = all.filter(e => (e.landed && e.landed.without) || raised(e));
+    const out = telling.sort((a, b) => a.year - b.year).map(e => {
+      const did = e.did || fillW(witLine(W, "didFallback", "on \"{title}\", you chose \"{text}\""), { title: e.title, text: e.text });
+      const sign = e.mod > 0 || (!e.mod && raised(e)) ? "help" : "hurt";
+      const parts = [`At ${e.age}, ${did}${/[.!?]"?$/.test(did) ? "" : "."}`, typeLine(e.type, sign)];
+      if (e.landed && e.landed.without) parts.push(fillW(witLine(W, "moved", "Your grade {when} was {grade}, not {without}."),
+        { when: when(e.landed.year - e.year), grade: art(e.landed.grade), without: art(e.landed.without) }));
+      if (raised(e)) parts.push(witLine(W, e.landed && e.landed.without ? "ceilingToo" : "ceiling", "It raised your ceiling in the service by a grade. Nobody mentioned it."));
+      return { label: witLine(W, "label", "Noticed"), text: parts.join(" ") };
+    });
+    // everything else somebody noticed: counted without moving a grade, still waiting at the end,
+    // or lapsed when the player left the service
+    const rest = all.length - telling.length;
+    if (rest) out.push({ label: witLine(W, out.length ? "restLabel" : "label", out.length ? "Also noticed" : "Noticed"),
+      text: fillW((rest === 1 ? witLine(W, "restOne", "One{more} thing you did was noticed, and never changed a grade.")
+        : rest === 2 ? witLine(W, "restTwo", "Two{more} things you did were noticed, and neither changed a grade.")
+        : witLine(W, "restMany", "{N}{more} things you did were noticed, and none of them changed a grade.")),
+        { N: cap(COUNT[rest] || "many"), more: out.length ? " more" : "" }) });
+    return out;
+  }
+  const COUNT = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+    "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
+  const fillW = (t, fill) => String(t).replace(/\{(\w+)\}/g, (m, k) => (fill[k] !== undefined ? fill[k] : m));
 
   // --- the ending: legacy and the declassified file --------------------------
   // Wealth is the machine's score. Legacy is the other one: what the people you worked
@@ -2461,6 +2616,7 @@ const Engine = (() => {
       out.push({ label: d.label, text: sub(d.text, s, content) });
     }
 
+    out.push(...declassifyWitnesses(content, s));   // what was noticed, never who noticed it
     if (s.rival) out.push(...declassifyRival(content, s));
     out.push({ label: "Legacy", text: legacy(content, s) });
     return out;

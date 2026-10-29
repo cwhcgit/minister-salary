@@ -1330,7 +1330,7 @@
           ]
         }
       },
-      "body": "Nine MPs have filed Parliamentary Questions on one of your ministry's policies, {policy}, and you will give the replies in the House. Your officials' draft ends by saying the policy \"remains under review\", in square brackets: keep the phrase, or cut it? Whatever you say will be in Hansard, under your name, for good.",
+      "body": "Nine MPs have filed Parliamentary Questions on one of your ministry's policies, {policy}, and you will give the replies in the House, as Members call Parliament. Your officials' draft ends by saying the policy \"remains under review\", in square brackets: keep the phrase, or cut it? Whatever you say will be in Hansard, the word-for-word record of Parliament, under your name, for good.",
       "requires": { "minRank": 9, "maxRank": 10, "flagsNone": ["moved_ministry"] },
       "weight": 8,
       "once": true,

@@ -197,7 +197,8 @@
       "match": "\\bHansard\\b",
       "entryPoints": [
         "maiden_speech",
-        "the_pq"
+        "the_pq",
+        "uturn_questions"
       ]
     },
     {
@@ -225,7 +226,8 @@
       "match": "\\b(?:[Tt]he|[Tt]his) House\\b",
       "entryPoints": [
         "maiden_speech",
-        "the_pq"
+        "the_pq",
+        "uturn_questions"
       ]
     },
     {
