@@ -1,0 +1,781 @@
+{
+  "note": "Every term a newcomer to Singapore's government would not know, and where the game introduces it. Not loaded by the game: test/jargon.js checks that each term's first appearance in a career is on one of its entry points, a card whose story makes the meaning clear. `meaning` is for writers and never appears in the game. `match` is a JavaScript regular expression for the term's uses; `skip` lists phrases it must not match. An entry point is a card id, \"start\" (the start screen), \"header\" (rank, grade and ministry), or a path into game.json or rival.json for lines shown outside cards.",
+  "terms": [
+    {
+      "term": "CEP",
+      "meaning": "Currently Estimated Potential: HR's private estimate of the highest grade an officer will ever reach, set early and never told to them.",
+      "match": "\\bCEP\\b|Currently Estimated Potential",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "the ranking",
+      "meaning": "Each year senior officers rank officers of the same grade against each other; only the top of the ranking is promoted.",
+      "match": "\\branking\\b|\\branked\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "appraisal",
+      "meaning": "The yearly performance grade (A, B+, B, C, D) that decides promotion; written by your reporting officer.",
+      "match": "\\bappraisals?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "reporting officer",
+      "meaning": "Your direct boss in the service: the person who writes your appraisal.",
+      "match": "\\breporting officers?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "grade codes",
+      "meaning": "The service's salary grades: MX13 at the bottom up to MX9, then Superscale and Staff Grade; MR4 to MR1 for ministers.",
+      "match": "\\bMX ?(?:9|1[0-3])\\b|\\bMR ?[1-4]\\b|\\bSuperscale\\b|\\bStaff Grade\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "minute paper",
+      "meaning": "A short internal memo that sets out a problem and a recommendation, sent up the line for a decision.",
+      "match": "\\bminute papers?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "statutory board",
+      "meaning": "A government agency set up by its own Act of Parliament, run at arm's length from its ministry (HDB, CPF Board, LTA).",
+      "match": "\\bstatutory boards?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Official (Closed)",
+      "meaning": "A security marking for documents that may be read only by the officers they are sent to.",
+      "match": "Official \\(Closed\\)",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "SECRET",
+      "meaning": "A high security classification; reading such a document needs clearance at that level.",
+      "match": "\\bSECRET\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "the registry",
+      "meaning": "The office that logs, stores and tracks every classified document in a building.",
+      "match": "\\bregistry\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Inter-Ministry Committee",
+      "meaning": "A committee of officials from several ministries set up to settle a question none can settle alone.",
+      "match": "Inter-Ministry Committee",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "secretariat",
+      "meaning": "The officers who write a committee's papers and minutes and do its work between meetings.",
+      "match": "\\bsecretariat\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "PSC",
+      "meaning": "The Public Service Commission: awards government scholarships, holds the bond, and appoints and disciplines senior officers.",
+      "match": "\\bPSC\\b|Public Service Commission",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "PSD",
+      "meaning": "The Public Service Division of the Prime Minister's Office: runs the civil service's careers, pay and training.",
+      "match": "\\bPSD\\b|Public Service Division",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "bond",
+      "meaning": "The years of service a government scholar must serve in return for the scholarship; leaving early means paying damages.",
+      "match": "\\bbond(?:s|ed)?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "sureties",
+      "meaning": "People, usually family, who sign the bond deed with a scholar and promise to pay if the scholar breaks it.",
+      "match": "\\bsureties\\b|\\bsurety\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "scholar",
+      "meaning": "In the service, an officer who studied on a government scholarship, expected to rise fast.",
+      "match": "\\bscholars?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Administrative Service",
+      "meaning": "The elite scheme of the civil service from which Permanent Secretaries are drawn.",
+      "match": "Administrative Service",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Auditor-General",
+      "meaning": "The Auditor-General's Office: audits government ministries and agencies and reports to Parliament.",
+      "match": "Auditor-General",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "circular",
+      "meaning": "An official instruction or notice sent round to every officer or agency it concerns.",
+      "match": "\\bcirculars?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "D&D",
+      "meaning": "Dinner-and-dance: a division's annual party, with a theme, a band and a lucky draw.",
+      "match": "D&D|dinner-and-dance",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "lo hei",
+      "meaning": "The Chinese New Year custom of tossing a raw-fish salad (yusheng) high while shouting good wishes.",
+      "match": "\\b[Ll]o [Hh]ei\\b|\\byusheng\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "seventh month",
+      "meaning": "The Hungry Ghost month of the lunar calendar, when the spirits of the dead are said to roam.",
+      "match": "seventh month|Hungry Ghost",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "National Day Awards",
+      "meaning": "State honours announced each National Day; the medals (pingat) are presented at an investiture.",
+      "match": "\\bPingat\\b|National Day Awards?|\\binvestiture\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Permanent Secretary",
+      "meaning": "The most senior civil servant in a ministry, answering to its Minister.",
+      "match": "Permanent Secretar(?:y|ies)|\\bPermanent Secretary's\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Deputy Secretary",
+      "meaning": "The rank just below Permanent Secretary; runs part of a ministry.",
+      "match": "Deputy Secretar(?:y|ies)",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Careers@Gov",
+      "meaning": "The government's job portal, where most officers apply.",
+      "match": "Careers@Gov",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "SAF",
+      "meaning": "The Singapore Armed Forces.",
+      "match": "\\bSAF\\b|Singapore Armed Forces",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Hansard",
+      "meaning": "The official word-for-word record of everything said in Parliament.",
+      "match": "\\bHansard\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Question Time",
+      "meaning": "The hour when MPs put questions to ministers in Parliament, filed in advance as Parliamentary Questions.",
+      "match": "Question Time|Parliamentary Questions?|\\bPQs?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "supplementary question",
+      "meaning": "A follow-up question an MP may ask straight after a minister's answer, without notice.",
+      "match": "\\b[Ss]upplementar(?:y|ies)\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "the House",
+      "meaning": "Parliament, as its members call it.",
+      "match": "\\b(?:the|this|The|This) House\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "the Whip",
+      "meaning": "The party's officer in Parliament who makes sure its MPs attend and vote as the party decides.",
+      "match": "\\b[Ww]hip\\b|\\bWhip's\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "reshuffle",
+      "meaning": "When the Prime Minister moves ministers and office holders between jobs.",
+      "match": "\\breshuffles?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Meet-the-People Session",
+      "meaning": "An MP's weekly evening session where residents bring their problems and volunteers write appeal letters for them.",
+      "match": "Meet-the-People",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "GRC",
+      "meaning": "Group Representation Constituency: a large ward where voters elect a team of MPs together.",
+      "match": "\\bGRCs?\\b|Group Representation Constituenc",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "single seat",
+      "meaning": "Single Member Constituency: a ward that elects one MP, who runs alone.",
+      "match": "\\bsingle seats?\\b|\\bSMCs?\\b|Single Member Constituenc",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "stand (for election)",
+      "meaning": "To run in an election as a candidate.",
+      "match": "\\b(?:stand|stands|standing|stood)\\b(?= (?:again|once more|one more time|for (?:Parliament|election)|at the (?:same |next |first )?general election|with the team|in (?:a|the) (?:GRC|single seat))|: with a GRC|\\.)|resigned from the service to stand",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "the tea",
+      "meaning": "The ruling party's first, informal approach to someone it may field at an election: an invitation to tea.",
+      "match": "\\btea\\b(?! break)",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "walkabout",
+      "meaning": "An MP's or candidate's walk through a market, hawker centre or estate, meeting residents.",
+      "match": "\\bwalkabouts?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Nomination Day",
+      "meaning": "The day candidates file their papers to stand in an election; campaigning starts then.",
+      "match": "Nomination Day",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Cooling-off Day",
+      "meaning": "The day before polling day, when campaigning is banned.",
+      "match": "Cooling-off Day",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "sample count",
+      "meaning": "An early count of a sample of votes, published on election night before the full result.",
+      "match": "sample count",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "polling day",
+      "meaning": "Election day, when voters cast their votes.",
+      "match": "\\b[Pp]olling [Dd]ay\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Committee of Supply",
+      "meaning": "The weeks of Budget debate when Parliament goes through each ministry's spending and ministers announce new schemes.",
+      "match": "Committee of Supply",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "GPC",
+      "meaning": "Government Parliamentary Committee: the ruling party's backbenchers who shadow one ministry.",
+      "match": "\\bGPCs?\\b|Government Parliamentary Committee",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "backbencher",
+      "meaning": "An MP who holds no office in the government.",
+      "match": "\\b[Bb]ack ?bench(?:er|ers|es)?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "front bench",
+      "meaning": "The seats in Parliament where ministers sit; the ministers themselves.",
+      "match": "\\bfront bench\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "maiden speech",
+      "meaning": "A new MP's first speech in Parliament.",
+      "match": "maiden speech",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "President's Address",
+      "meaning": "The speech that opens each term of Parliament, setting out the government's plans; MPs then debate it.",
+      "match": "President's Address",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Standing Orders",
+      "meaning": "Parliament's rule book; its Standing Orders Committee decides how the rules apply.",
+      "match": "Standing Orders",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "anchor minister",
+      "meaning": "The senior minister who leads a party's team of candidates in a GRC.",
+      "match": "anchor minister",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "party branch",
+      "meaning": "The party's local office and volunteers in an MP's ward.",
+      "match": "\\bbranch (?:chairman|secretary|meeting|activists?)\\b|\\b(?:[Tt]he|[Yy]our|party's) branch\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "grassroots adviser",
+      "meaning": "The person, usually the ruling party's MP or candidate, appointed to advise a ward's community organisations.",
+      "match": "\\bgrassroots advisers?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "CCC, RC, CCMC",
+      "meaning": "A ward's community committees (Citizens' Consultative Committee, Residents' Committee, Community Club Management Committee), run by grassroots volunteers.",
+      "match": "\\b(?:CCC|RC|CCMC)s?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Town Council",
+      "meaning": "The body, run by a ward's MPs, that maintains and manages the HDB estates in it.",
+      "match": "Town Council",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "National Bonus",
+      "meaning": "Extra pay for ministers and senior officials, from none up to six months' salary, tied to four national numbers.",
+      "match": "National Bonus",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "percentile",
+      "meaning": "Income at the 20th percentile: the income of a worker paid less than four in five workers; one of the National Bonus's four numbers.",
+      "match": "\\bpercentiles?\\b|\\b20th-percentile\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "the Istana",
+      "meaning": "The President's official residence, where ministers are sworn in.",
+      "match": "\\bIstana\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "National Day Rally",
+      "meaning": "The Prime Minister's yearly speech to the nation in August, in several languages.",
+      "match": "National Day Rally",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "MP",
+      "meaning": "Member of Parliament.",
+      "match": "\\bMPs?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "tripartite",
+      "meaning": "The standing partnership of the government, the unions and the employers, which sets wage guidelines together.",
+      "match": "\\b[Tt]ripartite\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "POFMA",
+      "meaning": "The law against online falsehoods: a minister can direct a post's author to attach a correction notice to it.",
+      "match": "\\bPOFMA\\b|correction direction",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "CPF",
+      "meaning": "Central Provident Fund: the compulsory savings account every worker pays into, for retirement, housing and health.",
+      "match": "\\bCPF\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "HDB",
+      "meaning": "The Housing and Development Board: builds and sells the public flats most Singaporeans live in.",
+      "match": "\\bHDB\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "BTO",
+      "meaning": "Build-To-Order: a new HDB flat, sold by ballot before it is built.",
+      "match": "\\bBTO\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "resale flat",
+      "meaning": "An HDB flat bought second-hand from its owner, at market price.",
+      "match": "\\bresale\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "non-mature estate",
+      "meaning": "A newer HDB town, further out and with fewer amenities; flats there are cheaper.",
+      "match": "non-mature",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Standard, Plus, Prime",
+      "meaning": "HDB's three classes of flat: Plus and Prime flats are more central and subsidised more, and come with longer stays and repayments when sold.",
+      "match": "\\bPrime (?:project|launch|flats?)\\b|Standard, Plus or Prime|\\bPlus or Prime\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "four-room",
+      "meaning": "An HDB flat with three bedrooms and a living room.",
+      "match": "four-room",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "MRT",
+      "meaning": "Singapore's train system.",
+      "match": "\\bMRT\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "ERP",
+      "meaning": "Electronic Road Pricing: road tolls charged automatically at gantries, by time of day.",
+      "match": "\\bERP\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "void deck",
+      "meaning": "The open ground floor of an HDB block, used for meeting, chess, weddings and funerals.",
+      "match": "void decks?",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "kopi",
+      "meaning": "Coffee, local style, from a coffee shop.",
+      "match": "\\bkopi\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "hawker centre",
+      "meaning": "An open-air food court of cheap food stalls; a hawker runs one.",
+      "match": "\\bhawkers?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "CCA",
+      "meaning": "Co-curricular activity: a school club or sport every student joins.",
+      "match": "\\bCCAs?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "PSLE",
+      "meaning": "The national exam at the end of primary school, which decides secondary school places.",
+      "match": "\\bPSLE\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "polyclinic",
+      "meaning": "A government outpatient clinic in a housing estate.",
+      "match": "\\bpolyclinics?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "MediShield",
+      "meaning": "The national basic health insurance scheme.",
+      "match": "MediShield",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "NParks",
+      "meaning": "The National Parks Board: runs parks and the trees along roads.",
+      "match": "NParks",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "PUB",
+      "meaning": "The national water agency.",
+      "match": "\\bPUB\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "STB",
+      "meaning": "The Singapore Tourism Board.",
+      "match": "\\bSTB\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "IRAS",
+      "meaning": "The tax authority.",
+      "match": "\\bIRAS\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "MOF",
+      "meaning": "The Ministry of Finance.",
+      "match": "\\bMOF\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "NEA",
+      "meaning": "The National Environment Agency.",
+      "match": "\\bNEA\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "MFA",
+      "meaning": "The Ministry of Foreign Affairs.",
+      "match": "\\bMFA\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "MOH, MOT, MSF, MND",
+      "meaning": "Ministry of Health, of Transport, of Social and Family Development, of National Development.",
+      "match": "\\b(?:MOH|MOT|MSF|MND)\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "S&CC",
+      "meaning": "Service and conservancy charges: the monthly fee HDB residents pay their Town Council.",
+      "match": "S&CC",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "MSCP",
+      "meaning": "A multi-storey car park in an HDB estate.",
+      "match": "\\bMSCP\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "PIE",
+      "meaning": "The Pan-Island Expressway.",
+      "match": "\\bPIE\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Straits Times",
+      "meaning": "Singapore's main English-language daily newspaper.",
+      "match": "Straits Times",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Forum page",
+      "meaning": "The Straits Times's letters page.",
+      "match": "Forum page",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "HardwareZone",
+      "meaning": "A Singapore online forum, famous for its long, angry threads.",
+      "match": "HardwareZone",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "auntie, uncle",
+      "meaning": "How Singaporeans address or describe an older woman or man, family or not.",
+      "match": "\\b[Aa]unties?\\b|\\b[Uu]ncles?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "wet market",
+      "meaning": "A market of fresh food stalls, meat, fish and vegetables.",
+      "match": "wet markets?",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "kampong",
+      "meaning": "A village, of the kind Singapore had before the HDB estates.",
+      "match": "\\bkampongs?\\b",
+      "entryPoints": [
+        "start"
+      ]
+    },
+    {
+      "term": "Merlion",
+      "meaning": "The statue of a lion's head on a fish's body at Marina Bay, Singapore's emblem for tourists.",
+      "match": "Merlion",
+      "entryPoints": [
+        "start"
+      ]
+    }
+  ]
+}
