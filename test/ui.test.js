@@ -216,6 +216,33 @@ server.listen(0, async () => {
     console.log('✓ a save from before the gender choice loads as Female, named ' + up.name + ', and plays to the end');
     dom3.window.close();
 
+    // a save from an older version of the game: the player is told, and can start fresh or carry on;
+    // and the header's New career control abandons a run only on a second tap
+    const boot = async () => { const dm = await JSDOM.fromURL(url, { runScripts:'dangerously', resources:'usable',
+      beforeParse(w) { w.scrollTo=()=>{}; w.alert=()=>{}; w.fetch = window.fetch;
+        Object.defineProperty(w,'localStorage',{ value: window.localStorage }); } }); await wait(500); return dm; };
+    const dom4 = await boot(), d4 = dom4.window.document, t4 = () => d4.getElementById('app').textContent;
+    d4.querySelector('#go').click(); await wait(20);
+    for (let k = 0; k < 3; k++) { const live = [...d4.querySelectorAll('.choice')].filter(b => !b.disabled); if (live.length) live[0].click(); else d4.querySelector('#next').click(); await wait(5); }
+    dom4.window.close();
+    const sv = JSON.parse(window.localStorage.getItem('ministerSalary.v1'));
+    if (!sv.v) throw new Error('the save does not record the game version');
+    sv.v = 'older'; window.localStorage.setItem('ministerSalary.v1', JSON.stringify(sv));
+    const dom5 = await boot(), d5 = dom5.window.document, t5 = () => d5.getElementById('app').textContent;
+    if (!t5().includes('The game has been updated')) throw new Error('an older save was not flagged');
+    d5.querySelector('#carry').click(); await wait(10);
+    if (t5().includes('The game has been updated') || t5().includes('Begin')) throw new Error('carrying on did not resume the run');
+    const nc = d5.querySelector('#newcareer');
+    if (!nc) throw new Error('no New career control in the header');
+    nc.click(); await wait(5);
+    if (t5().includes('Begin')) throw new Error('one tap abandoned the career');
+    if (!d5.querySelector('#newcareer').textContent.includes('Tap again')) throw new Error('the first tap did not ask for a second');
+    d5.querySelector('#newcareer').click(); await wait(10);
+    if (!t5().includes('Begin')) throw new Error('two taps did not start a new career');
+    if (window.localStorage.getItem('ministerSalary.v1')) throw new Error('the abandoned career is still saved');
+    console.log('✓ an older save is flagged (new career, or carry on); New career takes two taps');
+    dom5.window.close();
+
     const real = errors.filter(e => e && !/serviceWorker|Not implemented/i.test(e));
     if (real.length) { console.log('\n✗ runtime errors:'); real.forEach(e=>console.log('  '+e)); process.exit(1); }
     console.log('\nAll UI tests passed.');
