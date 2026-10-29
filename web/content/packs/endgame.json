@@ -71,7 +71,7 @@
           "text": "Agree, and announce it yourself first.",
           "effects": { "standing": 5, "reputation": 2, "integrity": -2 },
           "setFlags": ["renewal_gracious"],
-          "outcome": "You tell your branch on Tuesday night, before the party tells anyone. Your statement says you have decided to make way for younger Members. Every word of it is true except \"decided\"."
+          "outcome": "You tell your volunteers on Tuesday night, before the party tells anyone. Your statement says you have decided to make way for younger Members. Every word of it is true except \"decided\"."
         },
         {
           "text": "Ask to stand one more time.",
@@ -83,7 +83,7 @@
           "text": "Agree, if you can introduce your successor to the ward.",
           "effects": { "reputation": 4, "competence": -2, "standing": -1 },
           "setFlags": ["renewal_successor"],
-          "outcome": "The party's candidate is a generation younger, with a better CV than yours ever was. All year you take them round every block, coffee shop and void deck, as the person who looks after the ward now."
+          "outcome": "The party's candidate is a generation younger, with a better CV than yours ever was. All year you take them round every block, coffee shop and void deck, where residents gather under the blocks, as the person who looks after the ward now."
         }
       ]
     },
@@ -100,7 +100,7 @@
           "text": "Stand once more.",
           "effects": { "standing": 4, "reputation": -2 },
           "setFlags": ["stays_on"],
-          "outcome": "You say yes before the Prime Minister has finished asking, and the Whip puts your name back on the slate. At your next branch meeting someone asks, kindly, how long you plan to go on."
+          "outcome": "You say yes before the Prime Minister has finished asking, and the Whip puts your name back on the slate. At your next meeting with your volunteers someone asks, kindly, how long you plan to go on."
         },
         {
           "text": "Make way anyway.",
@@ -153,7 +153,7 @@
           "text": "Start clearing your desk, quietly.",
           "effects": { "standing": 3, "reputation": -2, "competence": -1 },
           "setFlags": ["last_cleared"],
-          "outcome": "You stop taking new cases and hand the old ones over, one a week. Your branch notices before anyone else does, and starts planning a dinner you are not supposed to know about."
+          "outcome": "You stop taking new cases and hand the old ones over, one a week. Your volunteers notice before anyone else does, and start planning a dinner you are not supposed to know about."
         }
       ]
     },
@@ -193,7 +193,7 @@
       "triggered": true,
       "priority": true,
       "once": true,
-      "body": "Your first National Day Rally is in August: one evening, in Malay, then Mandarin, then English, and the country will remember one announcement from it. Your speechwriters have prepared nine announcements, and would like you to choose.",
+      "body": "Your first National Day Rally, the Prime Minister's yearly speech to the nation, is in August: one evening, in Malay, then Mandarin, then English, and the country will remember one announcement from it. Your speechwriters have prepared nine announcements, and would like you to choose.",
       "choices": [
         {
           "text": "Lead with one big thing, and spend an hour on it.",

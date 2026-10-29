@@ -87,7 +87,7 @@
   {
     "id": "consultant_report",
     "title": "The Report",
-    "body": "Your ministry paid a consultancy $1.9 million to work out why one of its schemes isn't working. Their final deck recommends exactly what you proposed two years ago in a minute paper nobody acted on, minus your paragraph four, the one that said how it could go wrong. The Deputy Secretary who hired them loves the deck.",
+    "body": "Your ministry paid a consultancy $1.9 million to work out why one of its schemes isn't working. Today they present their final deck: exactly what you proposed in an earlier minute paper, a memo to the people above you that nobody acted on, minus your paragraph four, on how it could go wrong. The Deputy Secretary who hired them loves it.",
     "requires": {
       "minRank": 2,
       "maxRank": 5
@@ -129,7 +129,7 @@
           "standing": -4,
           "heat": 3
         },
-        "outcome": "The consultancy's partner checks the appendix and reads out the source: a minute paper from your division, two years old. Yours. The room enjoys this more than the partner does."
+        "outcome": "The consultancy's partner checks the appendix and reads out the source: a minute paper from your division, written before the consultants were hired. Yours. The room enjoys this more than the partner does."
       }
     ]
   },
@@ -282,7 +282,7 @@
   {
     "id": "cep_discovery",
     "title": "A Word You Have Not Heard Before",
-    "body": "Over lunch, a friend who works in HR mentions your \"CEP\" in passing, as if you'd know what that is. You don't, so you ask. It's clear she has seen yours. She pauses a beat too long, then asks whether you've tried the new chicken rice stall downstairs.",
+    "body": "Over lunch, a friend who works in HR mentions your \"CEP\" as if you'd know the term. You don't, so she explains: Currently Estimated Potential, HR's private estimate of the highest grade you'll ever reach, set early in your career and never told to you. She has clearly seen yours, and changes the subject to the new chicken rice stall downstairs.",
     "requires": {
       "minRank": 1,
       "maxRank": 5,
@@ -294,7 +294,7 @@
     "once": true,
     "choices": [
       {
-        "text": "Press her on it.",
+        "text": "Ask her what yours says.",
         "effects": {
           "integrity": -2,
           "competence": 5
@@ -302,7 +302,7 @@
         "setFlags": [
           "knows_cep"
         ],
-        "outcome": "She tells you, very quietly: Currently Estimated Potential, the highest grade the service thinks you'll ever reach. It's reviewed every year, and never shown to you. You think about it in the lift, and on most days after that.",
+        "outcome": "She won't tell you the grade. Very quietly, she says only that it's reviewed every year, and can still move. You think about it in the lift, and on most days after that.",
         "schedule": [
           {
             "eventId": "farewell_drinks",
@@ -323,7 +323,7 @@
   {
     "id": "leadership_programme",
     "title": "The Nomination",
-    "body": "Your division can put one name forward this year for the Public Service Leadership Programme, the course that marks people out for the top jobs. {senior} wants your nomination by Friday, and it can be your own name. Everyone expects you to put forward the division's scholar, who is going places anyway.",
+    "body": "Your division can put one name forward this year for the Public Service Leadership Programme, the course that marks people out for the top jobs. {senior} wants your nomination by Friday, and it can be your own name. Everyone expects you to put forward the division's scholar, one of the high-flyers the government paid to study overseas, who is going places anyway.",
     "requires": {
       "minRank": 2,
       "maxRank": 3,
@@ -460,7 +460,7 @@
   {
     "id": "forum_letter",
     "title": "The Forum Page",
-    "body": "A member of the public has written to the Straits Times Forum page about a scheme your division runs. His letter is 340 words long, very angry, and right about every fact. {senior} wants the ministry's reply drafted by Friday, and the paper will print whatever goes out.",
+    "body": "A member of the public has written to the Forum page, the letters page of the Straits Times, about a scheme your division runs. His letter is 340 words long, very angry, and right about every fact. Drafting the ministry's reply is your job, due to {senior} by Friday, and the paper will print whatever goes out.",
     "requires": {
       "minRank": 2,
       "maxRank": 5
@@ -612,7 +612,7 @@
   {
     "id": "mps_duty",
     "title": "Meet-the-People Session",
-    "body": "An old school friend volunteers at her MP's Meet-the-People Session and asks you to help on Tuesday nights, writing appeal letters to agencies for residents. Most of the cases were decided correctly the first time. The sessions are run by the party's branch, and civil servants are meant to stay out of politics. She says lots of people help in their own time.",
+    "body": "An old school friend volunteers at her MP's Meet-the-People Session: every Tuesday night, residents bring their problems to their Member of Parliament, and volunteers write their appeal letters to agencies. She asks you to help. Most of the cases were decided correctly the first time. The sessions are run by the party's branch in the ward, and civil servants are meant to stay out of politics. She says lots of people help in their own time.",
     "requires": {
       "minRank": 1,
       "maxRank": 5
@@ -664,7 +664,7 @@
   {
     "id": "the_scholar",
     "title": "The Officer You Are Supervising",
-    "body": "You're supervising a scholar: twenty-six, very clever, on the Administrative Service, and likely to outrank you within four years. He has asked you to look over his first big paper before it goes upstairs. It isn't good. Whatever you say now, he'll remember it when he's the one above you.",
+    "body": "You're supervising a scholar, one of the high-flyers the government paid to study overseas: twenty-six, very clever, and likely to outrank you within four years. He has asked you to look over his first big paper before it goes upstairs. It isn't good. Whatever you say now, he'll remember it when he's the one above you.",
     "requires": {
       "minRank": 2,
       "maxRank": 4,
@@ -761,7 +761,7 @@
         ]
       },
       {
-        "text": "It was you.",
+        "text": "The leak was yours. Say nothing to the inquiry.",
         "effects": {
           "integrity": 8,
           "heat": 25,
@@ -774,7 +774,7 @@
         "requiresStat": {
           "integrity": 70
         },
-        "outcome": "It was you, for what you still believe were good reasons. The inquiry doesn't find you. You'll spend years finding out whether that holds.",
+        "outcome": "You leaked it, for what you still believe were good reasons, and you sit through the inquiry saying nothing. It doesn't find you. You'll spend years finding out whether that holds.",
         "schedule": [
           {
             "eventId": "leak_resurfaces",
@@ -822,7 +822,7 @@
   {
     "id": "cny_lohei",
     "title": "Lo Hei",
-    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of tossing yusheng and shouting good wishes, the Permanent Secretary turns to you and asks, properly: \"So, {player.formal}, what do you actually think we're getting wrong?\"",
+    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of lo hei, tossing the yusheng salad as high as chopsticks allow and shouting good wishes, the Permanent Secretary turns to you and asks, properly: \"So, {player.formal}, what do you actually think we're getting wrong?\"",
     "requires": {
       "minRank": 2,
       "maxRank": 6
@@ -862,7 +862,7 @@
   {
     "id": "the_committee",
     "title": "The Inter-Ministry Committee",
-    "body": "You're the secretariat for an Inter-Ministry Committee: you write its papers and its minutes. It has met eleven times to settle a question three ministries disagree on, and its interim finding is that \"further study is warranted\". No ministry wants to be the one that gave way.",
+    "body": "You're the secretariat for an Inter-Ministry Committee: you write its papers and its minutes. It has met eleven times to settle a question three ministries disagree on, and its interim finding is that \"further study is warranted\". No ministry wants to be the one that gave way, and {journalist} has started asking you why.",
     "requires": {
       "minRank": 2,
       "maxRank": 4
@@ -897,7 +897,7 @@
         "outcome": "Your minutes are widely admired. The committee meets fourteen more times. At the end you're commended \"for your support of the committee's work\", and the question is still open."
       },
       {
-        "text": "Tell {journalist}, a friendly {journalist.title}, about the deadlock.",
+        "text": "Tell {journalist} about the deadlock.",
         "effects": {
           "reputation": 6,
           "integrity": -8,
@@ -928,7 +928,7 @@
   {
     "id": "bto_queue",
     "title": "The Ballot",
-    "body": "You've applied for a new HDB flat for the fourth time: a four-room BTO in a non-mature estate. Every ballot you lose is another year of waiting. At work you are, technically, the government, and you know someone at HDB.",
+    "body": "You've applied for a new flat from HDB, the government's housing board, for the fourth time: a four-room BTO, built to order, in a non-mature estate far from the centre. Flats go by ballot, and every ballot you lose is another year of waiting. At work you are, technically, the government, and a friend from school now works at HDB.",
     "requires": {
       "minRank": 0,
       "maxRank": 4,
@@ -965,7 +965,7 @@
         ]
       },
       {
-        "text": "Buy resale. Take the loan.",
+        "text": "Buy a resale flat, second-hand. Take the loan.",
         "effects": {
           "wealth": -120000,
           "competence": 3,
@@ -977,7 +977,7 @@
     "variants": [
       {
         "title": "The Prime Launch",
-        "body": "You're applying for a new HDB flat again, this time in a Prime project: central and cheaper now, but you'd have to live there ten years and repay part of the subsidy when you sell. Thousands have applied, and the queue is already longer than the estate. You also know someone at HDB.",
+        "body": "You're applying for a new flat from HDB, the government's housing board, in a Prime project: central and cheaper now, but you'd have to live there ten years and repay part of the subsidy when you sell. Thousands have applied, and the queue is already longer than the estate. A friend from school now works at HDB.",
         "choices": [
           {
             "text": "Apply, and take your chances.",
@@ -988,14 +988,14 @@
             "outcome": "He tells you which launch next quarter will have the shortest queue. It's on the website three weeks later, word for word. For three weeks you were the website, and you get your flat."
           },
           {
-            "text": "Buy resale instead, and stop thinking about it.",
+            "text": "Buy a second-hand resale flat instead, and stop thinking about it.",
             "outcome": "You buy a 1990s five-room with its original kitchen cabinets and a view of a multi-storey carpark. The loan is long. The cabinets turn out to be very good."
           }
         ]
       },
       {
         "title": "The Fifth Ballot",
-        "body": "You've applied for a new HDB flat five times now and lost every ballot. The results page remembers your login. Your queue numbers, added together, would house a small town. Each lost ballot is another year of rent, and you do know someone at HDB.",
+        "body": "You've applied for a new flat from HDB, the government's housing board, five times now and lost every ballot. The results page remembers your login. Your queue numbers, added together, would house a small town. Each lost ballot is another year of rent, and a friend from school now works at HDB.",
         "choices": [
           {
             "text": "Ballot again.",
@@ -1003,10 +1003,10 @@
           },
           {
             "text": "Ask a friend at HDB what is coming up.",
-            "outcome": "He walks you through next quarter's launches over kopi, and every word goes on the website three weeks later. Technically, all you got early was public information, and a kopi. Your sixth application succeeds."
+            "outcome": "He walks you through next quarter's launches over kopi, and every word is on the website three weeks later. You apply for the quietest launch, and your sixth application succeeds. All you got early was public information, and a kopi."
           },
           {
-            "text": "Buy resale. Take the loan.",
+            "text": "Buy a resale flat, second-hand. Take the loan.",
             "outcome": "Done in a week. The valuation comes in below the price, and the difference must be paid in cash. That's the rule, and it's also most of your savings."
           }
         ]
@@ -1078,7 +1078,7 @@
         "choices": [
           {
             "text": "Fill paragraph 14 with the pilot you've been building.",
-            "outcome": "Paragraph 14 promises the pilot \"from next year\". It needs two. You spend both making paragraph 14 true, and in the end Hansard is right, a little late."
+            "outcome": "Paragraph 14 promises the pilot \"from next year\". It needs two. You spend both making paragraph 14 true, and in the end the printed record of the speech is right, a little late."
           },
           {
             "text": "Fill it with an old scheme, renamed and Enhanced.",
@@ -1251,7 +1251,7 @@
   {
     "id": "new_ro",
     "title": "The New Reporting Officer",
-    "body": "{senior}, your reporting officer until now, has been given more to run, so from this month you report to someone new. The new reporting officer comes from a different ministry, knows nothing about you, and has brought along two trusted people from the old job. The newcomer writes your appraisals from now on; {senior} only signs them.",
+    "body": "{senior}, your reporting officer until now, has been given more to run, so you now report to someone new from another ministry, who knows nothing about you and has brought two trusted people along. The newcomer will write your appraisals. Meanwhile the division's hardest file, a review the Permanent Secretary wants by December, has nobody on it.",
     "requires": {
       "minRank": 1,
       "maxRank": 6
@@ -1268,7 +1268,7 @@
           "competence": 8,
           "standing": 6
         },
-        "outcome": "It takes eight months, and it works. Your new reporting officer rates you strictly on what you've done, which turns out to be rarer than you'd thought, and your next appraisal is the best you've had."
+        "outcome": "The review takes eight months, and goes in before December. Your new reporting officer rates you strictly on what you've done, which turns out to be rarer than you'd thought, and your next appraisal is the best you've had."
       },
       {
         "text": "Be useful to the newcomer's two people.",
@@ -1277,7 +1277,7 @@
           "competence": -2,
           "integrity": -2
         },
-        "outcome": "You become the person who knows where things are and whom to ask. It's a real position and a small one, and you hold it for four years."
+        "outcome": "You become the person they ask where things are and whom to see. It's a real position and a small one, and you hold it for as long as they stay."
       },
       {
         "text": "Keep your head down until the newcomer leaves.",
@@ -1286,35 +1286,35 @@
           "competence": 3,
           "integrity": 2
         },
-        "outcome": "The newcomer stays five years. Your appraisals for all five are a flat line, and every promotion board for the rest of your career will see it."
+        "outcome": "The newcomer is in no hurry to leave. Meanwhile your appraisals go flat, and every promotion board for the rest of your career will see the line."
       }
     ],
     "variants": [
       {
         "title": "Standing Up",
-        "body": "Your new reporting officer starts on Monday, and {senior}, who had the job until now, will only countersign your appraisals. The newcomer spent twenty-two years in the SAF, holds the morning meeting standing up, and has brought across two officers he once commanded. From Monday, he writes your grades.",
+        "body": "Your new reporting officer starts on Monday, and {senior}, who had the job until now, will only countersign your appraisals. The newcomer spent twenty-two years in the army, holds the morning meeting standing up, and has brought two officers from the old unit. Nobody has briefed the newcomer on the year's most urgent file: the legal opinion that a decision due in March rests on.",
         "choices": [
           {
             "text": "Take the file nobody has briefed the newcomer on.",
-            "outcome": "The file turns out to hold the legal opinion everything depends on. You brief your new reporting officer on it in nine minutes, standing. From then on he asks for you by surname, which in his vocabulary is a commendation."
+            "outcome": "You brief your new reporting officer on the legal opinion in nine minutes, standing, and the March decision goes through. From then on you're asked for by surname, which in the newcomer's vocabulary is a commendation."
           },
           {
             "text": "Make yourself useful to the newcomer's two officers.",
-            "outcome": "They know the newcomer; you know the building. By Christmas you're the fourth chair at their lunch table, and you keep it for four years. It's the chair by the window."
+            "outcome": "They know the newcomer; you know the building. By Christmas you're the fourth chair at their lunch table, and you keep it. It's the chair by the window."
           },
           {
-            "text": "Stand easy until the newcomer moves on.",
-            "outcome": "The newcomer's two-year stint is extended twice. Your appraisals for those six years read like a parade state: present, correct, in line, and visible to every promotion board after."
+            "text": "Do as you're told, and wait for the newcomer to move on.",
+            "outcome": "The newcomer shows no sign of moving on. Your appraisals start to read like a roll call: present, correct, in line, and visible to every promotion board after."
           }
         ]
       },
       {
         "title": "The Deck",
-        "body": "{senior}, your reporting officer until now, is too busy to supervise you directly, so you're getting a new one: a mid-career hire from a consulting firm, who calls the work \"the portfolio\", has brought two former colleagues in on contract, and wants everything as a deck. From now on your appraisals are written by someone who has never seen one.",
+        "body": "{senior}, your reporting officer until now, is too busy to supervise you, so you're getting a new one: a mid-career hire from a consulting firm who wants everything as a deck, and has brought two former colleagues in on contract. This year's biggest decision rests on a file that won't fit on a slide: an Act, two amendments and a court case.",
         "choices": [
           {
             "text": "Take the file that won't fit on a slide.",
-            "outcome": "The file is the statutory one: an Act, two amendments and a court case. You walk your new reporting officer through it in an afternoon. She's quick, and from then on rates you on what you know."
+            "outcome": "You walk your new reporting officer through the Act, the amendments and the court case in an afternoon. The newcomer is quick, and from then on rates you on what you know."
           },
           {
             "text": "Make yourself useful to the two consultants.",
@@ -1322,7 +1322,7 @@
           },
           {
             "text": "Wait for the new boss to go back to the private sector.",
-            "outcome": "Your new boss stays nine years, and likes it. Your appraisals don't change by a word in that time, and every promotion board after reads the nine identical years as one."
+            "outcome": "Your new boss likes it here, and stays. Your appraisals stop changing by so much as a word, and every promotion board after reads the identical years as one."
           }
         ]
       }
@@ -1361,7 +1361,7 @@
   {
     "id": "secondment",
     "title": "The Secondment",
-    "body": "You're offered a two-year secondment to a statutory board in trouble: its accounts have had to be corrected three years running. It isn't a promotion. A posting like this is either a proving ground, where careers are made, or a siding, where they're parked, and nobody will tell you which.",
+    "body": "You're offered a two-year secondment to a statutory board in trouble: one of the agencies the ministry runs at arm's length, whose accounts have had to be corrected three years running. It isn't a promotion. A posting like this is either a proving ground, where careers are made, or a siding, where they're parked, and nobody will tell you which.",
     "requires": {
       "minRank": 3,
       "maxRank": 6
@@ -1409,7 +1409,7 @@
   {
     "id": "grassroots_invite",
     "title": "The Adviser Suggests Something",
-    "body": "After a community event, the constituency's grassroots adviser stops you at the lift lobby to say you handle yourself well with people. He says it to nobody else that evening. Everyone knows what this is: the first, deniable step in finding people the party might one day field at an election. Whatever you say back will be passed on.",
+    "body": "After a community event, the ward's grassroots adviser, the party's Member of Parliament who oversees its community groups, stops you at the lift lobby to say you handle yourself well with people. The adviser says it to nobody else that evening. Everyone knows what this is: the first, deniable step in finding people the party might one day field at an election. Whatever you say back will be passed on.",
     "requires": {
       "minRank": 4,
       "maxRank": 7,
@@ -1445,7 +1445,7 @@
           "standing": -2,
           "integrity": 3
         },
-        "outcome": "He laughs too, and the subject closes. He does not raise it again, and for a long time nobody from the party does either."
+        "outcome": "The adviser laughs too, and the subject closes. It is not raised again, and for a long time nobody from the party raises it either."
       }
     ]
   },
@@ -1506,7 +1506,7 @@
     "id": "tender_questions",
     "triggered": true,
     "title": "Questions About the Tender",
-    "body": "Some years back you awarded a $4 million contract to a firm run by a former colleague, the one whose Chinese New Year card arrived the week the tender closed. Now an MP has filed a parliamentary question about contracts won by firms run by former civil servants. The answer will list fourteen contracts in an annex, and yours is one of them.",
+    "body": "Some years back you awarded a $4 million contract to a firm run by a former colleague, the one whose Chinese New Year card arrived the week the tender closed. Now a Member of Parliament has filed a parliamentary question about contracts won by firms run by former civil servants. The answer will list fourteen contracts in an annex, and yours is one of them.",
     "choices": [
       {
         "text": "Let your four pages of reasons speak for you.",
@@ -1540,7 +1540,7 @@
         "options": [
           {
             "id": "source",
-            "text": "You once told {journalist} about a deadlock you weren't supposed to discuss. Now {journalist.formal} rings, without naming anyone, to warn you that a reporter at another paper is rebuilding that old story from everyone who was on the circulation list. The reporter has your number.",
+            "text": "Years ago, as the secretariat of an Inter-Ministry Committee, you told {journalist} about its deadlock, which you weren't supposed to discuss. Now {journalist.formal} rings, without naming anyone, to warn you that a reporter at another paper is rebuilding that old story from everyone who was on the circulation list. The reporter has your number.",
             "requires": {
               "cast": {
                 "journalist": {
@@ -1691,7 +1691,7 @@
   {
     "id": "ally_returns_ps",
     "title": "The Officer You Nominated",
-    "body": "Over a decade ago, you nominated the quiet officer who did your division's real work for the leadership programme, instead of yourself. She's a Permanent Secretary now too, and you sit on the same committees. She has been asked, quietly, which of her fellow Permanent Secretaries the party should one day invite to tea.",
+    "body": "Over a decade ago, you nominated the quiet officer who did your division's real work for the leadership programme, instead of yourself. She's a Permanent Secretary now too, and you sit on the same committees. She has been asked, quietly, which of her fellow Permanent Secretaries the party should one day invite to tea: its first quiet approach to someone it might ask to stand for Parliament.",
     "triggered": true,
     "requires": {
       "minRank": 7,
@@ -1872,7 +1872,7 @@
   {
     "id": "tea_session",
     "title": "An Invitation to Tea",
-    "body": "An email invites you to tea. The sender's title is not explained and there is no agenda, but everyone in the country knows what this is: the party is sounding you out as a candidate for the next general election. Go, and your whole career will be looked at. Decline, and you stay a civil servant, and the invitation never comes again.",
+    "body": "An email invites you to tea. The sender's title is not explained and there is no agenda, but everyone in the game knows what this is: the governing party is sounding you out to stand for Parliament, as one of its candidates at the next general election. Go, and your whole career will be looked at. Decline, and you stay a civil servant, and the invitation never comes again.",
     "requires": {
       "minRank": 4,
       "maxRank": 7,
@@ -1894,7 +1894,7 @@
         "setFlags": [
           "went_to_tea"
         ],
-        "outcome": "Tea is served, and the conversation is about nothing for forty minutes. Then a second man arrives with a folder: everything in your career that could embarrass the party. He opens it, and reads.",
+        "outcome": "Tea is served, and the conversation is about nothing for forty minutes. Then a second man arrives with a folder: everything in your career that could embarrass the party. The man opens it, and reads.",
         "schedule": [
           {
             "eventId": "the_vetting",
@@ -1925,11 +1925,11 @@
     ],
     "variants": [
       {
-        "body": "A phone call: a warm, unhurried voice, which gives no surname, asks if you are free for lunch on Thursday. You are suddenly very free. This is how the party sounds out people it might field at the next general election. Go, and they will look closely at your past. Say no, and nobody calls again.",
+        "body": "A phone call: a warm, unhurried voice, which gives no surname, asks if you are free for tea on Thursday. You are suddenly very free. This is how the governing party sounds out people it might ask to stand for Parliament, as its candidates at the next general election. Go, and they will look closely at your past. Say no, and nobody calls again.",
         "choices": [
           {
             "text": "Go.",
-            "outcome": "Lunch is at a club with carpet so thick it swallows footsteps, and the talk is about nothing for an hour. Then the coffee comes, and so does a second man, with a folder on your career. He opens it, and reads."
+            "outcome": "Tea is at a club with carpet so thick it swallows footsteps, and the talk is about nothing for an hour. Then the second pot comes, and so does a second man, with a folder on your career. The man opens it, and reads."
           },
           {
             "text": "Decline, politely.",
@@ -1938,11 +1938,11 @@
         ]
       },
       {
-        "body": "A hand-delivered envelope on your desk asks whether you might spare an hour for a conversation \"about the future\". It does not say who sent it. It does not need to: this is the party's first approach to someone it may field at the next election. Accept, and your past will be examined. Decline, and the future goes ahead without you.",
+        "body": "A hand-delivered envelope on your desk asks whether you might spare an hour for tea and a conversation \"about the future\". It does not say who sent it. It does not need to: this is the governing party's first approach to someone it may ask to stand at the next election, as one of its candidates. Accept, and the party will go through your whole career for anything that could embarrass it. Decline, and the future goes ahead without you.",
         "choices": [
           {
             "text": "Go.",
-            "outcome": "The hour is in a quiet room with very good chairs. Two people ask for your views on the country. Then the older man, without changing his tone, opens a folder on your career and begins to read from it."
+            "outcome": "The hour is in a quiet room with very good chairs. Two people ask for your views on the country. Then the older of the two, without any change of tone, opens a folder on your career and begins to read from it."
           },
           {
             "text": "Decline, politely.",
@@ -1956,7 +1956,7 @@
     "id": "the_vetting",
     "triggered": true,
     "title": "The Background Check",
-    "body": "Before the party puts you up for election, it checks everything that could come out in a campaign. The man from the tea is back with the same folder. Whatever you admit counts against you; admit too much and the invitation quietly lapses. Whatever you hide may surface during the campaign. He does not say which parts of the folder worry him.",
+    "body": "Before the party puts you up for election, it checks everything that could come out in a campaign. The man from the tea is back with the same folder. Whatever you admit counts against you; admit too much and the invitation quietly lapses. Whatever you hide may surface during the campaign. Nobody says which parts of the folder are the worry.",
     "choices": [
       {
         "text": "Disclose everything, including the things they may not have.",
@@ -1965,7 +1965,7 @@
           "heat": -25
         },
         "folder": "disclose",
-        "outcome": "He listens without writing anything until you have finished, then writes for a long time. Whatever happens next, nothing in that folder can surprise you on the campaign trail.",
+        "outcome": "The man listens without writing anything until you have finished, then writes for a long time. Whatever happens next, nothing in that folder can surprise you on the campaign trail.",
         "schedule": [
           {
             "eventId": "younger_officer",
@@ -1980,7 +1980,7 @@
           "standing": 3
         },
         "folder": "conceal",
-        "outcome": "The questions are precise and so are your answers. He thanks you. Nobody mentions the folder again. It is still there, and anything in it can still come out."
+        "outcome": "The questions are precise and so are your answers. The man thanks you. Nobody mentions the folder again. It is still there, and anything in it can still come out."
       }
     ],
     "variants": [
@@ -2016,15 +2016,15 @@
     "id": "the_election",
     "triggered": true,
     "title": "The General Election",
-    "body": "The party is fielding you at the general election, so you have resigned from the service to stand. Lose, and your career ends here. You can run in a GRC as one of a team of five, the safer choice, or alone in a single seat: riskier, and entirely yours. Then come nine days of walkabouts in relentless heat.",
+    "body": "The party is fielding you at the general election. You have resigned from the service to stand, and if you lose, the service will not take you back. Now the party asks which kind of seat you will run in. In a GRC you are one of a team of five, and voters elect the whole team together. In a single seat you run alone, against one opponent.",
     "choices": [
       {
-        "text": "Run in the GRC. Ride the team.",
+        "text": "Join the GRC team: share the risk, and the credit.",
         "effects": {
           "reputation": 5
         },
         "election": "grc",
-        "outcome": "Your name is fourth on the poster. You shake eleven thousand hands and understand, with total clarity, that almost none of this is about you.",
+        "outcome": "Nine days of walkabouts, meeting voters at every market and coffee shop, with your name fourth on the poster. You shake eleven thousand hands and understand, with total clarity, that almost none of this is about you.",
         "schedule": [
           {
             "eventId": "re_election",
@@ -2036,7 +2036,7 @@
         ]
       },
       {
-        "text": "Ask for the single seat.",
+        "text": "Run alone in a single seat: all the risk, and all the credit.",
         "effects": {
           "reputation": 8,
           "standing": 5
@@ -2045,7 +2045,7 @@
         "requiresStat": {
           "reputation": 60
         },
-        "outcome": "A contested single seat, alone, against a decent opponent with a real ground game. Nobody carries you, and if it goes wrong, there is nobody else to blame.",
+        "outcome": "Nine days of walkabouts, meeting voters at every market and coffee shop, alone, against a decent opponent with volunteers on every floor. Nobody carries you, and if it goes wrong, there is nobody else to blame.",
         "schedule": [
           {
             "eventId": "re_election",
@@ -2059,28 +2059,28 @@
     ],
     "variants": [
       {
-        "body": "Polling Day is announced on a Monday, and the party names you as a candidate. You have resigned from the service to stand, so losing ends your career. A GRC team shares the risk and the credit; a single seat is yours alone, win or lose. By Wednesday your face is on a lamp post, and the coffee shop under it has opinions.",
+        "body": "Polling Day is announced on a Monday, and the party names you as a candidate. You have resigned from the service to stand, so losing ends your career: the service will not take you back. Now you choose the seat. A GRC is a large ward that elects a team of five together. A single seat is yours alone, against one opponent.",
         "choices": [
           {
-            "text": "Stand in the GRC, with the team.",
-            "outcome": "You spend nine days learning which blocks have lifts that stop on every floor. The anchor minister does the rally speeches. You do the lifts."
+            "text": "Stand with the GRC team: shared risk, shared credit.",
+            "outcome": "Nine days of walkabouts, meeting voters block by block, teach you which blocks have lifts that stop on every floor. The minister leading your team does the rally speeches. You do the lifts."
           },
           {
-            "text": "Ask for the single-member seat.",
-            "outcome": "A single seat, a real opponent, and nobody to share the result with. Yours is the only name on your posters. It is thrilling for exactly one day."
+            "text": "Stand alone in a single seat: your risk, your credit.",
+            "outcome": "Nine days of walkabouts, meeting voters block by block, against a real opponent and with nobody to share the result with. Yours is the only name on your posters. It is thrilling for exactly one day."
           }
         ]
       },
       {
-        "body": "The party's candidates are photographed in a school hall that smells of floor polish. You have left the service to stand, and if you lose there is no way back. Across the hall, a candidate you once sat beside at a seminar is being photographed for the other side, and waves. The party asks where you will stand: with a GRC team, or alone.",
+        "body": "The party's candidates are photographed in a school hall that smells of floor polish. You have resigned from the service to stand, and if you lose, the service will not take you back. The party asks which kind of seat you want: a place on a GRC team of five, which voters elect together, or a single seat, alone against one opponent.",
         "choices": [
           {
-            "text": "Stand with the team in the GRC.",
-            "outcome": "Nine days of walkabouts in a team of five. At every coffee shop someone asks which one you are. By the end of the campaign, you can answer."
+            "text": "Take a place on the GRC team.",
+            "outcome": "Nine days of walkabouts in a team of five, through markets, coffee shops and lift lobbies, meeting voters. At every coffee shop someone asks which one you are. By the end of the campaign, you can answer."
           },
           {
-            "text": "Ask for the single seat.",
-            "outcome": "Nine days of being the only candidate anyone in the ward asks for. By the last rally your voice has gone and your opponent's has not. It feels significant, and is not."
+            "text": "Take the single seat, alone.",
+            "outcome": "Nine days of walkabouts, meeting voters at every market and coffee shop, as the only candidate anyone in the ward asks for. By the last rally your voice has gone and your opponent's has not. It feels significant, and is not."
           }
         ]
       }
@@ -2089,7 +2089,7 @@
   {
     "id": "maiden_speech",
     "title": "The Maiden Speech",
-    "body": "Your maiden speech, your first in Parliament, falls on day three of the debate on the President's Address. It will tell the House, the press and the Whip what kind of Member you mean to be, and it cannot be taken back. Nineteen Members spoke on day one, so the House is tired. You have three drafts.",
+    "body": "Your maiden speech, your first in Parliament, falls on day three of the debate on the President's Address, which opens each new Parliament. It tells the House, the press and the party what kind of Member you mean to be. The Whip, who keeps the party's backbenchers, its Members with no government job, voting together, will read every line, and Hansard, the official record, keeps every word. You have three drafts.",
     "requires": {
       "minRank": 8,
       "maxRank": 9
@@ -2104,7 +2104,7 @@
           "reputation": 3,
           "integrity": -1
         },
-        "outcome": "Lifts, hawkers and a void deck with a chess table. Three colleagues call it lovely in the lift, and your residents cut it out of the newsletter. Theirs is the only review that votes."
+        "outcome": "Lifts, hawkers and a void deck, the empty floor under a block, with a chess table. Three colleagues call it lovely in the lift, and your residents cut it out of the newsletter. Theirs is the only review that votes."
       },
       {
         "text": "The draft about the one thing from the service you believe.",
@@ -2137,11 +2137,11 @@
     "priority": true,
     "variants": [
       {
-        "body": "Day three of the debate on the President's Address: you rise at 4:40pm, after a Minister and before the break, to give your maiden speech. A first speech sets how the party and the press see you for years, and the Whip will read every line. On your phone are three versions, all finished.",
+        "body": "Day three of the debate on the President's Address, which opens each new Parliament: at 4:40pm you rise in the House to give your maiden speech, your first. It sets how the party and the press see you for years. The Whip, who keeps the party's backbenchers, its Members with no government job, voting together, will read every line, and Hansard, the official record, keeps every word. You have three versions, all finished.",
         "choices": [
           {
             "text": "Give the version about your ward.",
-            "outcome": "Eleven minutes on your blocks, your hawkers and the chess table at a void deck. It is warm, local and over before the break. Your ward's newsletter prints it in full."
+            "outcome": "Eleven minutes on your blocks, your hawkers and the chess table at a void deck, the open space at the foot of one of them. It is warm, local and over before the break. Your ward's newsletter prints it in full."
           },
           {
             "text": "Give the version with the thing you believe.",
@@ -2154,11 +2154,11 @@
         ]
       },
       {
-        "body": "Your maiden speech, your first in the House, is next week. The Whip's office has sent guidance on length, guidance on tone, and a sample first line: \"I rise in support of the motion.\" The speech tells the party what kind of Member you will be. You have kept the first line. The rest is up to you.",
+        "body": "Your maiden speech, your first in the House, as Members call Parliament, is next week. The office of the Whip, who keeps the party's backbenchers, its Members with no government job, voting together, has sent guidance on length and tone, and a sample first line: \"I rise in support of the motion.\" Whatever follows it goes into Hansard, the official record, and tells the party what kind of Member you will be. The rest is up to you.",
         "choices": [
           {
             "text": "Write the rest about your ward.",
-            "outcome": "The rest is about your ward, and it is good. A resident posts the Hansard link in the block's WhatsApp group with the caption \"our one\". You keep a screenshot."
+            "outcome": "The rest is about your ward, and it is good. A resident posts the link to Hansard, the official record, in the block's WhatsApp group with the caption \"our one\". You keep a screenshot."
           },
           {
             "text": "Write the rest about what you believe.",
@@ -2175,7 +2175,7 @@
   {
     "id": "town_council",
     "title": "The Town Council",
-    "body": "Lift C at Blk 77 has broken down nine times this year, and your Town Council must decide what to do. A proper replacement means a tender, which takes five months. {grassroots}, the {grassroots.title}, knows a contractor who could start on Monday if the tender is waived. Waivers are allowed in an emergency, and auditors read every one.",
+    "body": "Lift C at Blk 77 has broken down nine times this year, and your Town Council, which runs the estates in your ward, must decide what to do. A proper replacement means a tender, which takes five months. {grassroots}, the {grassroots.title}, knows a contractor who could start on Monday if the tender is waived. Waivers are allowed in an emergency, and auditors read every one.",
     "requires": {
       "minRank": 8,
       "maxRank": 13
@@ -2216,8 +2216,8 @@
         "outcome": "The lift runs again in eleven weeks and the block is delighted. The waiver's justification is two lines long. The Town Councils Financial Rules expect more, and so, one day, will an auditor."
       },
       {
-        "text": "Have the term contractor patch it while the tender runs.",
-        "outcome": "The term contractor patches Lift C six times in five months, at a cost the finance committee reads out slowly. The new lift arrives on budget, and the patches are minuted separately.",
+        "text": "Have the regular contractor patch it while the tender runs.",
+        "outcome": "The regular contractor patches Lift C six times in five months, at a cost the finance committee reads out slowly. The new lift arrives on budget, and the patches are minuted separately.",
         "effects": {
           "competence": 3,
           "reputation": 2,
@@ -2235,7 +2235,7 @@
     ],
     "variants": [
       {
-        "body": "Blk 77's lift keeps breaking down, and the Town Council meets to decide on a new one. The managing agent's slide has three options. The third, circled in pen, comes from {grassroots}, the {grassroots.title}: a firm that could start on Monday, without a tender. Skipping a tender is allowed in an emergency, and auditors check every time it happens. Every head turns to you.",
+        "body": "Blk 77's lift keeps breaking down, and the Town Council, which runs the estates in your ward, meets to decide on a new one. The slide from the managing agent, the firm that runs the estate day to day, has three options. The third, circled in pen, comes from {grassroots}, the {grassroots.title}: a firm that could start on Monday, without a tender. Skipping a tender is allowed in an emergency, and auditors check every time it happens. Every head turns to you.",
         "choices": [
           {
             "text": "Choose the tender, and minute why.",
@@ -2247,12 +2247,12 @@
           },
           {
             "text": "Propose a fourth option: patch it, and tender.",
-            "outcome": "The meeting agrees, with relief, to the option you have just invented. The term contractor keeps the lift running, mostly. The tender closes on time, and so, eventually, does the lift door."
+            "outcome": "The meeting agrees, with relief, to the option you have just invented. The regular contractor keeps the lift running, mostly. The tender closes on time, and so, eventually, does the lift door."
           }
         ]
       },
       {
-        "body": "At 8am you are on the fourteenth floor of Blk 77, because the lift is not. A resident in a wheelchair has missed two dialysis sessions. A proper tender for a new lift takes five months. {grassroots}, the {grassroots.title}, hands you a phone: a contractor who can start on Monday, if your Town Council waives the tender and answers for it later.",
+        "body": "At 8am you are on the fourteenth floor of Blk 77, because the lift is not. A resident in a wheelchair has missed two dialysis sessions. A proper tender for a new lift takes five months. {grassroots}, the {grassroots.title}, hands you a phone: a contractor who can start on Monday, if your Town Council, which runs the estates in your ward, waives the tender and answers for it later.",
         "choices": [
           {
             "text": "Hand the phone back. The tender stays.",
@@ -2263,8 +2263,8 @@
             "outcome": "The contractor starts on Monday. The lift works by Christmas and she makes every session. The paperwork follows in January, written to fit what happened. Auditors prefer it the other way round."
           },
           {
-            "text": "Get the term contractor out today, and tender the rest.",
-            "outcome": "The term contractor has the lift moving by evening, and patches it twice more by Christmas. The tender runs its five months. She does not miss a session, and never lets you forget the morning."
+            "text": "Get the regular contractor out today, and tender the rest.",
+            "outcome": "The regular contractor has the lift moving by evening, and patches it twice more by Christmas. The tender runs its five months. She does not miss a session, and never lets you forget the morning."
           }
         ]
       }
@@ -2273,7 +2273,7 @@
   {
     "id": "the_bonus_reveal",
     "title": "The National Bonus",
-    "body": "As an office holder you are paid a National Bonus: three months' salary when the country hits four targets, up to six when it beats them, none when it misses. The four are unemployment, median income growth, income growth at the 20th percentile, and GDP growth (target: 2 to 4 per cent). The formula is public. Your new portfolio moves two of the four.",
+    "body": "As a minister, you are paid a National Bonus: three months' extra salary if the country hits four targets, up to six if it beats them, nothing if it misses. The four are jobs, GDP growth, typical incomes, and the incomes of the lowest-paid fifth of workers. Your ministry has money for one of two policies: one lifts the lowest incomes, the other lifts GDP.",
     "requires": {
       "minRank": 11
     },
@@ -2281,35 +2281,35 @@
     "once": true,
     "choices": [
       {
-        "text": "Push the policy that lifts incomes at the 20th percentile.",
+        "text": "Fund the policy that lifts the lowest incomes.",
         "effects": {
           "integrity": 12,
           "reputation": 10,
           "wealth": 180000,
           "standing": -5
         },
-        "outcome": "It is expensive, unglamorous and slow, and it works. It also lifts one of the four indicators in your own bonus formula. Both things are true, and nobody, ever, mentions the second one."
+        "outcome": "It is expensive, unglamorous and slow, and it works: the lowest incomes rise. Your bonus rises too, but no one talks about it."
       },
       {
-        "text": "Push headline GDP.",
+        "text": "Fund the policy that lifts GDP.",
         "effects": {
           "standing": 8,
           "wealth": 260000,
           "reputation": 3,
           "integrity": -6
         },
-        "outcome": "Cleaner and faster, and it moves the one figure everyone watches. Your National Bonus comes in at six months, the maximum. You do not look closely at the annex on who gained.",
+        "outcome": "GDP moves first and fastest, and your bonus comes in at six months, the most it can be. There is an annex on who gained. You skip the annex.",
         "nationalBonus": 6
       },
       {
-        "text": "Ask the other ministers whether we should be paid on indicators we set.",
+        "text": "Ask Cabinet whether ministers should be paid on targets they can move.",
         "effects": {
           "integrity": 18,
           "reputation": 12,
           "standing": -14,
           "heat": 8
         },
-        "outcome": "The question is received with great seriousness and complete stillness, and minuted. It is answered thoroughly and not at all. Colleagues now treat you as someone who asks that kind of question, and the minute stays on file.",
+        "outcome": "Cabinet hears the question in complete silence. It is minuted, and answered at great length without being answered at all. From then on your colleagues choose their words around you.",
         "schedule": [
           {
             "eventId": "bonus_vindicated",
@@ -2321,36 +2321,36 @@
     ],
     "variants": [
       {
-        "body": "The Public Service Division sends you a three-page note on your pay as an office holder. Page two explains the National Bonus: three months' salary if four national targets for jobs, incomes and growth are met, up to six if they are beaten, none if missed. Page three lists the indicators your ministry can move. Two of them are in your in-tray.",
+        "body": "The Public Service Division sends you a three-page note on your pay as a minister. Page two explains the National Bonus: three months' extra salary if the country hits four targets for jobs, growth and incomes, one of them the incomes of the lowest-paid fifth of workers, up to six if it beats them, nothing if it misses. Page three lists two policies your ministry could fund: one lifts the lowest incomes, the other lifts GDP. There is money for one.",
         "choices": [
           {
-            "text": "Push the policy for incomes at the 20th percentile.",
-            "outcome": "It is slow, costly and unglamorous, and it works. It also moves one of the four indicators on page two. Nobody, at any point, mentions page two."
+            "text": "Fund the policy for the lowest incomes.",
+            "outcome": "It is slow, costly and unglamorous, and it works: the lowest incomes rise, and with them your bonus. Nobody, at any point, mentions page two."
           },
           {
-            "text": "Push headline GDP.",
-            "outcome": "Quicker and cleaner, and it moves the figure everyone watches. Your bonus comes in at six months, the maximum. The annex on who gained is on page nine, and you stop reading at page eight."
+            "text": "Fund the policy for GDP.",
+            "outcome": "Quicker and cleaner, and it moves the figure everyone watches. Your bonus comes in at six months, the most it can be. The annex on who gained is on page nine, and you stop reading at page eight."
           },
           {
-            "text": "Ask the other ministers whether we should be paid on indicators we move.",
+            "text": "Ask Cabinet whether ministers should be paid on targets they can move.",
             "outcome": "The question is heard in complete stillness, and minuted. It is answered at length without being answered at all. Colleagues now choose their words near you, and the minute is filed where it can be found."
           }
         ]
       },
       {
-        "body": "Your ministry's chief economist explains the National Bonus on a whiteboard: three months' salary for office holders when four national targets for jobs, incomes and growth are hit, up to six when they are beaten. She is brisk until she reaches the line saying who it is paid to. Then she slows down. Two of the four move with policies already on your desk.",
+        "body": "Your ministry's chief economist explains the National Bonus on a whiteboard: three months' extra salary when the country hits four targets for jobs, growth and incomes, up to six when it beats them. She is brisk until she reaches the line saying the bonus is paid to ministers, including you. Then she slows down. One policy on your desk lifts the lowest incomes, another lifts GDP, and there is money for one.",
         "choices": [
           {
             "text": "Choose the policy that lifts the lowest incomes.",
-            "outcome": "It is expensive and slow, and in two years it works. It also lifts one of the lines on the whiteboard. The economist wipes the whiteboard clean before anyone can photograph it."
+            "outcome": "It is expensive and slow, and in two years it works: the lowest incomes rise, and so does your bonus. The economist wipes the whiteboard, your pay included, before anyone can photograph it."
           },
           {
             "text": "Choose the policy that lifts headline GDP.",
             "outcome": "The headline figure moves first and fastest. Your National Bonus comes in at six months, the most the formula allows. The economist's slide on who gained is moved to the appendix."
           },
           {
-            "text": "Ask the other ministers whether this is how ministers should be paid.",
-            "outcome": "Your colleagues hear the question in silence and minute it with care. It is answered fully, and not at all. People adjust how they speak near you, and the minute stays in the file."
+            "text": "Ask Cabinet whether this is how ministers should be paid.",
+            "outcome": "Cabinet hears the question in silence and minutes it with care. It is answered fully, and not at all. People adjust how they speak near you, and the minute stays in the file."
           }
         ]
       }
@@ -2359,7 +2359,7 @@
   {
     "id": "pofma_moment",
     "title": "The Correction Direction",
-    "body": "A post about your ministry's scheme is going viral. It is wrong in two places and, awkwardly, right in the third. Under POFMA you can have a correction notice attached to it, fixing the two wrong points in public and saying nothing about the third. Or you can answer the post yourself, and admit the point it got right.",
+    "body": "A post about your ministry's scheme is going viral. It is wrong in two places and, awkwardly, right in the third. Under POFMA, the law against online falsehoods, you can direct whoever posted it to attach a correction notice, fixing the two wrong points in public and saying nothing about the third. Or you can answer the post yourself, and admit the point it got right.",
     "requires": {
       "minRank": 11
     },
@@ -2395,7 +2395,7 @@
     ],
     "variants": [
       {
-        "body": "A HardwareZone thread about your ministry's scheme has reached its fortieth page. The first post, which everyone quotes, is wrong about the eligibility age, wrong about the payout, and right about the waiting time. A POFMA correction direction would fix the two errors in public and leave the waiting time standing. You could also reply yourself.",
+        "body": "A thread on HardwareZone, the online forum, about your ministry's scheme is on its fortieth page. The first post, which everyone quotes, is wrong about the eligibility age and the payout, and right about the waiting time. Under POFMA, the law against online falsehoods, you can direct the forum to pin a correction notice above it, fixing the two errors and leaving the waiting time standing. Or you can reply yourself.",
         "choices": [
           {
             "text": "Issue the correction direction.",
@@ -2408,14 +2408,14 @@
         ]
       },
       {
-        "body": "A retired officer from your ministry has posted a long critique of its scheme, with three diagrams. Two are wrong. The third is right, to the decimal: he has redrawn, from memory, a chart from an internal paper he once worked on. A POFMA correction direction would fix the two wrong diagrams and leave the right one up.",
+        "body": "A retired officer from your ministry has posted a long critique of its scheme, with three diagrams. Two are wrong. The third is right, to the decimal: he has redrawn it from memory, from an internal paper he once worked on. Under POFMA, the law against online falsehoods, you can direct him to attach a correction notice that fixes the two wrong ones and says nothing about the third.",
         "choices": [
           {
             "text": "Issue the correction direction.",
             "outcome": "The correction notice runs above the post and fixes two diagrams. The third stays up, uncorrected, and becomes the most widely shared chart your ministry has ever produced."
           },
           {
-            "text": "Redraw the third diagram yourself, in public.",
+            "text": "Post the third diagram yourself, and admit what it shows.",
             "outcome": "You post the third diagram again, with the real numbers and a sentence admitting the problem. The retired officer shares it with one word, \"Better.\" Your officials do not share it."
           }
         ]
@@ -2591,20 +2591,20 @@
       "0": [
         "A scheme goes out on time, and you're one of five people who know why.",
         "You clear forty-one papers and write one sentence you're proud of. Nobody notices the sentence.",
-        "A minute you wrote comes back to you months later as \"the ministry's position\", and you let it.",
-        "The system you fixed in March stops producing complaints, and nobody connects the two.",
+        "A memo you wrote comes back to you months later as \"the ministry's position\", and you let it stand.",
+        "You fix a system in March, it stops producing complaints, and nobody connects the two.",
         "A paper you wrote goes upstairs under someone else's name, and does well there.",
         "You catch an error in a figure three divisions had already passed, and fix it quietly.",
-        "Another ministry copies a process you redesigned, without crediting yours."
+        "Another ministry copies an approval process you redesigned, and doesn't credit you."
       ],
       "1": [
-        "You present the scheme at three forums, and by the third, people call it your scheme.",
+        "You present a scheme your team built at three forums, and by the third, people call it your scheme.",
         "Your name is on the slide, the email and the photograph, for work that was mostly last year's.",
         "Someone from another ministry greets you by name in the lift. Being seen is working.",
-        "You present the scheme at a lunchtime talk, with your photo on the poster and the team in the footnotes.",
-        "Your scheme gets a feature on the intranet, with a photograph of you pointing at a chart.",
+        "You present your team's work at a lunchtime talk, with your photo on the poster and the team in the footnotes.",
+        "A scheme you worked on gets a feature on the intranet, with a photograph of you pointing at a chart.",
         "You sit on four panels this year, three of them about the same scheme.",
-        "A speech you didn't write mentions your scheme, and you, by name. That part you did arrange."
+        "A speech you didn't write mentions a scheme you worked on, and you, by name. That part you did arrange."
       ],
       "2": [
         "You do what's asked, on time and not a minute more, and nobody can find anything to complain about.",
@@ -2626,7 +2626,7 @@
           },
           {
             "text": "Do the work, and make sure the right people see it.",
-            "outcome": "Your one-page note on the three fields goes round upstairs as \"a good example of citizen-centric design\". You'll be asked to give the talk."
+            "outcome": "Three fields go, and your one-page note on them goes round upstairs as \"a good example of citizen-centric design\". You'll be asked to give the talk."
           },
           {
             "text": "Let the agencies sort it out among themselves.",
@@ -2743,7 +2743,7 @@
           "competence": 2,
           "integrity": 4
         },
-        "outcome": "\"That's not really something we discuss,\" {senior} says, kindly. It's a complete answer."
+        "outcome": "\"Ceilings aren't really something we discuss,\" {senior} says, kindly. It's a complete answer."
       },
       {
         "text": "Agree to be more visible.",
@@ -2759,7 +2759,7 @@
           "competence": 5,
           "standing": 4
         },
-        "outcome": "{senior} thinks for a moment, then tells you something real. You do it. That one answer was worth the other thirty-nine minutes."
+        "outcome": "{senior} thinks for a moment, then names something real: a backlog nobody owns. You clear it by June. That one answer was worth the other thirty-nine minutes."
       }
     ],
     "montageEffects": {
@@ -2768,25 +2768,25 @@
     },
     "montageLines": {
       "0": [
-        "Your ceiling, you're told again, is \"not a helpful way to think about it\", the most precise answer yet.",
-        "Forty minutes, six competency areas, and one question from you that nobody writes down.",
-        "You ask about your ceiling once more, and are offered a coaching session on curiosity.",
-        "Your question about your ceiling is recorded under \"Officer's Aspirations\", a box on the form.",
-        "You ask about your ceiling at the end of the forty minutes, when there are two left."
+        "At your appraisal you ask how high you can rise, and are told it's \"not a helpful way to think about it\", the most precise answer yet.",
+        "Your appraisal: forty minutes, six competency areas, and one question from you, about how far you can rise, that nobody writes down.",
+        "At your appraisal you ask how far you can go, and are offered a coaching session on curiosity.",
+        "You ask at your appraisal how far you can rise, and the question is recorded under \"Officer's Aspirations\", a box on the form.",
+        "You ask how far you can rise at the end of your appraisal, when there are two minutes left."
       ],
       "1": [
         "You agree again to be more visible, and at the next appraisal you're told that you have been.",
-        "Six competency areas, one new acronym and the phrase \"stretch assignment\", with you nodding at the right moments.",
+        "Your appraisal: six competency areas, one new acronym and the phrase \"stretch assignment\", with you nodding at the right moments.",
         "You're more visible this year, mostly in the background of other people's photographs.",
         "Your visibility is praised at a meeting you went to mainly in order to be seen there.",
-        "Your visibility is discussed for forty minutes, in a room with no windows."
+        "Your visibility is discussed at your appraisal for forty minutes, in a room with no windows."
       ],
       "2": [
-        "You ask what isn't being done, and by March it's done and your name is on the list for the next good posting.",
+        "At your appraisal you ask what isn't being done. By March it's done, and your name is on the list for the next good posting.",
         "You ask what would have helped in this year's \"very tight\" ranking, and, unusually, you're told.",
         "The things nobody was doing become your things, each with a thank-you for asking.",
         "The list of work nobody is doing gets shorter by March and longer by June, with your name at the top.",
-        "You ask what's needed, a great deal is, and now it's on your list instead of anyone else's."
+        "You ask what needs doing. A great deal does, and now it's on your list instead of anyone else's."
       ]
     },
     "variants": [
@@ -2803,12 +2803,12 @@
           },
           {
             "text": "Ask which of the four areas actually counts.",
-            "outcome": "After a pause, an honest answer: \"Ownership.\" So you spend the year taking charge of things nobody else wanted. It shows, and it's noticed."
+            "outcome": "{senior} pauses, then says which area really counts: \"Ownership.\" So you spend the year taking charge of things nobody else wanted. It shows, and it's noticed."
           }
         ]
       },
       {
-        "body": "This year's appraisal conversation is a video call, because {senior} is overseas on a course. The camera at the other end is off, and the connection is excellent. What's said in these forty minutes goes into your grade, and with the camera off you can't tell how any of it is landing.",
+        "body": "This year's appraisal conversation is a video call, because {senior} is overseas on a course. The camera at the other end is off, and the connection is excellent. What's said in these forty minutes goes into this year's grade, and with the camera off you can't tell how any of it is landing.",
         "choices": [
           {
             "text": "Ask, plainly, where you stand.",
@@ -2820,7 +2820,7 @@
           },
           {
             "text": "Ask what {senior} wants done while away.",
-            "outcome": "{senior} lists three things. You finish two of them before {senior} flies home, and {senior} mentions it at the ranking meeting, the only meeting that matters."
+            "outcome": "{senior} lists three things. You finish two of them before {senior} flies home, and {senior} mentions it at the ranking meeting that decides grades, the only meeting that matters."
           }
         ]
       },
@@ -2833,7 +2833,7 @@
           },
           {
             "text": "Use the eighteen minutes to list what you did.",
-            "outcome": "You get through the list in eleven minutes. {senior} writes down four items, and they're the four that end up in your ranking. You learn which four to lead with next year."
+            "outcome": "You get through the list in eleven minutes. {senior} writes down four items, and they're the four taken to the ranking meeting that decides your grade. You learn which four to lead with next year."
           },
           {
             "text": "Ask what {senior} needs from you this year.",
@@ -2842,19 +2842,19 @@
         ]
       },
       {
-        "body": "This year your appraisal includes anonymous feedback from the people who work around you, and {senior} reads it out. One comment says you \"never say no to anything from upstairs\". It's meant, you think, as a complaint, and it will go in your file.",
+        "body": "This year your appraisal includes anonymous feedback from the people who work around you, and {senior} reads it out. One comment says you \"never say no to anything from upstairs\", so the extra work lands on everyone else. Fair or not, it will go in your file.",
         "choices": [
           {
             "text": "Ask what the comment means for your ceiling.",
             "outcome": "{senior} says it's \"a development point, not a ceiling point\", and then that ceilings aren't discussed. Both halves are true, and only one of them was an answer."
           },
           {
-            "text": "Say you'll be more visible, sideways as well as up.",
+            "text": "Say you'll be more visible to the people around you, not just upstairs.",
             "outcome": "You start a monthly lunch for the people around you. Attendance is excellent. Next year's anonymous comment is about the lunches, and it's fond."
           },
           {
             "text": "Ask what {senior} needs you to say no to.",
-            "outcome": "{senior} names two things at once. You drop them both, and everyone around you notices before {senior} does."
+            "outcome": "{senior} names two jobs you could stop doing for upstairs. You stop both, and the people around you notice before {senior} does."
           }
         ]
       }
@@ -2940,7 +2940,7 @@
     },
     "montageLines": {
       "0": [
-        "Level 9 at 11pm becomes a habit, then a reputation.",
+        "Working late on Level 9 becomes a habit, then a reputation.",
         "The cleaner on your floor now says goodnight to you by name.",
         "You miss a birthday dinner and make a deadline. By March both are forgotten, by different people.",
         "The night guard knows your car, your floor and your usual time: late.",
@@ -2950,12 +2950,12 @@
       ],
       "1": [
         "You leave at seven and send things in the morning, and the building doesn't fall down.",
-        "A birthday dinner, attended, while the fourth draft's comments wait until morning, as they always could.",
+        "A birthday dinner, attended, while the comments on your paper wait until morning, as they always could.",
         "You've stopped apologising for leaving on time, and two people on your floor have started doing the same.",
         "You leave at six, the work is in by nine the next morning, and nobody can tell it wasn't written at midnight.",
-        "You leave on time, and the comments come back anyway. They're the same comments.",
-        "Dinner at eight, as promised, and the fourth draft is none the worse for a night in the outbox.",
-        "You go home at seven again, and the midnight reply-all happens without you in it."
+        "You leave on time, and the comments on your paper come back anyway. They're the same comments.",
+        "Dinner at eight, as promised, and your paper is none the worse for a night in the outbox.",
+        "You go home at seven again, and the midnight reply-all about your paper happens without you in it."
       ]
     },
     "variants": [
@@ -3018,7 +3018,7 @@
         "outcome": "You get seventy per cent of exactly what you needed, because the process assumes everyone pads their bid, and punishes you for not padding."
       },
       {
-        "text": "Don't bid. Absorb it.",
+        "text": "Don't bid. Absorb the extra work within your existing budget.",
         "effects": {
           "standing": 5,
           "competence": -4,
@@ -3033,10 +3033,10 @@
     },
     "montageLines": {
       "0": [
-        "You bid for eleven and get four: the reason you bid for eleven.",
+        "In the budget round you bid for eleven officers and get four: the reason you bid for eleven.",
         "Budget season: every line justified, footnoted and cut by a third, as planned.",
         "You bid big again, defend every line, and are cut back to the number you had in mind all along.",
-        "You bid for eleven officers and a system, and are given the system, which needs eleven officers."
+        "In the budget round you bid for eleven officers and a system, and get only the system, which needs eleven officers."
       ],
       "1": [
         "You bid for exactly what you need and get two-thirds of it, described to you as a good outcome.",
@@ -3045,10 +3045,10 @@
         "Your exact bid is cut by a third, because every bid is cut by a third, and yours was exact."
       ],
       "2": [
-        "You absorb the cut again, and a note of thanks arrives: the only increase you get.",
-        "Budget season, and you learn a new way to say \"absorb\".",
-        "No bid again. Your people absorb it with you, and one of them updates a LinkedIn profile.",
-        "You absorb the cut so quietly that next year's budget is smaller, as a vote of confidence."
+        "You make do within your existing budget again, and a note of thanks arrives: the only increase you get.",
+        "Budget season, no bid again, and you learn one more polite way to say \"we will absorb it\".",
+        "No bid again. Your people absorb the extra work with you, and one of them updates a LinkedIn profile.",
+        "You absorb the extra work so quietly that next year's budget is smaller, as a vote of confidence."
       ]
     },
     "variants": [
@@ -3066,7 +3066,7 @@
           },
           {
             "text": "Let the one per cent go.",
-            "outcome": "You absorb it. Your one per cent funds someone else's new and emerging priority. Two years later that priority is merged into your division, without its officers."
+            "outcome": "You absorb the cut within your existing budget. Your one per cent funds someone else's new and emerging priority. Two years later that priority is merged into your division, without its officers."
           }
         ]
       },
@@ -3101,7 +3101,7 @@
             "outcome": "Tab 9 says nil, with a note explaining why. The spreadsheet won't accept a nil, so IT enters a zero for you and the note is lost. The bid is funded at two-thirds."
           },
           {
-            "text": "Close the spreadsheet. Absorb it.",
+            "text": "Close the spreadsheet. Absorb the work within your existing budget.",
             "outcome": "No bid, no tab 9. The year-end summary lists your division under \"units not requiring additional resources\", in a slightly larger font than the others."
           }
         ]
@@ -3152,7 +3152,7 @@
     },
     "montageLines": {
       "0": [
-        "You see every resident on Tuesday nights, and the man whose case cannot be reopened now brings you kueh.",
+        "You see every resident on Tuesday nights, and a man whose case cannot be reopened now brings you kueh, still warm from the market.",
         "Your Meet-the-People Session runs past midnight again, and the volunteers have started bringing cushions.",
         "The coffee shop downstairs now closes before your Meet-the-People Session does, every week.",
         "Another Tuesday ends after midnight, with the last resident apologising for the hour and seen anyway.",
@@ -3169,8 +3169,8 @@
       ],
       "2": [
         "You leave the Tuesday session at ten again, and the volunteers see the rest of the queue, very well and very tired.",
-        "A resident thanks you for something the Town Council did, and you accept on its behalf and leave at ten.",
-        "Your speech is finished by Wednesday, and the volunteers finish the queue without you, a little after midnight.",
+        "A resident thanks you for the new lifts, which were the Town Council's doing, and you accept on its behalf and leave at ten.",
+        "Your speech for Parliament is done by Wednesday, because the volunteers saw out the Tuesday queue without you.",
         "You leave Meet-the-People at ten again, and the volunteers no longer look up when the lift doors close.",
         "Your speech is the best-prepared in the House, and the Tuesday queue is a little longer for it.",
         "The volunteers keep a list of the residents who asked for you after ten, and give it to you monthly."
@@ -3179,7 +3179,7 @@
     "variants": [
       {
         "title": "Meet-the-People, After the Rain",
-        "body": "Your weekly Meet-the-People Session: a downpour at seven, so everyone comes at nine. In the queue are a family whose flat appeal has been turned down twice, and a man who wants the void deck named after his father. Parliament sits at noon tomorrow, and you have not read your papers.",
+        "body": "Your weekly Meet-the-People Session, where residents bring you their problems: a downpour at seven, so everyone comes at nine. In the queue are a family whose flat appeal has been turned down twice, and a man who wants the void deck, the open ground floor of his block, named after his father. Parliament sits at noon tomorrow, and you have not read your papers.",
         "choices": [
           {
             "text": "Stay until the last one is seen.",
@@ -3218,7 +3218,7 @@
   {
     "id": "the_walkabout",
     "title": "The Walkabout",
-    "body": "It is 7:20am at the wet market in your ward, on a walkabout with a camera crew. A stallholder has strong and specific views about the price of chillies, and is delighted to share them, at volume. Fourteen stalls are still to go, and every one of them votes.",
+    "body": "It is 7:20am at the wet market in your ward, on a walkabout with a camera crew: a slow walk past every stall, meeting voters. A stallholder has strong and specific views about the price of chillies, and is delighted to share them, at volume. Fourteen stalls are still to go, and every one of them votes.",
     "requires": {
       "minRank": 8
     },
@@ -3258,8 +3258,8 @@
     "montageLines": {
       "0": [
         "Wet markets at 7am, with cameras, until you know the price of chillies better than the price of anything else.",
-        "On a walkabout an auntie says you looked thinner on television, and you hear out the rest of it, about the lift.",
-        "A stallholder you once listened to on camera now greets you with the price of something new.",
+        "On a walkabout an auntie says you looked thinner on television, and you hear out the rest of what she has to say, about her lift.",
+        "A stallholder you once sat and listened to, on camera, now greets you every visit with whatever has gone up in price since.",
         "Another walkabout, another auntie, and four minutes of footage about her lift that the news runs in full.",
         "A fishmonger explains the price of fish to you on camera, and the clip is shared mostly by fishmongers.",
         "You hear out a complaint about a bus route on camera, and the route is changed, though not because of the camera."
@@ -3273,18 +3273,18 @@
         "The walkabout is so punctual that the stallholders now time their breaks by it."
       ],
       "2": [
-        "You take numbers at walkabouts and call them at night, and your call log becomes the best map of the ward.",
+        "You take residents' phone numbers at walkabouts and call them at night, and your call log becomes the best map of the ward.",
         "Three phone numbers on a napkin from the wet market, and you call all three that evening, off camera.",
         "You call a stallholder back about her rent, and she tells the next stall, and the next.",
-        "A resident you called one night tells the whole RC, and the RC now knows you as the MP who calls back.",
-        "Your evening calls now take longer than the walkabouts, and settle more.",
+        "A resident you called one night tells the whole residents' committee, and the committee now knows you as the MP who calls back.",
+        "Your evening calls to residents now take longer than the walkabouts, and sort out more.",
         "A hawker you called back about her lease tells you the next week that it was renewed, as if you did it."
       ]
     },
     "variants": [
       {
         "title": "The Hawker Centre",
-        "body": "A lunchtime walkabout at a hawker centre in your ward, with photographers. The uncle at the drinks stall wants to explain, in detail, why his rent has gone up and what should be done about it. The other stalls are watching to see how long you give him.",
+        "body": "A lunchtime walkabout at a hawker centre in your ward, table by table, meeting voters, with photographers. The uncle at the drinks stall wants to explain, in detail, why his rent has gone up and what should be done about it. The other stalls are watching to see how long you give him.",
         "choices": [
           {
             "text": "Sit down and hear him out.",
@@ -3323,7 +3323,7 @@
   {
     "id": "the_pq",
     "title": "The Parliamentary Question",
-    "body": "A Member has filed a Parliamentary Question about a scheme your ministry runs, and you must answer it in the House. The question is good and sharply drafted, and the honest answer is not flattering. The brief your officials wrote is accurate, and answers a slightly different question. Whatever you say goes into Hansard for good.",
+    "body": "A Member has filed a Parliamentary Question about a scheme your ministry runs, and you must answer it in the House. The question is good and sharply drafted, and the honest answer is not flattering. The brief your officials wrote is accurate, and answers a slightly different question. Whatever you say goes into Hansard, the official record of Parliament, for good.",
     "requires": {
       "minRank": 9
     },
@@ -3375,17 +3375,17 @@
       "0": [
         "At Question Time you answer the question that was actually asked, and people still notice.",
         "Seven questions this sitting, and two of your answers make the news for being short and true.",
-        "A Member files a question expecting a brief, gets an answer instead, and files another.",
-        "Your straight answers are now quoted back to you in supplementaries, so somebody read them.",
-        "You give the House the actual number, and the Member who asked has no supplementary ready.",
+        "A Member files a question expecting your officials' usual reply, gets a straight answer instead, and files another.",
+        "Your straight answers are now quoted back to you in follow-up questions, so somebody read them.",
+        "You give the House the actual number, and the Member who asked has no follow-up question ready.",
         "Your answer in the House is one paragraph shorter than the brief: you cut the paragraph that dodged."
       ],
       "1": [
         "At Question Time you answer a question that was nearly the one asked.",
-        "A sharp supplementary meets a smooth reply; Hansard records both, and the papers record the reply.",
+        "A sharp follow-up question meets a smooth reply; Hansard records both, and the papers record the reply.",
         "Question Time again, and the brief answers a question your officials found easier.",
-        "Your replies this sitting are smooth enough that the supplementaries slide straight off them.",
-        "The brief is read in full, accurately, and a Member asks the original question again in other words.",
+        "Your replies this sitting are smooth enough that the follow-up questions slide straight off them.",
+        "You read your officials' brief in full, accurately, and the Member asks the original question again in other words.",
         "At Question Time you read the brief so well that nobody can quite say which question it answered."
       ],
       "2": [
@@ -3400,15 +3400,15 @@
     "variants": [
       {
         "title": "Question Time",
-        "body": "At Question Time a Member asks whether your ministry will review a rule that residents complain about at every Meet-the-People Session. It is already under review, but nothing is decided, and the ministry is saving the news for an announcement in March, with a backdrop. What you say now goes into Hansard.",
+        "body": "At Question Time, when Members put questions to ministers in the House, a Member asks whether your ministry will review a rule that residents complain about every week. It is already under review, but nothing is decided, and the ministry is saving the news for a press conference in March, with the Minister, a stage and a banner. What you say now goes into Hansard, the official record of Parliament, where it stays.",
         "choices": [
           {
             "text": "Say it is under review, and what is being looked at.",
-            "outcome": "You say so, plainly: \"Yes, it is under review, and here are the three things we are looking at.\" Then you name them. The Member thanks you. The announcement in March makes smaller news than it would have, backdrop and all."
+            "outcome": "You say so, plainly: \"Yes, it is under review, and here are the three things we are looking at.\" Then you name them. The Member thanks you. The press conference in March makes smaller news than it would have, banner and all."
           },
           {
             "text": "Say the ministry keeps all its rules under review.",
-            "outcome": "This is true of every rule and says nothing about this one. The Member points that out. Hansard records you both, and the announcement in March gets the headline."
+            "outcome": "This is true of every rule and says nothing about this one. The Member points that out. Hansard records you both, and the press conference in March gets the headline."
           },
           {
             "text": "Offer the Member a full written reply once it is decided.",
@@ -3418,7 +3418,7 @@
       },
       {
         "title": "The Supplementary",
-        "body": "You have answered a Parliamentary Question about your ministry, and it went well. Then the Member rises with a follow-up question, the one your officials said would not come, and your brief has nothing on it. The House is waiting, and Hansard is recording.",
+        "body": "You have answered a Parliamentary Question about your ministry, and it went well. Then the Member rises with a follow-up question, the one your officials said would not come, and your brief has nothing on it. The House is waiting, and Hansard, the official record, is recording.",
         "choices": [
           {
             "text": "Answer it straight, without the brief.",
@@ -3573,7 +3573,7 @@
         "A quiet year of receptions, where you learn to hold a plate, a glass and a business card at once."
       ],
       "2": [
-        "Bintan in June, where you check your email only twice. That's progress.",
+        "A week on Bintan in June, where you check your email only twice. That's progress.",
         "A quiet year, and somewhere someone writes \"steady\" about you and means it kindly.",
         "A quiet year, and you take all your leave, which the leave system flags as unusual.",
         "You rest, and everything keeps running without you. It's reassuring, and very slightly insulting.",
@@ -3583,7 +3583,7 @@
     },
     "variants": [
       {
-        "body": "This year brings no crisis, no reorganisation and no parliamentary question with your name in it. Your diary has empty afternoons, something nobody around you has seen in years. Everyone has noticed, and is pretending not to. Empty afternoons get filled, and for once you can choose with what.",
+        "body": "This year brings no crisis, no reorganisation and no question in Parliament with your name in it. Your diary has empty afternoons, something nobody around you has seen in years. Everyone has noticed, and is pretending not to. Empty afternoons get filled, and for once you can choose with what.",
         "choices": [
           {
             "text": "Use it to fix something small and permanent.",
@@ -3745,7 +3745,7 @@
   {
     "id": "old_colleague",
     "title": "Someone From Before",
-    "body": "At a meeting of several agencies, you recognise the person chairing it. Years ago, before your degree, the two of you sat two desks apart at a statutory board, on the same grade. She's three grades above you now, and her committees decide who gets noticed.",
+    "body": "At a meeting of several agencies, you recognise the person chairing it. Years ago, before your degree, the two of you worked side by side at a public service counter, on the same grade. She's three grades above you now, and her committees decide who gets noticed.",
     "requires": {
       "origin": [
         "poly"
@@ -3771,14 +3771,14 @@
           "integrity": 2,
           "standing": -3
         },
-        "outcome": "She hadn't moved on; she simply didn't see you. You think about the two desks for a week, and then you stop."
+        "outcome": "She hadn't moved on; she simply didn't see you. You think about the counter for a week, and then you stop."
       }
     ]
   },
   {
     "id": "second_look",
     "title": "The Board Takes a Second Look",
-    "body": "Your work has been rated well above your grade for years, and someone has noticed. A promotion board has been asked, unusually, to look again at an officer whose record doesn't match their grade, and at the estimate of how far that officer will go. The officer is you.",
+    "body": "Someone on a promotion board has read several of your papers, and thinks your work is better than your grade suggests. Unusually, the board has been asked to look again at your file, and at HR's private estimate of the highest grade you'll ever reach, which is never shown to you.",
     "requires": {
       "minRank": 2,
       "maxRank": 6,
@@ -3806,7 +3806,7 @@
           "cep": 1,
           "integrity": 6
         },
-        "outcome": "The record does speak. It's a good record, and it moves the board slightly less than four pages would have."
+        "outcome": "The record does speak, in the dry language of appraisal forms, and it moves the board slightly less than four pages would have."
       }
     ]
   },
@@ -3983,7 +3983,7 @@
   {
     "id": "pofma_vindicated",
     "title": "The Third Point",
-    "body": "A while ago you publicly admitted the one point that a viral post about your ministry's scheme got right. Now the scheme has been quietly amended to fix exactly that. {journalist}, {journalist.aTitle} at the paper, has noticed that you were the only office holder who admitted it, and asks you about it on the record.",
+    "body": "Some time ago, a viral post about your ministry's scheme got two points wrong and one right, and you publicly admitted the one it got right. Now the scheme has been quietly amended to fix exactly that. {journalist}, {journalist.aTitle} at the paper, has noticed that you were the only office holder who admitted it, and asks about it on the record.",
     "triggered": true,
     "choices": [
       {
@@ -4008,7 +4008,7 @@
   {
     "id": "speech_vindicated",
     "title": "Hansard",
-    "body": "Years ago you stood up in the House and said plainly what you thought, when a safer version was ready in front of you. Your answer went into Hansard, word for word. This week a newer Member quotes it in her own speech, beginning \"As {player.formal} said in this House\". Someone on the front bench looks up the original, and so does the press gallery.",
+    "body": "Years ago you stood up in the House and said plainly what you thought, when a safer version was ready in front of you. Your answer went into Hansard, word for word. This week a newer Member quotes it in her own speech, beginning \"As {player.formal} said in this House\". Someone on the front bench, where the ministers sit, looks up the original, and so does the press gallery.",
     "triggered": true,
     "choices": [
       {
@@ -4033,7 +4033,7 @@
   {
     "id": "bonus_vindicated",
     "title": "Terms of Reference",
-    "body": "Some years ago you asked the other ministers whether ministers should be paid on indicators they set themselves. Now a committee has been appointed to review political salaries, and your question appears, unattributed, as item three of its terms of reference. The committee is inviting submissions.",
+    "body": "Some years ago you asked Cabinet whether ministers should be paid on targets they can move themselves. Now a committee has been appointed to review political salaries, and your question appears, unattributed, as item three of its terms of reference. The committee is inviting submissions.",
     "triggered": true,
     "choices": [
       {
@@ -4088,7 +4088,7 @@
     "id": "re_election",
     "title": "Polling Day, Again",
     "triggered": true,
-    "body": "Parliament is dissolved on a Tuesday, so there is a general election within weeks and your seat is up again. Lose it, and your political career is over. Nobody is surprised; the tents went up in the void decks a fortnight ago. This time your branch chairman has started using the word \"swing\" in sentences about you.",
+    "body": "Parliament is dissolved on a Tuesday, so there is a general election within weeks and your seat is up again. Lose it, and your political career is over. Nobody is surprised: the party's tents went up under the blocks a fortnight ago. This time the chairman of your party branch, the volunteers who run the party in your ward, has started using the word \"swing\" in sentences about you.",
     "choices": [
       {
         "text": "Campaign on the record.",
@@ -4107,7 +4107,7 @@
             "chance": 0.5
           }
         ],
-        "outcome": "You stand on a lorry and read out what has been delivered in the ward since the last election. Some of the numbers are yours."
+        "outcome": "You stand on a campaign lorry and read out everything the ward got since the last election, as if it were all your doing. Some of it was."
       },
       {
         "text": "Walk every block, every night, for nine days.",
@@ -4141,13 +4141,13 @@
         }
       },
       "lines": [
-        "Another general election, and on the campaign lorry you read out the ward's numbers, some of them yours.",
-        "The thank-you lorry takes the same route as last time, down to the stop for kopi at the same coffee shop.",
-        "Nine days of campaigning, one rally, and a sample count that tells everyone the result before the real one does.",
-        "Your ward's result is among the first in, and your branch treats this as a personal achievement.",
+        "Another general election. On the campaign lorry you read out everything the ward got in five years: new lifts, a covered walkway, an upgraded hawker centre. You read it all out as if it were your doing. Some of it was.",
+        "After the vote, an open lorry carries you round the ward to thank voters, by the same route as last time, down to the same coffee shop.",
+        "Nine days of campaigning, one rally, and on election night a sample count, an early tally from a few ballot boxes, that tells everyone the result before the real one does.",
+        "Your ward's result is among the first announced, and your volunteers treat this as a personal achievement.",
         "Election posters go up at the first permitted minute and come down by the date on the permit.",
-        "On Cooling-off Day nobody may campaign, so you spend it reading the comments, and wish you could.",
-        "Nomination Day, nine days of walkabouts, and a result your branch chairman predicted, in writing, to within a point.",
+        "On Cooling-off Day, the day before the vote, nobody may campaign, so you spend it reading the comments online, and wish you could reply.",
+        "Nomination Day, when the candidates file their papers, then nine days of walkabouts, and a result your campaign manager predicted, in writing, to within a point.",
         "By the end of the campaign you can rank every coffee shop in the ward by its kopi, privately."
       ]
     }
@@ -4166,7 +4166,7 @@
       "economy": "strong",
       "electionDue": false
     },
-    "body": "Your ministry must settle its plan for the next three Budgets, and the plan sets part of your pay. Office holders get a National Bonus: three months' salary when the country hits its targets for growth, jobs, median incomes and incomes at the 20th percentile, up to six when it beats them. Growth is strong. You can push one target, not all of them.",
+    "body": "Your ministry must settle its plan for the next three Budgets, and the plan sets part of your pay. Office holders get a National Bonus: three months' salary when the country hits its targets for growth, jobs, typical incomes and the incomes of the lowest-paid fifth of workers, up to six when it beats them. Growth is strong. You can push one target, not all of them.",
     "choices": [
       {
         "text": "Push headline GDP.",
@@ -4180,11 +4180,11 @@
           "months": 2,
           "outcome": "Growth comes in a little under forecast, which in a strong year is noticed, and your National Bonus drops to two months. The commentary uses the word \"moderate\" four times."
         },
-        "outcome": "Growth comes in above forecast, and your National Bonus is five months. Incomes at the 20th percentile rise too, slightly, the way a small boat rises when a larger one goes past.",
+        "outcome": "Growth comes in above forecast, and your National Bonus is five months. The lowest incomes rise too, slightly, the way a small boat rises when a larger one goes past.",
         "stance": "headline"
       },
       {
-        "text": "Push incomes at the 20th percentile.",
+        "text": "Push the incomes of the lowest-paid.",
         "nationalBonus": 4,
         "effects": {
           "reputation": 4,
@@ -4194,9 +4194,9 @@
         "nationalBonusRisk": {
           "chance": 0.3,
           "months": 0,
-          "outcome": "The 20th-percentile figure misses its target by a tenth of a point, and the formula pays no National Bonus at all. Your officials' chart of it is still a good chart."
+          "outcome": "The lowest-incomes figure misses its target by a tenth of a point, and the formula pays no National Bonus at all. Your officials' chart of it is still a good chart."
         },
-        "outcome": "Incomes at the 20th percentile grow faster than the median, which has not happened in six years, and your bonus is four months. The chart goes into the Budget speech, in colour.",
+        "outcome": "The lowest incomes grow faster than the median, which has not happened in six years, and your bonus is four months. The chart goes into the Budget speech, in colour.",
         "stance": "lowest"
       },
       {
@@ -4217,7 +4217,7 @@
         "choices": [
           {
             "text": "Sign the plan that backs the investment push.",
-            "outcome": "Two plants and a data centre are brought forward, growth comes in above forecast, and your bonus is five months. The 20th percentile rises a little, carried along. The other plans go into a drawer."
+            "outcome": "Two plants and a data centre are brought forward, growth comes in above forecast, and your bonus is five months. The lowest incomes rise a little, carried along. The other plans go into a drawer."
           },
           {
             "text": "Sign the one for wage support at the bottom.",
@@ -4230,14 +4230,14 @@
         ]
       },
       {
-        "body": "Your ministry's chief economist has one chart for the next three Budgets: growth strong, incomes at the 20th percentile flat. \"You can move either line,\" the economist says. \"Not both, at this price.\" Both lines feed your National Bonus, which pays three months' salary when the national targets are met and up to six when they are beaten.",
+        "body": "Your ministry's chief economist has one chart for the next three Budgets: growth strong, the lowest incomes flat. \"You can move either line,\" the economist says. \"Not both, at this price.\" Both lines feed your National Bonus, which pays three months' salary when the national targets are met and up to six when they are beaten.",
         "choices": [
           {
             "text": "Move the growth line.",
-            "outcome": "The growth line climbs above forecast, and your bonus is five months. The 20th-percentile line rises a little too, out of politeness. The economist relabels the chart \"broad-based\"."
+            "outcome": "The growth line climbs above forecast, and your bonus is five months. The lowest-incomes line rises a little too, out of politeness. The economist relabels the chart \"broad-based\"."
           },
           {
-            "text": "Move the 20th-percentile line.",
+            "text": "Move the lowest-incomes line.",
             "outcome": "The lower line overtakes the median's growth and holds, and your bonus is four months. The economist prints the chart on A3, which economists do not do."
           },
           {
@@ -4287,8 +4287,8 @@
               "outcome": "Signed in pen, beside the old dates. Growth comes in above forecast again, your bonus is five months, and the plan will now renew itself. Nobody asks what else it could have been."
             },
             {
-              "text": "Cross it out. Put the 20th percentile first.",
-              "outcome": "Your officials redraft three years of work in a fortnight, and Finance asks in writing why a working plan has changed. Incomes at the 20th percentile outgrow the median by spring, and this is now the standing plan."
+              "text": "Cross it out. Put the lowest incomes first.",
+              "outcome": "Your officials redraft three years of work in a fortnight, and Finance asks in writing why a working plan has changed. The lowest incomes outgrow the median by spring, and this is now the standing plan."
             },
             {
               "text": "Cross it out. Bank the targets instead.",
@@ -4298,7 +4298,7 @@
         },
         "lowest": {
           "title": "The Indicators, Again",
-          "body": "Growth is strong, and the next three Budgets need a plan. Last time you put incomes at the 20th percentile first, and that chart now hangs in the ministry lobby, framed. Your officials' draft keeps it climbing. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, in good years and bad, without being put to you again.",
+          "body": "Growth is strong, and the next three Budgets need a plan. Last time you put the lowest incomes first, and that chart now hangs in the ministry lobby, framed. Your officials' draft keeps it climbing. Whatever you sign now becomes the standing plan, rolled over every Budget from here on, in good years and bad, without being put to you again.",
           "choices": [
             {
               "text": "Take the chart down. Push headline GDP this time.",
@@ -4306,7 +4306,7 @@
             },
             {
               "text": "Sign it. Keep the chart climbing.",
-              "outcome": "Signed without a meeting. Incomes at the 20th percentile outgrow the median for another cycle, your bonus is four months, and the plan will now roll on by itself. The lobby chart is replaced by a larger one."
+              "outcome": "Signed without a meeting. The lowest incomes outgrow the median for another cycle, your bonus is four months, and the plan will now roll on by itself. The lobby chart is replaced by a larger one."
             },
             {
               "text": "Bank the targets. Let the chart level off.",
@@ -4323,8 +4323,8 @@
               "outcome": "Growth comes in above forecast, and growth-first is the standing plan from now on. The ministries that borrowed your old plan have to give it back, and your officials rewrite three years of documents in three weeks."
             },
             {
-              "text": "Stop it. Put the 20th percentile first.",
-              "outcome": "Incomes at the 20th percentile outgrow the median by the next survey, and that is the standing plan from now on. The ministries that borrowed your old plan ask, in writing, whether they must change theirs."
+              "text": "Stop it. Put the lowest incomes first.",
+              "outcome": "The lowest incomes outgrow the median by the next survey, and that is the standing plan from now on. The ministries that borrowed your old plan ask, in writing, whether they must change theirs."
             },
             {
               "text": "Let it renew.",
@@ -4343,7 +4343,7 @@
         "The growth-first plan renews itself for three more Budgets, and the only edit anyone makes is to the year."
       ],
       "lowest": [
-        "Your plan for incomes at the 20th percentile rolls into three more Budgets, and its chart gets new numbers.",
+        "Your plan for the lowest incomes rolls into three more Budgets, and its chart gets new numbers.",
         "Wage support for the lowest-paid is renewed without a meeting, the surest sign that it is policy now.",
         "Finance's yearly letter asking whether the support for the lowest-paid is temporary arrives on schedule, and gets a template reply.",
         "Your standing plan puts the lowest incomes first again, and your economists print the chart on A3, out of habit.",
@@ -4401,9 +4401,9 @@
         "nationalBonusRisk": {
           "chance": 0.5,
           "months": 0,
-          "outcome": "The push does not take. Growth stays flat, the 20th percentile falls, and there is no National Bonus. Nobody calls it a gamble, because it was a plan."
+          "outcome": "The push does not take. Growth stays flat, the lowest incomes fall, and there is no National Bonus. Nobody calls it a gamble, because it was a plan."
         },
-        "outcome": "Growth recovers ahead of the region and your bonus is four months. The speech about resilience writes itself. The jobs come back eighteen months later, in other industries, for other people.",
+        "outcome": "Growth recovers ahead of the region and your bonus is four months. The speech about resilience writes itself. The jobs do come back, in time, in other industries, for other people.",
         "stance": "headline"
       },
       {
@@ -4417,9 +4417,9 @@
         "nationalBonusRisk": {
           "chance": 0.3,
           "months": 0,
-          "outcome": "The cushion holds the 20th percentile steady. The indicator only counts growing, not holding steady, so the formula pays no National Bonus."
+          "outcome": "The cushion holds the lowest incomes steady. The indicator only counts growing, not holding steady, so the formula pays no National Bonus."
         },
-        "outcome": "Incomes at the 20th percentile hold steady through the downturn, and your bonus is one month. Rent is paid on time in a great many flats. Nobody reports on rent paid on time.",
+        "outcome": "The lowest incomes hold steady through the downturn, and your bonus is one month. Rent is paid on time in a great many flats. Nobody reports on rent paid on time.",
         "stance": "lowest"
       }
     ],
@@ -4443,7 +4443,7 @@
         ]
       },
       {
-        "body": "At Tuesday's Meet-the-People Session, three of the first ten cases are retrenchments. On Thursday your ministry settles its plan for the next three Budgets, and the plan also sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are hit, less in a downturn. The three files are still in your bag.",
+        "body": "At Tuesday's Meet-the-People Session, your weekly evening of residents' problems, three of the first ten cases are retrenchments. On Thursday your ministry settles its plan for the next three Budgets, and the plan also sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are hit, less in a downturn. The three files are still in your bag.",
         "choices": [
           {
             "text": "Plan for jobs.",
@@ -4581,7 +4581,7 @@
       },
       "electionDue": true
     },
-    "body": "A general election is due within the year, and your ministry must settle its plan for the next three Budgets before Nomination Day. The plan sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are met, up to six when they are beaten. Your branch chairman has sent, unasked, a list of what the ward would like announced.",
+    "body": "A general election is due within the year, and your ministry must settle its plan for the next three Budgets before Nomination Day, when the candidates file their papers. The plan sets your National Bonus: three months' salary when the national targets for growth, jobs and incomes are met, up to six when they are beaten. The chairman of your party branch, which runs the party's volunteers in your ward, has sent, unasked, a list of what the ward would like announced.",
     "choices": [
       {
         "text": "Spread the gains widely before polling day.",
@@ -4596,7 +4596,7 @@
           "months": 1,
           "outcome": "The measures land after the indicators are measured, so your bonus is one month. Residents like the measures anyway; the indicators were not voting."
         },
-        "outcome": "The measures land in time and are felt in every block, and your bonus is three months. Your branch chairman reads them out at the CCC dinner, from a printout, with feeling.",
+        "outcome": "The measures land in time and are felt in every block, and your bonus is three months. Your branch chairman reads them out at the community club dinner, from a printout, with feeling.",
         "stance": "headline"
       },
       {
@@ -4616,7 +4616,7 @@
         "stance": "steady"
       },
       {
-        "text": "Push incomes at the 20th percentile.",
+        "text": "Push the incomes of the lowest-paid.",
         "nationalBonus": 3,
         "effects": {
           "reputation": 3,
@@ -4626,16 +4626,16 @@
         "nationalBonusRisk": {
           "chance": 0.35,
           "months": 0,
-          "outcome": "The 20th-percentile figure misses its target by a tenth of a point, and the formula pays no National Bonus. In an election year, a tenth of a point gets a press conference."
+          "outcome": "The lowest-incomes figure misses its target by a tenth of a point, and the formula pays no National Bonus. In an election year, a tenth of a point gets a press conference."
         },
-        "outcome": "Incomes at the 20th percentile outgrow the median, and your bonus is three months. The chart is on a campaign flyer by Friday, cropped so the axis starts somewhere encouraging.",
+        "outcome": "The lowest incomes outgrow the median, and your bonus is three months. The chart is on a campaign flyer by Friday, cropped so the axis starts somewhere encouraging.",
         "stance": "lowest"
       }
     ],
     "weight": 16,
     "variants": [
       {
-        "body": "Your Permanent Secretary is briefing you on the ministry's plan for the next three Budgets, which also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them. The briefing pauses, politely, at a slide titled \"Timing\". Everyone in the room knows a general election is due within the year. Nobody has said so for forty minutes.",
+        "body": "Your Permanent Secretary is briefing you on the ministry's plan for the next three Budgets, which also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them. The briefing pauses, politely, at a slide titled \"Timing\". Everyone in the room knows a general election is due within the year. Nobody has said so for forty minutes, though your party branch, the volunteers who run your campaign, has said little else.",
         "choices": [
           {
             "text": "Bring everything forward, before polling day.",
@@ -4647,12 +4647,12 @@
           },
           {
             "text": "Use the timing for the lowest incomes.",
-            "outcome": "Support for the lowest incomes lands before polling day, and your bonus is three months. The 20th-percentile chart rises, and is reprinted on a flyer at a size the economists would not approve."
+            "outcome": "Support for the lowest incomes lands before polling day, and your bonus is three months. The lowest-incomes chart rises, and is reprinted on a flyer at a size the economists would not approve."
           }
         ]
       },
       {
-        "body": "A general election is due, and the party's election committee asks every office holder for \"one thing residents can feel by polling day\". Your ministry's plan for the next three Budgets has three versions, each felt by different residents. Whichever you choose also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them.",
+        "body": "A general election is due, and the party's election committee asks every office holder for \"one thing residents can feel by polling day\". Your ministry's plan for the next three Budgets has three versions, each felt by different residents. Whichever you choose also sets your National Bonus: three months' salary for meeting the national targets, up to six for beating them. Your party branch, the volunteers who run your campaign, would like something it can print.",
         "choices": [
           {
             "text": "Give them something everyone can feel.",
@@ -4697,7 +4697,7 @@
             },
             {
               "text": "Pull the flyer. Put the lowest incomes first.",
-              "outcome": "Support for the lowest incomes lands before polling day, a new flyer is printed with a new chart, and that is the plan from now on. The old flyers are used, unofficially, to wrap kueh at the CCC."
+              "outcome": "Support for the lowest incomes lands before polling day, a new flyer is printed with a new chart, and that is the plan from now on. The old flyers are used, unofficially, to wrap cakes at the community club."
             }
           ]
         },
@@ -4733,7 +4733,7 @@
             },
             {
               "text": "Leave it settled.",
-              "outcome": "Incomes at the 20th percentile outgrow the median again, your bonus is three months, and the plan now renews itself. The chart goes on another flyer, and residents who were on it last time say they have seen it."
+              "outcome": "The lowest incomes outgrow the median again, your bonus is three months, and the plan now renews itself. The chart goes on another flyer, and residents who were on it last time say they have seen it."
             }
           ]
         }
@@ -4744,7 +4744,7 @@
         "An election is due, and your standing plan brings the visible measures forward again, with last time's flyer redated.",
         "Polling day approaches, and your ministry's measures are timed to land in every block, as the standing plan says.",
         "Your branch gets its flyer, its measures and its press conference, in the usual order.",
-        "An election year, and the plan is rolled forward to land just before Nomination Day."
+        "An election year, and the plan is rolled forward to land just before the campaign starts."
       ],
       "steady": [
         "An election is due, and your standing plan holds the line on the targets again; your branch chairman has stopped asking.",
@@ -4753,7 +4753,7 @@
         "The targets are kept through another election year, and the campaign leads on lift upgrading instead."
       ],
       "lowest": [
-        "An election is due, and the 20th-percentile chart goes on the flyer, cropped so the axis starts somewhere encouraging.",
+        "An election is due, and the lowest-incomes chart goes on the flyer, cropped so the axis starts somewhere encouraging.",
         "Support for the lowest incomes is timed to land before polling day, as your standing plan says.",
         "Your branch prints the lowest-incomes chart again, and residents on it say they did not need the flyer.",
         "The plan for the lowest incomes renews itself in an election year, and a volunteer translates the chart's caption again."
@@ -4785,7 +4785,7 @@
           "cep": 1,
           "integrity": -2
         },
-        "outcome": "HR records your \"market value\" and, for one ranking round, takes you more seriously. It also records that you were the kind of officer who mentioned it."
+        "outcome": "The service doesn't match a bank's offer: your pay stays what your grade pays. HR quietly raises its private estimate of how far you'll go. Your bosses hear you were shopping around, and it shows in this year's appraisal."
       },
       {
         "text": "Decline. You're not finished here.",
@@ -4813,7 +4813,7 @@
         "text": "Take it.",
         "privateSector": true,
         "effects": {},
-        "outcome": "Your first engagement is with your old ministry. The slides are beautiful, and they say what your minute papers used to say."
+        "outcome": "Your first engagement is with your old ministry. The slides are beautiful, and they say what your memos used to say."
       },
       {
         "text": "Decline, and tell them why.",
@@ -5219,7 +5219,7 @@
   {
     "id": "farewell_drinks",
     "title": "Farewell Drinks",
-    "body": "Your friend in HR, the one who once let slip what a CEP is, is leaving the service. At her farewell drinks, on her second glass, she tells you how yours gets reviewed: every year, by people who mostly read your last two postings. The hard postings, she says, get read twice.",
+    "body": "Your friend in HR, the one who explained your CEP to you over lunch years ago, is leaving the service. At her farewell drinks, on her second glass, she tells you how yours gets reviewed: every year, by people who mostly read your last two postings. The hard postings, she says, get read twice.",
     "triggered": true,
     "requires": {
       "maxRank": 6
@@ -5232,7 +5232,7 @@
           "standing": -3,
           "competence": 3
         },
-        "outcome": "You ask the next morning. HR says it will note your interest, and does. Eighteen months later you're sent somewhere difficult, and that posting is read twice."
+        "outcome": "You ask the next morning. HR says it will note your interest, and does: your next posting is a difficult one, and it gets read twice."
       },
       {
         "text": "Thank her, and let her enjoy her drinks.",
@@ -5392,7 +5392,7 @@
   {
     "id": "lanterns",
     "title": "Lanterns",
-    "body": "The grassroots adviser who told you at a lift lobby that you handle yourself well with people has been in touch, as promised. Are you free on Saturday? It is the community club's Mid-Autumn celebration, with lanterns, a lion dance and an MP, and the MP would like to meet you. This, he says, is nothing formal.",
+    "body": "The grassroots adviser who told you at a lift lobby that you handle yourself well with people has been in touch, as promised. Are you free on Saturday? It is the community club's Mid-Autumn celebration, with lanterns, a lion dance and the ward's Member of Parliament, and the MP would like to meet you. This, the adviser says, is nothing formal.",
     "triggered": true,
     "requires": {
       "maxRank": 7
@@ -5503,7 +5503,7 @@
   {
     "id": "model_ward",
     "title": "A Model Ward",
-    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, the new lifts and a weak opponent.",
+    "body": "Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits \"{player.formal} and {player.their} walkabouts\". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really the volunteers, your Tuesday-night Meet-the-People Sessions, where residents queue with their problems, and a weak opponent.",
     "triggered": true,
     "once": true,
     "requires": {
@@ -5522,14 +5522,14 @@
         "outcome": "You teach them to listen to a stallholder on camera without looking like someone listening on camera. Two of them get it. The paper is reprinted with their photographs."
       },
       {
-        "text": "Teach them Tuesday nights. That is what worked.",
+        "text": "Teach them Meet-the-People on Tuesday nights. That is what worked.",
         "effects": {
           "integrity": 5,
           "reputation": 4,
           "competence": 1,
           "standing": -2
         },
-        "outcome": "You take them to a Tuesday session. One stays until midnight writing a letter that argues the case, and you recognise the look. The paper is not revised."
+        "outcome": "You take them to your Tuesday Meet-the-People Session. One stays until midnight writing a letter that argues the case, and you recognise the look. The paper is not revised."
       },
       {
         "text": "Send them to your volunteers instead of you.",
@@ -5665,27 +5665,27 @@
     "montageLines": {
       "comply": [
         "Another improvement plan arrives on the same template, and you do what you did with the first: sign, meet, file.",
-        "Another plan is marked Met and added to your file, which HR now describes as \"a pattern\".",
-        "The plan comes round again, and you sign where it says acknowledgement and work to its dates.",
-        "The same three objectives arrive in a different order, and you clear them in the old one.",
-        "You meet the new plan's objectives a month early, and the review is cancelled for lack of material.",
-        "The plan arrives with last time's comments still in its margin, and you work through it in the same order."
+        "Another improvement plan is marked Met and added to your file, which HR now describes as \"a pattern\".",
+        "The improvement plan comes round again, and you sign where it says acknowledgement and work to its dates.",
+        "Another improvement plan brings the same three objectives in a different order, and you clear them in the old one.",
+        "You meet the new improvement plan's objectives a month early, and the review is cancelled for lack of material.",
+        "The improvement plan arrives with last time's comments still in its margin, and you work through it in the same order."
       ],
       "move": [
         "Another improvement plan arrives, and you ask for a posting again; HR still has your last request on file.",
-        "HR moves you before the new plan's first review and closes it as \"Officer Transferred\", as before.",
+        "HR moves you before the new improvement plan's first review and closes it as \"Officer Transferred\", as before.",
         "HR processes your transfer request faster than last time, which it treats as a sign of maturity.",
-        "A new plan, then a new division, and a new reporting officer who reads your file from the back.",
-        "You are posted out within the month, and the plan is closed by a system that records you as \"Moved On\".",
-        "Your transfer is approved before the plan's review is booked, by an HR officer who recognises your name."
+        "A new improvement plan, then a new division, and a new reporting officer who reads your file from the back.",
+        "You are posted out within the month, and the improvement plan is closed by a system that records you as \"Moved On\".",
+        "Your transfer is approved before the improvement plan's review is booked, by an HR officer who recognises your name."
       ],
       "contest": [
         "Another improvement plan arrives, and you reply to it in writing, at the same length as last time.",
-        "Your reply to the new plan is filed beside the old one, and the review moves to a larger room.",
-        "Another plan, another four-page reply, and HR opens a second folder because the first is full.",
-        "You answer the new plan point by point, and your reporting officer now writes everything down, in pen.",
+        "Your written reply to the new improvement plan is filed beside the old one, and the review moves to a larger room.",
+        "Another improvement plan, another four-page reply, and HR opens a second folder because the first is full.",
+        "You answer the new improvement plan point by point, and your reporting officer now writes everything down, in pen.",
         "Your written reply cites the previous plan by paragraph number, which nobody on the panel can find.",
-        "The new plan comes with a box for your comments, and your comments come with an annex."
+        "The new improvement plan comes with a box for your comments, and your comments come with an annex."
       ]
     }
   },
@@ -5800,7 +5800,7 @@
   {
     "id": "moh_premiums",
     "title": "The Premiums",
-    "body": "MediShield Life premiums are going up, and the actuaries have done the sums: the increase is what it is. Your job is to decide how it's put to the public: all at once or over several years, and with how much subsidy shown beside it. Whatever you choose, someone will add it up.",
+    "body": "Premiums for MediShield Life, the national health insurance everyone pays into, are going up, and the actuaries have done the sums: the increase is what it is. Your job is to decide how it's put to the public: all at once or over several years, and with how much subsidy shown beside it. Whatever you choose, someone will add it up.",
     "weight": 8,
     "once": true,
     "requires": {
@@ -5824,7 +5824,7 @@
           "standing": 5,
           "integrity": -3
         },
-        "outcome": "Each year looks reasonable. Within a week somebody adds the three years together, in a Forum letter with a table in it."
+        "outcome": "Each year looks reasonable. Within a week somebody adds the three years together, in a letter to the newspaper, with a table in it."
       },
       {
         "text": "Ask the actuaries to walk you through their assumptions first.",
@@ -5937,7 +5937,7 @@
           "reputation": 3,
           "standing": -4
         },
-        "outcome": "The ladder ends up steeper than the employers wanted and gentler than the union asked for. In tripartite talks, that's a win for everyone and a story for nobody."
+        "outcome": "The ladder ends up steeper than the employers wanted and gentler than the union asked for. In tripartite talks, where government, unions and employers settle wages together, that's a win for everyone and a story for nobody."
       },
       {
         "text": "Broker the longer, gentler ladder.",
@@ -6002,7 +6002,7 @@
   {
     "id": "mnd_classification",
     "title": "The Classification",
-    "body": "HDB is planning a new estate, and you have to decide which of its projects are Standard, Plus or Prime. The label decides how long owners must live there and what they repay when they sell. You have a map, a set of criteria, and three neighbouring blocks that are, in every way a resident would notice, identical.",
+    "body": "HDB, the government's housing board, is planning a new estate, and you have to decide which of its projects are Standard, Plus or Prime. The label decides how long owners must live there and what they repay when they sell. You have a map, a set of criteria, and three neighbouring blocks that are, in every way a resident would notice, identical.",
     "weight": 8,
     "once": true,
     "requires": {
@@ -6043,7 +6043,7 @@
   {
     "id": "mnd_lease",
     "title": "Ninety-Nine Years",
-    "body": "A residents' committee from a 1970s HDB estate has written in. Their leases are ninety-nine years long and about half used up. The letter is polite, well researched, and asks one question: what happens to their flats when the lease runs out. The answer is in the policy. They've read the policy.",
+    "body": "A residents' committee from a 1970s estate built by HDB, the government's housing board, has written in. Their leases are ninety-nine years long and about half used up. The letter is polite, well researched, and asks one question: what happens to their flats when the lease runs out. The answer is in the policy. They've read the policy.",
     "weight": 8,
     "once": true,
     "requires": {
@@ -6060,7 +6060,7 @@
           "competence": 2,
           "standing": -2
         },
-        "outcome": "Two hours at a void deck. You explain the policy, and then you listen to what it means to them. That's a different conversation, and a longer one."
+        "outcome": "Two hours at a void deck, the shaded open space under one of their blocks. You explain the policy, and then you listen to what it means to them. That's a different conversation, and a longer one."
       },
       {
         "text": "Reply in writing, accurately and kindly.",
@@ -6084,7 +6084,7 @@
   {
     "id": "mnd_million",
     "title": "The Million-Dollar Flat",
-    "body": "A resale flat in a mature estate has sold for one and a half million dollars, and the headline makes it sound as if every flat will. It was an unusually good flat; the headline does not say so. Housing is your ministry's job, and your phone has begun to buzz in the rhythm of a question you will have to answer.",
+    "body": "A second-hand public housing flat in an older estate has sold for one and a half million dollars, and the headline makes it sound as if every flat will. It was an unusually good flat; the headline does not say so. Housing is your ministry's job, and your phone has begun to buzz in the rhythm of a question you will have to answer.",
     "weight": 8,
     "once": true,
     "requires": {
@@ -6205,7 +6205,7 @@
   {
     "id": "moe_psle",
     "title": "The PSLE Question",
-    "body": "You are hosting a dialogue for parents on \"the joy of learning\". The first question is about PSLE Achievement Levels and the second about tuition. The third is from a twelve-year-old, brought along by a parent, who wants to know why there is an exam at all. The room is waiting to see whose question you answer first.",
+    "body": "You are hosting a dialogue for parents on \"the joy of learning\". The first question is about how the PSLE, the exam at the end of primary school, is scored, and the second about tuition. The third is from a twelve-year-old, brought along by a parent, who wants to know why there is an exam at all. The room is waiting to see whose question you answer first.",
     "weight": 8,
     "once": true,
     "requires": {
@@ -6229,10 +6229,10 @@
           "standing": 4,
           "competence": 2
         },
-        "outcome": "Achievement Levels, tuition, and then, briefly, the child, who by now has been taken outside for a drink."
+        "outcome": "The scoring, tuition, and then, briefly, the child, who by now has been taken outside for a drink."
       },
       {
-        "text": "Explain how Achievement Levels work, carefully, with the chart.",
+        "text": "Explain how the PSLE is scored, carefully, with the chart.",
         "effects": {
           "competence": 4,
           "standing": 2,
@@ -6577,7 +6577,7 @@
         },
         {
           "id": "garden",
-          "text": "the opening of a rooftop garden on the MSCP"
+          "text": "the opening of a rooftop garden on the multi-storey car park"
         },
         {
           "id": "fitness",
@@ -6590,7 +6590,7 @@
           "text": "{grassroots}, who organised it,",
           "where": "is waiting at the ribbon with the scissors",
           "give": "Hand {grassroots} the scissors. It was {grassroots.their} work.",
-          "saw": "{grassroots} mentions it to every RC in the ward by Monday.",
+          "saw": "{grassroots} mentions it to every residents' committee in the ward by Monday.",
           "left": "{grassroots} walks you to the car without a word, and that says enough.",
           "gave": "{grassroots}, the {grassroots.title}, cuts the ribbon slowly, to applause that is mostly for {grassroots.them}, and keeps the scissors.",
           "effects": {
@@ -6602,7 +6602,7 @@
         {
           "id": "mp",
           "text": "{mp}, the MP for the next ward,",
-          "where": "is waiting with a spare pair of scissors",
+          "where": "has come with a spare pair of scissors, hoping to share the photograph",
           "give": "Hand {mp} the scissors, and stand at the back.",
           "saw": "{mp} leaves halfway, and is in none of the photographs.",
           "left": "{mp} stays for the rest of it, and is in every photograph.",
@@ -6654,7 +6654,7 @@
         },
         {
           "id": "ribbon",
-          "text": "The ribbon is the wrong colour. The right one is stuck on the PIE.",
+          "text": "The ribbon is the wrong colour. The right one is stuck in traffic on the expressway.",
           "stay": "You wait forty minutes for the van and talk to everyone in the queue, and everyone is in the queue.",
           "go": "You cut the wrong ribbon. Nobody minds except the person who ordered the right one."
         },

@@ -15,7 +15,7 @@
           "text": "Return it to the registry unopened.",
           "effects": { "integrity": 5, "standing": 3, "competence": -2 },
           "setFlags": ["strange_met"],
-          "outcome": "The registry logs it, and will hold it until you are cleared for SECRET or it is declassified at twenty-five years old. Since it is dated thirty years from now, the second would take fifty-five years.",
+          "outcome": "The registry logs it, and will keep it until you are cleared for SECRET, or until it is declassified, twenty-five years after its date. Its date is thirty years away, so that would take fifty-five years.",
           "schedule": [{ "eventId": "strange_envelope", "inYears": 12, "chance": 0.6 }]
         },
         {
@@ -68,14 +68,14 @@
         {
           "text": "File it, and carry on.",
           "effects": { "standing": 3, "competence": 2, "integrity": -3 },
-          "outcome": "You file it and work straight through the year: the House, the ward, every Meet-the-People Session. In December you notice the leave you did not take, and understand that the letter knew you."
+          "outcome": "You file it and work straight through the year: Parliament, the ward, every Tuesday night of residents' problems. In December you notice the leave you did not take, and understand that the letter knew you."
         }
       ]
     },
     {
       "id": "strange_snow",
       "title": "Snow",
-      "body": "At 3pm it snows in Toa Payoh for forty minutes. NEA confirms that it was snow, and can't say why. Your division's business continuity plan, which says how the office keeps working through an emergency, covers haze, floods and a pandemic. {senior} wants a section on snow by 5pm, in case it happens again, and you're writing it.",
+      "body": "At 3pm it snows in Toa Payoh for forty minutes. The National Environment Agency confirms that it was snow, and can't say why. Your division's business continuity plan, which says how the office keeps working through an emergency, covers haze, floods and a pandemic. {senior} wants a section on snow by 5pm, in case it happens again, and you're writing it.",
       "requires": { "minRank": 0, "maxRank": 1, "flagsNone": ["strange_met"] },
       "weight": 0.45,
       "once": true,
@@ -103,7 +103,7 @@
     {
       "id": "strange_ghost",
       "title": "The Seventh Month",
-      "body": "During the seventh month, your division's online feedback form receives a compliment from a resident who passed away in 1974. It's courteous and specific. The service standard says every member of the public gets a reply within three working days. You must also rule whether his rating counts in the satisfaction survey, where your division is one decimal place short of its target.",
+      "body": "During the seventh month of the lunar calendar, when the spirits of the dead are said to roam, your division's online feedback form receives a compliment from a resident who passed away in 1974. It's courteous and specific. The service standard says every member of the public gets a reply within three working days. You must also rule whether his rating counts in the satisfaction survey, where your division's score is one decimal place short of its target.",
       "requires": { "minRank": 1, "maxRank": 4, "flagsNone": ["strange_met"] },
       "weight": 1.2,
       "once": true,
@@ -131,7 +131,7 @@
     {
       "id": "strange_merlion",
       "title": "The Merlion Speaks",
-      "body": "At 7.14am the Merlion says good morning to a tour group, in all four official languages. By ten, nobody is asking how. The question is which agency is in charge of it: STB, which protects its image by law, or PUB, since it spouts into Marina Reservoir. A meeting of both will decide, and you are writing the paper that recommends one.",
+      "body": "At 7.14am the Merlion, the half-lion, half-fish statue on Marina Bay, says good morning to a tour group, in all four official languages. By ten, nobody is asking how. The question is which agency is in charge of it: STB, the Tourism Board, which protects its image by law, or PUB, the water agency, since it spouts into Marina Reservoir. A meeting of both will decide, and you are writing the paper that recommends one.",
       "requires": { "minRank": 2, "maxRank": 4, "flagsNone": ["strange_met"] },
       "weight": 1,
       "once": true,
@@ -207,7 +207,7 @@
     {
       "id": "strange_clone",
       "title": "Two of You",
-      "body": "A research institute at one-north has reported an accident, and itself, to MOH. The accident is a second you: same memories, same appraisals, same leave balance. HR is clear that there is one post and one desk, and not at all clear which of you they belong to. HR wants your proposal by Friday. The other you is writing one too.",
+      "body": "A research institute at one-north has reported an accident, and itself, to the Ministry of Health. The accident is a second you: same memories, same appraisals, same leave balance. HR is clear that there is one post and one desk, and not at all clear which of you they belong to. HR wants your proposal by Friday. The other you is writing one too.",
       "requires": { "minRank": 3, "maxRank": 6, "flagsNone": ["strange_met"] },
       "weight": 1,
       "once": true,
@@ -222,20 +222,20 @@
           "text": "Offer the other you the posting nobody wants.",
           "effects": { "competence": 5, "reputation": 2, "standing": -3 },
           "setFlags": ["strange_met"],
-          "outcome": "The other you makes you the same offer, in the same words, at the same moment. You spoke a second sooner, so HR sends the other you to a struggling statutory board, which has never been so well run."
+          "outcome": "The other you makes you the same offer, in the same words, at the same moment. You spoke a second sooner, so HR sends the other you to a struggling government agency, which has never been so well run."
         },
         {
           "text": "Propose a job-share under the flexi-work guidelines.",
           "effects": { "integrity": 2, "reputation": 3, "standing": -2, "competence": -1 },
           "setFlags": ["strange_met"],
-          "outcome": "HR has two months to reply under the tripartite guidelines, and uses both. The job-share is approved. Within a year your appraisals differ, and neither of you can explain why."
+          "outcome": "HR has two months to reply under the guidelines, and uses both. The job-share is approved. Within a year your appraisals differ, and neither of you can explain why."
         }
       ]
     },
     {
       "id": "strange_loop",
       "title": "Again",
-      "body": "Your budget meeting with MOF has now happened nine times: the same meeting, starting each time at 2.30pm. Each time you ask for eleven more officers to run a new scheme. Each time MOF says your budget can't grow next year, and offers four. Nobody else in the room seems to have noticed the loop.",
+      "body": "Your budget meeting with the Finance ministry has now happened nine times: the same meeting, starting each time at 2.30pm. Each time you ask for eleven more officers to run a new scheme. Each time Finance says your budget can't grow next year, and offers four. Nobody else in the room seems to have noticed the loop.",
       "requires": { "minRank": 4, "maxRank": 6, "flagsNone": ["strange_met"] },
       "weight": 1,
       "once": true,
@@ -250,20 +250,20 @@
           "text": "Say what you actually think, once.",
           "effects": { "integrity": 5, "reputation": 2, "standing": -4 },
           "setFlags": ["strange_met"],
-          "outcome": "You tell MOF plainly that the scheme can't run on four officers. The loop ends at 3.10pm. The budget is still flat, but now it's flat on the record, with your warning in the minutes."
+          "outcome": "You tell Finance plainly that the scheme can't run on four officers. The loop ends at 3.10pm. The budget is still flat, but now it's flat on the record, with your warning in the minutes."
         },
         {
-          "text": "Mention the loop to the MOF officer.",
+          "text": "Mention the loop to the Finance officer.",
           "effects": { "standing": 4, "integrity": -3 },
           "setFlags": ["strange_met"],
-          "outcome": "The MOF officer has noticed too. MOF has been running this meeting on a loop for years, she says: it's how budgets stay flat. She would be grateful if you didn't mention it."
+          "outcome": "The Finance officer has noticed too. Finance has been running this meeting on a loop for years, she says: it's how budgets stay flat. She would be grateful if you didn't mention it."
         }
       ]
     },
     {
       "id": "strange_moon",
       "title": "The Moon",
-      "body": "A civilisation beyond Jupiter has offered Singapore a moon. MFA has drafted the formal reply, a note verbale, declining \"with the assurances of its highest consideration\", because the Outer Space Treaty bars any country from claiming one. Every ministry has until 5pm to comment, and yours will comment under your name.",
+      "body": "A civilisation beyond Jupiter has offered Singapore a moon. The Ministry of Foreign Affairs has drafted the formal reply, a note verbale, declining \"with the assurances of its highest consideration\", because the Outer Space Treaty bars any country from claiming one. Every ministry has until 5pm to comment, and yours will comment under your name.",
       "requires": { "minRank": 6, "maxRank": 7, "flagsNone": ["strange_met"] },
       "weight": 0.5,
       "once": true,
@@ -278,7 +278,7 @@
           "text": "Ask, in a footnote, whether it has ice.",
           "effects": { "competence": 4, "reputation": 3, "standing": -3 },
           "setFlags": ["strange_met"],
-          "outcome": "It has ice. PUB has a paper on a fifth national tap by Monday. The note is redrafted to decline the moon and keep the conversation open."
+          "outcome": "It has ice. PUB, the water agency, has a paper on a fifth national tap by Monday. The note is redrafted to decline the moon and keep the conversation open."
         },
         {
           "text": "Offer Singapore as a neutral venue for talks instead.",
@@ -291,7 +291,7 @@
     {
       "id": "strange_dragon",
       "title": "The Void Deck",
-      "body": "A dragon has nested in the void deck of Block 412, in your ward. Residents find it quiet, and warm. HDB, the Town Council and NParks have each written to say it is another agency's problem. Now the dragon has queued at your weekly Meet-the-People Session: it wants your help to appeal to IRAS for the lower property tax rate that owner-occupiers pay.",
+      "body": "A dragon has nested in the void deck of Block 412, the open space beneath the flats, in your ward. Residents find it quiet, and warm. The housing board, the Town Council and the parks board have each written to say it is another agency's problem. Now the dragon has queued at your weekly Meet-the-People Session, where residents come for help with agencies: it wants your help to appeal to IRAS, the tax authority, for the lower property tax rate that owner-occupiers pay.",
       "requires": { "minRank": 8, "maxRank": 10, "flagsNone": ["strange_met"] },
       "weight": 1.4,
       "once": true,
@@ -340,14 +340,14 @@
           "text": "Ask that both versions be published.",
           "effects": { "competence": 3, "reputation": 2, "standing": -2 },
           "setFlags": ["strange_met"],
-          "outcome": "The request goes to the Standing Orders Committee. It meets eighteen months later and finds, on reflection, that it would rather not."
+          "outcome": "The request goes to the Standing Orders Committee, which keeps Parliament's rule book. It considers the request at length and finds, on reflection, that it would rather not."
         }
       ]
     },
     {
       "id": "strange_thoughts",
       "title": "Open Minds",
-      "body": "For one Tuesday, everyone in the room with you can hear your thoughts. It's the day of your ministry's weekly senior management meeting. Items one to six take nineteen minutes, and nobody sits beside you. Item seven is a proposal your officials have worked on for a year, and you have doubts about it.",
+      "body": "For one Tuesday, everyone in the room with you can hear your thoughts. It's the day of your ministry's weekly senior management meeting. Word has got round, so nobody sits beside you, and items one to six take nineteen minutes. Item seven is a proposal your officials have worked on for a year, and you have doubts about it.",
       "requires": { "minRank": 11, "maxRank": 15, "flagsNone": ["strange_met"] },
       "weight": 0.7,
       "once": true,
@@ -375,7 +375,7 @@
     {
       "id": "strange_gold",
       "title": "The Gold Bar",
-      "body": "Since Monday, one gold bar in the national reserves has produced another every night. Nobody can say how. MOF can say exactly what it is: a return on the reserves. The rules let the Government spend up to half the expected return each year, and nobody expected this. Cabinet must decide what to do.",
+      "body": "Since Monday, one gold bar in the national reserves has produced another every night. Nobody can say how. The Finance ministry can say exactly what it is: a return on the reserves. The rules let the Government spend up to half the expected return each year, and nobody expected this. Cabinet must decide what to do.",
       "requires": { "minRank": 13, "maxRank": 16, "flagsNone": ["strange_met"] },
       "weight": 0.7,
       "once": true,
@@ -390,13 +390,13 @@
           "text": "Leave the framework alone. Let the bars accumulate.",
           "effects": { "integrity": 5, "standing": -3 },
           "setFlags": ["strange_met"],
-          "outcome": "The bars accumulate. Whatever is unspent at the end of the term becomes past reserves, behind the President's second key. Nothing is announced. The vault is extended."
+          "outcome": "The bars accumulate. Whatever is unspent at the end of the term becomes past reserves, which no government may spend without the President's agreement. Nothing is announced. The vault is extended."
         },
         {
           "text": "Propose a scheme, funded from the bars.",
           "effects": { "reputation": 5, "standing": 1, "integrity": -2, "heat": 4 },
           "setFlags": ["strange_met"],
-          "outcome": "MOF reminds Cabinet that schemes are funded from the Budget, and that the bars are reserves. The scheme is funded from the Budget. It is very popular."
+          "outcome": "Finance reminds Cabinet that schemes are funded from the Budget, and that the bars are reserves. The scheme is funded from the Budget. It is very popular."
         }
       ]
     }
