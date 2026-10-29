@@ -4,10 +4,11 @@
 //   screen(run)  what the phone would show. The only thing a blind agent ever receives.
 //   trace(run)   everything else: ids, effect numbers, CEP, Heat, flags, RNG outcomes.
 //
-// A run replays exactly from (build hash, origin, seed, choice list).
+// A run replays exactly from (build hash, origin, seed, choice list), and its screens from the
+// player's name and gender as well.
 //
 //   const H = require("./harness");
-//   let run = H.newRun("grad", 42);
+//   let run = H.newRun("grad", 42, { name: "Tan Wei Ming", gender: "m" });
 //   while (run.phase !== "ending") run = H.step(run, H.choices(run).find(c => c.available).id);
 //   H.trace(run);
 //
@@ -128,10 +129,14 @@ function newRun(origin, seed, opts = {}) {
   if (!build.content.origins.some(o => o.id === origin)) throw new Error(`unknown origin ${origin}`);
   // opts.recent: card ids and versions from the player's last runs (the phone's freshness memory)
   const recent = Array.isArray(opts.recent) ? opts.recent : [];
-  const S0 = build.engine.newGame(build.content, origin, opts.name || "You", seed >>> 0, { rival: !!opts.rival, recent });
+  // opts.name and opts.gender ("f" or "m"): the start screen's fields. A blank name is drawn for
+  // the gender, as on the phone. Text only: the same seed plays the same either way.
+  const gender = opts.gender === "m" ? "m" : "f";
+  const blank = build.engine.player ? "" : "You";   // an older build's placeholder for a blank name
+  const S0 = build.engine.newGame(build.content, origin, opts.name || blank, seed >>> 0, { rival: !!opts.rival, recent, gender });
   const { S, draw: d } = draw(build, S0);
   return {
-    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name, rival: !!opts.rival, recent,
+    buildHash: build.hash, origin, seed: seed >>> 0, name: S.name, gender: S.gender || gender, rival: !!opts.rival, recent,
     turn: 1, phase: S.ending ? "ending" : "event",
     S, pendingDraw: d,
     last: null,          // { outcome, log, prev } shown on the next screen
@@ -267,7 +272,7 @@ function screen(run, opts = {}) {
     return end;
   }
   const out = { phase: "event" };
-  if (run.turn === 1 && view === "agent") out.start = View.startCard(build, run.origin, run.rival);
+  if (run.turn === 1 && view === "agent") out.start = View.startCard(build, run.origin, run.rival, { name: run.name, gender: run.gender });
   const showOutcome = run.last && view !== "event";
   out.header = View.header(build, S);
   if (showOutcome) out.outcome = View.outcomeCard(run.last.outcome, run.last.log);
@@ -284,7 +289,7 @@ function trace(run) {
   const build = getBuild(run.buildHash);
   const S = run.S;
   return {
-    buildHash: run.buildHash, origin: run.origin, seed: run.seed, name: run.name,
+    buildHash: run.buildHash, origin: run.origin, seed: run.seed, name: run.name, gender: run.gender || "f",
     rival: run.rival || false, batchmate: S.rival || null,   // the batchmate's hidden file, if any
     cast: S.cast || null,                                     // the run's people: who held each role, and what happened to them
     recent: run.recent || [],                                 // freshness memory the run started with (replay key)
@@ -302,7 +307,7 @@ function replay(spec, opts = {}) {
   const build = opts.build || getBuild(spec.buildHash);
   if (spec.buildHash && spec.buildHash !== build.hash)
     throw new Error(`run was recorded on build ${spec.buildHash}, this build is ${build.hash}`);
-  let run = newRun(spec.origin, spec.seed, { build, name: spec.name, rival: !!spec.rival, recent: spec.recent || [] });
+  let run = newRun(spec.origin, spec.seed, { build, name: spec.name, gender: spec.gender, rival: !!spec.rival, recent: spec.recent || [] });
   for (const c of spec.choices) run = step(run, c);
   return run;
 }

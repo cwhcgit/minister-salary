@@ -5,7 +5,8 @@
 //       (the mechanics brief, the design doc) that is not also on the public store page.
 //   checkScreen(text, build)                for generated screens: internal ids, JSON, render
 //       bugs, and any stat value during play (the four stats are hidden until the ending screen).
-//       Game text may name CEP (an event explains it); prompts may not.
+//       Game text may name CEP (an event explains it); prompts may not. With opts.player
+//       ({ name, gender }, the run's start screen), also the wrong honorific before the name.
 //
 // CLI: node harness/leak-check.js [runs]  plays seeded runs and checks every screen.
 const H = require("./index");
@@ -69,8 +70,19 @@ const STAT_VALUES = [
   [/\b(reputation|standing|integrity|competence)\b\s*[:=(]?\s*\d{1,3}\b/i, "stat value during play"]
 ];
 
+// "Mr Tan Wei Ming" for a player who chose Female, or "Ms ..." for one who chose Male.
+function wrongHonorific(text, player) {
+  if (!player || !player.name || text.indexOf(player.name) < 0) return null;
+  const esc = player.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const wrong = player.gender === "m" ? "Ms|Mrs|Mdm|Miss" : "Mr";
+  const m = text.match(new RegExp(`\\b(?:${wrong}) ${esc}\\b`));
+  return m ? m[0] : null;
+}
+
 function checkScreen(text, build, terms = screenTerms(build), opts = {}) {
   const hits = [];
+  const hon = wrongHonorific(text, opts.player);
+  if (hon) hits.push({ why: "wrong honorific for the player", match: hon });
   const at = text.search(ENDING_LINE);
   const during = at >= 0 ? text.slice(0, at) : opts.ending ? "" : text;   // what is shown before the ending card
   for (const [re, why] of STAT_VALUES) {
@@ -81,6 +93,7 @@ function checkScreen(text, build, terms = screenTerms(build), opts = {}) {
   for (const [re, why] of [
     [/"\w+"\s*:/, "JSON"], [/\bundefined\b|\bNaN\b|\[object Object\]/, "render bug"],
     [/\{(rival|they|them|their|They|Them|Their|title)\}/, "unfilled batchmate placeholder"],
+    [/\{[Pp]layer(\.[A-Za-z]+)?\}/, "unfilled player placeholder"],
     // any other template token: a cast member ({peer}, {Junior.They}) or a card part ({asker})
     // that was never filled in. The screen never shows a raw token.
     [/\{[^{}\s]{1,40}\}/, "unfilled template token"],
@@ -96,17 +109,22 @@ function checkScreen(text, build, terms = screenTerms(build), opts = {}) {
 if (require.main === module) {
   const N = +process.argv[2] || 150;
   const build = H.loadBuild({ canaries: true });
+  // the start screen, by run: both genders, a blank name (drawn for the run), and typed names
+  // that share words with the batchmate's and the cast's pools
+  const PLAYERS = [["", "f"], ["Tan Wei Ming", "m"], ["Nur Aisyah", "f"], ["", "m"], ["Kumar", "m"], ["Ong Mei Xuan", "f"]];
   const terms = screenTerms(build);
   let screens = 0, bad = 0;
   for (const origin of ["scholar", "grad", "poly"]) {
     for (let i = 0; i < N; i++) {
       const r = H.rng(i * 31 + 7);
-      let run = H.newRun(origin, i * 13 + 1, { build, rival: i % 2 === 1 });   // half with a batchmate
+      const [name, gender] = PLAYERS[i % PLAYERS.length];
+      let run = H.newRun(origin, i * 13 + 1, { build, rival: i % 2 === 1, name, gender });   // half with a batchmate
+      const player = { name: run.name, gender: run.gender };
       for (let t = 0; t < 95; t++) {
         for (const tags of ["phone", "none"]) {
           const text = H.screenText(run, { tags });
           screens++;
-          const hits = checkScreen(text, build, terms, { ending: run.phase === "ending" });
+          const hits = checkScreen(text, build, terms, { ending: run.phase === "ending", player });
           if (hits.length) { bad++; if (bad <= 5) console.log(`✗ ${origin} seed ${run.seed} turn ${run.turn}:`, hits); }
         }
         if (run.phase === "ending") break;
@@ -119,4 +137,4 @@ if (require.main === module) {
   process.exit(bad ? 1 : 0);
 }
 
-module.exports = { checkPrompt, checkScreen, screenTerms, shingles, PROMPT_TERMS };
+module.exports = { checkPrompt, checkScreen, screenTerms, shingles, wrongHonorific, PROMPT_TERMS };

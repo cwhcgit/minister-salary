@@ -10,7 +10,7 @@ const ok = (name, fn) => { fn(); passed++; console.log('✓ ' + name); };
 
 function playRandom(origin, seed, opts = {}) {
   const r = H.rng(seed + 1);
-  let run = H.newRun(origin, seed, { build: opts.build || build, rival: !!opts.rival });
+  let run = H.newRun(origin, seed, { build: opts.build || build, rival: !!opts.rival, name: opts.name, gender: opts.gender });
   const screens = [];
   for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
     if (opts.screens) screens.push({ view: H.screen(run), text: H.screenText(run) });
@@ -23,11 +23,14 @@ function playRandom(origin, seed, opts = {}) {
 
 ok('a run replays exactly from (build, origin, seed, choices)', () => {
   for (const origin of ['scholar', 'grad', 'poly']) for (const seed of [1, 99, 123456]) {
-    const { run } = playRandom(origin, seed);
-    const t = H.trace(run);
-    const again = H.replay({ buildHash: t.buildHash, origin, seed, name: t.name, choices: t.choices });
-    assert.deepStrictEqual(H.trace(again), t);
-    assert.strictEqual(H.screenText(again), H.screenText(run));
+    for (const [name, gender] of [['', 'f'], ['Tan Wei Ming', 'm']]) {
+      const { run } = playRandom(origin, seed, { name, gender });
+      const t = H.trace(run);
+      assert.strictEqual(t.gender, gender);
+      const again = H.replay({ buildHash: t.buildHash, origin, seed, name: t.name, gender: t.gender, choices: t.choices });
+      assert.deepStrictEqual(H.trace(again), t);
+      assert.strictEqual(H.screenText(again), H.screenText(run));
+    }
   }
   for (const origin of ['grad', 'poly']) for (const seed of [7, 4242]) {   // with a batchmate too
     const { run } = playRandom(origin, seed, { rival: true });
@@ -82,6 +85,7 @@ ok('locked and unknown choices are refused', () => {
 ok('the screen view carries nothing hidden', () => {
   // Every key that may appear in a screen object. Anything else is a leak by construction.
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
+    'namePlaceholder', 'player', 'gender',   // the start screen's name field and gender choice
     'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'batchmate', 'label',
     'outcome', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
     'ending', 'epitaph', 'positionLabel', 'position', 'ageLabel', 'lifetimeEarnings',
@@ -601,6 +605,93 @@ ok('the four stats in words: the why line only when a grade needs explaining, bi
   const v = build.engine.statVerdicts(build.content, S);
   assert.deepStrictEqual(v.map(x => [x.key, x.value]), [['competence', 80], ['standing', 10], ['reputation', 50], ['integrity', 45]]);
   for (const x of v) assert.ok(x.text.startsWith(W.verdicts[x.key].about) && x.text.length > W.verdicts[x.key].about.length, x.text);
+});
+
+// The text-only parts of a trace: who the player is and the names of everyone else.
+function mechanics(t) {
+  const x = JSON.parse(JSON.stringify(t));
+  delete x.name; delete x.gender;
+  if (x.batchmate) { delete x.batchmate.name; delete x.batchmate.pron; }
+  if (x.cast) for (const p of Object.values(x.cast.on).concat(x.cast.past)) if (p) { delete p.nm; delete p.pron; }
+  for (const turn of x.turns) if (turn.event.cast) for (const v of Object.values(turn.event.cast)) delete v.name;
+  return x;
+}
+
+ok('the player\'s name and gender are text only: the same seed plays identically as Female and as Male', () => {
+  let differ = 0, endings = 0;
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 24; seed++) {
+    const rival = seed % 2 === 0;
+    // the same name as Female and as Male, then a blank name (drawn) and one that clashes with the pools
+    const runs = [['Lim Hui Min', 'f'], ['Lim Hui Min', 'm'], ['', 'm'], ['Zhi Wei Teo', 'f']].map(([name, gender]) => playRandom(origin, seed, { rival, name, gender, screens: true }));
+    const [f, m] = runs.map(r => H.trace(r.run));
+    assert.strictEqual(f.gender, 'f'); assert.strictEqual(m.gender, 'm');
+    for (const r of runs.slice(1)) assert.deepStrictEqual(mechanics(H.trace(r.run)), mechanics(f), `${origin} ${seed}: the run's dice moved with the player's name or gender`);
+    // the screens differ only in the text: every screen has the same shape and the same choices
+    const [sf, sm] = [runs[0].screens, runs[1].screens];
+    assert.strictEqual(sf.length, sm.length);
+    sf.forEach((x, i) => {
+      if (i > 0 && x.text !== sm[i].text) differ++;   // past the start screen, which names the gender
+      assert.deepStrictEqual(Object.keys(x.view), Object.keys(sm[i].view));
+      if (x.view.event) assert.deepStrictEqual(x.view.event.choices.map(c => [c.id, c.available]), sm[i].view.event.choices.map(c => [c.id, c.available]));
+    });
+    if (runs[0].run.phase === 'ending') {
+      endings++;
+      assert.strictEqual(H.screen(runs[0].run).ending.label, 'Lim Hui Min · the final position');
+    }
+    // nobody shares a word of the player's name: not the batchmate, not the cast
+    for (const r of runs) {
+      const S = r.run.S, mine = build.engine.playerWords(S.name);
+      if (S.rival) for (const w of S.rival.name.toLowerCase().split(/\s+/)) assert.ok(!mine.includes(w), `${origin} ${seed}: the batchmate shares the player's name "${w}"`);
+      for (const p of Object.values(S.cast.on).concat(S.cast.past)) if (p) for (const w of p.nm.full.toLowerCase().split(/\s+/)) assert.ok(!mine.includes(w), `${origin} ${seed}: ${p.nm.full} shares the player's name`);
+    }
+  }
+  assert.ok(differ > 10 && endings > 50, `expected screens that read differently as Female and as Male (${differ}), and endings (${endings})`);
+});
+
+ok('the player\'s tokens: name, formal name and pronouns, a blank name drawn for the gender, and old saves', () => {
+  const C = build.content, E = build.engine;
+  const S = (name, gender) => E.newGame(C, 'grad', name, 7, { gender });
+  const say = (st, t) => E.render(C, { id: 't', title: 'T', body: t, choices: [{ text: 'A', outcome: 'B' }] }, st).body;
+  const t = 'Is {player} here? {player.formal} said {player.they} would come. Ask {player.them} about {player.their} file. {Player.They} said so. {player.Their} file.';
+  assert.strictEqual(say(S('Tan Wei Ming', 'm'), t), 'Is Tan Wei Ming here? Mr Tan Wei Ming said he would come. Ask him about his file. He said so. His file.');
+  assert.strictEqual(say(S('Lim Hui Min', 'f'), t), 'Is Lim Hui Min here? Ms Lim Hui Min said she would come. Ask her about her file. She said so. Her file.');
+  assert.strictEqual(say(S('Dr Ong', 'f'), '{player.formal}'), 'Dr Ong', 'a typed honorific is kept, not doubled');
+  assert.strictEqual(say(S('{peer} $&', 'f'), '{player}'), '{peer} $&', 'what the player typed is never read as a token');
+  // a blank name: a name from the cast pool for that gender, the same for the same seed
+  for (let seed = 1; seed <= 30; seed++) for (const g of ['f', 'm']) {
+    const a = E.newGame(C, 'grad', '', seed, { gender: g }), b = E.newGame(C, 'grad', '  ', seed, { gender: g });
+    const n = C.cast.names.find(x => x.full === a.name);
+    assert.ok(n && n.pron === g, `seed ${seed}: drawn name ${a.name} is not a ${g} name from the pool`);
+    assert.strictEqual(a.name, b.name);
+    assert.deepStrictEqual([a.cep, a.ministry, a.rngCalls], [E.newGame(C, 'grad', 'X', seed, { gender: g }).cep, E.newGame(C, 'grad', 'X', seed).ministry, 0]);
+  }
+  // the batchmate is renamed (same pronoun) when the player has their name; their dice are not touched
+  for (let seed = 1; seed <= 40; seed++) {
+    const plain = E.newGame(C, 'grad', 'X', seed, { rival: true });
+    const clash = E.newGame(C, 'grad', plain.rival.name + ' Tan', seed, { rival: true });
+    assert.notStrictEqual(clash.rival.name, plain.rival.name);
+    assert.strictEqual(clash.rival.pron, plain.rival.pron);
+    assert.deepStrictEqual({ ...clash.rival, name: 0 }, { ...plain.rival, name: 0 });
+  }
+  // a save from before the start screen asked: "You" and no gender load as a drawn name, Female
+  const old = JSON.parse(JSON.stringify(H.newRun('poly', 5, { build, rival: true }).S));
+  old.name = 'You'; delete old.gender;
+  const up = E.upgradePlayer(C, JSON.parse(JSON.stringify(old)));
+  assert.strictEqual(up.gender, 'f');
+  assert.ok(C.cast.names.some(x => x.full === up.name && x.pron === 'f'), up.name);
+  const others = Object.values(old.cast.on).concat(old.cast.past).filter(Boolean).flatMap(p => p.nm.full.toLowerCase().split(/\s+/)).concat(old.rival.name.toLowerCase().split(/\s+/));
+  assert.ok(E.playerWords(up.name).every(w => !others.includes(w)), 'the old save\'s drawn name clashes with its people');
+  assert.strictEqual(E.nextEvent(C, old).state.name, up.name);
+  assert.strictEqual(E.player(C, old).name, up.name, 'an un-upgraded save reads the same defaults');
+  // the lint knows the tokens: an unknown field is flagged, and so is a pronoun before a present tense
+  const { castStatic } = require('./contexts');
+  const bad = { ...C, events: C.events.concat([{ id: 'x_test', title: 'X', body: '{player.given} {player.they} says', choices: [{ text: 'A', outcome: 'B' }] }]) };
+  const found = castStatic({ ...build, content: bad }).filter(x => x.startsWith('x_test'));
+  assert.ok(found.some(x => /unknown player field/.test(x)) && found.some(x => /present-tense/.test(x)), JSON.stringify(found));
+  // the leak check catches a raw token and the wrong honorific
+  assert.ok(checkScreen('A {player.formal} B', build, []).some(h => /player placeholder/.test(h.why)));
+  assert.ok(checkScreen('Thank you, Mr Lim Hui Min.', build, [], { player: { name: 'Lim Hui Min', gender: 'f' } }).some(h => /honorific/.test(h.why)));
+  assert.deepStrictEqual(checkScreen('Thank you, Ms Lim Hui Min.', build, [], { player: { name: 'Lim Hui Min', gender: 'f' } }), []);
 });
 
 console.log(`\nAll ${passed} harness tests passed.`);

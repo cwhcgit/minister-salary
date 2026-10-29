@@ -16,9 +16,13 @@ const money = n =>
   Math.abs(n) >= 1e6 ? "$" + (n / 1e6).toFixed(2).replace(/\.?0+$/, "") + "M"
                      : "$" + Math.round(n).toLocaleString();
 
+// The start screen's gender choice, in order (ui.js GENDERS).
+const GENDERS = [["f", "Female"], ["m", "Male"]];
+
 // Text the start screen shows around the origin picker (ui.js startScreen).
 const START = {
   title: "Minister Salary",
+  namePlaceholder: "Your name",
   tagline: "You join the public service. The formula that sets the Prime Minister's pay is published, and so is the distance between you and it.",
   hint: "One tap is one year, and every year ends with an appraisal grade. A or B+ gets you considered for promotion; two Ds in a row and you are asked to leave. Choices are permanent, and some of them come back."
 };
@@ -59,10 +63,12 @@ function outcomeCard(outcome, log) {
 }
 
 function endingCard(build, S) {
-  const e = build.content.endings.find(x => x.id === S.ending);
+  // the title and epitaph with the player's name filled in (engine.ending; same as ui.js)
+  const e = build.engine.ending ? build.engine.ending(build.content, S) : build.content.endings.find(x => x.id === S.ending);
   const r = build.engine.rank(build.content, S);
+  const name = build.engine.player ? build.engine.player(build.content, S).name : S.name;
   return {
-    label: `${S.name} · the final position`,
+    label: `${name} · the final position`,
     title: e.title, epitaph: e.epitaph,
     // not every ending is a retirement (engine.finalLabels; same words as ui.js)
     positionLabel: build.engine.finalLabels ? build.engine.finalLabels(build.content, S).position : "Retired as",
@@ -77,9 +83,12 @@ function endingCard(build, S) {
   };
 }
 
-function startCard(build, originId, rival = false) {
+// player: { name, gender } as the run has them (a blank name field is the name drawn for the run).
+function startCard(build, originId, rival = false, player = null) {
   const o = build.content.origins.find(x => x.id === originId);
-  return { ...START, origin: { name: o.name, difficulty: o.difficulty + (rival ? " + batchmate" : ""), blurb: o.blurb } };
+  const card = { ...START, origin: { name: o.name, difficulty: o.difficulty + (rival ? " + batchmate" : ""), blurb: o.blurb } };
+  if (player) card.player = { name: player.name, gender: (GENDERS.find(([g]) => g === player.gender) || GENDERS[0])[1] };
+  return card;
 }
 
 // --- plain text --------------------------------------------------------
@@ -95,7 +104,8 @@ function toText(view, opts = {}) {
   const tags = opts.tags || "phone";
   const out = [];
   if (view.start) {
-    out.push(`${view.start.title}\n${view.start.tagline}\n\nYou chose: ${view.start.origin.name} (${view.start.origin.difficulty.toUpperCase()})\n${view.start.origin.blurb}\n\n${view.start.hint}`);
+    const me = view.start.player ? `Your name: ${view.start.player.name} (${view.start.player.gender})\n` : "";
+    out.push(`${view.start.title}\n${view.start.tagline}\n\n${me}You chose: ${view.start.origin.name} (${view.start.origin.difficulty.toUpperCase()})\n${view.start.origin.blurb}\n\n${view.start.hint}`);
   }
   if (view.header) out.push(headerText(view.header));
   if (view.outcome) {
@@ -118,4 +128,4 @@ function toText(view, opts = {}) {
   return out.join("\n\n");
 }
 
-module.exports = { header, eventCard, outcomeCard, endingCard, startCard, toText, money, LETTERS, STATS_LABEL };
+module.exports = { header, eventCard, outcomeCard, endingCard, startCard, toText, money, LETTERS, STATS_LABEL, GENDERS };

@@ -91,7 +91,7 @@ function texts(list, game) {
       (v.choices || []).forEach((c, i) => c && c.outcome && out.push({ card: e.id, kind: "outcome", where: `${e.id}.${at}.choices[${i}].outcome`, text: fill(c.outcome, pick) }));
     }
   }
-  for (const en of (game.endings || [])) out.push({ card: `ending:${en.id}`, kind: "epitaph", where: `endings.${en.id}.epitaph`, text: en.epitaph });
+  for (const en of (game.endings || [])) out.push({ card: `ending:${en.id}`, kind: "epitaph", where: `endings.${en.id}.epitaph`, text: expandCast(en.epitaph) });
   return out;
 }
 

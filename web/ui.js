@@ -5,6 +5,12 @@ const SAVE = "ministerSalary.v1";
 let content, S = null, phase = "start", outcome = "", log = [], pickedOrigin = "grad";
 // Play with a batchmate: remembered between runs as a convenience, saved inside each run as S.rival.
 let rivalOn = (() => { try { return localStorage.getItem("ms.rival") === "1"; } catch (e) { return false; } })();
+// The player's gender, for how colleagues, the papers and Hansard refer to them: remembered like
+// the name, saved inside each run as S.gender. Text only.
+const GENDERS = [["f", "Female"], ["m", "Male"]];
+let pickedGender = (() => { try { return localStorage.getItem("ms.gender") === "m" ? "m" : "f"; } catch (e) { return "f"; } })();
+// The remembered name. Older versions stored "You" for a blank name, which is a blank name.
+const rememberedName = () => { try { const n = localStorage.getItem("ms.name") || ""; return n === "You" ? "" : n; } catch (e) { return ""; } };
 
 const money = n =>
   Math.abs(n) >= 1e6 ? "$" + (n / 1e6).toFixed(2).replace(/\.?0+$/, "") + "M"
@@ -42,7 +48,8 @@ function wipe()  { try { localStorage.removeItem(SAVE); } catch (e) {} }
 function load()  {
   try {
     const d = JSON.parse(localStorage.getItem(SAVE));
-    if (d && d.S) { S = d.S; phase = d.phase; outcome = d.outcome; log = d.log || []; return true; }
+    // a save from before the start screen asked for a gender gets the defaults (Engine.upgradePlayer)
+    if (d && d.S) { S = Engine.upgradePlayer(content, d.S); phase = d.phase; outcome = d.outcome; log = d.log || []; return true; }
   } catch (e) {}
   return false;
 }
@@ -68,7 +75,9 @@ function startScreen() {
   app.innerHTML = `
     <div class="title serif">Minister<br>Salary</div>
     <div class="tag-line">You join the public service. The formula that sets the Prime Minister's pay is published, and so is the distance between you and it.</div>
-    <input id="nm" placeholder="Your name" maxlength="28" value="${esc((() => { try { return localStorage.getItem("ms.name") || ""; } catch (e) { return ""; } })())}">
+    <input id="nm" placeholder="Your name" maxlength="28" value="${esc(rememberedName())}">
+    <div class="gender" role="radiogroup" aria-label="Gender">${GENDERS.map(([g, label]) =>
+      `<div class="g" role="radio" tabindex="0" data-g="${g}" aria-checked="${g === pickedGender}">${label}</div>`).join("")}</div>
     ${content.origins.map(o => `
       <div class="origin" role="radio" tabindex="0" data-o="${o.id}" aria-checked="${o.id === pickedOrigin}">
         <div class="n"><span>${esc(o.name)}</span><span class="diff">${esc(o.difficulty + (rivalOn ? " + batchmate" : ""))}</span></div>
@@ -88,6 +97,15 @@ function startScreen() {
       app.querySelectorAll(".origin").forEach(x => x.setAttribute("aria-checked", x === el));
     });
 
+  app.querySelectorAll(".gender .g").forEach(el => {
+    el.onclick = () => {
+      pickedGender = el.dataset.g;
+      try { localStorage.setItem("ms.gender", pickedGender); } catch (e) {}
+      app.querySelectorAll(".gender .g").forEach(x => x.setAttribute("aria-checked", x === el));
+    };
+    el.onkeydown = ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); el.onclick(); } };
+  });
+
   const toggle = app.querySelector("#rival");
   if (toggle) toggle.onchange = () => {
     rivalOn = toggle.checked;
@@ -99,9 +117,11 @@ function startScreen() {
   };
 
   app.querySelector("#go").onclick = () => {
-    const name = (app.querySelector("#nm").value || "").trim() || "You";
+    // a blank name stays blank here: the engine draws one for the run, a new one each run
+    const name = (app.querySelector("#nm").value || "").trim();
     try { localStorage.setItem("ms.name", name); } catch (e) {}
-    S = Engine.newGame(content, pickedOrigin, name, (Math.random() * 2 ** 31) | 0, { rival: rivalOn && !!content.rival, recent: recentList() });
+    S = Engine.newGame(content, pickedOrigin, name, (Math.random() * 2 ** 31) | 0,
+      { rival: rivalOn && !!content.rival, recent: recentList(), gender: pickedGender });
     nextTurn();
   };
 }
@@ -148,12 +168,12 @@ function outcomeScreen() {
 }
 
 function endingScreen() {
-  const e = content.endings.find(x => x.id === S.ending);
+  const e = Engine.ending(content, S);
   const r = Engine.rank(content, S);
   const L = Engine.finalLabels(content, S);
   app.innerHTML = `
     <div class="card ending">
-      <div class="lab">${esc(S.name)} &middot; the final position</div>
+      <div class="lab">${esc(Engine.player(content, S).name)} &middot; the final position</div>
       <h1 class="serif">${esc(e.title)}</h1>
       <div class="ep serif">${esc(e.epitaph)}</div>
       <div class="final">
@@ -187,21 +207,22 @@ function endingScreen() {
 // The result as a picture, with the game's link as text alongside. The picture carries the ending
 // and the four numbers, never the Declassified file: that would spoil the game for whoever gets it.
 function shareCard() {
-  const e = content.endings.find(x => x.id === S.ending), r = Engine.rank(content, S), L = Engine.finalLabels(content, S);
+  const e = Engine.ending(content, S), r = Engine.rank(content, S), L = Engine.finalLabels(content, S);
   const o = content.origins.find(x => x.id === S.origin) || { name: S.origin, difficulty: "" };
+  const name = Engine.player(content, S).name;
   // the public game, never a local or preview address
   const here = location.href.split("#")[0].split("?")[0];
   const url = /^https:\/\/[^/]*github\.io\//.test(here) ? here : "https://cwhcgit.github.io/minister-salary/";
   return {
     game: "Minister Salary",
-    name: S.name && S.name !== "You" ? S.name : "",
+    name,
     title: e.title, epitaph: e.epitaph,
     position: { label: L.position, value: r.title }, age: { label: L.age, value: String(S.age) },
     earnings: money(S.wealth),
     stats: Engine.statVerdicts(content, S),
     origin: o.name, difficulty: o.difficulty + (S.rival ? " + batchmate" : ""),
     url, site: url.replace(/^https?:\/\//, "").replace(/index\.html$/, "").replace(/\/$/, ""),
-    line: `${S.name} ${L.share} ${S.ending === "pm" ? "" : r.title + " at "}${S.age}, having earned ${money(S.wealth)}.`
+    line: `${name} ${L.share} ${S.ending === "pm" ? "" : r.title + " at "}${S.age}, having earned ${money(S.wealth)}.`
   };
 }
 

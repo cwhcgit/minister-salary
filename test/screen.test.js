@@ -61,10 +61,17 @@ server.listen(0, async () => {
     await wait(500);
     expect('start tagline', $('.tag-line').textContent, View.startCard(build, 'grad').tagline);
     expect('start hint', $('.hint').textContent, View.startCard(build, 'grad').hint);
+    // the name field and the gender choice (Female first, and chosen until the player picks)
+    expect('start name placeholder', $('#nm').placeholder, View.startCard(build, 'grad').namePlaceholder);
+    expect('start genders', $$('.gender .g').map(g => g.textContent).join(' | '), View.GENDERS.map(([, l]) => l).join(' | '));
+    expect('start gender chosen', $$('.gender .g').map(g => g.getAttribute('aria-checked')).join(' '), 'true false');
     let screens = 0;
 
-    // three careers without a batchmate, then three with one
-    for (const [origin, rival] of [['scholar', false], ['grad', false], ['poly', false], ['grad', true], ['poly', true], ['scholar', true]]) {
+    // three careers without a batchmate, then three with one; as Female and as Male, with a typed
+    // name and with the field left blank (a name is drawn for the run)
+    const careers = [['scholar', false, 'f', 'Tan Wei Ming'], ['grad', false, 'm', 'Tan Wei Ming'], ['poly', false, 'm', ''],
+      ['grad', true, 'f', ''], ['poly', true, 'f', 'Tan Wei Ming'], ['scholar', true, 'm', 'Tan Wei Ming']];
+    for (const [origin, rival, gender, typed] of careers) {
       if ($('#again')) { $('#again').click(); await wait(20); }
       const tog = $('#rival');
       if (!tog) throw new Error('no batchmate toggle on the start screen');
@@ -75,8 +82,17 @@ server.listen(0, async () => {
       expect('origin name', card.querySelector('.n span').textContent, o.name);
       expect('origin blurb', card.querySelector('.b').textContent, o.blurb);
       expect('origin difficulty', card.querySelector('.diff').textContent, o.difficulty);
-      $('#nm').value = 'Tan Wei Ming';
+      $$('.gender .g').find(g => g.dataset.g === gender).click();
+      expect('gender chosen', $$('.gender .g').map(g => g.getAttribute('aria-checked')).join(' '), gender === 'f' ? 'true false' : 'false true');
+      $('#nm').value = typed;
       $('#go').click(); await wait(30);
+      const S0 = saved().S;
+      expect('run gender', S0.gender, gender);
+      if (typed) expect('run name', S0.name, typed);
+      else expect('a drawn name for the gender', (build.content.cast.names.find(n => n.full === S0.name) || {}).pron, gender);
+      // the start screen as the harness shows it, for this run
+      const st = View.startCard(build, origin, rival, { name: S0.name, gender: S0.gender });
+      expect('start card player', `${st.player.name} (${st.player.gender})`, `${S0.name} (${gender === 'f' ? 'Female' : 'Male'})`);
 
       let prev = null;   // the state the last choice was made in (names the outcome screen in messages)
       for (let turn = 0; turn < 130 && !$('.ending'); turn++) {
@@ -141,7 +157,7 @@ server.listen(0, async () => {
         expect(`declassified ${i} text`, el.querySelector('.t').textContent, want.declassified[i].text);
       });
       screens++;
-      console.log(`✓ ${origin}${rival ? " + batchmate" : ""}: ${S.year - 1} years, ending "${want.title}", every screen matches`);
+      console.log(`✓ ${origin}${rival ? " + batchmate" : ""}, ${gender === 'f' ? 'Female' : 'Male'}, ${typed ? 'typed name' : 'blank name'} (${S.name}): ${S.year - 1} years, ending "${want.title}", every screen matches`);
     }
 
     if (mismatches.length) {
