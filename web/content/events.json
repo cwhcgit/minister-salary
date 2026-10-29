@@ -1030,7 +1030,7 @@
   {
     "id": "cny_lohei",
     "title": "Lo Hei",
-    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of lo hei, tossing the yusheng salad as high as chopsticks allow and shouting wishes for abundance, the Permanent Secretary turns to you and asks, properly: \"So, {player.given}, if your division had to stop one thing this year, what should it be?\" The honest answer is your own project.",
+    "body": "It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of lo hei, tossing the yusheng salad as high as chopsticks allow and shouting wishes for abundance, the Permanent Secretary turns to you and asks, properly: \"So, {player.given}, if your division had to stop one thing this year, what should it be?\" The first project that comes to mind is your own.",
     "requires": {
       "minRank": 2,
       "maxRank": 6
@@ -3568,7 +3568,7 @@
       "scenes": {
         "standing": {
           "title": "The Appraisal Conversation",
-          "body": "It's your yearly appraisal conversation with {senior} again: forty minutes, a form, and the ranking meeting after it. Every year you ask exactly where you stand, and {senior} now has an answer ready. How you spend this one is how you'll spend every one after it.",
+          "body": "Your yearly appraisal conversation with {senior} has come round again: forty minutes, a form, and the ranking meeting after it. Every year you ask exactly where you stand, and {senior} now has an answer ready. How you spend this one is how you'll spend every one after it.",
           "choices": [
             {
               "text": "Ask where you stand, as you always do.",
@@ -3586,7 +3586,7 @@
         },
         "visible": {
           "title": "The Appraisal Conversation",
-          "body": "It's your yearly appraisal conversation with {senior} again, and the word \"visible\" is already on the form. Every year you agree to be more visible, and you are: committees, panels, photographs. How you spend this one is how you'll spend every one after it.",
+          "body": "Your yearly appraisal conversation with {senior} has come round again, and the word \"visible\" is already on the form. Every year you agree to be more visible, and you are: committees, panels, photographs. How you spend this one is how you'll spend every one after it.",
           "choices": [
             {
               "text": "Ask, plainly, where all that has got you.",
@@ -3604,7 +3604,7 @@
         },
         "needs": {
           "title": "The Appraisal Conversation",
-          "body": "It's your yearly appraisal conversation with {senior} again. Every year you ask what needs doing that nobody is doing, and {senior} now arrives with a list. How you spend this one is how you'll spend every one after it.",
+          "body": "Your yearly appraisal conversation with {senior} has come round again. Every year you ask what needs doing that nobody is doing, and {senior} now arrives with a list. How you spend this one is how you'll spend every one after it.",
           "choices": [
             {
               "text": "Ask, this time, where you stand.",
