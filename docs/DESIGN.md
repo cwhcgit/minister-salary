@@ -54,8 +54,15 @@ must give the player at least one thing to read.
 
 ## 3. Stats
 
-Four visible stats, one currency, two hidden values. Deliberately small — every stat
+Four stats, one currency, two hidden values. Deliberately small — every stat
 must be pushed in opposite directions by real choices, or it does not earn its place.
+
+The four stats are not shown as numbers during play. They appear only as words
+(`statWords` in `game.json`): the appraisal's "why" line in a year that needs explaining
+(naming the strong suit and the weak spot only when that is news), one quiet line when a
+single choice moves a stat by 6 or more (at most once every three cards), and a locked
+choice's in-world reason. The ending screen reveals all four, each with a verdict on what
+it was and what it did to the run.
 
 | Stat | Range | What it is | Pushed up by | Pushed down by |
 |---|---|---|---|---|

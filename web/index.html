@@ -26,13 +26,14 @@ body{
 .serif{font-family:ui-serif,Georgia,"Times New Roman",serif}
 
 /* ---- header ---- */
-header{position:sticky;top:0;z-index:10;background:linear-gradient(var(--bg) 78%,transparent);padding-bottom:10px;margin:0 -14px;padding-left:14px;padding-right:14px}
-.rankline{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+header{position:sticky;top:0;z-index:10;background:var(--bg);margin:-14px -14px 0;padding:12px 14px 11px;border-bottom:1px solid var(--line)}
+.rankline{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.rankline>div:first-child{min-width:0}
 .rank{font-size:17px;font-weight:600;letter-spacing:-.01em}
 .grade{font-size:11px;color:var(--faint);border:1px solid var(--line);border-radius:4px;padding:1px 6px;margin-left:7px;font-variant-numeric:tabular-nums}
 .sub{font-size:12.5px;color:var(--dim);margin-top:1px}
 .cash{font-size:17px;font-weight:700;color:var(--cash);font-variant-numeric:tabular-nums;white-space:nowrap}
-.cashbox{text-align:right}
+.cashbox{text-align:right;padding-top:1px}
 .mate{font-size:12px;color:var(--dim);margin-top:2px}
 .mate-toggle{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:10px;margin:2px 0 14px;cursor:pointer}
 .mate-toggle input{margin:4px 0 0;width:17px;height:17px;flex:0 0 auto;accent-color:var(--std)}
@@ -40,15 +41,6 @@ header{position:sticky;top:0;z-index:10;background:linear-gradient(var(--bg) 78%
 .mate-toggle .mn{display:block;font-size:13px;color:var(--dim);line-height:1.45;margin-top:2px}
 .cashlab{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
 
-/* ---- stat bars ---- */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:11px}
-.stat{background:var(--panel);border-radius:7px;padding:6px 7px}
-.stat .k{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
-.stat .v{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.25}
-.track{height:3px;background:#000;border-radius:2px;overflow:hidden;margin-top:4px}
-.fill{height:100%;transition:width .45s cubic-bezier(.22,1,.36,1)}
-.d{font-size:10px;font-weight:600;margin-left:4px;vertical-align:1px}
-.up{color:var(--int)} .dn{color:var(--cash)}
 
 /* ---- cards ---- */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:17px;margin-top:13px;animation:rise .32s cubic-bezier(.22,1,.36,1)}
@@ -101,7 +93,22 @@ input{
 .ending h1{font-size:31px;margin:11px 0 15px;letter-spacing:-.02em;line-height:1.14}
 .ending .ep{color:#c3cad6;font-size:16px;line-height:1.64;text-align:left;margin-bottom:22px}
 .final{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:8px}
-.final div{background:var(--panel);border-radius:9px;padding:11px}
+.final>div{background:var(--panel2);border-radius:9px;padding:11px}
+.final>.wide{grid-column:1/-1}
+/* the four stats, hidden during play, revealed here */
+.reveal{text-align:left;margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.reveal .lab{margin-bottom:12px}
+.rv{margin:0 0 14px}
+.rk{display:flex;justify-content:space-between;align-items:baseline}
+.rk .k{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.rk .v{font-size:17px;font-weight:650;font-variant-numeric:tabular-nums}
+.track{height:3px;background:#000;border-radius:2px;overflow:hidden;margin-top:3px}
+.fill{height:100%}
+.rv .t{font-size:14px;line-height:1.55;color:#c3cad6;margin-top:5px}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;
+  max-width:calc(100% - 32px);background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:9px;
+  padding:10px 15px;font-size:14px;line-height:1.4;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.4);transition:opacity .4s}
+.toast.out{opacity:0}
 .declass{text-align:left;margin:18px 0 14px;padding-top:16px;border-top:1px solid var(--line)}
 .declass .lab{margin-bottom:10px}
 .dl{margin:0 0 12px}

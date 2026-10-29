@@ -82,11 +82,12 @@ ok('locked and unknown choices are refused', () => {
 ok('the screen view carries nothing hidden', () => {
   // Every key that may appear in a screen object. Anything else is a leak by construction.
   const allowed = new Set(['phase', 'start', 'title', 'tagline', 'hint', 'origin', 'name', 'difficulty', 'blurb',
-    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'batchmate', 'stats', 'key', 'label', 'value', 'delta',
+    'header', 'rank', 'grade', 'age', 'year', 'ministry', 'wealth', 'wealthLabel', 'batchmate', 'label',
     'outcome', 'text', 'log', 'tag', 'event', 'body', 'choices', 'id', 'available', 'requires',
-    'ending', 'epitaph', 'positionLabel', 'position', 'ageLabel', 'lifetimeEarnings', 'integrity',
-    // the ending screen's Declassified file: the hidden values, revealed on purpose once the run is over
-    'declassified']);
+    'ending', 'epitaph', 'positionLabel', 'position', 'ageLabel', 'lifetimeEarnings',
+    // the ending screen's four stats and its Declassified file: the hidden values, revealed on
+    // purpose once the run is over
+    'stats', 'value', 'verdict', 'declassified']);
   const walk = (o, where) => {
     if (Array.isArray(o)) return o.forEach((x, i) => walk(x, `${where}[${i}]`));
     if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) {
@@ -99,11 +100,17 @@ ok('the screen view carries nothing hidden', () => {
   for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
     for (const s of playRandom(origin, seed, { screens: true, rival: seed % 2 === 0 }).screens) {
       walk(s.view, 'screen');
-      if (s.view.header) for (const st of s.view.header.stats) assert.ok(statKeys.has(st.key), 'only the four visible stats');
+      // the four stats are hidden during play: not in the header, not anywhere on the screen
+      if (s.view.header) assert.ok(!('stats' in s.view.header), 'the header carries no stats');
+      if (s.view.ending) assert.deepStrictEqual(s.view.ending.stats.map(x => x.label.toLowerCase()).sort(), [...statKeys].sort(), 'the ending reveals all four stats');
       assert.deepStrictEqual(checkScreen(s.text, build, terms), [], s.text);
       assert.ok(!/\b(cep|heat)\b\s*\d/i.test(s.text));
     }
   }
+  // a stat value during play is a leak; the same words on the ending screen are the reveal
+  for (const leak of ['REP 35   STAND 40   INTEG 60   COMP 41', '[unavailable: Requires competence 45]', 'Competence 55, Standing 40, Reputation 30: B level'])
+    assert.ok(checkScreen(`Senior Officer [MX9]\n${leak}`, build, terms).some(h => h.why === 'stat value during play'), leak);
+  assert.deepStrictEqual(checkScreen('TAN WEI MING · THE FINAL POSITION\nRetired\n\nCOMPETENCE 72: Yours was never the problem.', build, terms), []);
 });
 
 ok('every alternate exists and only fires through its card', () => {
@@ -441,6 +448,64 @@ ok('story chains: Declassified names each story once, a bond can be extended, an
   assert.deepStrictEqual(ours([]), [{ label: 'The test', text: 'fallback' }]);
   const L = lines(['t_a']).map(l => l.label);
   assert.ok(L.indexOf('The test') > L.indexOf('Exposure'), 'story lines come after Exposure');
+});
+
+ok('the four stats in words: the why line only when a grade needs explaining, big swings rate-limited, no numbers', () => {
+  const W = build.content.statWords;
+  const swings = new Set(Object.values(W.swing).flatMap(x => [...x.up, ...x.down]));
+  let whys = 0, swung = 0, steady = 0;
+  for (const origin of ['scholar', 'grad', 'poly']) for (let seed = 1; seed <= 40; seed++) {
+    const r = H.rng(seed * 5 + 3);
+    let run = H.newRun(origin, seed, { build, rival: seed % 2 === 0 });
+    let prevGrade = null, lastSwing = -99, lastWhy = null;
+    for (let t = 0; t < 95 && run.phase !== 'ending'; t++) {
+      const live = H.choices(run).filter(c => c.available);
+      for (const c of H.choices(run)) if (!c.available) assert.ok(c.requires && !/\d/.test(c.requires), `a locked choice shows a number: ${c.requires}`);
+      run = H.step(run, live[Math.floor(r() * live.length)].id);
+      if (run.phase === 'ending') break;
+      const log = run.last.log;
+      // a quiet line at most once every three cards, never two on one screen, and only on the card's own page
+      const sw = log.filter(l => swings.has(l.text));
+      assert.ok(sw.length <= 1, `${origin} ${seed}: two swing lines on one screen`);
+      if (sw.length) {
+        assert.ok(t - lastSwing >= 3, `${origin} ${seed}: swing lines ${t - lastSwing} cards apart`);
+        assert.ok(log.indexOf(sw[0]) < log.findIndex(l => l.kind === 'year') || !log.some(l => l.kind === 'year'), 'a swing line belongs to the outcome, not a year-end');
+        lastSwing = t; swung++;
+      }
+      // each year page: the why line appears exactly when the grade needs explaining
+      const pages = [];
+      for (const l of log) { if (l.kind === 'year') pages.push([]); else if (pages.length) pages[pages.length - 1].push(l); }
+      for (const pg of pages) {
+        const ap = pg.find(l => l.kind === 'appraisal');
+        if (!ap) continue;
+        const grade = ap.text.match(/^Grade (\S+)\./)[1];
+        const why = pg.find(l => l.kind === 'why');
+        // shown only in a year that needs explaining; always when the grade changed or a warning came
+        const must = prevGrade === null || prevGrade !== grade || pg.some(l => l.kind === 'warn');
+        const may = must || pg.some(l => l.kind === 'promo' && /^Promoted/.test(l.text));
+        assert.ok(!why || may, `${origin} ${seed}: a why line in a steady year (grade ${grade})`);
+        assert.ok(why || !must, `${origin} ${seed}: grade ${grade} after ${prevGrade} with no why line`);
+        if (why) {
+          whys++;
+          assert.ok(!/\d/.test(why.text), `a why line with a number: ${why.text}`);
+          if (prevGrade === null) assert.ok(why.text.startsWith(W.whyFirst), 'the first appraisal explains what an appraisal weighs');
+          if (pg.some(l => l.kind === 'warn')) assert.ok(/competence|standing|reputation/i.test(why.text), 'a warning year names the stats');
+          // no phrasing twice in a row (the promotion reminder is a fixed rule, not a phrasing)
+          const said = why.text.replace(W.whyFirst, '').replace(' Promotion needs B+ or better.', '').trim().split(/(?<=[.;])\s/);
+          for (const x of said) if (lastWhy) assert.ok(!lastWhy.includes(x), `${origin} ${seed}: "${x}" twice in a row`);
+          lastWhy = said;
+          if (sw.length && /competence|standing|reputation/i.test(why.text.replace(W.whyFirst, ''))) assert.ok(pages.indexOf(pg) > 0, 'no swing line on a card whose own year-end names the stats');
+        } else steady++;
+        prevGrade = grade;
+      }
+    }
+  }
+  assert.ok(whys > 300 && swung > 300 && steady > 300, `expected why lines, swing lines and steady years (${whys}, ${swung}, ${steady})`);
+  // the ending names all four, with a verdict for each and the value
+  const S = { ...H.newRun('grad', 3, { build }).S, competence: 80, standing: 10, reputation: 50, integrity: 45 };
+  const v = build.engine.statVerdicts(build.content, S);
+  assert.deepStrictEqual(v.map(x => [x.key, x.value]), [['competence', 80], ['standing', 10], ['reputation', 50], ['integrity', 45]]);
+  for (const x of v) assert.ok(x.text.startsWith(W.verdicts[x.key].about) && x.text.length > W.verdicts[x.key].about.length, x.text);
 });
 
 console.log(`\nAll ${passed} harness tests passed.`);
