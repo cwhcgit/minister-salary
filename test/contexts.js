@@ -13,10 +13,11 @@
 // linted. Also checked: no raw {token} survives, nobody vacant or departed is named, a cast
 // member's grade is right for their rank (a senior above you, a junior below, the age floors),
 // names never repeat within a run or match the batchmate's or the player's, and a callback only
-// ever names the person the earlier choice was about. The player's own tokens ({player},
-// {player.formal}, {player.they}...) are checked the same way: careers are played under every
-// choice in game.json's player.genders, with typed names and drawn ones, and no screen may give the
-// player another choice's honorific.
+// ever names the person the earlier choice was about. The player's own tokens ({player.given},
+// {player.formal}, {player.full}, {player.they}...) are checked the same way: careers are played
+// under every choice in game.json's player.genders, with typed names and drawn ones, and no screen
+// may give the player another choice's honorific. How people address the player is checked from
+// the content alone (playerAddress): a colleague never calls you {player.formal} or {player.full}.
 //
 //   node test/contexts.js [runsPerBotPerOrigin=600] [--json FILE] [--md FILE] [--table]
 //   (the lint always runs; --table prints the per-card table; --check is accepted for old scripts)
@@ -217,19 +218,28 @@ function textProblems(build, S, id, texts, where) {
   return out;
 }
 // Another choice's honorific before the player's name (game.json player.genders): "Mr" for a
-// player who chose Female, and so on for any choice the table has.
+// player who chose Female, and so on for any choice the table has; before the name as typed, the
+// whole name ("Mr Lim Wei Ling") or the surname ("Mr Lim").
 const HON_CACHE = new Map();
 function wrongHonorific(build, S, t) {
-  if (!build.engine.player || !S.name || t.indexOf(S.name) < 0) return null;
-  const key = S.name + '|' + S.gender;
+  if (!build.engine.player || !S.name) return null;
+  const key = S.name + '|' + S.gender + '|' + build.hash;
   if (!HON_CACHE.has(key)) {
     const T = build.content.player.genders, me = build.engine.player(build.content, S);
     const mine = T[me.gender].honorific;
     const wrong = [...new Set(Object.values(T).map(g => g.honorific).filter(h => h && h !== mine))];
-    HON_CACHE.set(key, wrong.length ? new RegExp(`\\b(?:${wrong.map(escRe).join('|')}) ${escRe(me.name)}\\b`) : null);
+    const names = playerNames(me);
+    HON_CACHE.set(key, wrong.length ? { names, re: new RegExp(`\\b(?:${wrong.map(escRe).join('|')}) (?:${names.map(escRe).join('|')})\\b`) } : null);
   }
-  const re = HON_CACHE.get(key), hit = re && t.match(re);
+  const c = HON_CACHE.get(key);
+  if (!c || !c.names.some(n => t.includes(n))) return null;
+  const hit = t.match(c.re);
   return hit ? hit[0] : null;
+}
+// The player's name as typed, and the whole name and the surname without the honorific (engine.player).
+function playerNames(me) {
+  const bare = x => x && me.honorific && x.startsWith(me.honorific + ' ') ? x.slice(me.honorific.length + 1) : x;
+  return [...new Set([me.name, bare(me.full), bare(me.formal)].filter(Boolean))].sort((a, b) => b.length - a.length);
 }
 // "<name>, the <grade>" or "<grade> <name>": compiled once per person and name form
 const RE_CACHE = new Map();
@@ -409,6 +419,61 @@ function castStatic(build) {
   for (const [where, t] of fixed.concat(castLines, rivalLines))
     for (const m of String(t).matchAll(/\{(?:[A-Za-z]+\.)?[Tt]hey\} (\w+)/g)) if (presentVerb(m[1]))
       out.push(`${where}: subject pronoun before a present-tense verb ("${m[0]}"); use the name, or a past tense`);
+  out.push(...playerAddress(build));
+  return out;
+}
+
+// --- how people address the player (docs/WRITING_RULES.md rule 4.1) -----------------------
+// Colleagues, peers, your reporting officer, friends and the batchmate call you {player.given};
+// {player.formal} is for officials in a formal setting, residents and the press, and {player.full}
+// for documents, Hansard and the record. Two checks, on every string of the content (cards, packs,
+// the batchmate's cards and lines, game.json's lines; not the notes):
+// - {player} or {player.name} on its own: the content always says which form it means.
+// - A heuristic for a colleague who sounds like an official: a quote ("..." or “...”) holding
+//   {player.formal} or {player.full} fails when the clause around it names a colleague. The clause
+//   runs from the last full stop, question mark or exclamation mark before the quote to the next
+//   one after it, so it holds the speaker of "X says, "..."" and of ""...," says X", and not a
+//   person from the sentence before. A colleague is a service colleague's or fellow MP's token
+//   ({peer}, {junior}, {senior}, {mp}, any field), the batchmate's ({rival}, {they}) or a word
+//   such as "colleague", "batchmate", "reporting officer", "peers", "friend" or "your team"; in a
+//   cast line of one of those roles every quote is that person's own. It cannot see a speaker
+//   named two sentences earlier, and a colleague merely mentioned beside an official's quote
+//   trips it (reword the clause). A line that also uses {player.given} passes: it is contrasting
+//   the forms on purpose ("calls you "{player.given}" on day one and "{player.formal}" on day two").
+const COLLEAGUE_ROLES = ['peer', 'junior', 'senior', 'mp'];
+const COLLEAGUE_WORDS = /\b(colleagues?|batchmates?|reporting officer|peers|your peer|friends?|your team|your junior|your intake|officers you joined with)\b/i;
+const SKIP_KEYS = new Set(['note', 'about', 'id', 'flag', 'requires', 'effects', 'scale', 'schedule', 'witnesses']);
+function playerAddress(build) {
+  const C = build.content, out = [];
+  const roles = Object.keys((C.cast || {}).roles || {}).filter(r => COLLEAGUE_ROLES.includes(r)).concat(['rival', 'they']);
+  const roleRe = new RegExp(`\\{(?:${roles.map(escRe).join('|')})(?:\\.[A-Za-z]+)?\\}`, 'i');
+  const check = (t, where, speaker) => {
+    if (/\{[Pp]layer(?:\.[Nn]ame)?\}/.test(t)) out.push(`${where}: the player named without saying how; use {player.given} (colleagues), {player.formal} (officials, residents, the press) or {player.full} (documents, Hansard) ("${t.slice(0, 60)}...")`);
+    if (/\{[Pp]layer\.[Gg]iven\}/.test(t)) return;   // contrasting the forms on purpose
+    for (const m of t.matchAll(/"([^"]*)"|“([^”]*)”/g)) {
+      const said = m[1] !== undefined ? m[1] : m[2];
+      const form = said.match(/\{[Pp]layer\.(?:[Ff]ormal|[Ff]ull)\}/);
+      if (!form) continue;
+      const clause = t.slice(0, m.index).split(/[.!?]["”]?\s+/).pop() + ' ' + t.slice(m.index + m[0].length).split(/[.!?](?:["”\s]|$)/)[0];
+      const who = speaker || (clause.match(roleRe) || clause.match(COLLEAGUE_WORDS) || [])[0];
+      if (who) out.push(`${where}: ${who} calls you ${form[0]} ("${m[0].slice(0, 50)}"); a colleague says {player.given}`);
+    }
+  };
+  const walk = (o, where, speaker) => {
+    if (typeof o === 'string') check(o, where, speaker);
+    else if (Array.isArray(o)) o.forEach((x, i) => walk(x, `${where}[${i}]`, speaker));
+    else if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) if (!SKIP_KEYS.has(k)) walk(v, where ? `${where}.${k}` : k, speaker);
+  };
+  for (const e of C.events.concat((C.rival || {}).events || [])) walk(e, e.id);
+  for (const [k, v] of Object.entries((C.rival || {}))) if (k !== 'events' && k !== 'names') walk(v, `batchmate ${k}`);
+  for (const [k, v] of Object.entries(C)) {
+    if (['events', 'rival', 'player'].includes(k) || SKIP_KEYS.has(k)) continue;
+    if (k === 'cast') {
+      for (const [role, kinds] of Object.entries(v.lines || {})) walk(kinds, `cast line ${role}`, COLLEAGUE_ROLES.includes(role) ? `{${role}}` : null);
+      continue;
+    }
+    walk(v, k);
+  }
   return out;
 }
 
@@ -627,4 +692,4 @@ if (require.main === module) {
   } else console.log(`✓ no immersion contradictions: ${cards} cards and ${lineKeys} batchmate lines checked against where they fire; cast and parts checked in every context; age floors held`);
 }
 
-module.exports = { contexts, sample, table, lint, toMarkdown, RULES, castStatic, witnessStatic, witnessTexts, witnessWordProblems };
+module.exports = { contexts, sample, table, lint, toMarkdown, RULES, castStatic, playerAddress, witnessStatic, witnessTexts, witnessWordProblems };

@@ -62,7 +62,10 @@ ok("a missing or malformed player table is refused, by the build and by the engi
     [{ ...game, player: { ...game.player, genders: {} } }, /player\.genders is missing or empty/],
     [{ ...game, player: { ...game.player, genders: { ...game.player.genders, x: { label: "X" } } } }, /player\.genders\.x has no honorific/],
     [{ ...game, player: { ...game.player, genders: { ...game.player.genders, x: { honorific: "Mx" } } } }, /player\.genders\.x has no label/],
-    [{ ...game, player: { ...game.player, default: "z" } }, /player\.default "z"/]
+    [{ ...game, player: { ...game.player, default: "z" } }, /player\.default "z"/],
+    [{ ...game, player: { ...game.player, names: undefined } }, /player\.names is missing/],
+    [{ ...game, player: { ...game.player, names: { ...game.player.names, fatherNames: "Rajan" } } }, /player\.names\.fatherNames is not a list/],
+    [{ ...game, player: { ...game.player, genders: { ...game.player.genders, x: { label: "X", honorific: "Mx", given: "Sam" } } } }, /player\.genders\.x has a field "given"/]
   ];
   for (const [g, why] of bads) {
     assert.throws(() => Packs.assemble(JSON.parse(JSON.stringify(g)), events.slice(), [], null), why);

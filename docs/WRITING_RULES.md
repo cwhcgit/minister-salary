@@ -11,7 +11,7 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 
 | Test | What it catches | Runs |
 | --- | --- | --- |
-| `node test/contexts.js` | Lines that contradict where a card fires; cast, parts and player-token mistakes in every context | By hand, per the pack checklist. Its static checks also run in CI, inside `test/harness.test.js` |
+| `node test/contexts.js` | Lines that contradict where a card fires; cast, parts and player-token mistakes in every context; a colleague calling you by `{player.formal}` or `{player.full}` | By hand, per the pack checklist. Its static checks also run in CI, inside `test/harness.test.js` |
 | `node test/similarity.js` | Near-duplicate cards, worn phrases, worn sentence openers | CI |
 | `node harness/leak-check.js`, `node agents/leak-check.ts` | Anything on screen the player must not see: numbers, ids, raw tokens, the wrong honorific; hidden terms in blind playtesters' prompts | CI |
 | `node test/harness.test.js` | Every part combination and second-showing scene; batchmate cards; the stat words; the end of a career; grade wordings; gender as text only | CI |
@@ -180,10 +180,15 @@ cohorts flag lines that broke tone (`off_tone`) or that they could not follow (`
 
 ## 4. Characters and the cast
 
-**4.1 The player is "you".** The player's name appears only where someone else names or addresses them, inside the quote or document that carries it: the papers, Hansard, a document's footer, an official, the batchmate. Use `{player.formal}` when an official, the press or a resident names the player, and `{player}` for colleagues and lists. Keep the player's tokens out of choice text.
-- Why: the game is in the second person, and Declassified may quote an untaken choice as it is written, token and all.
-- Example: "{player} walks into the room." → "You walk into the room." And: the Forum page "headlined "{player.formal} candid on scheme flaw"".
-- Check: editor review; `test/contexts.js` and the leak checks fail an unknown player token or the wrong honorific.
+**4.1 The player is "you", and is named the way the speaker would say it.** The player's name appears only where someone else names or addresses them, inside the quote or document that carries it. The one name field gives three forms; pick one by who is speaking, and where:
+- `{player.given}` ("Wei Ling"): colleagues, peers, your reporting officer or anyone senior speaking to you directly, friends, the batchmate, a farewell card.
+- `{player.formal}` ("Ms Lim"; "Ms Nurul Huda" for a name with no surname): officials in a formal or serious setting (an inquiry, HR in writing, a minister in a meeting), residents, the press and its headlines.
+- `{player.full}` ("Ms Lim Wei Ling"): documents and the record: Hansard and the House, award lists, plaques and nameplates, a paper's footer, a letter's address line.
+
+Never `{player}` on its own: say which form. Keep the player's tokens out of choice text.
+- Why: the game is in the second person, and Declassified may quote an untaken choice as it is written, token and all. And the form is part of the scene: in the owner's words, "a serious situation or official situation have the full name or Ms {surname}, but your superior or peers or colleagues most likely just call you 'Wei Ling'."
+- Example: "{player} walks into the room." → "You walk into the room." And: "{peer} messages you: "Nice one, {player.formal}."" → "... "Nice one, {player.given}."" And: the Forum page "headlined "{player.formal} candid on scheme flaw""; a Member begins "As {player.full} said in this House".
+- Check: `test/contexts.js` (static, also in CI) fails `{player}` on its own, and, as a heuristic, a quote holding `{player.formal}` or `{player.full}` in a clause that names a colleague: a service colleague's, a fellow MP's or the batchmate's token, or a word such as "colleague", "batchmate", "reporting officer", "peers" or "friend" (the clause runs from the sentence's start to its end, so it holds the speaker of `X says, "..."`); in a cast line of a colleague's role, every quote is theirs. A line that also uses `{player.given}` is contrasting the forms on purpose and passes. A senior official speaking to you is editor review. `test/contexts.js` and the leak checks also fail an unknown player token or the wrong honorific.
 
 **4.2 The player's name and gender are text only.** One line uses the tokens. Never two versions of a line, and nothing gated on gender: no card, choice or requirement.
 - Why: nothing but text reads the gender, so the same seed plays the same career under every choice.

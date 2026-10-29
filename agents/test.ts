@@ -210,7 +210,7 @@ await ok("mock fun sessions: careers carry the meter and the repeat memory, a qu
   execFileSync(process.execPath, [path.join(here, "runner.ts"), "play", "fun-insider", "fun-casual", "--mock", "--runs", "8", "--careers", "4"], { env: process.env, stdio: "ignore" });
   const dirs = fs.readdirSync(path.join(tmp, "reports/cohorts")).filter(d => d.includes("-fun-")).map(d => path.join(tmp, "reports/cohorts", d));
   assert.strictEqual(dirs.length, 2);
-  let crossCareerRepeats = 0, quits = 0, endings = 0, versions = 0;
+  let crossCareerRepeats = 0, quits = 0, endings = 0, versions = 0, canariesShown = 0;
   for (const d of dirs) {
     const manifest = JSON.parse(fs.readFileSync(path.join(d, "manifest.json"), "utf8"));
     const p = manifest.persona;
@@ -277,11 +277,15 @@ await ok("mock fun sessions: careers carry the meter and the repeat memory, a qu
     assert.ok(s.funCurve.length > 0 && s.funCurve[0].playing === 8);
     assert.ok(s.cards.top.length > 0 && s.cards.bottom.length > 0);
     assert.ok(Object.keys(s.cards.all.reduce((m: any, c: any) => ((m[c.id] = 1), m), {})).every((id: string) => !id.startsWith("canary_")), "canaries are held out of the card scores");
-    assert.ok(s.canaries.bland.shown + s.canaries.wink.shown > 0 && typeof s.canaries.passed === "boolean");
+    // (a persona that quits within a few taps may meet no canary in its two canary careers: the
+    // cohorts together must show some)
+    canariesShown += s.canaries.bland.shown + s.canaries.wink.shown;
+    assert.ok(typeof s.canaries.passed === "boolean");
     for (const m of ["claude-haiku-5-5", "claude-sonnet-5-5"]) assert.ok(s.cost.projection.perSession[m] > 0 && s.cost.projection.fullSession[m] > 0, m);
     assert.ok(s.cost.projection.perSession["claude-sonnet-5-5"] > 5 * s.cost.projection.perSession["claude-haiku-5-5"]);
     assert.ok(s.cost.perTap > 0 && s.cost.perCareer > 0 && s.cost.perSession > 0 && s.cost.tokens.cacheRead > 0);
   }
+  assert.ok(canariesShown > 0, "the mock cohorts show the canaries");
   assert.ok(crossCareerRepeats > 0, "a card seen in an earlier career counts as a repeat");
   assert.ok(quits > 0 && endings > 0 && versions > 0, `quits ${quits}, endings ${endings}, card versions ${versions}`);
 });

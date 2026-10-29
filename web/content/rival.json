@@ -130,7 +130,7 @@
       "{rival}, your batchmate, has resigned from Parliament, for personal reasons. Everyone has a theory. Nobody says it in the lobby."
     ],
     "retired": [
-      "{rival}, your batchmate, retires as {title}. At the farewell lunch, {rival}'s speech thanks \"my batchmate, {player}\". You send a card afterwards, and mean it."
+      "{rival}, your batchmate, retires as {title}. At the farewell lunch, {rival}'s speech thanks \"my batchmate, {player.given}\". You send a card afterwards, and mean it."
     ]
   },
   "folder": [
@@ -449,7 +449,7 @@
           "maxRank": 15
         }
       },
-      "body": "Who becomes the next Prime Minister, first among equals, is being settled informally by the Cabinet, in a room. It has come down to two names, as the officers you joined with joked it would at your first dinner together: {player} and {rival}.",
+      "body": "Who becomes the next Prime Minister, first among equals, is being settled informally by the Cabinet, in a room. It has come down to two names, as the officers you joined with joked it would at your first dinner together: {player.given} and {rival}.",
       "choices": [
         {
           "text": "Put yourself forward.",

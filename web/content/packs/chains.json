@@ -1784,7 +1784,7 @@
           "effects": { "standing": 5, "integrity": 1, "competence": -2 },
           "setFlags": ["bond_met", "bond_declined"],
           "schedule": [{ "eventId": "bond_bank", "inYears": 2, "chance": 0.85 }],
-          "outcome": "Upstairs is grateful, in a way that lasts exactly one ranking cycle. The offer is not repeated. The division, it turns out, did need you, though not as much as it said."
+          "outcome": "Upstairs is grateful, in a way that lasts exactly one year. The offer is not repeated. The division, it turns out, did need you, though not as much as it said."
         },
         {
           "text": "Do a master's part-time, at night, on your own money.",

@@ -181,6 +181,9 @@
         "integrity": 60,
         "competence": 40
       },
+      "startBand": {
+        "reputation": 2
+      },
       "difficulty": "Normal"
     },
     {
@@ -200,9 +203,17 @@
         "integrity": 70,
         "competence": 50
       },
+      "startBand": {
+        "reputation": 2,
+        "standing": 4
+      },
       "difficulty": "Hard"
     }
   ],
+  "startBand": {
+    "note": "How far a new career's four starting stats may sit from its origin's (origins[].stats): up to `default` either way, or the origin's own `startBand` for that stat. Drawn from the seed on a stream of its own, so the same seed starts the same career and nothing else in the run moves. The bands keep the origins apart where they are ranked: every scholar starts with more standing and reputation than any graduate, and every graduate more than any poly entrant (test/harness.test.js checks it).",
+    "default": 5
+  },
   "grades": [
     {
       "min": 72,
@@ -300,7 +311,7 @@
     {
       "id": "level",
       "title": "You Found Your Level",
-      "epitaph": "Four decades, give or take, and retirement savings that will comfortably outlast you. The pewter plate says \"{player.formal}, with appreciation\". The scheme you designed in year nine is still running."
+      "epitaph": "Four decades, give or take, and retirement savings that will comfortably outlast you. The pewter plate says \"{player.full}, with appreciation\". The scheme you designed in year nine is still running."
     },
     {
       "id": "declined",
@@ -320,7 +331,7 @@
     {
       "id": "quiet",
       "title": "The Quiet Conversation",
-      "epitaph": "You were asked whether you had considered the private sector. No announcement was made. The email to your colleagues said only that {player} \"has moved on\", and wished {player.them} well. Your pass stopped working on a Friday."
+      "epitaph": "You were asked whether you had considered the private sector. No announcement was made. The email to your colleagues said only that {player.formal} \"has moved on\", and wished {player.them} well. Your pass stopped working on a Friday."
     },
     {
       "id": "backbench",
@@ -794,7 +805,7 @@
     },
     {
       "min": 80,
-      "text": "\"{player}? Very solid.\" Nobody can remember an example, but everyone agrees."
+      "text": "\"{player.given}? Very solid.\" Nobody can remember an example, but everyone agrees."
     },
     {
       "min": 55,
@@ -802,7 +813,7 @@
     },
     {
       "min": 0,
-      "text": "Your farewell card says \"Dear {player}\" and has forty signatures. Several are in the same handwriting."
+      "text": "Your farewell card says \"Dear {player.given}\" and has forty signatures. Several are in the same handwriting."
     }
   ],
   "reElectionLines": [
@@ -1123,11 +1134,11 @@
     "scandal": [
       {
         "min": 110,
-        "text": "Three former staff wrote to the newspaper in defence of {player.formal} and {player.their} record. They knew it would not help."
+        "text": "Three former staff wrote to the newspaper in defence of {player.full} and {player.their} record. They knew it would not help."
       },
       {
         "min": 0,
-        "text": "In the building, \"{player}\" is still said carefully, like the name of a project that went wrong."
+        "text": "In the building, \"{player.given}\" is still said carefully, like the name of a project that went wrong."
       }
     ],
     "consultancy": [
@@ -1142,11 +1153,22 @@
     ]
   },
   "player": {
-    "note": "The start screen's choices, in the order shown, and what each one fills in. `label` is the choice as shown; `pool` is the cast.names pronoun a blank name is drawn from (default: the key); `honorific` makes {player.formal}; every other field is a token, {player.<field>}, so a new choice or a new field is a data change. Text only: nothing else in the game reads it. See docs/DESIGN.md section 7 and docs/CONTENT_PLAN.md section 8.",
+    "note": "The start screen's choices, in the order shown, and what each one fills in. `label` is the choice as shown; `pool` is the cast.names pronoun a blank name is drawn from (default: the key); `honorific` goes before {player.formal} and {player.full}; every other field is a token, {player.<field>}, so a new choice or a new field is a data change (no field may be called name, given, formal or full: those are the name's forms, read from the one name field by `names`). Text only: nothing else in the game reads it. See docs/DESIGN.md section 7 and docs/CONTENT_PLAN.md section 8.",
     "default": "f",
     "genders": {
       "f": { "label": "Female", "pool": "f", "honorific": "Ms", "they": "she", "them": "her", "their": "her" },
       "m": { "label": "Male", "pool": "m", "honorific": "Mr", "they": "he", "them": "him", "their": "his" }
+    },
+    "names": {
+      "note": "How a typed name is read into its three forms: {player.given} (what colleagues call you), {player.formal} (the honorific and the surname, or the given name where there is no surname) and {player.full} (the honorific and the whole name). A drawn name, or a typed one in cast.names, uses the pool's own given and formal. Matching ignores case. chineseSurnames: a name that starts with one is surname first (\"Lim Wei Ling\"), in Hanyu Pinyin and dialect spellings. chineseGiven: syllables of Chinese given names, so \"Jia Hui\" or \"Kok Leong\" typed alone has no surname, and \"Siew Ling Tan\" is read with the surname last. surnames: other surnames, which come last (\"Prakash Pillai\", \"Joanne Pereira\"); any unlisted last word is read as a surname too. fatherNames: a last word that is a father's name, not a surname (\"Kavya Rajan\": Ms Kavya). patronymics: bin, binte, s/o, d/o: the father's name follows, and there is no surname. surnameParticles: start a surname of two words (\"Marcus de Souza\"). noSurname: a first word that marks a Malay name with no surname even without bin (\"Nurul Huda\"). dropFromGiven: left off when colleagues say the given name (\"Muhammad Faizal\": Faizal). See docs/CONTENT_PLAN.md section 8; test/harness.test.js reads a table of sample names.",
+      "chineseSurnames": ["Ang", "Au", "Boey", "Cai", "Cao", "Chan", "Cheah", "Chee", "Chen", "Cheng", "Cheong", "Chew", "Chia", "Chiam", "Chiang", "Chin", "Chiu", "Chng", "Chong", "Choo", "Chow", "Choy", "Chu", "Chua", "Deng", "Ding", "Dong", "Du", "Eng", "Feng", "Fong", "Foo", "Fu", "Fung", "Gan", "Gao", "Goh", "Guo", "Gwee", "Han", "He", "Heng", "Ho", "Hoe", "Hong", "Hu", "Huang", "Hui", "Hwang", "Jiang", "Kam", "Kang", "Kee", "Khoo", "Khor", "Koay", "Koh", "Kok", "Kong", "Kua", "Kuah", "Kwa", "Kwan", "Kwek", "Kwok", "Lai", "Lam", "Lau", "Lee", "Leong", "Leow", "Ler", "Lew", "Li", "Liang", "Liew", "Lim", "Lin", "Liu", "Lo", "Loh", "Lok", "Loke", "Loo", "Low", "Lu", "Lui", "Lum", "Luo", "Lye", "Ma", "Mah", "Mak", "Mok", "Neo", "Ng", "Ngiam", "Oei", "Ong", "Ooi", "Ow", "Pan", "Pang", "Peh", "Pek", "Peng", "Phua", "Png", "Poh", "Poon", "Quah", "Quek", "Ren", "Seah", "See", "Seet", "Seow", "Shen", "Shi", "Sia", "Siew", "Sim", "Siow", "Sng", "Soh", "Song", "Soo", "Su", "Sun", "Sze", "Tai", "Tan", "Tang", "Tay", "Tee", "Teh", "Teng", "Teo", "Tham", "Thio", "Thong", "Tian", "Ting", "Tio", "Tng", "Toh", "Tok", "Tow", "Tsang", "Tse", "Wang", "Wee", "Wei", "Wong", "Woo", "Woon", "Wu", "Xiao", "Xie", "Xu", "Yang", "Yao", "Yap", "Ye", "Yee", "Yeo", "Yeoh", "Yeung", "Yew", "Yip", "Yong", "Yow", "Yu", "Yuan", "Yuen", "Zeng", "Zhang", "Zheng", "Zhong", "Zhou", "Zhu"],
+      "chineseGiven": ["Ai", "An", "Ann", "Bee", "Beng", "Bin", "Boon", "Chai", "Chee", "Cheng", "Chin", "Ching", "Chong", "Choon", "Chuan", "Chun", "Chye", "En", "Eng", "Fang", "Fatt", "Fei", "Fen", "Feng", "Gek", "Geok", "Guan", "Hai", "Han", "Hao", "Heng", "Hian", "Hiang", "Hock", "Hoe", "Hon", "Hong", "Hoon", "Hua", "Huat", "Hui", "Hwa", "Hwee", "Jia", "Jian", "Jie", "Jin", "Jing", "Juan", "Jun", "Kah", "Kai", "Kang", "Keat", "Kee", "Keng", "Keong", "Kheng", "Khim", "Kiat", "Kim", "Kin", "Kok", "Kuan", "Kun", "Kwang", "Lan", "Lay", "Le", "Leng", "Leong", "Li", "Lian", "Liang", "Lin", "Ling", "Long", "Lun", "Mei", "Meng", "Min", "Ming", "Mun", "Na", "Ni", "Ning", "Peck", "Pei", "Peng", "Ping", "Poh", "Qi", "Qian", "Qing", "Rong", "Ru", "Rui", "Seng", "Shan", "Shen", "Sheng", "Shi", "Shu", "Si", "Sian", "Siang", "Siew", "Siok", "Siong", "Sok", "Soon", "Su", "Swee", "Tat", "Teck", "Tian", "Ting", "Tong", "Wah", "Wai", "Wee", "Wei", "Wen", "Xi", "Xia", "Xian", "Xiang", "Xiao", "Xin", "Xing", "Xiu", "Xuan", "Xue", "Ya", "Yan", "Yang", "Yao", "Yee", "Yen", "Yi", "Yin", "Ying", "Yoke", "Yong", "Yu", "Yuan", "Yue", "Yun", "Ze", "Zhe", "Zhen", "Zheng", "Zhi", "Zhong", "Zi"],
+      "surnames": ["Achari", "Aeria", "Aljunied", "Alkaff", "Alsagoff", "Anderson", "Baptist", "Bhat", "Brown", "Campbell", "Carvalho", "Chettiar", "Clarke", "Conceicao", "D'Cruz", "D'Silva", "De Cruz", "Desai", "Desker", "Dhillon", "Fernandes", "Fernandez", "Fernando", "Gill", "Gomes", "Gomez", "Grewal", "Gupta", "Hendricks", "Iyengar", "Iyer", "Johnson", "Jones", "Joshi", "Kamath", "Kaur", "Kurup", "Lopez", "Martens", "Martin", "Menon", "Minjoot", "Mudaliar", "Naidu", "Nair", "Nambiar", "Netto", "Oliveiro", "Pai", "Panicker", "Patel", "Pereira", "Perera", "Pillai", "Pillay", "Rao", "Reddy", "Rodrigues", "Rodriguez", "Rozario", "Sandhu", "Scully", "Sekhon", "Sequeira", "Shah", "Sharma", "Shenoy", "Shepherdson", "Sidhu", "Silva", "Singh", "Smith", "Taylor", "Tessensohn", "Theseira", "Thevar", "Thompson", "Varma", "Walker", "Westerhout", "White", "Wilson"],
+      "fatherNames": ["Annamalai", "Arumugam", "Balakrishnan", "Chandran", "Ganesan", "Gopal", "Govindasamy", "Kandasamy", "Kannan", "Karuppiah", "Krishnan", "Krishnasamy", "Kumar", "Maniam", "Mohan", "Murugan", "Muthu", "Muthusamy", "Narayanan", "Palaniappan", "Perumal", "Raj", "Raja", "Rajan", "Rajendran", "Rajoo", "Raju", "Ramachandran", "Ramalingam", "Raman", "Ramasamy", "Ratnam", "Ravi", "Retnam", "Selvam", "Shanmugam", "Sinnadurai", "Sinnathamby", "Sivakumar", "Subramaniam", "Subramanian", "Sundaram", "Suppiah", "Thangavelu", "Veerasamy", "Velu"],
+      "patronymics": ["bin", "binte", "binti", "bte", "bt", "s/o", "d/o", "a/l", "a/p"],
+      "surnameParticles": ["de", "da", "das", "dos", "di", "del", "della", "du", "van", "von", "der"],
+      "noSurname": ["Abdul", "Ahmad", "Md", "Mohamad", "Mohamed", "Mohammad", "Mohammed", "Mohd", "Muhammad", "Muhammed", "Muhd", "Noor", "Nor", "Nur", "Nurul", "Sharifah", "Siti", "Syed", "Wan"],
+      "dropFromGiven": ["Md", "Mohamad", "Mohamed", "Mohammad", "Mohammed", "Mohd", "Muhammad", "Muhammed", "Muhd", "Siti"]
     }
   },
   "cast": {
@@ -1598,7 +1620,7 @@
         "first": [
           "{name}, your first direct report, is {aTitle}. On the first morning {name} asks how you like your papers formatted, and you find you have an answer.",
           "{name}, the first officer ever to report to you, is {aTitle}. You write performance objectives for someone else for the first time, and they are better than any you were given.",
-          "{name}, your first direct report, is {aTitle}, and calls you \"{player}\" on day one and \"{player.formal}\" on day two, after somebody has a word."
+          "{name}, your first direct report, is {aTitle}, and calls you \"{player.given}\" on day one and \"{player.formal}\" on day two, after somebody has a word."
         ],
         "arrive": [
           "{name}, your new direct report, joins your team as {aTitle}, and asks on the first day where the files from the last reorganisation went. Nobody knows.",
