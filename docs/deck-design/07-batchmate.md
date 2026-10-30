@@ -1,14 +1,14 @@
 # The deck, with the mechanics: The batchmate
 
-[← Cabinet](06-cabinet.md#c160) · [Contents](../DECK-DESIGN.md#contents) · [The endgame →](08-endgame.md#c181)
+[← Cabinet](06-cabinet.md#c180) · [Contents](../DECK-DESIGN.md#contents) · [The endgame →](08-endgame.md#c205)
 
 ## <a id="stage-batchmate"></a>The batchmate
 
-Only with the batchmate on: the start screen's option to play against someone from your intake, who climbs alongside you. Cards 174 to 180.
+Only with the batchmate on: the start screen's option to play against someone from your intake, who climbs alongside you. Cards 198 to 204.
 
-### <a id="c174"></a>174. The 360
+### <a id="c198"></a>198. The 360
 
-[← 173](06-cabinet.md#c173) · [Next → 175](#c175) · [Contents](../DECK-DESIGN.md#contents)
+[← 197](06-cabinet.md#c197) · [Next → 199](#c199) · [Contents](../DECK-DESIGN.md#contents)
 
 *Only with the batchmate on.*
 
@@ -16,7 +16,7 @@ Only with the batchmate on: the start screen's option to play against someone fr
 
 **Who sees it:** up to Senior Director; with an active batchmate at your grade.
 
-**Shares a decision** (`peer_review`) with [#176](#c176), [#178](#c178): a career sees only one.
+**Shares a decision** (`peer_review`) with [#200](#c200), [#202](#c202): a career sees only one.
 
 It's 360-degree feedback season, when colleagues assess each other anonymously and the ranking panel reads the results. You've been asked to assess Hui Min, your batchmate and your rival for every promotion. The form promises anonymity. It has a free-text box headed "Areas for development".
 
@@ -41,11 +41,11 @@ It's 360-degree feedback season, when colleagues assess each other anonymously a
 
 - Hidden: Competence down a little (−1), Standing up a little (+1).
 
-[← 173](06-cabinet.md#c173) · [Next → 175](#c175) · [Contents](../DECK-DESIGN.md#contents)
+[← 197](06-cabinet.md#c197) · [Next → 199](#c199) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c175"></a>175. The Name Put Forward
+### <a id="c199"></a>199. The Name Put Forward
 
-[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK-DESIGN.md#contents)
+[← 198](#c198) · [Next → 200](#c200) · [Contents](../DECK-DESIGN.md#contents)
 
 *Only with the batchmate on.*
 
@@ -69,11 +69,11 @@ Hui Min, your batchmate and now senior to you, has been asked to nominate office
 - Hidden: Standing down a little (−2), Integrity up a lot (+6).
 - Batchmate: goodwill −1.
 
-[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK-DESIGN.md#contents)
+[← 198](#c198) · [Next → 200](#c200) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c176"></a>176. Annex B
+### <a id="c200"></a>200. Annex B
 
-[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK-DESIGN.md#contents)
+[← 199](#c199) · [Next → 201](#c201) · [Contents](../DECK-DESIGN.md#contents)
 
 *Only with the batchmate on.*
 
@@ -81,7 +81,7 @@ Hui Min, your batchmate and now senior to you, has been asked to nominate office
 
 **Who sees it:** Senior Management Executive to Deputy Secretary; with an active batchmate within one grade of you (the batchmate Senior Management Executive to Deputy Secretary).
 
-**Shares a decision** (`peer_review`) with [#174](#c174), [#178](#c178): a career sees only one.
+**Shares a decision** (`peer_review`) with [#198](#c198), [#202](#c202): a career sees only one.
 
 Hui Min, your batchmate and your rival for every promotion, sends a paper up to the Permanent Secretary at nine tomorrow, and you're copied on the draft. Annex B has the right numbers in the wrong columns, and the recommendation rests on them. A mistake like that would cost Hui Min at the next ranking.
 
@@ -112,11 +112,11 @@ Hui Min, your batchmate and your rival for every promotion, sends a paper up to 
 - The ranking panel (service, `panel`), 35%: C helps (+3).
 - The people who work around you (service, `floor`), 40%: C hurts (−3).
 
-[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK-DESIGN.md#contents)
+[← 199](#c199) · [Next → 201](#c201) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c177"></a>177. One Posting
+### <a id="c201"></a>201. One Posting
 
-[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK-DESIGN.md#contents)
+[← 200](#c200) · [Next → 202](#c202) · [Contents](../DECK-DESIGN.md#contents)
 
 *Only with the batchmate on.*
 
@@ -124,7 +124,7 @@ Hui Min, your batchmate and your rival for every promotion, sends a paper up to 
 
 **Who sees it:** Senior Management Executive to Deputy Director; with an active batchmate at your grade.
 
-**Shares a decision** (`one_slot`) with [#56](02-service.md#c56), [#95](02-service.md#c95): a career sees only one.
+**Shares a decision** (`one_slot`) with [#64](02-service.md#c64), [#103](02-service.md#c103): a career sees only one.
 
 There's one two-year posting to the Budget Division at the Ministry of Finance this year, the kind that gets people noticed, and your division has two nominees: you and Hui Min, your batchmate. HR suggests the two of you "have a conversation" first. In HR, that means one of you should withdraw.
 
@@ -162,11 +162,11 @@ There's one two-year posting to the Budget Division at the Ministry of Finance t
 - The people who work around you (service, `floor`), 40%: A helps (+2) · C hurts (−2).
 - The ranking panel (service, `panel`), 30%: A hurts (−1) · C helps (+1).
 
-[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK-DESIGN.md#contents)
+[← 200](#c200) · [Next → 202](#c202) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c178"></a>178. Views Are Sought
+### <a id="c202"></a>202. Views Are Sought
 
-[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK-DESIGN.md#contents)
+[← 201](#c201) · [Next → 203](#c203) · [Contents](../DECK-DESIGN.md#contents)
 
 *Only with the batchmate on.*
 
@@ -174,9 +174,9 @@ There's one two-year posting to the Budget Division at the Ministry of Finance t
 
 **Who sees it:** Deputy Director to Deputy Secretary; with an active batchmate at your grade.
 
-**Shares a decision** (`not_yet`) with [#119](02-service.md#c119): a career sees only one.
+**Shares a decision** (`not_yet`) with [#127](02-service.md#c127): a career sees only one.
 
-**Shares a decision** (`peer_review`) with [#174](#c174), [#176](#c176): a career sees only one.
+**Shares a decision** (`peer_review`) with [#198](#c198), [#200](#c200): a career sees only one.
 
 Hui Min, your batchmate, has been shortlisted for a post one grade above you both, which would make Hui Min senior to you. The selection panel has asked Hui Min's peers for their views. Yours will be read, and filed, and remembered by someone.
 
@@ -207,11 +207,11 @@ Hui Min, your batchmate, has been shortlisted for a post one grade above you bot
 - The people who work around you (service, `floor`), 40%: A helps (+2) · C hurts (−3).
 - The ranking panel (service, `panel`), 30%: A hurts (−1) · C helps (+2).
 
-[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK-DESIGN.md#contents)
+[← 201](#c201) · [Next → 203](#c203) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c179"></a>179. Saturday
+### <a id="c203"></a>203. Saturday
 
-[← 178](#c178) · [Next → 180](#c180) · [Contents](../DECK-DESIGN.md#contents)
+[← 202](#c202) · [Next → 204](#c204) · [Contents](../DECK-DESIGN.md#contents)
 
 *Only with the batchmate on.*
 
@@ -247,17 +247,17 @@ Hui Min, your batchmate, is an MP too, and Hui Min's ward has had a difficult ye
 - Your fellow Members of Parliament (politics, `fellowMPs`), 45%: A helps (+2) · C hurts (−2).
 - Your party branch and its volunteers (politics, `branch`), 45%: A hurts (−2) · C helps (+2).
 
-[← 178](#c178) · [Next → 180](#c180) · [Contents](../DECK-DESIGN.md#contents)
+[← 202](#c202) · [Next → 204](#c204) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c180"></a>180. First Among Equals
+### <a id="c204"></a>204. First Among Equals
 
-[← 179](#c179) · [Next → 181](08-endgame.md#c181) · [Contents](../DECK-DESIGN.md#contents)
+[← 203](#c203) · [Next → 205](08-endgame.md#c205) · [Contents](../DECK-DESIGN.md#contents)
 
 *Only with the batchmate on.*
 
 `rival_first` · rival.json · once a career · weight 12 · priority: drawn the moment it qualifies
 
-**Who sees it:** Minister (MR3) and up; aged 64 or less; needs Standing of at least 60; not after [172. The Succession](06-cabinet.md#c172), A (`bid_for_top`); not after [172. The Succession](06-cabinet.md#c172), B (`kingmaker`); with an active batchmate (the batchmate Minister (MR4) to Deputy Prime Minister).
+**Who sees it:** Minister (MR3) and up; aged 64 or less; needs Standing of at least 60; not after [192. The Succession](06-cabinet.md#c192), A (`bid_for_top`); not after [192. The Succession](06-cabinet.md#c192), B (`kingmaker`); with an active batchmate (the batchmate Minister (MR4) to Deputy Prime Minister).
 
 Who becomes the next Prime Minister, first among equals, is being settled informally by the Cabinet, in a room. It has come down to two names, as the officers you joined with joked it would at your first dinner together: Wei Ling and Hui Min, your batchmate.
 
@@ -266,8 +266,8 @@ Who becomes the next Prime Minister, first among equals, is being settled inform
 > You say it plainly, to the people who need to hear it. Hui Min says it too, in the next room. It will be decided the way these things are: slowly, and then all at once.
 
 - Hidden: Standing down a little (−2), Reputation up (+4).
-- Sets `bid_for_top`: read by [#172](06-cabinet.md#c172).
-- Marks [#172](06-cabinet.md#c172) as already seen.
+- Sets `bid_for_top`: read by [#192](06-cabinet.md#c192).
+- Marks [#192](06-cabinet.md#c192) as already seen.
 - Batchmate: goodwill −2.
 
 **B. Back Hui Min. Ask for Finance.**
@@ -275,15 +275,15 @@ Who becomes the next Prime Minister, first among equals, is being settled inform
 > Hui Min thanks you once, in private, and never again. That is how you know the deal was understood.
 
 - Hidden: Standing up a lot (+6), Integrity up a little (+2), wealth +$150,000.
-- Sets `kingmaker`: read by [#172](06-cabinet.md#c172).
+- Sets `kingmaker`: read by [#192](06-cabinet.md#c192).
 - Sets `backed_batchmate`.
-- Marks [#172](06-cabinet.md#c172) as already seen.
+- Marks [#192](06-cabinet.md#c192) as already seen.
 - Batchmate: goodwill +4; their ceiling +1.
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - Your fellow Members of Parliament (politics, `fellowMPs`), 45%: A hurts (−2) · B helps (+2).
 
-[← 179](#c179) · [Next → 181](08-endgame.md#c181) · [Contents](../DECK-DESIGN.md#contents)
+[← 203](#c203) · [Next → 205](08-endgame.md#c205) · [Contents](../DECK-DESIGN.md#contents)
 
-[← Cabinet](06-cabinet.md#c160) · [Contents](../DECK-DESIGN.md#contents) · [The endgame →](08-endgame.md#c181)
+[← Cabinet](06-cabinet.md#c180) · [Contents](../DECK-DESIGN.md#contents) · [The endgame →](08-endgame.md#c205)

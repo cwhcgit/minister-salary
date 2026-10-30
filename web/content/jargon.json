@@ -259,7 +259,8 @@
         "bench_letters",
         "model_ward",
         "bench_next_ward",
-        "strange_dragon"
+        "strange_dragon",
+        "pm_step_down"
       ]
     },
     {
@@ -363,6 +364,22 @@
         "cos_speech",
         "pilot_design",
         "bench_cut"
+      ]
+    },
+    {
+      "term": "Committee of Inquiry",
+      "meaning": "A panel a minister appoints under the Inquiries Act, usually chaired by a retired judge, to find out what went wrong in a serious failure; it can call witnesses, and its report is published.",
+      "match": "Committee of Inquiry|Committees of Inquiry",
+      "entryPoints": [
+        "ts_terms"
+      ]
+    },
+    {
+      "term": "Singpass",
+      "meaning": "The government's digital identity app, used to log in to public services; it also carries a digital identity card, accepted at polling stations.",
+      "match": "\\bSingpass\\b",
+      "entryPoints": [
+        "ls_polling"
       ]
     },
     {

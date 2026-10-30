@@ -1,14 +1,14 @@
 # The deck, with the mechanics: The endgame
 
-[← The batchmate](07-batchmate.md#c174) · [Contents](../DECK-DESIGN.md#contents) · [Endings →](09-endings.md#endings)
+[← The batchmate](07-batchmate.md#c198) · [Contents](../DECK-DESIGN.md#contents) · [Endings →](09-endings.md#endings)
 
 ## <a id="stage-endgame"></a>The endgame
 
-The last years: the service's last year, the party's renewal, the offer to stay, the last year in politics, and a Prime Minister's tenure. Cards 181 to 188.
+The last years: the service's last year, the party's renewal, the offer to stay, the last year in politics, and a Prime Minister's tenure. Cards 205 to 212.
 
-### <a id="c181"></a>181. The Last Year
+### <a id="c205"></a>205. The Last Year
 
-[← 180](07-batchmate.md#c180) · [Next → 182](#c182) · [Contents](../DECK-DESIGN.md#contents)
+[← 204](07-batchmate.md#c204) · [Next → 206](#c206) · [Contents](../DECK-DESIGN.md#contents)
 
 `endgame_last_service` · packs/endgame.json · once a career · priority: drawn the moment it qualifies
 
@@ -57,11 +57,11 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 180](07-batchmate.md#c180) · [Next → 182](#c182) · [Contents](../DECK-DESIGN.md#contents)
+[← 204](07-batchmate.md#c204) · [Next → 206](#c206) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c182"></a>182. Renewal
+### <a id="c206"></a>206. Renewal
 
-[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK-DESIGN.md#contents)
+[← 205](#c205) · [Next → 207](#c207) · [Contents](../DECK-DESIGN.md#contents)
 
 `endgame_renewal` · packs/endgame.json · once a career · priority: drawn the moment it qualifies
 
@@ -104,15 +104,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK-DESIGN.md#contents)
+[← 205](#c205) · [Next → 207](#c207) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c183"></a>183. One More Term
+### <a id="c207"></a>207. One More Term
 
-[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK-DESIGN.md#contents)
+[← 206](#c206) · [Next → 208](#c208) · [Contents](../DECK-DESIGN.md#contents)
 
 `endgame_stay` · packs/endgame.json · once a career · priority: drawn the moment it qualifies
 
-**Who sees it:** drawn by the engine instead of [#182](#c182), for Minister (MR4) and up, needs Standing of at least 70: the party asks you to stay on.
+**Who sees it:** drawn by the engine instead of [#206](#c206), for Minister (MR4) and up, needs Standing of at least 70: the party asks you to stay on.
 
 The party is renewing its slate before next year's general election, and most Members who will be 65 or older by Polling Day are being asked to make way. You are not. The Prime Minister wants you to stand again and stay in Cabinet to 70, where the party draws the line, and says twice that there is no pressure.
 
@@ -121,7 +121,7 @@ The party is renewing its slate before next year's general election, and most Me
 > You say yes before the Prime Minister has finished asking, and the Whip puts your name back on the slate. At your next meeting with your volunteers someone asks, kindly, how long you plan to go on.
 
 - Hidden: Standing up (+4), Reputation down a little (−2).
-- Sets `stays_on`: named in the Declassified file; read by [#184](#c184).
+- Sets `stays_on`: named in the Declassified file; read by [#208](#c208).
 
 **B. Make way anyway.**
 
@@ -137,11 +137,11 @@ The party is renewing its slate before next year's general election, and most Me
 - Your party branch and its volunteers (politics, `branch`), 40%: A hurts (−2).
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 35%: A helps (+2).
 
-[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK-DESIGN.md#contents)
+[← 206](#c206) · [Next → 208](#c208) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c184"></a>184. The Last Year
+### <a id="c208"></a>208. The Last Year
 
-[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK-DESIGN.md#contents)
+[← 207](#c207) · [Next → 209](#c209) · [Contents](../DECK-DESIGN.md#contents)
 
 `endgame_last_politics` · packs/endgame.json · once a career · priority: drawn the moment it qualifies
 
@@ -180,7 +180,7 @@ Each showing puts the card together from one option of each part. The text above
 **Part 1** · `end` (the first option that fits)
 
 - Parliament will be dissolved this year for the general election, and you are not on the party's slate *(`election`; when when the end is the renewal election; shown above)*
-- You turn 70 at the end of this year, where the party draws the line, and you will leave Cabinet then and not stand again *(`cabinet`; when after [183. One More Term](#c183), A (`stays_on`); when the end is the age limit, 70)*
+- You turn 70 at the end of this year, where the party draws the line, and you will leave Cabinet then and not stand again *(`cabinet`; when after [207. One More Term](#c207), A (`stays_on`); when the end is the age limit, 70)*
 - You turn 70 at the end of this year, where the party draws the line, and you will not stand at the next general election *(`limit`; when when the end is the age limit, 70)*
 
 **Part 2** · `left` (the first option that fits)
@@ -190,11 +190,11 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK-DESIGN.md#contents)
+[← 207](#c207) · [Next → 209](#c209) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c185"></a>185. Your Cabinet
+### <a id="c209"></a>209. Your Cabinet
 
-[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK-DESIGN.md#contents)
+[← 208](#c208) · [Next → 210](#c210) · [Contents](../DECK-DESIGN.md#contents)
 
 `pm_cabinet` · packs/endgame.json · once a career · priority: drawn the moment it qualifies
 
@@ -223,11 +223,11 @@ You are Prime Minister, and your first decision is the Cabinet: who runs which m
 - Hidden: Competence up (+3), Standing down a little (−2), Integrity up (+3).
 - Sets `pm_hard_ministry`.
 
-[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK-DESIGN.md#contents)
+[← 208](#c208) · [Next → 210](#c210) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c186"></a>186. The Rally
+### <a id="c210"></a>210. The Rally
 
-[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK-DESIGN.md#contents)
+[← 209](#c209) · [Next → 211](#c211) · [Contents](../DECK-DESIGN.md#contents)
 
 `pm_rally` · packs/endgame.json · once a career · priority: drawn the moment it qualifies
 
@@ -256,11 +256,11 @@ Your first National Day Rally, the Prime Minister's yearly speech to the nation,
 - Hidden: Standing down (−4), Reputation up a little (+2), Integrity up (+5).
 - Sets `pm_rally_hard`.
 
-[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK-DESIGN.md#contents)
+[← 209](#c209) · [Next → 211](#c211) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c187"></a>187. The Next One
+### <a id="c211"></a>211. The Next One
 
-[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK-DESIGN.md#contents)
+[← 210](#c210) · [Next → 212](#c212) · [Contents](../DECK-DESIGN.md#contents)
 
 `pm_successor` · packs/endgame.json · once a career · priority: drawn the moment it qualifies
 
@@ -289,11 +289,11 @@ When you took office you said you would serve a few years and hand over, and nex
 - Hidden: Competence up a little (+2), Standing up (+3), Reputation down (−4).
 - Sets `pm_kept_open`: named in the Declassified file.
 
-[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK-DESIGN.md#contents)
+[← 210](#c210) · [Next → 212](#c212) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c188"></a>188. Stepping Down
+### <a id="c212"></a>212. Stepping Down
 
-[← 187](#c187) · [Next → Endings](09-endings.md#endings) · [Contents](../DECK-DESIGN.md#contents)
+[← 211](#c211) · [Next → Endings](09-endings.md#endings) · [Contents](../DECK-DESIGN.md#contents)
 
 `pm_step_down` · packs/endgame.json · once a career · priority: drawn the moment it qualifies
 
@@ -325,6 +325,6 @@ This is your last year as Prime Minister. Your successor will be sworn in at the
 - Sets `pm_handover`: named in the Declassified file.
 - ↳ Can lead to: [Prime Minister](09-endings.md#end-pm)
 
-[← 187](#c187) · [Next → Endings](09-endings.md#endings) · [Contents](../DECK-DESIGN.md#contents)
+[← 211](#c211) · [Next → Endings](09-endings.md#endings) · [Contents](../DECK-DESIGN.md#contents)
 
-[← The batchmate](07-batchmate.md#c174) · [Contents](../DECK-DESIGN.md#contents) · [Endings →](09-endings.md#endings)
+[← The batchmate](07-batchmate.md#c198) · [Contents](../DECK-DESIGN.md#contents) · [Endings →](09-endings.md#endings)
