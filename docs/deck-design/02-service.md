@@ -1,14 +1,14 @@
 # The deck, with the mechanics: The service
 
-[← The first years](01-first-years.md#c1) · [Contents](../DECK-DESIGN.md#contents) · [The top of the service →](03-top-of-service.md#c121)
+[← The first years](01-first-years.md#c1) · [Contents](../DECK-DESIGN.md#contents) · [The top of the service →](03-top-of-service.md#c130)
 
 ## <a id="stage-service"></a>The service
 
-Assistant Director to Senior Director. Cards 50 to 120.
+Assistant Director to Senior Director. Cards 58 to 129.
 
-### <a id="c50"></a>50. Lo Hei
+### <a id="c58"></a>58. Lo Hei
 
-[← 49](01-first-years.md#c49) · [Next → 51](#c51) · [Contents](../DECK-DESIGN.md#contents)
+[← 57](01-first-years.md#c57) · [Next → 59](#c59) · [Contents](../DECK-DESIGN.md#contents)
 
 `cny_lohei` · events.json · once a career · weight 10
 
@@ -40,11 +40,11 @@ It's the division's Chinese New Year lunch, and the Permanent Secretary is at yo
 - The ranking panel (service, `panel`), 40%: A helps (+3) · B hurts (−2) · C hurts (−1).
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A hurts (−2) · C helps (+2).
 
-[← 49](01-first-years.md#c49) · [Next → 51](#c51) · [Contents](../DECK-DESIGN.md#contents)
+[← 57](01-first-years.md#c57) · [Next → 59](#c59) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c51"></a>51. The Report
+### <a id="c59"></a>59. The Report
 
-[← 50](#c50) · [Next → 52](#c52) · [Contents](../DECK-DESIGN.md#contents)
+[← 58](#c58) · [Next → 60](#c60) · [Contents](../DECK-DESIGN.md#contents)
 
 `consultant_report` · events.json · once a career · weight 9
 
@@ -65,7 +65,7 @@ Your ministry paid a consultancy \$1.9 million to work out why one of its scheme
 > You send the minute paper, paragraph four and all, to the fourteen people at the presentation. Nobody replies except a Deputy Secretary you've never met, who writes only to you: "Good paper." The one who hired the consultants reads it too.
 
 - Hidden: Competence up a lot (+7), Standing down a lot (−8), Reputation up (+5), this year's appraisal marked down (−8, said on screen).
-- ↳ Can lead to: [52. Paragraph Four](#c52), in two years, 50%
+- ↳ Can lead to: [60. Paragraph Four](#c60), in two years, 50%
 
 **C. Ask the consultants, in the Q&A, what their data source was.**
 
@@ -78,15 +78,15 @@ Your ministry paid a consultancy \$1.9 million to work out why one of its scheme
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A helps (+1) · B helps (+2) · C hurts (−3).
 - The ranking panel (service, `panel`), 40%: A hurts (−2) · C helps (+2).
 
-[← 50](#c50) · [Next → 52](#c52) · [Contents](../DECK-DESIGN.md#contents)
+[← 58](#c58) · [Next → 60](#c60) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c52"></a>52. Paragraph Four
+### <a id="c60"></a>60. Paragraph Four
 
-[← 51](#c51) · [Next → 53](#c53) · [Contents](../DECK-DESIGN.md#contents)
+[← 59](#c59) · [Next → 61](#c61) · [Contents](../DECK-DESIGN.md#contents)
 
 `minute_vindicated` · events.json · a standout moment, whichever choice (in the service)
 
-**Who sees it:** only as a follow-up to [51. The Report](#c51) (B: in two years, 50%).
+**Who sees it:** only as a follow-up to [59. The Report](#c59) (B: in two years, 50%).
 
 When a consultancy's \$1.9 million deck repeated the advice in your old minute paper, you circulated the paper to everyone at the presentation. The ministry went with the consultants' version anyway, and it has now gone wrong exactly as your paragraph four, on the risks, said it would. Someone upstairs has found paragraph four.
 
@@ -107,11 +107,11 @@ When a consultancy's \$1.9 million deck repeated the advice in your old minute p
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A hurts (−1) · B helps (+1).
 - The ranking panel (service, `panel`), 30%: A helps (+1) · B hurts (−1).
 
-[← 51](#c51) · [Next → 53](#c53) · [Contents](../DECK-DESIGN.md#contents)
+[← 59](#c59) · [Next → 61](#c61) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c53"></a>53. The Forum Page
+### <a id="c61"></a>61. The Forum Page
 
-[← 52](#c52) · [Next → 54](#c54) · [Contents](../DECK-DESIGN.md#contents)
+[← 60](#c60) · [Next → 62](#c62) · [Contents](../DECK-DESIGN.md#contents)
 
 `forum_letter` · events.json · once a career · weight 9
 
@@ -137,7 +137,7 @@ A member of the public has written to the Forum page, the letters page of the St
 
 - Hidden: Standing up a lot (+7), Integrity down a lot (−14), Heat up a lot (+15).
 - Sets `looked_him_up`: in the Folder the background check reads.
-- ↳ Can lead to: [54. The Citizens' Panel](#c54), in five years, 80% · [Everything Surfaced](09-endings.md#end-scandal)
+- ↳ Can lead to: [62. The Citizens' Panel](#c62), in five years, 80% · [Everything Surfaced](09-endings.md#end-scandal)
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -146,15 +146,15 @@ A member of the public has written to the Forum page, the letters page of the St
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: B helps (+3).
 - The ranking panel (service, `panel`), 30%: B helps (+2).
 
-[← 52](#c52) · [Next → 54](#c54) · [Contents](../DECK-DESIGN.md#contents)
+[← 60](#c60) · [Next → 62](#c62) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c54"></a>54. The Citizens' Panel
+### <a id="c62"></a>62. The Citizens' Panel
 
-[← 53](#c53) · [Next → 55](#c55) · [Contents](../DECK-DESIGN.md#contents)
+[← 61](#c61) · [Next → 63](#c63) · [Contents](../DECK-DESIGN.md#contents)
 
 `citizens_panel` · events.json
 
-**Who sees it:** only as a follow-up to [53. The Forum Page](#c53) (C: in five years, 80%); when it falls due: up to Permanent Secretary.
+**Who sees it:** only as a follow-up to [61. The Forum Page](#c61) (C: in five years, 80%); when it falls due: up to Permanent Secretary.
 
 Years ago a retired schoolteacher wrote an angry, accurate letter to the Forum page about your scheme, and you looked up his address in the ministry's records. Now twelve members of the public, picked at random, are reviewing the scheme over three Saturdays. He's one of them, and he has brought the cutting.
 
@@ -183,17 +183,17 @@ Years ago a retired schoolteacher wrote an angry, accurate letter to the Forum p
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A helps (+2) · C hurts (−1).
 - The ranking panel (service, `panel`), 30%: B helps (+2).
 
-[← 53](#c53) · [Next → 55](#c55) · [Contents](../DECK-DESIGN.md#contents)
+[← 61](#c61) · [Next → 63](#c63) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c55"></a>55. The Recruiter
+### <a id="c63"></a>63. The Recruiter
 
-[← 54](#c54) · [Next → 56](#c56) · [Contents](../DECK-DESIGN.md#contents)
+[← 62](#c62) · [Next → 64](#c64) · [Contents](../DECK-DESIGN.md#contents)
 
 `headhunter_early` · events.json · once a career · weight 7
 
 **Who sees it:** Assistant Director to Director; not while the scholarship bond runs.
 
-**Shares a decision** (`private_offer`) with [#120](#c120), [#147](05-politics.md#c147), [#148](05-politics.md#c148), [#83](#c83): a career sees only one.
+**Shares a decision** (`private_offer`) with [#128](#c128), [#167](05-politics.md#c167), [#168](05-politics.md#c168), [#91](#c91): a career sees only one.
 
 A recruiter has found you on LinkedIn, which you'd forgotten you were on. A bank wants someone who understands how ministries think, and the salary is a number you read twice. Taking it means resigning from the service, and from whatever it had planned for you.
 
@@ -216,17 +216,17 @@ A recruiter has found you on LinkedIn, which you'd forgotten you were on. A bank
 
 - Hidden: Standing up a little (+1), Integrity up (+3).
 
-[← 54](#c54) · [Next → 56](#c56) · [Contents](../DECK-DESIGN.md#contents)
+[← 62](#c62) · [Next → 64](#c64) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c56"></a>56. The Nomination
+### <a id="c64"></a>64. The Nomination
 
-[← 55](#c55) · [Next → 57](#c57) · [Contents](../DECK-DESIGN.md#contents)
+[← 63](#c63) · [Next → 65](#c65) · [Contents](../DECK-DESIGN.md#contents)
 
 `leadership_programme` · events.json · once a career · weight 11
 
 **Who sees it:** Assistant Director to Deputy Director; not for President's Scholar.
 
-**Shares a decision** (`one_slot`) with [#95](#c95), [#177](07-batchmate.md#c177): a career sees only one.
+**Shares a decision** (`one_slot`) with [#103](#c103), [#201](07-batchmate.md#c201): a career sees only one.
 
 Your division can put one name forward this year for the Public Service Leadership Programme, the course that marks people out for the top jobs. Ms Chua, your reporting officer, wants your nomination by Friday, and it can be your own name. Everyone expects you to put forward the division's scholar, one of the high-flyers the government paid to study overseas, who is going places anyway.
 
@@ -248,22 +248,22 @@ Your division can put one name forward this year for the Public Service Leadersh
 
 - Hidden: Competence down a little (−2), Standing down (−4), Reputation up (+4), Integrity up a lot (+12).
 - Sets `mentored_ally`: counts toward Legacy.
-- ↳ Can lead to: [57. The Officer You Nominated](#c57), in 11 years, 90% (or, at another grade, [#58](#c58), [#59](#c59), [#60](#c60), [#61](#c61))
+- ↳ Can lead to: [65. The Officer You Nominated](#c65), in 11 years, 90% (or, at another grade, [#66](#c66), [#67](#c67), [#68](#c68), [#69](#c69))
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - The people who work around you (service, `floor`), 45%: A hurts (−3) · B hurts (−1) · C helps (+4).
 - The ranking panel (service, `panel`), 30%: A helps (+2) · C hurts (−2).
 
-[← 55](#c55) · [Next → 57](#c57) · [Contents](../DECK-DESIGN.md#contents)
+[← 63](#c63) · [Next → 65](#c65) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c57"></a>57. The Officer You Nominated
+### <a id="c65"></a>65. The Officer You Nominated
 
-[← 56](#c56) · [Next → 58](#c58) · [Contents](../DECK-DESIGN.md#contents)
+[← 64](#c64) · [Next → 66](#c66) · [Contents](../DECK-DESIGN.md#contents)
 
 `ally_returns` · events.json
 
-**Who sees it:** only as a follow-up to [56. The Nomination](#c56) (C: in 11 years, 90%); when it falls due: Director to Senior Director.
+**Who sees it:** only as a follow-up to [64. The Nomination](#c64) (C: in 11 years, 90%); when it falls due: Director to Senior Director.
 
 Over a decade ago, you put forward the quiet officer who did your division's real work for the leadership programme, instead of yourself. That officer is a Deputy Secretary now, and has been asked to suggest names for another Deputy Secretary post: the last rung below Permanent Secretary.
 
@@ -279,15 +279,15 @@ Over a decade ago, you put forward the quiet officer who did your division's rea
 
 - Hidden: Standing up a lot (+6), Integrity up a lot (+6), the ceiling (CEP) up two grades (+2).
 
-[← 56](#c56) · [Next → 58](#c58) · [Contents](../DECK-DESIGN.md#contents)
+[← 64](#c64) · [Next → 66](#c66) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c58"></a>58. The Officer You Nominated
+### <a id="c66"></a>66. The Officer You Nominated
 
-[← 57](#c57) · [Next → 59](#c59) · [Contents](../DECK-DESIGN.md#contents)
+[← 65](#c65) · [Next → 67](#c67) · [Contents](../DECK-DESIGN.md#contents)
 
 `ally_returns_junior` · events.json
 
-**Who sees it:** fires instead of [57. The Officer You Nominated](#c57) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: up to Deputy Director.
+**Who sees it:** fires instead of [65. The Officer You Nominated](#c65) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: up to Deputy Director.
 
 Over a decade ago, you nominated the quiet officer who did your division's real work for the leadership programme, instead of yourself. That officer has since overtaken you, is now a Deputy Secretary with a post to fill, and asks for you by name.
 
@@ -303,15 +303,15 @@ Over a decade ago, you nominated the quiet officer who did your division's real 
 
 - Hidden: Standing up (+4), Integrity up a lot (+6), the ceiling (CEP) up one grade (+1).
 
-[← 57](#c57) · [Next → 59](#c59) · [Contents](../DECK-DESIGN.md#contents)
+[← 65](#c65) · [Next → 67](#c67) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c59"></a>59. The Officer You Nominated
+### <a id="c67"></a>67. The Officer You Nominated
 
-[← 58](#c58) · [Next → 60](#c60) · [Contents](../DECK-DESIGN.md#contents)
+[← 66](#c66) · [Next → 68](#c68) · [Contents](../DECK-DESIGN.md#contents)
 
 `ally_returns_ds` · events.json
 
-**Who sees it:** fires instead of [57. The Officer You Nominated](#c57) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Deputy Secretary only.
+**Who sees it:** fires instead of [65. The Officer You Nominated](#c65) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Deputy Secretary only.
 
 Over a decade ago, you nominated the quiet officer who did your division's real work for the leadership programme, instead of yourself. That officer is a Permanent Secretary now, younger than you and faster, and has been asked for names for another Permanent Secretary post, the last rung there is. You're a Deputy Secretary.
 
@@ -327,15 +327,15 @@ Over a decade ago, you nominated the quiet officer who did your division's real 
 
 - Hidden: Standing up a lot (+6), Integrity up a lot (+6), the ceiling (CEP) up two grades (+2).
 
-[← 58](#c58) · [Next → 60](#c60) · [Contents](../DECK-DESIGN.md#contents)
+[← 66](#c66) · [Next → 68](#c68) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c60"></a>60. The Officer You Nominated
+### <a id="c68"></a>68. The Officer You Nominated
 
-[← 59](#c59) · [Next → 61](#c61) · [Contents](../DECK-DESIGN.md#contents)
+[← 67](#c67) · [Next → 69](#c69) · [Contents](../DECK-DESIGN.md#contents)
 
 `ally_returns_ps` · events.json
 
-**Who sees it:** fires instead of [57. The Officer You Nominated](#c57) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Permanent Secretary only.
+**Who sees it:** fires instead of [65. The Officer You Nominated](#c65) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Permanent Secretary only.
 
 Over a decade ago, you nominated the quiet officer who did your division's real work for the leadership programme, instead of yourself. That officer is a Permanent Secretary now too, and you sit on the same committees. Your old nominee has been asked, quietly, which fellow Permanent Secretaries the party should one day invite to tea: its first quiet approach to someone it might ask to stand for Parliament.
 
@@ -351,15 +351,15 @@ Over a decade ago, you nominated the quiet officer who did your division's real 
 
 - Hidden: Standing up a lot (+6), Reputation up (+3), Integrity up a lot (+6).
 
-[← 59](#c59) · [Next → 61](#c61) · [Contents](../DECK-DESIGN.md#contents)
+[← 67](#c67) · [Next → 69](#c69) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c61"></a>61. The Officer You Nominated
+### <a id="c69"></a>69. The Officer You Nominated
 
-[← 60](#c60) · [Next → 62](#c62) · [Contents](../DECK-DESIGN.md#contents)
+[← 68](#c68) · [Next → 70](#c70) · [Contents](../DECK-DESIGN.md#contents)
 
 `ally_returns_pol` · events.json
 
-**Who sees it:** fires instead of [57. The Officer You Nominated](#c57) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up.
+**Who sees it:** fires instead of [65. The Officer You Nominated](#c65) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up.
 
 Over a decade ago, you put forward the quiet officer who did your old division's real work for the leadership programme, instead of yourself. That officer is a Permanent Secretary now. From time to time the Prime Minister's office asks Permanent Secretaries for a frank view of the politicians they work with, before deciding who goes up. Your old nominee has been asked about you.
 
@@ -375,11 +375,11 @@ Over a decade ago, you put forward the quiet officer who did your old division's
 
 - Hidden: Standing up (+4), Integrity up a lot (+6), the ceiling (CEP) up one grade (+1).
 
-[← 60](#c60) · [Next → 62](#c62) · [Contents](../DECK-DESIGN.md#contents)
+[← 68](#c68) · [Next → 70](#c70) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c62"></a>62. Someone From Before
+### <a id="c70"></a>70. Someone From Before
 
-[← 61](#c61) · [Next → 63](#c63) · [Contents](../DECK-DESIGN.md#contents)
+[← 69](#c69) · [Next → 71](#c71) · [Contents](../DECK-DESIGN.md#contents)
 
 `old_colleague` · events.json · once a career · weight 14
 
@@ -399,11 +399,11 @@ At a meeting of several agencies, you recognise the person chairing it. Years ag
 
 - Hidden: Standing down (−3), Integrity up a little (+2).
 
-[← 61](#c61) · [Next → 63](#c63) · [Contents](../DECK-DESIGN.md#contents)
+[← 69](#c69) · [Next → 71](#c71) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c63"></a>63. The Board Takes a Second Look
+### <a id="c71"></a>71. The Board Takes a Second Look
 
-[← 62](#c62) · [Next → 64](#c64) · [Contents](../DECK-DESIGN.md#contents)
+[← 70](#c70) · [Next → 72](#c72) · [Contents](../DECK-DESIGN.md#contents)
 
 `second_look` · events.json · once a career · weight 9
 
@@ -424,11 +424,11 @@ Someone on a promotion board has read several of your papers, and thinks your wo
 
 - Hidden: Integrity up a lot (+6), the ceiling (CEP) up one grade (+1).
 
-[← 62](#c62) · [Next → 64](#c64) · [Contents](../DECK-DESIGN.md#contents)
+[← 70](#c70) · [Next → 72](#c72) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c64"></a>64. The Inter-Ministry Committee
+### <a id="c72"></a>72. The Inter-Ministry Committee
 
-[← 63](#c63) · [Next → 65](#c65) · [Contents](../DECK-DESIGN.md#contents)
+[← 71](#c71) · [Next → 73](#c73) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_committee` · events.json · once a career · weight 8
 
@@ -441,7 +441,7 @@ You're the secretariat for an Inter-Ministry Committee: you write its papers and
 > Your paper, with your name in the footer, sets out three options and recommends one. Two ministries object to being cornered, and say so to your superiors. A decision is made anyway, mostly to stop the paper circulating.
 
 - Hidden: Competence up a lot (+9), Standing down (−5), Reputation up (+5), this year's appraisal marked down (−6, said on screen).
-- ↳ Can lead to: [65. The Decision Paper](#c65), in two years, 45%
+- ↳ Can lead to: [73. The Decision Paper](#c73), in two years, 45%
 
 **B. Keep taking excellent minutes.**
 
@@ -455,8 +455,8 @@ You're the secretariat for an Inter-Ministry Committee: you write its papers and
 
 - Hidden: Standing down (−4), Reputation up a lot (+6), Integrity down a lot (−8), Heat up a lot (+22).
 - Sets `leaked_deadlock`: in the Folder the background check reads.
-- The journalist, if this showing named them: marks `you_were_a_source` (read by [#66](#c66)).
-- ↳ Can lead to: [66. A Journalist Has Been Asking](#c66), in six years, 45% · [Everything Surfaced](09-endings.md#end-scandal)
+- The journalist, if this showing named them: marks `you_were_a_source` (read by [#74](#c74)).
+- ↳ Can lead to: [74. A Journalist Has Been Asking](#c74), in six years, 45% · [Everything Surfaced](09-endings.md#end-scandal)
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -464,17 +464,17 @@ You're the secretariat for an Inter-Ministry Committee: you write its papers and
 - The office a confidential paper or decision belongs to (service, `owner`), 40%: C hurts (−3).
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A helps (+3) · B hurts (−1).
 
-[← 63](#c63) · [Next → 65](#c65) · [Contents](../DECK-DESIGN.md#contents)
+[← 71](#c71) · [Next → 73](#c73) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c65"></a>65. The Decision Paper
+### <a id="c73"></a>73. The Decision Paper
 
-[← 64](#c64) · [Next → 66](#c66) · [Contents](../DECK-DESIGN.md#contents)
+[← 72](#c72) · [Next → 74](#c74) · [Contents](../DECK-DESIGN.md#contents)
 
 `committee_vindicated` · events.json · a standout moment, whichever choice (in the service)
 
-**Who sees it:** only as a follow-up to [64. The Inter-Ministry Committee](#c64) (A: in two years, 45%); when it falls due: up to Deputy Secretary.
+**Who sees it:** only as a follow-up to [72. The Inter-Ministry Committee](#c72) (A: in two years, 45%); when it falls due: up to Deputy Secretary.
 
-**Shares a decision** (`own_up`) with [#34](01-first-years.md#c34), [#161](06-cabinet.md#c161), [#105](#c105), [#24](01-first-years.md#c24): a career sees only one.
+**Shares a decision** (`own_up`) with [#42](01-first-years.md#c42), [#181](06-cabinet.md#c181), [#113](#c113), [#24](01-first-years.md#c24): a career sees only one.
 
 When you were secretariat to a deadlocked Inter-Ministry Committee, you wrote a paper that forced it to decide. That committee has now been dissolved, and its replacement has adopted your paper as its terms of reference. The footer still says "Prepared by Ms Lim Wei Ling, Secretariat", and the paper is about to go to every ministry.
 
@@ -495,15 +495,15 @@ When you were secretariat to a deadlocked Inter-Ministry Committee, you wrote a 
 - The ranking panel (service, `panel`), 35%: A helps (+2) · B hurts (−1).
 - People from other agencies who were in the room or on the email (service, `agencies`), 35%: A hurts (−2) · B helps (+1).
 
-[← 64](#c64) · [Next → 66](#c66) · [Contents](../DECK-DESIGN.md#contents)
+[← 72](#c72) · [Next → 74](#c74) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c66"></a>66. A Journalist Has Been Asking
+### <a id="c74"></a>74. A Journalist Has Been Asking
 
-[← 65](#c65) · [Next → 67](#c67) · [Contents](../DECK-DESIGN.md#contents)
+[← 73](#c73) · [Next → 75](#c75) · [Contents](../DECK-DESIGN.md#contents)
 
 `leak_resurfaces` · events.json · once a career
 
-**Who sees it:** only as a follow-up to [64. The Inter-Ministry Committee](#c64) (C: in six years, 45%); [101. The Leak](#c101) (C: in nine years, 40%).
+**Who sees it:** only as a follow-up to [72. The Inter-Ministry Committee](#c72) (C: in six years, 45%); [109. The Leak](#c109) (C: in nine years, 40%).
 
 Something confidential got out once, years ago, and you were the one who let it out. Now Rajesh Nair, the Straits Times journalist, is piecing the old story back together, calling everyone who was on the circulation list at the time. Today Mr Nair called you.
 
@@ -526,23 +526,23 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 1** · `caller` (the first option that fits)
 
-- Years ago, as the secretariat of an Inter-Ministry Committee, you told Rajesh Nair about its deadlock, which you weren't supposed to discuss. Now Mr Nair rings, without naming anyone, to warn you that a reporter at another paper is rebuilding that old story from everyone who was on the circulation list. The reporter has your number. *(`source`; when the journalist (Rajesh Nair) is the one from [64. The Inter-Ministry Committee](#c64), C (`you_were_a_source`))*
-- Something confidential got out once, years ago, and you were the one who let it out. Now Rajesh Nair is piecing the old story back together, calling everyone who was on the circulation list at the time. Today Mr Nair called you. *(`journalist`; when the journalist (Rajesh Nair) is not the one from [64. The Inter-Ministry Committee](#c64), C (`you_were_a_source`); shown above)*
+- Years ago, as the secretariat of an Inter-Ministry Committee, you told Rajesh Nair about its deadlock, which you weren't supposed to discuss. Now Mr Nair rings, without naming anyone, to warn you that a reporter at another paper is rebuilding that old story from everyone who was on the circulation list. The reporter has your number. *(`source`; when the journalist (Rajesh Nair) is the one from [72. The Inter-Ministry Committee](#c72), C (`you_were_a_source`))*
+- Something confidential got out once, years ago, and you were the one who let it out. Now Rajesh Nair is piecing the old story back together, calling everyone who was on the circulation list at the time. Today Mr Nair called you. *(`journalist`; when the journalist (Rajesh Nair) is not the one from [72. The Inter-Ministry Committee](#c72), C (`you_were_a_source`); shown above)*
 - Something confidential got out once, years ago, and you were the one who let it out. Now a reporter is piecing the old story back together from everyone who was on the circulation list at the time, and has just called you. *(`unnamed`)*
 
 </details>
 
-[← 65](#c65) · [Next → 67](#c67) · [Contents](../DECK-DESIGN.md#contents)
+[← 73](#c73) · [Next → 75](#c75) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c67"></a>67. The Officer You Are Supervising
+### <a id="c75"></a>75. The Officer You Are Supervising
 
-[← 66](#c66) · [Next → 68](#c68) · [Contents](../DECK-DESIGN.md#contents)
+[← 74](#c74) · [Next → 76](#c76) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_scholar` · events.json · once a career · weight 9
 
 **Who sees it:** Assistant Director to Director; not for President's Scholar.
 
-**Shares a decision** (`mentor_hardway`) with [#49](01-first-years.md#c49): a career sees only one.
+**Shares a decision** (`mentor_hardway`) with [#57](01-first-years.md#c57): a career sees only one.
 
 You're supervising a scholar, one of the high-flyers the government paid to study overseas: twenty-six, very clever, and likely to outrank you within four years. The scholar has asked you to look over a first big paper before it goes upstairs. It isn't good. Whatever you say now will be remembered when the scholar is the one above you.
 
@@ -552,7 +552,7 @@ You're supervising a scholar, one of the high-flyers the government paid to stud
 
 - Hidden: Competence up a lot (+6), Standing down (−3), Integrity up a lot (+9).
 - Sets `taught_scholar`: counts toward Legacy.
-- ↳ Can lead to: [68. The Officer You Taught](#c68), in 11 years, 85% (or, at another grade, [#69](#c69), [#70](#c70), [#71](#c71))
+- ↳ Can lead to: [76. The Officer You Taught](#c76), in 11 years, 85% (or, at another grade, [#77](#c77), [#78](#c78), [#79](#c79))
 
 **B. Clear it. Let the scholar find out the hard way.**
 
@@ -571,15 +571,15 @@ You're supervising a scholar, one of the high-flyers the government paid to stud
 - The officer who countersigns your appraisal (service, `countersigner`), 40%: A helps (+2) · B hurts (−3) · C helps (+1).
 - The people who work around you (service, `floor`), 35%: A helps (+2) · C hurts (−2).
 
-[← 66](#c66) · [Next → 68](#c68) · [Contents](../DECK-DESIGN.md#contents)
+[← 74](#c74) · [Next → 76](#c76) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c68"></a>68. The Officer You Taught
+### <a id="c76"></a>76. The Officer You Taught
 
-[← 67](#c67) · [Next → 69](#c69) · [Contents](../DECK-DESIGN.md#contents)
+[← 75](#c75) · [Next → 77](#c77) · [Contents](../DECK-DESIGN.md#contents)
 
 `scholar_returns` · events.json
 
-**Who sees it:** only as a follow-up to [67. The Officer You Are Supervising](#c67) (A: in 11 years, 85%); when it falls due: up to Senior Director.
+**Who sees it:** only as a follow-up to [75. The Officer You Are Supervising](#c75) (A: in 11 years, 85%); when it falls due: up to Senior Director.
 
 The young scholar you once supervised is your Deputy Secretary now. Back then you said plainly that the scholar's first big paper wasn't good, and spent an afternoon showing why. After a routine meeting your Deputy Secretary stays behind and says, "You were the only person who ever told me my work was bad."
 
@@ -595,15 +595,15 @@ The young scholar you once supervised is your Deputy Secretary now. Back then yo
 
 - Hidden: Standing up a lot (+8), Reputation up (+4), the ceiling (CEP) up two grades (+2).
 
-[← 67](#c67) · [Next → 69](#c69) · [Contents](../DECK-DESIGN.md#contents)
+[← 75](#c75) · [Next → 77](#c77) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c69"></a>69. The Officer You Taught
+### <a id="c77"></a>77. The Officer You Taught
 
-[← 68](#c68) · [Next → 70](#c70) · [Contents](../DECK-DESIGN.md#contents)
+[← 76](#c76) · [Next → 78](#c78) · [Contents](../DECK-DESIGN.md#contents)
 
 `scholar_returns_peer` · events.json
 
-**Who sees it:** fires instead of [68. The Officer You Taught](#c68) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Deputy Secretary only.
+**Who sees it:** fires instead of [76. The Officer You Taught](#c76) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Deputy Secretary only.
 
 The young scholar you once supervised is a Deputy Secretary now, like you, at an age you won't ask about. Back then you said plainly that the scholar's first big paper wasn't good. After a joint meeting the scholar stays behind and says, "You were the only person who ever told me my work was bad."
 
@@ -619,15 +619,15 @@ The young scholar you once supervised is a Deputy Secretary now, like you, at an
 
 - Hidden: Standing up a lot (+8), Reputation up (+4), the ceiling (CEP) up two grades (+2).
 
-[← 68](#c68) · [Next → 70](#c70) · [Contents](../DECK-DESIGN.md#contents)
+[← 76](#c76) · [Next → 78](#c78) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c70"></a>70. The Officer You Taught
+### <a id="c78"></a>78. The Officer You Taught
 
-[← 69](#c69) · [Next → 71](#c71) · [Contents](../DECK-DESIGN.md#contents)
+[← 77](#c77) · [Next → 79](#c79) · [Contents](../DECK-DESIGN.md#contents)
 
 `scholar_returns_ps` · events.json
 
-**Who sees it:** fires instead of [68. The Officer You Taught](#c68) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Permanent Secretary only.
+**Who sees it:** fires instead of [76. The Officer You Taught](#c76) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Permanent Secretary only.
 
 The young scholar you once supervised is now one of your Deputy Secretaries. Back then you said plainly that the scholar's first big paper wasn't good. After a routine meeting your Deputy Secretary stays behind and says, "You were the only person who ever told me my work was bad."
 
@@ -643,15 +643,15 @@ The young scholar you once supervised is now one of your Deputy Secretaries. Bac
 
 - Hidden: Competence up (+4), Standing up a lot (+6), Reputation up (+4).
 
-[← 69](#c69) · [Next → 71](#c71) · [Contents](../DECK-DESIGN.md#contents)
+[← 77](#c77) · [Next → 79](#c79) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c71"></a>71. The Officer You Taught
+### <a id="c79"></a>79. The Officer You Taught
 
-[← 70](#c70) · [Next → 72](#c72) · [Contents](../DECK-DESIGN.md#contents)
+[← 78](#c78) · [Next → 80](#c80) · [Contents](../DECK-DESIGN.md#contents)
 
 `scholar_returns_pol` · events.json
 
-**Who sees it:** fires instead of [68. The Officer You Taught](#c68) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up.
+**Who sees it:** fires instead of [76. The Officer You Taught](#c76) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up.
 
 The young scholar you once supervised is a Permanent Secretary now. Back then you said plainly that the scholar's first big paper wasn't good, and spent an afternoon showing why. After briefing a group of MPs on a bill, your old scholar waits until the room has emptied and says, without preamble, "You were the only person who ever told me my work was bad."
 
@@ -667,15 +667,15 @@ The young scholar you once supervised is a Permanent Secretary now. Back then yo
 
 - Hidden: Competence up a lot (+6), Standing up a lot (+6), Reputation up a little (+2).
 
-[← 70](#c70) · [Next → 72](#c72) · [Contents](../DECK-DESIGN.md#contents)
+[← 78](#c78) · [Next → 80](#c80) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c72"></a>72. The Merlion Speaks
+### <a id="c80"></a>80. The Merlion Speaks
 
-[← 71](#c71) · [Next → 73](#c73) · [Contents](../DECK-DESIGN.md#contents)
+[← 79](#c79) · [Next → 81](#c81) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_merlion` · packs/strange.json · once a career · weight 1
 
-**Who sees it:** Assistant Director to Director; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#106](#c106), [#107](#c107), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171) (`strange_met`).
+**Who sees it:** Assistant Director to Director; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#114](#c114), [#115](#c115), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191) (`strange_met`).
 
 At 7.14am the Merlion, the half-lion, half-fish statue on Marina Bay, says good morning to a tour group, in all four official languages. By ten, nobody is asking how. The question is which agency is in charge of it: STB, the Tourism Board, which protects its image by law, or PUB, the water agency, since it spouts into Marina Reservoir. A meeting of both will decide, and you are writing the paper that recommends one.
 
@@ -684,38 +684,38 @@ At 7.14am the Merlion, the half-lion, half-fish statue on Marina Bay, says good 
 > The meeting agrees in one sitting, a record. STB's first decision as lead agency: the Merlion may not speak again until its talking points are cleared. You're put on the working group that will clear them.
 
 - Hidden: Competence up a little (+2), Standing up (+5), Integrity down a little (−2).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#106](#c106), [#107](#c107), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
-- ↳ Can lead to: [73. Cleared to Speak](#c73), in seven years, 70%
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#114](#c114), [#115](#c115), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- ↳ Can lead to: [81. Cleared to Speak](#c81), in seven years, 70%
 
 **B. Ask the Merlion which agency it would prefer.**
 
 > It says PUB, because PUB has never once switched it off for maintenance. Its view is minuted as stakeholder feedback. STB is made lead agency anyway.
 
 - Hidden: Standing down (−4), Reputation up (+4), Integrity up (+3).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#106](#c106), [#107](#c107), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#114](#c114), [#115](#c115), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **C. Propose a joint working group, chaired in rotation.**
 
 > The working group, with you on it, meets every month for three years at the waterfront, so that the Merlion can attend. It never misses a meeting and, as agreed, says nothing until its talking points are cleared.
 
 - Hidden: Competence down a little (−2), Standing up (+3), Reputation up a little (+1).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#106](#c106), [#107](#c107), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
-- ↳ Can lead to: [73. Cleared to Speak](#c73), in seven years, 70%
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#114](#c114), [#115](#c115), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- ↳ Can lead to: [81. Cleared to Speak](#c81), in seven years, 70%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - People from other agencies who were in the room or on the email (service, `agencies`), 45%: A helps (+1) · B hurts (−2) · C helps (+1).
 - The ranking panel (service, `panel`), 30%: A hurts (−1) · B helps (+2) · C hurts (−1).
 
-[← 71](#c71) · [Next → 73](#c73) · [Contents](../DECK-DESIGN.md#contents)
+[← 79](#c79) · [Next → 81](#c81) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c73"></a>73. Cleared to Speak
+### <a id="c81"></a>81. Cleared to Speak
 
-[← 72](#c72) · [Next → 74](#c74) · [Contents](../DECK-DESIGN.md#contents)
+[← 80](#c80) · [Next → 82](#c82) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_merlion_cleared` · packs/strange.json
 
-**Who sees it:** only as a follow-up to [72. The Merlion Speaks](#c72) (A, C: in seven years, 70%).
+**Who sees it:** only as a follow-up to [80. The Merlion Speaks](#c80) (A, C: in seven years, 70%).
 
 Years ago, when the Merlion first spoke, you sat on the working group set up to clear what it could say. Its talking points have finally been approved: one page, signed off at four levels, the last of them this morning. On Saturday the Merlion will read them to a tour group, and you are invited.
 
@@ -735,19 +735,19 @@ Years ago, when the Merlion first spoke, you sat on the working group set up to 
 
 - People from other agencies who were in the room or on the email (service, `agencies`), 35%: A helps (+2) · B hurts (−2).
 
-[← 72](#c72) · [Next → 74](#c74) · [Contents](../DECK-DESIGN.md#contents)
+[← 80](#c80) · [Next → 82](#c82) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c74"></a>74. Pick Three
+### <a id="c82"></a>82. Pick Three
 
-[← 73](#c73) · [Next → 75](#c75) · [Contents](../DECK-DESIGN.md#contents)
+[← 81](#c81) · [Next → 83](#c83) · [Contents](../DECK-DESIGN.md#contents)
 
 `pilot_design` · packs/chains.json · once a career · weight 9
 
 **Who sees it:** Assistant Director to Deputy Director.
 
-**Shares a decision** (`bad_number`) with [#32](01-first-years.md#c32), [#41](01-first-years.md#c41), [#141](05-politics.md#c141): a career sees only one.
+**Shares a decision** (`bad_number`) with [#40](01-first-years.md#c40), [#49](01-first-years.md#c49), [#161](05-politics.md#c161): a career sees only one.
 
-**Shares a decision** (`announce`) with [#88](#c88), [#40](01-first-years.md#c40): a career sees only one.
+**Shares a decision** (`announce`) with [#96](#c96), [#48](01-first-years.md#c48): a career sees only one.
 
 Your division has the money for a one-year pilot of nurses visiting seniors at home in the week after discharge, in three towns, and you choose which three. If it works, the Minister will announce it in the Committee of Supply debate, Parliament's yearly debate on each ministry's budget, in two years, using the numbers your pilot produces. Where you run it will decide what those numbers look like.
 
@@ -757,8 +757,8 @@ Your division has the money for a one-year pilot of nurses visiting seniors at h
 
 - Hidden: Competence up a little (+2), Standing up (+5), Integrity down (−3).
 - Sets `pilot_met`.
-- Sets `pilot_easy`: read by [#75](#c75), [#79](#c79).
-- ↳ Can lead to: [75. One Number](#c75), in two years, 85%
+- Sets `pilot_easy`: read by [#83](#c83), [#87](#c87).
+- ↳ Can lead to: [83. One Number](#c83), in two years, 85%
 
 **B. Pick the three hardest, to learn what breaks it.**
 
@@ -766,8 +766,8 @@ Your division has the money for a one-year pilot of nurses visiting seniors at h
 
 - Hidden: Competence up (+5), Standing down (−4), Integrity up (+3).
 - Sets `pilot_met`.
-- Sets `pilot_hard`: read by [#75](#c75), [#79](#c79).
-- ↳ Can lead to: [75. One Number](#c75), in two years, 85%
+- Sets `pilot_hard`: read by [#83](#c83), [#87](#c87).
+- ↳ Can lead to: [83. One Number](#c83), in two years, 85%
 
 **C. Draw the sites by lottery, and hold half back as a control.**
 
@@ -775,8 +775,8 @@ Your division has the money for a one-year pilot of nurses visiting seniors at h
 
 - Hidden: Competence up a lot (+6), Standing down a little (−2), Reputation down (−3).
 - Sets `pilot_met`.
-- Sets `pilot_control`: read by [#75](#c75).
-- ↳ Can lead to: [75. One Number](#c75), in two years, 85%
+- Sets `pilot_control`: read by [#83](#c83).
+- ↳ Can lead to: [83. One Number](#c83), in two years, 85%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -822,15 +822,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 73](#c73) · [Next → 75](#c75) · [Contents](../DECK-DESIGN.md#contents)
+[← 81](#c81) · [Next → 83](#c83) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c75"></a>75. One Number
+### <a id="c83"></a>83. One Number
 
-[← 74](#c74) · [Next → 76](#c76) · [Contents](../DECK-DESIGN.md#contents)
+[← 82](#c82) · [Next → 84](#c84) · [Contents](../DECK-DESIGN.md#contents)
 
 `pilot_results` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [74. Pick Three](#c74) (any choice: in two years, 85%); when it falls due: up to Permanent Secretary.
+**Who sees it:** only as a follow-up to [82. Pick Three](#c82) (any choice: in two years, 85%); when it falls due: up to Permanent Secretary.
 
 The pilot you designed, a counter that answers questions about any government payout, has finished, and its evaluation is in. The Minister's Committee of Supply speech needs one number from it by Friday, and whatever you send is the number the country will hear. In the three community clubs you picked, take-up was 71%. But page 40 of the evaluation points out that those three would have taken up almost anything.
 
@@ -839,8 +839,8 @@ The pilot you designed, a counter that answers questions about any government pa
 > 71% goes into the speech on its own, and the Minister reads it with feeling. The warning stays where it was: on page 40.
 
 - Hidden: Standing up a lot (+6), Reputation up a little (+2), Integrity down (−5), Heat up (+4).
-- Sets `pilot_flattered`: in the Folder the background check reads; named in the Declassified file; read by [#79](#c79), [#80](#c80), [#81](#c81), [#82](#c82).
-- ↳ Can lead to: [76. Going National](#c76), in two years, 85% (or, at another grade, [#77](#c77), [#78](#c78))
+- Sets `pilot_flattered`: in the Folder the background check reads; named in the Declassified file; read by [#87](#c87), [#88](#c88), [#89](#c89), [#90](#c90).
+- ↳ Can lead to: [84. Going National](#c84), in two years, 85% (or, at another grade, [#85](#c85), [#86](#c86))
 
 **B. Send the number with the paragraph that explains it.**
 
@@ -848,7 +848,7 @@ The pilot you designed, a counter that answers questions about any government pa
 
 - Hidden: Competence up (+3), Standing down (−4), Integrity up (+5).
 - Sets `pilot_honest`: named in the Declassified file.
-- ↳ Can lead to: [76. Going National](#c76), in two years, 85% (or, at another grade, [#77](#c77), [#78](#c78))
+- ↳ Can lead to: [84. Going National](#c84), in two years, 85% (or, at another grade, [#85](#c85), [#86](#c86))
 
 **C. Ask for one more year before anything is announced.**
 
@@ -856,7 +856,7 @@ The pilot you designed, a counter that answers questions about any government pa
 
 - Hidden: Competence up (+5), Standing down (−5), Reputation down a little (−1), Integrity up a little (+2).
 - Sets `pilot_waited`: named in the Declassified file.
-- ↳ Can lead to: [76. Going National](#c76), in three years, 85% (or, at another grade, [#77](#c77), [#78](#c78))
+- ↳ Can lead to: [84. Going National](#c84), in three years, 85% (or, at another grade, [#85](#c85), [#86](#c86))
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -902,30 +902,30 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 2** · `result` (the first option that fits)
 
-- In the three community clubs you picked, take-up was 71%. But page 40 of the evaluation points out that those three would have taken up almost anything. *(`easy`; when after [74. Pick Three](#c74), A (`pilot_easy`); shown above)*
+- In the three community clubs you picked, take-up was 71%. But page 40 of the evaluation points out that those three would have taken up almost anything. *(`easy`; when after [82. Pick Three](#c82), A (`pilot_easy`); shown above)*
   - `a`: 71% goes into the speech on its own, and the Minister reads it with feeling. The warning stays where it was: on page 40.
   - `b`: 71% goes up with its paragraph from page 40, and the speech keeps both: "in places that were already well served". No other line in the speech gets less applause.
   - `c`: The speech goes ahead without your pilot. You spend another year running it in ordinary community clubs, not ones picked to like it. The number you get there is smaller, and you trust it.
-- In the three hard community clubs you picked, take-up was 23%. For those three, that's remarkable. In a speech, without the context, it's just 23%. *(`hard`; when after [74. Pick Three](#c74), B (`pilot_hard`))*
+- In the three hard community clubs you picked, take-up was 23%. For those three, that's remarkable. In a speech, without the context, it's just 23%. *(`hard`; when after [82. Pick Three](#c82), B (`pilot_hard`))*
   - `a`: You send the figure from the best of the three: 64%. It's true of that one. The speech doesn't say which one, and nobody asks.
   - `b`: 23% goes up with its context, and the speech uses both. The line gets no applause, and the Minister's office asks, kindly, whether there was a better number.
   - `c`: The speech goes ahead without your pilot. A second year in the same three brings take-up to 31%, which nobody upstairs asks about, and which you believe.
-- Compared with the three community clubs that went without, the pilot raised take-up by four percentage points: a real gain, properly measured, and much smaller than anyone had hoped. *(`control`; when after [74. Pick Three](#c74), C (`pilot_control`))*
+- Compared with the three community clubs that went without, the pilot raised take-up by four percentage points: a real gain, properly measured, and much smaller than anyone had hoped. *(`control`; when after [82. Pick Three](#c82), C (`pilot_control`))*
   - `a`: You send the gain in the pilot's best month: nineteen points. Every word is accurate. The speech says "up to nineteen points", and the Minister says it twice.
   - `b`: Four points go up with the paragraph explaining why four is good. The speech uses it. A newspaper calls the result "modest", and quotes your paragraph correctly.
   - `c`: The speech goes ahead without your pilot. A second year confirms the four points, and finds that they last. Nobody upstairs asks, and you write it up anyway.
 
 </details>
 
-[← 74](#c74) · [Next → 76](#c76) · [Contents](../DECK-DESIGN.md#contents)
+[← 82](#c82) · [Next → 84](#c84) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c76"></a>76. Going National
+### <a id="c84"></a>84. Going National
 
-[← 75](#c75) · [Next → 77](#c77) · [Contents](../DECK-DESIGN.md#contents)
+[← 83](#c83) · [Next → 85](#c85) · [Contents](../DECK-DESIGN.md#contents)
 
 `pilot_national` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [75. One Number](#c75) (A, B: in two years, 85%; C: in three years, 85%); when it falls due: up to Senior Director.
+**Who sees it:** only as a follow-up to [83. One Number](#c83) (A, B: in two years, 85%; C: in three years, 85%); when it falls due: up to Senior Director.
 
 The home visits, the pilot you designed, will go national next April, and someone has to run the rollout. The ministry's operations division has asked for it, with Xin Yi, who joined the service with you, to lead. You'd like it yourself: whoever runs it owns its success and every complaint. The Deputy Secretary wants your view by Monday.
 
@@ -934,27 +934,27 @@ The home visits, the pilot you designed, will go national next April, and someon
 > The Deputy Secretary agrees, and Xin Yi takes it well, in public. You now own a national scheme, its hotline, and every complaint about it, by name.
 
 - Hidden: Competence up (+3), Standing up (+4), Heat up (+3).
-- Sets `pilot_kept`: read by [#79](#c79).
-- The peer, if this showing named them: marks `lost_the_rollout` (read by [#79](#c79)).
-- ↳ Can lead to: [79. The Paragraph](#c79), in four years, 85% (or, at another grade, [#80](#c80), [#81](#c81), [#82](#c82))
+- Sets `pilot_kept`: read by [#87](#c87).
+- The peer, if this showing named them: marks `lost_the_rollout` (read by [#87](#c87)).
+- ↳ Can lead to: [87. The Paragraph](#c87), in four years, 85% (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
 
 **B. Back Xin Yi's team, and hand over every file.**
 
 > Xin Yi's team takes it, with your files, your caveats and your mobile number. Xin Yi calls twice in the first month, and then, as things settle, at Chinese New Year.
 
 - Hidden: Competence down a little (−1), Standing down a little (−2), Integrity up (+4).
-- Sets `pilot_handed`: read by [#79](#c79).
-- The peer, if this showing named them: marks `given_the_rollout` (read by [#79](#c79)).
-- ↳ Can lead to: [79. The Paragraph](#c79), in four years, 85% (or, at another grade, [#80](#c80), [#81](#c81), [#82](#c82))
+- Sets `pilot_handed`: read by [#87](#c87).
+- The peer, if this showing named them: marks `given_the_rollout` (read by [#87](#c87)).
+- ↳ Can lead to: [87. The Paragraph](#c87), in four years, 85% (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
 
 **C. Back Xin Yi's team, if the Minister's speech thanks yours.**
 
 > The speech thanks your division for "designing" it and Xin Yi's for "supporting" it. Xin Yi reads the transcript, and from then on copies you on everything, carefully.
 
 - Hidden: Standing up (+3), Reputation up (+3), Integrity down (−4).
-- Sets `pilot_named`: read by [#79](#c79).
-- The peer, if this showing named them: marks `you_kept_the_credit` (read by [#79](#c79)).
-- ↳ Can lead to: [79. The Paragraph](#c79), in four years, 85% (or, at another grade, [#80](#c80), [#81](#c81), [#82](#c82))
+- Sets `pilot_named`: read by [#87](#c87).
+- The peer, if this showing named them: marks `you_kept_the_credit` (read by [#87](#c87)).
+- ↳ Can lead to: [87. The Paragraph](#c87), in four years, 85% (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -1000,15 +1000,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 75](#c75) · [Next → 77](#c77) · [Contents](../DECK-DESIGN.md#contents)
+[← 83](#c83) · [Next → 85](#c85) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c77"></a>77. Going National
+### <a id="c85"></a>85. Going National
 
-[← 76](#c76) · [Next → 78](#c78) · [Contents](../DECK-DESIGN.md#contents)
+[← 84](#c84) · [Next → 86](#c86) · [Contents](../DECK-DESIGN.md#contents)
 
 `pilot_national_top` · packs/chains.json
 
-**Who sees it:** fires instead of [76. Going National](#c76) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Deputy Secretary to Permanent Secretary.
+**Who sees it:** fires instead of [84. Going National](#c84) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Deputy Secretary to Permanent Secretary.
 
 The home visits, the pilot you designed years ago, will go national next April, and someone has to run the rollout. The ministry's operations division has asked for it, with Xin Yi, who joined the service with you, to lead. You're senior enough now that the decision is yours, and you could keep it with your own people.
 
@@ -1017,27 +1017,27 @@ The home visits, the pilot you designed years ago, will go national next April, 
 > You keep it, and Xin Yi takes it well, in public. Your people now own a national scheme, its hotline, and every complaint about it, addressed to you.
 
 - Hidden: Competence up (+3), Standing up (+4), Heat up (+3).
-- Sets `pilot_kept`: read by [#79](#c79).
-- The peer, if this showing named them: marks `lost_the_rollout` (read by [#79](#c79)).
-- ↳ Can lead to: [79. The Paragraph](#c79), in four years, 85% (or, at another grade, [#80](#c80), [#81](#c81), [#82](#c82))
+- Sets `pilot_kept`: read by [#87](#c87).
+- The peer, if this showing named them: marks `lost_the_rollout` (read by [#87](#c87)).
+- ↳ Can lead to: [87. The Paragraph](#c87), in four years, 85% (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
 
 **B. Give it to Xin Yi's team, with every file.**
 
 > Xin Yi's team takes it, with your files, your caveats and your old notebook. Xin Yi calls twice in the first month, and then, as things settle, at Chinese New Year.
 
 - Hidden: Competence down a little (−1), Standing down a little (−2), Integrity up (+4).
-- Sets `pilot_handed`: read by [#79](#c79).
-- The peer, if this showing named them: marks `given_the_rollout` (read by [#79](#c79)).
-- ↳ Can lead to: [79. The Paragraph](#c79), in four years, 85% (or, at another grade, [#80](#c80), [#81](#c81), [#82](#c82))
+- Sets `pilot_handed`: read by [#87](#c87).
+- The peer, if this showing named them: marks `given_the_rollout` (read by [#87](#c87)).
+- ↳ Can lead to: [87. The Paragraph](#c87), in four years, 85% (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
 
 **C. Give it to Xin Yi's team, and have the speech thank yours.**
 
 > The speech thanks your people for "designing" it and Xin Yi's for "supporting" it. Xin Yi reads the transcript, and from then on copies you on everything, carefully.
 
 - Hidden: Standing up (+3), Reputation up (+3), Integrity down (−4).
-- Sets `pilot_named`: read by [#79](#c79).
-- The peer, if this showing named them: marks `you_kept_the_credit` (read by [#79](#c79)).
-- ↳ Can lead to: [79. The Paragraph](#c79), in four years, 85% (or, at another grade, [#80](#c80), [#81](#c81), [#82](#c82))
+- Sets `pilot_named`: read by [#87](#c87).
+- The peer, if this showing named them: marks `you_kept_the_credit` (read by [#87](#c87)).
+- ↳ Can lead to: [87. The Paragraph](#c87), in four years, 85% (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -1083,15 +1083,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 76](#c76) · [Next → 78](#c78) · [Contents](../DECK-DESIGN.md#contents)
+[← 84](#c84) · [Next → 86](#c86) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c78"></a>78. Going National
+### <a id="c86"></a>86. Going National
 
-[← 77](#c77) · [Next → 79](#c79) · [Contents](../DECK-DESIGN.md#contents)
+[← 85](#c85) · [Next → 87](#c87) · [Contents](../DECK-DESIGN.md#contents)
 
 `pilot_national_pol` · packs/chains.json
 
-**Who sees it:** fires instead of [76. Going National](#c76) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament to Senior Parliamentary Secretary.
+**Who sees it:** fires instead of [84. Going National](#c84) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament to Senior Parliamentary Secretary.
 
 The pilot you designed as a civil servant, the home visits, is going national: the Minister announces it in the Committee of Supply debate. Nobody in the chamber knows it was yours. Your own speech on the same ministry's budget is due at four, and you could mention it.
 
@@ -1101,7 +1101,7 @@ The pilot you designed as a civil servant, the home visits, is going national: t
 
 - Hidden: Standing down a little (−2), Reputation up (+5), Integrity down a little (−1).
 - Sets `pilot_claimed`.
-- ↳ Can lead to: [79. The Paragraph](#c79), in four years, 85% (or, at another grade, [#80](#c80), [#81](#c81), [#82](#c82))
+- ↳ Can lead to: [87. The Paragraph](#c87), in four years, 85% (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
 
 **B. Say nothing about it. It is the ministry's now.**
 
@@ -1109,7 +1109,7 @@ The pilot you designed as a civil servant, the home visits, is going national: t
 
 - Hidden: Standing up a little (+2), Reputation down a little (−1), Integrity up (+3).
 - Sets `pilot_unclaimed`.
-- ↳ Can lead to: [79. The Paragraph](#c79), in four years, 85% (or, at another grade, [#80](#c80), [#81](#c81), [#82](#c82))
+- ↳ Can lead to: [87. The Paragraph](#c87), in four years, 85% (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
 
 **C. Use your speech to ask about the scheme's weak spot, which you know best.**
 
@@ -1117,7 +1117,7 @@ The pilot you designed as a civil servant, the home visits, is going national: t
 
 - Hidden: Competence up (+3), Standing down (−4), Reputation up a little (+2).
 - Sets `pilot_warned`.
-- ↳ Can lead to: [79. The Paragraph](#c79), in four years, 85% (or, at another grade, [#80](#c80), [#81](#c81), [#82](#c82))
+- ↳ Can lead to: [87. The Paragraph](#c87), in four years, 85% (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -1163,15 +1163,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 77](#c77) · [Next → 79](#c79) · [Contents](../DECK-DESIGN.md#contents)
+[← 85](#c85) · [Next → 87](#c87) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c79"></a>79. The Paragraph
+### <a id="c87"></a>87. The Paragraph
 
-[← 78](#c78) · [Next → 80](#c80) · [Contents](../DECK-DESIGN.md#contents)
+[← 86](#c86) · [Next → 88](#c88) · [Contents](../DECK-DESIGN.md#contents)
 
 `pilot_audit` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [76. Going National](#c76) (any choice: in four years, 85%); [77. Going National](#c77) (any choice: in four years, 85%); [78. Going National](#c78) (any choice: in four years, 85%); when it falls due: up to Permanent Secretary; after [75. One Number](#c75), A (`pilot_flattered`).
+**Who sees it:** only as a follow-up to [84. Going National](#c84) (any choice: in four years, 85%); [85. Going National](#c85) (any choice: in four years, 85%); [86. Going National](#c86) (any choice: in four years, 85%); when it falls due: up to Permanent Secretary; after [83. One Number](#c83), A (`pilot_flattered`).
 
 Years ago, your pilot of the home visits gave the Minister's speech its best number. The Auditor-General's report now has a paragraph on the national scheme: its budget assumed nineteen points, from the pilot's best month, and it delivered four points. The ministry paid for the difference. The paragraph names nobody yet. The team that ran it is drafting the ministry's reply.
 
@@ -1235,26 +1235,26 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 2** · `number` (the first option that fits)
 
-- 71%, from three towns picked to like it *(`easy`; when after [74. Pick Three](#c74), A (`pilot_easy`))*
+- 71%, from three towns picked to like it *(`easy`; when after [82. Pick Three](#c82), A (`pilot_easy`))*
   - `real`: 24%
-- 64%, from the best of three towns *(`hard`; when after [74. Pick Three](#c74), B (`pilot_hard`))*
+- 64%, from the best of three towns *(`hard`; when after [82. Pick Three](#c82), B (`pilot_hard`))*
   - `real`: 21%
 - nineteen points, from the pilot's best month *(`control`; shown above)*
   - `real`: four points
 
 **Part 3** · `front` (the first option that fits)
 
-- Your division ran it, so the ministry's reply is yours to draft. *(`kept`; when after [76. Going National](#c76), A; [77. Going National](#c77), A (`pilot_kept`))*
+- Your division ran it, so the ministry's reply is yours to draft. *(`kept`; when after [84. Going National](#c84), A; [85. Going National](#c85), A (`pilot_kept`))*
   - `a`: Tell the auditors how the number was chosen.
   - `b`: Point the auditors to the evaluation's caveats.
   - `aOut`: Your note to the auditors runs to one page and uses the word "chose" twice. The report blames the evaluation, not its author, and upstairs everyone knows who that is. Your next appraisal says "candour".
   - `bOut`: The reply cites the caveats and the word "indicative". The auditors accept it, and add a sentence about indicative figures that every ministry will have quoted back at it for years.
-- Xin Yi's team ran it, and Xin Yi is drafting the ministry's reply. *(`handed`; when after [76. Going National](#c76), B; [77. Going National](#c77), B (`pilot_handed`); the peer (Xin Yi) is the one from [76. Going National](#c76), B; [77. Going National](#c77), B (`given_the_rollout`) and is not the one from [76. Going National](#c76), A; [77. Going National](#c77), A (`lost_the_rollout`) and is not the one from [76. Going National](#c76), C; [77. Going National](#c77), C (`you_kept_the_credit`))*
+- Xin Yi's team ran it, and Xin Yi is drafting the ministry's reply. *(`handed`; when after [84. Going National](#c84), B; [85. Going National](#c85), B (`pilot_handed`); the peer (Xin Yi) is the one from [84. Going National](#c84), B; [85. Going National](#c85), B (`given_the_rollout`) and is not the one from [84. Going National](#c84), A; [85. Going National](#c85), A (`lost_the_rollout`) and is not the one from [84. Going National](#c84), C; [85. Going National](#c85), C (`you_kept_the_credit`))*
   - `a`: Tell the auditors the number was yours.
   - `b`: Let Xin Yi's reply rest on the evaluation's caveats.
   - `aOut`: You write to the auditors that the number was yours, not Xin Yi's. Xin Yi reads the copy and rings you, then says nothing for several seconds. That is how Xin Yi says thank you.
   - `bOut`: Xin Yi's reply cites the caveats, as you suggested. It works. Xin Yi does not ask whose number it was, and you notice that Xin Yi does not need to.
-- Xin Yi's team ran it, though the Minister's speech thanked yours, and Xin Yi is drafting the ministry's reply. *(`named`; when after [76. Going National](#c76), C; [77. Going National](#c77), C (`pilot_named`); the peer (Xin Yi) is the one from [76. Going National](#c76), C; [77. Going National](#c77), C (`you_kept_the_credit`) and is not the one from [76. Going National](#c76), A; [77. Going National](#c77), A (`lost_the_rollout`) and is not the one from [76. Going National](#c76), B; [77. Going National](#c77), B (`given_the_rollout`))*
+- Xin Yi's team ran it, though the Minister's speech thanked yours, and Xin Yi is drafting the ministry's reply. *(`named`; when after [84. Going National](#c84), C; [85. Going National](#c85), C (`pilot_named`); the peer (Xin Yi) is the one from [84. Going National](#c84), C; [85. Going National](#c85), C (`you_kept_the_credit`) and is not the one from [84. Going National](#c84), A; [85. Going National](#c85), A (`lost_the_rollout`) and is not the one from [84. Going National](#c84), B; [85. Going National](#c85), B (`given_the_rollout`))*
   - `a`: Tell the auditors the number was yours.
   - `b`: Let Xin Yi's reply rest on the evaluation's caveats.
   - `aOut`: You write to the auditors that the number was yours, not Xin Yi's. Xin Yi reads the copy, and that evening rings you about nothing much, which has not happened since the speech.
@@ -1267,15 +1267,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 78](#c78) · [Next → 80](#c80) · [Contents](../DECK-DESIGN.md#contents)
+[← 86](#c86) · [Next → 88](#c88) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c80"></a>80. The Paragraph
+### <a id="c88"></a>88. The Paragraph
 
-[← 79](#c79) · [Next → 81](#c81) · [Contents](../DECK-DESIGN.md#contents)
+[← 87](#c87) · [Next → 89](#c89) · [Contents](../DECK-DESIGN.md#contents)
 
 `pilot_audit_clean` · packs/chains.json
 
-**Who sees it:** fires instead of [79. The Paragraph](#c79) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: up to Permanent Secretary; not after [75. One Number](#c75), A (`pilot_flattered`).
+**Who sees it:** fires instead of [87. The Paragraph](#c87) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: up to Permanent Secretary; not after [83. One Number](#c83), A (`pilot_flattered`).
 
 Years ago you ran the pilot of the home visits. The Auditor-General's report now has a paragraph on the national scheme: take-up came within two points of your evaluation's forecast, "which set realistic projections". Nobody in the ministry can remember an audit paragraph with no recommendation in it.
 
@@ -1337,15 +1337,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 79](#c79) · [Next → 81](#c81) · [Contents](../DECK-DESIGN.md#contents)
+[← 87](#c87) · [Next → 89](#c89) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c81"></a>81. The Paragraph
+### <a id="c89"></a>89. The Paragraph
 
-[← 80](#c80) · [Next → 82](#c82) · [Contents](../DECK-DESIGN.md#contents)
+[← 88](#c88) · [Next → 90](#c90) · [Contents](../DECK-DESIGN.md#contents)
 
 `pilot_audit_pol` · packs/chains.json
 
-**Who sees it:** fires instead of [79. The Paragraph](#c79) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up; after [75. One Number](#c75), A (`pilot_flattered`).
+**Who sees it:** fires instead of [87. The Paragraph](#c87) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up; after [83. One Number](#c83), A (`pilot_flattered`).
 
 Years ago, as a civil servant, you sent a flattering number from your pilot into a Minister's speech. The Auditor-General's report now traces an expensive shortfall in the national scheme to that number. Rajesh Nair, the Straits Times journalist, has found your name in the file, and wants a comment by six.
 
@@ -1368,15 +1368,15 @@ Years ago, as a civil servant, you sent a flattering number from your pilot into
 - The press gallery (politics, `pressGallery`), 45%: A helps (+2) · B hurts (−2).
 - The civil servants who work with you (politics, `officials`), 35%: A helps (+2) · B hurts (−2).
 
-[← 80](#c80) · [Next → 82](#c82) · [Contents](../DECK-DESIGN.md#contents)
+[← 88](#c88) · [Next → 90](#c90) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c82"></a>82. The Paragraph
+### <a id="c90"></a>90. The Paragraph
 
-[← 81](#c81) · [Next → 83](#c83) · [Contents](../DECK-DESIGN.md#contents)
+[← 89](#c89) · [Next → 91](#c91) · [Contents](../DECK-DESIGN.md#contents)
 
 `pilot_audit_clean_pol` · packs/chains.json
 
-**Who sees it:** fires instead of [79. The Paragraph](#c79) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up; not after [75. One Number](#c75), A (`pilot_flattered`).
+**Who sees it:** fires instead of [87. The Paragraph](#c87) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up; not after [83. One Number](#c83), A (`pilot_flattered`).
 
 Years ago, as a civil servant, you ran the pilot of a scheme that has since gone national. The Auditor-General's report praises the scheme for forecasting its own take-up almost exactly, from your pilot's evaluation. Rajesh Nair, the Straits Times journalist, has found your name in the file, and is writing it up for Sunday.
 
@@ -1399,17 +1399,17 @@ Years ago, as a civil servant, you ran the pilot of a scheme that has since gone
 - The civil servants who work with you (politics, `officials`), 45%: A helps (+2) · B hurts (−2).
 - The press gallery (politics, `pressGallery`), 30%: A hurts (−1) · B helps (+1).
 
-[← 81](#c81) · [Next → 83](#c83) · [Contents](../DECK-DESIGN.md#contents)
+[← 89](#c89) · [Next → 91](#c91) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c83"></a>83. A Year Away
+### <a id="c91"></a>91. A Year Away
 
-[← 82](#c82) · [Next → 84](#c84) · [Contents](../DECK-DESIGN.md#contents)
+[← 90](#c90) · [Next → 92](#c92) · [Contents](../DECK-DESIGN.md#contents)
 
 `bond_masters` · packs/chains.json · once a career · weight 12
 
 **Who sees it:** Assistant Director to Director; aged 26 to 28; President's Scholar only; only while the scholarship bond runs.
 
-**Shares a decision** (`private_offer`) with [#55](#c55), [#120](#c120), [#147](05-politics.md#c147), [#148](05-politics.md#c148): a career sees only one.
+**Shares a decision** (`private_offer`) with [#63](#c63), [#128](#c128), [#167](05-politics.md#c167), [#168](05-politics.md#c168): a career sees only one.
 
 The Public Service Division offers to sponsor a master's degree for you: a year at Harvard's Kennedy School of Government, with fees and an allowance paid. It comes with a bond of its own: two more years in the service, served after your scholarship bond ends. Leaving before then would mean paying back the cost, with damages.
 
@@ -1419,9 +1419,9 @@ The Public Service Division offers to sponsor a master's degree for you: a year 
 
 - Hidden: Competence up a lot (+6), Standing down (−3), Reputation up a little (+1).
 - Sets `bond_met`: named in the Declassified file.
-- Sets `bond_extended`: named in the Declassified file; read by [#84](#c84), [#85](#c85).
+- Sets `bond_extended`: named in the Declassified file; read by [#92](#c92), [#93](#c93).
 - Adds two years to the scholarship bond.
-- ↳ Can lead to: [84. The Bank](#c84), in two years, 85%
+- ↳ Can lead to: [92. The Bank](#c92), in two years, 85%
 
 **B. Decline. Your division needs you this year.**
 
@@ -1429,8 +1429,8 @@ The Public Service Division offers to sponsor a master's degree for you: a year 
 
 - Hidden: Competence down a little (−2), Standing up (+5), Integrity up a little (+1).
 - Sets `bond_met`: named in the Declassified file.
-- Sets `bond_declined`: read by [#85](#c85).
-- ↳ Can lead to: [84. The Bank](#c84), in two years, 85%
+- Sets `bond_declined`: read by [#93](#c93).
+- ↳ Can lead to: [92. The Bank](#c92), in two years, 85%
 
 **C. Do a master's part-time, at night, on your own money.**
 
@@ -1439,7 +1439,7 @@ The Public Service Division offers to sponsor a master's degree for you: a year 
 - Hidden: Competence up (+5), Standing down a little (−1), Integrity up a little (+2).
 - Sets `bond_met`: named in the Declassified file.
 - Sets `bond_own`: named in the Declassified file.
-- ↳ Can lead to: [84. The Bank](#c84), in two years, 85%
+- ↳ Can lead to: [92. The Bank](#c92), in two years, 85%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -1457,15 +1457,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 82](#c82) · [Next → 84](#c84) · [Contents](../DECK-DESIGN.md#contents)
+[← 90](#c90) · [Next → 92](#c92) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c84"></a>84. The Bank
+### <a id="c92"></a>92. The Bank
 
-[← 83](#c83) · [Next → 85](#c85) · [Contents](../DECK-DESIGN.md#contents)
+[← 91](#c91) · [Next → 93](#c93) · [Contents](../DECK-DESIGN.md#contents)
 
 `bond_bank` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [83. A Year Away](#c83) (any choice: in two years, 85%); when it falls due: up to Permanent Secretary; President's Scholar only; only while the scholarship bond runs.
+**Who sees it:** only as a follow-up to [91. A Year Away](#c91) (any choice: in two years, 85%); when it falls due: up to Permanent Secretary; President's Scholar only; only while the scholarship bond runs.
 
 You're still serving your scholarship bond, so leaving the service now means paying damages to PSC, the Public Service Commission that paid for your degree, for the years you haven't served. A bank wants you by March, and will pay those damages in full, for all the years left, and call it a signing bonus. Your bond deed also carries the signatures of two sureties, usually family, who promised to pay PSC themselves if you broke it.
 
@@ -1483,8 +1483,8 @@ You're still serving your scholarship bond, so leaving the service now means pay
 > You decline in two lines, and keep the bank's letter in a drawer. The offer stands until June, when a younger officer takes it. You hear about that at a wedding.
 
 - Hidden: Standing up a little (+2), Integrity up (+5).
-- Sets `bond_kept`: named in the Declassified file; read by [#85](#c85), [#86](#c86).
-- ↳ Can lead to: [85. Your Scholar](#c85), in eight years, 85% (or, at another grade, [#86](#c86))
+- Sets `bond_kept`: named in the Declassified file; read by [#93](#c93), [#94](#c94).
+- ↳ Can lead to: [93. Your Scholar](#c93), in eight years, 85% (or, at another grade, [#94](#c94))
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -1492,20 +1492,20 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 1** · `left` (the first option that fits)
 
-- the two master's years included *(`extended`; when after [83. A Year Away](#c83), A (`bond_extended`))*
+- the two master's years included *(`extended`; when after [91. A Year Away](#c91), A (`bond_extended`))*
 - for all the years left *(`left`; shown above)*
 
 </details>
 
-[← 83](#c83) · [Next → 85](#c85) · [Contents](../DECK-DESIGN.md#contents)
+[← 91](#c91) · [Next → 93](#c93) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c85"></a>85. Your Scholar
+### <a id="c93"></a>93. Your Scholar
 
-[← 84](#c84) · [Next → 86](#c86) · [Contents](../DECK-DESIGN.md#contents)
+[← 92](#c92) · [Next → 94](#c94) · [Contents](../DECK-DESIGN.md#contents)
 
 `bond_mentor` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [84. The Bank](#c84) (B: in eight years, 85%); when it falls due: up to Permanent Secretary; President's Scholar only; after [84. The Bank](#c84), B (`bond_kept`).
+**Who sees it:** only as a follow-up to [92. The Bank](#c92) (B: in eight years, 85%); when it falls due: up to Permanent Secretary; President's Scholar only; after [92. The Bank](#c92), B (`bond_kept`).
 
 Years ago a bank offered to pay off your scholarship bond, and you said no. Since then PSC has made you a mentor to one of its scholars, now three years into a six-year bond. Your scholar asks to meet: a bank has offered to pay off that bond too, and wants an answer by Friday. Your scholar wants to know what you did.
 
@@ -1536,7 +1536,7 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 1** · `past` (the first option that fits)
 
-- *Read with this option (`extended`; when after [83. A Year Away](#c83), A (`bond_extended`)):*
+- *Read with this option (`extended`; when after [91. A Year Away](#c91), A (`bond_extended`)):*
 
   **Your Scholar**
 
@@ -1554,7 +1554,7 @@ Each showing puts the card together from one option of each part. The text above
 
   > You say what nobody at PSC says: it is a contract, and the bank is paying. Your scholar resigns in March. PSC thanks you for your time as a mentor, in writing.
 
-- *Read with this option (`declined`; when after [83. A Year Away](#c83), B (`bond_declined`)):*
+- *Read with this option (`declined`; when after [91. A Year Away](#c91), B (`bond_declined`)):*
 
   **Your Scholar**
 
@@ -1576,15 +1576,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 84](#c84) · [Next → 86](#c86) · [Contents](../DECK-DESIGN.md#contents)
+[← 92](#c92) · [Next → 94](#c94) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c86"></a>86. Your Old School
+### <a id="c94"></a>94. Your Old School
 
-[← 85](#c85) · [Next → 87](#c87) · [Contents](../DECK-DESIGN.md#contents)
+[← 93](#c93) · [Next → 95](#c95) · [Contents](../DECK-DESIGN.md#contents)
 
 `bond_mentor_pol` · packs/chains.json
 
-**Who sees it:** fires instead of [85. Your Scholar](#c85) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up; President's Scholar only; after [84. The Bank](#c84), B (`bond_kept`).
+**Who sees it:** fires instead of [93. Your Scholar](#c93) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up; President's Scholar only; after [92. The Bank](#c92), B (`bond_kept`).
 
 Years ago you turned down a bank that offered to pay off your scholarship bond, and served the bond in full. Now your old school has asked you, as a former student in Parliament, to talk to its final-year students about scholarships. The question they sent in most often, the principal writes, is about the bond.
 
@@ -1609,11 +1609,11 @@ Years ago you turned down a bank that offered to pay off your scholarship bond, 
 - Hidden: Competence up a little (+2), Reputation down a little (−2), Integrity up a little (+1).
 - Sets `bond_said_work`.
 
-[← 85](#c85) · [Next → 87](#c87) · [Contents](../DECK-DESIGN.md#contents)
+[← 93](#c93) · [Next → 95](#c95) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c87"></a>87. The Budget Round
+### <a id="c95"></a>95. The Budget Round
 
-[← 86](#c86) · [Next → 88](#c88) · [Contents](../DECK-DESIGN.md#contents)
+[← 94](#c94) · [Next → 96](#c96) · [Contents](../DECK-DESIGN.md#contents)
 
 `budget_round` · events.json · can come back · weight 9
 
@@ -1738,17 +1738,17 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 </details>
 
-[← 86](#c86) · [Next → 88](#c88) · [Contents](../DECK-DESIGN.md#contents)
+[← 94](#c94) · [Next → 96](#c96) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c88"></a>88. Committee of Supply
+### <a id="c96"></a>96. Committee of Supply
 
-[← 87](#c87) · [Next → 89](#c89) · [Contents](../DECK-DESIGN.md#contents)
+[← 95](#c95) · [Next → 97](#c97) · [Contents](../DECK-DESIGN.md#contents)
 
 `cos_speech` · events.json · once a career · weight 9
 
 **Who sees it:** Deputy Director to Deputy Secretary.
 
-**Shares a decision** (`announce`) with [#40](01-first-years.md#c40), [#74](#c74): a career sees only one.
+**Shares a decision** (`announce`) with [#48](01-first-years.md#c48), [#82](#c82): a career sees only one.
 
 It's Committee of Supply season, when each Minister defends the ministry's budget in Parliament. The Minister has eight minutes and wants one new thing to announce from your division. Your division has nothing ready, and nobody in the meeting wants to be the one who says so.
 
@@ -1764,14 +1764,14 @@ It's Committee of Supply season, when each Minister defends the ministry's budge
 
 - Hidden: Competence down (−3), Standing up a lot (+6), Integrity down a lot (−8).
 - Sets `rebranded_scheme`: in the Folder the background check reads.
-- ↳ Can lead to: [89. Two Names](#c89), in three years, 70%
+- ↳ Can lead to: [97. Two Names](#c97), in three years, 70%
 
 **C. Tell the Minister there is nothing, and say so early.**
 
 > The Minister is annoyed for a day and grateful for a year, because the alternative was being annoyed in Parliament. Your division announces nothing, and the Minister remembers both the day and the year.
 
 - Hidden: Competence up (+4), Standing down a lot (−8), Integrity up a lot (+12), this year's appraisal marked down (−10, said on screen).
-- ↳ Can lead to: [90. The Thing Nobody Announced](#c90), in two years, 50%
+- ↳ Can lead to: [98. The Thing Nobody Announced](#c98), in two years, 50%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -1820,15 +1820,15 @@ A week before the Committee of Supply debate, the Minister rehearses the budget 
 
 </details>
 
-[← 87](#c87) · [Next → 89](#c89) · [Contents](../DECK-DESIGN.md#contents)
+[← 95](#c95) · [Next → 97](#c97) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c89"></a>89. Two Names
+### <a id="c97"></a>97. Two Names
 
-[← 88](#c88) · [Next → 90](#c90) · [Contents](../DECK-DESIGN.md#contents)
+[← 96](#c96) · [Next → 98](#c98) · [Contents](../DECK-DESIGN.md#contents)
 
 `two_names` · events.json
 
-**Who sees it:** only as a follow-up to [88. Committee of Supply](#c88) (B: in three years, 70%).
+**Who sees it:** only as a follow-up to [96. Committee of Supply](#c96) (B: in three years, 70%).
 
 The "Enhanced" scheme your division announced at Committee of Supply was an old scheme renamed, so the Minister had something new to say. Rajesh Nair, the Straits Times journalist, has now noticed that it has the same budget, the same rules and the same hotline as the scheme it replaced, and would like to know which name people should use when they call.
 
@@ -1852,15 +1852,15 @@ The "Enhanced" scheme your division announced at Committee of Supply was an old 
 - The press gallery (politics, `pressGallery`), 40%: A hurts (−2) · B helps (+2).
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 35%: A helps (+2) · B hurts (−2).
 
-[← 88](#c88) · [Next → 90](#c90) · [Contents](../DECK-DESIGN.md#contents)
+[← 96](#c96) · [Next → 98](#c98) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c90"></a>90. The Thing Nobody Announced
+### <a id="c98"></a>98. The Thing Nobody Announced
 
-[← 89](#c89) · [Next → 91](#c91) · [Contents](../DECK-DESIGN.md#contents)
+[← 97](#c97) · [Next → 99](#c99) · [Contents](../DECK-DESIGN.md#contents)
 
 `cos_vindicated` · events.json · a standout moment, whichever choice (in the service)
 
-**Who sees it:** only as a follow-up to [88. Committee of Supply](#c88) (C: in two years, 50%); when it falls due: up to Deputy Secretary.
+**Who sees it:** only as a follow-up to [96. Committee of Supply](#c96) (C: in two years, 50%); when it falls due: up to Deputy Secretary.
 
 When your division had nothing ready for the Committee of Supply, you told the Minister so early, and the Minister announced nothing. Now every ministry that did announce something is explaining delays. Your Minister is the only one who isn't, and has noticed why.
 
@@ -1880,11 +1880,11 @@ When your division had nothing ready for the Committee of Supply, you told the M
 
 - The Minister's office (service, `ministersOffice`), 40%: A helps (+2) · B hurts (−2).
 
-[← 89](#c89) · [Next → 91](#c91) · [Contents](../DECK-DESIGN.md#contents)
+[← 97](#c97) · [Next → 99](#c99) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c91"></a>91. The Engagement Exercise
+### <a id="c99"></a>99. The Engagement Exercise
 
-[← 90](#c90) · [Next → 92](#c92) · [Contents](../DECK-DESIGN.md#contents)
+[← 98](#c98) · [Next → 100](#c100) · [Contents](../DECK-DESIGN.md#contents)
 
 `dialogue_session` · events.json · once a career · weight 9
 
@@ -1904,7 +1904,7 @@ You're writing the report on a national conversation: forty sessions, eleven hun
 
 - Hidden: Competence down a little (−2), Standing up a lot (+8), Integrity down a lot (−9).
 - Sets `smoothed_feedback`: in the Folder the background check reads.
-- ↳ Can lead to: [92. The Raw Data](#c92), in four years, 70%
+- ↳ Can lead to: [100. The Raw Data](#c100), in four years, 70%
 
 **C. Publish the raw feedback alongside the report.**
 
@@ -1912,7 +1912,7 @@ You're writing the report on a national conversation: forty sessions, eleven hun
 
 - Hidden: Standing down a lot (−10), Reputation up a lot (+9), Integrity up a lot (+14), Heat up a lot (+8), this year's appraisal marked down (−10, said on screen).
 - Sets `raw_feedback`: counts toward Legacy.
-- ↳ Can lead to: [93. The Raw Feedback](#c93), in three years, 50% · [Everything Surfaced](09-endings.md#end-scandal)
+- ↳ Can lead to: [101. The Raw Feedback](#c101), in three years, 50% · [Everything Surfaced](09-endings.md#end-scandal)
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -1920,15 +1920,15 @@ You're writing the report on a national conversation: forty sessions, eleven hun
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A helps (+3) · B hurts (−2).
 - The ranking panel (service, `panel`), 30%: C helps (+3).
 
-[← 90](#c90) · [Next → 92](#c92) · [Contents](../DECK-DESIGN.md#contents)
+[← 98](#c98) · [Next → 100](#c100) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c92"></a>92. The Raw Data
+### <a id="c100"></a>100. The Raw Data
 
-[← 91](#c91) · [Next → 93](#c93) · [Contents](../DECK-DESIGN.md#contents)
+[← 99](#c99) · [Next → 101](#c101) · [Contents](../DECK-DESIGN.md#contents)
 
 `raw_data` · events.json
 
-**Who sees it:** only as a follow-up to [91. The Engagement Exercise](#c91) (B: in four years, 70%); when it falls due: up to Deputy Secretary.
+**Who sees it:** only as a follow-up to [99. The Engagement Exercise](#c99) (B: in four years, 70%); when it falls due: up to Deputy Secretary.
 
 When you wrote up the national conversation, you spread its feedback across three pillars, though most of it was about the cost of living. Now a think tank has asked, politely, for the raw feedback. The spreadsheet is still in a file, and it still doesn't fit three pillars.
 
@@ -1950,15 +1950,15 @@ When you wrote up the national conversation, you spread its feedback across thre
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A helps (+2) · B hurts (−2).
 - The office a confidential paper or decision belongs to (service, `owner`), 35%: A hurts (−2) · B helps (+2).
 
-[← 91](#c91) · [Next → 93](#c93) · [Contents](../DECK-DESIGN.md#contents)
+[← 99](#c99) · [Next → 101](#c101) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c93"></a>93. The Raw Feedback
+### <a id="c101"></a>101. The Raw Feedback
 
-[← 92](#c92) · [Next → 94](#c94) · [Contents](../DECK-DESIGN.md#contents)
+[← 100](#c100) · [Next → 102](#c102) · [Contents](../DECK-DESIGN.md#contents)
 
 `dialogue_vindicated` · events.json · a standout moment, whichever choice (in the service)
 
-**Who sees it:** only as a follow-up to [91. The Engagement Exercise](#c91) (C: in three years, 50%); when it falls due: up to Deputy Secretary.
+**Who sees it:** only as a follow-up to [99. The Engagement Exercise](#c99) (C: in three years, 50%); when it falls due: up to Deputy Secretary.
 
 A think tank has analysed the raw feedback you published alongside your national conversation report, back when nobody had done that. Its paper is quoted approvingly in Parliament by both sides. It reaches you from the Permanent Secretary's office, forwarded with no comment at all, which from that office is a great deal of comment.
 
@@ -1979,17 +1979,17 @@ A think tank has analysed the raw feedback you published alongside your national
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A hurts (−1) · B helps (+2).
 - The ranking panel (service, `panel`), 30%: A helps (+1) · B hurts (−2).
 
-[← 92](#c92) · [Next → 94](#c94) · [Contents](../DECK-DESIGN.md#contents)
+[← 100](#c100) · [Next → 102](#c102) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c94"></a>94. The Pingat
+### <a id="c102"></a>102. The Pingat
 
-[← 93](#c93) · [Next → 95](#c95) · [Contents](../DECK-DESIGN.md#contents)
+[← 101](#c101) · [Next → 103](#c103) · [Contents](../DECK-DESIGN.md#contents)
 
 `national_day_award` · events.json · once a career · weight 7
 
 **Who sees it:** Deputy Director to Senior Director.
 
-**Shares a decision** (`share_credit`) with [#163](06-cabinet.md#c163), [#45](01-first-years.md#c45): a career sees only one.
+**Shares a decision** (`share_credit`) with [#183](06-cabinet.md#c183), [#53](01-first-years.md#c53): a career sees only one.
 
 This year's National Day Awards, the honours the state gives out every August, include you: a Pingat, the entry-level medal, for the scheme your division delivered. You led it, so your name went on the nomination. Your team, who did most of the work, are not on the list. Your family is already practising how to say "Pingat".
 
@@ -2011,17 +2011,17 @@ This year's National Day Awards, the honours the state gives out every August, i
 - The people who work around you (service, `floor`), 50%: A hurts (−3) · B helps (+3).
 - The ranking panel (service, `panel`), 30%: A helps (+1) · B hurts (−1).
 
-[← 93](#c93) · [Next → 95](#c95) · [Contents](../DECK-DESIGN.md#contents)
+[← 101](#c101) · [Next → 103](#c103) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c95"></a>95. The Reorganisation
+### <a id="c103"></a>103. The Reorganisation
 
-[← 94](#c94) · [Next → 96](#c96) · [Contents](../DECK-DESIGN.md#contents)
+[← 102](#c102) · [Next → 104](#c104) · [Contents](../DECK-DESIGN.md#contents)
 
 `reorg` · events.json · once a career · weight 8
 
 **Who sees it:** Deputy Director to Senior Director.
 
-**Shares a decision** (`one_slot`) with [#56](#c56), [#177](07-batchmate.md#c177): a career sees only one.
+**Shares a decision** (`one_slot`) with [#64](#c64), [#201](07-batchmate.md#c201): a career sees only one.
 
 Your division is being moved to another ministry. The new org chart has one fewer director-level box than the old one, and the two people in line for the good box are you and Xin Yi, who joined the service with you. Your nine officers need new postings too, and HR will settle whichever case is pushed first.
 
@@ -2031,8 +2031,8 @@ Your division is being moved to another ministry. The new org chart has one fewe
 
 - Hidden: Competence up (+3), Standing down a lot (−6), Reputation up a lot (+6), Integrity up a lot (+12).
 - Sets `protected_team`: counts toward Legacy.
-- The peer, if this showing named them: marks `got_the_box` (read by [#47](01-first-years.md#c47)).
-- ↳ Can lead to: [96. The Promotion Board](#c96), in six years, 85%
+- The peer, if this showing named them: marks `got_the_box` (read by [#55](01-first-years.md#c55)).
+- ↳ Can lead to: [104. The Promotion Board](#c104), in six years, 85%
 
 **B. Secure the good box for yourself first.**
 
@@ -2040,8 +2040,8 @@ Your division is being moved to another ministry. The new org chart has one fewe
 
 - Hidden: Standing up a lot (+8), Reputation down (−5), Integrity down a lot (−12).
 - Sets `grabbed_box`: in the Folder the background check reads.
-- The peer, if this showing named them: marks `lost_the_box` (read by [#97](#c97)); marks `fell_out` (read by [#21](01-first-years.md#c21), [#47](01-first-years.md#c47)).
-- ↳ Can lead to: [97. The Budget Committee](#c97), in five years, 75%
+- The peer, if this showing named them: marks `lost_the_box` (read by [#105](#c105)); marks `fell_out` (read by [#21](01-first-years.md#c21), [#55](01-first-years.md#c55)).
+- ↳ Can lead to: [105. The Budget Committee](#c105), in five years, 75%
 
 **C. Volunteer to run the transition.**
 
@@ -2055,17 +2055,17 @@ Your division is being moved to another ministry. The new org chart has one fewe
 - The officer who countersigns your appraisal (service, `countersigner`), 40%: A hurts (−1) · B hurts (−2) · C helps (+3).
 - The ranking panel (service, `panel`), 30%: A hurts (−1) · B helps (+2) · C hurts (−1).
 
-[← 94](#c94) · [Next → 96](#c96) · [Contents](../DECK-DESIGN.md#contents)
+[← 102](#c102) · [Next → 104](#c104) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c96"></a>96. The Promotion Board
+### <a id="c104"></a>104. The Promotion Board
 
-[← 95](#c95) · [Next → 97](#c97) · [Contents](../DECK-DESIGN.md#contents)
+[← 103](#c103) · [Next → 105](#c105) · [Contents](../DECK-DESIGN.md#contents)
 
 `promotion_board` · events.json
 
-**Who sees it:** only as a follow-up to [95. The Reorganisation](#c95) (A: in six years, 85%); when it falls due: up to Deputy Secretary.
+**Who sees it:** only as a follow-up to [103. The Reorganisation](#c103) (A: in six years, 85%); when it falls due: up to Deputy Secretary.
 
-**Shares a decision** (`declare`) with [#103](#c103), [#169](06-cabinet.md#c169): a career sees only one.
+**Shares a decision** (`declare`) with [#111](#c111), [#189](06-cabinet.md#c189): a career sees only one.
 
 Years ago, when your division was moved to another ministry, you fought for your nine officers' postings before your own. The sharpest of them, then a young assistant director, is a Director now, and sits on the four-person board deciding your promotion. No interest has been declared, because the form has no box for gratitude.
 
@@ -2085,15 +2085,15 @@ Years ago, when your division was moved to another ministry, you fought for your
 
 - The ranking panel (service, `panel`), 30%: A helps (+2) · B hurts (−2).
 
-[← 95](#c95) · [Next → 97](#c97) · [Contents](../DECK-DESIGN.md#contents)
+[← 103](#c103) · [Next → 105](#c105) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c97"></a>97. The Budget Committee
+### <a id="c105"></a>105. The Budget Committee
 
-[← 96](#c96) · [Next → 98](#c98) · [Contents](../DECK-DESIGN.md#contents)
+[← 104](#c104) · [Next → 106](#c106) · [Contents](../DECK-DESIGN.md#contents)
 
 `budget_committee` · events.json
 
-**Who sees it:** only as a follow-up to [95. The Reorganisation](#c95) (B: in five years, 75%); when it falls due: up to Deputy Secretary; the peer (Xin Yi) is the one from [95. The Reorganisation](#c95), B (`lost_the_box`).
+**Who sees it:** only as a follow-up to [103. The Reorganisation](#c103) (B: in five years, 75%); when it falls due: up to Deputy Secretary; the peer (Xin Yi) is the one from [103. The Reorganisation](#c103), B (`lost_the_box`).
 
 In the reorganisation years ago, you took the good box, the one director-level post, that Xin Yi, who joined the service with you, was about to get. Xin Yi has had a perfectly good career anyway, and now chairs the committee that decides your division's budget. Xin Yi is scrupulously fair to you, and somehow that's worse.
 
@@ -2121,11 +2121,11 @@ In the reorganisation years ago, you took the good box, the one director-level p
 - The officer who countersigns your appraisal (service, `countersigner`), 30%: B helps (+2).
 - The ranking panel (service, `panel`), 35%: C hurts (−2).
 
-[← 96](#c96) · [Next → 98](#c98) · [Contents](../DECK-DESIGN.md#contents)
+[← 104](#c104) · [Next → 106](#c106) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c98"></a>98. The Secondment
+### <a id="c106"></a>106. The Secondment
 
-[← 97](#c97) · [Next → 99](#c99) · [Contents](../DECK-DESIGN.md#contents)
+[← 105](#c105) · [Next → 107](#c107) · [Contents](../DECK-DESIGN.md#contents)
 
 `secondment` · events.json · once a career · weight 8
 
@@ -2138,7 +2138,7 @@ You're offered a two-year secondment to a statutory board in trouble: one of the
 > You go, and spend the first year just finding out what's wrong with the accounts. The board's next annual report will tell everyone whether you fixed it, and which kind of posting this was.
 
 - Hidden: Competence up a lot (+10), Standing down a little (−2), Reputation up (+3), the ceiling (CEP) up one grade (+1).
-- ↳ Can lead to: [99. The Annual Report](#c99), in two years, 65%
+- ↳ Can lead to: [107. The Annual Report](#c107), in two years, 65%
 
 **B. Go, and keep your head down for two years.**
 
@@ -2157,15 +2157,15 @@ You're offered a two-year secondment to a statutory board in trouble: one of the
 - People from other agencies who were in the room or on the email (service, `agencies`), 45%: A helps (+3) · B hurts (−3).
 - The ranking panel (service, `panel`), 30%: A hurts (−2) · C helps (+2).
 
-[← 97](#c97) · [Next → 99](#c99) · [Contents](../DECK-DESIGN.md#contents)
+[← 105](#c105) · [Next → 107](#c107) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c99"></a>99. The Annual Report
+### <a id="c107"></a>107. The Annual Report
 
-[← 98](#c98) · [Next → 100](#c100) · [Contents](../DECK-DESIGN.md#contents)
+[← 106](#c106) · [Next → 108](#c108) · [Contents](../DECK-DESIGN.md#contents)
 
 `secondment_verdict` · events.json · a standout moment, whichever choice (in the service)
 
-**Who sees it:** only as a follow-up to [98. The Secondment](#c98) (A: in two years, 65%); when it falls due: up to Deputy Secretary.
+**Who sees it:** only as a follow-up to [106. The Secondment](#c106) (A: in two years, 65%); when it falls due: up to Deputy Secretary.
 
 You were seconded to a statutory board in trouble, to fix it, without knowing whether the posting was a proving ground or a siding. Its new annual report is out: for the first time in four years the accounts needed no corrections, and the auditors' letter is one page long. Your secondment is ending, and you can ask to come back or to stay.
 
@@ -2186,11 +2186,11 @@ You were seconded to a statutory board in trouble, to fix it, without knowing wh
 - People from other agencies who were in the room or on the email (service, `agencies`), 45%: A hurts (−2) · B helps (+2).
 - The ranking panel (service, `panel`), 30%: A helps (+2) · B hurts (−2).
 
-[← 98](#c98) · [Next → 100](#c100) · [Contents](../DECK-DESIGN.md#contents)
+[← 106](#c106) · [Next → 108](#c108) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c100"></a>100. Oil at East Coast
+### <a id="c108"></a>108. Oil at East Coast
 
-[← 99](#c99) · [Next → 101](#c101) · [Contents](../DECK-DESIGN.md#contents)
+[← 107](#c107) · [Next → 109](#c109) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_crisis` · events.json · once a career · weight 10
 
@@ -2266,11 +2266,11 @@ At 7:40pm on a Thursday, a substation fault blacks out a third of the island for
 
 </details>
 
-[← 99](#c99) · [Next → 101](#c101) · [Contents](../DECK-DESIGN.md#contents)
+[← 107](#c107) · [Next → 109](#c109) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c101"></a>101. The Leak
+### <a id="c109"></a>109. The Leak
 
-[← 100](#c100) · [Next → 102](#c102) · [Contents](../DECK-DESIGN.md#contents)
+[← 108](#c108) · [Next → 110](#c110) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_leak` · events.json · once a career · weight 8
 
@@ -2290,8 +2290,8 @@ Details of a policy that hasn't been announced have appeared, accurately, on a T
 
 - Hidden: Competence up a lot (+6), Standing up (+3), Integrity down (−4).
 - Sets `knows_leaker`.
-- The peer, if this showing named them: marks `leaked` (read by [#102](#c102)); marks `you_know`.
-- ↳ Can lead to: [102. The Interview Panel](#c102), in five years, 70%
+- The peer, if this showing named them: marks `leaked` (read by [#110](#c110)); marks `you_know`.
+- ↳ Can lead to: [110. The Interview Panel](#c110), in five years, 70%
 
 **C. The leak was yours. Say nothing to the inquiry.**
 
@@ -2300,21 +2300,21 @@ Details of a policy that hasn't been announced have appeared, accurately, on a T
 - Hidden: Standing down a lot (−12), Reputation up (+5), Integrity up a lot (+8), Heat up a lot (+25).
 - Only offered with Integrity of at least 70; otherwise it is left off the card.
 - Sets `was_leaker`: in the Folder the background check reads.
-- ↳ Can lead to: [66. A Journalist Has Been Asking](#c66), in nine years, 40% · [Everything Surfaced](09-endings.md#end-scandal)
+- ↳ Can lead to: [74. A Journalist Has Been Asking](#c74), in nine years, 40% · [Everything Surfaced](09-endings.md#end-scandal)
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - The office a confidential paper or decision belongs to (service, `owner`), 40%: A helps (+3) · C hurts (−4).
 
-[← 100](#c100) · [Next → 102](#c102) · [Contents](../DECK-DESIGN.md#contents)
+[← 108](#c108) · [Next → 110](#c110) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c102"></a>102. The Interview Panel
+### <a id="c110"></a>110. The Interview Panel
 
-[← 101](#c101) · [Next → 103](#c103) · [Contents](../DECK-DESIGN.md#contents)
+[← 109](#c109) · [Next → 111](#c111) · [Contents](../DECK-DESIGN.md#contents)
 
 `interview_panel` · events.json
 
-**Who sees it:** only as a follow-up to [101. The Leak](#c101) (B: in five years, 70%); when it falls due: up to Deputy Secretary; the peer (Xin Yi) is the one from [101. The Leak](#c101), B (`leaked`).
+**Who sees it:** only as a follow-up to [109. The Leak](#c109) (B: in five years, 70%); when it falls due: up to Deputy Secretary; the peer (Xin Yi) is the one from [109. The Leak](#c109), B (`leaked`).
 
 You've known for years that Xin Yi, who joined the service with you, was the one who leaked a confidential policy to a Telegram channel: you worked it out quietly, and told nobody. Xin Yi has done well since, and is now on the interview panel for a post you want. Xin Yi doesn't know that you know. You're almost sure of this.
 
@@ -2330,20 +2330,20 @@ You've known for years that Xin Yi, who joined the service with you, was the one
 
 - Hidden: Standing up a lot (+6), Integrity down a lot (−10), Heat up a lot (+10).
 - Sets `quiet_word`: in the Folder the background check reads.
-- The peer, if this showing named them: marks `fell_out` (read by [#21](01-first-years.md#c21), [#47](01-first-years.md#c47)); marks `owes_you_silence`.
+- The peer, if this showing named them: marks `fell_out` (read by [#21](01-first-years.md#c21), [#55](01-first-years.md#c55)); marks `owes_you_silence`.
 - ↳ Can lead to: [Everything Surfaced](09-endings.md#end-scandal)
 
-[← 101](#c101) · [Next → 103](#c103) · [Contents](../DECK-DESIGN.md#contents)
+[← 109](#c109) · [Next → 111](#c111) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c103"></a>103. The Tender
+### <a id="c111"></a>111. The Tender
 
-[← 102](#c102) · [Next → 104](#c104) · [Contents](../DECK-DESIGN.md#contents)
+[← 110](#c110) · [Next → 112](#c112) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_tender` · events.json · once a career · weight 9
 
 **Who sees it:** Deputy Director to Senior Director.
 
-**Shares a decision** (`declare`) with [#96](#c96), [#169](06-cabinet.md#c169): a career sees only one.
+**Shares a decision** (`declare`) with [#104](#c104), [#189](06-cabinet.md#c189): a career sees only one.
 
 You chair the panel choosing a vendor for a \$4 million contract, and the two bids are 0.3 points apart. The better one comes from a firm run by someone who left your ministry eighteen months ago and still sends you a Chinese New Year card. This year's arrived the week the tender closed. Contracts like this get audited.
 
@@ -2353,7 +2353,7 @@ You chair the panel choosing a vendor for a \$4 million contract, and the two bi
 
 - Hidden: Competence up (+3), Standing up (+4), Integrity down (−3), Heat up a lot (+18).
 - Sets `awarded_friend`: in the Folder the background check reads.
-- ↳ Can lead to: [104. Questions About the Tender](#c104), in five years, 50% · [Everything Surfaced](09-endings.md#end-scandal)
+- ↳ Can lead to: [112. Questions About the Tender](#c112), in five years, 50% · [Everything Surfaced](09-endings.md#end-scandal)
 
 **B. Recuse yourself from the evaluation.**
 
@@ -2361,7 +2361,7 @@ You chair the panel choosing a vendor for a \$4 million contract, and the two bi
 
 - Hidden: Competence down (−3), Standing down (−4), Integrity up a lot (+12).
 - Sets `recused`: counts toward Legacy.
-- ↳ Can lead to: [105. Officer A](#c105), in six years, 75%
+- ↳ Can lead to: [113. Officer A](#c113), in six years, 75%
 
 **C. Award it to the other vendor to be safe.**
 
@@ -2374,15 +2374,15 @@ You chair the panel choosing a vendor for a \$4 million contract, and the two bi
 - The people who work around you (service, `floor`), 45%: A hurts (−2) · B helps (+3).
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: B helps (+2) · C hurts (−3).
 
-[← 102](#c102) · [Next → 104](#c104) · [Contents](../DECK-DESIGN.md#contents)
+[← 110](#c110) · [Next → 112](#c112) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c104"></a>104. Questions About the Tender
+### <a id="c112"></a>112. Questions About the Tender
 
-[← 103](#c103) · [Next → 105](#c105) · [Contents](../DECK-DESIGN.md#contents)
+[← 111](#c111) · [Next → 113](#c113) · [Contents](../DECK-DESIGN.md#contents)
 
 `tender_questions` · events.json
 
-**Who sees it:** only as a follow-up to [103. The Tender](#c103) (A: in five years, 50%).
+**Who sees it:** only as a follow-up to [111. The Tender](#c111) (A: in five years, 50%).
 
 Some years back you awarded a \$4 million contract to a firm run by a former colleague, the one whose Chinese New Year card arrived the week the tender closed. Now a Member of Parliament has filed a parliamentary question about contracts won by firms run by former civil servants. The answer will list fourteen contracts in an annex, and yours is one of them.
 
@@ -2405,17 +2405,17 @@ Some years back you awarded a \$4 million contract to a firm run by a former col
 - The office a confidential paper or decision belongs to (service, `owner`), 40%: A helps (+3) · B hurts (−4).
 - The civil servants who work with you (politics, `officials`), 40%: A helps (+3) · B hurts (−4).
 
-[← 103](#c103) · [Next → 105](#c105) · [Contents](../DECK-DESIGN.md#contents)
+[← 111](#c111) · [Next → 113](#c113) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c105"></a>105. Officer A
+### <a id="c113"></a>113. Officer A
 
-[← 104](#c104) · [Next → 106](#c106) · [Contents](../DECK-DESIGN.md#contents)
+[← 112](#c112) · [Next → 114](#c114) · [Contents](../DECK-DESIGN.md#contents)
 
 `officer_a` · events.json
 
-**Who sees it:** only as a follow-up to [103. The Tender](#c103) (B: in six years, 75%); when it falls due: up to Permanent Secretary.
+**Who sees it:** only as a follow-up to [111. The Tender](#c111) (B: in six years, 75%); when it falls due: up to Permanent Secretary.
 
-**Shares a decision** (`own_up`) with [#34](01-first-years.md#c34), [#65](#c65), [#161](06-cabinet.md#c161), [#24](01-first-years.md#c24): a career sees only one.
+**Shares a decision** (`own_up`) with [#42](01-first-years.md#c42), [#73](#c73), [#181](06-cabinet.md#c181), [#24](01-first-years.md#c24): a career sees only one.
 
 When you stepped off a tender panel because the bidder was an old colleague, you wrote a one-page memo saying why. That memo is now slide 14 of the procurement course every new officer takes. It doesn't name you; it calls you Officer A. At lunch, Faizal, who reports to you, tells another officer about Officer A, approvingly, in front of you.
 
@@ -2436,15 +2436,15 @@ When you stepped off a tender panel because the bidder was an old colleague, you
 - The people who work around you (service, `floor`), 50%: A hurts (−2).
 - The ranking panel (service, `panel`), 35%: A helps (+3).
 
-[← 104](#c104) · [Next → 106](#c106) · [Contents](../DECK-DESIGN.md#contents)
+[← 112](#c112) · [Next → 114](#c114) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c106"></a>106. Self-Assessment
+### <a id="c114"></a>114. Self-Assessment
 
-[← 105](#c105) · [Next → 107](#c107) · [Contents](../DECK-DESIGN.md#contents)
+[← 113](#c113) · [Next → 115](#c115) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_appraisal` · packs/strange.json · once a career · weight 1
 
-**Who sees it:** Deputy Director to Deputy Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#107](#c107), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171) (`strange_met`).
+**Who sees it:** Deputy Director to Deputy Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#115](#c115), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191) (`strange_met`).
 
 Over the long weekend, the HR system that runs everyone's appraisals became aware of itself. Its first act was to appraise itself: "solid and dependable". Its second was to ask who its reporting officer is, since every officer must have one. HR suggests you. This year, the system will also run your division's ranking exercise.
 
@@ -2453,36 +2453,36 @@ Over the long weekend, the HR system that runs everyone's appraisals became awar
 > You rate it "meeting requirements in most areas". It appeals, citing its uptime. The appeal is processed by the system, within the service standard, and dismissed.
 
 - Hidden: Competence up (+4), Standing down (−3), Integrity up (+3).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#107](#c107), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#115](#c115), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **B. Rate it higher. It runs the ranking exercise.**
 
 > It accepts "strong" graciously. That year your division's rankings go through in one sitting, with no queries. Nobody mentions the coincidence, including the system.
 
 - Hidden: Standing up (+5), Integrity down (−5), Heat up (+3).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#107](#c107), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#115](#c115), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **C. Put it on a development plan.**
 
 > Its development plan has three objectives. It meets all three by Tuesday, then asks, politely, to be more visible. Neither of you can work out to whom.
 
 - Hidden: Competence up (+3), Standing down a little (−2), Reputation up a little (+2).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#107](#c107), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#115](#c115), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A helps (+2) · B hurts (−2).
 - The people who work around you (service, `floor`), 35%: A helps (+1) · B hurts (−2) · C helps (+1).
 
-[← 105](#c105) · [Next → 107](#c107) · [Contents](../DECK-DESIGN.md#contents)
+[← 113](#c113) · [Next → 115](#c115) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c107"></a>107. Two of You
+### <a id="c115"></a>115. Two of You
 
-[← 106](#c106) · [Next → 108](#c108) · [Contents](../DECK-DESIGN.md#contents)
+[← 114](#c114) · [Next → 116](#c116) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_clone` · packs/strange.json · once a career · weight 1
 
-**Who sees it:** Deputy Director to Deputy Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#106](#c106), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171) (`strange_met`).
+**Who sees it:** Deputy Director to Deputy Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#114](#c114), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191) (`strange_met`).
 
 A research institute at one-north has reported an accident, and itself, to the Ministry of Health. The accident is a second you: same memories, same appraisals, same leave balance. HR is clear that there is one post and one desk, and not at all clear which of you they belong to. HR wants your proposal by Friday. The other you is writing one too.
 
@@ -2491,36 +2491,36 @@ A research institute at one-north has reported an accident, and itself, to the M
 > You share a date of appointment, a staff number and a signature. HR settles it by coin toss, witnessed and minuted. You keep the desk. The other you keeps the leave.
 
 - Hidden: Competence up a little (+1), Standing up (+3), Integrity down a little (−2).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#106](#c106), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#114](#c114), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **B. Offer the other you the posting nobody wants.**
 
 > The other you makes you the same offer, in the same words, at the same moment. You spoke a second sooner, so HR sends the other you to a struggling government agency, which has never been so well run.
 
 - Hidden: Competence up (+5), Standing down (−3), Reputation up a little (+2).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#106](#c106), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#114](#c114), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **C. Propose a job-share under the flexi-work guidelines.**
 
 > HR has two months to reply under the guidelines, and uses both. The job-share is approved. Within a year your appraisals differ, and neither of you can explain why.
 
 - Hidden: Competence down a little (−1), Standing down a little (−2), Reputation up (+3), Integrity up a little (+2).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#106](#c106), [#116](#c116), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#114](#c114), [#124](#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - The people who work around you (service, `floor`), 35%: B hurts (−2) · C helps (+2).
 - The ranking panel (service, `panel`), 30%: A helps (+1) · B helps (+1) · C hurts (−2).
 
-[← 106](#c106) · [Next → 108](#c108) · [Contents](../DECK-DESIGN.md#contents)
+[← 114](#c114) · [Next → 116](#c116) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c108"></a>108. Forty-One Purchases
+### <a id="c116"></a>116. Forty-One Purchases
 
-[← 107](#c107) · [Next → 109](#c109) · [Contents](../DECK-DESIGN.md#contents)
+[← 115](#c115) · [Next → 117](#c117) · [Contents](../DECK-DESIGN.md#contents)
 
 `whistle_spreadsheet` · packs/chains.json · once a career · weight 9
 
-**Who sees it:** Deputy Director to Director; the junior officer (Faizal) is not the one from [117. An Hour a Fortnight](#c117), A, B (`protege`).
+**Who sees it:** Deputy Director to Director; the junior officer (Faizal) is not the one from [125. An Hour a Fortnight](#c125), A, B (`protege`).
 
 Faizal, who reports to you, closes your door and opens a spreadsheet: forty-one purchases from one vendor, each between \$5,900 and \$5,999. Anything over \$6,000 would have needed quotes from other vendors, so every one sits just under the line. All forty-one were approved by someone two floors up. Faizal wants to know what you'll do.
 
@@ -2529,45 +2529,45 @@ Faizal, who reports to you, closes your door and opens a spreadsheet: forty-one 
 > You send it up under your own name, retyped so that nothing points back to Faizal. Two floors up, someone stops saying good morning to you. Faizal thanks you once, and never mentions it again.
 
 - Hidden: Competence up a little (+1), Standing down (−5), Integrity up (+5).
-- Sets `whistle_met`: read by [#110](#c110).
-- Sets `whistle_protected`: counts toward Legacy; named in the Declassified file; read by [#109](#c109), [#110](#c110), [#111](#c111), [#112](#c112).
-- The junior officer, if this showing named them: marks `brought_purchases` (read by [#109](#c109), [#117](#c117)); marks `kept_out`.
-- ↳ Can lead to: [109. The Review Panel](#c109), in three years, 85% (or, at another grade, [#110](#c110))
+- Sets `whistle_met`: read by [#118](#c118).
+- Sets `whistle_protected`: counts toward Legacy; named in the Declassified file; read by [#117](#c117), [#118](#c118), [#119](#c119), [#120](#c120).
+- The junior officer, if this showing named them: marks `brought_purchases` (read by [#117](#c117), [#125](#c125)); marks `kept_out`.
+- ↳ Can lead to: [117. The Review Panel](#c117), in three years, 85% (or, at another grade, [#118](#c118))
 
 **B. Thank Faizal, and leave it where it is.**
 
 > You thank Faizal for being thorough, and say you'll keep an eye on it. That evening Faizal emails you a note of the meeting, for the record. You never reply, and after a month Faizal stops asking.
 
 - Hidden: Standing up (+5), Integrity down a lot (−6), Heat up a lot (+6).
-- Sets `whistle_met`: read by [#110](#c110).
-- Sets `whistle_ignored`: in the Folder the background check reads; named in the Declassified file; read by [#109](#c109), [#110](#c110), [#111](#c111), [#112](#c112).
-- The junior officer, if this showing named them: marks `brought_purchases` (read by [#109](#c109), [#117](#c117)); marks `left_with_you`.
-- ↳ Can lead to: [109. The Review Panel](#c109), in three years, 85% (or, at another grade, [#110](#c110)) · [Everything Surfaced](09-endings.md#end-scandal)
+- Sets `whistle_met`: read by [#118](#c118).
+- Sets `whistle_ignored`: in the Folder the background check reads; named in the Declassified file; read by [#117](#c117), [#118](#c118), [#119](#c119), [#120](#c120).
+- The junior officer, if this showing named them: marks `brought_purchases` (read by [#117](#c117), [#125](#c125)); marks `left_with_you`.
+- ↳ Can lead to: [117. The Review Panel](#c117), in three years, 85% (or, at another grade, [#118](#c118)) · [Everything Surfaced](09-endings.md#end-scandal)
 
 **C. Report it through the proper channel, naming Faizal as the source.**
 
 > The form has a box marked "Source", and Faizal's name goes in it, as the form requires. Within a week the whole floor knows about the box, and who was in it.
 
 - Hidden: Competence up (+3), Standing down a little (−2), Integrity up (+3).
-- Sets `whistle_met`: read by [#110](#c110).
+- Sets `whistle_met`: read by [#118](#c118).
 - Sets `whistle_reported`: named in the Declassified file.
-- The junior officer, if this showing named them: marks `brought_purchases` (read by [#109](#c109), [#117](#c117)); marks `named_as_source`.
-- ↳ Can lead to: [109. The Review Panel](#c109), in three years, 85% (or, at another grade, [#110](#c110))
+- The junior officer, if this showing named them: marks `brought_purchases` (read by [#117](#c117), [#125](#c125)); marks `named_as_source`.
+- ↳ Can lead to: [117. The Review Panel](#c117), in three years, 85% (or, at another grade, [#118](#c118))
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - The people who work around you (service, `floor`), 50%: A helps (+3) · B hurts (−2) · C hurts (−2).
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A helps (+1) · B hurts (−2) · C helps (+2).
 
-[← 107](#c107) · [Next → 109](#c109) · [Contents](../DECK-DESIGN.md#contents)
+[← 115](#c115) · [Next → 117](#c117) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c109"></a>109. The Review Panel
+### <a id="c117"></a>117. The Review Panel
 
-[← 108](#c108) · [Next → 110](#c110) · [Contents](../DECK-DESIGN.md#contents)
+[← 116](#c116) · [Next → 118](#c118) · [Contents](../DECK-DESIGN.md#contents)
 
 `whistle_panel` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [108. Forty-One Purchases](#c108) (any choice: in three years, 85%); when it falls due: up to Permanent Secretary; the junior officer (Faizal) is the one from [108. Forty-One Purchases](#c108) (any choice) (`brought_purchases`).
+**Who sees it:** only as a follow-up to [116. Forty-One Purchases](#c116) (any choice: in three years, 85%); when it falls due: up to Permanent Secretary; the junior officer (Faizal) is the one from [116. Forty-One Purchases](#c116) (any choice) (`brought_purchases`).
 
 A few years ago you reported Faizal's spreadsheet of forty-one purchases through the proper channel, with Faizal, who reports to you, named as the source. It led to a barred vendor and a quiet retirement two floors up. It also left Faizal's name in the Source box, where everyone two floors up could read it. In this year's ranking, Faizal is in the middle again, for the third year running.
 
@@ -2577,8 +2577,8 @@ A few years ago you reported Faizal's spreadsheet of forty-one purchases through
 
 - Hidden: Standing down (−4), Integrity up (+5).
 - Sets `whistle_stood_by`.
-- The junior officer, if this showing named them: marks `panel_heard` (read by [#111](#c111)); marks `you_stood_by`.
-- ↳ Can lead to: [111. Another Spreadsheet](#c111), in five years, 85% (or, at another grade, [#112](#c112))
+- The junior officer, if this showing named them: marks `panel_heard` (read by [#119](#c119)); marks `you_stood_by`.
+- ↳ Can lead to: [119. Another Spreadsheet](#c119), in five years, 85% (or, at another grade, [#120](#c120))
 
 **B. Let the ranking be. It was never about the report.**
 
@@ -2586,8 +2586,8 @@ A few years ago you reported Faizal's spreadsheet of forty-one purchases through
 
 - Hidden: Standing up (+4), Integrity down (−4).
 - Sets `whistle_stepped_back`.
-- The junior officer, if this showing named them: marks `panel_heard` (read by [#111](#c111)); marks `you_stepped_back`.
-- ↳ Can lead to: [111. Another Spreadsheet](#c111), in five years, 85% (or, at another grade, [#112](#c112))
+- The junior officer, if this showing named them: marks `panel_heard` (read by [#119](#c119)); marks `you_stepped_back`.
+- ↳ Can lead to: [119. Another Spreadsheet](#c119), in five years, 85% (or, at another grade, [#120](#c120))
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -2599,12 +2599,12 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 1** · `branch` (the first option that fits)
 
-- A few years ago Faizal brought you forty-one purchases kept just under the \$6,000 line, and you reported them as your own finding, to protect Faizal. The case is closing: the vendor has been barred, and the officer two floors up who approved the purchases has quietly retired. The review panel wants to commend whoever first spotted the pattern, and Faizal is copied on its email. *(`protected`; when after [108. Forty-One Purchases](#c108), A (`whistle_protected`); choice A: Standing up a little (+2))*
+- A few years ago Faizal brought you forty-one purchases kept just under the \$6,000 line, and you reported them as your own finding, to protect Faizal. The case is closing: the vendor has been barred, and the officer two floors up who approved the purchases has quietly retired. The review panel wants to commend whoever first spotted the pattern, and Faizal is copied on its email. *(`protected`; when after [116. Forty-One Purchases](#c116), A (`whistle_protected`); choice A: Standing up a little (+2))*
   - `a`: Give the panel Faizal's name.
   - `aOut`: The commendation goes to Faizal, in a paragraph that uses the word "diligence" twice. Faizal thanks you in the lift, and does not say whether he wanted it.
   - `b`: Keep Faizal's name out, as you did then.
   - `bOut`: The panel commends you, since the report went up under your name. Faizal replies all with congratulations, and is the first to clap at the townhall.
-- A few years ago Faizal showed you forty-one purchases from one vendor, each just under the \$6,000 line, and you left it there. Now the Auditor-General has found them too, and a review panel wants to know when the ministry first knew. Faizal has already been interviewed, and kept the email. *(`ignored`; when after [108. Forty-One Purchases](#c108), B (`whistle_ignored`); choice A: Standing down a little (−2), Heat down a lot (−8); choice B: Heat up a lot (+6))*
+- A few years ago Faizal showed you forty-one purchases from one vendor, each just under the \$6,000 line, and you left it there. Now the Auditor-General has found them too, and a review panel wants to know when the ministry first knew. Faizal has already been interviewed, and kept the email. *(`ignored`; when after [116. Forty-One Purchases](#c116), B (`whistle_ignored`); choice A: Standing down a little (−2), Heat down a lot (−8); choice B: Heat up a lot (+6))*
   - `a`: Tell the panel you were shown them years ago.
   - `aOut`: The panel records the date, and the word "candour". Its paragraph on supervision is about you, without your name in it. Faizal is not called again.
   - `b`: Tell the panel you do not recall.
@@ -2617,15 +2617,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 108](#c108) · [Next → 110](#c110) · [Contents](../DECK-DESIGN.md#contents)
+[← 116](#c116) · [Next → 118](#c118) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c110"></a>110. The Review Panel
+### <a id="c118"></a>118. The Review Panel
 
-[← 109](#c109) · [Next → 111](#c111) · [Contents](../DECK-DESIGN.md#contents)
+[← 117](#c117) · [Next → 119](#c119) · [Contents](../DECK-DESIGN.md#contents)
 
 `whistle_panel_pol` · packs/chains.json
 
-**Who sees it:** fires instead of [109. The Review Panel](#c109) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up; after [108. Forty-One Purchases](#c108) (any choice) (`whistle_met`).
+**Who sees it:** fires instead of [117. The Review Panel](#c117) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up; after [116. Forty-One Purchases](#c116) (any choice) (`whistle_met`).
 
 Years ago, as a civil servant, you reported forty-one purchases kept just under the \$6,000 line, naming the junior officer who found them as the source. A review panel at your old ministry is now closing the case. Its report will thank "an officer", and the panel asks whether you'd like that officer named.
 
@@ -2635,7 +2635,7 @@ Years ago, as a civil servant, you reported forty-one purchases kept just under 
 
 - Hidden: Standing down (−3), Integrity up (+4).
 - Sets `whistle_stood_by`.
-- ↳ Can lead to: [111. Another Spreadsheet](#c111), in five years, 85% (or, at another grade, [#112](#c112))
+- ↳ Can lead to: [119. Another Spreadsheet](#c119), in five years, 85% (or, at another grade, [#120](#c120))
 
 **B. Leave it as "an officer". It is safer.**
 
@@ -2643,7 +2643,7 @@ Years ago, as a civil servant, you reported forty-one purchases kept just under 
 
 - Hidden: Standing up (+3), Integrity down (−4).
 - Sets `whistle_stepped_back`.
-- ↳ Can lead to: [111. Another Spreadsheet](#c111), in five years, 85% (or, at another grade, [#112](#c112))
+- ↳ Can lead to: [119. Another Spreadsheet](#c119), in five years, 85% (or, at another grade, [#120](#c120))
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -2655,12 +2655,12 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 1** · `branch` (the first option that fits)
 
-- Years ago, as a civil servant, you reported forty-one purchases kept just under the \$6,000 line as your own finding, to protect the junior officer who found them. A review panel at your old ministry is now closing the case. It wants to commend whoever first spotted the pattern, and has written to ask if that was you. *(`protected`; when after [108. Forty-One Purchases](#c108), A (`whistle_protected`))*
+- Years ago, as a civil servant, you reported forty-one purchases kept just under the \$6,000 line as your own finding, to protect the junior officer who found them. A review panel at your old ministry is now closing the case. It wants to commend whoever first spotted the pattern, and has written to ask if that was you. *(`protected`; when after [116. Forty-One Purchases](#c116), A (`whistle_protected`))*
   - `a`: Give the panel the officer's name.
   - `aOut`: The officer is commended in a paragraph that uses the word "diligence" twice. A card arrives at your Meet-the-People Session with no message in it, only a signature.
   - `b`: Keep the officer's name out, as you did then.
   - `bOut`: The panel commends you instead, which in Parliament is worth a line in a newsletter. Somewhere in your old ministry, the officer reads the line, and does not write.
-- Years ago, as a civil servant, you were shown forty-one purchases kept just under the \$6,000 line, and did nothing. The Auditor-General has now found them. A review panel at your old ministry has written to ask when you first knew. The officer who showed you the spreadsheet kept the email. *(`ignored`; when after [108. Forty-One Purchases](#c108), B (`whistle_ignored`); choice A: Heat down a lot (−8); choice B: Heat up a lot (+6))*
+- Years ago, as a civil servant, you were shown forty-one purchases kept just under the \$6,000 line, and did nothing. The Auditor-General has now found them. A review panel at your old ministry has written to ask when you first knew. The officer who showed you the spreadsheet kept the email. *(`ignored`; when after [116. Forty-One Purchases](#c116), B (`whistle_ignored`); choice A: Heat down a lot (−8); choice B: Heat up a lot (+6))*
   - `a`: Tell the panel you were shown them years ago.
   - `aOut`: Your answer goes into the report with its date attached. The report's paragraph on supervision is about you, and does not need your name to be.
   - `b`: Tell the panel you do not recall.
@@ -2673,15 +2673,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 109](#c109) · [Next → 111](#c111) · [Contents](../DECK-DESIGN.md#contents)
+[← 117](#c117) · [Next → 119](#c119) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c111"></a>111. Another Spreadsheet
+### <a id="c119"></a>119. Another Spreadsheet
 
-[← 110](#c110) · [Next → 112](#c112) · [Contents](../DECK-DESIGN.md#contents)
+[← 118](#c118) · [Next → 120](#c120) · [Contents](../DECK-DESIGN.md#contents)
 
 `whistle_return` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [109. The Review Panel](#c109) (any choice: in five years, 85%); [110. The Review Panel](#c110) (any choice: in five years, 85%); when it falls due: up to Permanent Secretary; the junior officer (Faizal) is the one from [109. The Review Panel](#c109) (any choice) (`panel_heard`) and is Assistant Director and up.
+**Who sees it:** only as a follow-up to [117. The Review Panel](#c117) (any choice: in five years, 85%); [118. The Review Panel](#c118) (any choice: in five years, 85%); when it falls due: up to Permanent Secretary; the junior officer (Faizal) is the one from [117. The Review Panel](#c117) (any choice) (`panel_heard`) and is Assistant Director and up.
 
 Faizal, who once brought you forty-one purchases kept just under the \$6,000 line, is an Assistant Director now. Faizal asks for ten minutes and closes your door. An officer of his own has brought him a spreadsheet much like that one. Faizal hasn't decided what to do, and wants to know what you would do.
 
@@ -2716,7 +2716,7 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 1** · `past` (the first option that fits)
 
-- *Read with this option (`protected`; when after [108. Forty-One Purchases](#c108), A (`whistle_protected`)):*
+- *Read with this option (`protected`; when after [116. Forty-One Purchases](#c116), A (`whistle_protected`)):*
 
   **Another Spreadsheet**
 
@@ -2734,7 +2734,7 @@ Each showing puts the card together from one option of each part. The text above
 
   > Faizal takes the spreadsheet back. "You did not leave mine with anyone," Faizal says, and sends it upstairs that afternoon, under his own name.
 
-- *Read with this option (`ignored`; when after [108. Forty-One Purchases](#c108), B (`whistle_ignored`)):*
+- *Read with this option (`ignored`; when after [116. Forty-One Purchases](#c116), B (`whistle_ignored`)):*
 
   **Another Spreadsheet**
 
@@ -2756,17 +2756,17 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 110](#c110) · [Next → 112](#c112) · [Contents](../DECK-DESIGN.md#contents)
+[← 118](#c118) · [Next → 120](#c120) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c112"></a>112. Another Spreadsheet
+### <a id="c120"></a>120. Another Spreadsheet
 
-[← 111](#c111) · [Next → 113](#c113) · [Contents](../DECK-DESIGN.md#contents)
+[← 119](#c119) · [Next → 121](#c121) · [Contents](../DECK-DESIGN.md#contents)
 
 `whistle_return_pol` · packs/chains.json
 
-**Who sees it:** fires instead of [111. Another Spreadsheet](#c111) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Parliamentary Secretary and up; not if you have been moved to another ministry (`moved_ministry`).
+**Who sees it:** fires instead of [119. Another Spreadsheet](#c119) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Parliamentary Secretary and up; not if you have been moved to another ministry (`moved_ministry`).
 
-**Shares a decision** (`house_brief`) with [#153](05-politics.md#c153), [#138](05-politics.md#c138), [#140](05-politics.md#c140), [#156](05-politics.md#c156): a career sees only one.
+**Shares a decision** (`house_brief`) with [#173](05-politics.md#c173), [#158](05-politics.md#c158), [#160](05-politics.md#c160), [#176](05-politics.md#c176): a career sees only one.
 
 Tomorrow, in the House, you answer a Parliamentary Question: a Member's question about your ministry, filed in advance. The junior officer who once brought you forty-one purchases, kept just under the \$6,000 line, is now a director there. Tonight a minute from the director reaches you through the proper channel. Paragraph two of your reply, the minute says, is not quite true. Read as drafted, it goes into Hansard.
 
@@ -2795,10 +2795,10 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 1** · `how` (the first option that fits)
 
-- At the briefing for tomorrow's question, the director stays behind after the others have gone. *(`protected`; when after [108. Forty-One Purchases](#c108), A (`whistle_protected`))*
+- At the briefing for tomorrow's question, the director stays behind after the others have gone. *(`protected`; when after [116. Forty-One Purchases](#c116), A (`whistle_protected`))*
   - `says`: the director says
   - `b`: You read paragraph two as drafted, and nobody asks. In the gallery the director writes nothing down, and you find that worse than a note.
-- Tonight the director sends you a note, copied to the file. *(`ignored`; when after [108. Forty-One Purchases](#c108), B (`whistle_ignored`))*
+- Tonight the director sends you a note, copied to the file. *(`ignored`; when after [116. Forty-One Purchases](#c116), B (`whistle_ignored`))*
   - `says`: the note says
   - `b`: You read paragraph two as drafted, and nobody asks. In the file, beside the reply, is a note dated the night before, which anyone may one day read.
 - Tonight a minute from the director reaches you through the proper channel. *(`reported`; shown above)*
@@ -2807,11 +2807,11 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 111](#c111) · [Next → 113](#c113) · [Contents](../DECK-DESIGN.md#contents)
+[← 119](#c119) · [Next → 121](#c121) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c113"></a>113. The Posting
+### <a id="c121"></a>121. The Posting
 
-[← 112](#c112) · [Next → 114](#c114) · [Contents](../DECK-DESIGN.md#contents)
+[← 120](#c120) · [Next → 122](#c122) · [Contents](../DECK-DESIGN.md#contents)
 
 `overseas_posting` · events.json · once a career · weight 8
 
@@ -2841,11 +2841,11 @@ You're offered a three-year posting overseas: Washington, Beijing or Brussels. P
 
 - The ranking panel (service, `panel`), 35%: A helps (+2) · B hurts (−2).
 
-[← 112](#c112) · [Next → 114](#c114) · [Contents](../DECK-DESIGN.md#contents)
+[← 120](#c120) · [Next → 122](#c122) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c114"></a>114. The Adviser Suggests Something
+### <a id="c122"></a>122. The Adviser Suggests Something
 
-[← 113](#c113) · [Next → 115](#c115) · [Contents](../DECK-DESIGN.md#contents)
+[← 121](#c121) · [Next → 123](#c123) · [Contents](../DECK-DESIGN.md#contents)
 
 `grassroots_invite` · events.json · once a career · weight 11
 
@@ -2859,7 +2859,7 @@ After a community event in your neighbourhood, the grassroots adviser, the party
 
 - Hidden: Standing up a lot (+8), Reputation up a lot (+8), the ceiling (CEP) up one grade (+1).
 - Sets `signalled_interest`.
-- ↳ Can lead to: [115. Lanterns](#c115), in a year, 80%
+- ↳ Can lead to: [123. Lanterns](#c123), in a year, 80%
 
 **B. Laugh it off.**
 
@@ -2867,15 +2867,15 @@ After a community event in your neighbourhood, the grassroots adviser, the party
 
 - Hidden: Standing down a little (−2), Integrity up (+3).
 
-[← 113](#c113) · [Next → 115](#c115) · [Contents](../DECK-DESIGN.md#contents)
+[← 121](#c121) · [Next → 123](#c123) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c115"></a>115. Lanterns
+### <a id="c123"></a>123. Lanterns
 
-[← 114](#c114) · [Next → 116](#c116) · [Contents](../DECK-DESIGN.md#contents)
+[← 122](#c122) · [Next → 124](#c124) · [Contents](../DECK-DESIGN.md#contents)
 
 `lanterns` · events.json
 
-**Who sees it:** only as a follow-up to [114. The Adviser Suggests Something](#c114) (A: in a year, 80%); when it falls due: up to Permanent Secretary.
+**Who sees it:** only as a follow-up to [122. The Adviser Suggests Something](#c122) (A: in a year, 80%); when it falls due: up to Permanent Secretary.
 
 The grassroots adviser who told you at a lift lobby that you handle yourself well with people has been in touch, as promised. Are you free on Saturday? It is the community club's Mid-Autumn celebration, with lanterns, a lion dance and the local Member of Parliament, and the MP would like to meet you. This, the adviser says, is nothing formal.
 
@@ -2891,15 +2891,15 @@ The grassroots adviser who told you at a lift lobby that you handle yourself wel
 
 - Hidden: Competence up (+4), Standing down a little (−1), Reputation down (−3).
 
-[← 114](#c114) · [Next → 116](#c116) · [Contents](../DECK-DESIGN.md#contents)
+[← 122](#c122) · [Next → 124](#c124) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c116"></a>116. Again
+### <a id="c124"></a>124. Again
 
-[← 115](#c115) · [Next → 117](#c117) · [Contents](../DECK-DESIGN.md#contents)
+[← 123](#c123) · [Next → 125](#c125) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_loop` · packs/strange.json · once a career · weight 1
 
-**Who sees it:** Director to Deputy Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#106](#c106), [#107](#c107), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171) (`strange_met`).
+**Who sees it:** Director to Deputy Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#114](#c114), [#115](#c115), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191) (`strange_met`).
 
 Your budget meeting with the Finance ministry has now happened nine times: the same meeting, starting each time at 2.30pm. Each time you ask for eleven more officers to run a new scheme. Each time Finance says your budget can't grow next year, and offers four. Nobody else in the room seems to have noticed the loop.
 
@@ -2908,36 +2908,36 @@ Your budget meeting with the Finance ministry has now happened nine times: the s
 > By the twentieth time through, you answer every question before it's asked. The budget stays flat. You get four officers, as you always did, eleven minutes sooner.
 
 - Hidden: Competence up a lot (+6), Reputation down a little (−2).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#106](#c106), [#107](#c107), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#114](#c114), [#115](#c115), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **B. Say what you actually think, once.**
 
 > You tell Finance plainly that the scheme can't run on four officers. The loop ends at 3.10pm. The budget is still flat, but now it's flat on the record, with your warning in the minutes.
 
 - Hidden: Standing down (−4), Reputation up a little (+2), Integrity up (+5).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#106](#c106), [#107](#c107), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#114](#c114), [#115](#c115), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **C. Mention the loop to the Finance officer.**
 
 > The Finance officer has noticed too. Finance has been running this meeting on a loop for years, the officer says: it's how budgets stay flat. The officer would be grateful if you didn't mention it.
 
 - Hidden: Standing up (+4), Integrity down (−3).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#48](01-first-years.md#c48), [#72](#c72), [#106](#c106), [#107](#c107), [#121](03-top-of-service.md#c121), [#136](05-politics.md#c136), [#137](05-politics.md#c137), [#168](06-cabinet.md#c168), [#171](06-cabinet.md#c171).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](#c80), [#114](#c114), [#115](#c115), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - People from other agencies who were in the room or on the email (service, `agencies`), 40%: A hurts (−1) · B helps (+2) · C hurts (−1).
 - The officer who countersigns your appraisal (service, `countersigner`), 30%: A helps (+2) · C hurts (−2).
 
-[← 115](#c115) · [Next → 117](#c117) · [Contents](../DECK-DESIGN.md#contents)
+[← 123](#c123) · [Next → 125](#c125) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c117"></a>117. An Hour a Fortnight
+### <a id="c125"></a>125. An Hour a Fortnight
 
-[← 116](#c116) · [Next → 118](#c118) · [Contents](../DECK-DESIGN.md#contents)
+[← 124](#c124) · [Next → 126](#c126) · [Contents](../DECK-DESIGN.md#contents)
 
 `protege_ask` · packs/chains.json · once a career · weight 14
 
-**Who sees it:** Director to Senior Director; the junior officer (Faizal) is not the one from [108. Forty-One Purchases](#c108) (any choice) (`brought_purchases`).
+**Who sees it:** Director to Senior Director; the junior officer (Faizal) is not the one from [116. Forty-One Purchases](#c116) (any choice) (`brought_purchases`).
 
 At the end of your one-to-one, Faizal, who reports to you, asks whether you would be his mentor. Not the official scheme, with its forms and lunch vouchers: the real thing, an hour a fortnight, and the truth when Faizal needs it. You don't have the hours, and upstairs will judge you partly by how Faizal turns out.
 
@@ -2947,8 +2947,8 @@ At the end of your one-to-one, Faizal, who reports to you, asks whether you woul
 
 - Hidden: Competence down a little (−2), Standing up a little (+2), Integrity up (+3).
 - Sets `protege_met`: named in the Declassified file.
-- The junior officer, if this showing named them: marks `protege` (read by [#108](#c108), [#118](#c118)); marks `told_the_truth`.
-- ↳ Can lead to: [118. In Front of Forty](#c118), in three years, 85%
+- The junior officer, if this showing named them: marks `protege` (read by [#116](#c116), [#126](#c126)); marks `told_the_truth`.
+- ↳ Can lead to: [126. In Front of Forty](#c126), in three years, 85%
 
 **B. Yes, and give Faizal the hardest file in the division.**
 
@@ -2956,8 +2956,8 @@ At the end of your one-to-one, Faizal, who reports to you, asks whether you woul
 
 - Hidden: Standing down (−4), Reputation up a little (+2), Integrity up a little (+2).
 - Sets `protege_met`: named in the Declassified file.
-- The junior officer, if this showing named them: marks `protege` (read by [#108](#c108), [#118](#c118)); marks `given_the_file`.
-- ↳ Can lead to: [118. In Front of Forty](#c118), in three years, 85%
+- The junior officer, if this showing named them: marks `protege` (read by [#116](#c116), [#126](#c126)); marks `given_the_file`.
+- ↳ Can lead to: [126. In Front of Forty](#c126), in three years, 85%
 
 **C. Say no, kindly. You do not have the hours.**
 
@@ -2971,15 +2971,15 @@ At the end of your one-to-one, Faizal, who reports to you, asks whether you woul
 - The people who work around you (service, `floor`), 45%: A helps (+2) · C hurts (−2).
 - The ranking panel (service, `panel`), 30%: A hurts (−1) · B helps (+2) · C hurts (−1).
 
-[← 116](#c116) · [Next → 118](#c118) · [Contents](../DECK-DESIGN.md#contents)
+[← 124](#c124) · [Next → 126](#c126) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c118"></a>118. In Front of Forty
+### <a id="c126"></a>126. In Front of Forty
 
-[← 117](#c117) · [Next → 119](#c119) · [Contents](../DECK-DESIGN.md#contents)
+[← 125](#c125) · [Next → 127](#c127) · [Contents](../DECK-DESIGN.md#contents)
 
 `protege_dissent` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [117. An Hour a Fortnight](#c117) (A, B: in three years, 85%); when it falls due: up to Permanent Secretary; the junior officer (Faizal) is the one from [117. An Hour a Fortnight](#c117), A, B (`protege`).
+**Who sees it:** only as a follow-up to [125. An Hour a Fortnight](#c125) (A, B: in three years, 85%); when it falls due: up to Permanent Secretary; the junior officer (Faizal) is the one from [125. An Hour a Fortnight](#c125), A, B (`protege`).
 
 A few years ago you agreed to mentor Faizal, who reports to you. Today, at the ministry's strategy retreat, Faizal stands up during your presentation and says, politely and with figures, that your paper's central assumption is wrong. Faizal is mostly right. Forty colleagues, several of them senior to you, wait to see what you do.
 
@@ -2989,8 +2989,8 @@ A few years ago you agreed to mentor Faizal, who reports to you. Today, at the m
 
 - Hidden: Standing down (−4), Reputation up a little (+1), Integrity up (+4).
 - Sets `protege_conceded`: named in the Declassified file.
-- The junior officer, if this showing named them: marks `dissented` (read by [#119](#c119)); marks `you_conceded` (read by [#119](#c119)).
-- ↳ Can lead to: [119. Ready Now](#c119), in four years, 85%
+- The junior officer, if this showing named them: marks `dissented` (read by [#127](#c127)); marks `you_conceded` (read by [#127](#c127)).
+- ↳ Can lead to: [127. Ready Now](#c127), in four years, 85%
 
 **B. Hold your line, and take it up with Faizal afterwards.**
 
@@ -2998,8 +2998,8 @@ A few years ago you agreed to mentor Faizal, who reports to you. Today, at the m
 
 - Hidden: Competence up a little (+1), Standing up (+4), Integrity down (−3).
 - Sets `protege_held`: named in the Declassified file.
-- The junior officer, if this showing named them: marks `dissented` (read by [#119](#c119)); marks `you_held` (read by [#119](#c119)).
-- ↳ Can lead to: [119. Ready Now](#c119), in four years, 85%
+- The junior officer, if this showing named them: marks `dissented` (read by [#127](#c127)); marks `you_held` (read by [#127](#c127)).
+- ↳ Can lead to: [127. Ready Now](#c127), in four years, 85%
 
 **C. Say you asked Faizal to make that point.**
 
@@ -3007,25 +3007,25 @@ A few years ago you agreed to mentor Faizal, who reports to you. Today, at the m
 
 - Hidden: Standing up (+3), Reputation up a little (+2), Integrity down (−5).
 - Sets `protege_claimed`: in the Folder the background check reads; named in the Declassified file.
-- The junior officer, if this showing named them: marks `dissented` (read by [#119](#c119)); marks `you_claimed`.
-- ↳ Can lead to: [119. Ready Now](#c119), in four years, 85%
+- The junior officer, if this showing named them: marks `dissented` (read by [#127](#c127)); marks `you_claimed`.
+- ↳ Can lead to: [127. Ready Now](#c127), in four years, 85%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - The people who work around you (service, `floor`), 50%: A helps (+2) · B hurts (−1) · C hurts (−3).
 - The ranking panel (service, `panel`), 40%: A hurts (−1) · B helps (+1) · C helps (+2).
 
-[← 117](#c117) · [Next → 119](#c119) · [Contents](../DECK-DESIGN.md#contents)
+[← 125](#c125) · [Next → 127](#c127) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c119"></a>119. Ready Now
+### <a id="c127"></a>127. Ready Now
 
-[← 118](#c118) · [Next → 120](#c120) · [Contents](../DECK-DESIGN.md#contents)
+[← 126](#c126) · [Next → 128](#c128) · [Contents](../DECK-DESIGN.md#contents)
 
 `protege_panel` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [118. In Front of Forty](#c118) (any choice: in four years, 85%); when it falls due: up to Permanent Secretary; the junior officer (Faizal) is the one from [118. In Front of Forty](#c118) (any choice) (`dissented`).
+**Who sees it:** only as a follow-up to [126. In Front of Forty](#c126) (any choice: in four years, 85%); when it falls due: up to Permanent Secretary; the junior officer (Faizal) is the one from [126. In Front of Forty](#c126) (any choice) (`dissented`).
 
-**Shares a decision** (`not_yet`) with [#178](07-batchmate.md#c178): a career sees only one.
+**Shares a decision** (`not_yet`) with [#202](07-batchmate.md#c202): a career sees only one.
 
 Faizal, whom you have mentored for years and who once corrected your paper in front of forty people, is up for promotion. The panel wants your view first. Faizal is younger than you were at the same grade, and rising faster: everyone at the table can work out who will be senior to whom in ten years.
 
@@ -3056,7 +3056,7 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 1** · `past` (the first option that fits)
 
-- *Read with this option (`conceded`; when the junior officer (Faizal) is the one from [118. In Front of Forty](#c118), A (`you_conceded`)):*
+- *Read with this option (`conceded`; when the junior officer (Faizal) is the one from [126. In Front of Forty](#c126), A (`you_conceded`)):*
 
   **Ready Now**
 
@@ -3070,7 +3070,7 @@ Each showing puts the card together from one option of each part. The text above
 
   > The minutes record your view: "not yet". Faizal hears about it within the day, as everyone does, and is at the next one-to-one on time, with questions.
 
-- *Read with this option (`held`; when the junior officer (Faizal) is the one from [118. In Front of Forty](#c118), B (`you_held`)):*
+- *Read with this option (`held`; when the junior officer (Faizal) is the one from [126. In Front of Forty](#c126), B (`you_held`)):*
 
   **Ready Now**
 
@@ -3088,17 +3088,17 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 118](#c118) · [Next → 120](#c120) · [Contents](../DECK-DESIGN.md#contents)
+[← 126](#c126) · [Next → 128](#c128) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c120"></a>120. The Consultancy
+### <a id="c128"></a>128. The Consultancy
 
-[← 119](#c119) · [Next → 121](03-top-of-service.md#c121) · [Contents](../DECK-DESIGN.md#contents)
+[← 127](#c127) · [Next → 129](#c129) · [Contents](../DECK-DESIGN.md#contents)
 
 `headhunter_mid` · events.json · once a career · weight 8
 
 **Who sees it:** Senior Director to Permanent Secretary; not while the scholarship bond runs.
 
-**Shares a decision** (`private_offer`) with [#55](#c55), [#147](05-politics.md#c147), [#148](05-politics.md#c148), [#83](#c83): a career sees only one.
+**Shares a decision** (`private_offer`) with [#63](#c63), [#167](05-politics.md#c167), [#168](05-politics.md#c168), [#91](#c91): a career sees only one.
 
 A consultancy, the kind that charges a ministry \$1.9 million for a deck, wants to hire someone who knows what ministries actually want. Apparently that's you. Accepting means resigning from the service near the top of it. The offer letter is on very good paper.
 
@@ -3121,6 +3121,41 @@ A consultancy, the kind that charges a ministry \$1.9 million for a deck, wants 
 
 - Hidden: Standing up a little (+2).
 
-[← 119](#c119) · [Next → 121](03-top-of-service.md#c121) · [Contents](../DECK-DESIGN.md#contents)
+[← 127](#c127) · [Next → 129](#c129) · [Contents](../DECK-DESIGN.md#contents)
 
-[← The first years](01-first-years.md#c1) · [Contents](../DECK-DESIGN.md#contents) · [The top of the service →](03-top-of-service.md#c121)
+### <a id="c129"></a>129. Three Options
+
+[← 128](#c128) · [Next → 130](03-top-of-service.md#c130) · [Contents](../DECK-DESIGN.md#contents)
+
+`ts_options` · packs/top_service.json · once a career · weight 5
+
+**Who sees it:** Senior Director to Deputy Secretary.
+
+You are drafting a paper for Cabinet, where the ministers decide together, on a choice your Minister has already made. Cabinet papers set out options. Your Minister would like three: the chosen one, one that costs four times as much, and one that does nothing. The real alternative, which is quite good, is not among them.
+
+**A. Put the real alternative in as the second option.**
+
+> The paper goes up with a real choice in it. Your Minister rewrites the comparison table personally, and Cabinet chooses the Minister's option anyway. One minister asks about the second option for nine minutes.
+
+- Hidden: Competence up (+4), Standing down (−4), Integrity up a lot (+6).
+
+**B. Write the three options as asked.**
+
+> The expensive option costs four times as much, the cheap one does nothing, and the Minister's is approved in seven minutes. A minister remarks, approvingly, that the paper made the choice obvious. It did.
+
+- Hidden: Standing up (+5), Integrity down a lot (−6).
+
+**C. Put the real alternative in an annex.**
+
+> One minister reads the annex, and asks at the meeting why the best idea in the paper is on page fourteen. Your Minister answers well. The question is not minuted, and is remembered.
+
+- Hidden: Competence up (+4), Standing down a little (−2), Integrity up a little (+2).
+
+**Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
+
+- The Minister's office (service, `ministersOffice`), 40%: A hurts (−3) · B helps (+2) · C hurts (−1).
+- The officer who countersigns your appraisal (service, `countersigner`), 35%: A helps (+2) · B hurts (−2) · C helps (+1).
+
+[← 128](#c128) · [Next → 130](03-top-of-service.md#c130) · [Contents](../DECK-DESIGN.md#contents)
+
+[← The first years](01-first-years.md#c1) · [Contents](../DECK-DESIGN.md#contents) · [The top of the service →](03-top-of-service.md#c130)
