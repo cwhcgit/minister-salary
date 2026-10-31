@@ -477,8 +477,8 @@
     },
     {
       "id": "strange_saucer",
-      "title": "After the Dinner",
-      "body": "Late on the night of the ministry's year-end dinner, you reach the car park in time to see your Minister, Boey Shu Min, check her watch and rise, quite calmly, with her handbag and a folder, into what looks very much like a flying saucer. The whole service admires her: she reads every annex, and an officer she praises gets noticed. She sees you, and nods.",
+      "title": "Past Midnight",
+      "body": "It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. You start over to say hello. Before you're close, she rises, suitcase and all, into what looks very much like a flying saucer. Halfway up, she sees you.",
       "requires": { "minRank": 0, "maxRank": 3, "maxAge": 50, "flagsNone": ["strange_met"] },
       "weight": 0.5,
       "once": true,
@@ -487,7 +487,7 @@
           "text": "Go home. Say nothing until morning.",
           "effects": { "competence": 2, "integrity": -2 },
           "setFlags": ["strange_met", "saucer_home"],
-          "outcome": "You take a taxi home and don't sleep. In the morning the news has nothing, her page has a cheerful photo from the dinner, and you have a paper due by noon. You finish it.",
+          "outcome": "You take a taxi home and don't sleep. In the morning the news has nothing, her page has a cheerful photo from yesterday's site visit, and your paper comes back with comments. You work on those.",
           "schedule": [{ "eventId": "strange_saucer_office", "inYears": 0, "chance": 1 }]
         },
         {
@@ -498,7 +498,7 @@
           "schedule": [{ "eventId": "strange_saucer_office", "inYears": 0, "chance": 1 }]
         },
         {
-          "text": "Wave back.",
+          "text": "Wave.",
           "effects": { "standing": 2, "integrity": -1 },
           "setFlags": ["strange_met", "saucer_waved"],
           "outcome": "You wave. The saucer dips, very slightly, and is gone. You stand in the empty car park until the guard asks, kindly, whether you need a taxi.",
@@ -515,12 +515,12 @@
           "pick": "first",
           "options": [
             { "id": "waved", "text": "waving", "requires": { "flagsAll": ["saucer_waved"] } },
-            { "id": "called", "text": "your call after the dinner", "requires": { "flagsAll": ["saucer_called"] } },
+            { "id": "called", "text": "your call that night", "requires": { "flagsAll": ["saucer_called"] } },
             { "id": "home", "text": "your discretion" }
           ]
         }
       },
-      "body": "A few days after the dinner, on the first working day of the year, the Minister sends for you. Boey Shu Min is back, though she holds her pen the wrong way round, and on her desk is a note in her own handwriting, addressed \"To whoever sits here\". She thanks you for {thanks}. \"You saw nothing that night, {player.formal},\" she says, slowly and clearly.",
+      "body": "A few days later, the Minister sends for you. Boey Shu Min is back, though she holds her pen the wrong way round, and on her desk is a note in her own handwriting, addressed \"To whoever sits here\". She thanks you for {thanks}. \"You saw nothing that night, {player.formal},\" she says, slowly and clearly.",
       "requires": { "maxRank": 7 },
       "choices": [
         {

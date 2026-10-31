@@ -40,7 +40,7 @@ Under a card, folded: the scenes it has when it comes back, its other versions, 
 - [14. Eyes Only](deck/01-first-years.md#c14)
 - [15. Cleared](deck/01-first-years.md#c15)
 - [16. Cleared](deck/01-first-years.md#c16)
-- [17. After the Dinner](deck/01-first-years.md#c17)
+- [17. Past Midnight](deck/01-first-years.md#c17)
 - [18. You Saw Nothing](deck/01-first-years.md#c18)
 - [19. Earth's Tax System](deck/01-first-years.md#c19)
 - [20. Your Species' Kopi](deck/01-first-years.md#c20)

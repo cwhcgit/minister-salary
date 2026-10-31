@@ -1550,7 +1550,7 @@ Years ago, as a junior officer, you were sent an envelope in your own handwritin
 
 [← 15](#c15) · [Next → 17](#c17) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c17"></a>17. After the Dinner
+### <a id="c17"></a>17. Past Midnight
 
 [← 16](#c16) · [Next → 18](#c18) · [Contents](../DECK-DESIGN.md#contents)
 
@@ -1558,11 +1558,11 @@ Years ago, as a junior officer, you were sent an envelope in your own handwritin
 
 **Who sees it:** up to Deputy Director; aged 50 or less; not after any of [#14](#c14), [#27](#c27), [#66](#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
-Late on the night of the ministry's year-end dinner, you reach the car park in time to see your Minister, Boey Shu Min, check her watch and rise, quite calmly, with her handbag and a folder, into what looks very much like a flying saucer. The whole service admires her: she reads every annex, and an officer she praises gets noticed. She sees you, and nods.
+It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. You start over to say hello. Before you're close, she rises, suitcase and all, into what looks very much like a flying saucer. Halfway up, she sees you.
 
 **A. Go home. Say nothing until morning.**
 
-> You take a taxi home and don't sleep. In the morning the news has nothing, her page has a cheerful photo from the dinner, and you have a paper due by noon. You finish it.
+> You take a taxi home and don't sleep. In the morning the news has nothing, her page has a cheerful photo from yesterday's site visit, and your paper comes back with comments. You work on those.
 
 - Hidden: Competence up a little (+2), Integrity down a little (−2).
 - Sets `strange_met`: read by [#14](#c14), [#27](#c27), [#66](#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
@@ -1578,7 +1578,7 @@ Late on the night of the ministry's year-end dinner, you reach the car park in t
 - Sets `saucer_called`: read by [#18](#c18).
 - ↳ Can lead to: [18. You Saw Nothing](#c18), on the next card
 
-**C. Wave back.**
+**C. Wave.**
 
 > You wave. The saucer dips, very slightly, and is gone. You stand in the empty car park until the guard asks, kindly, whether you need a taxi.
 
@@ -1595,9 +1595,9 @@ Late on the night of the ministry's year-end dinner, you reach the car park in t
 
 `strange_saucer_office` · packs/strange.json
 
-**Who sees it:** only as a follow-up to [17. After the Dinner](#c17) (any choice: on the next card); when it falls due: up to Permanent Secretary.
+**Who sees it:** only as a follow-up to [17. Past Midnight](#c17) (any choice: on the next card); when it falls due: up to Permanent Secretary.
 
-A few days after the dinner, on the first working day of the year, the Minister sends for you. Boey Shu Min is back, though she holds her pen the wrong way round, and on her desk is a note in her own handwriting, addressed "To whoever sits here". She thanks you for your discretion. "You saw nothing that night, Ms Lim," she says, slowly and clearly.
+A few days later, the Minister sends for you. Boey Shu Min is back, though she holds her pen the wrong way round, and on her desk is a note in her own handwriting, addressed "To whoever sits here". She thanks you for your discretion. "You saw nothing that night, Ms Lim," she says, slowly and clearly.
 
 **A. Agree that you saw nothing. Then report it anyway.**
 
@@ -1639,8 +1639,8 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 1** · `thanks` (the first option that fits)
 
-- waving *(`waved`; when after [17. After the Dinner](#c17), C (`saucer_waved`))*
-- your call after the dinner *(`called`; when after [17. After the Dinner](#c17), B (`saucer_called`))*
+- waving *(`waved`; when after [17. Past Midnight](#c17), C (`saucer_waved`))*
+- your call that night *(`called`; when after [17. Past Midnight](#c17), B (`saucer_called`))*
 - your discretion *(`home`; shown above)*
 
 </details>
