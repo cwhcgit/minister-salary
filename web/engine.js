@@ -1687,6 +1687,8 @@ const Engine = (() => {
         s.ending = "lostward";
       }
     }
+    // a mark on the appraisals of the next few years, on the ladder the player now stands on
+    if (ch.lasting) lastingMark(s, ev, ch);
     // the cast follows the player: a junior stays behind in the service, a fellow MP arrives
     if (!s.ending) castSync(content, s, log);
     return log;
@@ -1734,9 +1736,34 @@ const Engine = (() => {
     const noise = (roll(s) * 10) - 5;
     const mod = s.appraisalMod;
     const wit = witnessDue(content, s);   // hidden witnesses whose judgement lands this year
-    const score = 0.50 * s.competence + 0.30 * s.standing + 0.15 * s.reputation + noise + mod + wit.mod;
+    const last = lastingDue(s);           // a lasting mark from an earlier choice, if one still runs
+    const score = 0.50 * s.competence + 0.30 * s.standing + 0.15 * s.reputation + noise + mod + wit.mod + last;
     s.appraisalMod = 0;
-    return { grade: gradeAt(content, score), score, noise, mod, wit };
+    return { grade: gradeAt(content, score), score, noise, mod, wit, lasting: last };
+  }
+
+  // --- lasting marks -------------------------------------------------------------------
+  // A choice can leave a mark that moves every appraisal for a few years, not just this one:
+  //   "lasting": { "appraisal": -4, "years": 4 }
+  // (colleagues who decide you are unwell; a Minister's good word). It counts at this year's
+  // appraisal and at each one after, `years` in all, and it is never announced: the grade simply
+  // comes out a little different, as a witness's judgement does, and the "why" line reads it as the
+  // year's luck. It belongs to the ladder the choice was made on (the player's rank once the choice
+  // is made): the service's view of you does not follow you into politics, nor the reverse, so a mark
+  // whose years fall on the other ladder lapses. Several marks add up.
+  function lastingMark(s, ev, ch) {
+    const L = ch.lasting;
+    if (!L || !L.appraisal || !(L.years >= 1)) return;
+    (s.lasting = s.lasting || []).push({ card: ev.id, mod: L.appraisal, from: s.year, until: s.year + L.years - 1, service: s.rank < 8 });
+  }
+  function lastingDue(s) {
+    let n = 0;
+    for (const e of s.lasting || []) {
+      if (e.lapsed || s.year < e.from || s.year > e.until) continue;
+      if (e.service !== (s.rank < 8)) { e.lapsed = s.year; continue; }
+      n += e.mod;
+    }
+    return n;
   }
   const gradeAt = (content, x) => content.grades.find(g => x >= g.min) || content.grades[content.grades.length - 1];
 
@@ -1983,10 +2010,10 @@ const Engine = (() => {
     if (plan && !finalYear && plan.last <= s.age) plan.last = s.age + 1;
     // A Prime Minister has no appraisal: the year is the tenure's card, the package and the news.
     if (s.rank === 16 && s.pmTenure) return pmYearEnd(content, s, t, log, finalYear);
-    let { grade, score, noise, mod, wit } = appraise(content, s);
+    let { grade, score, noise, mod, wit, lasting } = appraise(content, s);
     // The first appraisal comes after months in the job, not years: it can be middling, not a D.
     if (s.year <= 1 && grade.code === "D") grade = content.grades.find(g => g.code === "C") || grade;
-    t.appraisal = { grade: grade.code, score, noise, noted: mod };
+    t.appraisal = { grade: grade.code, score, noise, noted: mod, ...(lasting ? { lasting } : {}) };
     // A choice that was noted shows up here, in the one word that matters.
     const label = gradeLabel(s, grade);
     // The letter goes first: the euphemism is the joke, the letter is what it means. Each quote

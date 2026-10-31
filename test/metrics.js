@@ -62,7 +62,7 @@ function dominatedChoices(content) {
   for (const e of content.events.filter(isReal)) e.choices.forEach((x, i) => e.choices.forEach((y, j) => {
     if (i === j || x.election || y.election) return;
     if (better(y.effects || {}, x.effects || {}) && noHarder(y, x)) {
-      const hidden = [x.schedule && "schedule", x.setFlags && "flags", x.setRank !== undefined && "setRank"].filter(Boolean);
+      const hidden = [x.schedule && "schedule", x.setFlags && "flags", x.setRank !== undefined && "setRank", x.lasting && "lasting"].filter(Boolean);
       out.push({ event: e.id, dominated: "ABCD"[i], by: "ABCD"[j], text: x.text, hiddenConsequences: hidden });
     }
   }));
