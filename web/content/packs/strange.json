@@ -1,7 +1,7 @@
 {
   "id": "strange",
   "title": "Strange Years",
-  "note": "Impossible premises, processed as routine. Every premise card needs the shared flag strange_met to be absent and sets it on every choice, so a career meets at most one premise; the two callbacks (the envelope, the Merlion's talking points) are that same story's payoff years later. Weights are tuned so that about 40% of careers meet one: they are small, and smaller still where the pool is thin (ranks 0-1, Permanent Secretary). As other packs grow the pool, the rate falls; retune these weights.",
+  "note": "Impossible premises, processed as routine. Every premise card needs the shared flag strange_met to be absent and sets it on every choice, so a career meets at most one premise; the callbacks (the envelope, the Merlion's talking points) are that same story's payoff years later. The flying saucer (strange_saucer_*) is a premise with a chain: the Minister, Boey Shu Min (invented), is seen rising into a flying saucer; the meeting with her the next card (inYears 0, so nothing scheduled earlier can come between them) sets saucer_reported, saucer_silent or saucer_asked, each with a lasting mark on the next appraisals (the questioner's is the Minister's visible dislike, with its beats on the review pages of the next years, as later lines); her deleted posts follow, one early (saucer_post_early: the tax post, scheduled at 50%, or else the kopi post, scheduled always and written for either ladder) and sometimes one late (saucer_post_late: the visitors post or the night sky, 30% each, each with a politics version), and their hidden witnesses read the branch flag (reported: her office, or the party's leadership; silent: the ranking panel, the floor, or fellow MPs; asked: nobody in the service, while in politics being the one she avoids helps, with voters, the party and the press gallery); the reported branch ends with the second report, and every branch hears of her return from a long leave nine years on. Nothing ever says what she is. Weights are tuned so that about a third of careers meet a premise: they are small, and smaller still where the pool is thin (ranks 0-1, Permanent Secretary). A new premise takes an ordinary weight and the others keep theirs, so the odds of a Strange Year rise as stories are added (the saucer's 0.5). As other packs grow the pool, the rate falls; retune these weights.",
   "events": [
     {
       "id": "strange_letter",
@@ -472,6 +472,435 @@
         "by": {
           "officials": { "chance": 0.4, "react": [-2, 2, 0] },
           "pressGallery": { "chance": 0.3, "react": [0, -1, 1] }
+        }
+      }
+    },
+    {
+      "id": "strange_saucer",
+      "title": "Past Midnight",
+      "body": "It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. Curious, you start over to say hello. Above her, something very like a flying saucer appears, and you gasp, loudly. She looks at you. Before anything else can happen, she's gone, suitcase and all, and the saucer hangs there, humming.",
+      "requires": { "minRank": 0, "maxRank": 3, "maxAge": 50, "flagsNone": ["strange_met"] },
+      "weight": 0.5,
+      "once": true,
+      "choices": [
+        {
+          "text": "Go home. Say nothing until morning.",
+          "effects": { "competence": 2, "integrity": -2 },
+          "setFlags": ["strange_met", "saucer_home"],
+          "outcome": "You take a taxi home and don't sleep. In the morning the news has nothing, her page has a cheerful photo from yesterday's site visit, and your paper comes back with comments. You work on those.",
+          "schedule": [{ "eventId": "strange_saucer_office", "inYears": 0, "chance": 1 }]
+        },
+        {
+          "text": "Call the police. Report her abducted.",
+          "effects": { "integrity": 3, "standing": -2 },
+          "setFlags": ["strange_met", "saucer_called"],
+          "outcome": "The officer is polite and quick: in Singapore there is no waiting period to report someone missing. Twenty minutes later, her office tells the police the Minister is safely at home. The report is closed, with your name on it and the words \"flying saucer\", in quotation marks.",
+          "schedule": [{ "eventId": "strange_saucer_office", "inYears": 0, "chance": 1 }]
+        },
+        {
+          "text": "Wave.",
+          "effects": { "competence": 3, "integrity": -3 },
+          "setFlags": ["strange_met", "saucer_waved"],
+          "outcome": "You wave. The saucer dips, very slightly, and is gone. You blink, and when you open your eyes you're in your own bed, and it's morning. You feel good, perhaps better than you have ever felt.",
+          "schedule": [{ "eventId": "strange_saucer_office", "inYears": 0, "chance": 1 }]
+        }
+      ]
+    },
+    {
+      "id": "strange_saucer_office",
+      "triggered": true,
+      "title": "You Saw Nothing",
+      "parts": {
+        "thanks": {
+          "pick": "first",
+          "options": [
+            { "id": "waved", "text": "waving", "requires": { "flagsAll": ["saucer_waved"] } },
+            { "id": "called", "text": "your concern for her safety", "requires": { "flagsAll": ["saucer_called"] } },
+            { "id": "home", "text": "your discretion" }
+          ]
+        }
+      },
+      "body": "A few days later, the Minister sends for you. Boey Shu Min is back, though she holds her pen the wrong way round, and on her desk is a note in her own handwriting, addressed \"To whoever sits here\". She thanks you for {thanks}. \"You saw nothing that night, {player.formal},\" she says, slowly and clearly.",
+      "requires": { "maxRank": 7 },
+      "choices": [
+        {
+          "text": "Agree that you saw nothing. Then report it anyway.",
+          "effects": { "integrity": 6, "standing": -4 },
+          "lasting": { "appraisal": -4, "years": 4 },
+          "later": [
+            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, holds her pen the right way round again. Over lunch she tells a colleague, apropos of nothing, that the food was better than people think." }
+          ],
+          "setFlags": ["saucer_reported"],
+          "outcome": "You write it up for the ministry's security officer, who sends it, as a courtesy, to the Minister's office for comment. Her office has no comment. Nobody believes you, and everyone is very kind about it.",
+          "schedule": [
+            { "eventId": "strange_saucer_tax", "inYears": 2, "chance": 0.5 },
+            { "eventId": "strange_saucer_kopi", "inYears": 2, "chance": 1 },
+            { "eventId": "strange_saucer_visitors", "inYears": 5, "chance": 0.3 },
+            { "eventId": "strange_saucer_sky", "inYears": 5, "chance": 0.3 },
+            { "eventId": "strange_saucer_first", "inYears": 8, "chance": 0.85 }
+          ]
+        },
+        {
+          "text": "Agree that you saw nothing.",
+          "effects": { "standing": 3, "integrity": -4, "cep": 1 },
+          "lasting": { "appraisal": 3, "years": 3 },
+          "later": [
+            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, holds her pen the right way round again. Over lunch she tells a colleague, apropos of nothing, that the food was better than people think." }
+          ],
+          "setFlags": ["saucer_silent"],
+          "outcome": "\"Good,\" she says, and turns to your division's workplan, which she has read closely, all of it. You leave with the feeling that something has been decided about you.",
+          "schedule": [
+            { "eventId": "strange_saucer_tax", "inYears": 2, "chance": 0.5 },
+            { "eventId": "strange_saucer_kopi", "inYears": 2, "chance": 1 },
+            { "eventId": "strange_saucer_visitors", "inYears": 5, "chance": 0.3 },
+            { "eventId": "strange_saucer_sky", "inYears": 5, "chance": 0.3 }
+          ]
+        },
+        {
+          "text": "Ask her, directly, whether she is an alien.",
+          "effects": { "integrity": 3, "standing": -2 },
+          "lasting": { "appraisal": -2, "years": 6 },
+          "later": [
+            { "inYears": 0, "text": "In March you step into a lift and find Boey Shu Min, your Minister, already in it. She gets out, and takes the stairs to the fourteenth floor.", "requires": { "maxRank": 7 } },
+            { "inYears": 1, "text": "At the year-end dinner, Boey Shu Min, your Minister, finds her place card beside yours. By the soup, she has swapped seats with a Deputy Secretary.", "requires": { "maxRank": 7 } },
+            { "inYears": 3, "text": "Boey Shu Min, your Minister, misses your division's briefing for the first time, and sends a Minister of State, who asks someone else to present your slides.", "requires": { "maxRank": 5 } },
+            { "inYears": 5, "text": "Your division's checklist for events now has a line under Seating: you and Boey Shu Min, your Minister, are never at the same table.", "requires": { "maxRank": 5 } },
+            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, holds her pen the right way round again. Over lunch she tells a colleague, apropos of nothing, that the food was better than people think." }
+          ],
+          "setFlags": ["saucer_asked"],
+          "outcome": "\"I'm not,\" she says. \"But even if I were, who would believe you?\" You think it over on the way back to your desk, decide she's right, and do nothing.",
+          "schedule": [
+            { "eventId": "strange_saucer_tax", "inYears": 2, "chance": 0.5 },
+            { "eventId": "strange_saucer_kopi", "inYears": 2, "chance": 1 },
+            { "eventId": "strange_saucer_visitors", "inYears": 5, "chance": 0.3 },
+            { "eventId": "strange_saucer_sky", "inYears": 5, "chance": 0.3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strange_saucer_tax",
+      "triggered": true,
+      "title": "Earth's Tax System",
+      "exclusive": "saucer_post_early",
+      "parts": {
+        "ask": {
+          "pick": "first",
+          "options": [
+            { "id": "reported", "text": "you, by name", "requires": { "flagsAll": ["saucer_reported"] } },
+            { "id": "silent", "text": "you first, since she rates you so highly", "requires": { "flagsAll": ["saucer_silent"] } },
+            { "id": "asked", "text": "every division" }
+          ]
+        }
+      },
+      "body": "Your Minister, Boey Shu Min, has been flawless since the night you saw her rise into the sky. At 3.12am, her official page posts: \"Notes, continued. Earth's tax system is very efficient. We have nothing like it at home.\" It's gone by seven. Her press office calls it a draft of a post on the public service's efficiency, and wants a figure for the finished version from {ask}.",
+      "requires": { "maxRank": 7 },
+      "choices": [
+        {
+          "text": "Send your division's best figure.",
+          "effects": { "standing": 3, "integrity": -2 },
+          "outcome": "The finished post goes up at noon: your figure, a photo of her at a service counter, and no mention of Earth. In the comments, several people ask after Earth."
+        },
+        {
+          "text": "Decline. You won't help explain it away.",
+          "effects": { "integrity": 3, "standing": -3 },
+          "outcome": "The press office finds a figure elsewhere. Its thank-you email goes to every division that helped, which is every division but yours."
+        },
+        {
+          "text": "Send one, and ask what she meant by \"Earth\".",
+          "effects": { "competence": 1, "integrity": 1, "standing": -1 },
+          "outcome": "Your figure is used. Your question is answered by phone, not in writing: \"Earth\" was a typing error. Nobody can say for what."
+        }
+      ],
+      "witnesses": {
+        "by": {
+          "ministersOffice": { "chance": 1, "react": [-2, -4, -3], "requires": { "flagsAll": ["saucer_reported"] } },
+          "panel": { "chance": 0.8, "react": [-4, -2, -3], "requires": { "flagsAll": ["saucer_silent"] } }
+        }
+      }
+    },
+    {
+      "id": "strange_saucer_kopi",
+      "triggered": true,
+      "title": "Your Species' Kopi",
+      "exclusive": "saucer_post_early",
+      "parts": {
+        "why": {
+          "pick": "first",
+          "options": [
+            { "id": "reported", "text": "At lunch, the colleagues who were so kind about your report ask what, exactly, you saw.", "requires": { "flagsAll": ["saucer_reported"] } },
+            { "id": "silent", "text": "At lunch, colleagues ask what you know. Everyone knows she rates you.", "requires": { "flagsAll": ["saucer_silent"] } },
+            { "id": "asked_pol", "text": "At lunch, fellow Members ask what you make of it. Everyone knows she avoids you, and in politics that has started to look like good judgement.", "requires": { "minRank": 8, "flagsAll": ["saucer_asked"] }, "effects": { "*": { "standing": 2 } } },
+            { "id": "asked", "text": "At lunch, colleagues ask what you make of it. They have all noticed she avoids you." }
+          ]
+        }
+      },
+      "body": "Boey Shu Min, the Minister you once saw taken up into the sky, has given nobody cause for concern since. At 6am her official page posts a photo of a cup of kopi, the coffee every coffeeshop sells, captioned \"Your species' finest achievement.\" By eight it's gone: a staff member's post, says her press office, from the wrong account. {why}",
+      "choices": [
+        {
+          "text": "Say you know nothing about it.",
+          "effects": { "standing": 2, "integrity": -2 },
+          "outcome": "They take your word for it, more or less, and move on to guessing which staff member it was. Nobody owns up."
+        },
+        {
+          "text": "Tell them what you saw that night.",
+          "effects": { "integrity": 3, "reputation": -2 },
+          "outcome": "You tell them about the car park and the saucer. They listen politely, and then somebody asks, gently, whether you've taken any leave this year."
+        },
+        {
+          "text": "Say it does look like very good kopi.",
+          "effects": { "reputation": 2, "integrity": -1 },
+          "outcome": "Everyone agrees, and the talk turns to which coffeeshop it is. By Friday it has a queue, and you have been twice."
+        }
+      ],
+      "witnesses": {
+        "by": {
+          "ministersOffice": { "chance": 1, "react": [-2, -4, -3], "requires": { "flagsAll": ["saucer_reported"] } },
+          "floor": { "chance": 0.8, "react": [-3, -1, -2], "requires": { "flagsAll": ["saucer_silent"] } },
+          "leadership": { "chance": 1, "react": [-2, -4, -3], "requires": { "flagsAll": ["saucer_reported"] } },
+          "fellowMPs": { "chance": 0.8, "react": [-3, -1, -2], "requires": { "flagsAll": ["saucer_silent"] } },
+          "branch": { "chance": 0.5, "react": [1, 2, 1], "requires": { "flagsAll": ["saucer_asked"] } }
+        }
+      }
+    },
+    {
+      "id": "strange_saucer_visitors",
+      "triggered": true,
+      "title": "However They Arrived",
+      "exclusive": "saucer_post_late",
+      "parts": {
+        "why": {
+          "pick": "first",
+          "options": [
+            { "id": "reported", "text": "{senior} says the Minister's office asked for you by name.", "requires": { "flagsAll": ["saucer_reported"] } },
+            { "id": "silent", "text": "{senior} says the Minister's office asked for you, since you know the Minister's mind.", "requires": { "flagsAll": ["saucer_silent"] } },
+            { "id": "asked", "text": "{senior} says the Minister's office has asked that your name not appear on it." }
+          ]
+        }
+      },
+      "body": "It's years since you saw your Minister, Boey Shu Min, carried off by a flying saucer, and she has been an excellent Minister since. At 4am her official page posts: \"Be kind to all visitors, however they arrived.\" By seven it's gone, and her press office wants a clarification out by noon. {senior} asks you to draft it. {why}",
+      "requires": { "maxRank": 7 },
+      "alternates": ["strange_saucer_visitors_pol"],
+      "choices": [
+        {
+          "text": "Call it a tourism campaign, posted early.",
+          "effects": { "standing": 3, "integrity": -3 },
+          "outcome": "Your clarification goes out at 11.40am: the post was part of a campaign for the tourist season, published early. The Tourism Board learns of its campaign from the news."
+        },
+        {
+          "text": "Say plainly that she posted it, then took it down.",
+          "effects": { "integrity": 3, "standing": -3 },
+          "outcome": "Your draft is two sentences long, and entirely true. The press office thanks you, and puts out a campaign for the tourist season instead. Your draft is kept on file."
+        },
+        {
+          "text": "Write a real welcome, to visitors however they arrive.",
+          "effects": { "competence": 3, "standing": 1, "integrity": -2 },
+          "outcome": "Your clarification welcomes every visitor to Singapore, \"however they arrive: by air, by sea or by land\". The press office adds \"by cruise ship\". It reads as though she meant that all along."
+        }
+      ],
+      "witnesses": {
+        "by": {
+          "ministersOffice": { "chance": 1, "react": [-2, -5, -3], "requires": { "flagsAll": ["saucer_reported"] } },
+          "panel": { "chance": 0.8, "react": [-4, -2, -3], "requires": { "flagsAll": ["saucer_silent"] } }
+        }
+      }
+    },
+    {
+      "id": "strange_saucer_visitors_pol",
+      "triggered": true,
+      "title": "However They Arrived",
+      "exclusive": "saucer_post_late",
+      "parts": {
+        "why": {
+          "pick": "first",
+          "options": [
+            { "id": "reported", "text": "Her office has asked the media team to make sure you do.", "requires": { "flagsAll": ["saucer_reported"] } },
+            { "id": "silent", "text": "Yours is wanted first: you're known as one of hers.", "requires": { "flagsAll": ["saucer_silent"] } },
+            { "id": "asked", "text": "You're one name on a long list, but residents in your ward have read that she avoids you, and like you for it.", "requires": { "flagsAll": ["saucer_asked"] }, "effects": { "*": { "reputation": 2, "standing": 1 } } },
+            { "id": "other", "text": "You're one name on a long list." }
+          ]
+        }
+      },
+      "body": "It's years since you saw Boey Shu Min, then your Minister, carried off by a flying saucer. At 4am her official page posts: \"Be kind to all visitors, however they arrived.\" By seven it's gone, and the party's media team asks every Member to share the clarification: a campaign for the tourist season, posted early. {why}",
+      "requires": { "minRank": 8 },
+      "choices": [
+        {
+          "text": "Share it, word for word.",
+          "effects": { "standing": 3, "integrity": -2 },
+          "outcome": "Your page carries the same three lines as every other Member's. Under yours, a resident asks: \"However they arrived?\""
+        },
+        {
+          "text": "Share it, with a welcome of your own.",
+          "effects": { "reputation": 3, "standing": -1, "integrity": -1 },
+          "outcome": "Your welcome names the hawker centres and the bus routes near you. It's shared more widely than the clarification, which the media team notices."
+        },
+        {
+          "text": "Don't share it.",
+          "effects": { "integrity": 3, "standing": -3 },
+          "outcome": "Nobody mentions it. The media team's spreadsheet of who shared it has a column for you, and it stays empty."
+        }
+      ],
+      "witnesses": {
+        "by": {
+          "leadership": { "chance": 1, "react": [-2, -3, -5], "requires": { "flagsAll": ["saucer_reported"] } },
+          "fellowMPs": { "chance": 0.8, "react": [-4, -3, -2], "requires": { "flagsAll": ["saucer_silent"] } },
+          "pressGallery": { "chance": 0.6, "react": [1, 2, 2], "requires": { "flagsAll": ["saucer_asked"] } }
+        }
+      }
+    },
+    {
+      "id": "strange_saucer_sky",
+      "triggered": true,
+      "title": "Not Long Now",
+      "exclusive": "saucer_post_late",
+      "parts": {
+        "why": {
+          "pick": "first",
+          "options": [
+            { "id": "reported", "text": "Someone has told {journalist} about your report.", "requires": { "flagsAll": ["saucer_reported"] } },
+            { "id": "silent", "text": "{journalist} has heard that the Minister thinks highly of you.", "requires": { "flagsAll": ["saucer_silent"] } },
+            { "id": "asked", "text": "{journalist} has heard that the Minister won't stay in a room with you, and wants to know why." }
+          ]
+        }
+      },
+      "body": "Years have passed since you watched your Minister, Boey Shu Min, rise into a flying saucer. At 2am her official page posts a photo of the night sky, captioned \"Not long now.\" By morning it's gone: a stargazing photo, says her press office, captioned too early. Then {journalist} calls you. {why} Officers need approval to talk to the press.",
+      "requires": { "maxRank": 7 },
+      "alternates": ["strange_saucer_sky_pol"],
+      "choices": [
+        {
+          "text": "Refer the call to the press office.",
+          "effects": { "standing": 2, "reputation": -2 },
+          "outcome": "The press office thanks you, and sends {journalist} a statement about stargazing. The story runs as two lines, under a photo of the moon."
+        },
+        {
+          "text": "Tell {journalist} what you saw, off the record.",
+          "effects": { "integrity": 4, "heat": 5, "standing": -2 },
+          "outcome": "{journalist} hears you out, thanks you, and doesn't run it: one source, years late, and a flying saucer. But your name is now in a notebook, beside Boey Shu Min's."
+        },
+        {
+          "text": "Give nothing away. Ask what else {journalist} has heard.",
+          "effects": { "competence": 2, "heat": 2 },
+          "outcome": "Quite a lot: four emails about a light over Marina Bay last night, and one from a fisherman who saw something rise from the water. You say thank you, and nothing else."
+        }
+      ],
+      "witnesses": {
+        "by": {
+          "ministersOffice": { "chance": 1, "react": [-2, -5, -3], "requires": { "flagsAll": ["saucer_reported"] } },
+          "panel": { "chance": 0.8, "react": [-3, -2, -3], "requires": { "flagsAll": ["saucer_silent"] } }
+        }
+      }
+    },
+    {
+      "id": "strange_saucer_sky_pol",
+      "triggered": true,
+      "title": "Not Long Now",
+      "exclusive": "saucer_post_late",
+      "parts": {
+        "why": {
+          "pick": "first",
+          "options": [
+            { "id": "reported", "text": "{journalist} has learned that, as an officer, you once filed a report about Boey Shu Min.", "requires": { "flagsAll": ["saucer_reported"] } },
+            { "id": "silent", "text": "{journalist} has been told that Boey Shu Min made your career.", "requires": { "flagsAll": ["saucer_silent"] } },
+            { "id": "asked", "text": "{journalist} is calling every Member who once served in her ministry, and starts with the one she is known to avoid.", "requires": { "flagsAll": ["saucer_asked"] }, "effects": { "*": { "reputation": 2, "standing": 1 } } },
+            { "id": "other", "text": "{journalist} is calling every Member who once served in her ministry." }
+          ]
+        }
+      },
+      "body": "Since entering Parliament, you've rarely thought about the night your old Minister, Boey Shu Min, was lifted into a flying saucer. Then, at 2am, her page shares a picture of stars over Marina Bay with three words: \"Not long now.\" Her press office takes it down by breakfast, blaming a stargazing event's caption, approved too early. {journalist} wants your comment. {why}",
+      "requires": { "minRank": 8 },
+      "choices": [
+        {
+          "text": "Decline to comment.",
+          "effects": { "standing": 2, "reputation": -2 },
+          "outcome": "{journalist} writes that you declined to comment, which in this story reads as a comment. The party is grateful anyway."
+        },
+        {
+          "text": "Say, on the record, what you saw that night.",
+          "effects": { "integrity": 5, "reputation": 2, "standing": -5, "heat": 3 },
+          "outcome": "It runs on page six, under \"MP recalls 'a light'\". The party asks you, kindly, to recall nothing further."
+        },
+        {
+          "text": "Say Boey Shu Min has your full confidence.",
+          "effects": { "standing": 3, "integrity": -3 },
+          "outcome": "Your quote runs beside the stargazing statement. It's the only one, so it reads as though you were asked to give it."
+        }
+      ],
+      "witnesses": {
+        "by": {
+          "leadership": { "chance": 1, "react": [-2, -4, -1], "requires": { "flagsAll": ["saucer_reported"] } },
+          "fellowMPs": { "chance": 0.8, "react": [-2, -1, -4], "requires": { "flagsAll": ["saucer_silent"] } },
+          "pressGallery": { "chance": 0.7, "react": [1, 3, 1], "requires": { "flagsAll": ["saucer_asked"] } }
+        }
+      }
+    },
+    {
+      "id": "strange_saucer_first",
+      "triggered": true,
+      "title": "The Second Report",
+      "body": "Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a flying saucer, and nobody believed you. This year {peer}, working late, saw it too: the Minister and a big packed suitcase, rising from the same car park. {peer} reported it, naming you as the first. Two reports make a pattern, says the security officer, and a pattern needs a working group. Meanwhile, colleagues are very kind to {peer}.",
+      "requires": { "maxRank": 7, "flagsAll": ["saucer_reported"] },
+      "alternates": ["strange_saucer_first_pol"],
+      "choices": [
+        {
+          "text": "Join {peer} on the working group.",
+          "effects": { "reputation": 4, "integrity": 2, "standing": -3 },
+          "setFlags": ["saucer_stood_with"],
+          "cast": { "peer": { "flags": ["owes_you"] } },
+          "outcome": "The working group meets monthly, and finds that the Minister's diary says \"in transit\" on both nights. Nobody is kind to either of you any more. You're simply right."
+        },
+        {
+          "text": "Tell {peer}, privately, that it gets better.",
+          "effects": { "integrity": 2, "standing": 2 },
+          "setFlags": ["saucer_quietly"],
+          "outcome": "It does. You take {peer} for coffee every Friday until the kindness wears off, which takes most of a year."
+        },
+        {
+          "text": "Say you were mistaken, all those years ago.",
+          "effects": { "standing": 4, "integrity": -5 },
+          "setFlags": ["saucer_withdrew"],
+          "cast": { "peer": { "flags": ["fell_out"] } },
+          "outcome": "Your report is marked withdrawn. {peer}'s is now the only one, which isn't a pattern, so there is no working group. {peer} stops sitting with you at lunch."
+        }
+      ],
+      "witnesses": {
+        "by": {
+          "ministersOffice": { "chance": 0.9, "react": [-3, -1, 2] },
+          "floor": { "chance": 0.5, "react": [2, 1, -3] }
+        }
+      }
+    },
+    {
+      "id": "strange_saucer_first_pol",
+      "triggered": true,
+      "title": "The Second Report",
+      "body": "Before you entered politics, you once reported seeing your Minister at the time, Boey Shu Min, carried up into a flying saucer. Nobody believed it. Now {peer}, working late, has seen the same thing from the same car park, suitcase and all, and filed a report that names yours as the first. With two reports there is a pattern, and the working group set up to study it wants your evidence.",
+      "requires": { "minRank": 8, "flagsAll": ["saucer_reported"] },
+      "choices": [
+        {
+          "text": "Give evidence, and say what you saw.",
+          "effects": { "reputation": 4, "integrity": 3, "standing": -4 },
+          "setFlags": ["saucer_stood_with"],
+          "cast": { "peer": { "flags": ["owes_you"] } },
+          "outcome": "You give evidence for forty minutes. The working group records that a Member of Parliament has confirmed the pattern. {peer} sends you a thumbs-up, and nothing else."
+        },
+        {
+          "text": "Send a written statement, and say no more.",
+          "effects": { "integrity": 2, "standing": 2 },
+          "setFlags": ["saucer_quietly"],
+          "outcome": "Your statement is one paragraph long and confirms everything. You say nothing in public, and the party is grateful for that."
+        },
+        {
+          "text": "Decline. It was a long time ago.",
+          "effects": { "standing": 4, "integrity": -4 },
+          "setFlags": ["saucer_withdrew"],
+          "cast": { "peer": { "flags": ["fell_out"] } },
+          "outcome": "The working group notes that you declined. {peer}'s report is now the only one, which isn't a pattern, and the group is stood down."
+        }
+      ],
+      "witnesses": {
+        "by": {
+          "leadership": { "chance": 0.8, "react": [-3, 1, 2] },
+          "pressGallery": { "chance": 0.5, "react": [3, 0, -2] }
         }
       }
     }

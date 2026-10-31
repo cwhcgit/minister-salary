@@ -1,10 +1,10 @@
 # The deck: The first years
 
-[Contents](../DECK.md#contents) · [The service →](02-service.md#c58)
+[Contents](../DECK.md#contents) · [The service →](02-service.md#c68)
 
 ## <a id="stage-first-years"></a>The first years
 
-Each start's first card, then Management Executive and Senior Management Executive. Cards 1 to 57.
+Each start's first card, then Management Executive and Senior Management Executive. Cards 1 to 67.
 
 ### <a id="c1"></a>1. Four Months In
 
@@ -1012,9 +1012,308 @@ Years ago, as a junior officer, you were sent an envelope in your own handwritin
 
 [← 15](#c15) · [Next → 17](#c17) · [Contents](../DECK.md#contents)
 
-### <a id="c17"></a>17. Snow
+### <a id="c17"></a>17. Past Midnight
 
 [← 16](#c16) · [Next → 18](#c18) · [Contents](../DECK.md#contents)
+
+It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. Curious, you start over to say hello. Above her, something very like a flying saucer appears, and you gasp, loudly. She looks at you. Before anything else can happen, she's gone, suitcase and all, and the saucer hangs there, humming.
+
+**A. Go home. Say nothing until morning.**
+
+> You take a taxi home and don't sleep. In the morning the news has nothing, her page has a cheerful photo from yesterday's site visit, and your paper comes back with comments. You work on those.
+
+↳ Can lead to: [18. You Saw Nothing](#c18)
+
+**B. Call the police. Report her abducted.**
+
+> The officer is polite and quick: in Singapore there is no waiting period to report someone missing. Twenty minutes later, her office tells the police the Minister is safely at home. The report is closed, with your name on it and the words "flying saucer", in quotation marks.
+
+↳ Can lead to: [18. You Saw Nothing](#c18)
+
+**C. Wave.**
+
+> You wave. The saucer dips, very slightly, and is gone. You blink, and when you open your eyes you're in your own bed, and it's morning. You feel good, perhaps better than you have ever felt.
+
+↳ Can lead to: [18. You Saw Nothing](#c18)
+
+[← 16](#c16) · [Next → 18](#c18) · [Contents](../DECK.md#contents)
+
+### <a id="c18"></a>18. You Saw Nothing
+
+[← 17](#c17) · [Next → 19](#c19) · [Contents](../DECK.md#contents)
+
+A few days later, the Minister sends for you. Boey Shu Min is back, though she holds her pen the wrong way round, and on her desk is a note in her own handwriting, addressed "To whoever sits here". She thanks you for your discretion. "You saw nothing that night, Ms Lim," she says, slowly and clearly.
+
+**A. Agree that you saw nothing. Then report it anyway.**
+
+> You write it up for the ministry's security officer, who sends it, as a courtesy, to the Minister's office for comment. Her office has no comment. Nobody believes you, and everyone is very kind about it.
+
+↳ Can lead to: [19. Earth's Tax System](#c19) · [20. Your Species' Kopi](#c20) · [21. However They Arrived](#c21) (or, at another grade, [#22](#c22)) · [23. Not Long Now](#c23) (or, at another grade, [#24](#c24)) · [25. The Second Report](#c25) (or, at another grade, [#26](#c26))
+
+**B. Agree that you saw nothing.**
+
+> "Good," she says, and turns to your division's workplan, which she has read closely, all of it. You leave with the feeling that something has been decided about you.
+
+↳ Can lead to: [19. Earth's Tax System](#c19) · [20. Your Species' Kopi](#c20) · [21. However They Arrived](#c21) (or, at another grade, [#22](#c22)) · [23. Not Long Now](#c23) (or, at another grade, [#24](#c24))
+
+**C. Ask her, directly, whether she is an alien.**
+
+> "I'm not," she says. "But even if I were, who would believe you?" You think it over on the way back to your desk, decide she's right, and do nothing.
+
+↳ Can lead to: [19. Earth's Tax System](#c19) · [20. Your Species' Kopi](#c20) · [21. However They Arrived](#c21) (or, at another grade, [#22](#c22)) · [23. Not Long Now](#c23) (or, at another grade, [#24](#c24))
+
+<details><summary>This card varies (1 part)</summary>
+
+Each time the card is shown, it is put together from one option of each part. The text above is one of them. Under an option, the words it brings to the rest of the card.
+
+**Part 1**
+
+- waving
+- your concern for her safety
+- your discretion *(shown above)*
+
+</details>
+
+[← 17](#c17) · [Next → 19](#c19) · [Contents](../DECK.md#contents)
+
+### <a id="c19"></a>19. Earth's Tax System
+
+[← 18](#c18) · [Next → 20](#c20) · [Contents](../DECK.md#contents)
+
+Your Minister, Boey Shu Min, has been flawless since the night you saw her rise into the sky. At 3.12am, her official page posts: "Notes, continued. Earth's tax system is very efficient. We have nothing like it at home." It's gone by seven. Her press office calls it a draft of a post on the public service's efficiency, and wants a figure for the finished version from every division.
+
+**A. Send your division's best figure.**
+
+> The finished post goes up at noon: your figure, a photo of her at a service counter, and no mention of Earth. In the comments, several people ask after Earth.
+
+**B. Decline. You won't help explain it away.**
+
+> The press office finds a figure elsewhere. Its thank-you email goes to every division that helped, which is every division but yours.
+
+**C. Send one, and ask what she meant by "Earth".**
+
+> Your figure is used. Your question is answered by phone, not in writing: "Earth" was a typing error. Nobody can say for what.
+
+<details><summary>This card varies (1 part)</summary>
+
+Each time the card is shown, it is put together from one option of each part. The text above is one of them. Under an option, the words it brings to the rest of the card.
+
+**Part 1**
+
+- you, by name
+- you first, since she rates you so highly
+- every division *(shown above)*
+
+</details>
+
+[← 18](#c18) · [Next → 20](#c20) · [Contents](../DECK.md#contents)
+
+### <a id="c20"></a>20. Your Species' Kopi
+
+[← 19](#c19) · [Next → 21](#c21) · [Contents](../DECK.md#contents)
+
+Boey Shu Min, the Minister you once saw taken up into the sky, has given nobody cause for concern since. At 6am her official page posts a photo of a cup of kopi, the coffee every coffeeshop sells, captioned "Your species' finest achievement." By eight it's gone: a staff member's post, says her press office, from the wrong account. At lunch, colleagues ask what you make of it. They have all noticed she avoids you.
+
+**A. Say you know nothing about it.**
+
+> They take your word for it, more or less, and move on to guessing which staff member it was. Nobody owns up.
+
+**B. Tell them what you saw that night.**
+
+> You tell them about the car park and the saucer. They listen politely, and then somebody asks, gently, whether you've taken any leave this year.
+
+**C. Say it does look like very good kopi.**
+
+> Everyone agrees, and the talk turns to which coffeeshop it is. By Friday it has a queue, and you have been twice.
+
+<details><summary>This card varies (1 part)</summary>
+
+Each time the card is shown, it is put together from one option of each part. The text above is one of them. Under an option, the words it brings to the rest of the card.
+
+**Part 1**
+
+- At lunch, the colleagues who were so kind about your report ask what, exactly, you saw.
+- At lunch, colleagues ask what you know. Everyone knows she rates you.
+- At lunch, fellow Members ask what you make of it. Everyone knows she avoids you, and in politics that has started to look like good judgement.
+- At lunch, colleagues ask what you make of it. They have all noticed she avoids you. *(shown above)*
+
+</details>
+
+[← 19](#c19) · [Next → 21](#c21) · [Contents](../DECK.md#contents)
+
+### <a id="c21"></a>21. However They Arrived
+
+[← 20](#c20) · [Next → 22](#c22) · [Contents](../DECK.md#contents)
+
+It's years since you saw your Minister, Boey Shu Min, carried off by a flying saucer, and she has been an excellent Minister since. At 4am her official page posts: "Be kind to all visitors, however they arrived." By seven it's gone, and her press office wants a clarification out by noon. Ms Chua, your reporting officer, asks you to draft it. Ms Chua says the Minister's office has asked that your name not appear on it.
+
+**A. Call it a tourism campaign, posted early.**
+
+> Your clarification goes out at 11.40am: the post was part of a campaign for the tourist season, published early. The Tourism Board learns of its campaign from the news.
+
+**B. Say plainly that she posted it, then took it down.**
+
+> Your draft is two sentences long, and entirely true. The press office thanks you, and puts out a campaign for the tourist season instead. Your draft is kept on file.
+
+**C. Write a real welcome, to visitors however they arrive.**
+
+> Your clarification welcomes every visitor to Singapore, "however they arrive: by air, by sea or by land". The press office adds "by cruise ship". It reads as though she meant that all along.
+
+<details><summary>This card varies (1 part)</summary>
+
+Each time the card is shown, it is put together from one option of each part. The text above is one of them. Under an option, the words it brings to the rest of the card.
+
+**Part 1**
+
+- Ms Chua says the Minister's office asked for you by name.
+- Ms Chua says the Minister's office asked for you, since you know the Minister's mind.
+- Ms Chua says the Minister's office has asked that your name not appear on it. *(shown above)*
+
+</details>
+
+[← 20](#c20) · [Next → 22](#c22) · [Contents](../DECK.md#contents)
+
+### <a id="c22"></a>22. However They Arrived
+
+[← 21](#c21) · [Next → 23](#c23) · [Contents](../DECK.md#contents)
+
+It's years since you saw Boey Shu Min, then your Minister, carried off by a flying saucer. At 4am her official page posts: "Be kind to all visitors, however they arrived." By seven it's gone, and the party's media team asks every Member to share the clarification: a campaign for the tourist season, posted early. You're one name on a long list.
+
+**A. Share it, word for word.**
+
+> Your page carries the same three lines as every other Member's. Under yours, a resident asks: "However they arrived?"
+
+**B. Share it, with a welcome of your own.**
+
+> Your welcome names the hawker centres and the bus routes near you. It's shared more widely than the clarification, which the media team notices.
+
+**C. Don't share it.**
+
+> Nobody mentions it. The media team's spreadsheet of who shared it has a column for you, and it stays empty.
+
+<details><summary>This card varies (1 part)</summary>
+
+Each time the card is shown, it is put together from one option of each part. The text above is one of them. Under an option, the words it brings to the rest of the card.
+
+**Part 1**
+
+- Her office has asked the media team to make sure you do.
+- Yours is wanted first: you're known as one of hers.
+- You're one name on a long list, but residents in your ward have read that she avoids you, and like you for it.
+- You're one name on a long list. *(shown above)*
+
+</details>
+
+[← 21](#c21) · [Next → 23](#c23) · [Contents](../DECK.md#contents)
+
+### <a id="c23"></a>23. Not Long Now
+
+[← 22](#c22) · [Next → 24](#c24) · [Contents](../DECK.md#contents)
+
+Years have passed since you watched your Minister, Boey Shu Min, rise into a flying saucer. At 2am her official page posts a photo of the night sky, captioned "Not long now." By morning it's gone: a stargazing photo, says her press office, captioned too early. Then Rajesh Nair, a correspondent who covers the public service for the Straits Times, calls you. Rajesh Nair has heard that the Minister won't stay in a room with you, and wants to know why. Officers need approval to talk to the press.
+
+**A. Refer the call to the press office.**
+
+> The press office thanks you, and sends Rajesh Nair a statement about stargazing. The story runs as two lines, under a photo of the moon.
+
+**B. Tell Rajesh Nair what you saw, off the record.**
+
+> Rajesh Nair hears you out, thanks you, and doesn't run it: one source, years late, and a flying saucer. But your name is now in a notebook, beside Boey Shu Min's.
+
+**C. Give nothing away. Ask what else Rajesh Nair has heard.**
+
+> Quite a lot: four emails about a light over Marina Bay last night, and one from a fisherman who saw something rise from the water. You say thank you, and nothing else.
+
+<details><summary>This card varies (1 part)</summary>
+
+Each time the card is shown, it is put together from one option of each part. The text above is one of them. Under an option, the words it brings to the rest of the card.
+
+**Part 1**
+
+- Someone has told Rajesh Nair about your report.
+- Rajesh Nair has heard that the Minister thinks highly of you.
+- Rajesh Nair has heard that the Minister won't stay in a room with you, and wants to know why. *(shown above)*
+
+</details>
+
+[← 22](#c22) · [Next → 24](#c24) · [Contents](../DECK.md#contents)
+
+### <a id="c24"></a>24. Not Long Now
+
+[← 23](#c23) · [Next → 25](#c25) · [Contents](../DECK.md#contents)
+
+Since entering Parliament, you've rarely thought about the night your old Minister, Boey Shu Min, was lifted into a flying saucer. Then, at 2am, her page shares a picture of stars over Marina Bay with three words: "Not long now." Her press office takes it down by breakfast, blaming a stargazing event's caption, approved too early. Rajesh Nair, the Straits Times journalist, wants your comment. Rajesh Nair is calling every Member who once served in her ministry.
+
+**A. Decline to comment.**
+
+> Rajesh Nair writes that you declined to comment, which in this story reads as a comment. The party is grateful anyway.
+
+**B. Say, on the record, what you saw that night.**
+
+> It runs on page six, under "MP recalls 'a light'". The party asks you, kindly, to recall nothing further.
+
+**C. Say Boey Shu Min has your full confidence.**
+
+> Your quote runs beside the stargazing statement. It's the only one, so it reads as though you were asked to give it.
+
+<details><summary>This card varies (1 part)</summary>
+
+Each time the card is shown, it is put together from one option of each part. The text above is one of them. Under an option, the words it brings to the rest of the card.
+
+**Part 1**
+
+- Rajesh Nair has learned that, as an officer, you once filed a report about Boey Shu Min.
+- Rajesh Nair has been told that Boey Shu Min made your career.
+- Rajesh Nair is calling every Member who once served in her ministry, and starts with the one she is known to avoid.
+- Rajesh Nair is calling every Member who once served in her ministry. *(shown above)*
+
+</details>
+
+[← 23](#c23) · [Next → 25](#c25) · [Contents](../DECK.md#contents)
+
+### <a id="c25"></a>25. The Second Report
+
+[← 24](#c24) · [Next → 26](#c26) · [Contents](../DECK.md#contents)
+
+Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a flying saucer, and nobody believed you. This year Xin Yi, working late, saw it too: the Minister and a big packed suitcase, rising from the same car park. Xin Yi reported it, naming you as the first. Two reports make a pattern, says the security officer, and a pattern needs a working group. Meanwhile, colleagues are very kind to Xin Yi.
+
+**A. Join Xin Yi on the working group.**
+
+> The working group meets monthly, and finds that the Minister's diary says "in transit" on both nights. Nobody is kind to either of you any more. You're simply right.
+
+**B. Tell Xin Yi, privately, that it gets better.**
+
+> It does. You take Xin Yi for coffee every Friday until the kindness wears off, which takes most of a year.
+
+**C. Say you were mistaken, all those years ago.**
+
+> Your report is marked withdrawn. Xin Yi's is now the only one, which isn't a pattern, so there is no working group. Xin Yi stops sitting with you at lunch.
+
+[← 24](#c24) · [Next → 26](#c26) · [Contents](../DECK.md#contents)
+
+### <a id="c26"></a>26. The Second Report
+
+[← 25](#c25) · [Next → 27](#c27) · [Contents](../DECK.md#contents)
+
+Before you entered politics, you once reported seeing your Minister at the time, Boey Shu Min, carried up into a flying saucer. Nobody believed it. Now Xin Yi, working late, has seen the same thing from the same car park, suitcase and all, and filed a report that names yours as the first. With two reports there is a pattern, and the working group set up to study it wants your evidence.
+
+**A. Give evidence, and say what you saw.**
+
+> You give evidence for forty minutes. The working group records that a Member of Parliament has confirmed the pattern. Xin Yi sends you a thumbs-up, and nothing else.
+
+**B. Send a written statement, and say no more.**
+
+> Your statement is one paragraph long and confirms everything. You say nothing in public, and the party is grateful for that.
+
+**C. Decline. It was a long time ago.**
+
+> The working group notes that you declined. Xin Yi's report is now the only one, which isn't a pattern, and the group is stood down.
+
+[← 25](#c25) · [Next → 27](#c27) · [Contents](../DECK.md#contents)
+
+### <a id="c27"></a>27. Snow
+
+[← 26](#c26) · [Next → 28](#c28) · [Contents](../DECK.md#contents)
 
 At 3pm it snows in Toa Payoh for forty minutes. The National Environment Agency confirms that it was snow, and can't say why. Your division's business continuity plan, which says how the office keeps working through an emergency, covers haze, floods and a pandemic. Ms Chua, your reporting officer, wants a section on snow by 5pm, in case it happens again, and you're writing it.
 
@@ -1030,11 +1329,11 @@ At 3pm it snows in Toa Payoh for forty minutes. The National Environment Agency 
 
 > Ms Chua asks whether you can guarantee that. You can't. Someone else writes the snow section, and lists your view in it, under Risks.
 
-[← 16](#c16) · [Next → 18](#c18) · [Contents](../DECK.md#contents)
+[← 26](#c26) · [Next → 28](#c28) · [Contents](../DECK.md#contents)
 
-### <a id="c18"></a>18. And Team
+### <a id="c28"></a>28. And Team
 
-[← 17](#c17) · [Next → 19](#c19) · [Contents](../DECK.md#contents)
+[← 27](#c27) · [Next → 29](#c29) · [Contents](../DECK.md#contents)
 
 You and Xin Yi, who joined the service with you, spent a month on a deck. Your reporting officer, Ms Chua, sends it up to the Deputy Secretary under her own name only. The Deputy Secretary's reply thanks Ms Chua "and team". Xin Yi forwards it to you without comment, clearly annoyed.
 
@@ -1071,11 +1370,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 17](#c17) · [Next → 19](#c19) · [Contents](../DECK.md#contents)
+[← 27](#c27) · [Next → 29](#c29) · [Contents](../DECK.md#contents)
 
-### <a id="c19"></a>19. Approved Leave
+### <a id="c29"></a>29. Approved Leave
 
-[← 18](#c18) · [Next → 20](#c20) · [Contents](../DECK.md#contents)
+[← 28](#c28) · [Next → 30](#c30) · [Contents](../DECK.md#contents)
 
 In January, Ms Chua, your reporting officer, approved your two weeks' leave for September, and you booked your flights. Now Ms Chua has moved the division's Work Plan Seminar, where each section presents next year's plans, into the second week of your leave. This year's theme is Staff Well-being, and nobody else can present your section's slide.
 
@@ -1149,11 +1448,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 18](#c18) · [Next → 20](#c20) · [Contents](../DECK.md#contents)
+[← 28](#c28) · [Next → 30](#c30) · [Contents](../DECK.md#contents)
 
-### <a id="c20"></a>20. Copied In
+### <a id="c30"></a>30. Copied In
 
-[← 19](#c19) · [Next → 21](#c21) · [Contents](../DECK.md#contents)
+[← 29](#c29) · [Next → 31](#c31) · [Contents](../DECK.md#contents)
 
 An email arrives that clearly wasn't meant for you. You're copied in, below a Deputy Secretary and two directors, on a confidential plan for next year's restructuring, marked Official (Closed): for the people it is addressed to, and nobody else. Paragraph two abolishes the job of Xin Yi, who joined the service with you. Xin Yi doesn't know yet.
 
@@ -1161,13 +1460,13 @@ An email arrives that clearly wasn't meant for you. You're copied in, below a De
 
 > Over kopi, without mentioning any email, you tell Xin Yi it might be a good time to look around. Xin Yi applies for two other jobs in the division that week, gets one, and never asks how you knew.
 
-↳ Can lead to: [21. Face Down](#c21)
+↳ Can lead to: [31. Face Down](#c31)
 
 **B. Say nothing. It wasn't sent to you to share.**
 
 > The restructuring is announced six weeks later at a townhall. Xin Yi hears it with everyone else and is moved to another job in the division, in good order. You say all the right things, a little too smoothly for someone hearing it for the first time.
 
-↳ Can lead to: [22. The Cc Line](#c22)
+↳ Can lead to: [32. The Cc Line](#c32)
 
 **C. Tell the sender you were copied in by mistake.**
 
@@ -1188,11 +1487,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 19](#c19) · [Next → 21](#c21) · [Contents](../DECK.md#contents)
+[← 29](#c29) · [Next → 31](#c31) · [Contents](../DECK.md#contents)
 
-### <a id="c21"></a>21. Face Down
+### <a id="c31"></a>31. Face Down
 
-[← 20](#c20) · [Next → 22](#c22) · [Contents](../DECK.md#contents)
+[← 30](#c30) · [Next → 32](#c32) · [Contents](../DECK.md#contents)
 
 A few years ago, you quietly warned Xin Yi, who joined the service with you, that a restructuring would abolish her job. Today Xin Yi closes your door and puts a printout on your desk, face down: next year's postings, which nobody is meant to see until April. "You told me once," Xin Yi says.
 
@@ -1204,11 +1503,11 @@ A few years ago, you quietly warned Xin Yi, who joined the service with you, tha
 
 > Xin Yi takes the printout back without a word, and looks almost relieved. In April the postings come out. Yours is somewhere difficult, and you are the only person on the floor who is surprised.
 
-[← 20](#c20) · [Next → 22](#c22) · [Contents](../DECK.md#contents)
+[← 30](#c30) · [Next → 32](#c32) · [Contents](../DECK.md#contents)
 
-### <a id="c22"></a>22. The Cc Line
+### <a id="c32"></a>32. The Cc Line
 
-[← 21](#c21) · [Next → 23](#c23) · [Contents](../DECK.md#contents)
+[← 31](#c31) · [Next → 33](#c33) · [Contents](../DECK.md#contents)
 
 Years ago you were copied in, by mistake, on a confidential plan that abolished the job of Xin Yi, and you said nothing. Now Xin Yi, looking for something else in an old file, has found that email. It is dated six weeks before anyone told her, and your name is on the cc line.
 
@@ -1220,11 +1519,11 @@ Years ago you were copied in, by mistake, on a confidential plan that abolished 
 
 > Xin Yi agrees that it was. The conversation is short and entirely correct. For years afterwards Xin Yi is perfectly cordial to you in every meeting, and says nothing to you at all in the lift.
 
-[← 21](#c21) · [Next → 23](#c23) · [Contents](../DECK.md#contents)
+[← 31](#c31) · [Next → 33](#c33) · [Contents](../DECK.md#contents)
 
-### <a id="c23"></a>23. For the Record
+### <a id="c33"></a>33. For the Record
 
-[← 22](#c22) · [Next → 24](#c24) · [Contents](../DECK.md#contents)
+[← 32](#c32) · [Next → 34](#c34) · [Contents](../DECK.md#contents)
 
 You're taking the minutes at a meeting between the Permanent Secretary and three agencies about a project that is already behind. Forty minutes in, the Permanent Secretary says, calmly, that the project will not meet its target this year or next. Nobody wants that in writing: if it's in the minutes, someone will one day ask why nobody acted on it. You write the draft, and the Permanent Secretary's office approves it before it goes out.
 
@@ -1232,7 +1531,7 @@ You're taking the minutes at a meeting between the Permanent Secretary and three
 
 > The minutes go out with the line in paragraph six, word for word. Nobody replies. Two weeks later you're taken off the meeting's mailing list, and then off the meeting.
 
-↳ Can lead to: [24. The Note-Taker](#c24)
+↳ Can lead to: [34. The Note-Taker](#c34)
 
 **B. Leave it out, and minute only the decisions.**
 
@@ -1242,7 +1541,7 @@ You're taking the minutes at a meeting between the Permanent Secretary and three
 
 > The draft comes back with the line crossed out and initialled. The crossed-out draft is filed next to the final minutes, as drafts always are, where anyone who looks can read both.
 
-↳ Can lead to: [24. The Note-Taker](#c24)
+↳ Can lead to: [34. The Note-Taker](#c34)
 
 <details><summary>This card varies (2 parts)</summary>
 
@@ -1266,11 +1565,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 22](#c22) · [Next → 24](#c24) · [Contents](../DECK.md#contents)
+[← 32](#c32) · [Next → 34](#c34) · [Contents](../DECK.md#contents)
 
-### <a id="c24"></a>24. The Note-Taker
+### <a id="c34"></a>34. The Note-Taker
 
-[← 23](#c23) · [Next → 25](#c25) · [Contents](../DECK.md#contents)
+[← 33](#c33) · [Next → 35](#c35) · [Contents](../DECK.md#contents)
 
 Years ago, in your first years in the service, you took the minutes at a meeting where someone senior warned, calmly, that a project would go wrong. It did. The Auditor-General's Office is now auditing it, and the only written record of that warning is your minutes, with the warning in paragraph six. The auditors would like to speak to whoever took the notes.
 
@@ -1293,11 +1592,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 23](#c23) · [Next → 25](#c25) · [Contents](../DECK.md#contents)
+[← 33](#c33) · [Next → 35](#c35) · [Contents](../DECK.md#contents)
 
-### <a id="c25"></a>25. Friday, 5pm
+### <a id="c35"></a>35. Friday, 5pm
 
-[← 24](#c24) · [Next → 26](#c26) · [Contents](../DECK.md#contents)
+[← 34](#c34) · [Next → 36](#c36) · [Contents](../DECK.md#contents)
 
 The office pantry fridge is cleared at 5pm every Friday, under paragraph 3 of an office circular: anything past its date goes in the bin. This quarter, the clearing is your job. Behind the milk sits a yoghurt, eleven days past its date, labelled with the Permanent Secretary's name.
 
@@ -1334,11 +1633,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 24](#c24) · [Next → 26](#c26) · [Contents](../DECK.md#contents)
+[← 34](#c34) · [Next → 36](#c36) · [Contents](../DECK.md#contents)
 
-### <a id="c26"></a>26. The Internet Laptop
+### <a id="c36"></a>36. The Internet Laptop
 
-[← 25](#c25) · [Next → 27](#c27) · [Contents](../DECK.md#contents)
+[← 35](#c35) · [Next → 37](#c37) · [Contents](../DECK.md#contents)
 
 A vendor has sent the tender clarifications as a download link, and Ms Chua, your reporting officer, wants it by 2pm. Your work laptop can't open the link: government work laptops are kept off the internet, for security. The division's one internet laptop is booked until 3pm. There is a quick way round this, and it breaks the IT rules.
 
@@ -1366,11 +1665,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 25](#c25) · [Next → 27](#c27) · [Contents](../DECK.md#contents)
+[← 35](#c35) · [Next → 37](#c37) · [Contents](../DECK.md#contents)
 
-### <a id="c27"></a>27. The Lucky Draw
+### <a id="c37"></a>37. The Lucky Draw
 
-[← 26](#c26) · [Next → 28](#c28) · [Contents](../DECK.md#contents)
+[← 36](#c36) · [Next → 38](#c38) · [Contents](../DECK.md#contents)
 
 You missed the meeting where the committee for the division's D&D, its yearly dinner-and-dance, was picked, so you're on it. The theme is Old Hollywood. The top prize is a 65-inch television, and the box for the lucky draw holds every name in the division, directors included.
 
@@ -1404,11 +1703,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 26](#c26) · [Next → 28](#c28) · [Contents](../DECK.md#contents)
+[← 36](#c36) · [Next → 38](#c38) · [Contents](../DECK.md#contents)
 
-### <a id="c28"></a>28. One Word
+### <a id="c38"></a>38. One Word
 
-[← 27](#c27) · [Next → 29](#c29) · [Contents](../DECK.md#contents)
+[← 37](#c37) · [Next → 39](#c39) · [Contents](../DECK.md#contents)
 
 You spent a week on a minute paper for Ms Chua, your reporting officer: a memo on why the renewal form asks for the same date three times, asking for a decision. It runs to four pages, and it's the first paper of yours meant to go further upstairs. It comes back the next morning with one word in the margin, in Ms Chua's handwriting: "Discuss."
 
@@ -1459,11 +1758,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 27](#c27) · [Next → 29](#c29) · [Contents](../DECK.md#contents)
+[← 37](#c37) · [Next → 39](#c39) · [Contents](../DECK.md#contents)
 
-### <a id="c29"></a>29. Station 4
+### <a id="c39"></a>39. Station 4
 
-[← 28](#c28) · [Next → 30](#c30) · [Contents](../DECK.md#contents)
+[← 38](#c38) · [Next → 40](#c40) · [Contents](../DECK.md#contents)
 
 The Minister is visiting your division, and the visit is planned to the minute. You're at Station 4, beside a poster of the new scheme, from 10:42 to 10:45am. Your reporting officer, Ms Chua, is two steps behind the Minister. At 10:43 the Minister turns to you and asks whether it actually works. It doesn't, yet.
 
@@ -1491,11 +1790,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 28](#c28) · [Next → 30](#c30) · [Contents](../DECK.md#contents)
+[← 38](#c38) · [Next → 40](#c40) · [Contents](../DECK.md#contents)
 
-### <a id="c30"></a>30. Eyes and Ears
+### <a id="c40"></a>40. Eyes and Ears
 
-[← 29](#c29) · [Next → 31](#c31) · [Contents](../DECK.md#contents)
+[← 39](#c39) · [Next → 41](#c41) · [Contents](../DECK.md#contents)
 
 An officer from your intake, who left for a bank long ago, has come back as a deputy director in your division. Over lunch in the first week, your old friend asks one favour: to hear from you, now and then, what the floor really thinks. Nobody on the floor would tell a deputy director.
 
@@ -1511,11 +1810,11 @@ An officer from your intake, who left for a bank long ago, has come back as a de
 
 > Your friend takes it well, and you have lunch every month, about everything else. The deputy director's first restructuring lands badly, in two ways you could have predicted, and did, to yourself.
 
-[← 29](#c29) · [Next → 31](#c31) · [Contents](../DECK.md#contents)
+[← 39](#c39) · [Next → 41](#c41) · [Contents](../DECK.md#contents)
 
-### <a id="c31"></a>31. Hot Desk
+### <a id="c41"></a>41. Hot Desk
 
-[← 30](#c30) · [Next → 32](#c32) · [Contents](../DECK.md#contents)
+[← 40](#c40) · [Next → 42](#c42) · [Contents](../DECK.md#contents)
 
 Your floor is moving to hot-desking: nobody keeps a desk, and everyone books one each morning on an app. You have had the same desk by the window for years, with three plants, a drawer only you can find things in, and a calendar from a vendor that has since closed. The move is on Monday.
 
@@ -1531,11 +1830,11 @@ Your floor is moving to hot-desking: nobody keeps a desk, and everyone books one
 
 > The exemption is granted for "operational reasons", and yours becomes the only fixed desk on the floor. Visitors on tours of the floor assume you must be senior. The people who work beside you know you are not.
 
-[← 30](#c30) · [Next → 32](#c32) · [Contents](../DECK.md#contents)
+[← 40](#c40) · [Next → 42](#c42) · [Contents](../DECK.md#contents)
 
-### <a id="c32"></a>32. In Your Own Words
+### <a id="c42"></a>42. In Your Own Words
 
-[← 31](#c31) · [Next → 33](#c33) · [Contents](../DECK.md#contents)
+[← 41](#c41) · [Next → 43](#c43) · [Contents](../DECK.md#contents)
 
 Ms Chua, your reporting officer, has eleven appraisals to write this month, and asks you to draft your own: "You know your work better than I do." It will very likely be signed unchanged, and read by people who have never met you. The form has one box for achievements, and another for areas to develop.
 
@@ -1551,11 +1850,11 @@ Ms Chua, your reporting officer, has eleven appraisals to write this month, and 
 
 > Nobody notices, including Ms Chua, which tells you something about last year's too. The form is signed unchanged, and filed behind last year's, which it matches line for line.
 
-[← 31](#c31) · [Next → 33](#c33) · [Contents](../DECK.md#contents)
+[← 41](#c41) · [Next → 43](#c43) · [Contents](../DECK.md#contents)
 
-### <a id="c33"></a>33. The Box on Page Three
+### <a id="c43"></a>43. The Box on Page Three
 
-[← 32](#c32) · [Next → 34](#c34) · [Contents](../DECK.md#contents)
+[← 42](#c42) · [Next → 44](#c44) · [Contents](../DECK.md#contents)
 
 A new team is redesigning one of the ministry's forms, and wants to remove a box on page three that asks applicants to confirm their address a second time. Nobody remembers why it is there. You do. It was added after a mistake, years ago, and the mistake was yours.
 
@@ -1571,11 +1870,11 @@ A new team is redesigning one of the ministry's forms, and wants to remove a box
 
 > You write one page, dated and signed, and put it in the file. The box goes. Years later, an officer looking into why the mistake has happened again finds your page, and quotes it in full.
 
-[← 32](#c32) · [Next → 34](#c34) · [Contents](../DECK.md#contents)
+[← 42](#c42) · [Next → 44](#c44) · [Contents](../DECK.md#contents)
 
-### <a id="c34"></a>34. Polling Day
+### <a id="c44"></a>44. Polling Day
 
-[← 33](#c33) · [Next → 35](#c35) · [Contents](../DECK.md#contents)
+[← 43](#c43) · [Next → 45](#c45) · [Contents](../DECK.md#contents)
 
 At every election for years, you have worked at a polling station. At 7:52pm a voter shows the digital identity card on the Singpass app, and the presiding officer, new to the job, asks for the plastic one. The voter lives twenty minutes away, and polls close at eight. The app is accepted. Only you seem to know.
 
@@ -1591,11 +1890,11 @@ At every election for years, you have worked at a polling station. At 7:52pm a v
 
 > The voter leaves at a run. The doors close at eight, and at 8:11pm the voter is back at the gate, card in hand. Nobody else saw, and the report says the station closed on time, which it did.
 
-[← 33](#c33) · [Next → 35](#c35) · [Contents](../DECK.md#contents)
+[← 43](#c43) · [Next → 45](#c45) · [Contents](../DECK.md#contents)
 
-### <a id="c35"></a>35. The Profile
+### <a id="c45"></a>45. The Profile
 
-[← 34](#c34) · [Next → 36](#c36) · [Contents](../DECK.md#contents)
+[← 44](#c44) · [Next → 46](#c46) · [Contents](../DECK.md#contents)
 
 The ministry's newsletter wants to profile you, as one of its longest-serving officers. The communications team has already drafted the headline, "A Passion for Service", and twelve questions. Question nine asks what keeps you going. The honest answer is the people on your floor, and the dental plan.
 
@@ -1611,11 +1910,11 @@ The ministry's newsletter wants to profile you, as one of its longest-serving of
 
 > The newsletter profiles someone else, under the same headline, with the same twelve questions. You read it at your desk. Question nine is answered "the mission", and you find, to your surprise, that you believe it.
 
-[← 34](#c34) · [Next → 36](#c36) · [Contents](../DECK.md#contents)
+[← 44](#c44) · [Next → 46](#c46) · [Contents](../DECK.md#contents)
 
-### <a id="c36"></a>36. The Regular
+### <a id="c46"></a>46. The Regular
 
-[← 35](#c35) · [Next → 37](#c37) · [Contents](../DECK.md#contents)
+[← 45](#c45) · [Next → 47](#c47) · [Contents](../DECK.md#contents)
 
 For years, the same caller has rung your section's hotline on the first Monday of every month, about a refund the rules say cannot be paid. You know the case by heart. A new rule now lets officers approve exceptions, with a director's signature, and every exception is audited. Nobody has used it yet.
 
@@ -1631,11 +1930,11 @@ For years, the same caller has rung your section's hotline on the first Monday o
 
 > The caller writes in exactly as you explained. The request reaches your desk a fortnight later through the front door, and goes up for a director's signature like any other. It takes two months longer, and is beyond reproach.
 
-[← 35](#c35) · [Next → 37](#c37) · [Contents](../DECK.md#contents)
+[← 45](#c45) · [Next → 47](#c47) · [Contents](../DECK.md#contents)
 
-### <a id="c37"></a>37. The Software
+### <a id="c47"></a>47. The Software
 
-[← 36](#c36) · [Next → 38](#c38) · [Contents](../DECK.md#contents)
+[← 46](#c46) · [Next → 48](#c48) · [Contents](../DECK.md#contents)
 
 The ministry is buying software to do what your section does by hand: checking claims against four databases. The vendor needs someone to write down every step, so the software can learn the job. Ms Chua, your reporting officer, has put your name forward, as the officer who knows it best. You do, including the steps nobody ever wrote down.
 
@@ -1651,11 +1950,11 @@ The ministry is buying software to do what your section does by hand: checking c
 
 > The project team takes you, its only member who has done the job. You learn more in a year than in many before it. Two colleagues moved to other work by the software stop saying hello at the pantry.
 
-[← 36](#c36) · [Next → 38](#c38) · [Contents](../DECK.md#contents)
+[← 46](#c46) · [Next → 48](#c48) · [Contents](../DECK.md#contents)
 
-### <a id="c38"></a>38. A Word You Have Not Heard Before
+### <a id="c48"></a>48. A Word You Have Not Heard Before
 
-[← 37](#c37) · [Next → 39](#c39) · [Contents](../DECK.md#contents)
+[← 47](#c47) · [Next → 49](#c49) · [Contents](../DECK.md#contents)
 
 Over lunch, a friend who works in HR mentions your "CEP" as if you'd know the term. You don't, so your friend explains: Currently Estimated Potential, HR's private estimate of the highest grade you'll ever reach, set early in your career and never told to you. Your friend has clearly seen yours, and changes the subject to the new chicken rice stall downstairs.
 
@@ -1663,17 +1962,17 @@ Over lunch, a friend who works in HR mentions your "CEP" as if you'd know the te
 
 > Your friend won't tell you the grade, and says only, very quietly, that it's reviewed every year and can still move. You think about it in the lift, and on most days after that.
 
-↳ Can lead to: [39. Farewell Drinks](#c39)
+↳ Can lead to: [49. Farewell Drinks](#c49)
 
 **B. Let it go.**
 
 > You let it go, and try the chicken rice. You'll hear the term again years from now, in a sentence that begins "Well, realistically".
 
-[← 37](#c37) · [Next → 39](#c39) · [Contents](../DECK.md#contents)
+[← 47](#c47) · [Next → 49](#c49) · [Contents](../DECK.md#contents)
 
-### <a id="c39"></a>39. Farewell Drinks
+### <a id="c49"></a>49. Farewell Drinks
 
-[← 38](#c38) · [Next → 40](#c40) · [Contents](../DECK.md#contents)
+[← 48](#c48) · [Next → 50](#c50) · [Contents](../DECK.md#contents)
 
 Your friend in HR, the one who explained your CEP to you over lunch years ago, is leaving the service. At the farewell drinks, on a second glass, your friend tells you how yours gets reviewed: every year, by people who mostly read your last two postings, and who like officers who have run something, not just written about it. So far, yours have all been papers.
 
@@ -1685,11 +1984,11 @@ Your friend in HR, the one who explained your CEP to you over lunch years ago, i
 
 > You talk about your friend's new job instead: a bank, at a salary that had to be read twice.
 
-[← 38](#c38) · [Next → 40](#c40) · [Contents](../DECK.md#contents)
+[← 48](#c48) · [Next → 50](#c50) · [Contents](../DECK.md#contents)
 
-### <a id="c40"></a>40. The Inconvenient Figure
+### <a id="c50"></a>50. The Inconvenient Figure
 
-[← 39](#c39) · [Next → 41](#c41) · [Contents](../DECK.md#contents)
+[← 49](#c49) · [Next → 51](#c51) · [Contents](../DECK.md#contents)
 
 Your division's flagship scheme is reviewed every quarter by the Permanent Secretary, and this quarter's figure is bad: only 31% of the people eligible for it are using it. A number that low gets a scheme cut. Ms Chua, your reporting officer, asks, mildly, whether it might be "presented as a range rather than a number".
 
@@ -1697,23 +1996,23 @@ Your division's flagship scheme is reviewed every quarter by the Permanent Secre
 
 > The slide says "30-60%", and nobody at the review asks how a range that wide was arrived at. Ms Chua never mentions it again, which you decide to take as approval. The real figure stays in your files.
 
-↳ Can lead to: [41. The Figure, Again](#c41) · [Everything Surfaced](09-endings.md#end-scandal)
+↳ Can lead to: [51. The Figure, Again](#c51) · [Everything Surfaced](09-endings.md#end-scandal)
 
 **B. Present the number.**
 
 > You present 31%. The review runs forty minutes over, and the scheme is sent for a full redesign with your slide attached. Ms Chua doesn't invite you to the next meeting, or the four after that.
 
-↳ Can lead to: [42. The Figure, Cited](#c42)
+↳ Can lead to: [52. The Figure, Cited](#c52)
 
 **C. Present the number, with a recovery plan attached.** *(not every career is offered this one)*
 
 > You give up the weekend for eleven slides nobody asked for: the number, and how to fix it. Ms Chua presents them as her own. The scheme survives. So do you.
 
-[← 39](#c39) · [Next → 41](#c41) · [Contents](../DECK.md#contents)
+[← 49](#c49) · [Next → 51](#c51) · [Contents](../DECK.md#contents)
 
-### <a id="c41"></a>41. The Figure, Again
+### <a id="c51"></a>51. The Figure, Again
 
-[← 40](#c40) · [Next → 42](#c42) · [Contents](../DECK.md#contents)
+[← 50](#c50) · [Next → 52](#c52) · [Contents](../DECK.md#contents)
 
 Years ago, when your scheme's usage came in at 31%, you put it on a slide as "30-60%". Now the Auditor-General's Office is auditing the scheme and has asked for the original figure for that year. The request is routine and addressed to Ms Lim Wei Ling, and the auditors will compare it with the slide.
 
@@ -1738,11 +2037,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 40](#c40) · [Next → 42](#c42) · [Contents](../DECK.md#contents)
+[← 50](#c50) · [Next → 52](#c52) · [Contents](../DECK.md#contents)
 
-### <a id="c42"></a>42. The Figure, Cited
+### <a id="c52"></a>52. The Figure, Cited
 
-[← 41](#c41) · [Next → 43](#c43) · [Contents](../DECK.md#contents)
+[← 51](#c51) · [Next → 53](#c53) · [Contents](../DECK.md#contents)
 
 A review of why your old scheme struggled has just cited a figure: 31%. That was its real usage rate, the one you put on a slide years ago instead of the range you'd been asked for. Someone senior asks, carefully, who presented it.
 
@@ -1767,11 +2066,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 41](#c41) · [Next → 43](#c43) · [Contents](../DECK.md#contents)
+[← 51](#c51) · [Next → 53](#c53) · [Contents](../DECK.md#contents)
 
-### <a id="c43"></a>43. 11:40pm, Level 9
+### <a id="c53"></a>53. 11:40pm, Level 9
 
-[← 42](#c42) · [Next → 44](#c44) · [Contents](../DECK.md#contents)
+[← 52](#c52) · [Next → 54](#c54) · [Contents](../DECK.md#contents)
 
 It's 11:40pm, and your paper has come back for the fourth time with comments from the people who have to clear it. It's due upstairs in the morning. Faizal, a Management Executive who reports to you, is still at his desk, waiting to see what you decide. The dinner you promised to be home for was at eight.
 
@@ -1855,11 +2154,11 @@ At 10:50pm your paper comes back from upstairs with one comment: "Can we tighten
 
 </details>
 
-[← 42](#c42) · [Next → 44](#c44) · [Contents](../DECK.md#contents)
+[← 52](#c52) · [Next → 54](#c54) · [Contents](../DECK.md#contents)
 
-### <a id="c44"></a>44. The Classification
+### <a id="c54"></a>54. The Classification
 
-[← 43](#c43) · [Next → 45](#c45) · [Contents](../DECK.md#contents)
+[← 53](#c53) · [Next → 55](#c55) · [Contents](../DECK.md#contents)
 
 HDB, the government's housing board, is planning a new estate, and you have to decide which of its projects are Standard, Plus or Prime. The label decides how long owners must live there and what they repay when they sell. You have a map, a set of criteria, and three neighbouring blocks that are, in every way a resident would notice, identical.
 
@@ -1875,11 +2174,11 @@ HDB, the government's housing board, is planning a new estate, and you have to d
 
 > Your note asks a question nobody wanted asked. It's answered eventually, in a way you can live with, by someone more senior who takes the credit for the question.
 
-[← 43](#c43) · [Next → 45](#c45) · [Contents](../DECK.md#contents)
+[← 53](#c53) · [Next → 55](#c55) · [Contents](../DECK.md#contents)
 
-### <a id="c45"></a>45. Ninety-Nine Years
+### <a id="c55"></a>55. Ninety-Nine Years
 
-[← 44](#c44) · [Next → 46](#c46) · [Contents](../DECK.md#contents)
+[← 54](#c54) · [Next → 56](#c56) · [Contents](../DECK.md#contents)
 
 A residents' committee from a 1970s estate built by HDB, the government's housing board, has written in. Their leases are ninety-nine years long and about half used up. The letter is polite, well researched, and asks one question: what happens to their flats when the lease runs out. The answer is in the policy. They've read the policy.
 
@@ -1895,11 +2194,11 @@ A residents' committee from a 1970s estate built by HDB, the government's housin
 
 > They come, all eleven of them, with a folder. Their folder is better organised than yours.
 
-[← 44](#c44) · [Next → 46](#c46) · [Contents](../DECK.md#contents)
+[← 54](#c54) · [Next → 56](#c56) · [Contents](../DECK.md#contents)
 
-### <a id="c46"></a>46. The Banding
+### <a id="c56"></a>56. The Banding
 
-[← 45](#c45) · [Next → 47](#c47) · [Contents](../DECK.md#contents)
+[← 55](#c55) · [Next → 57](#c57) · [Contents](../DECK.md#contents)
 
 Under Full Subject-Based Banding, students in the same class take different subjects at different levels, so a school's timetable no longer fits inside its classes. A principal has written to the ministry to say the school's teachers are now, in effect, air traffic controllers. The ministry's reply is yours to decide.
 
@@ -1915,11 +2214,11 @@ Under Full Subject-Based Banding, students in the same class take different subj
 
 > You spend a week with a timetable on a wall the size of a car park, and come back with three changes that fit on one page. They work.
 
-[← 45](#c45) · [Next → 47](#c47) · [Contents](../DECK.md#contents)
+[← 55](#c55) · [Next → 57](#c57) · [Contents](../DECK.md#contents)
 
-### <a id="c47"></a>47. The Merger List
+### <a id="c57"></a>57. The Merger List
 
-[← 46](#c46) · [Next → 48](#c48) · [Contents](../DECK.md#contents)
+[← 56](#c56) · [Next → 58](#c58) · [Contents](../DECK.md#contents)
 
 Fewer children are born every year, so some schools must merge, and you're drawing up the list. Every school on it will lose its name or its building. Every school on it also has an alumni association, a school song, and a former principal who is still alive and writes letters.
 
@@ -1935,11 +2234,11 @@ Fewer children are born every year, so some schools must merge, and you're drawi
 
 > The names are hyphenated. The school songs aren't, and the first combined assembly is, by every account, loud.
 
-[← 46](#c46) · [Next → 48](#c48) · [Contents](../DECK.md#contents)
+[← 56](#c56) · [Next → 58](#c58) · [Contents](../DECK.md#contents)
 
-### <a id="c48"></a>48. The Bed Crunch
+### <a id="c58"></a>58. The Bed Crunch
 
-[← 47](#c47) · [Next → 49](#c49) · [Contents](../DECK.md#contents)
+[← 57](#c57) · [Next → 59](#c59) · [Contents](../DECK.md#contents)
 
 Public hospitals are over ninety per cent full, and emergency waiting times are in the papers again. You've been asked for a paper on transitional care: beds outside the hospitals for patients who are well enough to leave but have nowhere ready to go. The Minister wants something to announce.
 
@@ -1955,11 +2254,11 @@ Public hospitals are over ninety per cent full, and emergency waiting times are 
 
 > It's the right answer and the less announceable one. The hospitals like it. The press office asks whether there's a version with a number in it.
 
-[← 47](#c47) · [Next → 49](#c49) · [Contents](../DECK.md#contents)
+[← 57](#c57) · [Next → 59](#c59) · [Contents](../DECK.md#contents)
 
-### <a id="c49"></a>49. The Premiums
+### <a id="c59"></a>59. The Premiums
 
-[← 48](#c48) · [Next → 50](#c50) · [Contents](../DECK.md#contents)
+[← 58](#c58) · [Next → 60](#c60) · [Contents](../DECK.md#contents)
 
 Premiums for MediShield Life, the national health insurance everyone pays into, are going up, and the actuaries have done the sums: the increase is what it is. Your job is to decide how it's put to the public: all at once or over several years, and with how much subsidy shown beside it. Whatever you choose, someone will add it up.
 
@@ -1975,11 +2274,11 @@ Premiums for MediShield Life, the national health insurance everyone pays into, 
 
 > Two days in a room with the actuaries. You come out understanding medical cost inflation better than anyone in your division, and slightly worried about it.
 
-[← 48](#c48) · [Next → 50](#c50) · [Contents](../DECK.md#contents)
+[← 58](#c58) · [Next → 60](#c60) · [Contents](../DECK.md#contents)
 
-### <a id="c50"></a>50. The Dormitory Standards
+### <a id="c60"></a>60. The Dormitory Standards
 
-[← 49](#c49) · [Next → 51](#c51) · [Contents](../DECK.md#contents)
+[← 59](#c59) · [Next → 61](#c61) · [Contents](../DECK.md#contents)
 
 Your division has drafted new standards for migrant worker dormitories: fewer beds to a room, more toilets, better ventilation, more space per worker. The dormitory operators have written to say they'll pass the cost on to employers. The employers have written to say they won't absorb it. You decide what holds.
 
@@ -1995,11 +2294,11 @@ Your division has drafted new standards for migrant worker dormitories: fewer be
 
 > Everyone is relieved, including you, briefly. New dormitories meet the new standard. The old ones keep to the old one, for longer than anyone said they would.
 
-[← 49](#c49) · [Next → 51](#c51) · [Contents](../DECK.md#contents)
+[← 59](#c59) · [Next → 61](#c61) · [Contents](../DECK.md#contents)
 
-### <a id="c51"></a>51. The Wage Ladder
+### <a id="c61"></a>61. The Wage Ladder
 
-[← 50](#c50) · [Next → 52](#c52) · [Contents](../DECK.md#contents)
+[← 60](#c60) · [Next → 62](#c62) · [Contents](../DECK.md#contents)
 
 Your division is extending the Progressive Wage Model, the ladder of minimum wages tied to skills, to another sector. The union wants the ladder steeper, so pay rises faster. The employers want it longer, so pay rises slowly. The workers in the sector, when you finally meet some, want to know when.
 
@@ -2015,11 +2314,11 @@ Your division is extending the Progressive Wage Model, the ladder of minimum wag
 
 > They choose the steeper one and ask for it sooner. You write that down exactly, and it goes into the paper sent upstairs. Workers' own words rarely get that far.
 
-[← 50](#c50) · [Next → 52](#c52) · [Contents](../DECK.md#contents)
+[← 60](#c60) · [Next → 62](#c62) · [Contents](../DECK.md#contents)
 
-### <a id="c52"></a>52. Meet-the-People Session
+### <a id="c62"></a>62. Meet-the-People Session
 
-[← 51](#c51) · [Next → 53](#c53) · [Contents](../DECK.md#contents)
+[← 61](#c61) · [Next → 63](#c63) · [Contents](../DECK.md#contents)
 
 An old school friend volunteers at her MP's Meet-the-People Session: every Tuesday night, residents bring their problems to their Member of Parliament, and volunteers write their appeal letters to agencies. She asks you to help. Most of the cases were decided correctly the first time. The sessions are run by the party's branch in the ward, and civil servants are meant to stay out of politics. She says lots of people help in their own time.
 
@@ -2027,7 +2326,7 @@ An old school friend volunteers at her MP's Meet-the-People Session: every Tuesd
 
 > Fifty-one Tuesdays, in your own T-shirt, never the branch one. You learn more about how policy lands than in all your years of writing it. One appeal you argue properly, for a woman everyone said was hopeless, wins. The MP notices.
 
-↳ Can lead to: [53. The Block Party](#c53)
+↳ Can lead to: [63. The Block Party](#c63)
 
 **B. Go a few times, enough to be seen.**
 
@@ -2037,11 +2336,11 @@ An old school friend volunteers at her MP's Meet-the-People Session: every Tuesd
 
 > Your friend says she completely understands. The branch secretary, standing next to her, also understands, and will remember your name if it ever comes up.
 
-[← 51](#c51) · [Next → 53](#c53) · [Contents](../DECK.md#contents)
+[← 61](#c61) · [Next → 63](#c63) · [Contents](../DECK.md#contents)
 
-### <a id="c53"></a>53. The Block Party
+### <a id="c63"></a>63. The Block Party
 
-[← 52](#c52) · [Next → 54](#c54) · [Contents](../DECK.md#contents)
+[← 62](#c62) · [Next → 64](#c64) · [Contents](../DECK.md#contents)
 
 Years ago, before politics, you spent a year of Tuesday nights writing appeal letters at a Meet-the-People Session. One letter, for a woman everyone said was hopeless, won. Now, at a block party in your ward, that woman is introducing you to forty of her neighbours. She has told them the story, in detail, more than once.
 
@@ -2053,11 +2352,11 @@ Years ago, before politics, you spent a year of Tuesday nights writing appeal le
 
 > This is true. She tells them you are being modest, and now the modesty is part of the story too. It goes round the block faster than you can walk it.
 
-[← 52](#c52) · [Next → 54](#c54) · [Contents](../DECK.md#contents)
+[← 62](#c62) · [Next → 64](#c64) · [Contents](../DECK.md#contents)
 
-### <a id="c54"></a>54. The New Reporting Officer
+### <a id="c64"></a>64. The New Reporting Officer
 
-[← 53](#c53) · [Next → 55](#c55) · [Contents](../DECK.md#contents)
+[← 63](#c63) · [Next → 65](#c65) · [Contents](../DECK.md#contents)
 
 Ms Chua, your reporting officer until now, has been given more to run, so you now report to someone new from another ministry, who knows nothing about you and has brought two trusted people along. The newcomer will write your appraisals. Meanwhile the division's hardest file, a review the Permanent Secretary wants by December, has nobody on it.
 
@@ -2181,11 +2480,11 @@ Ms Chua, your reporting officer until now, is too busy to supervise you, so you'
 
 </details>
 
-[← 53](#c53) · [Next → 55](#c55) · [Contents](../DECK.md#contents)
+[← 63](#c63) · [Next → 65](#c65) · [Contents](../DECK.md#contents)
 
-### <a id="c55"></a>55. The Ask
+### <a id="c65"></a>65. The Ask
 
-[← 54](#c54) · [Next → 56](#c56) · [Contents](../DECK.md#contents)
+[← 64](#c64) · [Next → 66](#c66) · [Contents](../DECK.md#contents)
 
 Xin Yi, who joined the service with you, stops you by the lift and asks you for a favour: a reference for a two-year posting to the Budget Division. Saying yes takes time. Saying no will be remembered. Your own paper is due the same week, and isn't finished.
 
@@ -2262,11 +2561,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 54](#c54) · [Next → 56](#c56) · [Contents](../DECK.md#contents)
+[← 64](#c64) · [Next → 66](#c66) · [Contents](../DECK.md#contents)
 
-### <a id="c56"></a>56. The Seventh Month
+### <a id="c66"></a>66. The Seventh Month
 
-[← 55](#c55) · [Next → 57](#c57) · [Contents](../DECK.md#contents)
+[← 65](#c65) · [Next → 67](#c67) · [Contents](../DECK.md#contents)
 
 During the seventh month of the lunar calendar, when the spirits of the dead are said to roam, your division's online feedback form receives a compliment from a resident who passed away in 1974. It's courteous and specific. The service standard says every member of the public gets a reply within three working days. You must also rule whether his rating counts in the satisfaction survey, where your division's score is one decimal place short of its target.
 
@@ -2282,11 +2581,11 @@ During the seventh month of the lunar calendar, when the spirits of the dead are
 
 > The working group meets in the eighth month, by which time he has stopped writing in, and recommends reviewing the question in the seventh month next year. It is reviewed then, and every year after.
 
-[← 55](#c55) · [Next → 57](#c57) · [Contents](../DECK.md#contents)
+[← 65](#c65) · [Next → 67](#c67) · [Contents](../DECK.md#contents)
 
-### <a id="c57"></a>57. Standard Operating Procedure
+### <a id="c67"></a>67. Standard Operating Procedure
 
-[← 56](#c56) · [Next → 58](02-service.md#c58) · [Contents](../DECK.md#contents)
+[← 66](#c66) · [Next → 68](02-service.md#c68) · [Contents](../DECK.md#contents)
 
 Faizal, who reports to you, has just joined your section, and has been handed the official standard operating procedures: forty-one pages, last updated two reorganisations ago, and mostly out of date. You keep your own version on one page of a notebook. It's the reason you get things done faster than anyone else on the floor.
 
@@ -2302,6 +2601,6 @@ Faizal, who reports to you, has just joined your section, and has been handed th
 
 > It takes three months of evenings. The division adopts your new procedures, with your name in the version history and nowhere else, and Faizal learns them in a weekend.
 
-[← 56](#c56) · [Next → 58](02-service.md#c58) · [Contents](../DECK.md#contents)
+[← 66](#c66) · [Next → 68](02-service.md#c68) · [Contents](../DECK.md#contents)
 
-[Contents](../DECK.md#contents) · [The service →](02-service.md#c58)
+[Contents](../DECK.md#contents) · [The service →](02-service.md#c68)

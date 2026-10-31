@@ -230,8 +230,9 @@ function step(run, choiceId) {
     bonusMissed: !!r.trace.bonusMissed, probation: !!r.trace.probation,
     rivalContest: r.trace.rivalContest || null,   // a batchmate card decided on the spot
     ranking: r.trace.ranking || null,             // the ranking exercise: one slot, two promotable officers
-    // base: what the stats alone were worth (no luck, no "noted" choice, no hidden witness)
-    appraisal: r.trace.appraisal ? { ...r.trace.appraisal, base: r.trace.appraisal.score - r.trace.appraisal.noise - (r.trace.appraisal.noted || 0) - (r.trace.appraisal.witness || 0) } : null,
+    // base: what the stats alone were worth (no luck, no "noted" choice, no hidden witness, no
+    // lasting mark from an earlier choice)
+    appraisal: r.trace.appraisal ? { ...r.trace.appraisal, base: r.trace.appraisal.score - r.trace.appraisal.noise - (r.trace.appraisal.noted || 0) - (r.trace.appraisal.witness || 0) - (r.trace.appraisal.lasting || 0) } : null,
     witnesses: r.trace.witness || null,           // who noticed this choice: type, appraisal points, when it lands
     promotion: promo ? { ...promo, why: promotionWhy(promo, r.trace.appraisal, pre) } : null,
     log: r.log.map(l => l.kind),

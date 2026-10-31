@@ -560,6 +560,49 @@ ok('story chains: Declassified names each story once, a bond can be extended, an
   assert.ok(L.indexOf('The test') > L.indexOf('Exposure'), 'story lines come after Exposure');
 });
 
+ok('a lasting mark moves this year\'s appraisal and the next ones, unannounced, and lapses on the other ladder', () => {
+  const E = build.engine;
+  const card = (id, choice) => ({ id, title: 'T', body: 'B', choices: [{ text: 'Go.', outcome: 'Gone.', ...choice }, { text: 'Stay.', outcome: 'Stayed.' }] });
+  const C = { ...build.content, events: build.content.events.concat([card('__t_mark', { lasting: { appraisal: -5, years: 3 } }), card('__t_plain', {})]) };
+  const S = H.newRun('grad', 7, { build }).S;
+  const play = (state, id) => E.advance(C, { ...state, currentEvent: id }, 0);
+  const first = play(S, '__t_mark');
+  assert.deepStrictEqual(first.state.lasting, [{ card: '__t_mark', mod: -5, from: S.year, until: S.year + 2, service: true }]);
+  assert.strictEqual(first.trace.appraisal.lasting, -5, 'it counts at this year\'s appraisal');
+  assert.ok(!first.log.some(l => l.kind === 'noted'), 'nothing on screen says it will count');
+  // the same year without it: the same dice, a score exactly the mark higher
+  const twin = play(S, '__t_plain');
+  assert.ok(Math.abs(twin.trace.appraisal.score - first.trace.appraisal.score - 5) < 1e-9);
+  // the next years, until it has counted three times; then never again
+  const at = year => play({ ...first.state, year, age: S.age + (year - S.year), currentEvent: null }, '__t_plain').trace.appraisal.lasting;
+  assert.strictEqual(at(S.year + 1), -5);
+  assert.strictEqual(at(S.year + 2), -5);
+  assert.strictEqual(at(S.year + 3), undefined);
+  // a year of it that falls in politics lapses: the service's view does not follow you there
+  const pol = play({ ...first.state, year: S.year + 1, rank: 8 }, '__t_plain');
+  assert.strictEqual(pol.trace.appraisal.lasting, undefined);
+  assert.strictEqual(pol.state.lasting[0].lapsed, S.year + 1);
+});
+
+ok('a later line comes once, on the review page of the year it falls due, and lapses where its requirements fail', () => {
+  const E = build.engine;
+  const later = [{ inYears: 0, text: 'Said this year.' }, { inYears: 2, text: 'Said in two years.', requires: { maxRank: 7 } },
+    { inYears: 1, text: 'Only in politics.', requires: { minRank: 8 } }];
+  const card = (id, choice) => ({ id, title: 'T', body: 'B', choices: [{ text: 'Go.', outcome: 'Gone.', ...choice }, { text: 'Stay.', outcome: 'Stayed.' }] });
+  const C = { ...build.content, events: build.content.events.concat([card('__t_later', { later }), card('__t_plain', {})]) };
+  const S = H.newRun('grad', 9, { build }).S;
+  const notes = log => log.filter(l => l.about === 'later').map(l => l.text);
+  const first = E.advance(C, { ...S, currentEvent: '__t_later' }, 0);
+  assert.strictEqual(notes(first.log)[0], 'Said this year.', 'inYears 0 is this year\'s review page');
+  assert.ok(first.log.some(l => l.kind === 'appraisal') && first.log.findIndex(l => l.kind === 'appraisal') < first.log.findIndex(l => l.about === 'later'), 'it comes after the grade');
+  const second = E.advance(C, { ...first.state, year: Math.max(first.state.year, S.year + 2), age: S.age + 2, currentEvent: '__t_plain' }, 0);
+  const all = notes(first.log).concat(notes(second.log));
+  assert.deepStrictEqual(all.filter(t => t === 'Said this year.').length, 1);
+  assert.deepStrictEqual(all.filter(t => t === 'Said in two years.').length, 1);
+  assert.ok(!all.includes('Only in politics.'), 'a line whose requirements fail lapses unsaid');
+  assert.deepStrictEqual(second.state.later, [], 'nothing waits once it has fallen due');
+});
+
 ok('a cast member\'s aTitle takes "a" or "an" by how the title is said, initialisms by their first letter', () => {
   const E = build.engine, C = build.content;
   for (const [w, a] of [['MP', 'an'], ['RC chairman', 'an'], ['SMC', 'an'], ['HDB flat', 'an'], ['FAQ', 'an'], ['CCC chairman', 'a'], ['CCMC chairman', 'a'],

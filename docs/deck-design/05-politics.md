@@ -1,14 +1,14 @@
 # The deck, with the mechanics: Politics
 
-[← The crossing](04-crossing.md#c143) · [Contents](../DECK-DESIGN.md#contents) · [Cabinet →](06-cabinet.md#c180)
+[← The crossing](04-crossing.md#c153) · [Contents](../DECK-DESIGN.md#contents) · [Cabinet →](06-cabinet.md#c190)
 
 ## <a id="stage-politics"></a>Politics
 
-Member of Parliament to Senior Parliamentary Secretary. Cards 150 to 179.
+Member of Parliament to Senior Parliamentary Secretary. Cards 160 to 189.
 
-### <a id="c150"></a>150. The Maiden Speech
+### <a id="c160"></a>160. The Maiden Speech
 
-[← 149](04-crossing.md#c149) · [Next → 151](#c151) · [Contents](../DECK-DESIGN.md#contents)
+[← 159](04-crossing.md#c159) · [Next → 161](#c161) · [Contents](../DECK-DESIGN.md#contents)
 
 `maiden_speech` · events.json · once a career · weight 11 · opens a chapter: comes before anything scheduled
 
@@ -27,7 +27,7 @@ Your maiden speech, your first in Parliament, falls on day three of the debate o
 > It is quoted, and for once the quoted line is the one you meant: "If a form needs a helpline, the form is the problem." A Minister you have never met sends a note: "That needed saying." The Whip sends a longer note, about what government backbenchers say in public.
 
 - Hidden: Competence up (+4), Standing down (−5), Reputation up a lot (+12), Integrity up a lot (+8), this year's appraisal marked down (−6, said on screen).
-- ↳ Can lead to: [151. Hansard](#c151), in four years, 40%
+- ↳ Can lead to: [161. Hansard](#c161), in four years, 40%
 
 **C. The draft praising the policy you used to doubt.**
 
@@ -83,15 +83,15 @@ Your maiden speech, your first in the House, as Members call Parliament, is next
 
 </details>
 
-[← 149](04-crossing.md#c149) · [Next → 151](#c151) · [Contents](../DECK-DESIGN.md#contents)
+[← 159](04-crossing.md#c159) · [Next → 161](#c161) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c151"></a>151. Hansard
+### <a id="c161"></a>161. Hansard
 
-[← 150](#c150) · [Next → 152](#c152) · [Contents](../DECK-DESIGN.md#contents)
+[← 160](#c160) · [Next → 162](#c162) · [Contents](../DECK-DESIGN.md#contents)
 
 `speech_vindicated` · events.json · once a career
 
-**Who sees it:** only as a follow-up to [150. The Maiden Speech](#c150) (B: in four years, 40%); [173. The Parliamentary Question](#c173) (A: in three years, 30%).
+**Who sees it:** only as a follow-up to [160. The Maiden Speech](#c160) (B: in four years, 40%); [183. The Parliamentary Question](#c183) (A: in three years, 30%).
 
 Years ago you stood up in the House and said plainly what you thought, when a safer version was ready in front of you. Your words went into Hansard, word for word. This week a newer Member quotes them in a speech, beginning "As Ms Lim Wei Ling said in this House". Someone on the front bench, where the ministers sit, looks up the original, and so does the press gallery.
 
@@ -112,11 +112,11 @@ Years ago you stood up in the House and said plainly what you thought, when a sa
 - Your fellow Members of Parliament (politics, `fellowMPs`), 40%: A helps (+1) · B hurts (−1).
 - The press gallery (politics, `pressGallery`), 35%: A hurts (−1) · B helps (+1).
 
-[← 150](#c150) · [Next → 152](#c152) · [Contents](../DECK-DESIGN.md#contents)
+[← 160](#c160) · [Next → 162](#c162) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c152"></a>152. Tuesday Night
+### <a id="c162"></a>162. Tuesday Night
 
-[← 151](#c151) · [Next → 153](#c153) · [Contents](../DECK-DESIGN.md#contents)
+[← 161](#c161) · [Next → 163](#c163) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_mps_night` · events.json · can come back · weight 13
 
@@ -229,11 +229,11 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 </details>
 
-[← 151](#c151) · [Next → 153](#c153) · [Contents](../DECK-DESIGN.md#contents)
+[← 161](#c161) · [Next → 163](#c163) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c153"></a>153. The Ribbon
+### <a id="c163"></a>163. The Ribbon
 
-[← 152](#c152) · [Next → 154](#c154) · [Contents](../DECK-DESIGN.md#contents)
+[← 162](#c162) · [Next → 164](#c164) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_ribbon` · events.json · once a career · weight 6
 
@@ -317,11 +317,11 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 152](#c152) · [Next → 154](#c154) · [Contents](../DECK-DESIGN.md#contents)
+[← 162](#c162) · [Next → 164](#c164) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c154"></a>154. The Walkabout
+### <a id="c164"></a>164. The Walkabout
 
-[← 153](#c153) · [Next → 155](#c155) · [Contents](../DECK-DESIGN.md#contents)
+[← 163](#c163) · [Next → 165](#c165) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_walkabout` · events.json · can come back · weight 11
 
@@ -434,11 +434,11 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 </details>
 
-[← 153](#c153) · [Next → 155](#c155) · [Contents](../DECK-DESIGN.md#contents)
+[← 163](#c163) · [Next → 165](#c165) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c155"></a>155. The Town Council
+### <a id="c165"></a>165. The Town Council
 
-[← 154](#c154) · [Next → 156](#c156) · [Contents](../DECK-DESIGN.md#contents)
+[← 164](#c164) · [Next → 166](#c166) · [Contents](../DECK-DESIGN.md#contents)
 
 `town_council` · events.json · once a career · weight 9
 
@@ -515,15 +515,15 @@ At 8am you are on the fourteenth floor of Blk 77, because the lift is not. A res
 
 </details>
 
-[← 154](#c154) · [Next → 156](#c156) · [Contents](../DECK-DESIGN.md#contents)
+[← 164](#c164) · [Next → 166](#c166) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c156"></a>156. The Void Deck
+### <a id="c166"></a>166. The Void Deck
 
-[← 155](#c155) · [Next → 157](#c157) · [Contents](../DECK-DESIGN.md#contents)
+[← 165](#c165) · [Next → 167](#c167) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_dragon` · packs/strange.json · once a career · weight 1.4
 
-**Who sees it:** Member of Parliament to Senior Parliamentary Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#157](#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191) (`strange_met`).
+**Who sees it:** Member of Parliament to Senior Parliamentary Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#167](#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
 A dragon has nested in the void deck of Block 412, the open space beneath the flats, in your ward. Residents find it quiet, and warm. The housing board, the Town Council and the parks board have each written to say it is another agency's problem. Now the dragon has queued at your weekly Meet-the-People Session, where residents come for help with agencies: it wants your help to appeal to IRAS, the tax authority, for the lower property tax rate that owner-occupiers pay.
 
@@ -532,36 +532,36 @@ A dragon has nested in the void deck of Block 412, the open space beneath the fl
 > You seek IRAS's kind consideration, in the usual form. IRAS replies that owner-occupier rates need an individual who owns the property. The dragon accepts this. Dragons understand ownership.
 
 - Hidden: Standing down (−3), Reputation up (+5), Integrity up a little (+2).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#157](#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#167](#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 
 **B. Table it at the Town Council. Void decks are common property.**
 
 > The Town Council agrees that the void deck is common property and the dragon is not. It is minuted under any other matters, where it stays for four years.
 
 - Hidden: Competence up (+4), Standing up a little (+2), Reputation down a little (−2).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#157](#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#167](#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 
 **C. Call a site visit with all three agencies.**
 
 > Officers from all three arrive at 9am, each with a folder showing it is the others'. The dragon hears them out, then asks which of them handles the lighting.
 
 - Hidden: Competence up (+3), Standing down (−4), Reputation up (+3).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#157](#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#167](#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - Your party branch and its volunteers (politics, `branch`), 40%: A helps (+2) · B hurts (−1) · C hurts (−1).
 - The press gallery (politics, `pressGallery`), 30%: A helps (+1) · B hurts (−2) · C helps (+1).
 
-[← 155](#c155) · [Next → 157](#c157) · [Contents](../DECK-DESIGN.md#contents)
+[← 165](#c165) · [Next → 167](#c167) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c157"></a>157. As Meant
+### <a id="c167"></a>167. As Meant
 
-[← 156](#c156) · [Next → 158](#c158) · [Contents](../DECK-DESIGN.md#contents)
+[← 166](#c166) · [Next → 168](#c168) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_hansard` · packs/strange.json · once a career · weight 1.1
 
-**Who sees it:** Member of Parliament to Senior Minister of State; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](#c156), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191) (`strange_met`).
+**Who sees it:** Member of Parliament to Senior Minister of State; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](#c166), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
 For one sitting day, the draft Hansard has recorded what each Member meant instead of what they said. Your speech that day, as printed, says what you really think. Members have the usual 72 hours to ask for corrections, and the editors already have ninety-one requests. Whether you ask or not, people will notice.
 
@@ -570,38 +570,38 @@ For one sitting day, the draft Hansard has recorded what each Member meant inste
 > The editors may only fix typing and grammar, so changes of substance go to the Speaker. The Speaker reads your request, then your speech, and restores what you said.
 
 - Hidden: Standing up (+4), Integrity down (−4).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](#c156), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](#c166), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 
 **B. Let it stand. You meant it.**
 
 > Yours is one of four speeches published as meant. A newspaper reprints it in full, under "What Ms Lim meant". Several colleagues tell you privately that they meant the same, and asked for corrections.
 
 - Hidden: Standing down (−5), Reputation up (+4), Integrity up (+5).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](#c156), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](#c166), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 
 **C. Ask that both versions be published.**
 
 > The request goes to the Standing Orders Committee, which keeps Parliament's rule book. It considers the request at length and finds, on reflection, that it would rather not.
 
 - Hidden: Competence up (+3), Standing down a little (−2), Reputation up a little (+2).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](#c156), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](#c166), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - The Whip's office (politics, `whips`), 45%: A helps (+2) · B hurts (−3) · C helps (+1).
 - The press gallery (politics, `pressGallery`), 45%: A hurts (−2) · B helps (+3) · C hurts (−1).
 
-[← 156](#c156) · [Next → 158](#c158) · [Contents](../DECK-DESIGN.md#contents)
+[← 166](#c166) · [Next → 168](#c168) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c158"></a>158. The Adjournment Motion
+### <a id="c168"></a>168. The Adjournment Motion
 
-[← 157](#c157) · [Next → 159](#c159) · [Contents](../DECK-DESIGN.md#contents)
+[← 167](#c167) · [Next → 169](#c169) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_adjournment` · packs/backbench.json · once a career · weight 7
 
 **Who sees it:** Member of Parliament to Senior Parliamentary Secretary.
 
-**Shares a decision** (`house_brief`) (Parliamentary Secretary and up) with [#173](#c173), [#160](#c160), [#120](02-service.md#c120), [#176](#c176): a career sees only one.
+**Shares a decision** (`house_brief`) (Parliamentary Secretary and up) with [#183](#c183), [#170](#c170), [#130](02-service.md#c130), [#186](#c186): a career sees only one.
 
 You have won the ballot for tonight's adjournment motion: twenty minutes, at the end of a long sitting, to raise the bus service your ward lost in the last route review, and a minister must reply. Backbenchers rarely get to pick the subject. Rajesh Nair, the only reporter left in the press gallery, has brought a sandwich.
 
@@ -678,11 +678,11 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 157](#c157) · [Next → 159](#c159) · [Contents](../DECK-DESIGN.md#contents)
+[← 167](#c167) · [Next → 169](#c169) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c159"></a>159. The Arrears
+### <a id="c169"></a>169. The Arrears
 
-[← 158](#c158) · [Next → 160](#c160) · [Contents](../DECK-DESIGN.md#contents)
+[← 168](#c168) · [Next → 170](#c170) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_arrears` · packs/backbench.json · once a career · weight 6
 
@@ -728,17 +728,17 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 158](#c158) · [Next → 160](#c160) · [Contents](../DECK-DESIGN.md#contents)
+[← 168](#c168) · [Next → 170](#c170) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c160"></a>160. One Hundred Dollars
+### <a id="c170"></a>170. One Hundred Dollars
 
-[← 159](#c159) · [Next → 161](#c161) · [Contents](../DECK-DESIGN.md#contents)
+[← 169](#c169) · [Next → 171](#c171) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_cut` · packs/backbench.json · once a career · weight 6
 
 **Who sees it:** Member of Parliament to Senior Parliamentary Secretary.
 
-**Shares a decision** (`house_brief`) (Parliamentary Secretary and up) with [#173](#c173), [#158](#c158), [#120](02-service.md#c120), [#176](#c176): a career sees only one.
+**Shares a decision** (`house_brief`) (Parliamentary Secretary and up) with [#183](#c183), [#168](#c168), [#130](02-service.md#c130), [#186](#c186): a career sees only one.
 
 At the Committee of Supply, the yearly debate on each ministry's budget, you want a few minutes to speak. To get them, you have filed a motion to cut the Ministry of Transport's budget by \$100, as Parliament's rules allow. Nobody expects the cut to pass. Your ward wants a sheltered walkway to the train station. You also have a harder question.
 
@@ -806,17 +806,17 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 159](#c159) · [Next → 161](#c161) · [Contents](../DECK-DESIGN.md#contents)
+[← 169](#c169) · [Next → 171](#c171) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c161"></a>161. The Briefing
+### <a id="c171"></a>171. The Briefing
 
-[← 160](#c160) · [Next → 162](#c162) · [Contents](../DECK-DESIGN.md#contents)
+[← 170](#c170) · [Next → 172](#c172) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_gpc` · packs/backbench.json · once a career · weight 6
 
 **Who sees it:** Member of Parliament to Senior Parliamentary Secretary; the peer (Xin Yi) is Director and up.
 
-**Shares a decision** (`bad_number`) with [#40](01-first-years.md#c40), [#49](01-first-years.md#c49), [#82](02-service.md#c82): a career sees only one.
+**Shares a decision** (`bad_number`) with [#50](01-first-years.md#c50), [#59](01-first-years.md#c59), [#92](02-service.md#c92): a career sees only one.
 
 Your GPC, the party's committee of backbench MPs who shadow one ministry, is briefed, behind closed doors, on a scheme you worked on in the service. The briefer is Xin Yi, a Senior Director now, who started in the service the same week as you. Slide nine leaves out the scheme's weakest number, just as you would have. Asking about it would put Xin Yi on the spot in front of MPs.
 
@@ -874,11 +874,11 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 160](#c160) · [Next → 162](#c162) · [Contents](../DECK-DESIGN.md#contents)
+[← 170](#c170) · [Next → 172](#c172) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c162"></a>162. The Letter Writer
+### <a id="c172"></a>172. The Letter Writer
 
-[← 161](#c161) · [Next → 163](#c163) · [Contents](../DECK-DESIGN.md#contents)
+[← 171](#c171) · [Next → 173](#c173) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_letters` · packs/backbench.json · once a career · weight 6
 
@@ -931,15 +931,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 161](#c161) · [Next → 163](#c163) · [Contents](../DECK-DESIGN.md#contents)
+[← 171](#c171) · [Next → 173](#c173) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c163"></a>163. The Next Ward
+### <a id="c173"></a>173. The Next Ward
 
-[← 162](#c162) · [Next → 164](#c164) · [Contents](../DECK-DESIGN.md#contents)
+[← 172](#c172) · [Next → 174](#c174) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_next_ward` · packs/backbench.json · once a career · weight 6
 
-**Who sees it:** Member of Parliament to Senior Parliamentary Secretary; after [146. The General Election](04-crossing.md#c146), A, B (`seat_grc`).
+**Who sees it:** Member of Parliament to Senior Parliamentary Secretary; after [156. The General Election](04-crossing.md#c156), A, B (`seat_grc`).
 
 Your GRC is split into wards, one for each MP on the team. Blk 438 is in Benedict's ward, but its residents come to your Meet-the-People Session, your weekly evening for residents' problems, because your volunteers write faster. Benedict, a fellow MP, has mentioned this at the team's breakfast, as a joke, twice. It sounds less like a joke the second time.
 
@@ -981,15 +981,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 162](#c162) · [Next → 164](#c164) · [Contents](../DECK-DESIGN.md#contents)
+[← 172](#c172) · [Next → 174](#c174) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c164"></a>164. The Other Candidate
+### <a id="c174"></a>174. The Other Candidate
 
-[← 163](#c163) · [Next → 165](#c165) · [Contents](../DECK-DESIGN.md#contents)
+[← 173](#c173) · [Next → 175](#c175) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_other_candidate` · packs/backbench.json · once a career · weight 6
 
-**Who sees it:** Member of Parliament to Senior Parliamentary Secretary; after [146. The General Election](04-crossing.md#c146), C (`seat_smc`).
+**Who sees it:** Member of Parliament to Senior Parliamentary Secretary; after [156. The General Election](04-crossing.md#c156), C (`seat_smc`).
 
 The opposition candidate you beat at the last election has not stopped campaigning in your ward: Sundays at the wet market, in a party T-shirt, shaking hands you shook first. If residents warm to them, your single seat is at risk next time. The chairman of your party branch, which runs the party's volunteers in your ward, would like you out there too, in your own T-shirt.
 
@@ -1029,11 +1029,11 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 163](#c163) · [Next → 165](#c165) · [Contents](../DECK-DESIGN.md#contents)
+[← 173](#c173) · [Next → 175](#c175) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c165"></a>165. Not at This Block
+### <a id="c175"></a>175. Not at This Block
 
-[← 164](#c164) · [Next → 166](#c166) · [Contents](../DECK-DESIGN.md#contents)
+[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_site` · packs/backbench.json · once a career · weight 6
 
@@ -1089,11 +1089,11 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 164](#c164) · [Next → 166](#c166) · [Contents](../DECK-DESIGN.md#contents)
+[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c166"></a>166. The Whip's Text
+### <a id="c176"></a>176. The Whip's Text
 
-[← 165](#c165) · [Next → 167](#c167) · [Contents](../DECK-DESIGN.md#contents)
+[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_whip` · packs/backbench.json · once a career · weight 7
 
@@ -1167,17 +1167,17 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 165](#c165) · [Next → 167](#c167) · [Contents](../DECK-DESIGN.md#contents)
+[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c167"></a>167. The Board Seat
+### <a id="c177"></a>177. The Board Seat
 
-[← 166](#c166) · [Next → 168](#c168) · [Contents](../DECK-DESIGN.md#contents)
+[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK-DESIGN.md#contents)
 
 `headhunter_political` · events.json · once a career · weight 7
 
-**Who sees it:** Parliamentary Secretary to Minister (MR3); not while the scholarship bond runs; after [146. The General Election](04-crossing.md#c146), C (`seat_smc`).
+**Who sees it:** Parliamentary Secretary to Minister (MR3); not while the scholarship bond runs; after [156. The General Election](04-crossing.md#c156), C (`seat_smc`).
 
-**Shares a decision** (`private_offer`) with [#63](02-service.md#c63), [#128](02-service.md#c128), [#168](#c168), [#91](02-service.md#c91): a career sees only one.
+**Shares a decision** (`private_offer`) with [#73](02-service.md#c73), [#138](02-service.md#c138), [#178](#c178), [#101](02-service.md#c101): a career sees only one.
 
 A conglomerate wants someone who has worked close to Cabinet on its board: four meetings a year, and a fee its annual report puts in a footnote. The chairman knows you hold office, and asks only whether you might be free "after". Saying yes means leaving politics at the next election.
 
@@ -1267,17 +1267,17 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 166](#c166) · [Next → 168](#c168) · [Contents](../DECK-DESIGN.md#contents)
+[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c168"></a>168. The Board Seat
+### <a id="c178"></a>178. The Board Seat
 
-[← 167](#c167) · [Next → 169](#c169) · [Contents](../DECK-DESIGN.md#contents)
+[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK-DESIGN.md#contents)
 
 `headhunter_political_grc` · events.json · once a career · weight 7
 
-**Who sees it:** Parliamentary Secretary to Minister (MR3); not while the scholarship bond runs; after [146. The General Election](04-crossing.md#c146), A, B (`seat_grc`).
+**Who sees it:** Parliamentary Secretary to Minister (MR3); not while the scholarship bond runs; after [156. The General Election](04-crossing.md#c156), A, B (`seat_grc`).
 
-**Shares a decision** (`private_offer`) with [#63](02-service.md#c63), [#128](02-service.md#c128), [#167](#c167), [#91](02-service.md#c91): a career sees only one.
+**Shares a decision** (`private_offer`) with [#73](02-service.md#c73), [#138](02-service.md#c138), [#177](#c177), [#101](02-service.md#c101): a career sees only one.
 
 A conglomerate wants someone who has worked close to Cabinet on its board: four meetings a year, and a fee its annual report puts in a footnote. The chairman knows you hold office, and asks only whether you might be free "after". Saying yes means leaving politics at the next election.
 
@@ -1367,17 +1367,17 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 167](#c167) · [Next → 169](#c169) · [Contents](../DECK-DESIGN.md#contents)
+[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c169"></a>169. The Million-Dollar Flat
+### <a id="c179"></a>179. The Million-Dollar Flat
 
-[← 168](#c168) · [Next → 170](#c170) · [Contents](../DECK-DESIGN.md#contents)
+[← 178](#c178) · [Next → 180](#c180) · [Contents](../DECK-DESIGN.md#contents)
 
 `mnd_million` · events.json · once a career · weight 8
 
 **Who sees it:** Parliamentary Secretary to Deputy Prime Minister; only in the Ministry of National Development.
 
-**Shares a decision** (`viral_post`) with [#182](06-cabinet.md#c182), [#171](#c171): a career sees only one.
+**Shares a decision** (`viral_post`) with [#192](06-cabinet.md#c192), [#181](#c181): a career sees only one.
 
 A second-hand public housing flat in an older estate has sold for one and a half million dollars, and the headline makes it sound as if every flat will. It was an unusually good flat; the headline does not say so. Housing is your ministry's job, and your phone has begun to buzz in the rhythm of a question you will have to answer.
 
@@ -1404,17 +1404,17 @@ A second-hand public housing flat in an older estate has sold for one and a half
 - The press gallery (politics, `pressGallery`), 40%: A hurts (−2) · C helps (+2).
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 35%: A helps (+1) · B helps (+1) · C hurts (−2).
 
-[← 168](#c168) · [Next → 170](#c170) · [Contents](../DECK-DESIGN.md#contents)
+[← 178](#c178) · [Next → 180](#c180) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c170"></a>170. The PSLE Question
+### <a id="c180"></a>180. The PSLE Question
 
-[← 169](#c169) · [Next → 171](#c171) · [Contents](../DECK-DESIGN.md#contents)
+[← 179](#c179) · [Next → 181](#c181) · [Contents](../DECK-DESIGN.md#contents)
 
 `moe_psle` · events.json · once a career · weight 8
 
 **Who sees it:** Parliamentary Secretary to Deputy Prime Minister; only in the Ministry of Education.
 
-**Shares a decision** (`floor_question`) with [#172](#c172): a career sees only one.
+**Shares a decision** (`floor_question`) with [#182](#c182): a career sees only one.
 
 You are hosting a dialogue for parents on "the joy of learning". The first question is about how the PSLE, the exam at the end of primary school, is scored, and the second about tuition. The third is from a twelve-year-old, brought along by a parent, who wants to know why there is an exam at all. The room is waiting to see whose question you answer first.
 
@@ -1441,17 +1441,17 @@ You are hosting a dialogue for parents on "the joy of learning". The first quest
 - The press gallery (politics, `pressGallery`), 40%: A helps (+2) · B hurts (−1) · C hurts (−1).
 - The civil servants who work with you (politics, `officials`), 35%: A hurts (−2) · B helps (+1) · C helps (+1).
 
-[← 169](#c169) · [Next → 171](#c171) · [Contents](../DECK-DESIGN.md#contents)
+[← 179](#c179) · [Next → 181](#c181) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c171"></a>171. The Waiting Time
+### <a id="c181"></a>181. The Waiting Time
 
-[← 170](#c170) · [Next → 172](#c172) · [Contents](../DECK-DESIGN.md#contents)
+[← 180](#c180) · [Next → 182](#c182) · [Contents](../DECK-DESIGN.md#contents)
 
 `moh_waiting` · events.json · once a career · weight 8
 
 **Who sees it:** Parliamentary Secretary to Deputy Prime Minister; only in the Ministry of Health.
 
-**Shares a decision** (`viral_post`) with [#182](06-cabinet.md#c182), [#169](#c169): a career sees only one.
+**Shares a decision** (`viral_post`) with [#192](06-cabinet.md#c192), [#179](#c179): a career sees only one.
 
 A resident's post about a six-hour wait at a hospital emergency department, with photographs, has four thousand shares and one factual error. Hospitals are your ministry's business, so on Sunday, at a community event, you will be asked about it whether you prepare or not. Whatever you say will be clipped.
 
@@ -1479,17 +1479,17 @@ A resident's post about a six-hour wait at a hospital emergency department, with
 - The civil servants who work with you (politics, `officials`), 35%: A hurts (−1) · B helps (+2) · C hurts (−1).
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 35%: B helps (+1) · C hurts (−2).
 
-[← 170](#c170) · [Next → 172](#c172) · [Contents](../DECK-DESIGN.md#contents)
+[← 180](#c180) · [Next → 182](#c182) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c172"></a>172. The Retirement Age
+### <a id="c182"></a>182. The Retirement Age
 
-[← 171](#c171) · [Next → 173](#c173) · [Contents](../DECK-DESIGN.md#contents)
+[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK-DESIGN.md#contents)
 
 `mom_retirement` · events.json · once a career · weight 8
 
 **Who sees it:** Parliamentary Secretary to Deputy Prime Minister; only in the Ministry of Manpower.
 
-**Shares a decision** (`floor_question`) with [#170](#c170): a career sees only one.
+**Shares a decision** (`floor_question`) with [#180](#c180): a career sees only one.
 
 The retirement and re-employment ages are going up again, in steps, by law, and your ministry must explain it. At a dialogue for older workers, your slides are excellent. The first question, from a cleaner in the second row, is not on any of them, and the room is watching how you handle it.
 
@@ -1517,11 +1517,11 @@ The retirement and re-employment ages are going up again, in steps, by law, and 
 - The press gallery (politics, `pressGallery`), 35%: A helps (+2) · B hurts (−1) · C hurts (−1).
 - Your fellow Members of Parliament (politics, `fellowMPs`), 30%: B hurts (−1) · C helps (+1).
 
-[← 171](#c171) · [Next → 173](#c173) · [Contents](../DECK-DESIGN.md#contents)
+[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c173"></a>173. The Parliamentary Question
+### <a id="c183"></a>183. The Parliamentary Question
 
-[← 172](#c172) · [Next → 174](#c174) · [Contents](../DECK-DESIGN.md#contents)
+[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_pq` · events.json · can come back · weight 11
 
@@ -1529,7 +1529,7 @@ The retirement and re-employment ages are going up again, in steps, by law, and 
 
 **Series** `house`: shown in full twice a career (the second time asking whether to keep the habit), then its years pass by themselves on the habit; a card whose Meanwhile lines are spent is not drawn again.
 
-**Shares a decision** (`house_brief`) with [#158](#c158), [#160](#c160), [#120](02-service.md#c120), [#176](#c176): a career sees only one.
+**Shares a decision** (`house_brief`) with [#168](#c168), [#170](#c170), [#130](02-service.md#c130), [#186](#c186): a career sees only one.
 
 **The second showing** (folded below): keeping the habit adds Competence up a little (+1), Reputation down a little (−1); breaking it adds Standing down a little (−1), Reputation up a little (+1).
 
@@ -1543,7 +1543,7 @@ A Member has filed a Parliamentary Question about a scheme your ministry runs, a
 
 - Hidden: Competence up (+3), Standing down (−4), Reputation up a lot (+6), Integrity up a lot (+8).
 - Habit: `straight`.
-- ↳ Can lead to: [151. Hansard](#c151), in three years, 30%
+- ↳ Can lead to: [161. Hansard](#c161), in three years, 30%
 
 **B. Read the brief, which answers a nearby question.**
 
@@ -1583,7 +1583,7 @@ Another Parliamentary Question on one of your ministry's schemes, and again the 
 
 - Hidden: Competence up (+4), Standing down (−4), Reputation up (+5), Integrity up a lot (+8).
 - Habit: `straight`.
-- ↳ Can lead to: [151. Hansard](#c151), in three years, 30%
+- ↳ Can lead to: [161. Hansard](#c161), in three years, 30%
 
 **B. Read the officials' brief this time.**
 
@@ -1620,7 +1620,7 @@ Another Parliamentary Question on one of your ministry's schemes, and your offic
 
 - Hidden: Competence up (+3), Standing down (−5), Reputation up a lot (+7), Integrity up a lot (+8).
 - Habit: `straight`.
-- ↳ Can lead to: [151. Hansard](#c151), in three years, 30%
+- ↳ Can lead to: [161. Hansard](#c161), in three years, 30%
 
 **C. Offer a full written answer instead.**
 
@@ -1650,7 +1650,7 @@ Another Parliamentary Question on one of your ministry's schemes. Your habit in 
 
 - Hidden: Competence up (+3), Standing down (−5), Reputation up a lot (+7), Integrity up a lot (+8).
 - Habit: `straight`.
-- ↳ Can lead to: [151. Hansard](#c151), in three years, 30%
+- ↳ Can lead to: [161. Hansard](#c161), in three years, 30%
 
 **C. Read the brief, and save the tables.**
 
@@ -1736,11 +1736,11 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 </details>
 
-[← 172](#c172) · [Next → 174](#c174) · [Contents](../DECK-DESIGN.md#contents)
+[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c174"></a>174. The Date
+### <a id="c184"></a>184. The Date
 
-[← 173](#c173) · [Next → 175](#c175) · [Contents](../DECK-DESIGN.md#contents)
+[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_date` · packs/backbench.json · once a career · weight 7
 
@@ -1810,11 +1810,11 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 173](#c173) · [Next → 175](#c175) · [Contents](../DECK-DESIGN.md#contents)
+[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c175"></a>175. The Stand-In
+### <a id="c185"></a>185. The Stand-In
 
-[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK-DESIGN.md#contents)
+[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_stand_in` · packs/backbench.json · once a career · weight 6
 
@@ -1869,17 +1869,17 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK-DESIGN.md#contents)
+[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c176"></a>176. Nine Questions
+### <a id="c186"></a>186. Nine Questions
 
-[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK-DESIGN.md#contents)
+[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK-DESIGN.md#contents)
 
 `uturn_questions` · packs/chains.json · once a career · weight 8
 
 **Who sees it:** Parliamentary Secretary to Senior Parliamentary Secretary; not if you have been moved to another ministry (`moved_ministry`).
 
-**Shares a decision** (`house_brief`) with [#173](#c173), [#158](#c158), [#160](#c160), [#120](02-service.md#c120): a career sees only one.
+**Shares a decision** (`house_brief`) with [#183](#c183), [#168](#c168), [#170](#c170), [#130](02-service.md#c130): a career sees only one.
 
 Nine MPs have filed Parliamentary Questions on one of your ministry's policies, charging a fee for missed polyclinic appointments, and you will give the replies in the House, as Members call Parliament. Your officials' draft ends by saying the policy "remains under review", in square brackets: keep the phrase, or cut it? Whatever you say will be in Hansard, the word-for-word record of Parliament, under your name, for good.
 
@@ -1889,8 +1889,8 @@ Nine MPs have filed Parliamentary Questions on one of your ministry's policies, 
 
 - Hidden: Standing up (+5), Reputation down (−3).
 - Sets `uturn_met`: named in the Declassified file.
-- Sets `uturn_firm`: read by [#179](#c179).
-- ↳ Can lead to: [177. In the Room](#c177), in two years, 85%
+- Sets `uturn_firm`: read by [#189](#c189).
+- ↳ Can lead to: [187. In the Room](#c187), in two years, 85%
 
 **B. Keep it. Say the policy remains under review.**
 
@@ -1898,8 +1898,8 @@ Nine MPs have filed Parliamentary Questions on one of your ministry's policies, 
 
 - Hidden: Standing down (−4), Reputation up (+3).
 - Sets `uturn_met`: named in the Declassified file.
-- Sets `uturn_review`: read by [#179](#c179).
-- ↳ Can lead to: [177. In the Room](#c177), in two years, 85%
+- Sets `uturn_review`: read by [#189](#c189).
+- ↳ Can lead to: [187. In the Room](#c187), in two years, 85%
 
 **C. Strike the adjectives too. Answer with figures only.**
 
@@ -1908,7 +1908,7 @@ Nine MPs have filed Parliamentary Questions on one of your ministry's policies, 
 - Hidden: Competence up (+4), Standing up a little (+1), Reputation down a little (−2).
 - Sets `uturn_met`: named in the Declassified file.
 - Sets `uturn_figures`.
-- ↳ Can lead to: [177. In the Room](#c177), in two years, 85%
+- ↳ Can lead to: [187. In the Room](#c187), in two years, 85%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -1944,15 +1944,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK-DESIGN.md#contents)
+[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c177"></a>177. In the Room
+### <a id="c187"></a>187. In the Room
 
-[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK-DESIGN.md#contents)
+[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK-DESIGN.md#contents)
 
 `uturn_reversal` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [176. Nine Questions](#c176) (any choice: in two years, 85%); when it falls due: Member of Parliament and up.
+**Who sees it:** only as a follow-up to [186. Nine Questions](#c186) (any choice: in two years, 85%); when it falls due: Member of Parliament and up.
 
 Two years ago, answering MPs in the House, you defended charging a fee for missed polyclinic appointments. Since then the feedback on the no-show fee has turned into a Cabinet paper, drafted by officials, recommending that it be reversed. The Minister would like your view before signing it, since the replies in Hansard are yours.
 
@@ -1962,7 +1962,7 @@ Two years ago, answering MPs in the House, you defended charging a fee for misse
 
 - Hidden: Standing down (−4), Integrity up (+3).
 - Sets `uturn_argued`: named in the Declassified file.
-- ↳ Can lead to: [178. The Statement](#c178), in a year, 90%
+- ↳ Can lead to: [188. The Statement](#c188), in a year, 90%
 
 **B. Agree, and say it should go quickly.**
 
@@ -1970,15 +1970,15 @@ Two years ago, answering MPs in the House, you defended charging a fee for misse
 
 - Hidden: Standing up (+4), Integrity down a little (−2).
 - Sets `uturn_agreed`: named in the Declassified file.
-- ↳ Can lead to: [178. The Statement](#c178), in a year, 90%
+- ↳ Can lead to: [188. The Statement](#c188), in a year, 90%
 
 **C. Propose a phase-out, so nobody has to say "reverse".**
 
 > The paper is amended: the policy will be "phased out" over six months, about as long as reversing it would have taken. Everyone agrees that this is different.
 
 - Hidden: Competence up (+3), Standing up a little (+2), Integrity down (−3).
-- Sets `uturn_phased`: named in the Declassified file; read by [#178](#c178).
-- ↳ Can lead to: [178. The Statement](#c178), in a year, 90%
+- Sets `uturn_phased`: named in the Declassified file; read by [#188](#c188).
+- ↳ Can lead to: [188. The Statement](#c188), in a year, 90%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -2022,15 +2022,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK-DESIGN.md#contents)
+[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c178"></a>178. The Statement
+### <a id="c188"></a>188. The Statement
 
-[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK-DESIGN.md#contents)
+[← 187](#c187) · [Next → 189](#c189) · [Contents](../DECK-DESIGN.md#contents)
 
 `uturn_statement` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [177. In the Room](#c177) (any choice: in a year, 90%); when it falls due: Member of Parliament and up.
+**Who sees it:** only as a follow-up to [187. In the Room](#c187) (any choice: in a year, 90%); when it falls due: Member of Parliament and up.
 
 Cabinet has decided that the policy you defended in the House will go. A ministerial statement on reversing the no-show fee is set for Tuesday, after Question Time. The Minister will deliver it, and has sent you the draft. Paragraph four quotes your old replies from Hansard as "the position at the time".
 
@@ -2039,16 +2039,16 @@ Cabinet has decided that the policy you defended in the House will go. A ministe
 > The Minister reads paragraph four as you rewrote it: "We got this wrong." Members rise for clarifications and find little to clarify. The sentence is attributed to the Minister, correctly.
 
 - Hidden: Standing down (−5), Reputation up (+3), Integrity up (+5).
-- Sets `uturn_wrong`: named in the Declassified file; read by [#179](#c179).
-- ↳ Can lead to: [179. Paragraph Three](#c179), in five years, 85%
+- Sets `uturn_wrong`: named in the Declassified file; read by [#189](#c189).
+- ↳ Can lead to: [189. Paragraph Three](#c189), in five years, 85%
 
 **B. Leave paragraph four as drafted.**
 
 > "The position at the time" is read out on Tuesday. In clarifications, a Member asks what the position was at the time. The Minister looks, briefly, in your direction.
 
 - Hidden: Standing up (+4), Integrity down (−3).
-- Sets `uturn_position`: named in the Declassified file; read by [#179](#c179).
-- ↳ Can lead to: [179. Paragraph Three](#c179), in five years, 85%
+- Sets `uturn_position`: named in the Declassified file; read by [#189](#c189).
+- ↳ Can lead to: [189. Paragraph Three](#c189), in five years, 85%
 
 **C. Cut paragraph four. Nobody needs reminding.**
 
@@ -2056,7 +2056,7 @@ Cabinet has decided that the policy you defended in the House will go. A ministe
 
 - Hidden: Competence up a little (+1), Standing up a little (+2), Reputation down (−3).
 - Sets `uturn_cut`: named in the Declassified file.
-- ↳ Can lead to: [179. Paragraph Three](#c179), in five years, 85%
+- ↳ Can lead to: [189. Paragraph Three](#c189), in five years, 85%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -2094,7 +2094,7 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 2** · `word` (the first option that fits)
 
-- phasing out *(`phased`; when after [177. In the Room](#c177), C (`uturn_phased`))*
+- phasing out *(`phased`; when after [187. In the Room](#c187), C (`uturn_phased`))*
 - reversing *(`reversed`; shown above)*
 
 **Part 3** · `who` (the first option that fits)
@@ -2114,15 +2114,15 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK-DESIGN.md#contents)
+[← 187](#c187) · [Next → 189](#c189) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c179"></a>179. Paragraph Three
+### <a id="c189"></a>189. Paragraph Three
 
-[← 178](#c178) · [Next → 180](06-cabinet.md#c180) · [Contents](../DECK-DESIGN.md#contents)
+[← 188](#c188) · [Next → 190](06-cabinet.md#c190) · [Contents](../DECK-DESIGN.md#contents)
 
 `uturn_hansard` · packs/chains.json
 
-**Who sees it:** only as a follow-up to [178. The Statement](#c178) (any choice: in five years, 85%); when it falls due: Member of Parliament and up.
+**Who sees it:** only as a follow-up to [188. The Statement](#c188) (any choice: in five years, 85%); when it falls due: Member of Parliament and up.
 
 Benedict, your fellow MP, sends you a draft speech for tomorrow's debate, proud of paragraph three. It quotes, in full from Hansard, your old reply on the no-show fee, as an example of precision. Benedict found it by searching Hansard, and stopped there: the search never reached the statement, years later, that reversed the policy.
 
@@ -2177,13 +2177,13 @@ Each showing puts the card together from one option of each part. The text above
 
 **Part 2** · `quote` (the first option that fits)
 
-- conviction *(`firm`; when after [176. Nine Questions](#c176), A (`uturn_firm`))*
-- a Government that listens *(`review`; when after [176. Nine Questions](#c176), B (`uturn_review`))*
+- conviction *(`firm`; when after [186. Nine Questions](#c186), A (`uturn_firm`))*
+- a Government that listens *(`review`; when after [186. Nine Questions](#c186), B (`uturn_review`))*
 - precision *(`figures`; shown above)*
 
 **Part 3** · `said` (the first option that fits)
 
-- *Read with this option (`wrong`; when after [178. The Statement](#c178), A (`uturn_wrong`)):*
+- *Read with this option (`wrong`; when after [188. The Statement](#c188), A (`uturn_wrong`)):*
 
   **Paragraph Three**
 
@@ -2197,7 +2197,7 @@ Each showing puts the card together from one option of each part. The text above
 
   > Benedict delivers paragraph three with feeling. A Member opposite rises and reads out the statement that called it wrong. Benedict sends you an emoji you have not seen before.
 
-- *Read with this option (`position`; when after [178. The Statement](#c178), B (`uturn_position`)):*
+- *Read with this option (`position`; when after [188. The Statement](#c188), B (`uturn_position`)):*
 
   **Paragraph Three**
 
@@ -2215,6 +2215,6 @@ Each showing puts the card together from one option of each part. The text above
 
 </details>
 
-[← 178](#c178) · [Next → 180](06-cabinet.md#c180) · [Contents](../DECK-DESIGN.md#contents)
+[← 188](#c188) · [Next → 190](06-cabinet.md#c190) · [Contents](../DECK-DESIGN.md#contents)
 
-[← The crossing](04-crossing.md#c143) · [Contents](../DECK-DESIGN.md#contents) · [Cabinet →](06-cabinet.md#c180)
+[← The crossing](04-crossing.md#c153) · [Contents](../DECK-DESIGN.md#contents) · [Cabinet →](06-cabinet.md#c190)

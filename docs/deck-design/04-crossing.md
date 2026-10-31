@@ -1,14 +1,14 @@
 # The deck, with the mechanics: The crossing
 
-[← The top of the service](03-top-of-service.md#c130) · [Contents](../DECK-DESIGN.md#contents) · [Politics →](05-politics.md#c150)
+[← The top of the service](03-top-of-service.md#c140) · [Contents](../DECK-DESIGN.md#contents) · [Politics →](05-politics.md#c160)
 
 ## <a id="stage-crossing"></a>The crossing
 
-The tea, the background check and the election: from the service into politics, and what follows from them. Cards 143 to 149.
+The tea, the background check and the election: from the service into politics, and what follows from them. Cards 153 to 159.
 
-### <a id="c143"></a>143. An Invitation to Tea
+### <a id="c153"></a>153. An Invitation to Tea
 
-[← 142](03-top-of-service.md#c142) · [Next → 144](#c144) · [Contents](../DECK-DESIGN.md#contents)
+[← 152](03-top-of-service.md#c152) · [Next → 154](#c154) · [Contents](../DECK-DESIGN.md#contents)
 
 `tea_session` · events.json · once a career · weight 100 · priority: drawn the moment it qualifies
 
@@ -23,7 +23,7 @@ An email invites you to tea. The sender's title is not explained and there is no
 - Hidden: Standing up (+5).
 - Sets `went_to_tea`.
 - Reads out the Folder: the flags the background check would find.
-- ↳ Can lead to: [144. The Background Check](#c144), in a year
+- ↳ Can lead to: [154. The Background Check](#c154), in a year
 
 **B. Decline, politely.**
 
@@ -31,7 +31,7 @@ An email invites you to tea. The sender's title is not explained and there is no
 
 - Hidden: Standing down a lot (−15), Integrity up a lot (+10).
 - Sets `declined_tea`.
-- ↳ Can lead to: [149. The Other Life](#c149), in six years, 90% · [The Tea Was Declined](09-endings.md#end-declined)
+- ↳ Can lead to: [159. The Other Life](#c159), in six years, 90% · [The Tea Was Declined](09-endings.md#end-declined)
 
 <details><summary>Other versions (2)</summary>
 
@@ -67,15 +67,15 @@ A hand-delivered envelope on your desk asks whether you might spare an hour for 
 
 </details>
 
-[← 142](03-top-of-service.md#c142) · [Next → 144](#c144) · [Contents](../DECK-DESIGN.md#contents)
+[← 152](03-top-of-service.md#c152) · [Next → 154](#c154) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c144"></a>144. The Background Check
+### <a id="c154"></a>154. The Background Check
 
-[← 143](#c143) · [Next → 145](#c145) · [Contents](../DECK-DESIGN.md#contents)
+[← 153](#c153) · [Next → 155](#c155) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_vetting` · events.json
 
-**Who sees it:** only as a follow-up to [143. An Invitation to Tea](#c143) (A: in a year).
+**Who sees it:** only as a follow-up to [153. An Invitation to Tea](#c153) (A: in a year).
 
 Before the party puts you up for election, it checks everything that could come out in a campaign. The person who read from the folder at your tea is back with it, now as your interviewer. Whatever you admit counts against you; admit too much and the invitation quietly lapses. Whatever you hide may surface during the campaign. Nobody says which parts of the folder are the worry.
 
@@ -85,7 +85,7 @@ Before the party puts you up for election, it checks everything that could come 
 
 - Hidden: Integrity up a lot (+6), Heat down a lot (−25).
 - The Folder, disclosed: each item costs Standing 5 and gives Integrity 2; 3 or more items and the invitation lapses.
-- ↳ Can lead to: [145. The Younger Officer](#c145), in three years · [146. The General Election](#c146), the year after (unless the Folder lapses the invitation) · [The Invitation Lapsed](09-endings.md#end-withdrawn)
+- ↳ Can lead to: [155. The Younger Officer](#c155), in three years · [156. The General Election](#c156), the year after (unless the Folder lapses the invitation) · [The Invitation Lapsed](09-endings.md#end-withdrawn)
 
 **B. Answer exactly what is asked and nothing more.**
 
@@ -93,7 +93,7 @@ Before the party puts you up for election, it checks everything that could come 
 
 - Hidden: Standing up (+3), Heat up (+5).
 - The Folder, concealed: each item may surface in the campaign (20% + Heat/250), costing Reputation 7 and adding Heat 6.
-- ↳ Can lead to: [146. The General Election](#c146), the year after
+- ↳ Can lead to: [156. The General Election](#c156), the year after
 
 <details><summary>Other versions (2)</summary>
 
@@ -129,15 +129,15 @@ The party's background check starts as a form: forty-two questions, three about 
 
 </details>
 
-[← 143](#c143) · [Next → 145](#c145) · [Contents](../DECK-DESIGN.md#contents)
+[← 153](#c153) · [Next → 155](#c155) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c145"></a>145. The Younger Officer
+### <a id="c155"></a>155. The Younger Officer
 
-[← 144](#c144) · [Next → 146](#c146) · [Contents](../DECK-DESIGN.md#contents)
+[← 154](#c154) · [Next → 156](#c156) · [Contents](../DECK-DESIGN.md#contents)
 
 `younger_officer` · events.json
 
-**Who sees it:** only as a follow-up to [144. The Background Check](#c144) (A: in three years); when it falls due: up to Permanent Secretary; only if the party's invitation lapsed at the background check (`tea_withdrawn`).
+**Who sees it:** only as a follow-up to [154. The Background Check](#c154) (A: in three years); when it falls due: up to Permanent Secretary; only if the party's invitation lapsed at the background check (`tea_withdrawn`).
 
 Years ago the party invited you to tea too. At the background check that followed, you told them everything, including what wasn't in their folder on you, and you never heard from the party again. Now a younger officer, just invited to tea, asks you over kopi whether to go, and knows none of this.
 
@@ -153,15 +153,15 @@ Years ago the party invited you to tea too. At the background check that followe
 
 - Hidden: Standing down a little (−2), Integrity up a lot (+8).
 
-[← 144](#c144) · [Next → 146](#c146) · [Contents](../DECK-DESIGN.md#contents)
+[← 154](#c154) · [Next → 156](#c156) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c146"></a>146. The General Election
+### <a id="c156"></a>156. The General Election
 
-[← 145](#c145) · [Next → 147](#c147) · [Contents](../DECK-DESIGN.md#contents)
+[← 155](#c155) · [Next → 157](#c157) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_election` · events.json
 
-**Who sees it:** only as a follow-up to [144. The Background Check](#c144) (any choice: the year after).
+**Who sees it:** only as a follow-up to [154. The Background Check](#c154) (any choice: the year after).
 
 The party is fielding you at the general election, in a GRC: a large ward split into divisions, where you run as one of a team of five and voters elect the whole team together. You have resigned from the service to stand, and if you lose, the service will not take you back. The minister leading your team asks which division you will look after.
 
@@ -170,18 +170,18 @@ The party is fielding you at the general election, in a GRC: a large ward split 
 > Nine days of walkabouts, meeting voters at every market and coffee shop, with your name fourth on the poster. You shake eleven thousand hands and understand, with total clarity, that almost none of this is about you.
 
 - Hidden: Reputation up (+5).
-- Sets `seat_grc`: read by [#163](05-politics.md#c163), [#168](05-politics.md#c168).
+- Sets `seat_grc`: read by [#173](05-politics.md#c173), [#178](05-politics.md#c178).
 - Election, in a GRC team: won with chance 0.60 + Reputation/400 + Standing/500. Won: Member of Parliament; lost: the career ends. Concealed Folder items may surface first.
-- ↳ Can lead to: [147. Polling Day, Again](#c147), in five years · [Lost the Ward](09-endings.md#end-lostward)
+- ↳ Can lead to: [157. Polling Day, Again](#c157), in five years · [Lost the Ward](09-endings.md#end-lostward)
 
 **B. Take the division the opposition is fighting for.**
 
 > Nine days of walkabouts in the four blocks the opposition has decided to win, while your teammates take the friendlier ones. The minister leading your team calls every evening to ask how it is going, and listens to the answer.
 
 - Hidden: Standing up (+3), Reputation up a little (+1).
-- Sets `seat_grc`: read by [#163](05-politics.md#c163), [#168](05-politics.md#c168).
+- Sets `seat_grc`: read by [#173](05-politics.md#c173), [#178](05-politics.md#c178).
 - Election, in a GRC team: won with chance 0.60 + Reputation/400 + Standing/500. Won: Member of Parliament; lost: the career ends. Concealed Folder items may surface first.
-- ↳ Can lead to: [147. Polling Day, Again](#c147), in five years · [Lost the Ward](09-endings.md#end-lostward)
+- ↳ Can lead to: [157. Polling Day, Again](#c157), in five years · [Lost the Ward](09-endings.md#end-lostward)
 
 **C. Ask for a single seat of your own instead, alone against one opponent: all the risk, and all the credit.**
 
@@ -189,9 +189,9 @@ The party is fielding you at the general election, in a GRC: a large ward split 
 
 - Hidden: Standing up (+5), Reputation up a lot (+8).
 - Only offered with Reputation of at least 60; otherwise it is left off the card.
-- Sets `seat_smc`: read by [#164](05-politics.md#c164), [#167](05-politics.md#c167).
+- Sets `seat_smc`: read by [#174](05-politics.md#c174), [#177](05-politics.md#c177).
 - Election, in a single seat: won with chance 0.28 + Reputation/200. Won: Member of Parliament; lost: the career ends. Concealed Folder items may surface first.
-- ↳ Can lead to: [147. Polling Day, Again](#c147), in five years · [Lost the Ward](09-endings.md#end-lostward)
+- ↳ Can lead to: [157. Polling Day, Again](#c157), in five years · [Lost the Ward](09-endings.md#end-lostward)
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -240,15 +240,15 @@ The party's candidates are photographed in a school hall that smells of floor po
 
 </details>
 
-[← 145](#c145) · [Next → 147](#c147) · [Contents](../DECK-DESIGN.md#contents)
+[← 155](#c155) · [Next → 157](#c157) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c147"></a>147. Polling Day, Again
+### <a id="c157"></a>157. Polling Day, Again
 
-[← 146](#c146) · [Next → 148](#c148) · [Contents](../DECK-DESIGN.md#contents)
+[← 156](#c156) · [Next → 158](#c158) · [Contents](../DECK-DESIGN.md#contents)
 
 `re_election` · events.json
 
-**Who sees it:** only as a follow-up to [146. The General Election](#c146) (any choice: in five years); [147. Polling Day, Again](#c147) (any choice: in five years).
+**Who sees it:** only as a follow-up to [156. The General Election](#c156) (any choice: in five years); [157. Polling Day, Again](#c157) (any choice: in five years).
 
 **Passes by itself** (choice A, with a Meanwhile line) when needs Reputation of at least 60, needs Heat of 39 or less.
 
@@ -260,7 +260,7 @@ Parliament is dissolved on a Tuesday, so there is a general election within week
 
 - Hidden: Reputation up a little (+2).
 - Re-election: won with chance 0.72 + Reputation/250 (at most 98%); lost, the career ends.
-- ↳ Can lead to: [147. Polling Day, Again](#c147), in five years · [148. A Model Ward](#c148), in two years, 50% · [Lost the Ward](09-endings.md#end-lostward)
+- ↳ Can lead to: [157. Polling Day, Again](#c157), in five years · [158. A Model Ward](#c158), in two years, 50% · [Lost the Ward](09-endings.md#end-lostward)
 
 **B. Walk every block, every night, for nine days.**
 
@@ -268,7 +268,7 @@ Parliament is dissolved on a Tuesday, so there is a general election within week
 
 - Hidden: Competence down (−3), Reputation up (+4).
 - Re-election: won with chance 0.72 + Reputation/250 (at most 98%); lost, the career ends.
-- ↳ Can lead to: [147. Polling Day, Again](#c147), in five years · [148. A Model Ward](#c148), in two years, 50% · [Lost the Ward](09-endings.md#end-lostward)
+- ↳ Can lead to: [157. Polling Day, Again](#c157), in five years · [158. A Model Ward](#c158), in two years, 50% · [Lost the Ward](09-endings.md#end-lostward)
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -382,15 +382,15 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 </details>
 
-[← 146](#c146) · [Next → 148](#c148) · [Contents](../DECK-DESIGN.md#contents)
+[← 156](#c156) · [Next → 158](#c158) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c148"></a>148. A Model Ward
+### <a id="c158"></a>158. A Model Ward
 
-[← 147](#c147) · [Next → 149](#c149) · [Contents](../DECK-DESIGN.md#contents)
+[← 157](#c157) · [Next → 159](#c159) · [Contents](../DECK-DESIGN.md#contents)
 
 `model_ward` · events.json · once a career
 
-**Who sees it:** only as a follow-up to [147. Polling Day, Again](#c147) (any choice: in two years, 50%); when it falls due: only if your ward swung to you at a re-election (Reputation 75 or more), once a career (`noticed_swing`).
+**Who sees it:** only as a follow-up to [157. Polling Day, Again](#c157) (any choice: in two years, 50%); when it falls due: only if your ward swung to you at a re-election (Reputation 75 or more), once a career (`noticed_swing`).
 
 Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits "Ms Lim Wei Ling and her walkabouts". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really three things: the volunteers, the Tuesday-night Meet-the-People Sessions where residents queue with their problems, and a weak opponent.
 
@@ -417,15 +417,15 @@ Your ward's six-point swing towards you at the election, the best result in the 
 - Your party branch and its volunteers (politics, `branch`), 45%: A hurts (−2) · B helps (+1) · C helps (+2).
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 40%: A helps (+2) · B hurts (−1) · C hurts (−2).
 
-[← 147](#c147) · [Next → 149](#c149) · [Contents](../DECK-DESIGN.md#contents)
+[← 157](#c157) · [Next → 159](#c159) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c149"></a>149. The Other Life
+### <a id="c159"></a>159. The Other Life
 
-[← 148](#c148) · [Next → 150](05-politics.md#c150) · [Contents](../DECK-DESIGN.md#contents)
+[← 158](#c158) · [Next → 160](05-politics.md#c160) · [Contents](../DECK-DESIGN.md#contents)
 
 `other_life` · events.json
 
-**Who sees it:** only as a follow-up to [143. An Invitation to Tea](#c143) (B: in six years, 90%); when it falls due: up to Permanent Secretary.
+**Who sees it:** only as a follow-up to [153. An Invitation to Tea](#c153) (B: in six years, 90%); when it falls due: up to Permanent Secretary.
 
 You declined the party's invitation to tea, years ago, when it wanted to sound you out about politics. Someone invited the same year went, and is now a Minister. On the evening news, that Minister announces a scheme your people designed, and thanks the public service, correctly, in general terms.
 
@@ -441,6 +441,6 @@ You declined the party's invitation to tea, years ago, when it wanted to sound y
 
 - Hidden: Competence up (+3), Integrity up (+4).
 
-[← 148](#c148) · [Next → 150](05-politics.md#c150) · [Contents](../DECK-DESIGN.md#contents)
+[← 158](#c158) · [Next → 160](05-politics.md#c160) · [Contents](../DECK-DESIGN.md#contents)
 
-[← The top of the service](03-top-of-service.md#c130) · [Contents](../DECK-DESIGN.md#contents) · [Politics →](05-politics.md#c150)
+[← The top of the service](03-top-of-service.md#c140) · [Contents](../DECK-DESIGN.md#contents) · [Politics →](05-politics.md#c160)

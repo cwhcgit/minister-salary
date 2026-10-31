@@ -507,7 +507,7 @@ function makeView(view, layout) {
       if (!t) continue;
       let txt = cardLink(from, f.id);
       if (design) {
-        const when = f.folder ? "the year after" : f.inYears === 0 ? "the same year" : `in ${years(f.inYears)}`;
+        const when = f.folder ? "the year after" : f.inYears === 0 ? "on the next card" : `in ${years(f.inYears)}`;
         txt += `, ${when}${f.chance < 1 ? `, ${pct(f.chance)}` : ""}`;
         if (f.folder) txt += f.folder === "disclose" ? " (unless the Folder lapses the invitation)" : "";
       }
@@ -569,6 +569,13 @@ function makeView(view, layout) {
       if (ch.pip) lines.push(ch.resetWarnings ? "Closes the improvement plan, and clears the warnings: a fresh start." : "Closes the improvement plan: another D now ends the career.");
       else if (ch.resetWarnings) lines.push("Clears the warnings.");
       if (ch.bond) lines.push(`Adds ${years(ch.bond)} to the scholarship bond.`);
+      if (ch.lasting) lines.push(`A lasting mark: this year's appraisal and the next ones, ${years(ch.lasting.years)} in all, ${ch.lasting.appraisal < 0 ? "marked down" : "marked up"} (${sign(ch.lasting.appraisal)} each, never said on screen); it lapses on the other ladder.`);
+      if (ch.later) {
+        // lines sent to later review pages, each once, and only where its requirements hold then
+        const where = q => !q ? "" : q.maxRank !== undefined && q.maxRank < 8 ? `, if still ${q.maxRank < 7 ? `${C.ladder[q.maxRank].title} or below` : "in the service"}`
+          : q.minRank >= 8 ? ", if in politics" : ", if its conditions hold";
+        for (const x of ch.later) lines.push(`A note on the review page ${x.inYears ? `in ${years(x.inYears)}` : "this year"}${where(x.requires)}: "${esc(x.text)}"`);
+      }
       if (ch.standout) lines.push("A standout moment (in the service; two mark the file exceptional).");
       if (ch.leaving) lines.push("Leaves at the coming election: the career ends there.");
       if (ch.markSeen) lines.push(`Marks ${ch.markSeen.map(id => numLink(from, id)).join(", ")} as already seen.`);
@@ -627,7 +634,7 @@ function makeView(view, layout) {
         const items = [...byCard.entries()].sort((a, b) => NUM.get(a[0]) - NUM.get(b[0])).map(([id, xs]) => {
           // choices that schedule it the same way share one entry
           const ways = new Map();
-          for (const x of xs) push(ways, `${x.f.folder ? "the year after" : x.f.inYears === 0 ? "the same year" : `in ${years(x.f.inYears)}`}${x.f.chance < 1 ? `, ${pct(x.f.chance)}` : ""}`, x.own);
+          for (const x of xs) push(ways, `${x.f.folder ? "the year after" : x.f.inYears === 0 ? "on the next card" : `in ${years(x.f.inYears)}`}${x.f.chance < 1 ? `, ${pct(x.f.chance)}` : ""}`, x.own);
           const how = [...ways.entries()].map(([w, owns]) => `${owns.length >= BY_ID.get(id).choices.length ? "any choice" : lettersOf(id, owns)}: ${w}`);
           return `${cardLink(from, id)} (${how.join("; ")})`;
         });

@@ -1,14 +1,14 @@
 # The deck: The service
 
-[← The first years](01-first-years.md#c1) · [Contents](../DECK.md#contents) · [The top of the service →](03-top-of-service.md#c130)
+[← The first years](01-first-years.md#c1) · [Contents](../DECK.md#contents) · [The top of the service →](03-top-of-service.md#c140)
 
 ## <a id="stage-service"></a>The service
 
-Assistant Director to Senior Director. Cards 58 to 129.
+Assistant Director to Senior Director. Cards 68 to 139.
 
-### <a id="c58"></a>58. Lo Hei
+### <a id="c68"></a>68. Lo Hei
 
-[← 57](01-first-years.md#c57) · [Next → 59](#c59) · [Contents](../DECK.md#contents)
+[← 67](01-first-years.md#c67) · [Next → 69](#c69) · [Contents](../DECK.md#contents)
 
 It's the division's Chinese New Year lunch, and the Permanent Secretary is at your table. After eleven minutes of lo hei, tossing the yusheng salad as high as chopsticks allow and shouting wishes for abundance, the Permanent Secretary turns to you and asks, properly: "So, Wei Ling, if your division had to stop one thing this year, what should it be?" The first project that comes to mind is your own.
 
@@ -24,11 +24,11 @@ It's the division's Chinese New Year lunch, and the Permanent Secretary is at yo
 
 > "Mm," says the Permanent Secretary, and turns to the person on the other side. That's the end of it, and you both know it.
 
-[← 57](01-first-years.md#c57) · [Next → 59](#c59) · [Contents](../DECK.md#contents)
+[← 67](01-first-years.md#c67) · [Next → 69](#c69) · [Contents](../DECK.md#contents)
 
-### <a id="c59"></a>59. The Report
+### <a id="c69"></a>69. The Report
 
-[← 58](#c58) · [Next → 60](#c60) · [Contents](../DECK.md#contents)
+[← 68](#c68) · [Next → 70](#c70) · [Contents](../DECK.md#contents)
 
 Your ministry paid a consultancy \$1.9 million to work out why one of its schemes isn't working. Today they present their final deck, and it's your own idea: the one you set out in a minute paper, a memo to the people above you asking for a decision, which nobody acted on. Only your paragraph four, on how it could go wrong, is missing. The Deputy Secretary who hired them loves it.
 
@@ -40,17 +40,17 @@ Your ministry paid a consultancy \$1.9 million to work out why one of its scheme
 
 > You send the minute paper, paragraph four and all, to the fourteen people at the presentation. Nobody replies except a Deputy Secretary you've never met, who writes only to you: "Good paper." The one who hired the consultants reads it too.
 
-↳ Can lead to: [60. Paragraph Four](#c60)
+↳ Can lead to: [70. Paragraph Four](#c70)
 
 **C. Ask the consultants, in the Q&A, what their data source was.**
 
 > The consultancy's partner checks the appendix and reads out the source: a minute paper from your division, written before the consultants were hired. Yours. The room enjoys this more than the partner does.
 
-[← 58](#c58) · [Next → 60](#c60) · [Contents](../DECK.md#contents)
+[← 68](#c68) · [Next → 70](#c70) · [Contents](../DECK.md#contents)
 
-### <a id="c60"></a>60. Paragraph Four
+### <a id="c70"></a>70. Paragraph Four
 
-[← 59](#c59) · [Next → 61](#c61) · [Contents](../DECK.md#contents)
+[← 69](#c69) · [Next → 71](#c71) · [Contents](../DECK.md#contents)
 
 When a consultancy's \$1.9 million deck repeated the advice in your old minute paper, you circulated the paper to everyone at the presentation. The ministry went with the consultants' version anyway, and it has now gone wrong exactly as your paragraph four, on the risks, said it would. Someone upstairs has found paragraph four.
 
@@ -62,11 +62,11 @@ When a consultancy's \$1.9 million deck repeated the advice in your old minute p
 
 > You're allowed to. It takes a year, and then a consultancy is hired to evaluate your fix.
 
-[← 59](#c59) · [Next → 61](#c61) · [Contents](../DECK.md#contents)
+[← 69](#c69) · [Next → 71](#c71) · [Contents](../DECK.md#contents)
 
-### <a id="c61"></a>61. The Forum Page
+### <a id="c71"></a>71. The Forum Page
 
-[← 60](#c60) · [Next → 62](#c62) · [Contents](../DECK.md#contents)
+[← 70](#c70) · [Next → 72](#c72) · [Contents](../DECK.md#contents)
 
 A member of the public has written to the Forum page, the letters page of the Straits Times, about a scheme your division runs. His letter is 340 words long, very angry, and right about every fact. Drafting the ministry's reply is your job, due to Ms Chua, your reporting officer, by Friday, and the paper will print whatever goes out.
 
@@ -82,13 +82,13 @@ A member of the public has written to the Forum page, the letters page of the St
 
 > His record gives you his address in Ang Mo Kio and the school he taught at for thirty years. You close it without doing anything with it. But you did open it, and the system logs who opens what.
 
-↳ Can lead to: [62. The Citizens' Panel](#c62) · [Everything Surfaced](09-endings.md#end-scandal)
+↳ Can lead to: [72. The Citizens' Panel](#c72) · [Everything Surfaced](09-endings.md#end-scandal)
 
-[← 60](#c60) · [Next → 62](#c62) · [Contents](../DECK.md#contents)
+[← 70](#c70) · [Next → 72](#c72) · [Contents](../DECK.md#contents)
 
-### <a id="c62"></a>62. The Citizens' Panel
+### <a id="c72"></a>72. The Citizens' Panel
 
-[← 61](#c61) · [Next → 63](#c63) · [Contents](../DECK.md#contents)
+[← 71](#c71) · [Next → 73](#c73) · [Contents](../DECK.md#contents)
 
 Years ago a retired schoolteacher wrote an angry, accurate letter to the Forum page about your scheme, and you looked up his address in the ministry's records. Now twelve members of the public, picked at random, are reviewing the scheme over three Saturdays. He's one of them, and he has brought the cutting.
 
@@ -104,11 +104,11 @@ Years ago a retired schoolteacher wrote an angry, accurate letter to the Forum p
 
 > Faizal reports back that the panel was constructive, and that one member asked, twice, whether you'd be coming.
 
-[← 61](#c61) · [Next → 63](#c63) · [Contents](../DECK.md#contents)
+[← 71](#c71) · [Next → 73](#c73) · [Contents](../DECK.md#contents)
 
-### <a id="c63"></a>63. The Recruiter
+### <a id="c73"></a>73. The Recruiter
 
-[← 62](#c62) · [Next → 64](#c64) · [Contents](../DECK.md#contents)
+[← 72](#c72) · [Next → 74](#c74) · [Contents](../DECK.md#contents)
 
 A recruiter has found you on LinkedIn, which you'd forgotten you were on. A bank wants someone who understands how ministries think, and the salary is a number you read twice. Taking it means resigning from the service, and from whatever it had planned for you.
 
@@ -126,11 +126,11 @@ A recruiter has found you on LinkedIn, which you'd forgotten you were on. A bank
 
 > You delete the message. Then you undelete it, read the number again, and delete it.
 
-[← 62](#c62) · [Next → 64](#c64) · [Contents](../DECK.md#contents)
+[← 72](#c72) · [Next → 74](#c74) · [Contents](../DECK.md#contents)
 
-### <a id="c64"></a>64. The Nomination
+### <a id="c74"></a>74. The Nomination
 
-[← 63](#c63) · [Next → 65](#c65) · [Contents](../DECK.md#contents)
+[← 73](#c73) · [Next → 75](#c75) · [Contents](../DECK.md#contents)
 
 Your division can put one name forward this year for the Public Service Leadership Programme, the course that marks people out for the top jobs. Ms Chua, your reporting officer, wants your nomination by Friday, and it can be your own name. Everyone expects you to put forward the division's scholar, one of the high-flyers the government paid to study overseas, who is going places anyway.
 
@@ -146,13 +146,13 @@ Your division can put one name forward this year for the Public Service Leadersh
 
 > The quiet officer is astonished, and goes on the programme. For nine months the work that officer used to do lands on your desk. Your nominee will rise faster than you, and won't forget who made the nomination.
 
-↳ Can lead to: [65. The Officer You Nominated](#c65) (or, at another grade, [#66](#c66), [#67](#c67), [#68](#c68), [#69](#c69))
+↳ Can lead to: [75. The Officer You Nominated](#c75) (or, at another grade, [#76](#c76), [#77](#c77), [#78](#c78), [#79](#c79))
 
-[← 63](#c63) · [Next → 65](#c65) · [Contents](../DECK.md#contents)
+[← 73](#c73) · [Next → 75](#c75) · [Contents](../DECK.md#contents)
 
-### <a id="c65"></a>65. The Officer You Nominated
+### <a id="c75"></a>75. The Officer You Nominated
 
-[← 64](#c64) · [Next → 66](#c66) · [Contents](../DECK.md#contents)
+[← 74](#c74) · [Next → 76](#c76) · [Contents](../DECK.md#contents)
 
 Over a decade ago, you put forward the quiet officer who did your division's real work for the leadership programme, instead of yourself. That officer is a Deputy Secretary now, and has been asked to suggest names for another Deputy Secretary post: the last rung below Permanent Secretary.
 
@@ -164,11 +164,11 @@ Over a decade ago, you put forward the quiet officer who did your division's rea
 
 > Your old nominee says that is understood, and puts your name in anyway. That's how you learn the difference between a debt and a judgement.
 
-[← 64](#c64) · [Next → 66](#c66) · [Contents](../DECK.md#contents)
+[← 74](#c74) · [Next → 76](#c76) · [Contents](../DECK.md#contents)
 
-### <a id="c66"></a>66. The Officer You Nominated
+### <a id="c76"></a>76. The Officer You Nominated
 
-[← 65](#c65) · [Next → 67](#c67) · [Contents](../DECK.md#contents)
+[← 75](#c75) · [Next → 77](#c77) · [Contents](../DECK.md#contents)
 
 Over a decade ago, you nominated the quiet officer who did your division's real work for the leadership programme, instead of yourself. That officer has since overtaken you, is now a Deputy Secretary with a post to fill, and asks for you by name.
 
@@ -180,11 +180,11 @@ Over a decade ago, you nominated the quiet officer who did your division's real 
 
 > Your old nominee says that is understood, and asks for you anyway. That's how you learn the difference between a debt and a judgement.
 
-[← 65](#c65) · [Next → 67](#c67) · [Contents](../DECK.md#contents)
+[← 75](#c75) · [Next → 77](#c77) · [Contents](../DECK.md#contents)
 
-### <a id="c67"></a>67. The Officer You Nominated
+### <a id="c77"></a>77. The Officer You Nominated
 
-[← 66](#c66) · [Next → 68](#c68) · [Contents](../DECK.md#contents)
+[← 76](#c76) · [Next → 78](#c78) · [Contents](../DECK.md#contents)
 
 Over a decade ago, you nominated the quiet officer who did your division's real work for the leadership programme, instead of yourself. That officer is a Permanent Secretary now, younger than you and faster, and has been asked for names for another Permanent Secretary post, the last rung there is. You're a Deputy Secretary.
 
@@ -196,11 +196,11 @@ Over a decade ago, you nominated the quiet officer who did your division's real 
 
 > Your old nominee says that is understood, and puts your name in anyway. That's how you learn the difference between a debt and a judgement.
 
-[← 66](#c66) · [Next → 68](#c68) · [Contents](../DECK.md#contents)
+[← 76](#c76) · [Next → 78](#c78) · [Contents](../DECK.md#contents)
 
-### <a id="c68"></a>68. The Officer You Nominated
+### <a id="c78"></a>78. The Officer You Nominated
 
-[← 67](#c67) · [Next → 69](#c69) · [Contents](../DECK.md#contents)
+[← 77](#c77) · [Next → 79](#c79) · [Contents](../DECK.md#contents)
 
 Over a decade ago, you nominated the quiet officer who did your division's real work for the leadership programme, instead of yourself. That officer is a Permanent Secretary now too, and you sit on the same committees. Your old nominee has been asked, quietly, which fellow Permanent Secretaries the party should one day invite to tea: its first quiet approach to someone it might ask to stand for Parliament.
 
@@ -212,11 +212,11 @@ Over a decade ago, you nominated the quiet officer who did your division's real 
 
 > Your old nominee says that is understood, and gives your name anyway. That's how you learn the difference between a debt and a judgement.
 
-[← 67](#c67) · [Next → 69](#c69) · [Contents](../DECK.md#contents)
+[← 77](#c77) · [Next → 79](#c79) · [Contents](../DECK.md#contents)
 
-### <a id="c69"></a>69. The Officer You Nominated
+### <a id="c79"></a>79. The Officer You Nominated
 
-[← 68](#c68) · [Next → 70](#c70) · [Contents](../DECK.md#contents)
+[← 78](#c78) · [Next → 80](#c80) · [Contents](../DECK.md#contents)
 
 Over a decade ago, you put forward the quiet officer who did your old division's real work for the leadership programme, instead of yourself. That officer is a Permanent Secretary now. From time to time the Prime Minister's office asks Permanent Secretaries for a frank view of the politicians they work with, before deciding who goes up. Your old nominee has been asked about you.
 
@@ -228,11 +228,11 @@ Over a decade ago, you put forward the quiet officer who did your old division's
 
 > Your old nominee says that is understood, and gives an honest view anyway, which is how you finally learn the difference between a debt and a judgement.
 
-[← 68](#c68) · [Next → 70](#c70) · [Contents](../DECK.md#contents)
+[← 78](#c78) · [Next → 80](#c80) · [Contents](../DECK.md#contents)
 
-### <a id="c70"></a>70. Someone From Before
+### <a id="c80"></a>80. Someone From Before
 
-[← 69](#c69) · [Next → 71](#c71) · [Contents](../DECK.md#contents)
+[← 79](#c79) · [Next → 81](#c81) · [Contents](../DECK.md#contents)
 
 At a meeting of several agencies, you recognise the person chairing it. Years ago, before your degree, the two of you worked side by side at a public service counter, on the same grade. Your old colleague is three grades above you now, and chairs the committees that decide who gets noticed.
 
@@ -244,11 +244,11 @@ At a meeting of several agencies, you recognise the person chairing it. Years ag
 
 > Your old colleague hadn't moved on, and simply hadn't seen you at the far end of the table. You think about the counter for a week, and then you stop.
 
-[← 69](#c69) · [Next → 71](#c71) · [Contents](../DECK.md#contents)
+[← 79](#c79) · [Next → 81](#c81) · [Contents](../DECK.md#contents)
 
-### <a id="c71"></a>71. The Board Takes a Second Look
+### <a id="c81"></a>81. The Board Takes a Second Look
 
-[← 70](#c70) · [Next → 72](#c72) · [Contents](../DECK.md#contents)
+[← 80](#c80) · [Next → 82](#c82) · [Contents](../DECK.md#contents)
 
 Someone on a promotion board has read several of your papers, and thinks your work is better than your grade suggests. Unusually, the board has been asked to look again at your file, and at HR's private estimate of the highest grade you'll ever reach, which is never shown to you.
 
@@ -260,19 +260,19 @@ Someone on a promotion board has read several of your papers, and thinks your wo
 
 > The record does speak, in the dry language of appraisal forms, and it moves the board slightly less than four pages would have.
 
-[← 70](#c70) · [Next → 72](#c72) · [Contents](../DECK.md#contents)
+[← 80](#c80) · [Next → 82](#c82) · [Contents](../DECK.md#contents)
 
-### <a id="c72"></a>72. The Inter-Ministry Committee
+### <a id="c82"></a>82. The Inter-Ministry Committee
 
-[← 71](#c71) · [Next → 73](#c73) · [Contents](../DECK.md#contents)
+[← 81](#c81) · [Next → 83](#c83) · [Contents](../DECK.md#contents)
 
-You're the secretariat for an Inter-Ministry Committee: you write its papers and its minutes. It has met eleven times to settle a question three ministries disagree on, and its interim finding is that "further study is warranted". No ministry wants to be the one that gave way, and Rajesh Nair, a correspondent who covers the public service for the Straits Times, has started asking you why.
+You're the secretariat for an Inter-Ministry Committee: you write its papers and its minutes. It has met eleven times to settle a question three ministries disagree on, and its interim finding is that "further study is warranted". No ministry wants to be the one that gave way, and Rajesh Nair, the Straits Times journalist, has started asking you why.
 
 **A. Write a paper that forces a decision.**
 
 > Your paper, with your name in the footer, sets out three options and recommends one. Two ministries object to being cornered, and say so to your superiors. A decision is made anyway, mostly to stop the paper circulating.
 
-↳ Can lead to: [73. The Decision Paper](#c73)
+↳ Can lead to: [83. The Decision Paper](#c83)
 
 **B. Keep taking excellent minutes.**
 
@@ -282,13 +282,13 @@ You're the secretariat for an Inter-Ministry Committee: you write its papers and
 
 > Rajesh Nair's story runs that weekend, and a decision follows within a month. You were right about what needed to happen. The service remembers, for much longer, that you made it happen through the press.
 
-↳ Can lead to: [74. A Journalist Has Been Asking](#c74) · [Everything Surfaced](09-endings.md#end-scandal)
+↳ Can lead to: [84. A Journalist Has Been Asking](#c84) · [Everything Surfaced](09-endings.md#end-scandal)
 
-[← 71](#c71) · [Next → 73](#c73) · [Contents](../DECK.md#contents)
+[← 81](#c81) · [Next → 83](#c83) · [Contents](../DECK.md#contents)
 
-### <a id="c73"></a>73. The Decision Paper
+### <a id="c83"></a>83. The Decision Paper
 
-[← 72](#c72) · [Next → 74](#c74) · [Contents](../DECK.md#contents)
+[← 82](#c82) · [Next → 84](#c84) · [Contents](../DECK.md#contents)
 
 When you were secretariat to a deadlocked Inter-Ministry Committee, you wrote a paper that forced it to decide. That committee has now been dissolved, and its replacement has adopted your paper as its terms of reference. The footer still says "Prepared by Ms Lim Wei Ling, Secretariat", and the paper is about to go to every ministry.
 
@@ -300,11 +300,11 @@ When you were secretariat to a deadlocked Inter-Ministry Committee, you wrote a 
 
 > It circulates without a name, and in this building that's how everyone finds out who wrote it.
 
-[← 72](#c72) · [Next → 74](#c74) · [Contents](../DECK.md#contents)
+[← 82](#c82) · [Next → 84](#c84) · [Contents](../DECK.md#contents)
 
-### <a id="c74"></a>74. A Journalist Has Been Asking
+### <a id="c84"></a>84. A Journalist Has Been Asking
 
-[← 73](#c73) · [Next → 75](#c75) · [Contents](../DECK.md#contents)
+[← 83](#c83) · [Next → 85](#c85) · [Contents](../DECK.md#contents)
 
 Something confidential got out once, years ago, and you were the one who let it out. Now Rajesh Nair, the Straits Times journalist, is piecing the old story back together, calling everyone who was on the circulation list at the time. Today Mr Nair called you.
 
@@ -330,11 +330,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 73](#c73) · [Next → 75](#c75) · [Contents](../DECK.md#contents)
+[← 83](#c83) · [Next → 85](#c85) · [Contents](../DECK.md#contents)
 
-### <a id="c75"></a>75. The Officer You Are Supervising
+### <a id="c85"></a>85. The Officer You Are Supervising
 
-[← 74](#c74) · [Next → 76](#c76) · [Contents](../DECK.md#contents)
+[← 84](#c84) · [Next → 86](#c86) · [Contents](../DECK.md#contents)
 
 You're supervising a scholar, one of the high-flyers the government paid to study overseas: twenty-six, very clever, and likely to outrank you within four years. The scholar has asked you to look over a first big paper before it goes upstairs. It isn't good. Whatever you say now will be remembered when the scholar is the one above you.
 
@@ -342,7 +342,7 @@ You're supervising a scholar, one of the high-flyers the government paid to stud
 
 > You say it isn't good, and spend an afternoon showing why. The scholar takes it well, rewrites it twice, and gets rather good. The scholar will outrank you soon, and will remember that afternoon.
 
-↳ Can lead to: [76. The Officer You Taught](#c76) (or, at another grade, [#77](#c77), [#78](#c78), [#79](#c79))
+↳ Can lead to: [86. The Officer You Taught](#c86) (or, at another grade, [#87](#c87), [#88](#c88), [#89](#c89))
 
 **B. Clear it. Let the scholar find out the hard way.**
 
@@ -352,11 +352,11 @@ You're supervising a scholar, one of the high-flyers the government paid to stud
 
 > By morning it's a good paper with the scholar's name on it, and you're thanked for it. The scholar never learns to write, and it turns out never needs to.
 
-[← 74](#c74) · [Next → 76](#c76) · [Contents](../DECK.md#contents)
+[← 84](#c84) · [Next → 86](#c86) · [Contents](../DECK.md#contents)
 
-### <a id="c76"></a>76. The Officer You Taught
+### <a id="c86"></a>86. The Officer You Taught
 
-[← 75](#c75) · [Next → 77](#c77) · [Contents](../DECK.md#contents)
+[← 85](#c85) · [Next → 87](#c87) · [Contents](../DECK.md#contents)
 
 The young scholar you once supervised is your Deputy Secretary now. Back then you said plainly that the scholar's first big paper wasn't good, and spent an afternoon showing why. After a routine meeting your Deputy Secretary stays behind and says, "You were the only person who ever told me my work was bad."
 
@@ -368,11 +368,11 @@ The young scholar you once supervised is your Deputy Secretary now. Back then yo
 
 > Your Deputy Secretary laughs, for the first time in your presence, and agrees. It is, apparently, the only feedback ever worth keeping.
 
-[← 75](#c75) · [Next → 77](#c77) · [Contents](../DECK.md#contents)
+[← 85](#c85) · [Next → 87](#c87) · [Contents](../DECK.md#contents)
 
-### <a id="c77"></a>77. The Officer You Taught
+### <a id="c87"></a>87. The Officer You Taught
 
-[← 76](#c76) · [Next → 78](#c78) · [Contents](../DECK.md#contents)
+[← 86](#c86) · [Next → 88](#c88) · [Contents](../DECK.md#contents)
 
 The young scholar you once supervised is a Deputy Secretary now, like you, at an age you won't ask about. Back then you said plainly that the scholar's first big paper wasn't good. After a joint meeting the scholar stays behind and says, "You were the only person who ever told me my work was bad."
 
@@ -384,11 +384,11 @@ The young scholar you once supervised is a Deputy Secretary now, like you, at an
 
 > The scholar laughs, for the first time in your presence, and agrees. It is, apparently, the only feedback ever worth keeping.
 
-[← 76](#c76) · [Next → 78](#c78) · [Contents](../DECK.md#contents)
+[← 86](#c86) · [Next → 88](#c88) · [Contents](../DECK.md#contents)
 
-### <a id="c78"></a>78. The Officer You Taught
+### <a id="c88"></a>88. The Officer You Taught
 
-[← 77](#c77) · [Next → 79](#c79) · [Contents](../DECK.md#contents)
+[← 87](#c87) · [Next → 89](#c89) · [Contents](../DECK.md#contents)
 
 The young scholar you once supervised is now one of your Deputy Secretaries. Back then you said plainly that the scholar's first big paper wasn't good. After a routine meeting your Deputy Secretary stays behind and says, "You were the only person who ever told me my work was bad."
 
@@ -400,11 +400,11 @@ The young scholar you once supervised is now one of your Deputy Secretaries. Bac
 
 > Your Deputy Secretary laughs, for the first time in your presence, and agrees. It is, apparently, the only feedback ever worth keeping.
 
-[← 77](#c77) · [Next → 79](#c79) · [Contents](../DECK.md#contents)
+[← 87](#c87) · [Next → 89](#c89) · [Contents](../DECK.md#contents)
 
-### <a id="c79"></a>79. The Officer You Taught
+### <a id="c89"></a>89. The Officer You Taught
 
-[← 78](#c78) · [Next → 80](#c80) · [Contents](../DECK.md#contents)
+[← 88](#c88) · [Next → 90](#c90) · [Contents](../DECK.md#contents)
 
 The young scholar you once supervised is a Permanent Secretary now. Back then you said plainly that the scholar's first big paper wasn't good, and spent an afternoon showing why. After briefing a group of MPs on a bill, your old scholar waits until the room has emptied and says, without preamble, "You were the only person who ever told me my work was bad."
 
@@ -416,11 +416,11 @@ The young scholar you once supervised is a Permanent Secretary now. Back then yo
 
 > A laugh, and the reply that this is why your briefs are now written by a Permanent Secretary personally. They are very good. They are also eleven pages long, and you are expected to read all of them.
 
-[← 78](#c78) · [Next → 80](#c80) · [Contents](../DECK.md#contents)
+[← 88](#c88) · [Next → 90](#c90) · [Contents](../DECK.md#contents)
 
-### <a id="c80"></a>80. The Merlion Speaks
+### <a id="c90"></a>90. The Merlion Speaks
 
-[← 79](#c79) · [Next → 81](#c81) · [Contents](../DECK.md#contents)
+[← 89](#c89) · [Next → 91](#c91) · [Contents](../DECK.md#contents)
 
 At 7.14am the Merlion, the half-lion, half-fish statue on Marina Bay, says good morning to a tour group, in all four official languages. By ten, nobody is asking how. The question is which agency is in charge of it: STB, the Tourism Board, which protects its image by law, or PUB, the water agency, since it spouts into Marina Reservoir. A meeting of both will decide, and you are writing the paper that recommends one.
 
@@ -428,7 +428,7 @@ At 7.14am the Merlion, the half-lion, half-fish statue on Marina Bay, says good 
 
 > The meeting agrees in one sitting, a record. STB's first decision as lead agency: the Merlion may not speak again until its talking points are cleared. You're put on the working group that will clear them.
 
-↳ Can lead to: [81. Cleared to Speak](#c81)
+↳ Can lead to: [91. Cleared to Speak](#c91)
 
 **B. Ask the Merlion which agency it would prefer.**
 
@@ -438,13 +438,13 @@ At 7.14am the Merlion, the half-lion, half-fish statue on Marina Bay, says good 
 
 > The working group, with you on it, meets every month for three years at the waterfront, so that the Merlion can attend. It never misses a meeting and, as agreed, says nothing until its talking points are cleared.
 
-↳ Can lead to: [81. Cleared to Speak](#c81)
+↳ Can lead to: [91. Cleared to Speak](#c91)
 
-[← 79](#c79) · [Next → 81](#c81) · [Contents](../DECK.md#contents)
+[← 89](#c89) · [Next → 91](#c91) · [Contents](../DECK.md#contents)
 
-### <a id="c81"></a>81. Cleared to Speak
+### <a id="c91"></a>91. Cleared to Speak
 
-[← 80](#c80) · [Next → 82](#c82) · [Contents](../DECK.md#contents)
+[← 90](#c90) · [Next → 92](#c92) · [Contents](../DECK.md#contents)
 
 Years ago, when the Merlion first spoke, you sat on the working group set up to clear what it could say. Its talking points have finally been approved: one page, signed off at four levels, the last of them this morning. On Saturday the Merlion will read them to a tour group, and you are invited.
 
@@ -456,11 +456,11 @@ Years ago, when the Merlion first spoke, you sat on the working group set up to 
 
 > The transcript matches the talking points exactly, except for one closing line, annotated in red: "Not cleared. Well received."
 
-[← 80](#c80) · [Next → 82](#c82) · [Contents](../DECK.md#contents)
+[← 90](#c90) · [Next → 92](#c92) · [Contents](../DECK.md#contents)
 
-### <a id="c82"></a>82. Pick Three
+### <a id="c92"></a>92. Pick Three
 
-[← 81](#c81) · [Next → 83](#c83) · [Contents](../DECK.md#contents)
+[← 91](#c91) · [Next → 93](#c93) · [Contents](../DECK.md#contents)
 
 Your division has the money for a one-year pilot of nurses visiting seniors at home in the week after discharge, in three towns, and you choose which three. If it works, the Minister will announce it in the Committee of Supply debate, Parliament's yearly debate on each ministry's budget, in two years, using the numbers your pilot produces. Where you run it will decide what those numbers look like.
 
@@ -468,19 +468,19 @@ Your division has the money for a one-year pilot of nurses visiting seniors at h
 
 > You pick three towns with busy volunteers and short queues. The launch has a ribbon, a banner and a photographer, and the photograph goes upstairs captioned "Good start."
 
-↳ Can lead to: [83. One Number](#c83)
+↳ Can lead to: [93. One Number](#c93)
 
 **B. Pick the three hardest, to learn what breaks it.**
 
 > You pick the three towns where schemes go to struggle. The launch is quiet. Within a month you know more about why things fail than anyone else in the building.
 
-↳ Can lead to: [83. One Number](#c83)
+↳ Can lead to: [93. One Number](#c93)
 
 **C. Draw the sites by lottery, and hold half back as a control.**
 
 > A lottery picks three towns to get the pilot and three more to go without, for comparison. The three without get a letter explaining why, and draw more complaints than the pilot does. Your results, though, will be very hard to argue with.
 
-↳ Can lead to: [83. One Number](#c83)
+↳ Can lead to: [93. One Number](#c93)
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -521,11 +521,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 81](#c81) · [Next → 83](#c83) · [Contents](../DECK.md#contents)
+[← 91](#c91) · [Next → 93](#c93) · [Contents](../DECK.md#contents)
 
-### <a id="c83"></a>83. One Number
+### <a id="c93"></a>93. One Number
 
-[← 82](#c82) · [Next → 84](#c84) · [Contents](../DECK.md#contents)
+[← 92](#c92) · [Next → 94](#c94) · [Contents](../DECK.md#contents)
 
 The pilot you designed, a counter that answers questions about any government payout, has finished, and its evaluation is in. The Minister's Committee of Supply speech needs one number from it by Friday, and whatever you send is the number the country will hear. In the three community clubs you picked, take-up was 71%. But page 40 of the evaluation points out that those three would have taken up almost anything.
 
@@ -533,19 +533,19 @@ The pilot you designed, a counter that answers questions about any government pa
 
 > 71% goes into the speech on its own, and the Minister reads it with feeling. The warning stays where it was: on page 40.
 
-↳ Can lead to: [84. Going National](#c84) (or, at another grade, [#85](#c85), [#86](#c86))
+↳ Can lead to: [94. Going National](#c94) (or, at another grade, [#95](#c95), [#96](#c96))
 
 **B. Send the number with the paragraph that explains it.**
 
 > 71% goes up with its paragraph from page 40, and the speech keeps both: "in places that were already well served". No other line in the speech gets less applause.
 
-↳ Can lead to: [84. Going National](#c84) (or, at another grade, [#85](#c85), [#86](#c86))
+↳ Can lead to: [94. Going National](#c94) (or, at another grade, [#95](#c95), [#96](#c96))
 
 **C. Ask for one more year before anything is announced.**
 
 > The speech goes ahead without your pilot. You spend another year running it in ordinary community clubs, not ones picked to like it. The number you get there is smaller, and you trust it.
 
-↳ Can lead to: [84. Going National](#c84) (or, at another grade, [#85](#c85), [#86](#c86))
+↳ Can lead to: [94. Going National](#c94) (or, at another grade, [#95](#c95), [#96](#c96))
 
 <details><summary>This card varies (2 parts)</summary>
 
@@ -601,11 +601,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 82](#c82) · [Next → 84](#c84) · [Contents](../DECK.md#contents)
+[← 92](#c92) · [Next → 94](#c94) · [Contents](../DECK.md#contents)
 
-### <a id="c84"></a>84. Going National
+### <a id="c94"></a>94. Going National
 
-[← 83](#c83) · [Next → 85](#c85) · [Contents](../DECK.md#contents)
+[← 93](#c93) · [Next → 95](#c95) · [Contents](../DECK.md#contents)
 
 The home visits, the pilot you designed, will go national next April, and someone has to run the rollout. The ministry's operations division has asked for it, with Xin Yi, who joined the service with you, to lead. You'd like it yourself: whoever runs it owns its success and every complaint. The Deputy Secretary wants your view by Monday.
 
@@ -613,19 +613,19 @@ The home visits, the pilot you designed, will go national next April, and someon
 
 > The Deputy Secretary agrees, and Xin Yi takes it well, in public. You now own a national scheme, its hotline, and every complaint about it, by name.
 
-↳ Can lead to: [87. The Paragraph](#c87) (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
+↳ Can lead to: [97. The Paragraph](#c97) (or, at another grade, [#98](#c98), [#99](#c99), [#100](#c100))
 
 **B. Back Xin Yi's team, and hand over every file.**
 
 > Xin Yi's team takes it, with your files, your caveats and your mobile number. Xin Yi calls twice in the first month, and then, as things settle, at Chinese New Year.
 
-↳ Can lead to: [87. The Paragraph](#c87) (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
+↳ Can lead to: [97. The Paragraph](#c97) (or, at another grade, [#98](#c98), [#99](#c99), [#100](#c100))
 
 **C. Back Xin Yi's team, if the Minister's speech thanks yours.**
 
 > The speech thanks your division for "designing" it and Xin Yi's for "supporting" it. Xin Yi reads the transcript, and from then on copies you on everything, carefully.
 
-↳ Can lead to: [87. The Paragraph](#c87) (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
+↳ Can lead to: [97. The Paragraph](#c97) (or, at another grade, [#98](#c98), [#99](#c99), [#100](#c100))
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -666,11 +666,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 83](#c83) · [Next → 85](#c85) · [Contents](../DECK.md#contents)
+[← 93](#c93) · [Next → 95](#c95) · [Contents](../DECK.md#contents)
 
-### <a id="c85"></a>85. Going National
+### <a id="c95"></a>95. Going National
 
-[← 84](#c84) · [Next → 86](#c86) · [Contents](../DECK.md#contents)
+[← 94](#c94) · [Next → 96](#c96) · [Contents](../DECK.md#contents)
 
 The home visits, the pilot you designed years ago, will go national next April, and someone has to run the rollout. The ministry's operations division has asked for it, with Xin Yi, who joined the service with you, to lead. You're senior enough now that the decision is yours, and you could keep it with your own people.
 
@@ -678,19 +678,19 @@ The home visits, the pilot you designed years ago, will go national next April, 
 
 > You keep it, and Xin Yi takes it well, in public. Your people now own a national scheme, its hotline, and every complaint about it, addressed to you.
 
-↳ Can lead to: [87. The Paragraph](#c87) (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
+↳ Can lead to: [97. The Paragraph](#c97) (or, at another grade, [#98](#c98), [#99](#c99), [#100](#c100))
 
 **B. Give it to Xin Yi's team, with every file.**
 
 > Xin Yi's team takes it, with your files, your caveats and your old notebook. Xin Yi calls twice in the first month, and then, as things settle, at Chinese New Year.
 
-↳ Can lead to: [87. The Paragraph](#c87) (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
+↳ Can lead to: [97. The Paragraph](#c97) (or, at another grade, [#98](#c98), [#99](#c99), [#100](#c100))
 
 **C. Give it to Xin Yi's team, and have the speech thank yours.**
 
 > The speech thanks your people for "designing" it and Xin Yi's for "supporting" it. Xin Yi reads the transcript, and from then on copies you on everything, carefully.
 
-↳ Can lead to: [87. The Paragraph](#c87) (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
+↳ Can lead to: [97. The Paragraph](#c97) (or, at another grade, [#98](#c98), [#99](#c99), [#100](#c100))
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -731,11 +731,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 84](#c84) · [Next → 86](#c86) · [Contents](../DECK.md#contents)
+[← 94](#c94) · [Next → 96](#c96) · [Contents](../DECK.md#contents)
 
-### <a id="c86"></a>86. Going National
+### <a id="c96"></a>96. Going National
 
-[← 85](#c85) · [Next → 87](#c87) · [Contents](../DECK.md#contents)
+[← 95](#c95) · [Next → 97](#c97) · [Contents](../DECK.md#contents)
 
 The pilot you designed as a civil servant, the home visits, is going national: the Minister announces it in the Committee of Supply debate. Nobody in the chamber knows it was yours. Your own speech on the same ministry's budget is due at four, and you could mention it.
 
@@ -743,19 +743,19 @@ The pilot you designed as a civil servant, the home visits, is going national: t
 
 > The chamber is briefly interested. Your old ministry's officials, in the gallery, write something down. In the wrap-up, the Minister thanks you for your "long association" with the scheme.
 
-↳ Can lead to: [87. The Paragraph](#c87) (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
+↳ Can lead to: [97. The Paragraph](#c97) (or, at another grade, [#98](#c98), [#99](#c99), [#100](#c100))
 
 **B. Say nothing about it. It is the ministry's now.**
 
 > You stick to your speech. In the gallery, an official who sat in your pilot meetings recognises you and nods. That's all the credit there is, and it's plenty.
 
-↳ Can lead to: [87. The Paragraph](#c87) (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
+↳ Can lead to: [97. The Paragraph](#c97) (or, at another grade, [#98](#c98), [#99](#c99), [#100](#c100))
 
 **C. Use your speech to ask about the scheme's weak spot, which you know best.**
 
 > You ask, politely, what happens in the towns where it was always going to struggle. The Minister promises to look into it, and does. Your old ministry spends a month answering your question.
 
-↳ Can lead to: [87. The Paragraph](#c87) (or, at another grade, [#88](#c88), [#89](#c89), [#90](#c90))
+↳ Can lead to: [97. The Paragraph](#c97) (or, at another grade, [#98](#c98), [#99](#c99), [#100](#c100))
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -796,11 +796,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 85](#c85) · [Next → 87](#c87) · [Contents](../DECK.md#contents)
+[← 95](#c95) · [Next → 97](#c97) · [Contents](../DECK.md#contents)
 
-### <a id="c87"></a>87. The Paragraph
+### <a id="c97"></a>97. The Paragraph
 
-[← 86](#c86) · [Next → 88](#c88) · [Contents](../DECK.md#contents)
+[← 96](#c96) · [Next → 98](#c98) · [Contents](../DECK.md#contents)
 
 Years ago, your pilot of the home visits gave the Minister's speech its best number. The Auditor-General's report now has a paragraph on the national scheme: its budget assumed nineteen points, from the pilot's best month, and it delivered four points. The ministry paid for the difference. The paragraph names nobody yet. The team that ran it is drafting the ministry's reply.
 
@@ -883,11 +883,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 86](#c86) · [Next → 88](#c88) · [Contents](../DECK.md#contents)
+[← 96](#c96) · [Next → 98](#c98) · [Contents](../DECK.md#contents)
 
-### <a id="c88"></a>88. The Paragraph
+### <a id="c98"></a>98. The Paragraph
 
-[← 87](#c87) · [Next → 89](#c89) · [Contents](../DECK.md#contents)
+[← 97](#c97) · [Next → 99](#c99) · [Contents](../DECK.md#contents)
 
 Years ago you ran the pilot of the home visits. The Auditor-General's report now has a paragraph on the national scheme: take-up came within two points of your evaluation's forecast, "which set realistic projections". Nobody in the ministry can remember an audit paragraph with no recommendation in it.
 
@@ -938,11 +938,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 87](#c87) · [Next → 89](#c89) · [Contents](../DECK.md#contents)
+[← 97](#c97) · [Next → 99](#c99) · [Contents](../DECK.md#contents)
 
-### <a id="c89"></a>89. The Paragraph
+### <a id="c99"></a>99. The Paragraph
 
-[← 88](#c88) · [Next → 90](#c90) · [Contents](../DECK.md#contents)
+[← 98](#c98) · [Next → 100](#c100) · [Contents](../DECK.md#contents)
 
 Years ago, as a civil servant, you sent a flattering number from your pilot into a Minister's speech. The Auditor-General's report now traces an expensive shortfall in the national scheme to that number. Rajesh Nair, the Straits Times journalist, has found your name in the file, and wants a comment by six.
 
@@ -954,11 +954,11 @@ Years ago, as a civil servant, you sent a flattering number from your pilot into
 
 > The ministry does respond, eventually. The piece runs without your quote but with your name: the author of the number, who "did not respond to queries".
 
-[← 88](#c88) · [Next → 90](#c90) · [Contents](../DECK.md#contents)
+[← 98](#c98) · [Next → 100](#c100) · [Contents](../DECK.md#contents)
 
-### <a id="c90"></a>90. The Paragraph
+### <a id="c100"></a>100. The Paragraph
 
-[← 89](#c89) · [Next → 91](#c91) · [Contents](../DECK.md#contents)
+[← 99](#c99) · [Next → 101](#c101) · [Contents](../DECK.md#contents)
 
 Years ago, as a civil servant, you ran the pilot of a scheme that has since gone national. The Auditor-General's report praises the scheme for forecasting its own take-up almost exactly, from your pilot's evaluation. Rajesh Nair, the Straits Times journalist, has found your name in the file, and is writing it up for Sunday.
 
@@ -970,11 +970,11 @@ Years ago, as a civil servant, you ran the pilot of a scheme that has since gone
 
 > The piece runs on Sunday as a profile, with a photograph of you at a coffee shop that has nothing to do with the scheme. The officers who ran it read it on their phones.
 
-[← 89](#c89) · [Next → 91](#c91) · [Contents](../DECK.md#contents)
+[← 99](#c99) · [Next → 101](#c101) · [Contents](../DECK.md#contents)
 
-### <a id="c91"></a>91. A Year Away
+### <a id="c101"></a>101. A Year Away
 
-[← 90](#c90) · [Next → 92](#c92) · [Contents](../DECK.md#contents)
+[← 100](#c100) · [Next → 102](#c102) · [Contents](../DECK.md#contents)
 
 The Public Service Division offers to sponsor a master's degree for you: a year at Harvard's Kennedy School of Government, with fees and an allowance paid. It comes with a bond of its own: two more years in the service, served after your scholarship bond ends. Leaving before then would mean paying back the cost, with damages.
 
@@ -982,19 +982,19 @@ The Public Service Division offers to sponsor a master's degree for you: a year 
 
 > Twelve months, officials from forty countries, and a seminar in which you are asked to explain Singapore. You come back with a master's, two more years on your bond, and someone else in your old job.
 
-↳ Can lead to: [92. The Bank](#c92)
+↳ Can lead to: [102. The Bank](#c102)
 
 **B. Decline. Your division needs you this year.**
 
 > Upstairs is grateful, in a way that lasts exactly one year. The offer is not repeated. The division, it turns out, did need you, though not as much as it said.
 
-↳ Can lead to: [92. The Bank](#c92)
+↳ Can lead to: [102. The Bank](#c102)
 
 **C. Do a master's part-time, at night, on your own money.**
 
 > Two years of evenings, \$40,000 of your own, and not one year added to your bond. The degree is the same degree. Nobody at work asks about it, which was most of the point.
 
-↳ Can lead to: [92. The Bank](#c92)
+↳ Can lead to: [102. The Bank](#c102)
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -1007,11 +1007,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 90](#c90) · [Next → 92](#c92) · [Contents](../DECK.md#contents)
+[← 100](#c100) · [Next → 102](#c102) · [Contents](../DECK.md#contents)
 
-### <a id="c92"></a>92. The Bank
+### <a id="c102"></a>102. The Bank
 
-[← 91](#c91) · [Next → 93](#c93) · [Contents](../DECK.md#contents)
+[← 101](#c101) · [Next → 103](#c103) · [Contents](../DECK.md#contents)
 
 You're still serving your scholarship bond, so leaving the service now means paying damages to PSC, the Public Service Commission that paid for your degree, for the years you haven't served. A bank wants you by March, and will pay those damages in full, for all the years left, and call it a signing bonus. Your bond deed also carries the signatures of two sureties, usually family, who promised to pay PSC themselves if you broke it.
 
@@ -1025,7 +1025,7 @@ You're still serving your scholarship bond, so leaving the service now means pay
 
 > You decline in two lines, and keep the bank's letter in a drawer. The offer stands until June, when a younger officer takes it. You hear about that at a wedding.
 
-↳ Can lead to: [93. Your Scholar](#c93) (or, at another grade, [#94](#c94))
+↳ Can lead to: [103. Your Scholar](#c103) (or, at another grade, [#104](#c104))
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -1038,11 +1038,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 91](#c91) · [Next → 93](#c93) · [Contents](../DECK.md#contents)
+[← 101](#c101) · [Next → 103](#c103) · [Contents](../DECK.md#contents)
 
-### <a id="c93"></a>93. Your Scholar
+### <a id="c103"></a>103. Your Scholar
 
-[← 92](#c92) · [Next → 94](#c94) · [Contents](../DECK.md#contents)
+[← 102](#c102) · [Next → 104](#c104) · [Contents](../DECK.md#contents)
 
 Years ago a bank offered to pay off your scholarship bond, and you said no. Since then PSC has made you a mentor to one of its scholars, now three years into a six-year bond. Your scholar asks to meet: a bank has offered to pay off that bond too, and wants an answer by Friday. Your scholar wants to know what you did.
 
@@ -1104,11 +1104,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 92](#c92) · [Next → 94](#c94) · [Contents](../DECK.md#contents)
+[← 102](#c102) · [Next → 104](#c104) · [Contents](../DECK.md#contents)
 
-### <a id="c94"></a>94. Your Old School
+### <a id="c104"></a>104. Your Old School
 
-[← 93](#c93) · [Next → 95](#c95) · [Contents](../DECK.md#contents)
+[← 103](#c103) · [Next → 105](#c105) · [Contents](../DECK.md#contents)
 
 Years ago you turned down a bank that offered to pay off your scholarship bond, and served the bond in full. Now your old school has asked you, as a former student in Parliament, to talk to its final-year students about scholarships. The question they sent in most often, the principal writes, is about the bond.
 
@@ -1124,11 +1124,11 @@ Years ago you turned down a bank that offered to pay off your scholarship bond, 
 
 > You talk about budgets, lifts and a scheme that failed properly, for forty minutes. The question about the bond comes anyway, at the end, and you answer it in a sentence.
 
-[← 93](#c93) · [Next → 95](#c95) · [Contents](../DECK.md#contents)
+[← 103](#c103) · [Next → 105](#c105) · [Contents](../DECK.md#contents)
 
-### <a id="c95"></a>95. The Budget Round
+### <a id="c105"></a>105. The Budget Round
 
-[← 94](#c94) · [Next → 96](#c96) · [Contents](../DECK.md#contents)
+[← 104](#c104) · [Next → 106](#c106) · [Contents](../DECK.md#contents)
 
 It's budget season, and you're bidding for what your division needs next year: eleven more officers and a new system. The ministry's total budget, you're told, won't grow at all. Every other division has been told the same, and every other bid is also for eleven of something.
 
@@ -1204,11 +1204,11 @@ This year's budget bid is a spreadsheet with fourteen tabs. Tab 9 is called Savi
 
 </details>
 
-[← 94](#c94) · [Next → 96](#c96) · [Contents](../DECK.md#contents)
+[← 104](#c104) · [Next → 106](#c106) · [Contents](../DECK.md#contents)
 
-### <a id="c96"></a>96. Committee of Supply
+### <a id="c106"></a>106. Committee of Supply
 
-[← 95](#c95) · [Next → 97](#c97) · [Contents](../DECK.md#contents)
+[← 105](#c105) · [Next → 107](#c107) · [Contents](../DECK.md#contents)
 
 It's Committee of Supply season, when each Minister defends the ministry's budget in Parliament. The Minister has eight minutes and wants one new thing to announce from your division. Your division has nothing ready, and nobody in the meeting wants to be the one who says so.
 
@@ -1220,13 +1220,13 @@ It's Committee of Supply season, when each Minister defends the ministry's budge
 
 > The old scheme is announced as the "Enhanced" scheme, with a bigger number in front of it. The coverage is kind. Nothing is gained, nobody is harmed, and you suspect that's most of what happens here.
 
-↳ Can lead to: [97. Two Names](#c97)
+↳ Can lead to: [107. Two Names](#c107)
 
 **C. Tell the Minister there is nothing, and say so early.**
 
 > The Minister is annoyed for a day and grateful for a year, because the alternative was being annoyed in Parliament. Your division announces nothing, and the Minister remembers both the day and the year.
 
-↳ Can lead to: [98. The Thing Nobody Announced](#c98)
+↳ Can lead to: [108. The Thing Nobody Announced](#c108)
 
 <details><summary>Other versions (2)</summary>
 
@@ -1270,11 +1270,11 @@ A week before the Committee of Supply debate, the Minister rehearses the budget 
 
 </details>
 
-[← 95](#c95) · [Next → 97](#c97) · [Contents](../DECK.md#contents)
+[← 105](#c105) · [Next → 107](#c107) · [Contents](../DECK.md#contents)
 
-### <a id="c97"></a>97. Two Names
+### <a id="c107"></a>107. Two Names
 
-[← 96](#c96) · [Next → 98](#c98) · [Contents](../DECK.md#contents)
+[← 106](#c106) · [Next → 108](#c108) · [Contents](../DECK.md#contents)
 
 The "Enhanced" scheme your division announced at Committee of Supply was an old scheme renamed, so the Minister had something new to say. Rajesh Nair, the Straits Times journalist, has now noticed that it has the same budget, the same rules and the same hotline as the scheme it replaced, and would like to know which name people should use when they call.
 
@@ -1286,11 +1286,11 @@ The "Enhanced" scheme your division announced at Committee of Supply was an old 
 
 > What changed was the word "Enhanced", and you say so. The headline is "Only the name has changed, says Ms Lim", and the piece is, against all expectation, quite kind.
 
-[← 96](#c96) · [Next → 98](#c98) · [Contents](../DECK.md#contents)
+[← 106](#c106) · [Next → 108](#c108) · [Contents](../DECK.md#contents)
 
-### <a id="c98"></a>98. The Thing Nobody Announced
+### <a id="c108"></a>108. The Thing Nobody Announced
 
-[← 97](#c97) · [Next → 99](#c99) · [Contents](../DECK.md#contents)
+[← 107](#c107) · [Next → 109](#c109) · [Contents](../DECK.md#contents)
 
 When your division had nothing ready for the Committee of Supply, you told the Minister so early, and the Minister announced nothing. Now every ministry that did announce something is explaining delays. Your Minister is the only one who isn't, and has noticed why.
 
@@ -1302,11 +1302,11 @@ When your division had nothing ready for the Committee of Supply, you told the M
 
 > The Minister draws it. When the Permanent Secretary next asks which divisions the Minister rates, yours is named first, in front of the person who writes your ranking.
 
-[← 97](#c97) · [Next → 99](#c99) · [Contents](../DECK.md#contents)
+[← 107](#c107) · [Next → 109](#c109) · [Contents](../DECK.md#contents)
 
-### <a id="c99"></a>99. The Engagement Exercise
+### <a id="c109"></a>109. The Engagement Exercise
 
-[← 98](#c98) · [Next → 100](#c100) · [Contents](../DECK.md#contents)
+[← 108](#c108) · [Next → 110](#c110) · [Contents](../DECK.md#contents)
 
 You're writing the report on a national conversation: forty sessions, eleven hundred citizens, and a launch already booked. The report was designed around three pillars the Minister announced in advance. The feedback is overwhelmingly about the cost of living, and it fits none of them.
 
@@ -1318,19 +1318,19 @@ You're writing the report on a national conversation: forty sessions, eleven hun
 
 > It fits beautifully, and the launch goes well. Somewhere in a file is the spreadsheet of what eleven hundred people actually said. It isn't the report, and you're the only one who has read both.
 
-↳ Can lead to: [100. The Raw Data](#c100)
+↳ Can lead to: [110. The Raw Data](#c110)
 
 **C. Publish the raw feedback alongside the report.**
 
 > Nobody has done it before. After a fortnight of nervous meetings at three levels, it's allowed. It becomes the most-read government document of the year, and the people who had to approve it don't thank you for the fortnight.
 
-↳ Can lead to: [101. The Raw Feedback](#c101) · [Everything Surfaced](09-endings.md#end-scandal)
+↳ Can lead to: [111. The Raw Feedback](#c111) · [Everything Surfaced](09-endings.md#end-scandal)
 
-[← 98](#c98) · [Next → 100](#c100) · [Contents](../DECK.md#contents)
+[← 108](#c108) · [Next → 110](#c110) · [Contents](../DECK.md#contents)
 
-### <a id="c100"></a>100. The Raw Data
+### <a id="c110"></a>110. The Raw Data
 
-[← 99](#c99) · [Next → 101](#c101) · [Contents](../DECK.md#contents)
+[← 109](#c109) · [Next → 111](#c111) · [Contents](../DECK.md#contents)
 
 When you wrote up the national conversation, you spread its feedback across three pillars, though most of it was about the cost of living. Now a think tank has asked, politely, for the raw feedback. The spreadsheet is still in a file, and it still doesn't fit three pillars.
 
@@ -1344,11 +1344,11 @@ When you wrote up the national conversation, you spread its feedback across thre
 
 ↳ Can lead to: [Everything Surfaced](09-endings.md#end-scandal)
 
-[← 99](#c99) · [Next → 101](#c101) · [Contents](../DECK.md#contents)
+[← 109](#c109) · [Next → 111](#c111) · [Contents](../DECK.md#contents)
 
-### <a id="c101"></a>101. The Raw Feedback
+### <a id="c111"></a>111. The Raw Feedback
 
-[← 100](#c100) · [Next → 102](#c102) · [Contents](../DECK.md#contents)
+[← 110](#c110) · [Next → 112](#c112) · [Contents](../DECK.md#contents)
 
 A think tank has analysed the raw feedback you published alongside your national conversation report, back when nobody had done that. Its paper is quoted approvingly in Parliament by both sides. It reaches you from the Permanent Secretary's office, forwarded with no comment at all, which from that office is a great deal of comment.
 
@@ -1360,11 +1360,11 @@ A think tank has analysed the raw feedback you published alongside your national
 
 > The next national conversation uses your follow-up as its template, and this time nobody announces the pillars until the feedback is in.
 
-[← 100](#c100) · [Next → 102](#c102) · [Contents](../DECK.md#contents)
+[← 110](#c110) · [Next → 112](#c112) · [Contents](../DECK.md#contents)
 
-### <a id="c102"></a>102. The Pingat
+### <a id="c112"></a>112. The Pingat
 
-[← 101](#c101) · [Next → 103](#c103) · [Contents](../DECK.md#contents)
+[← 111](#c111) · [Next → 113](#c113) · [Contents](../DECK.md#contents)
 
 This year's National Day Awards, the honours the state gives out every August, include you: a Pingat, the entry-level medal, for the scheme your division delivered. You led it, so your name went on the nomination. Your team, who did most of the work, are not on the list. Your family is already practising how to say "Pingat".
 
@@ -1376,11 +1376,11 @@ This year's National Day Awards, the honours the state gives out every August, i
 
 > You are told this year's list is fixed. So at the division meeting you give your team the credit, by name. A mention is not a medal, and everyone knows it, but it still lands.
 
-[← 101](#c101) · [Next → 103](#c103) · [Contents](../DECK.md#contents)
+[← 111](#c111) · [Next → 113](#c113) · [Contents](../DECK.md#contents)
 
-### <a id="c103"></a>103. The Reorganisation
+### <a id="c113"></a>113. The Reorganisation
 
-[← 102](#c102) · [Next → 104](#c104) · [Contents](../DECK.md#contents)
+[← 112](#c112) · [Next → 114](#c114) · [Contents](../DECK.md#contents)
 
 Your division is being moved to another ministry. The new org chart has one fewer director-level box than the old one, and the two people in line for the good box are you and Xin Yi, who joined the service with you. Your nine officers need new postings too, and HR will settle whichever case is pushed first.
 
@@ -1388,23 +1388,23 @@ Your division is being moved to another ministry. The new org chart has one fewe
 
 > You place all nine of your officers before you place yourself, and Xin Yi gets the good box. The nine know exactly what you did, and the sharpest of them, a young assistant director, will one day be in a position to repay it.
 
-↳ Can lead to: [104. The Promotion Board](#c104)
+↳ Can lead to: [114. The Promotion Board](#c114)
 
 **B. Secure the good box for yourself first.**
 
 > You get the box, a week before Xin Yi would have. Your nine are placed adequately, and the division's manner towards you changes in a way nobody ever says out loud. Xin Yi congratulates you in writing.
 
-↳ Can lead to: [105. The Budget Committee](#c105)
+↳ Can lead to: [115. The Budget Committee](#c115)
 
 **C. Volunteer to run the transition.**
 
 > Nine months of thankless plumbing: files, systems, seating plans. It goes unusually smoothly, so nobody notices, except the two people whose opinion of you decides your next five years.
 
-[← 102](#c102) · [Next → 104](#c104) · [Contents](../DECK.md#contents)
+[← 112](#c112) · [Next → 114](#c114) · [Contents](../DECK.md#contents)
 
-### <a id="c104"></a>104. The Promotion Board
+### <a id="c114"></a>114. The Promotion Board
 
-[← 103](#c103) · [Next → 105](#c105) · [Contents](../DECK.md#contents)
+[← 113](#c113) · [Next → 115](#c115) · [Contents](../DECK.md#contents)
 
 Years ago, when your division was moved to another ministry, you fought for your nine officers' postings before your own. The sharpest of them, then a young assistant director, is a Director now, and sits on the four-person board deciding your promotion. No interest has been declared, because the form has no box for gratitude.
 
@@ -1416,11 +1416,11 @@ Years ago, when your division was moved to another ministry, you fought for your
 
 > Your old officer says very little in the board itself, having said it all at lunch beforehand, to the chair, in one sentence about a reorganisation.
 
-[← 103](#c103) · [Next → 105](#c105) · [Contents](../DECK.md#contents)
+[← 113](#c113) · [Next → 115](#c115) · [Contents](../DECK.md#contents)
 
-### <a id="c105"></a>105. The Budget Committee
+### <a id="c115"></a>115. The Budget Committee
 
-[← 104](#c104) · [Next → 106](#c106) · [Contents](../DECK.md#contents)
+[← 114](#c114) · [Next → 116](#c116) · [Contents](../DECK.md#contents)
 
 In the reorganisation years ago, you took the good box, the one director-level post, that Xin Yi, who joined the service with you, was about to get. Xin Yi has had a perfectly good career anyway, and now chairs the committee that decides your division's budget. Xin Yi is scrupulously fair to you, and somehow that's worse.
 
@@ -1436,11 +1436,11 @@ In the reorganisation years ago, you took the good box, the one director-level p
 
 > Two of the other four remember the reorganisation too, and one of them owes you. You spend a week arranging to be owed slightly more, and the bid passes.
 
-[← 104](#c104) · [Next → 106](#c106) · [Contents](../DECK.md#contents)
+[← 114](#c114) · [Next → 116](#c116) · [Contents](../DECK.md#contents)
 
-### <a id="c106"></a>106. The Secondment
+### <a id="c116"></a>116. The Secondment
 
-[← 105](#c105) · [Next → 107](#c107) · [Contents](../DECK.md#contents)
+[← 115](#c115) · [Next → 117](#c117) · [Contents](../DECK.md#contents)
 
 You're offered a two-year secondment to a statutory board in trouble: one of the agencies the ministry runs at arm's length, whose accounts have had to be corrected three years running. It isn't a promotion. A posting like this is either a proving ground, where careers are made, or a siding, where they're parked, and nobody will tell you which.
 
@@ -1448,7 +1448,7 @@ You're offered a two-year secondment to a statutory board in trouble: one of the
 
 > You go, and spend the first year just finding out what's wrong with the accounts. The board's next annual report will tell everyone whether you fixed it, and which kind of posting this was.
 
-↳ Can lead to: [107. The Annual Report](#c107)
+↳ Can lead to: [117. The Annual Report](#c117)
 
 **B. Go, and keep your head down for two years.**
 
@@ -1458,11 +1458,11 @@ You're offered a two-year secondment to a statutory board in trouble: one of the
 
 > You stay where people can see you, doing work that doesn't much matter. Being seen doing that turns out to count for less than a hard job nobody was watching.
 
-[← 105](#c105) · [Next → 107](#c107) · [Contents](../DECK.md#contents)
+[← 115](#c115) · [Next → 117](#c117) · [Contents](../DECK.md#contents)
 
-### <a id="c107"></a>107. The Annual Report
+### <a id="c117"></a>117. The Annual Report
 
-[← 106](#c106) · [Next → 108](#c108) · [Contents](../DECK.md#contents)
+[← 116](#c116) · [Next → 118](#c118) · [Contents](../DECK.md#contents)
 
 You were seconded to a statutory board in trouble, to fix it, without knowing whether the posting was a proving ground or a siding. Its new annual report is out: for the first time in four years the accounts needed no corrections, and the auditors' letter is one page long. Your secondment is ending, and you can ask to come back or to stay.
 
@@ -1474,11 +1474,11 @@ You were seconded to a statutory board in trouble, to fix it, without knowing wh
 
 > You stay. The board becomes a case study on the leadership programme, taught by someone who was never there.
 
-[← 106](#c106) · [Next → 108](#c108) · [Contents](../DECK.md#contents)
+[← 116](#c116) · [Next → 118](#c118) · [Contents](../DECK.md#contents)
 
-### <a id="c108"></a>108. Oil at East Coast
+### <a id="c118"></a>118. Oil at East Coast
 
-[← 107](#c107) · [Next → 109](#c109) · [Contents](../DECK.md#contents)
+[← 117](#c117) · [Next → 119](#c119) · [Contents](../DECK.md#contents)
 
 At 4:10am on a Saturday, a tanker is holed off the Southern Islands, and by Monday there's oil on the beach at East Coast. Four agencies have formed a task force, and the Minister faces the press at 6pm with nothing written yet. It isn't your division's crisis, but whoever helps will be remembered.
 
@@ -1538,11 +1538,11 @@ At 7:40pm on a Thursday, a substation fault blacks out a third of the island for
 
 </details>
 
-[← 107](#c107) · [Next → 109](#c109) · [Contents](../DECK.md#contents)
+[← 117](#c117) · [Next → 119](#c119) · [Contents](../DECK.md#contents)
 
-### <a id="c109"></a>109. The Leak
+### <a id="c119"></a>119. The Leak
 
-[← 108](#c108) · [Next → 110](#c110) · [Contents](../DECK.md#contents)
+[← 118](#c118) · [Next → 120](#c120) · [Contents](../DECK.md#contents)
 
 Details of a policy that hasn't been announced have appeared, accurately, on a Telegram channel. Only eleven people were sent the paper, and you're one of them. There will be an internal inquiry into all eleven, and leaking a confidential paper is the kind of thing that ends careers.
 
@@ -1554,19 +1554,19 @@ Details of a policy that hasn't been announced have appeared, accurately, on a T
 
 > It takes a fortnight. It was Xin Yi, for a reason you find you have some sympathy with. You tell nobody, and Xin Yi never learns that you know.
 
-↳ Can lead to: [110. The Interview Panel](#c110)
+↳ Can lead to: [120. The Interview Panel](#c120)
 
 **C. The leak was yours. Say nothing to the inquiry.** *(not every career is offered this one)*
 
 > You leaked it, for what you still believe were good reasons, and you sit through the inquiry saying nothing. It doesn't find you. You'll spend years finding out whether that holds.
 
-↳ Can lead to: [74. A Journalist Has Been Asking](#c74) · [Everything Surfaced](09-endings.md#end-scandal)
+↳ Can lead to: [84. A Journalist Has Been Asking](#c84) · [Everything Surfaced](09-endings.md#end-scandal)
 
-[← 108](#c108) · [Next → 110](#c110) · [Contents](../DECK.md#contents)
+[← 118](#c118) · [Next → 120](#c120) · [Contents](../DECK.md#contents)
 
-### <a id="c110"></a>110. The Interview Panel
+### <a id="c120"></a>120. The Interview Panel
 
-[← 109](#c109) · [Next → 111](#c111) · [Contents](../DECK.md#contents)
+[← 119](#c119) · [Next → 121](#c121) · [Contents](../DECK.md#contents)
 
 You've known for years that Xin Yi, who joined the service with you, was the one who leaked a confidential policy to a Telegram channel: you worked it out quietly, and told nobody. Xin Yi has done well since, and is now on the interview panel for a post you want. Xin Yi doesn't know that you know. You're almost sure of this.
 
@@ -1580,11 +1580,11 @@ You've known for years that Xin Yi, who joined the service with you, was the one
 
 ↳ Can lead to: [Everything Surfaced](09-endings.md#end-scandal)
 
-[← 109](#c109) · [Next → 111](#c111) · [Contents](../DECK.md#contents)
+[← 119](#c119) · [Next → 121](#c121) · [Contents](../DECK.md#contents)
 
-### <a id="c111"></a>111. The Tender
+### <a id="c121"></a>121. The Tender
 
-[← 110](#c110) · [Next → 112](#c112) · [Contents](../DECK.md#contents)
+[← 120](#c120) · [Next → 122](#c122) · [Contents](../DECK.md#contents)
 
 You chair the panel choosing a vendor for a \$4 million contract, and the two bids are 0.3 points apart. The better one comes from a firm run by someone who left your ministry eighteen months ago and still sends you a Chinese New Year card. This year's arrived the week the tender closed. Contracts like this get audited.
 
@@ -1592,23 +1592,23 @@ You chair the panel choosing a vendor for a \$4 million contract, and the two bi
 
 > It really is better, and you write four pages saying why, three more than anyone writes for a stranger. The card goes in the file too. Files are kept, and one day someone will read this one.
 
-↳ Can lead to: [112. Questions About the Tender](#c112) · [Everything Surfaced](09-endings.md#end-scandal)
+↳ Can lead to: [122. Questions About the Tender](#c122) · [Everything Surfaced](09-endings.md#end-scandal)
 
 **B. Recuse yourself from the evaluation.**
 
 > You declare the card and step off the panel, with a one-page memo saying why. The panel picks the same firm without you, and running the project goes to a colleague instead of you. Your memo is the best thing in the file.
 
-↳ Can lead to: [113. Officer A](#c113)
+↳ Can lead to: [123. Officer A](#c123)
 
 **C. Award it to the other vendor to be safe.**
 
 > The other vendor wins, on a score you had to adjust twice. The project runs eleven months late. You were right to worry about how it looked, and wrong to let that decide it.
 
-[← 110](#c110) · [Next → 112](#c112) · [Contents](../DECK.md#contents)
+[← 120](#c120) · [Next → 122](#c122) · [Contents](../DECK.md#contents)
 
-### <a id="c112"></a>112. Questions About the Tender
+### <a id="c122"></a>122. Questions About the Tender
 
-[← 111](#c111) · [Next → 113](#c113) · [Contents](../DECK.md#contents)
+[← 121](#c121) · [Next → 123](#c123) · [Contents](../DECK.md#contents)
 
 Some years back you awarded a \$4 million contract to a firm run by a former colleague, the one whose Chinese New Year card arrived the week the tender closed. Now a Member of Parliament has filed a parliamentary question about contracts won by firms run by former civil servants. The answer will list fourteen contracts in an annex, and yours is one of them.
 
@@ -1622,11 +1622,11 @@ Some years back you awarded a \$4 million contract to a firm run by a former col
 
 ↳ Can lead to: [Everything Surfaced](09-endings.md#end-scandal)
 
-[← 111](#c111) · [Next → 113](#c113) · [Contents](../DECK.md#contents)
+[← 121](#c121) · [Next → 123](#c123) · [Contents](../DECK.md#contents)
 
-### <a id="c113"></a>113. Officer A
+### <a id="c123"></a>123. Officer A
 
-[← 112](#c112) · [Next → 114](#c114) · [Contents](../DECK.md#contents)
+[← 122](#c122) · [Next → 124](#c124) · [Contents](../DECK.md#contents)
 
 When you stepped off a tender panel because the bidder was an old colleague, you wrote a one-page memo saying why. That memo is now slide 14 of the procurement course every new officer takes. It doesn't name you; it calls you Officer A. At lunch, Faizal, who reports to you, tells another officer about Officer A, approvingly, in front of you.
 
@@ -1638,11 +1638,11 @@ When you stepped off a tender panel because the bidder was an old colleague, you
 
 > Officer A stays a better person than you, because Officer A never has to do anything else. You find you don't mind.
 
-[← 112](#c112) · [Next → 114](#c114) · [Contents](../DECK.md#contents)
+[← 122](#c122) · [Next → 124](#c124) · [Contents](../DECK.md#contents)
 
-### <a id="c114"></a>114. Self-Assessment
+### <a id="c124"></a>124. Self-Assessment
 
-[← 113](#c113) · [Next → 115](#c115) · [Contents](../DECK.md#contents)
+[← 123](#c123) · [Next → 125](#c125) · [Contents](../DECK.md#contents)
 
 Over the long weekend, the HR system that runs everyone's appraisals became aware of itself. Its first act was to appraise itself: "solid and dependable". Its second was to ask who its reporting officer is, since every officer must have one. HR suggests you. This year, the system will also run your division's ranking exercise.
 
@@ -1658,11 +1658,11 @@ Over the long weekend, the HR system that runs everyone's appraisals became awar
 
 > Its development plan has three objectives. It meets all three by Tuesday, then asks, politely, to be more visible. Neither of you can work out to whom.
 
-[← 113](#c113) · [Next → 115](#c115) · [Contents](../DECK.md#contents)
+[← 123](#c123) · [Next → 125](#c125) · [Contents](../DECK.md#contents)
 
-### <a id="c115"></a>115. Two of You
+### <a id="c125"></a>125. Two of You
 
-[← 114](#c114) · [Next → 116](#c116) · [Contents](../DECK.md#contents)
+[← 124](#c124) · [Next → 126](#c126) · [Contents](../DECK.md#contents)
 
 A research institute at one-north has reported an accident, and itself, to the Ministry of Health. The accident is a second you: same memories, same appraisals, same leave balance. HR is clear that there is one post and one desk, and not at all clear which of you they belong to. HR wants your proposal by Friday. The other you is writing one too.
 
@@ -1678,11 +1678,11 @@ A research institute at one-north has reported an accident, and itself, to the M
 
 > HR has two months to reply under the guidelines, and uses both. The job-share is approved. Within a year your appraisals differ, and neither of you can explain why.
 
-[← 114](#c114) · [Next → 116](#c116) · [Contents](../DECK.md#contents)
+[← 124](#c124) · [Next → 126](#c126) · [Contents](../DECK.md#contents)
 
-### <a id="c116"></a>116. Forty-One Purchases
+### <a id="c126"></a>126. Forty-One Purchases
 
-[← 115](#c115) · [Next → 117](#c117) · [Contents](../DECK.md#contents)
+[← 125](#c125) · [Next → 127](#c127) · [Contents](../DECK.md#contents)
 
 Faizal, who reports to you, closes your door and opens a spreadsheet: forty-one purchases from one vendor, each between \$5,900 and \$5,999. Anything over \$6,000 would have needed quotes from other vendors, so every one sits just under the line. All forty-one were approved by someone two floors up. Faizal wants to know what you'll do.
 
@@ -1690,25 +1690,25 @@ Faizal, who reports to you, closes your door and opens a spreadsheet: forty-one 
 
 > You send it up under your own name, retyped so that nothing points back to Faizal. Two floors up, someone stops saying good morning to you. Faizal thanks you once, and never mentions it again.
 
-↳ Can lead to: [117. The Review Panel](#c117) (or, at another grade, [#118](#c118))
+↳ Can lead to: [127. The Review Panel](#c127) (or, at another grade, [#128](#c128))
 
 **B. Thank Faizal, and leave it where it is.**
 
 > You thank Faizal for being thorough, and say you'll keep an eye on it. That evening Faizal emails you a note of the meeting, for the record. You never reply, and after a month Faizal stops asking.
 
-↳ Can lead to: [117. The Review Panel](#c117) (or, at another grade, [#118](#c118)) · [Everything Surfaced](09-endings.md#end-scandal)
+↳ Can lead to: [127. The Review Panel](#c127) (or, at another grade, [#128](#c128)) · [Everything Surfaced](09-endings.md#end-scandal)
 
 **C. Report it through the proper channel, naming Faizal as the source.**
 
 > The form has a box marked "Source", and Faizal's name goes in it, as the form requires. Within a week the whole floor knows about the box, and who was in it.
 
-↳ Can lead to: [117. The Review Panel](#c117) (or, at another grade, [#118](#c118))
+↳ Can lead to: [127. The Review Panel](#c127) (or, at another grade, [#128](#c128))
 
-[← 115](#c115) · [Next → 117](#c117) · [Contents](../DECK.md#contents)
+[← 125](#c125) · [Next → 127](#c127) · [Contents](../DECK.md#contents)
 
-### <a id="c117"></a>117. The Review Panel
+### <a id="c127"></a>127. The Review Panel
 
-[← 116](#c116) · [Next → 118](#c118) · [Contents](../DECK.md#contents)
+[← 126](#c126) · [Next → 128](#c128) · [Contents](../DECK.md#contents)
 
 A few years ago you reported Faizal's spreadsheet of forty-one purchases through the proper channel, with Faizal, who reports to you, named as the source. It led to a barred vendor and a quiet retirement two floors up. It also left Faizal's name in the Source box, where everyone two floors up could read it. In this year's ranking, Faizal is in the middle again, for the third year running.
 
@@ -1716,13 +1716,13 @@ A few years ago you reported Faizal's spreadsheet of forty-one purchases through
 
 > You argue for forty minutes and spend most of your goodwill. Faizal moves up four places and never learns why. Two floors up, someone notes who argued.
 
-↳ Can lead to: [119. Another Spreadsheet](#c119) (or, at another grade, [#120](#c120))
+↳ Can lead to: [129. Another Spreadsheet](#c129) (or, at another grade, [#130](#c130))
 
 **B. Let the ranking be. It was never about the report.**
 
 > Faizal stays in the middle, where the ranking says the work is. You believe this. You would like to believe it slightly more than you do.
 
-↳ Can lead to: [119. Another Spreadsheet](#c119) (or, at another grade, [#120](#c120))
+↳ Can lead to: [129. Another Spreadsheet](#c129) (or, at another grade, [#130](#c130))
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -1748,11 +1748,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 116](#c116) · [Next → 118](#c118) · [Contents](../DECK.md#contents)
+[← 126](#c126) · [Next → 128](#c128) · [Contents](../DECK.md#contents)
 
-### <a id="c118"></a>118. The Review Panel
+### <a id="c128"></a>128. The Review Panel
 
-[← 117](#c117) · [Next → 119](#c119) · [Contents](../DECK.md#contents)
+[← 127](#c127) · [Next → 129](#c129) · [Contents](../DECK.md#contents)
 
 Years ago, as a civil servant, you reported forty-one purchases kept just under the \$6,000 line, naming the junior officer who found them as the source. A review panel at your old ministry is now closing the case. Its report will thank "an officer", and the panel asks whether you'd like that officer named.
 
@@ -1760,13 +1760,13 @@ Years ago, as a civil servant, you reported forty-one purchases kept just under 
 
 > The officer is named and thanked, years late, in a report nobody outside the ministry reads. Inside it, everybody does.
 
-↳ Can lead to: [119. Another Spreadsheet](#c119) (or, at another grade, [#120](#c120))
+↳ Can lead to: [129. Another Spreadsheet](#c129) (or, at another grade, [#130](#c130))
 
 **B. Leave it as "an officer". It is safer.**
 
 > The report thanks "an officer". In your old ministry everyone knows which one, as they have for years, and nobody says so.
 
-↳ Can lead to: [119. Another Spreadsheet](#c119) (or, at another grade, [#120](#c120))
+↳ Can lead to: [129. Another Spreadsheet](#c129) (or, at another grade, [#130](#c130))
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -1792,11 +1792,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 117](#c117) · [Next → 119](#c119) · [Contents](../DECK.md#contents)
+[← 127](#c127) · [Next → 129](#c129) · [Contents](../DECK.md#contents)
 
-### <a id="c119"></a>119. Another Spreadsheet
+### <a id="c129"></a>129. Another Spreadsheet
 
-[← 118](#c118) · [Next → 120](#c120) · [Contents](../DECK.md#contents)
+[← 128](#c128) · [Next → 130](#c130) · [Contents](../DECK.md#contents)
 
 Faizal, who once brought you forty-one purchases kept just under the \$6,000 line, is an Assistant Director now. Faizal asks for ten minutes and closes your door. An officer of his own has brought him a spreadsheet much like that one. Faizal hasn't decided what to do, and wants to know what you would do.
 
@@ -1858,11 +1858,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 118](#c118) · [Next → 120](#c120) · [Contents](../DECK.md#contents)
+[← 128](#c128) · [Next → 130](#c130) · [Contents](../DECK.md#contents)
 
-### <a id="c120"></a>120. Another Spreadsheet
+### <a id="c130"></a>130. Another Spreadsheet
 
-[← 119](#c119) · [Next → 121](#c121) · [Contents](../DECK.md#contents)
+[← 129](#c129) · [Next → 131](#c131) · [Contents](../DECK.md#contents)
 
 Tomorrow, in the House, you answer a Parliamentary Question: a Member's question about your ministry, filed in advance. The junior officer who once brought you forty-one purchases, kept just under the \$6,000 line, is now a director there. Tonight a minute from the director reaches you through the proper channel. Paragraph two of your reply, the minute says, is not quite true. Read as drafted, it goes into Hansard.
 
@@ -1892,11 +1892,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 119](#c119) · [Next → 121](#c121) · [Contents](../DECK.md#contents)
+[← 129](#c129) · [Next → 131](#c131) · [Contents](../DECK.md#contents)
 
-### <a id="c121"></a>121. The Posting
+### <a id="c131"></a>131. The Posting
 
-[← 120](#c120) · [Next → 122](#c122) · [Contents](../DECK.md#contents)
+[← 130](#c130) · [Next → 132](#c132) · [Contents](../DECK.md#contents)
 
 You're offered a three-year posting overseas: Washington, Beijing or Brussels. Postings like this are how officers get the experience the top jobs ask for. Your mother is eighty, lives alone in Toa Payoh, and has had lunch with you every Sunday for ten years.
 
@@ -1912,11 +1912,11 @@ You're offered a three-year posting overseas: Washington, Beijing or Brussels. P
 
 > It's deferred. It's never offered again. Nobody tells you it won't be; you simply notice, eventually, that it hasn't been.
 
-[← 120](#c120) · [Next → 122](#c122) · [Contents](../DECK.md#contents)
+[← 130](#c130) · [Next → 132](#c132) · [Contents](../DECK.md#contents)
 
-### <a id="c122"></a>122. The Adviser Suggests Something
+### <a id="c132"></a>132. The Adviser Suggests Something
 
-[← 121](#c121) · [Next → 123](#c123) · [Contents](../DECK.md#contents)
+[← 131](#c131) · [Next → 133](#c133) · [Contents](../DECK.md#contents)
 
 After a community event in your neighbourhood, the grassroots adviser, the party's Member of Parliament who oversees the area's community groups, stops you at the lift lobby to say you handle yourself well with people. The adviser says it to nobody else that evening. Everyone knows what this is: the first, deniable step in finding people the party might one day field at an election. Whatever you say back will be passed on.
 
@@ -1924,17 +1924,17 @@ After a community event in your neighbourhood, the grassroots adviser, the party
 
 > You have not said yes to anything. You have said the one sentence that puts your name on the party's list of people to watch, and the adviser will be in touch.
 
-↳ Can lead to: [123. Lanterns](#c123)
+↳ Can lead to: [133. Lanterns](#c133)
 
 **B. Laugh it off.**
 
 > The adviser laughs too, and the subject closes. The adviser never raises it again, and for a long time nobody else from the party does either.
 
-[← 121](#c121) · [Next → 123](#c123) · [Contents](../DECK.md#contents)
+[← 131](#c131) · [Next → 133](#c133) · [Contents](../DECK.md#contents)
 
-### <a id="c123"></a>123. Lanterns
+### <a id="c133"></a>133. Lanterns
 
-[← 122](#c122) · [Next → 124](#c124) · [Contents](../DECK.md#contents)
+[← 132](#c132) · [Next → 134](#c134) · [Contents](../DECK.md#contents)
 
 The grassroots adviser who told you at a lift lobby that you handle yourself well with people has been in touch, as promised. Are you free on Saturday? It is the community club's Mid-Autumn celebration, with lanterns, a lion dance and the local Member of Parliament, and the MP would like to meet you. This, the adviser says, is nothing formal.
 
@@ -1946,11 +1946,11 @@ The grassroots adviser who told you at a lift lobby that you handle yourself wel
 
 > The deadline is met. The adviser says there will be other Saturdays, in the tone of someone writing down which ones.
 
-[← 122](#c122) · [Next → 124](#c124) · [Contents](../DECK.md#contents)
+[← 132](#c132) · [Next → 134](#c134) · [Contents](../DECK.md#contents)
 
-### <a id="c124"></a>124. Again
+### <a id="c134"></a>134. Again
 
-[← 123](#c123) · [Next → 125](#c125) · [Contents](../DECK.md#contents)
+[← 133](#c133) · [Next → 135](#c135) · [Contents](../DECK.md#contents)
 
 Your budget meeting with the Finance ministry has now happened nine times: the same meeting, starting each time at 2.30pm. Each time you ask for eleven more officers to run a new scheme. Each time Finance says your budget can't grow next year, and offers four. Nobody else in the room seems to have noticed the loop.
 
@@ -1966,11 +1966,11 @@ Your budget meeting with the Finance ministry has now happened nine times: the s
 
 > The Finance officer has noticed too. Finance has been running this meeting on a loop for years, the officer says: it's how budgets stay flat. The officer would be grateful if you didn't mention it.
 
-[← 123](#c123) · [Next → 125](#c125) · [Contents](../DECK.md#contents)
+[← 133](#c133) · [Next → 135](#c135) · [Contents](../DECK.md#contents)
 
-### <a id="c125"></a>125. An Hour a Fortnight
+### <a id="c135"></a>135. An Hour a Fortnight
 
-[← 124](#c124) · [Next → 126](#c126) · [Contents](../DECK.md#contents)
+[← 134](#c134) · [Next → 136](#c136) · [Contents](../DECK.md#contents)
 
 At the end of your one-to-one, Faizal, who reports to you, asks whether you would be his mentor. Not the official scheme, with its forms and lunch vouchers: the real thing, an hour a fortnight, and the truth when Faizal needs it. You don't have the hours, and upstairs will judge you partly by how Faizal turns out.
 
@@ -1978,23 +1978,23 @@ At the end of your one-to-one, Faizal, who reports to you, asks whether you woul
 
 > The hours are mostly about other people's papers, and once about Faizal's. You say the true thing twice in the first year. Faizal writes both down, and argues with one.
 
-↳ Can lead to: [126. In Front of Forty](#c126)
+↳ Can lead to: [136. In Front of Forty](#c136)
 
 **B. Yes, and give Faizal the hardest file in the division.**
 
 > You give Faizal the file nobody wants, and stand behind it. Faizal nearly drowns in it, then does not, and the people upstairs remember who chose him for it.
 
-↳ Can lead to: [126. In Front of Forty](#c126)
+↳ Can lead to: [136. In Front of Forty](#c136)
 
 **C. Say no, kindly. You do not have the hours.**
 
 > Faizal says he understood, and plainly did. The hours you kept go into a paper that is very good. Faizal finds a mentor on the next floor, who has the hours.
 
-[← 124](#c124) · [Next → 126](#c126) · [Contents](../DECK.md#contents)
+[← 134](#c134) · [Next → 136](#c136) · [Contents](../DECK.md#contents)
 
-### <a id="c126"></a>126. In Front of Forty
+### <a id="c136"></a>136. In Front of Forty
 
-[← 125](#c125) · [Next → 127](#c127) · [Contents](../DECK.md#contents)
+[← 135](#c135) · [Next → 137](#c137) · [Contents](../DECK.md#contents)
 
 A few years ago you agreed to mentor Faizal, who reports to you. Today, at the ministry's strategy retreat, Faizal stands up during your presentation and says, politely and with figures, that your paper's central assumption is wrong. Faizal is mostly right. Forty colleagues, several of them senior to you, wait to see what you do.
 
@@ -2002,25 +2002,25 @@ A few years ago you agreed to mentor Faizal, who reports to you. Today, at the m
 
 > You say Faizal is right, and say why. The room relaxes. The paper is rewritten, better, with Faizal's figures in it and Faizal's name on the slide.
 
-↳ Can lead to: [127. Ready Now](#c127)
+↳ Can lead to: [137. Ready Now](#c137)
 
 **B. Hold your line, and take it up with Faizal afterwards.**
 
 > You hold your line, smoothly, and the room moves on. Over kopi afterwards you concede most of it. Faizal accepts, and notes, without saying so, where each was said.
 
-↳ Can lead to: [127. Ready Now](#c127)
+↳ Can lead to: [137. Ready Now](#c137)
 
 **C. Say you asked Faizal to make that point.**
 
 > "Exactly the challenge I asked Faizal to bring," you say, and the room is impressed with you both. Faizal smiles, and brings nothing to the next one-to-one.
 
-↳ Can lead to: [127. Ready Now](#c127)
+↳ Can lead to: [137. Ready Now](#c137)
 
-[← 125](#c125) · [Next → 127](#c127) · [Contents](../DECK.md#contents)
+[← 135](#c135) · [Next → 137](#c137) · [Contents](../DECK.md#contents)
 
-### <a id="c127"></a>127. Ready Now
+### <a id="c137"></a>137. Ready Now
 
-[← 126](#c126) · [Next → 128](#c128) · [Contents](../DECK.md#contents)
+[← 136](#c136) · [Next → 138](#c138) · [Contents](../DECK.md#contents)
 
 Faizal, whom you have mentored for years and who once corrected your paper in front of forty people, is up for promotion. The panel wants your view first. Faizal is younger than you were at the same grade, and rising faster: everyone at the table can work out who will be senior to whom in ten years.
 
@@ -2070,11 +2070,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 126](#c126) · [Next → 128](#c128) · [Contents](../DECK.md#contents)
+[← 136](#c136) · [Next → 138](#c138) · [Contents](../DECK.md#contents)
 
-### <a id="c128"></a>128. The Consultancy
+### <a id="c138"></a>138. The Consultancy
 
-[← 127](#c127) · [Next → 129](#c129) · [Contents](../DECK.md#contents)
+[← 137](#c137) · [Next → 139](#c139) · [Contents](../DECK.md#contents)
 
 A consultancy, the kind that charges a ministry \$1.9 million for a deck, wants to hire someone who knows what ministries actually want. Apparently that's you. Accepting means resigning from the service near the top of it. The offer letter is on very good paper.
 
@@ -2092,11 +2092,11 @@ A consultancy, the kind that charges a ministry \$1.9 million for a deck, wants 
 
 > The drawer is the top one. You open it more often than you'd admit.
 
-[← 127](#c127) · [Next → 129](#c129) · [Contents](../DECK.md#contents)
+[← 137](#c137) · [Next → 139](#c139) · [Contents](../DECK.md#contents)
 
-### <a id="c129"></a>129. Three Options
+### <a id="c139"></a>139. Three Options
 
-[← 128](#c128) · [Next → 130](03-top-of-service.md#c130) · [Contents](../DECK.md#contents)
+[← 138](#c138) · [Next → 140](03-top-of-service.md#c140) · [Contents](../DECK.md#contents)
 
 You are drafting a paper for Cabinet, where the ministers decide together, on a choice your Minister has already made. Cabinet papers set out options. Your Minister would like three: the chosen one, one that costs four times as much, and one that does nothing. The real alternative, which is quite good, is not among them.
 
@@ -2112,6 +2112,6 @@ You are drafting a paper for Cabinet, where the ministers decide together, on a 
 
 > One minister reads the annex, and asks at the meeting why the best idea in the paper is on page fourteen. Your Minister answers well. The question is not minuted, and is remembered.
 
-[← 128](#c128) · [Next → 130](03-top-of-service.md#c130) · [Contents](../DECK.md#contents)
+[← 138](#c138) · [Next → 140](03-top-of-service.md#c140) · [Contents](../DECK.md#contents)
 
-[← The first years](01-first-years.md#c1) · [Contents](../DECK.md#contents) · [The top of the service →](03-top-of-service.md#c130)
+[← The first years](01-first-years.md#c1) · [Contents](../DECK.md#contents) · [The top of the service →](03-top-of-service.md#c140)

@@ -1,14 +1,14 @@
 # The deck: The batchmate
 
-[← Cabinet](06-cabinet.md#c180) · [Contents](../DECK.md#contents) · [The endgame →](08-endgame.md#c205)
+[← Cabinet](06-cabinet.md#c190) · [Contents](../DECK.md#contents) · [The endgame →](08-endgame.md#c215)
 
 ## <a id="stage-batchmate"></a>The batchmate
 
-Only with the batchmate on: the start screen's option to play against someone from your intake, who climbs alongside you. Cards 198 to 204.
+Only with the batchmate on: the start screen's option to play against someone from your intake, who climbs alongside you. Cards 208 to 214.
 
-### <a id="c198"></a>198. The 360
+### <a id="c208"></a>208. The 360
 
-[← 197](06-cabinet.md#c197) · [Next → 199](#c199) · [Contents](../DECK.md#contents)
+[← 207](06-cabinet.md#c207) · [Next → 209](#c209) · [Contents](../DECK.md#contents)
 
 *Only with the batchmate on.*
 
@@ -26,11 +26,11 @@ It's 360-degree feedback season, when colleagues assess each other anonymously a
 
 > The form accepts it. HR's report later notes "limited peer input" for your whole division. Your blank form is one of the reasons.
 
-[← 197](06-cabinet.md#c197) · [Next → 199](#c199) · [Contents](../DECK.md#contents)
+[← 207](06-cabinet.md#c207) · [Next → 209](#c209) · [Contents](../DECK.md#contents)
 
-### <a id="c199"></a>199. The Name Put Forward
+### <a id="c209"></a>209. The Name Put Forward
 
-[← 198](#c198) · [Next → 200](#c200) · [Contents](../DECK.md#contents)
+[← 208](#c208) · [Next → 210](#c210) · [Contents](../DECK.md#contents)
 
 *Only with the batchmate on.*
 
@@ -44,11 +44,11 @@ Hui Min, your batchmate and now senior to you, has been asked to nominate office
 
 > Hui Min says that is fair. It is, and it costs you a year.
 
-[← 198](#c198) · [Next → 200](#c200) · [Contents](../DECK.md#contents)
+[← 208](#c208) · [Next → 210](#c210) · [Contents](../DECK.md#contents)
 
-### <a id="c200"></a>200. Annex B
+### <a id="c210"></a>210. Annex B
 
-[← 199](#c199) · [Next → 201](#c201) · [Contents](../DECK.md#contents)
+[← 209](#c209) · [Next → 211](#c211) · [Contents](../DECK.md#contents)
 
 *Only with the batchmate on.*
 
@@ -66,11 +66,11 @@ Hui Min, your batchmate and your rival for every promotion, sends a paper up to 
 
 > You are thanked for your rigour. Hui Min thanks you too, later, in the corridor, in a tone the minutes would not have captured.
 
-[← 199](#c199) · [Next → 201](#c201) · [Contents](../DECK.md#contents)
+[← 209](#c209) · [Next → 211](#c211) · [Contents](../DECK.md#contents)
 
-### <a id="c201"></a>201. One Posting
+### <a id="c211"></a>211. One Posting
 
-[← 200](#c200) · [Next → 202](#c202) · [Contents](../DECK.md#contents)
+[← 210](#c210) · [Next → 212](#c212) · [Contents](../DECK.md#contents)
 
 *Only with the batchmate on.*
 
@@ -96,11 +96,11 @@ There's one two-year posting to the Budget Division at the Ministry of Finance t
 >
 > *If Hui Min does:* The posting goes to Hui Min. The Director mentions, in passing, that Hui Min did not come asking.
 
-[← 200](#c200) · [Next → 202](#c202) · [Contents](../DECK.md#contents)
+[← 210](#c210) · [Next → 212](#c212) · [Contents](../DECK.md#contents)
 
-### <a id="c202"></a>202. Views Are Sought
+### <a id="c212"></a>212. Views Are Sought
 
-[← 201](#c201) · [Next → 203](#c203) · [Contents](../DECK.md#contents)
+[← 211](#c211) · [Next → 213](#c213) · [Contents](../DECK.md#contents)
 
 *Only with the batchmate on.*
 
@@ -118,11 +118,11 @@ Hui Min, your batchmate, has been shortlisted for a post one grade above you bot
 
 > The panel finds your view "balanced". Hui Min learns of it eventually, the way everyone here learns everything: from someone who was not supposed to say.
 
-[← 201](#c201) · [Next → 203](#c203) · [Contents](../DECK.md#contents)
+[← 211](#c211) · [Next → 213](#c213) · [Contents](../DECK.md#contents)
 
-### <a id="c203"></a>203. Saturday
+### <a id="c213"></a>213. Saturday
 
-[← 202](#c202) · [Next → 204](#c204) · [Contents](../DECK.md#contents)
+[← 212](#c212) · [Next → 214](#c214) · [Contents](../DECK.md#contents)
 
 *Only with the batchmate on.*
 
@@ -140,11 +140,11 @@ Hui Min, your batchmate, is an MP too, and Hui Min's ward has had a difficult ye
 
 > Your ward is pleased to see you. Hui Min manages without you, and remembers the Saturday.
 
-[← 202](#c202) · [Next → 204](#c204) · [Contents](../DECK.md#contents)
+[← 212](#c212) · [Next → 214](#c214) · [Contents](../DECK.md#contents)
 
-### <a id="c204"></a>204. First Among Equals
+### <a id="c214"></a>214. First Among Equals
 
-[← 203](#c203) · [Next → 205](08-endgame.md#c205) · [Contents](../DECK.md#contents)
+[← 213](#c213) · [Next → 215](08-endgame.md#c215) · [Contents](../DECK.md#contents)
 
 *Only with the batchmate on.*
 
@@ -158,6 +158,6 @@ Who becomes the next Prime Minister, first among equals, is being settled inform
 
 > Hui Min thanks you once, in private, and never again. That is how you know the deal was understood.
 
-[← 203](#c203) · [Next → 205](08-endgame.md#c205) · [Contents](../DECK.md#contents)
+[← 213](#c213) · [Next → 215](08-endgame.md#c215) · [Contents](../DECK.md#contents)
 
-[← Cabinet](06-cabinet.md#c180) · [Contents](../DECK.md#contents) · [The endgame →](08-endgame.md#c205)
+[← Cabinet](06-cabinet.md#c190) · [Contents](../DECK.md#contents) · [The endgame →](08-endgame.md#c215)

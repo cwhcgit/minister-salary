@@ -5,7 +5,7 @@ Every card a career can meet, read for the decision it poses, then checked again
 ## Summary
 
 - **187 cards read** (105 in `events.json`, 75 in the packs, 7 in `rival.json`), each given a one-line decision signature (appendix).
-- **26 groups a single career can meet**: 17 groups of different cards that pose one decision, and 9 repeatable cards (alone or with their siblings) whose later showings posed their decision again as if new.
+- **28 groups a single career can meet** (two added since, with the flying saucer): 19 groups of different cards that pose one decision, and 9 repeatable cards (alone or with their siblings) whose later showings posed their decision again as if new.
 - **The biggest**, by share of careers that met the decision twice today: effort 68.5%; candour_up 43.6%; work_life 24.8%; bad_number 24.3%; ceiling_ask 16.4%; footing 13.2%; house_brief 11.0%; private_offer 10.2%.
 - **Careers that meet at least one decision twice: 94.3% today, 0.0% after.**
 - Resolved three ways: an exclusive group (a career meets the first card of the group it is shown, and never the others); a series (a card that repeats does so as a habit: shown in full once or twice, the second time asking whether to keep the habit, then passing by itself); or a rewrite, where a weak duplicate would have starved its group's best card or broken a story, and became a different decision.
@@ -40,6 +40,8 @@ The first card of a group a career is shown claims the group; the others are nev
 | `share_credit` | You are credited for what others did: keep the credit, or pass it on | `block_party`, `national_day_award`, `pofma_vindicated` | 2.2% → 0.0% | `national_day_award` + `pofma_vindicated` 1.8%, `block_party` + `national_day_award` 0.28%, `block_party` + `pofma_vindicated` 0.26% | Consequences that end their stories, and the Pingat. `model_ward` is kept apart (below). |
 | `floor_question` | An awkward question from the floor at a public dialogue: answer it, or take it offline | `moe_psle`, `mom_retirement` | 0.0% → 0.0% | never together | Ministry decks: meet only after a reshuffle into the other ministry. |
 | `ceiling_ask` | Ask to be told your ceiling | `cep_discovery`, ~~`the_appraisal_talk`~~ (rewritten) | 16.4% → 0.0% | `cep_discovery` + `the_appraisal_talk` 16.4% | Resolved by rewriting the appraisal's ceiling question to "where you stand" (two of its versions already asked that). |
+| `saucer_post_early` | The flying saucer's first deleted post from the Minister: how you handle its fallout at work | `strange_saucer_tax`, `strange_saucer_kopi` | new | never together | Added with the flying saucer (strange.json). Not two decisions found alike: the group is how the chain shows one early post of two. The meeting with the Minister schedules both, the tax post at 50% first; whichever fires claims the group and the other is struck. The kopi post reads on either ladder, so the group never waits. |
+| `saucer_post_late` | The flying saucer's later deleted post: the clarification, or the journalist's call | `strange_saucer_visitors` (and `_pol`), `strange_saucer_sky` (and `_pol`) | new | never together | As above: each scheduled at 30%, so about half the careers that meet the Minister see a second post, and none sees three. Each card has a politics version in the group. |
 
 ## Cards that repeat (series)
 

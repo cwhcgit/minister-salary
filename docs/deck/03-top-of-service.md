@@ -1,14 +1,14 @@
 # The deck: The top of the service
 
-[← The service](02-service.md#c58) · [Contents](../DECK.md#contents) · [The crossing →](04-crossing.md#c143)
+[← The service](02-service.md#c68) · [Contents](../DECK.md#contents) · [The crossing →](04-crossing.md#c153)
 
 ## <a id="stage-top"></a>The top of the service
 
-Deputy Secretary and Permanent Secretary. Cards 130 to 142.
+Deputy Secretary and Permanent Secretary. Cards 140 to 152.
 
-### <a id="c130"></a>130. The Moon
+### <a id="c140"></a>140. The Moon
 
-[← 129](02-service.md#c129) · [Next → 131](#c131) · [Contents](../DECK.md#contents)
+[← 139](02-service.md#c139) · [Next → 141](#c141) · [Contents](../DECK.md#contents)
 
 A civilisation beyond Jupiter has offered Singapore a moon. The Ministry of Foreign Affairs has drafted the formal reply, a note verbale, declining "with the assurances of its highest consideration", because the Outer Space Treaty bars any country from claiming one. Every ministry has until 5pm to comment, and yours will comment under your name.
 
@@ -24,11 +24,11 @@ A civilisation beyond Jupiter has offered Singapore a moon. The Ministry of Fore
 
 > The note declines the moon and offers Singapore as a neutral meeting place, as it has been for other summits. The offer is accepted by return. Your ministry is now looking for office space near Changi.
 
-[← 129](02-service.md#c129) · [Next → 131](#c131) · [Contents](../DECK.md#contents)
+[← 139](02-service.md#c139) · [Next → 141](#c141) · [Contents](../DECK.md#contents)
 
-### <a id="c131"></a>131. Acting
+### <a id="c141"></a>141. Acting
 
-[← 130](#c130) · [Next → 132](#c132) · [Contents](../DECK.md#contents)
+[← 140](#c140) · [Next → 142](#c142) · [Contents](../DECK.md#contents)
 
 The Permanent Secretary is overseas for three weeks, and you are acting in the post. On the second Friday, a decision lands that would normally go upstairs: an agency wants to issue a statement tonight, committing the ministry to a date you think is too early. Upstairs is asleep, seven time zones away.
 
@@ -44,11 +44,11 @@ The Permanent Secretary is overseas for three weeks, and you are acting in the p
 
 > The agency issues its statement on Monday, with a date the Permanent Secretary approves. Over the weekend a newspaper reports that the ministry "declined to comment", which is technically what happened.
 
-[← 130](#c130) · [Next → 132](#c132) · [Contents](../DECK.md#contents)
+[← 140](#c140) · [Next → 142](#c142) · [Contents](../DECK.md#contents)
 
-### <a id="c132"></a>132. The Model
+### <a id="c142"></a>142. The Model
 
-[← 131](#c131) · [Next → 133](#c133) · [Contents](../DECK.md#contents)
+[← 141](#c141) · [Next → 143](#c143) · [Contents](../DECK.md#contents)
 
 You sit on the board of one of the agencies your ministry runs at arm's length, as the ministry's representative. Today the board approves its new headquarters: forty per cent over budget, with a sky garden. The chairman asks whether the ministry is comfortable. Nobody has asked the ministry. A model of the building sits on the table.
 
@@ -64,11 +64,11 @@ You sit on the board of one of the agencies your ministry runs at arm's length, 
 
 > It takes two hours. The forty per cent turns out to be thirty-one for the building and nine for the garden. The board approves the building and defers the garden. Management describes the meeting afterwards as "robust".
 
-[← 131](#c131) · [Next → 133](#c133) · [Contents](../DECK.md#contents)
+[← 141](#c141) · [Next → 143](#c143) · [Contents](../DECK.md#contents)
 
-### <a id="c133"></a>133. The Box Marked Successor
+### <a id="c143"></a>143. The Box Marked Successor
 
-[← 132](#c132) · [Next → 134](#c134) · [Contents](../DECK.md#contents)
+[← 142](#c142) · [Next → 144](#c144) · [Contents](../DECK.md#contents)
 
 The Public Service Division, which makes the service's top appointments, asks every Permanent Secretary to name a successor, in confidence, on a form with one box. Your two Deputy Secretaries are the obvious names. One would carry on everything you have built. The other is sharper, and would quietly undo half of it.
 
@@ -80,11 +80,11 @@ The Public Service Division, which makes the service's top appointments, asks ev
 
 > You write the loyal name, and the Public Service Division agrees within a week. Everything you built will be safe for years, including the parts that shouldn't be.
 
-[← 132](#c132) · [Next → 134](#c134) · [Contents](../DECK.md#contents)
+[← 142](#c142) · [Next → 144](#c144) · [Contents](../DECK.md#contents)
 
-### <a id="c134"></a>134. Openness to Challenge
+### <a id="c144"></a>144. Openness to Challenge
 
-[← 133](#c133) · [Next → 135](#c135) · [Contents](../DECK.md#contents)
+[← 143](#c143) · [Next → 145](#c145) · [Contents](../DECK.md#contents)
 
 Every few years the Public Service Division, which looks after the careers of the service's most senior officers, asks each Permanent Secretary's officers, anonymously, what they think. Your results are back. You score well on everything except "openness to challenge", where you score lowest of any Permanent Secretary this year. Nobody ever said so to your face.
 
@@ -100,11 +100,11 @@ Every few years the Public Service Division, which looks after the careers of th
 
 > You resolve to be more open, and are, in the meetings where you remember to be. The next survey moves by two points, which the Public Service Division calls "a positive trajectory".
 
-[← 133](#c133) · [Next → 135](#c135) · [Contents](../DECK.md#contents)
+[← 143](#c143) · [Next → 145](#c145) · [Contents](../DECK.md#contents)
 
-### <a id="c135"></a>135. The Orphan
+### <a id="c145"></a>145. The Orphan
 
-[← 134](#c134) · [Next → 136](#c136) · [Contents](../DECK.md#contents)
+[← 144](#c144) · [Next → 146](#c146) · [Contents](../DECK.md#contents)
 
 A hotline that sits between your ministry and another has been passed back and forth for years, each ministry sure that its callers belong to the other. Its own staff call it the orphan. The other ministry's Permanent Secretary has now written, warmly, to propose that it belongs with you. Whoever takes it gets its backlog, and its headlines.
 
@@ -120,11 +120,11 @@ A hotline that sits between your ministry and another has been passed back and f
 
 > The joint unit has two directors, two budgets and one phone line, and its quarterly report needs four signatures. Callers get through more often than before. The officers in the unit call the arrangement, privately, joint custody.
 
-[← 134](#c134) · [Next → 136](#c136) · [Contents](../DECK.md#contents)
+[← 144](#c144) · [Next → 146](#c146) · [Contents](../DECK.md#contents)
 
-### <a id="c136"></a>136. The Podium
+### <a id="c146"></a>146. The Podium
 
-[← 135](#c135) · [Next → 137](#c137) · [Contents](../DECK.md#contents)
+[← 145](#c145) · [Next → 147](#c147) · [Contents](../DECK.md#contents)
 
 A payments system at one of the agencies your ministry runs at arm's length has failed, and forty thousand payments went out twice. Tomorrow at ten, someone has to stand at a podium and explain. The agency's chief executive has offered. The Minister's office says the Minister will, if asked. Who stands there is your call.
 
@@ -140,11 +140,11 @@ A payments system at one of the agencies your ministry runs at arm's length has 
 
 > The Minister does it from your eleven pages, word perfect. The story is now about the Minister, which the Minister's office had hoped to avoid. You are thanked warmly, and the next brief is written in the Minister's office.
 
-[← 135](#c135) · [Next → 137](#c137) · [Contents](../DECK.md#contents)
+[← 145](#c145) · [Next → 147](#c147) · [Contents](../DECK.md#contents)
 
-### <a id="c137"></a>137. The Predecessor
+### <a id="c147"></a>147. The Predecessor
 
-[← 136](#c136) · [Next → 138](#c138) · [Contents](../DECK.md#contents)
+[← 146](#c146) · [Next → 148](#c148) · [Contents](../DECK.md#contents)
 
 Your predecessor as Permanent Secretary has retired, and now chairs the board of one of the agencies your ministry oversees. Your predecessor also still rings your directors, once a week or so, with suggestions that sound a great deal like instructions. The directors follow them. It is the voice they learned to follow, and nobody has told it to stop.
 
@@ -160,11 +160,11 @@ Your predecessor as Permanent Secretary has retired, and now chairs the board of
 
 > They are mostly good, and the ministry runs very smoothly, in two directions at once. At the agency's annual dinner your predecessor raises a glass to "my successor", and the room laughs a beat too early.
 
-[← 136](#c136) · [Next → 138](#c138) · [Contents](../DECK.md#contents)
+[← 146](#c146) · [Next → 148](#c148) · [Contents](../DECK.md#contents)
 
-### <a id="c138"></a>138. Paragraph Six
+### <a id="c148"></a>148. Paragraph Six
 
-[← 137](#c137) · [Next → 139](#c139) · [Contents](../DECK.md#contents)
+[← 147](#c147) · [Next → 149](#c149) · [Contents](../DECK.md#contents)
 
 You are giving the keynote at an industry conference, and the speech your officers drafted is good. Paragraph six says the ministry will review a rule the industry hates, which is true, and has not been announced. Permanent Secretaries do not announce things; ministers do. Four reporters have registered.
 
@@ -180,11 +180,11 @@ You are giving the keynote at an industry conference, and the speech your office
 
 > It comes back at midnight, approved, with every verb softened: "will review" is now "is studying the feasibility of reviewing". You read it as amended. One reporter writes it up, accurately, as nothing.
 
-[← 137](#c137) · [Next → 139](#c139) · [Contents](../DECK.md#contents)
+[← 147](#c147) · [Next → 149](#c149) · [Contents](../DECK.md#contents)
 
-### <a id="c139"></a>139. The Terms of Reference
+### <a id="c149"></a>149. The Terms of Reference
 
-[← 138](#c138) · [Next → 140](#c140) · [Contents](../DECK.md#contents)
+[← 148](#c148) · [Next → 150](#c150) · [Contents](../DECK.md#contents)
 
 After a four-day outage of your ministry's main online service, the Minister is appointing a Committee of Inquiry: a retired judge and two experts who can call witnesses, and will publish what they find. Your ministry drafts its terms of reference, which set out what the committee may look at. Drafted generously, that includes you.
 
@@ -202,11 +202,11 @@ After a four-day outage of your ministry's main online service, the Minister is 
 
 > The judge proposes terms wider than you would have dared and narrower than you feared, and the Minister signs them unchanged. The report is careful, and the ministry learns more from it than it expected to.
 
-[← 138](#c138) · [Next → 140](#c140) · [Contents](../DECK.md#contents)
+[← 148](#c148) · [Next → 150](#c150) · [Contents](../DECK.md#contents)
 
-### <a id="c140"></a>140. The List
+### <a id="c150"></a>150. The List
 
-[← 139](#c139) · [Next → 141](#c141) · [Contents](../DECK.md#contents)
+[← 149](#c149) · [Next → 151](#c151) · [Contents](../DECK.md#contents)
 
 Your Minister comes back from every visit to a market or an estate with a new idea, usually already promised to the residents there. The ministry tracks the ideas on a spreadsheet its officers call the List. It has twenty-three lines, and three officers who work on nothing else. The Minister reads its progress column every Monday.
 
@@ -222,11 +222,11 @@ Your Minister comes back from every visit to a market or an estate with a new id
 
 > The progress column turns a reassuring amber. Three ideas are done properly. The other twenty stay amber until a Monday a year later, when the Minister asks what amber means.
 
-[← 139](#c139) · [Next → 141](#c141) · [Contents](../DECK.md#contents)
+[← 149](#c149) · [Next → 151](#c151) · [Contents](../DECK.md#contents)
 
-### <a id="c141"></a>141. Two Names
+### <a id="c151"></a>151. Two Names
 
-[← 140](#c140) · [Next → 142](#c142) · [Contents](../DECK.md#contents)
+[← 150](#c150) · [Next → 152](#c152) · [Contents](../DECK.md#contents)
 
 The Head of Civil Service, the most senior official in the service, is moving senior officers between ministries this year, and asks each Permanent Secretary for two names. The obvious first name on your list is Faizal, and everyone knows it, including Faizal. Your ministry would take a year to recover.
 
@@ -242,11 +242,11 @@ The Head of Civil Service, the most senior official in the service, is moving se
 
 > Faizal asks for a weekend, and then to stay a year to finish the work. You write that on the form. The Head of Civil Service accepts it, and puts a date in a diary that is not yours.
 
-[← 140](#c140) · [Next → 142](#c142) · [Contents](../DECK.md#contents)
+[← 150](#c150) · [Next → 152](#c152) · [Contents](../DECK.md#contents)
 
-### <a id="c142"></a>142. Mentioned Twice
+### <a id="c152"></a>152. Mentioned Twice
 
-[← 141](#c141) · [Next → 143](04-crossing.md#c143) · [Contents](../DECK.md#contents)
+[← 151](#c151) · [Next → 153](04-crossing.md#c153) · [Contents](../DECK.md#contents)
 
 Your ministry is deciding which estates get the next round of a building programme. On the scoring, the estates the Minister represents in Parliament come eleventh. The Minister has not asked for anything. The Minister has mentioned, twice, at two different meetings, how long the residents of one block there have been waiting.
 
@@ -264,6 +264,6 @@ Your ministry is deciding which estates get the next round of a building program
 
 > The Minister looks surprised and says no, of course not. The scoring stands. The block is never mentioned again in your hearing, and you wonder whether you misread it, and then whether you were meant to.
 
-[← 141](#c141) · [Next → 143](04-crossing.md#c143) · [Contents](../DECK.md#contents)
+[← 151](#c151) · [Next → 153](04-crossing.md#c153) · [Contents](../DECK.md#contents)
 
-[← The service](02-service.md#c58) · [Contents](../DECK.md#contents) · [The crossing →](04-crossing.md#c143)
+[← The service](02-service.md#c68) · [Contents](../DECK.md#contents) · [The crossing →](04-crossing.md#c153)
