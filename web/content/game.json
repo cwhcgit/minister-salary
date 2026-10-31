@@ -478,7 +478,8 @@
     "raw_feedback",
     "team_recognised",
     "whistle_protected",
-    "protege_backed"
+    "protege_backed",
+    "saucer_stood_with"
   ],
   "declassifiedFlags": [
     {
@@ -834,6 +835,63 @@
         "notDuringBond": true
       },
       "text": "Six years, served in full. The deed is in a file at the Public Service Commission that you have never asked to see."
+    },
+    {
+      "label": "The flying saucer",
+      "requires": {
+        "flagsAll": [
+          "saucer_reported",
+          "saucer_stood_with"
+        ]
+      },
+      "text": "You reported that you had seen your Minister, Boey Shu Min, rise into a flying saucer. Nobody believed you, and for the next four years it cost you at appraisal. Then a second report named yours as the first, and you stood beside it in public."
+    },
+    {
+      "label": "The flying saucer",
+      "requires": {
+        "flagsAll": [
+          "saucer_reported",
+          "saucer_quietly"
+        ]
+      },
+      "text": "You reported that you had seen your Minister, Boey Shu Min, rise into a flying saucer. Nobody believed you, and for the next four years it cost you at appraisal. Then a second report named yours as the first, and you backed it quietly."
+    },
+    {
+      "label": "The flying saucer",
+      "requires": {
+        "flagsAll": [
+          "saucer_reported",
+          "saucer_withdrew"
+        ]
+      },
+      "text": "You reported that you had seen your Minister, Boey Shu Min, rise into a flying saucer. Nobody believed you, and for the next four years it cost you at appraisal. Then a second report named yours as the first, and you withdrew yours."
+    },
+    {
+      "label": "The flying saucer",
+      "requires": {
+        "flagsAll": [
+          "saucer_reported"
+        ]
+      },
+      "text": "You reported that you had seen your Minister, Boey Shu Min, rise into a flying saucer. Nobody believed you, and for the next four years it cost you at appraisal."
+    },
+    {
+      "label": "The flying saucer",
+      "requires": {
+        "flagsAll": [
+          "saucer_silent"
+        ]
+      },
+      "text": "You agreed that you had seen nothing. Your Minister, Boey Shu Min, put in a good word for you, and it lifted your appraisals for the next three years."
+    },
+    {
+      "label": "The flying saucer",
+      "requires": {
+        "flagsAll": [
+          "saucer_asked"
+        ]
+      },
+      "text": "You asked your Minister, Boey Shu Min, whether she was an alien. She said she was not, left you off her projects for a while, and never moved against you."
     }
   ],
   "legacyTiers": [

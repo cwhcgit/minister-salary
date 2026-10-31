@@ -74,8 +74,9 @@ distinct cards. Alternate scenes are extra and counted in section 5.
 That's 95 at the start plus 213 new: **about 308 distinct cards**, before alternate scenes.
 
 Three packs outside this table have also been written: **Openings** (`openings`, 2 cards: the
-scholar's and the graduate's first year), **Strange Years** (`strange`, 15 cards: one impossible
-premise, processed as routine, in about a third of careers) and **The end of a career**
+scholar's and the graduate's first year), **Strange Years** (`strange`, 25 cards: one impossible
+premise, processed as routine, in about a third of careers; thirteen premises, one of them the
+flying saucer's chain of seven cards and three politics versions) and **The end of a career**
 (`endgame`, 8 cards; DESIGN.md section 4).
 
 Two more fill the years that pass with nothing to decide in a long stay, which one decision, once
@@ -350,7 +351,8 @@ than about 60% of runs. Then rerun a blind agent cohort when credits allow.
 
 A second career should not replay the first. Two engine features multiply what one card can be,
 without letting the game contradict itself. Both are text-first: they never use the run's dice, and
-a card that uses them plays exactly as it did before, mechanically.
+a card that uses them plays exactly as it did before, mechanically. A third, the lasting mark (below),
+is mechanical: a choice that moves the appraisals of several years.
 
 ### The cast
 
@@ -502,6 +504,37 @@ choices and outcomes use `{slot}` (the option's `text`), `{Slot}` (capitalised) 
 
 Every combination must read well (rule 3.10), and an assembled body or outcome keeps to the usual
 lengths (rules 2.9 and 2.10).
+
+### Lasting marks
+
+Unlike the cast and the parts, this one is mechanical. A choice's `appraisal` effect counts at this
+year's appraisal only, and a witness's judgement at one appraisal later on. Some choices stay with a
+career for a while instead: colleagues who decide you are unwell, a Minister who puts in a good word.
+A choice may carry a lasting mark:
+
+```json
+{ "text": "Agree that you saw nothing. Then report it anyway.",
+  "effects": { "integrity": 6, "standing": -4 },
+  "lasting": { "appraisal": -4, "years": 4 }, ... }
+```
+
+- **What it does.** Every appraisal for `years` years, this year's first, moves by `appraisal`
+  points (a C needs 28, a B 42, a B+ 58, an A 72). Several marks add up, and they add to the
+  choice's own effects, to a "noted" choice and to any witness.
+- **Never announced.** Unlike `appraisal`, nothing on screen says the choice will count: the grade
+  simply comes out a little different, and the review's "why" line reads it as the year's luck, as it
+  does a witness. So the card's outcome has to give the cause (rule 5.5): "Nobody believes you, and
+  everyone is very kind about it."
+- **One ladder.** The mark belongs to the ladder the player stands on once the choice is made: a
+  year of it that falls on the other ladder lapses, so the service's view of you does not follow
+  you into politics.
+- **Where it shows.** The trace records it (`appraisal.lasting`, kept out of `appraisal.base`); the
+  design deck says "A lasting mark"; `test/sim.js` lists it among a dominated choice's hidden
+  consequences. Its first use is the flying saucer in `strange` (a report nobody believes, -4 for
+  four years; silence that earns a good word, +3 for three; a question that loses her projects, -2
+  for two), and the Declassified file names what it did.
+- **Size.** Keep it to a few points for a few years: -4 for four years costs about a grade's worth of
+  score in all, spread thin. A mark should make a promotion harder, never decide a career alone.
 
 ### Checks
 

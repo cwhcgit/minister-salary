@@ -1,14 +1,14 @@
 # The deck: The crossing
 
-[← The top of the service](03-top-of-service.md#c130) · [Contents](../DECK.md#contents) · [Politics →](05-politics.md#c150)
+[← The top of the service](03-top-of-service.md#c140) · [Contents](../DECK.md#contents) · [Politics →](05-politics.md#c160)
 
 ## <a id="stage-crossing"></a>The crossing
 
-The tea, the background check and the election: from the service into politics, and what follows from them. Cards 143 to 149.
+The tea, the background check and the election: from the service into politics, and what follows from them. Cards 153 to 159.
 
-### <a id="c143"></a>143. An Invitation to Tea
+### <a id="c153"></a>153. An Invitation to Tea
 
-[← 142](03-top-of-service.md#c142) · [Next → 144](#c144) · [Contents](../DECK.md#contents)
+[← 152](03-top-of-service.md#c152) · [Next → 154](#c154) · [Contents](../DECK.md#contents)
 
 An email invites you to tea. The sender's title is not explained and there is no agenda, but everyone in the service knows what this is: the governing party is sounding you out to stand for Parliament, as one of its candidates at the next general election. Go, and your whole career will be looked at. Decline, and you stay a civil servant, and the invitation never comes again.
 
@@ -16,13 +16,13 @@ An email invites you to tea. The sender's title is not explained and there is no
 
 > Tea is served, and the conversation is about nothing for forty minutes. Then a second guest arrives with a folder: everything in your career that could embarrass the party. The newcomer opens it, and reads.
 
-↳ Can lead to: [144. The Background Check](#c144)
+↳ Can lead to: [154. The Background Check](#c154)
 
 **B. Decline, politely.**
 
 > You write three sentences and delete two of them. The reply thanks you for your candour. Others invited that year say yes. You will not be asked again, and you will think about this for the rest of your life.
 
-↳ Can lead to: [149. The Other Life](#c149) · [The Tea Was Declined](09-endings.md#end-declined)
+↳ Can lead to: [159. The Other Life](#c159) · [The Tea Was Declined](09-endings.md#end-declined)
 
 <details><summary>Other versions (2)</summary>
 
@@ -58,11 +58,11 @@ A hand-delivered envelope on your desk asks whether you might spare an hour for 
 
 </details>
 
-[← 142](03-top-of-service.md#c142) · [Next → 144](#c144) · [Contents](../DECK.md#contents)
+[← 152](03-top-of-service.md#c152) · [Next → 154](#c154) · [Contents](../DECK.md#contents)
 
-### <a id="c144"></a>144. The Background Check
+### <a id="c154"></a>154. The Background Check
 
-[← 143](#c143) · [Next → 145](#c145) · [Contents](../DECK.md#contents)
+[← 153](#c153) · [Next → 155](#c155) · [Contents](../DECK.md#contents)
 
 Before the party puts you up for election, it checks everything that could come out in a campaign. The person who read from the folder at your tea is back with it, now as your interviewer. Whatever you admit counts against you; admit too much and the invitation quietly lapses. Whatever you hide may surface during the campaign. Nobody says which parts of the folder are the worry.
 
@@ -70,13 +70,13 @@ Before the party puts you up for election, it checks everything that could come 
 
 > Your interviewer listens without writing anything until you have finished, then writes for a long time. Whatever happens next, nothing in that folder can surprise you on the campaign trail.
 
-↳ Can lead to: [145. The Younger Officer](#c145) · [146. The General Election](#c146) · [The Invitation Lapsed](09-endings.md#end-withdrawn)
+↳ Can lead to: [155. The Younger Officer](#c155) · [156. The General Election](#c156) · [The Invitation Lapsed](09-endings.md#end-withdrawn)
 
 **B. Answer exactly what is asked and nothing more.**
 
 > The questions are precise and so are your answers. Your interviewer thanks you. Nobody mentions the folder again. It is still there, and anything in it can still come out.
 
-↳ Can lead to: [146. The General Election](#c146)
+↳ Can lead to: [156. The General Election](#c156)
 
 <details><summary>Other versions (2)</summary>
 
@@ -112,11 +112,11 @@ The party's background check starts as a form: forty-two questions, three about 
 
 </details>
 
-[← 143](#c143) · [Next → 145](#c145) · [Contents](../DECK.md#contents)
+[← 153](#c153) · [Next → 155](#c155) · [Contents](../DECK.md#contents)
 
-### <a id="c145"></a>145. The Younger Officer
+### <a id="c155"></a>155. The Younger Officer
 
-[← 144](#c144) · [Next → 146](#c146) · [Contents](../DECK.md#contents)
+[← 154](#c154) · [Next → 156](#c156) · [Contents](../DECK.md#contents)
 
 Years ago the party invited you to tea too. At the background check that followed, you told them everything, including what wasn't in their folder on you, and you never heard from the party again. Now a younger officer, just invited to tea, asks you over kopi whether to go, and knows none of this.
 
@@ -128,11 +128,11 @@ Years ago the party invited you to tea too. At the background check that followe
 
 > You tell all of it. The younger officer listens the way you once listened at tea, thanks you, and you realise you've just been vetted by someone half your age.
 
-[← 144](#c144) · [Next → 146](#c146) · [Contents](../DECK.md#contents)
+[← 154](#c154) · [Next → 156](#c156) · [Contents](../DECK.md#contents)
 
-### <a id="c146"></a>146. The General Election
+### <a id="c156"></a>156. The General Election
 
-[← 145](#c145) · [Next → 147](#c147) · [Contents](../DECK.md#contents)
+[← 155](#c155) · [Next → 157](#c157) · [Contents](../DECK.md#contents)
 
 The party is fielding you at the general election, in a GRC: a large ward split into divisions, where you run as one of a team of five and voters elect the whole team together. You have resigned from the service to stand, and if you lose, the service will not take you back. The minister leading your team asks which division you will look after.
 
@@ -140,19 +140,19 @@ The party is fielding you at the general election, in a GRC: a large ward split 
 
 > Nine days of walkabouts, meeting voters at every market and coffee shop, with your name fourth on the poster. You shake eleven thousand hands and understand, with total clarity, that almost none of this is about you.
 
-↳ Can lead to: [147. Polling Day, Again](#c147) · [Lost the Ward](09-endings.md#end-lostward)
+↳ Can lead to: [157. Polling Day, Again](#c157) · [Lost the Ward](09-endings.md#end-lostward)
 
 **B. Take the division the opposition is fighting for.**
 
 > Nine days of walkabouts in the four blocks the opposition has decided to win, while your teammates take the friendlier ones. The minister leading your team calls every evening to ask how it is going, and listens to the answer.
 
-↳ Can lead to: [147. Polling Day, Again](#c147) · [Lost the Ward](09-endings.md#end-lostward)
+↳ Can lead to: [157. Polling Day, Again](#c157) · [Lost the Ward](09-endings.md#end-lostward)
 
 **C. Ask for a single seat of your own instead, alone against one opponent: all the risk, and all the credit.** *(not every career is offered this one)*
 
 > Nine days of walkabouts, meeting voters at every market and coffee shop, alone, against a decent opponent with volunteers on every floor. Nobody carries you, and if it goes wrong, there is nobody else to blame.
 
-↳ Can lead to: [147. Polling Day, Again](#c147) · [Lost the Ward](09-endings.md#end-lostward)
+↳ Can lead to: [157. Polling Day, Again](#c157) · [Lost the Ward](09-endings.md#end-lostward)
 
 <details><summary>Other versions (2)</summary>
 
@@ -196,11 +196,11 @@ The party's candidates are photographed in a school hall that smells of floor po
 
 </details>
 
-[← 145](#c145) · [Next → 147](#c147) · [Contents](../DECK.md#contents)
+[← 155](#c155) · [Next → 157](#c157) · [Contents](../DECK.md#contents)
 
-### <a id="c147"></a>147. Polling Day, Again
+### <a id="c157"></a>157. Polling Day, Again
 
-[← 146](#c146) · [Next → 148](#c148) · [Contents](../DECK.md#contents)
+[← 156](#c156) · [Next → 158](#c158) · [Contents](../DECK.md#contents)
 
 Parliament is dissolved on a Tuesday, so there is a general election within weeks and your seat is up again. Lose it, and your political career is over. Nobody is surprised: the party's tents went up under the blocks a fortnight ago. This time the chairman of your party branch, which runs the party's volunteers in your ward, has started using the word "swing" in sentences about you.
 
@@ -208,13 +208,13 @@ Parliament is dissolved on a Tuesday, so there is a general election within week
 
 > You stand on a campaign lorry and read out everything the ward got since the last election, as if it were all your doing. Some of it was.
 
-↳ Can lead to: [147. Polling Day, Again](#c147) · [148. A Model Ward](#c148) · [Lost the Ward](09-endings.md#end-lostward)
+↳ Can lead to: [157. Polling Day, Again](#c157) · [158. A Model Ward](#c158) · [Lost the Ward](09-endings.md#end-lostward)
 
 **B. Walk every block, every night, for nine days.**
 
 > Nine nights, four hundred lift lobbies, and one pair of shoes you will never wear again.
 
-↳ Can lead to: [147. Polling Day, Again](#c147) · [148. A Model Ward](#c148) · [Lost the Ward](09-endings.md#end-lostward)
+↳ Can lead to: [157. Polling Day, Again](#c157) · [158. A Model Ward](#c158) · [Lost the Ward](09-endings.md#end-lostward)
 
 <details><summary>Other versions (6)</summary>
 
@@ -306,11 +306,11 @@ Parliament is dissolved, and your seat is contested again; if it goes, so does y
 
 </details>
 
-[← 146](#c146) · [Next → 148](#c148) · [Contents](../DECK.md#contents)
+[← 156](#c156) · [Next → 158](#c158) · [Contents](../DECK.md#contents)
 
-### <a id="c148"></a>148. A Model Ward
+### <a id="c158"></a>158. A Model Ward
 
-[← 147](#c147) · [Next → 149](#c149) · [Contents](../DECK.md#contents)
+[← 157](#c157) · [Next → 159](#c159) · [Contents](../DECK.md#contents)
 
 Your ward's six-point swing towards you at the election, the best result in the region, has reached an internal party paper. It calls your ward a model and credits "Ms Lim Wei Ling and her walkabouts". The party's organising secretary wants you to mentor three new candidates. You suspect the swing was really three things: the volunteers, the Tuesday-night Meet-the-People Sessions where residents queue with their problems, and a weak opponent.
 
@@ -326,11 +326,11 @@ Your ward's six-point swing towards you at the election, the best result in the 
 
 > Your longest-serving volunteer mentors all three for six weeks and refuses lunch every time. All three win their seats. None of their victory speeches mentions the volunteer.
 
-[← 147](#c147) · [Next → 149](#c149) · [Contents](../DECK.md#contents)
+[← 157](#c157) · [Next → 159](#c159) · [Contents](../DECK.md#contents)
 
-### <a id="c149"></a>149. The Other Life
+### <a id="c159"></a>159. The Other Life
 
-[← 148](#c148) · [Next → 150](05-politics.md#c150) · [Contents](../DECK.md#contents)
+[← 158](#c158) · [Next → 160](05-politics.md#c160) · [Contents](../DECK.md#contents)
 
 You declined the party's invitation to tea, years ago, when it wanted to sound you out about politics. Someone invited the same year went, and is now a Minister. On the evening news, that Minister announces a scheme your people designed, and thanks the public service, correctly, in general terms.
 
@@ -342,6 +342,6 @@ You declined the party's invitation to tea, years ago, when it wanted to sound y
 
 > The file is better than the announcement. It usually is. That was, you remind yourself, more or less why you said no.
 
-[← 148](#c148) · [Next → 150](05-politics.md#c150) · [Contents](../DECK.md#contents)
+[← 158](#c158) · [Next → 160](05-politics.md#c160) · [Contents](../DECK.md#contents)
 
-[← The top of the service](03-top-of-service.md#c130) · [Contents](../DECK.md#contents) · [Politics →](05-politics.md#c150)
+[← The top of the service](03-top-of-service.md#c140) · [Contents](../DECK.md#contents) · [Politics →](05-politics.md#c160)

@@ -1,20 +1,20 @@
 # The deck, with the mechanics: Cabinet
 
-[← Politics](05-politics.md#c150) · [Contents](../DECK-DESIGN.md#contents) · [The batchmate →](07-batchmate.md#c198)
+[← Politics](05-politics.md#c160) · [Contents](../DECK-DESIGN.md#contents) · [The batchmate →](07-batchmate.md#c208)
 
 ## <a id="stage-cabinet"></a>Cabinet
 
-Minister of State to Prime Minister. Cards 180 to 197.
+Minister of State to Prime Minister. Cards 190 to 207.
 
-### <a id="c180"></a>180. The National Bonus
+### <a id="c190"></a>190. The National Bonus
 
-[← 179](05-politics.md#c179) · [Next → 181](#c181) · [Contents](../DECK-DESIGN.md#contents)
+[← 189](05-politics.md#c189) · [Next → 191](#c191) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_bonus_reveal` · events.json · once a career · weight 10 · priority: drawn the moment it qualifies
 
 **Who sees it:** Minister of State and up.
 
-**Series** `indicators` with [#184](#c184), [#185](#c185), [#186](#c186): shown in full twice a career (the second time asking whether to keep the habit), then its years pass by themselves on the habit; this card opens it.
+**Series** `indicators` with [#194](#c194), [#195](#c195), [#196](#c196): shown in full twice a career (the second time asking whether to keep the habit), then its years pass by themselves on the habit; this card opens it.
 
 As a minister, you are paid a National Bonus: three months' extra salary if the country hits four targets, up to six if it beats them, nothing if it misses. The four are jobs, GDP growth, typical incomes, and the incomes of the lowest-paid fifth of workers. Your ministry has money for one of two policies: one lifts the lowest incomes, the other lifts GDP.
 
@@ -39,7 +39,7 @@ As a minister, you are paid a National Bonus: three months' extra salary if the 
 
 - Hidden: Standing down a lot (−14), Reputation up a lot (+12), Integrity up a lot (+18), Heat up a lot (+8).
 - Habit: `steady`.
-- ↳ Can lead to: [181. Terms of Reference](#c181), in three years, 45% · [Everything Surfaced](09-endings.md#end-scandal)
+- ↳ Can lead to: [191. Terms of Reference](#c191), in three years, 45% · [Everything Surfaced](09-endings.md#end-scandal)
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -88,17 +88,17 @@ Your ministry's chief economist explains the National Bonus on a whiteboard: thr
 
 </details>
 
-[← 179](05-politics.md#c179) · [Next → 181](#c181) · [Contents](../DECK-DESIGN.md#contents)
+[← 189](05-politics.md#c189) · [Next → 191](#c191) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c181"></a>181. Terms of Reference
+### <a id="c191"></a>191. Terms of Reference
 
-[← 180](#c180) · [Next → 182](#c182) · [Contents](../DECK-DESIGN.md#contents)
+[← 190](#c190) · [Next → 192](#c192) · [Contents](../DECK-DESIGN.md#contents)
 
 `bonus_vindicated` · events.json
 
-**Who sees it:** only as a follow-up to [180. The National Bonus](#c180) (C: in three years, 45%).
+**Who sees it:** only as a follow-up to [190. The National Bonus](#c190) (C: in three years, 45%).
 
-**Shares a decision** (`own_up`) with [#42](01-first-years.md#c42), [#73](02-service.md#c73), [#113](02-service.md#c113), [#24](01-first-years.md#c24): a career sees only one.
+**Shares a decision** (`own_up`) with [#52](01-first-years.md#c52), [#83](02-service.md#c83), [#123](02-service.md#c123), [#34](01-first-years.md#c34): a career sees only one.
 
 Some years ago you asked the other ministers whether ministers should be paid on targets they can move themselves. Now a committee has been appointed to review political salaries, and your question appears, unattributed, as item three of its terms of reference. The committee is inviting submissions.
 
@@ -119,17 +119,17 @@ Some years ago you asked the other ministers whether ministers should be paid on
 - Your fellow Members of Parliament (politics, `fellowMPs`), 45%: A hurts (−3) · B helps (+2).
 - The press gallery (politics, `pressGallery`), 35%: A helps (+2) · B hurts (−1).
 
-[← 180](#c180) · [Next → 182](#c182) · [Contents](../DECK-DESIGN.md#contents)
+[← 190](#c190) · [Next → 192](#c192) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c182"></a>182. The Correction Direction
+### <a id="c192"></a>192. The Correction Direction
 
-[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK-DESIGN.md#contents)
+[← 191](#c191) · [Next → 193](#c193) · [Contents](../DECK-DESIGN.md#contents)
 
 `pofma_moment` · events.json · once a career · weight 9
 
 **Who sees it:** Minister of State and up.
 
-**Shares a decision** (`viral_post`) with [#171](05-politics.md#c171), [#169](05-politics.md#c169): a career sees only one.
+**Shares a decision** (`viral_post`) with [#181](05-politics.md#c181), [#179](05-politics.md#c179): a career sees only one.
 
 A post about your ministry's scheme is going viral. It is wrong in two places and, awkwardly, right in the third. Under POFMA, the law against online falsehoods, you can direct whoever posted it to attach a correction notice, fixing the two wrong points in public and saying nothing about the third. Or you can answer the post yourself, and admit the point it got right.
 
@@ -144,7 +144,7 @@ A post about your ministry's scheme is going viral. It is wrong in two places an
 > At 11pm you concede the point in a Facebook post, in your own words. It is shared more than anything your ministry has ever published, half the time by people who dislike you. You are now on record as having admitted it.
 
 - Hidden: Competence up (+5), Standing down a lot (−8), Reputation up a lot (+10), Integrity up a lot (+12).
-- ↳ Can lead to: [183. The Third Point](#c183), in two years, 50%
+- ↳ Can lead to: [193. The Third Point](#c193), in two years, 50%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
@@ -185,17 +185,17 @@ A retired officer from your ministry has posted a long critique of its scheme, w
 
 </details>
 
-[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK-DESIGN.md#contents)
+[← 191](#c191) · [Next → 193](#c193) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c183"></a>183. The Third Point
+### <a id="c193"></a>193. The Third Point
 
-[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK-DESIGN.md#contents)
+[← 192](#c192) · [Next → 194](#c194) · [Contents](../DECK-DESIGN.md#contents)
 
 `pofma_vindicated` · events.json
 
-**Who sees it:** only as a follow-up to [182. The Correction Direction](#c182) (B: in two years, 50%).
+**Who sees it:** only as a follow-up to [192. The Correction Direction](#c192) (B: in two years, 50%).
 
-**Shares a decision** (`share_credit`) with [#102](02-service.md#c102), [#53](01-first-years.md#c53): a career sees only one.
+**Shares a decision** (`share_credit`) with [#112](02-service.md#c112), [#63](01-first-years.md#c63): a career sees only one.
 
 Some time ago, a viral post about your ministry's scheme got two points wrong and one right, and you publicly admitted the one it got right. Now the scheme has been quietly amended to fix exactly that. Rajesh Nair, a correspondent at the paper, has noticed that you were the only office holder who admitted it, and asks about it on the record.
 
@@ -216,17 +216,17 @@ Some time ago, a viral post about your ministry's scheme got two points wrong an
 - The press gallery (politics, `pressGallery`), 45%: A helps (+2) · B hurts (−1).
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 35%: A hurts (−2) · B helps (+1).
 
-[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK-DESIGN.md#contents)
+[← 192](#c192) · [Next → 194](#c194) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c184"></a>184. The National Bonus
+### <a id="c194"></a>194. The National Bonus
 
-[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK-DESIGN.md#contents)
+[← 193](#c193) · [Next → 195](#c195) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_indicators` · events.json · can come back · weight 16 · starts the `budget` clock
 
 **Who sees it:** Minister of State and up; only in a strong economy; not when a general election is due within the year; one card on the `budget` clock every three years.
 
-**Series** `indicators` with [#180](#c180), [#185](#c185), [#186](#c186): shown in full twice a career (the second time asking whether to keep the habit), then its years pass by themselves on the habit.
+**Series** `indicators` with [#190](#c190), [#195](#c195), [#196](#c196): shown in full twice a career (the second time asking whether to keep the habit), then its years pass by themselves on the habit.
 
 **The second showing** (folded below): keeping the habit adds Competence up a little (+2), Reputation down a little (−2); breaking it adds Standing down (−3), Reputation up a little (+2).
 
@@ -409,17 +409,17 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 </details>
 
-[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK-DESIGN.md#contents)
+[← 193](#c193) · [Next → 195](#c195) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c185"></a>185. The National Bonus, in a Downturn
+### <a id="c195"></a>195. The National Bonus, in a Downturn
 
-[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK-DESIGN.md#contents)
+[← 194](#c194) · [Next → 196](#c196) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_indicators_downturn` · events.json · can come back · weight 16 · starts the `budget` clock
 
 **Who sees it:** Minister of State and up; only in a downturn; not when a general election is due within the year; one card on the `budget` clock every three years.
 
-**Series** `indicators` with [#180](#c180), [#184](#c184), [#186](#c186): shown in full twice a career (the second time asking whether to keep the habit), then its years pass by themselves on the habit.
+**Series** `indicators` with [#190](#c190), [#194](#c194), [#196](#c196): shown in full twice a career (the second time asking whether to keep the habit), then its years pass by themselves on the habit.
 
 **The second showing** (folded below): keeping the habit adds Competence up a little (+2), Reputation down a little (−2); breaking it adds Standing down (−3), Reputation up a little (+2).
 
@@ -607,17 +607,17 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 </details>
 
-[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK-DESIGN.md#contents)
+[← 194](#c194) · [Next → 196](#c196) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c186"></a>186. The National Bonus, Before an Election
+### <a id="c196"></a>196. The National Bonus, Before an Election
 
-[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK-DESIGN.md#contents)
+[← 195](#c195) · [Next → 197](#c197) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_indicators_election` · events.json · can come back · weight 16 · starts the `budget` clock
 
 **Who sees it:** Minister of State and up; only when a general election is due within the year; one card on the `budget` clock every three years.
 
-**Series** `indicators` with [#180](#c180), [#184](#c184), [#185](#c185): shown in full twice a career (the second time asking whether to keep the habit), then its years pass by themselves on the habit.
+**Series** `indicators` with [#190](#c190), [#194](#c194), [#195](#c195): shown in full twice a career (the second time asking whether to keep the habit), then its years pass by themselves on the habit.
 
 **The second showing** (folded below): keeping the habit adds Competence up a little (+2), Reputation down a little (−2); breaking it adds Standing down (−3), Reputation up a little (+2).
 
@@ -805,11 +805,11 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 </details>
 
-[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK-DESIGN.md#contents)
+[← 195](#c195) · [Next → 197](#c197) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c187"></a>187. The Ministry Townhall
+### <a id="c197"></a>197. The Ministry Townhall
 
-[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK-DESIGN.md#contents)
+[← 196](#c196) · [Next → 198](#c198) · [Contents](../DECK-DESIGN.md#contents)
 
 `the_townhall` · events.json · can come back · weight 10
 
@@ -895,15 +895,15 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 </details>
 
-[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK-DESIGN.md#contents)
+[← 196](#c196) · [Next → 198](#c198) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c188"></a>188. Open Minds
+### <a id="c198"></a>198. Open Minds
 
-[← 187](#c187) · [Next → 189](#c189) · [Contents](../DECK-DESIGN.md#contents)
+[← 197](#c197) · [Next → 199](#c199) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_thoughts` · packs/strange.json · once a career · weight 0.7
 
-**Who sees it:** Minister of State to Deputy Prime Minister; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#191](#c191) (`strange_met`).
+**Who sees it:** Minister of State to Deputy Prime Minister; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#201](#c201) (`strange_met`).
 
 For one Tuesday, everyone in the room with you can hear your thoughts. It's the day of your ministry's weekly senior management meeting. Word has got round, so nobody sits beside you, and items one to six take nineteen minutes. Item seven is a proposal your officials have worked on for a year, and you have doubts about it.
 
@@ -912,37 +912,37 @@ For one Tuesday, everyone in the room with you can hear your thoughts. It's the 
 > You think about item seven's annex so hard that the room hears a table of figures. It is approved. Your doubts were about paragraph three, and nobody heard them.
 
 - Hidden: Competence up (+4), Standing up a little (+2), Integrity down (−3).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#191](#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#201](#c201).
 
 **B. Let them hear what you think of item seven.**
 
 > Item seven is withdrawn for further study. The minutes record that views were expressed. Afterwards the Permanent Secretary says, "I had the same doubts." You can't check.
 
 - Hidden: Standing down (−4), Reputation up a little (+2), Integrity up a lot (+6).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#191](#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#201](#c201).
 
 **C. Adjourn the meeting. Cite a clash.**
 
 > Everyone hears that there is no clash. The meeting adjourns anyway, with great courtesy. Item seven comes back next week with a better paper, and you are inaudible again.
 
 - Hidden: Competence up (+3), Standing down (−3), Integrity down a little (−1).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#191](#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#201](#c201).
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - The civil servants who work with you (politics, `officials`), 50%: A hurts (−1) · B helps (+2) · C hurts (−1).
 
-[← 187](#c187) · [Next → 189](#c189) · [Contents](../DECK-DESIGN.md#contents)
+[← 197](#c197) · [Next → 199](#c199) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c189"></a>189. The Other Side of the Table
+### <a id="c199"></a>199. The Other Side of the Table
 
-[← 188](#c188) · [Next → 190](#c190) · [Contents](../DECK-DESIGN.md#contents)
+[← 198](#c198) · [Next → 200](#c200) · [Contents](../DECK-DESIGN.md#contents)
 
 `bench_tea` · packs/backbench.json · once a career · weight 5
 
 **Who sees it:** Minister of State and up; the peer (Xin Yi) is Director and up.
 
-**Shares a decision** (`declare`) with [#111](02-service.md#c111), [#104](02-service.md#c104): a career sees only one.
+**Shares a decision** (`declare`) with [#121](02-service.md#c121), [#114](02-service.md#c114): a career sees only one.
 
 The party asks you to sit on the panel at a tea, its first, informal look at a possible election candidate. The candidate is Xin Yi, a Senior Director now, who started in the service the same week as you and does not know you will be there. The file is thin and very good. Knowing a candidate is meant to be declared.
 
@@ -971,11 +971,11 @@ The party asks you to sit on the panel at a tea, its first, informal look at a p
 
 - Your fellow Members of Parliament (politics, `fellowMPs`), 50%: A helps (+1) · B helps (+2) · C hurts (−3).
 
-[← 188](#c188) · [Next → 190](#c190) · [Contents](../DECK-DESIGN.md#contents)
+[← 198](#c198) · [Next → 200](#c200) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c190"></a>190. The Reshuffle
+### <a id="c200"></a>200. The Reshuffle
 
-[← 189](#c189) · [Next → 191](#c191) · [Contents](../DECK-DESIGN.md#contents)
+[← 199](#c199) · [Next → 201](#c201) · [Contents](../DECK-DESIGN.md#contents)
 
 `reshuffle` · events.json · once a career · weight 11
 
@@ -1034,15 +1034,15 @@ A Cabinet reshuffle is due, and a newspaper's graphic puts your face in three di
 
 </details>
 
-[← 189](#c189) · [Next → 191](#c191) · [Contents](../DECK-DESIGN.md#contents)
+[← 199](#c199) · [Next → 201](#c201) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c191"></a>191. The Gold Bar
+### <a id="c201"></a>201. The Gold Bar
 
-[← 190](#c190) · [Next → 192](#c192) · [Contents](../DECK-DESIGN.md#contents)
+[← 200](#c200) · [Next → 202](#c202) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_gold` · packs/strange.json · once a career · weight 0.7
 
-**Who sees it:** Minister (MR4) and up; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](#c188) (`strange_met`).
+**Who sees it:** Minister (MR4) and up; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](#c198) (`strange_met`).
 
 Since Monday, one gold bar in the national reserves has produced another every night. Nobody can say how. The Finance ministry can say exactly what it is: a return on the reserves. The rules let the Government spend up to half the expected return each year, and nobody expected this. Cabinet must decide what to do.
 
@@ -1051,36 +1051,36 @@ Since Monday, one gold bar in the national reserves has produced another every n
 > The boards that invest the reserves propose counting the new gold in the expected return, so the Government could spend more. The President consults the Council of Presidential Advisers and does not agree, so the usual twenty-year average applies. That average does not include this week.
 
 - Hidden: Standing up (+3), Reputation up (+3), Integrity down (−4).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](#c188).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](#c198).
 
 **B. Leave the framework alone. Let the bars accumulate.**
 
 > The bars accumulate. Whatever is unspent at the end of the term becomes past reserves, which no government may spend without the President's agreement. Nothing is announced. The vault is extended.
 
 - Hidden: Standing down (−3), Integrity up (+5).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](#c188).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](#c198).
 
 **C. Propose a scheme, funded from the bars.**
 
 > Finance reminds Cabinet that schemes are funded from the Budget, and that the bars are reserves. The scheme is funded from the Budget. It is very popular.
 
 - Hidden: Standing up a little (+1), Reputation up (+5), Integrity down a little (−2), Heat up (+4).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#130](03-top-of-service.md#c130), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](#c188).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](#c198).
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - The civil servants who work with you (politics, `officials`), 40%: A hurts (−2) · B helps (+2).
 - The press gallery (politics, `pressGallery`), 30%: B hurts (−1) · C helps (+1).
 
-[← 190](#c190) · [Next → 192](#c192) · [Contents](../DECK-DESIGN.md#contents)
+[← 200](#c200) · [Next → 202](#c202) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c192"></a>192. The Succession
+### <a id="c202"></a>202. The Succession
 
-[← 191](#c191) · [Next → 193](#c193) · [Contents](../DECK-DESIGN.md#contents)
+[← 201](#c201) · [Next → 203](#c203) · [Contents](../DECK-DESIGN.md#contents)
 
 `succession` · events.json · once a career · weight 100 · priority: drawn the moment it qualifies
 
-**Who sees it:** Minister (MR3) and up; needs Standing of at least 60; not after [204. First Among Equals](07-batchmate.md#c204), A (`bid_for_top`); not after [204. First Among Equals](07-batchmate.md#c204), B (`kingmaker`).
+**Who sees it:** Minister (MR3) and up; needs Standing of at least 60; not after [214. First Among Equals](07-batchmate.md#c214), A (`bid_for_top`); not after [214. First Among Equals](07-batchmate.md#c214), B (`kingmaker`).
 
 The Prime Minister is stepping down, and the next generation of ministers must agree on a successor. The process is informal, which means it is decided entirely by people in a room. You are in the room, and so is the other front-runner. Put yourself forward and you may become Prime Minister. Back the other, and you get a senior portfolio but never the top job.
 
@@ -1089,29 +1089,29 @@ The Prime Minister is stepping down, and the next generation of ministers must a
 > You say it plainly, against convention. The room absorbs it. Nothing is decided that day, but your name is now one of the two being weighed, instead of one of the nine being listed.
 
 - Hidden: Standing down (−5), Reputation up a lot (+6), the ceiling (CEP) up one grade (+1).
-- Sets `bid_for_top`: read by [#204](07-batchmate.md#c204).
+- Sets `bid_for_top`: read by [#214](07-batchmate.md#c214).
 
 **B. Back the other candidate. Ask for a senior portfolio.**
 
 > The other candidate wins, as everyone expected once you had spoken, and knows exactly who delivered it. You get everything you asked for. You will spend the rest of your career as the most powerful minister who is not Prime Minister.
 
 - Hidden: Standing up a lot (+14), Integrity up (+3), wealth +$200,000.
-- Sets `kingmaker`: read by [#204](07-batchmate.md#c204).
-- ↳ Can lead to: [193. The First Cabinet](#c193), in a year, 90%
+- Sets `kingmaker`: read by [#214](07-batchmate.md#c214).
+- ↳ Can lead to: [203. The First Cabinet](#c203), in a year, 90%
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - Your fellow Members of Parliament (politics, `fellowMPs`), 50%: A hurts (−2) · B helps (+2).
 
-[← 191](#c191) · [Next → 193](#c193) · [Contents](../DECK-DESIGN.md#contents)
+[← 201](#c201) · [Next → 203](#c203) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c193"></a>193. The First Cabinet
+### <a id="c203"></a>203. The First Cabinet
 
-[← 192](#c192) · [Next → 194](#c194) · [Contents](../DECK-DESIGN.md#contents)
+[← 202](#c202) · [Next → 204](#c204) · [Contents](../DECK-DESIGN.md#contents)
 
 `first_cabinet` · events.json
 
-**Who sees it:** only as a follow-up to [192. The Succession](#c192) (B: in a year, 90%).
+**Who sees it:** only as a follow-up to [202. The Succession](#c202) (B: in a year, 90%).
 
 The colleague you backed for the succession, instead of standing yourself, is now Prime Minister. At the first Cabinet meeting the new Prime Minister thanks everyone for their support, in general terms, and then looks at you for slightly longer than at anyone else. You are owed something, and everyone at the table can see it.
 
@@ -1131,11 +1131,11 @@ The colleague you backed for the succession, instead of standing yourself, is no
 
 - Your fellow Members of Parliament (politics, `fellowMPs`), 40%: A helps (+2) · B hurts (−1).
 
-[← 192](#c192) · [Next → 194](#c194) · [Contents](../DECK-DESIGN.md#contents)
+[← 202](#c202) · [Next → 204](#c204) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c194"></a>194. The Counterpart
+### <a id="c204"></a>204. The Counterpart
 
-[← 193](#c193) · [Next → 195](#c195) · [Contents](../DECK-DESIGN.md#contents)
+[← 203](#c203) · [Next → 205](#c205) · [Contents](../DECK-DESIGN.md#contents)
 
 `lo_counterpart` · packs/long_office.json · once a career · weight 8 · starts the `long_office` clock
 
@@ -1166,11 +1166,11 @@ A minister from a neighbouring country, a friend since you were both new in offi
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 40%: A hurts (−3) · B helps (+1) · C helps (+1).
 - The civil servants who work with you (politics, `officials`), 40%: A hurts (−2) · B helps (+2).
 
-[← 193](#c193) · [Next → 195](#c195) · [Contents](../DECK-DESIGN.md#contents)
+[← 203](#c203) · [Next → 205](#c205) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c195"></a>195. The Historian
+### <a id="c205"></a>205. The Historian
 
-[← 194](#c194) · [Next → 196](#c196) · [Contents](../DECK-DESIGN.md#contents)
+[← 204](#c204) · [Next → 206](#c206) · [Contents](../DECK-DESIGN.md#contents)
 
 `lo_historian` · packs/long_office.json · once a career · weight 8 · starts the `long_office` clock
 
@@ -1201,11 +1201,11 @@ A historian writing the official account of a crisis you helped to handle, years
 - The civil servants who work with you (politics, `officials`), 35%: A helps (+2) · B hurts (−2) · C helps (+1).
 - Your fellow Members of Parliament (politics, `fellowMPs`), 35%: A helps (+2) · B hurts (−2).
 
-[← 194](#c194) · [Next → 196](#c196) · [Contents](../DECK-DESIGN.md#contents)
+[← 204](#c204) · [Next → 206](#c206) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c196"></a>196. The Podcast
+### <a id="c206"></a>206. The Podcast
 
-[← 195](#c195) · [Next → 197](#c197) · [Contents](../DECK-DESIGN.md#contents)
+[← 205](#c205) · [Next → 207](#c207) · [Contents](../DECK-DESIGN.md#contents)
 
 `lo_podcast` · packs/long_office.json · once a career · weight 8 · starts the `long_office` clock
 
@@ -1237,11 +1237,11 @@ Two hosts in their twenties want you on their podcast. Its last guest was a duri
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 35%: A hurts (−3) · B helps (+1) · C helps (+1).
 - Your fellow Members of Parliament (politics, `fellowMPs`), 30%: C helps (+2).
 
-[← 195](#c195) · [Next → 197](#c197) · [Contents](../DECK-DESIGN.md#contents)
+[← 205](#c205) · [Next → 207](#c207) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c197"></a>197. Pre-Agreed
+### <a id="c207"></a>207. Pre-Agreed
 
-[← 196](#c196) · [Next → 198](07-batchmate.md#c198) · [Contents](../DECK-DESIGN.md#contents)
+[← 206](#c206) · [Next → 208](07-batchmate.md#c208) · [Contents](../DECK-DESIGN.md#contents)
 
 `lo_pre_agreed` · packs/long_office.json · once a career · weight 8 · starts the `long_office` clock
 
@@ -1272,6 +1272,6 @@ Your officials have learned your preferences so well that their papers now arriv
 - The civil servants who work with you (politics, `officials`), 45%: A helps (+3) · B hurts (−2) · C helps (+1).
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 30%: A hurts (−1) · B helps (+2) · C hurts (−1).
 
-[← 196](#c196) · [Next → 198](07-batchmate.md#c198) · [Contents](../DECK-DESIGN.md#contents)
+[← 206](#c206) · [Next → 208](07-batchmate.md#c208) · [Contents](../DECK-DESIGN.md#contents)
 
-[← Politics](05-politics.md#c150) · [Contents](../DECK-DESIGN.md#contents) · [The batchmate →](07-batchmate.md#c198)
+[← Politics](05-politics.md#c160) · [Contents](../DECK-DESIGN.md#contents) · [The batchmate →](07-batchmate.md#c208)

@@ -1,14 +1,14 @@
 # The deck: Cabinet
 
-[← Politics](05-politics.md#c150) · [Contents](../DECK.md#contents) · [The batchmate →](07-batchmate.md#c198)
+[← Politics](05-politics.md#c160) · [Contents](../DECK.md#contents) · [The batchmate →](07-batchmate.md#c208)
 
 ## <a id="stage-cabinet"></a>Cabinet
 
-Minister of State to Prime Minister. Cards 180 to 197.
+Minister of State to Prime Minister. Cards 190 to 207.
 
-### <a id="c180"></a>180. The National Bonus
+### <a id="c190"></a>190. The National Bonus
 
-[← 179](05-politics.md#c179) · [Next → 181](#c181) · [Contents](../DECK.md#contents)
+[← 189](05-politics.md#c189) · [Next → 191](#c191) · [Contents](../DECK.md#contents)
 
 As a minister, you are paid a National Bonus: three months' extra salary if the country hits four targets, up to six if it beats them, nothing if it misses. The four are jobs, GDP growth, typical incomes, and the incomes of the lowest-paid fifth of workers. Your ministry has money for one of two policies: one lifts the lowest incomes, the other lifts GDP.
 
@@ -24,7 +24,7 @@ As a minister, you are paid a National Bonus: three months' extra salary if the 
 
 > You ask at the ministers' weekly meeting. The room hears the question in complete silence. It is minuted, and answered at great length without being answered at all. From then on your colleagues choose their words around you.
 
-↳ Can lead to: [181. Terms of Reference](#c181) · [Everything Surfaced](09-endings.md#end-scandal)
+↳ Can lead to: [191. Terms of Reference](#c191) · [Everything Surfaced](09-endings.md#end-scandal)
 
 <details><summary>Other versions (2)</summary>
 
@@ -68,11 +68,11 @@ Your ministry's chief economist explains the National Bonus on a whiteboard: thr
 
 </details>
 
-[← 179](05-politics.md#c179) · [Next → 181](#c181) · [Contents](../DECK.md#contents)
+[← 189](05-politics.md#c189) · [Next → 191](#c191) · [Contents](../DECK.md#contents)
 
-### <a id="c181"></a>181. Terms of Reference
+### <a id="c191"></a>191. Terms of Reference
 
-[← 180](#c180) · [Next → 182](#c182) · [Contents](../DECK.md#contents)
+[← 190](#c190) · [Next → 192](#c192) · [Contents](../DECK.md#contents)
 
 Some years ago you asked the other ministers whether ministers should be paid on targets they can move themselves. Now a committee has been appointed to review political salaries, and your question appears, unattributed, as item three of its terms of reference. The committee is inviting submissions.
 
@@ -84,11 +84,11 @@ Some years ago you asked the other ministers whether ministers should be paid on
 
 > Item three does very little work on its own. But you were seen not to make a fuss, and among colleagues that counts for something.
 
-[← 180](#c180) · [Next → 182](#c182) · [Contents](../DECK.md#contents)
+[← 190](#c190) · [Next → 192](#c192) · [Contents](../DECK.md#contents)
 
-### <a id="c182"></a>182. The Correction Direction
+### <a id="c192"></a>192. The Correction Direction
 
-[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK.md#contents)
+[← 191](#c191) · [Next → 193](#c193) · [Contents](../DECK.md#contents)
 
 A post about your ministry's scheme is going viral. It is wrong in two places and, awkwardly, right in the third. Under POFMA, the law against online falsehoods, you can direct whoever posted it to attach a correction notice, fixing the two wrong points in public and saying nothing about the third. Or you can answer the post yourself, and admit the point it got right.
 
@@ -100,7 +100,7 @@ A post about your ministry's scheme is going viral. It is wrong in two places an
 
 > At 11pm you concede the point in a Facebook post, in your own words. It is shared more than anything your ministry has ever published, half the time by people who dislike you. You are now on record as having admitted it.
 
-↳ Can lead to: [183. The Third Point](#c183)
+↳ Can lead to: [193. The Third Point](#c193)
 
 <details><summary>Other versions (2)</summary>
 
@@ -136,11 +136,11 @@ A retired officer from your ministry has posted a long critique of its scheme, w
 
 </details>
 
-[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK.md#contents)
+[← 191](#c191) · [Next → 193](#c193) · [Contents](../DECK.md#contents)
 
-### <a id="c183"></a>183. The Third Point
+### <a id="c193"></a>193. The Third Point
 
-[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK.md#contents)
+[← 192](#c192) · [Next → 194](#c194) · [Contents](../DECK.md#contents)
 
 Some time ago, a viral post about your ministry's scheme got two points wrong and one right, and you publicly admitted the one it got right. Now the scheme has been quietly amended to fix exactly that. Rajesh Nair, a correspondent at the paper, has noticed that you were the only office holder who admitted it, and asks about it on the record.
 
@@ -152,11 +152,11 @@ Some time ago, a viral post about your ministry's scheme got two points wrong an
 
 > The post's author is astonished, then gracious, then a reliable critic of yours for the rest of your career. You decide to take that as a compliment.
 
-[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK.md#contents)
+[← 192](#c192) · [Next → 194](#c194) · [Contents](../DECK.md#contents)
 
-### <a id="c184"></a>184. The National Bonus
+### <a id="c194"></a>194. The National Bonus
 
-[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK.md#contents)
+[← 193](#c193) · [Next → 195](#c195) · [Contents](../DECK.md#contents)
 
 Growth is strong, and your ministry must settle its plan for the next three Budgets. The plan moves the national targets your National Bonus is paid on, and you can push one of them, not all.
 
@@ -254,11 +254,11 @@ Growth is strong, and the next three Budgets need a plan. Last time you asked th
 
 </details>
 
-[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK.md#contents)
+[← 193](#c193) · [Next → 195](#c195) · [Contents](../DECK.md#contents)
 
-### <a id="c185"></a>185. The National Bonus, in a Downturn
+### <a id="c195"></a>195. The National Bonus, in a Downturn
 
-[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK.md#contents)
+[← 194](#c194) · [Next → 196](#c196) · [Contents](../DECK.md#contents)
 
 Exports are down for a third quarter and "retrenchment" is back in the papers. Your ministry must settle its plan for the next three Budgets now, and in a downturn the country will miss at least one of the targets your National Bonus is paid on. You choose what to protect.
 
@@ -364,11 +364,11 @@ The downturn is official, and the next three Budgets need a plan. Last time you 
 
 </details>
 
-[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK.md#contents)
+[← 194](#c194) · [Next → 196](#c196) · [Contents](../DECK.md#contents)
 
-### <a id="c186"></a>186. The National Bonus, Before an Election
+### <a id="c196"></a>196. The National Bonus, Before an Election
 
-[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK.md#contents)
+[← 195](#c195) · [Next → 197](#c197) · [Contents](../DECK.md#contents)
 
 A general election is due within the year, and your ministry must settle its plan for the next three Budgets before Nomination Day, when the candidates file their papers. The plan moves your National Bonus. The chairman of your party branch, which runs the party's volunteers in your ward, has sent, unasked, a list of what the ward would like announced.
 
@@ -474,11 +474,11 @@ Polling day is within the year, and the next three Budgets need a plan. Last tim
 
 </details>
 
-[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK.md#contents)
+[← 195](#c195) · [Next → 197](#c197) · [Contents](../DECK.md#contents)
 
-### <a id="c187"></a>187. The Ministry Townhall
+### <a id="c197"></a>197. The Ministry Townhall
 
-[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK.md#contents)
+[← 196](#c196) · [Next → 198](#c198) · [Contents](../DECK.md#contents)
 
 You are hosting your ministry's townhall: four hundred officers, and an anonymous question board on the screen behind you. One question has far more upvotes than the rest. It is about workload, and it is not polite. Every officer in the room is waiting to see whether you read it out.
 
@@ -524,11 +524,11 @@ You are hosting your ministry's townhall: four hundred officers and a roving mic
 
 </details>
 
-[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK.md#contents)
+[← 196](#c196) · [Next → 198](#c198) · [Contents](../DECK.md#contents)
 
-### <a id="c188"></a>188. Open Minds
+### <a id="c198"></a>198. Open Minds
 
-[← 187](#c187) · [Next → 189](#c189) · [Contents](../DECK.md#contents)
+[← 197](#c197) · [Next → 199](#c199) · [Contents](../DECK.md#contents)
 
 For one Tuesday, everyone in the room with you can hear your thoughts. It's the day of your ministry's weekly senior management meeting. Word has got round, so nobody sits beside you, and items one to six take nineteen minutes. Item seven is a proposal your officials have worked on for a year, and you have doubts about it.
 
@@ -544,11 +544,11 @@ For one Tuesday, everyone in the room with you can hear your thoughts. It's the 
 
 > Everyone hears that there is no clash. The meeting adjourns anyway, with great courtesy. Item seven comes back next week with a better paper, and you are inaudible again.
 
-[← 187](#c187) · [Next → 189](#c189) · [Contents](../DECK.md#contents)
+[← 197](#c197) · [Next → 199](#c199) · [Contents](../DECK.md#contents)
 
-### <a id="c189"></a>189. The Other Side of the Table
+### <a id="c199"></a>199. The Other Side of the Table
 
-[← 188](#c188) · [Next → 190](#c190) · [Contents](../DECK.md#contents)
+[← 198](#c198) · [Next → 200](#c200) · [Contents](../DECK.md#contents)
 
 The party asks you to sit on the panel at a tea, its first, informal look at a possible election candidate. The candidate is Xin Yi, a Senior Director now, who started in the service the same week as you and does not know you will be there. The file is thin and very good. Knowing a candidate is meant to be declared.
 
@@ -564,11 +564,11 @@ The party asks you to sit on the panel at a tea, its first, informal look at a p
 
 > Nobody asks, and you are fair, mostly. Xin Yi is not fielded, and stays in the service. A year later, at a wedding, Xin Yi thanks you for the panel, in front of two people who were also on it.
 
-[← 188](#c188) · [Next → 190](#c190) · [Contents](../DECK.md#contents)
+[← 198](#c198) · [Next → 200](#c200) · [Contents](../DECK.md#contents)
 
-### <a id="c190"></a>190. The Reshuffle
+### <a id="c200"></a>200. The Reshuffle
 
-[← 189](#c189) · [Next → 191](#c191) · [Contents](../DECK.md#contents)
+[← 199](#c199) · [Next → 201](#c201) · [Contents](../DECK.md#contents)
 
 A Cabinet reshuffle is coming: the Prime Minister will move ministers between ministries, and has asked to see you on Thursday to hear where you would like to go. Taking on a hard ministry and surviving it is how ministers reach the top jobs. Staying put is comfortable, and rarely leads further. Benedict, your fellow MP, has already told you it is good news, though Benedict knows no more than you do.
 
@@ -614,11 +614,11 @@ A Cabinet reshuffle is due, and a newspaper's graphic puts your face in three di
 
 </details>
 
-[← 189](#c189) · [Next → 191](#c191) · [Contents](../DECK.md#contents)
+[← 199](#c199) · [Next → 201](#c201) · [Contents](../DECK.md#contents)
 
-### <a id="c191"></a>191. The Gold Bar
+### <a id="c201"></a>201. The Gold Bar
 
-[← 190](#c190) · [Next → 192](#c192) · [Contents](../DECK.md#contents)
+[← 200](#c200) · [Next → 202](#c202) · [Contents](../DECK.md#contents)
 
 Since Monday, one gold bar in the national reserves has produced another every night. Nobody can say how. The Finance ministry can say exactly what it is: a return on the reserves. The rules let the Government spend up to half the expected return each year, and nobody expected this. Cabinet must decide what to do.
 
@@ -634,11 +634,11 @@ Since Monday, one gold bar in the national reserves has produced another every n
 
 > Finance reminds Cabinet that schemes are funded from the Budget, and that the bars are reserves. The scheme is funded from the Budget. It is very popular.
 
-[← 190](#c190) · [Next → 192](#c192) · [Contents](../DECK.md#contents)
+[← 200](#c200) · [Next → 202](#c202) · [Contents](../DECK.md#contents)
 
-### <a id="c192"></a>192. The Succession
+### <a id="c202"></a>202. The Succession
 
-[← 191](#c191) · [Next → 193](#c193) · [Contents](../DECK.md#contents)
+[← 201](#c201) · [Next → 203](#c203) · [Contents](../DECK.md#contents)
 
 The Prime Minister is stepping down, and the next generation of ministers must agree on a successor. The process is informal, which means it is decided entirely by people in a room. You are in the room, and so is the other front-runner. Put yourself forward and you may become Prime Minister. Back the other, and you get a senior portfolio but never the top job.
 
@@ -650,13 +650,13 @@ The Prime Minister is stepping down, and the next generation of ministers must a
 
 > The other candidate wins, as everyone expected once you had spoken, and knows exactly who delivered it. You get everything you asked for. You will spend the rest of your career as the most powerful minister who is not Prime Minister.
 
-↳ Can lead to: [193. The First Cabinet](#c193)
+↳ Can lead to: [203. The First Cabinet](#c203)
 
-[← 191](#c191) · [Next → 193](#c193) · [Contents](../DECK.md#contents)
+[← 201](#c201) · [Next → 203](#c203) · [Contents](../DECK.md#contents)
 
-### <a id="c193"></a>193. The First Cabinet
+### <a id="c203"></a>203. The First Cabinet
 
-[← 192](#c192) · [Next → 194](#c194) · [Contents](../DECK.md#contents)
+[← 202](#c202) · [Next → 204](#c204) · [Contents](../DECK.md#contents)
 
 The colleague you backed for the succession, instead of standing yourself, is now Prime Minister. At the first Cabinet meeting the new Prime Minister thanks everyone for their support, in general terms, and then looks at you for slightly longer than at anyone else. You are owed something, and everyone at the table can see it.
 
@@ -668,11 +668,11 @@ The colleague you backed for the succession, instead of standing yourself, is no
 
 > The Prime Minister gives it to you before the next item on the agenda, and the whole table watches a debt being paid in full. It's a good portfolio. Everyone will remember how you got it.
 
-[← 192](#c192) · [Next → 194](#c194) · [Contents](../DECK.md#contents)
+[← 202](#c202) · [Next → 204](#c204) · [Contents](../DECK.md#contents)
 
-### <a id="c194"></a>194. The Counterpart
+### <a id="c204"></a>204. The Counterpart
 
-[← 193](#c193) · [Next → 195](#c195) · [Contents](../DECK.md#contents)
+[← 203](#c203) · [Next → 205](#c205) · [Contents](../DECK.md#contents)
 
 A minister from a neighbouring country, a friend since you were both new in office, rings you on a private number. Your ministry is about to announce a decision that will hurt an industry across the border, where an election is three months away. Your counterpart asks for the announcement to wait until it is over.
 
@@ -688,11 +688,11 @@ A minister from a neighbouring country, a friend since you were both new in offi
 
 > With a day's warning, your counterpart announces a support package first. The two announcements land side by side in the morning papers, looking almost coordinated. The private number keeps ringing, less often.
 
-[← 193](#c193) · [Next → 195](#c195) · [Contents](../DECK.md#contents)
+[← 203](#c203) · [Next → 205](#c205) · [Contents](../DECK.md#contents)
 
-### <a id="c195"></a>195. The Historian
+### <a id="c205"></a>205. The Historian
 
-[← 194](#c194) · [Next → 196](#c196) · [Contents](../DECK.md#contents)
+[← 204](#c204) · [Next → 206](#c206) · [Contents](../DECK.md#contents)
 
 A historian writing the official account of a crisis you helped to handle, years ago, asks to interview you. Your memory of it turns on a decisive phone call you made at 2am. The government's records put the call at 9:40am, and another minister made it. The historian has the records too.
 
@@ -708,11 +708,11 @@ A historian writing the official account of a crisis you helped to handle, years
 
 > The chapter is written from the files alone. It is accurate, dry and short on you. Your 2am phone call survives only in your own telling, at dinners, where nobody brings footnotes.
 
-[← 194](#c194) · [Next → 196](#c196) · [Contents](../DECK.md#contents)
+[← 204](#c204) · [Next → 206](#c206) · [Contents](../DECK.md#contents)
 
-### <a id="c196"></a>196. The Podcast
+### <a id="c206"></a>206. The Podcast
 
-[← 195](#c195) · [Next → 197](#c197) · [Contents](../DECK.md#contents)
+[← 205](#c205) · [Next → 207](#c207) · [Contents](../DECK.md#contents)
 
 Two hosts in their twenties want you on their podcast. Its last guest was a durian seller, and it is the most popular show in the country among people who do not read newspapers. Your press secretary is against it. The hosts promise you can talk about anything, and they mean it.
 
@@ -728,11 +728,11 @@ Two hosts in their twenties want you on their podcast. Its last guest was a duri
 
 > A younger minister goes in your place, is very good, and is now known to a generation that has never heard your name. Your press secretary is relieved. You listen to the episode in the car, twice.
 
-[← 195](#c195) · [Next → 197](#c197) · [Contents](../DECK.md#contents)
+[← 205](#c205) · [Next → 207](#c207) · [Contents](../DECK.md#contents)
 
-### <a id="c197"></a>197. Pre-Agreed
+### <a id="c207"></a>207. Pre-Agreed
 
-[← 196](#c196) · [Next → 198](07-batchmate.md#c198) · [Contents](../DECK.md#contents)
+[← 206](#c206) · [Next → 208](07-batchmate.md#c208) · [Contents](../DECK.md#contents)
 
 Your officials have learned your preferences so well that their papers now arrive already agreeing with you, with the options you would reject removed before you see them. Decisions that once took a month take a day, and your ministry is the fastest in government. You cannot remember the last paper that surprised you.
 
@@ -748,6 +748,6 @@ Your officials have learned your preferences so well that their papers now arriv
 
 > The panel meets quarterly: a professor, a former banker and a union leader. In its first year it finds a serious flaw, in a scheme your officials had doubted and never mentioned. They are relieved, and a little put out.
 
-[← 196](#c196) · [Next → 198](07-batchmate.md#c198) · [Contents](../DECK.md#contents)
+[← 206](#c206) · [Next → 208](07-batchmate.md#c208) · [Contents](../DECK.md#contents)
 
-[← Politics](05-politics.md#c150) · [Contents](../DECK.md#contents) · [The batchmate →](07-batchmate.md#c198)
+[← Politics](05-politics.md#c160) · [Contents](../DECK.md#contents) · [The batchmate →](07-batchmate.md#c208)

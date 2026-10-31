@@ -1,6 +1,6 @@
 # The deck, with the mechanics: Endings
 
-[← The endgame](08-endgame.md#c205) · [Contents](../DECK-DESIGN.md#contents)
+[← The endgame](08-endgame.md#c215) · [Contents](../DECK-DESIGN.md#contents)
 
 ## <a id="endings"></a>Endings
 
@@ -12,7 +12,7 @@ Every way a career ends.
 
 **How it happens:** Promotion from Deputy Prime Minister needs an A, the years in grade, a ceiling (CEP) of 16, room for a tenure before 70, and not having put someone else in the job. The tenure's cards follow (three or four years), and the career ends after the last.
 
-**Choices that lead here:** [212. Stepping Down](08-endgame.md#c212) (any choice)
+**Choices that lead here:** [222. Stepping Down](08-endgame.md#c222) (any choice)
 
 ### <a id="end-permsec"></a>Permanent Secretary
 
@@ -20,7 +20,7 @@ Every way a career ends.
 
 **How it happens:** Retirement (the last year at 63) at Permanent Secretary.
 
-**Choices that lead here:** [205. The Last Year](08-endgame.md#c205) (any choice)
+**Choices that lead here:** [215. The Last Year](08-endgame.md#c215) (any choice)
 
 ### <a id="end-level"></a>You Found Your Level
 
@@ -28,7 +28,7 @@ Every way a career ends.
 
 **How it happens:** Retirement (the last year at 63) at Deputy Secretary or below, without the tea's flags.
 
-**Choices that lead here:** [205. The Last Year](08-endgame.md#c205) (any choice)
+**Choices that lead here:** [215. The Last Year](08-endgame.md#c215) (any choice)
 
 ### <a id="end-declined"></a>The Tea Was Declined
 
@@ -36,7 +36,7 @@ Every way a career ends.
 
 **How it happens:** Retirement with `declined_tea` set (the tea's second choice).
 
-**Choices that lead here:** [143. An Invitation to Tea](04-crossing.md#c143), B; [205. The Last Year](08-endgame.md#c205) (any choice)
+**Choices that lead here:** [153. An Invitation to Tea](04-crossing.md#c153), B; [215. The Last Year](08-endgame.md#c215) (any choice)
 
 ### <a id="end-lostward"></a>Lost the Ward
 
@@ -44,7 +44,7 @@ Every way a career ends.
 
 **How it happens:** The first election lost (a GRC: 0.60 + Reputation/400 + Standing/500; a single seat: 0.28 + Reputation/200), or a re-election lost (0.72 + Reputation/250, at most 98%; a safe seat passes by itself and is never lost).
 
-**Choices that lead here:** [146. The General Election](04-crossing.md#c146) (any choice); [147. Polling Day, Again](04-crossing.md#c147) (any choice)
+**Choices that lead here:** [156. The General Election](04-crossing.md#c156) (any choice); [157. Polling Day, Again](04-crossing.md#c157) (any choice)
 
 ### <a id="end-scandal"></a>Everything Surfaced
 
@@ -52,7 +52,7 @@ Every way a career ends.
 
 **How it happens:** Heat of 85 or more at any year-end review. Every choice that adds Heat moves toward it; the choices listed here add 6 or more.
 
-**Choices that lead here:** any of [#5](01-first-years.md#c5) B, [#6](01-first-years.md#c6) A, [#14](01-first-years.md#c14) B, [#40](01-first-years.md#c40) A, [#41](01-first-years.md#c41) B, [#61](02-service.md#c61) C, [#72](02-service.md#c72) C, [#74](02-service.md#c74) A, [#99](02-service.md#c99) C, [#100](02-service.md#c100) B, [#108](02-service.md#c108) A, [#109](02-service.md#c109) C, [#110](02-service.md#c110) B, [#111](02-service.md#c111) A, [#112](02-service.md#c112) B, [#116](02-service.md#c116) B, [#139](03-top-of-service.md#c139) B, [#142](03-top-of-service.md#c142) B, [#155](05-politics.md#c155) B, [#162](05-politics.md#c162) B, [#180](06-cabinet.md#c180) C
+**Choices that lead here:** any of [#5](01-first-years.md#c5) B, [#6](01-first-years.md#c6) A, [#14](01-first-years.md#c14) B, [#50](01-first-years.md#c50) A, [#51](01-first-years.md#c51) B, [#71](02-service.md#c71) C, [#82](02-service.md#c82) C, [#84](02-service.md#c84) A, [#109](02-service.md#c109) C, [#110](02-service.md#c110) B, [#118](02-service.md#c118) A, [#119](02-service.md#c119) C, [#120](02-service.md#c120) B, [#121](02-service.md#c121) A, [#122](02-service.md#c122) B, [#126](02-service.md#c126) B, [#149](03-top-of-service.md#c149) B, [#152](03-top-of-service.md#c152) B, [#165](05-politics.md#c165) B, [#172](05-politics.md#c172) B, [#190](06-cabinet.md#c190) C
 
 ### <a id="end-quiet"></a>The Quiet Conversation
 
@@ -68,7 +68,7 @@ Every way a career ends.
 
 **How it happens:** The political career ends (the renewal election after 65, or the year before 70) as a Member of Parliament.
 
-**Choices that lead here:** [206. Renewal](08-endgame.md#c206) (any choice); [207. One More Term](08-endgame.md#c207), B; [208. The Last Year](08-endgame.md#c208) (any choice)
+**Choices that lead here:** [216. Renewal](08-endgame.md#c216) (any choice); [217. One More Term](08-endgame.md#c217), B; [218. The Last Year](08-endgame.md#c218) (any choice)
 
 ### <a id="end-office"></a>Never Quite Cabinet
 
@@ -76,7 +76,7 @@ Every way a career ends.
 
 **How it happens:** The political career ends as Parliamentary Secretary to Senior Minister of State.
 
-**Choices that lead here:** [206. Renewal](08-endgame.md#c206) (any choice); [207. One More Term](08-endgame.md#c207), B; [208. The Last Year](08-endgame.md#c208) (any choice)
+**Choices that lead here:** [216. Renewal](08-endgame.md#c216) (any choice); [217. One More Term](08-endgame.md#c217), B; [218. The Last Year](08-endgame.md#c218) (any choice)
 
 ### <a id="end-retired"></a>Retired, Honourably
 
@@ -84,7 +84,7 @@ Every way a career ends.
 
 **How it happens:** The political career ends as a Minister (MR4) or higher, below Prime Minister.
 
-**Choices that lead here:** [206. Renewal](08-endgame.md#c206) (any choice); [207. One More Term](08-endgame.md#c207), B; [208. The Last Year](08-endgame.md#c208) (any choice)
+**Choices that lead here:** [216. Renewal](08-endgame.md#c216) (any choice); [217. One More Term](08-endgame.md#c217), B; [218. The Last Year](08-endgame.md#c218) (any choice)
 
 ### <a id="end-consultancy"></a>The Consultancy
 
@@ -92,7 +92,7 @@ Every way a career ends.
 
 **How it happens:** A choice that leaves for the private sector ends the career at once, with the fees.
 
-**Choices that lead here:** any of [#63](02-service.md#c63) A, [#92](02-service.md#c92) A, [#128](02-service.md#c128) A, [#167](05-politics.md#c167) A, [#168](05-politics.md#c168) A
+**Choices that lead here:** any of [#73](02-service.md#c73) A, [#102](02-service.md#c102) A, [#138](02-service.md#c138) A, [#177](05-politics.md#c177) A, [#178](05-politics.md#c178) A
 
 ### <a id="end-withdrawn"></a>The Invitation Lapsed
 
@@ -100,8 +100,8 @@ Every way a career ends.
 
 **How it happens:** Disclosing 3 or more Folder items at the background check sets `tea_withdrawn`; the career ends at retirement.
 
-**Choices that lead here:** [144. The Background Check](04-crossing.md#c144), A; [205. The Last Year](08-endgame.md#c205) (any choice)
+**Choices that lead here:** [154. The Background Check](04-crossing.md#c154), A; [215. The Last Year](08-endgame.md#c215) (any choice)
 
 [Contents](../DECK-DESIGN.md#contents)
 
-[← The endgame](08-endgame.md#c205) · [Contents](../DECK-DESIGN.md#contents)
+[← The endgame](08-endgame.md#c215) · [Contents](../DECK-DESIGN.md#contents)

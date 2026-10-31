@@ -1,14 +1,14 @@
 # The deck: Politics
 
-[← The crossing](04-crossing.md#c143) · [Contents](../DECK.md#contents) · [Cabinet →](06-cabinet.md#c180)
+[← The crossing](04-crossing.md#c153) · [Contents](../DECK.md#contents) · [Cabinet →](06-cabinet.md#c190)
 
 ## <a id="stage-politics"></a>Politics
 
-Member of Parliament to Senior Parliamentary Secretary. Cards 150 to 179.
+Member of Parliament to Senior Parliamentary Secretary. Cards 160 to 189.
 
-### <a id="c150"></a>150. The Maiden Speech
+### <a id="c160"></a>160. The Maiden Speech
 
-[← 149](04-crossing.md#c149) · [Next → 151](#c151) · [Contents](../DECK.md#contents)
+[← 159](04-crossing.md#c159) · [Next → 161](#c161) · [Contents](../DECK.md#contents)
 
 Your maiden speech, your first in Parliament, falls on day three of the debate on the President's Address, which opens each new Parliament. It tells the House, the press and the party what kind of Member you mean to be. You are a backbencher, a Member with no government job, and the Whip, who keeps the party's backbenchers voting together, will read every line. Hansard, the official record, keeps every word. You have written three drafts, and now you must choose which one to give.
 
@@ -20,7 +20,7 @@ Your maiden speech, your first in Parliament, falls on day three of the debate o
 
 > It is quoted, and for once the quoted line is the one you meant: "If a form needs a helpline, the form is the problem." A Minister you have never met sends a note: "That needed saying." The Whip sends a longer note, about what government backbenchers say in public.
 
-↳ Can lead to: [151. Hansard](#c151)
+↳ Can lead to: [161. Hansard](#c161)
 
 **C. The draft praising the policy you used to doubt.**
 
@@ -68,11 +68,11 @@ Your maiden speech, your first in the House, as Members call Parliament, is next
 
 </details>
 
-[← 149](04-crossing.md#c149) · [Next → 151](#c151) · [Contents](../DECK.md#contents)
+[← 159](04-crossing.md#c159) · [Next → 161](#c161) · [Contents](../DECK.md#contents)
 
-### <a id="c151"></a>151. Hansard
+### <a id="c161"></a>161. Hansard
 
-[← 150](#c150) · [Next → 152](#c152) · [Contents](../DECK.md#contents)
+[← 160](#c160) · [Next → 162](#c162) · [Contents](../DECK.md#contents)
 
 Years ago you stood up in the House and said plainly what you thought, when a safer version was ready in front of you. Your words went into Hansard, word for word. This week a newer Member quotes them in a speech, beginning "As Ms Lim Wei Ling said in this House". Someone on the front bench, where the ministers sit, looks up the original, and so does the press gallery.
 
@@ -84,11 +84,11 @@ Years ago you stood up in the House and said plainly what you thought, when a sa
 
 > The quote goes round without you. It turns out to be the most-shared thing you've ever said, and it's years old.
 
-[← 150](#c150) · [Next → 152](#c152) · [Contents](../DECK.md#contents)
+[← 160](#c160) · [Next → 162](#c162) · [Contents](../DECK.md#contents)
 
-### <a id="c152"></a>152. Tuesday Night
+### <a id="c162"></a>162. Tuesday Night
 
-[← 151](#c151) · [Next → 153](#c153) · [Contents](../DECK.md#contents)
+[← 161](#c161) · [Next → 163](#c163) · [Contents](../DECK.md#contents)
 
 It is Tuesday, the night of your weekly Meet-the-People Session, where residents bring you their problems and volunteers write appeal letters for them. Tonight there are forty-one residents, a queue to the lift lobby, and a man who has come every week for two years about a case that cannot be reopened. Parliament sits tomorrow, and your speech is half written.
 
@@ -146,11 +146,11 @@ Thirty residents at tonight's Meet-the-People Session, all about one thing: a li
 
 </details>
 
-[← 151](#c151) · [Next → 153](#c153) · [Contents](../DECK.md#contents)
+[← 161](#c161) · [Next → 163](#c163) · [Contents](../DECK.md#contents)
 
-### <a id="c153"></a>153. The Ribbon
+### <a id="c163"></a>163. The Ribbon
 
-[← 152](#c152) · [Next → 154](#c154) · [Contents](../DECK.md#contents)
+[← 162](#c162) · [Next → 164](#c164) · [Contents](../DECK.md#contents)
 
 Today's ribbon is at the handover of the new lifts at Blk 412, and as the ward's MP you are there to cut it. Mdm Rohani, who organised it, is waiting at the ribbon with the scissors. Twenty minutes in, it starts to rain on the speeches. Residents will notice how long you stay and who gets the credit.
 
@@ -215,11 +215,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 152](#c152) · [Next → 154](#c154) · [Contents](../DECK.md#contents)
+[← 162](#c162) · [Next → 164](#c164) · [Contents](../DECK.md#contents)
 
-### <a id="c154"></a>154. The Walkabout
+### <a id="c164"></a>164. The Walkabout
 
-[← 153](#c153) · [Next → 155](#c155) · [Contents](../DECK.md#contents)
+[← 163](#c163) · [Next → 165](#c165) · [Contents](../DECK.md#contents)
 
 It is 7:20am at the wet market in your ward, on a walkabout with a camera crew: a slow walk past every stall, meeting voters. A stallholder has strong and specific views about the price of chillies, and is delighted to share them, at volume. Fourteen stalls are still to go, and every one of them votes.
 
@@ -277,11 +277,11 @@ An estate walkabout in your ward: eight blocks before lunch, then a ribbon to cu
 
 </details>
 
-[← 153](#c153) · [Next → 155](#c155) · [Contents](../DECK.md#contents)
+[← 163](#c163) · [Next → 165](#c165) · [Contents](../DECK.md#contents)
 
-### <a id="c155"></a>155. The Town Council
+### <a id="c165"></a>165. The Town Council
 
-[← 154](#c154) · [Next → 156](#c156) · [Contents](../DECK.md#contents)
+[← 164](#c164) · [Next → 166](#c166) · [Contents](../DECK.md#contents)
 
 Lift C at Blk 77 has broken down nine times this year, and your Town Council, which runs the estates in your ward, must decide what to do. A proper replacement means a tender, which takes five months. Mdm Rohani, the Citizens' Consultative Committee chairman, knows a contractor who could start on Monday if the tender is waived. Waivers are allowed in an emergency, and auditors read every one.
 
@@ -341,11 +341,11 @@ At 8am you are on the fourteenth floor of Blk 77, because the lift is not. A res
 
 </details>
 
-[← 154](#c154) · [Next → 156](#c156) · [Contents](../DECK.md#contents)
+[← 164](#c164) · [Next → 166](#c166) · [Contents](../DECK.md#contents)
 
-### <a id="c156"></a>156. The Void Deck
+### <a id="c166"></a>166. The Void Deck
 
-[← 155](#c155) · [Next → 157](#c157) · [Contents](../DECK.md#contents)
+[← 165](#c165) · [Next → 167](#c167) · [Contents](../DECK.md#contents)
 
 A dragon has nested in the void deck of Block 412, the open space beneath the flats, in your ward. Residents find it quiet, and warm. The housing board, the Town Council and the parks board have each written to say it is another agency's problem. Now the dragon has queued at your weekly Meet-the-People Session, where residents come for help with agencies: it wants your help to appeal to IRAS, the tax authority, for the lower property tax rate that owner-occupiers pay.
 
@@ -361,11 +361,11 @@ A dragon has nested in the void deck of Block 412, the open space beneath the fl
 
 > Officers from all three arrive at 9am, each with a folder showing it is the others'. The dragon hears them out, then asks which of them handles the lighting.
 
-[← 155](#c155) · [Next → 157](#c157) · [Contents](../DECK.md#contents)
+[← 165](#c165) · [Next → 167](#c167) · [Contents](../DECK.md#contents)
 
-### <a id="c157"></a>157. As Meant
+### <a id="c167"></a>167. As Meant
 
-[← 156](#c156) · [Next → 158](#c158) · [Contents](../DECK.md#contents)
+[← 166](#c166) · [Next → 168](#c168) · [Contents](../DECK.md#contents)
 
 For one sitting day, the draft Hansard has recorded what each Member meant instead of what they said. Your speech that day, as printed, says what you really think. Members have the usual 72 hours to ask for corrections, and the editors already have ninety-one requests. Whether you ask or not, people will notice.
 
@@ -381,11 +381,11 @@ For one sitting day, the draft Hansard has recorded what each Member meant inste
 
 > The request goes to the Standing Orders Committee, which keeps Parliament's rule book. It considers the request at length and finds, on reflection, that it would rather not.
 
-[← 156](#c156) · [Next → 158](#c158) · [Contents](../DECK.md#contents)
+[← 166](#c166) · [Next → 168](#c168) · [Contents](../DECK.md#contents)
 
-### <a id="c158"></a>158. The Adjournment Motion
+### <a id="c168"></a>168. The Adjournment Motion
 
-[← 157](#c157) · [Next → 159](#c159) · [Contents](../DECK.md#contents)
+[← 167](#c167) · [Next → 169](#c169) · [Contents](../DECK.md#contents)
 
 You have won the ballot for tonight's adjournment motion: twenty minutes, at the end of a long sitting, to raise the bus service your ward lost in the last route review, and a minister must reply. Backbenchers rarely get to pick the subject. Rajesh Nair, the only reporter left in the press gallery, has brought a sandwich.
 
@@ -450,11 +450,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 157](#c157) · [Next → 159](#c159) · [Contents](../DECK.md#contents)
+[← 167](#c167) · [Next → 169](#c169) · [Contents](../DECK.md#contents)
 
-### <a id="c159"></a>159. The Arrears
+### <a id="c169"></a>169. The Arrears
 
-[← 158](#c158) · [Next → 160](#c160) · [Contents](../DECK.md#contents)
+[← 168](#c168) · [Next → 170](#c170) · [Contents](../DECK.md#contents)
 
 At the meeting of your Town Council, which runs the estates in your ward, the managing agent proposes taking households more than six months behind on their S&CC, the monthly charges for the estate's upkeep, to court. Forty are on the list, and it needs the council's approval. One of them is a retired cleaner at Blk 52 who pays \$20 whenever she can.
 
@@ -485,11 +485,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 158](#c158) · [Next → 160](#c160) · [Contents](../DECK.md#contents)
+[← 168](#c168) · [Next → 170](#c170) · [Contents](../DECK.md#contents)
 
-### <a id="c160"></a>160. One Hundred Dollars
+### <a id="c170"></a>170. One Hundred Dollars
 
-[← 159](#c159) · [Next → 161](#c161) · [Contents](../DECK.md#contents)
+[← 169](#c169) · [Next → 171](#c171) · [Contents](../DECK.md#contents)
 
 At the Committee of Supply, the yearly debate on each ministry's budget, you want a few minutes to speak. To get them, you have filed a motion to cut the Ministry of Transport's budget by \$100, as Parliament's rules allow. Nobody expects the cut to pass. Your ward wants a sheltered walkway to the train station. You also have a harder question.
 
@@ -544,11 +544,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 159](#c159) · [Next → 161](#c161) · [Contents](../DECK.md#contents)
+[← 169](#c169) · [Next → 171](#c171) · [Contents](../DECK.md#contents)
 
-### <a id="c161"></a>161. The Briefing
+### <a id="c171"></a>171. The Briefing
 
-[← 160](#c160) · [Next → 162](#c162) · [Contents](../DECK.md#contents)
+[← 170](#c170) · [Next → 172](#c172) · [Contents](../DECK.md#contents)
 
 Your GPC, the party's committee of backbench MPs who shadow one ministry, is briefed, behind closed doors, on a scheme you worked on in the service. The briefer is Xin Yi, a Senior Director now, who started in the service the same week as you. Slide nine leaves out the scheme's weakest number, just as you would have. Asking about it would put Xin Yi on the spot in front of MPs.
 
@@ -592,11 +592,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 160](#c160) · [Next → 162](#c162) · [Contents](../DECK.md#contents)
+[← 170](#c170) · [Next → 172](#c172) · [Contents](../DECK.md#contents)
 
-### <a id="c162"></a>162. The Letter Writer
+### <a id="c172"></a>172. The Letter Writer
 
-[← 161](#c161) · [Next → 163](#c163) · [Contents](../DECK.md#contents)
+[← 171](#c171) · [Next → 173](#c173) · [Contents](../DECK.md#contents)
 
 At your weekly Meet-the-People Session, volunteers write residents' appeals to agencies. One agency's reply notes, politely, a discrepancy that leads to your best letter writer, Mr Boey, twenty-six years at the folding table. Every resident in Mr Boey's letters earns slightly less than on the forms. The letters work better than anyone else's, and every one goes out on your letterhead.
 
@@ -635,11 +635,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 161](#c161) · [Next → 163](#c163) · [Contents](../DECK.md#contents)
+[← 171](#c171) · [Next → 173](#c173) · [Contents](../DECK.md#contents)
 
-### <a id="c163"></a>163. The Next Ward
+### <a id="c173"></a>173. The Next Ward
 
-[← 162](#c162) · [Next → 164](#c164) · [Contents](../DECK.md#contents)
+[← 172](#c172) · [Next → 174](#c174) · [Contents](../DECK.md#contents)
 
 Your GRC is split into wards, one for each MP on the team. Blk 438 is in Benedict's ward, but its residents come to your Meet-the-People Session, your weekly evening for residents' problems, because your volunteers write faster. Benedict, a fellow MP, has mentioned this at the team's breakfast, as a joke, twice. It sounds less like a joke the second time.
 
@@ -667,11 +667,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 162](#c162) · [Next → 164](#c164) · [Contents](../DECK.md#contents)
+[← 172](#c172) · [Next → 174](#c174) · [Contents](../DECK.md#contents)
 
-### <a id="c164"></a>164. The Other Candidate
+### <a id="c174"></a>174. The Other Candidate
 
-[← 163](#c163) · [Next → 165](#c165) · [Contents](../DECK.md#contents)
+[← 173](#c173) · [Next → 175](#c175) · [Contents](../DECK.md#contents)
 
 The opposition candidate you beat at the last election has not stopped campaigning in your ward: Sundays at the wet market, in a party T-shirt, shaking hands you shook first. If residents warm to them, your single seat is at risk next time. The chairman of your party branch, which runs the party's volunteers in your ward, would like you out there too, in your own T-shirt.
 
@@ -699,11 +699,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 163](#c163) · [Next → 165](#c165) · [Contents](../DECK.md#contents)
+[← 173](#c173) · [Next → 175](#c175) · [Contents](../DECK.md#contents)
 
-### <a id="c165"></a>165. Not at This Block
+### <a id="c175"></a>175. Not at This Block
 
-[← 164](#c164) · [Next → 166](#c166) · [Contents](../DECK.md#contents)
+[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK.md#contents)
 
 A ministry has picked a site in your ward for an eldercare centre in the void deck of Blk 118, the open space under the block. A petition against it has 412 signatures and a Facebook group. The agency running it wants you, as the ward's MP, beside it at Saturday's dialogue with residents, and the residents who vote for you will see where you stand.
 
@@ -743,11 +743,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 164](#c164) · [Next → 166](#c166) · [Contents](../DECK.md#contents)
+[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK.md#contents)
 
-### <a id="c166"></a>166. The Whip's Text
+### <a id="c176"></a>176. The Whip's Text
 
-[← 165](#c165) · [Next → 167](#c167) · [Contents](../DECK.md#contents)
+[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK.md#contents)
 
 At 10:52pm the Whip texts: "Pls be in the Chamber by 3pm tmr. Thx." Tomorrow's bill brings in data-sharing between nine agencies, without asking residents. You think it is wrong; the party supports it. Members vote the party line unless the Whip "lifts the whip" and lets them vote freely, and crossing the Whip costs you standing.
 
@@ -806,11 +806,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 165](#c165) · [Next → 167](#c167) · [Contents](../DECK.md#contents)
+[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK.md#contents)
 
-### <a id="c167"></a>167. The Board Seat
+### <a id="c177"></a>177. The Board Seat
 
-[← 166](#c166) · [Next → 168](#c168) · [Contents](../DECK.md#contents)
+[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK.md#contents)
 
 A conglomerate wants someone who has worked close to Cabinet on its board: four meetings a year, and a fee its annual report puts in a footnote. The chairman knows you hold office, and asks only whether you might be free "after". Saying yes means leaving politics at the next election.
 
@@ -896,11 +896,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 166](#c166) · [Next → 168](#c168) · [Contents](../DECK.md#contents)
+[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK.md#contents)
 
-### <a id="c168"></a>168. The Board Seat
+### <a id="c178"></a>178. The Board Seat
 
-[← 167](#c167) · [Next → 169](#c169) · [Contents](../DECK.md#contents)
+[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK.md#contents)
 
 A conglomerate wants someone who has worked close to Cabinet on its board: four meetings a year, and a fee its annual report puts in a footnote. The chairman knows you hold office, and asks only whether you might be free "after". Saying yes means leaving politics at the next election.
 
@@ -986,11 +986,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 167](#c167) · [Next → 169](#c169) · [Contents](../DECK.md#contents)
+[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK.md#contents)
 
-### <a id="c169"></a>169. The Million-Dollar Flat
+### <a id="c179"></a>179. The Million-Dollar Flat
 
-[← 168](#c168) · [Next → 170](#c170) · [Contents](../DECK.md#contents)
+[← 178](#c178) · [Next → 180](#c180) · [Contents](../DECK.md#contents)
 
 A second-hand public housing flat in an older estate has sold for one and a half million dollars, and the headline makes it sound as if every flat will. It was an unusually good flat; the headline does not say so. Housing is your ministry's job, and your phone has begun to buzz in the rhythm of a question you will have to answer.
 
@@ -1006,11 +1006,11 @@ A second-hand public housing flat in an older estate has sold for one and a half
 
 > You do mean it, it shows, and the clip travels. A colleague says, kindly, that understanding is not a policy. You think it is a start.
 
-[← 168](#c168) · [Next → 170](#c170) · [Contents](../DECK.md#contents)
+[← 178](#c178) · [Next → 180](#c180) · [Contents](../DECK.md#contents)
 
-### <a id="c170"></a>170. The PSLE Question
+### <a id="c180"></a>180. The PSLE Question
 
-[← 169](#c169) · [Next → 171](#c171) · [Contents](../DECK.md#contents)
+[← 179](#c179) · [Next → 181](#c181) · [Contents](../DECK.md#contents)
 
 You are hosting a dialogue for parents on "the joy of learning". The first question is about how the PSLE, the exam at the end of primary school, is scored, and the second about tuition. The third is from a twelve-year-old, brought along by a parent, who wants to know why there is an exam at all. The room is waiting to see whose question you answer first.
 
@@ -1026,11 +1026,11 @@ You are hosting a dialogue for parents on "the joy of learning". The first quest
 
 > Everyone in the room understands the chart. Nobody in the room is reassured by it. You suspect the chart was never the problem.
 
-[← 169](#c169) · [Next → 171](#c171) · [Contents](../DECK.md#contents)
+[← 179](#c179) · [Next → 181](#c181) · [Contents](../DECK.md#contents)
 
-### <a id="c171"></a>171. The Waiting Time
+### <a id="c181"></a>181. The Waiting Time
 
-[← 170](#c170) · [Next → 172](#c172) · [Contents](../DECK.md#contents)
+[← 180](#c180) · [Next → 182](#c182) · [Contents](../DECK.md#contents)
 
 A resident's post about a six-hour wait at a hospital emergency department, with photographs, has four thousand shares and one factual error. Hospitals are your ministry's business, so on Sunday, at a community event, you will be asked about it whether you prepare or not. Whatever you say will be clipped.
 
@@ -1046,11 +1046,11 @@ A resident's post about a six-hour wait at a hospital emergency department, with
 
 > It was too long, and you say so in nine words. The clip is on the evening news. Your colleagues' faces suggest you used about eight words too many.
 
-[← 170](#c170) · [Next → 172](#c172) · [Contents](../DECK.md#contents)
+[← 180](#c180) · [Next → 182](#c182) · [Contents](../DECK.md#contents)
 
-### <a id="c172"></a>172. The Retirement Age
+### <a id="c182"></a>182. The Retirement Age
 
-[← 171](#c171) · [Next → 173](#c173) · [Contents](../DECK.md#contents)
+[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK.md#contents)
 
 The retirement and re-employment ages are going up again, in steps, by law, and your ministry must explain it. At a dialogue for older workers, your slides are excellent. The first question, from a cleaner in the second row, is not on any of them, and the room is watching how you handle it.
 
@@ -1066,11 +1066,11 @@ The retirement and re-employment ages are going up again, in steps, by law, and 
 
 > He answers it well, with a detail about re-employment contracts you did not know. The photograph in the newsletter is of him, answering it.
 
-[← 171](#c171) · [Next → 173](#c173) · [Contents](../DECK.md#contents)
+[← 181](#c181) · [Next → 183](#c183) · [Contents](../DECK.md#contents)
 
-### <a id="c173"></a>173. The Parliamentary Question
+### <a id="c183"></a>183. The Parliamentary Question
 
-[← 172](#c172) · [Next → 174](#c174) · [Contents](../DECK.md#contents)
+[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK.md#contents)
 
 A Member has filed a Parliamentary Question about a scheme your ministry runs, and you must answer it in the House. The question is good and sharply drafted, and the honest answer is not flattering. The brief your officials wrote is accurate, and answers a slightly different question. Whatever you say goes into Hansard, the official record of Parliament, for good.
 
@@ -1078,7 +1078,7 @@ A Member has filed a Parliamentary Question about a scheme your ministry runs, a
 
 > You concede the point: "The scheme is not reaching the people it was built for, and we will change it by June." The follow-up question is gentler, because there is nothing left to prise open. The line goes into Hansard, word for word.
 
-↳ Can lead to: [151. Hansard](#c151)
+↳ Can lead to: [161. Hansard](#c161)
 
 **B. Read the brief, which answers a nearby question.**
 
@@ -1104,7 +1104,7 @@ Another Parliamentary Question on one of your ministry's schemes, and again the 
 
 > You say what isn't working and what you'll change. The Member who asked has run out of follow-up questions by the second one, and your officials have stopped drafting briefs that dodge.
 
-↳ Can lead to: [151. Hansard](#c151)
+↳ Can lead to: [161. Hansard](#c161)
 
 **B. Read the officials' brief this time.**
 
@@ -1130,7 +1130,7 @@ Another Parliamentary Question on one of your ministry's schemes, and your offic
 
 > You answer the question that was asked, and the House goes quiet in the way it does for something new. Your officials rewrite the next brief overnight, to fit you.
 
-↳ Can lead to: [151. Hansard](#c151)
+↳ Can lead to: [161. Hansard](#c161)
 
 **C. Offer a full written answer instead.**
 
@@ -1152,7 +1152,7 @@ Another Parliamentary Question on one of your ministry's schemes. Your habit in 
 
 > You answer it in four sentences, and the House hears what your written answers have been saying all along. This time the press gallery writes it down.
 
-↳ Can lead to: [151. Hansard](#c151)
+↳ Can lead to: [161. Hansard](#c161)
 
 **C. Read the brief, and save the tables.**
 
@@ -1202,11 +1202,11 @@ You have answered a Parliamentary Question about your ministry, and it went well
 
 </details>
 
-[← 172](#c172) · [Next → 174](#c174) · [Contents](../DECK.md#contents)
+[← 182](#c182) · [Next → 184](#c184) · [Contents](../DECK.md#contents)
 
-### <a id="c174"></a>174. The Date
+### <a id="c184"></a>184. The Date
 
-[← 173](#c173) · [Next → 175](#c175) · [Contents](../DECK.md#contents)
+[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK.md#contents)
 
 On a visit with your Minister, the Minister tells a crowd of residents that the new polyclinic will open by December. Your officials, standing behind you, have told you it will really be the middle of next year. The cameras are still on, and the residents will hold the ministry to the date they just heard.
 
@@ -1261,11 +1261,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 173](#c173) · [Next → 175](#c175) · [Contents](../DECK.md#contents)
+[← 183](#c183) · [Next → 185](#c185) · [Contents](../DECK.md#contents)
 
-### <a id="c175"></a>175. The Stand-In
+### <a id="c185"></a>185. The Stand-In
 
-[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK.md#contents)
+[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK.md#contents)
 
 Your Minister is overseas, so tonight's speech at a charity's annual gala is yours. It was written for the Minister, and nobody has changed it: paragraph three is the Minister's own childhood, in the first person, a kampong with one well. You are on in ten minutes.
 
@@ -1305,11 +1305,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 174](#c174) · [Next → 176](#c176) · [Contents](../DECK.md#contents)
+[← 184](#c184) · [Next → 186](#c186) · [Contents](../DECK.md#contents)
 
-### <a id="c176"></a>176. Nine Questions
+### <a id="c186"></a>186. Nine Questions
 
-[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK.md#contents)
+[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK.md#contents)
 
 Nine MPs have filed Parliamentary Questions on one of your ministry's policies, charging a fee for missed polyclinic appointments, and you will give the replies in the House, as Members call Parliament. Your officials' draft ends by saying the policy "remains under review", in square brackets: keep the phrase, or cut it? Whatever you say will be in Hansard, the word-for-word record of Parliament, under your name, for good.
 
@@ -1317,19 +1317,19 @@ Nine MPs have filed Parliamentary Questions on one of your ministry's policies, 
 
 > "The policy is sound, and it will stay." Hansard records it, and two newspapers print it as a pull quote. Your officials file the bracketed phrase, in case.
 
-↳ Can lead to: [177. In the Room](#c177)
+↳ Can lead to: [187. In the Room](#c187)
 
 **B. Keep it. Say the policy remains under review.**
 
 > "Under review" satisfies the House and worries the officials who designed the policy, who ask what exactly you are reviewing. By Friday, you find that you are reviewing it.
 
-↳ Can lead to: [177. In the Room](#c177)
+↳ Can lead to: [187. In the Room](#c187)
 
 **C. Strike the adjectives too. Answer with figures only.**
 
 > Your replies run to nine figures and no adjectives. Members find little to quote and no follow-up questions to ask. Hansard records the most accurate answers of the sitting, unread.
 
-↳ Can lead to: [177. In the Room](#c177)
+↳ Can lead to: [187. In the Room](#c187)
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -1360,11 +1360,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 175](#c175) · [Next → 177](#c177) · [Contents](../DECK.md#contents)
+[← 185](#c185) · [Next → 187](#c187) · [Contents](../DECK.md#contents)
 
-### <a id="c177"></a>177. In the Room
+### <a id="c187"></a>187. In the Room
 
-[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK.md#contents)
+[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK.md#contents)
 
 Two years ago, answering MPs in the House, you defended charging a fee for missed polyclinic appointments. Since then the feedback on the no-show fee has turned into a Cabinet paper, drafted by officials, recommending that it be reversed. The Minister would like your view before signing it, since the replies in Hansard are yours.
 
@@ -1372,19 +1372,19 @@ Two years ago, answering MPs in the House, you defended charging a fee for misse
 
 > You argue for twenty minutes, from your own replies, and are listened to carefully. The paper goes in anyway, with a line in the minutes: you "raised considerations".
 
-↳ Can lead to: [178. The Statement](#c178)
+↳ Can lead to: [188. The Statement](#c188)
 
 **B. Agree, and say it should go quickly.**
 
 > You agree, and say it should go before the next sitting. Everyone is relieved. Nobody mentions your old replies: a courtesy, and you notice it.
 
-↳ Can lead to: [178. The Statement](#c178)
+↳ Can lead to: [188. The Statement](#c188)
 
 **C. Propose a phase-out, so nobody has to say "reverse".**
 
 > The paper is amended: the policy will be "phased out" over six months, about as long as reversing it would have taken. Everyone agrees that this is different.
 
-↳ Can lead to: [178. The Statement](#c178)
+↳ Can lead to: [188. The Statement](#c188)
 
 <details><summary>This card varies (2 parts)</summary>
 
@@ -1423,11 +1423,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 176](#c176) · [Next → 178](#c178) · [Contents](../DECK.md#contents)
+[← 186](#c186) · [Next → 188](#c188) · [Contents](../DECK.md#contents)
 
-### <a id="c178"></a>178. The Statement
+### <a id="c188"></a>188. The Statement
 
-[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK.md#contents)
+[← 187](#c187) · [Next → 189](#c189) · [Contents](../DECK.md#contents)
 
 Cabinet has decided that the policy you defended in the House will go. A ministerial statement on reversing the no-show fee is set for Tuesday, after Question Time. The Minister will deliver it, and has sent you the draft. Paragraph four quotes your old replies from Hansard as "the position at the time".
 
@@ -1435,19 +1435,19 @@ Cabinet has decided that the policy you defended in the House will go. A ministe
 
 > The Minister reads paragraph four as you rewrote it: "We got this wrong." Members rise for clarifications and find little to clarify. The sentence is attributed to the Minister, correctly.
 
-↳ Can lead to: [179. Paragraph Three](#c179)
+↳ Can lead to: [189. Paragraph Three](#c189)
 
 **B. Leave paragraph four as drafted.**
 
 > "The position at the time" is read out on Tuesday. In clarifications, a Member asks what the position was at the time. The Minister looks, briefly, in your direction.
 
-↳ Can lead to: [179. Paragraph Three](#c179)
+↳ Can lead to: [189. Paragraph Three](#c189)
 
 **C. Cut paragraph four. Nobody needs reminding.**
 
 > Paragraph four goes. On Tuesday the first Member to seek clarification reads your old reply aloud from Hansard, in full, and the Minister answers it for you.
 
-↳ Can lead to: [179. Paragraph Three](#c179)
+↳ Can lead to: [189. Paragraph Three](#c189)
 
 <details><summary>This card varies (3 parts)</summary>
 
@@ -1500,11 +1500,11 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 177](#c177) · [Next → 179](#c179) · [Contents](../DECK.md#contents)
+[← 187](#c187) · [Next → 189](#c189) · [Contents](../DECK.md#contents)
 
-### <a id="c179"></a>179. Paragraph Three
+### <a id="c189"></a>189. Paragraph Three
 
-[← 178](#c178) · [Next → 180](06-cabinet.md#c180) · [Contents](../DECK.md#contents)
+[← 188](#c188) · [Next → 190](06-cabinet.md#c190) · [Contents](../DECK.md#contents)
 
 Benedict, your fellow MP, sends you a draft speech for tomorrow's debate, proud of paragraph three. It quotes, in full from Hansard, your old reply on the no-show fee, as an example of precision. Benedict found it by searching Hansard, and stopped there: the search never reached the statement, years later, that reversed the policy.
 
@@ -1585,6 +1585,6 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 </details>
 
-[← 178](#c178) · [Next → 180](06-cabinet.md#c180) · [Contents](../DECK.md#contents)
+[← 188](#c188) · [Next → 190](06-cabinet.md#c190) · [Contents](../DECK.md#contents)
 
-[← The crossing](04-crossing.md#c143) · [Contents](../DECK.md#contents) · [Cabinet →](06-cabinet.md#c180)
+[← The crossing](04-crossing.md#c153) · [Contents](../DECK.md#contents) · [Cabinet →](06-cabinet.md#c190)

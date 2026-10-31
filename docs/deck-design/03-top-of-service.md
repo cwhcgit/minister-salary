@@ -1,18 +1,18 @@
 # The deck, with the mechanics: The top of the service
 
-[← The service](02-service.md#c58) · [Contents](../DECK-DESIGN.md#contents) · [The crossing →](04-crossing.md#c143)
+[← The service](02-service.md#c68) · [Contents](../DECK-DESIGN.md#contents) · [The crossing →](04-crossing.md#c153)
 
 ## <a id="stage-top"></a>The top of the service
 
-Deputy Secretary and Permanent Secretary. Cards 130 to 142.
+Deputy Secretary and Permanent Secretary. Cards 140 to 152.
 
-### <a id="c130"></a>130. The Moon
+### <a id="c140"></a>140. The Moon
 
-[← 129](02-service.md#c129) · [Next → 131](#c131) · [Contents](../DECK-DESIGN.md#contents)
+[← 139](02-service.md#c139) · [Next → 141](#c141) · [Contents](../DECK-DESIGN.md#contents)
 
 `strange_moon` · packs/strange.json · once a career · weight 0.5
 
-**Who sees it:** Deputy Secretary to Permanent Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191) (`strange_met`).
+**Who sees it:** Deputy Secretary to Permanent Secretary; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
 A civilisation beyond Jupiter has offered Singapore a moon. The Ministry of Foreign Affairs has drafted the formal reply, a note verbale, declining "with the assurances of its highest consideration", because the Outer Space Treaty bars any country from claiming one. Every ministry has until 5pm to comment, and yours will comment under your name.
 
@@ -21,32 +21,32 @@ A civilisation beyond Jupiter has offered Singapore a moon. The Ministry of Fore
 > Nil is the most popular comment. The note goes out as drafted. The reply, also a note verbale, presents its compliments and offers a smaller moon.
 
 - Hidden: Competence down a little (−2), Standing up (+4).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 
 **B. Ask, in a footnote, whether it has ice.**
 
 > It has ice. PUB, the water agency, has a paper on a fifth national tap by Monday. The note is redrafted to decline the moon and keep the conversation open.
 
 - Hidden: Competence up (+4), Standing down (−3), Reputation up (+3).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 
 **C. Offer Singapore as a neutral venue for talks instead.**
 
 > The note declines the moon and offers Singapore as a neutral meeting place, as it has been for other summits. The offer is accepted by return. Your ministry is now looking for office space near Changi.
 
 - Hidden: Competence down (−4), Standing up (+3), Reputation up (+4).
-- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#56](01-first-years.md#c56), [#80](02-service.md#c80), [#114](02-service.md#c114), [#115](02-service.md#c115), [#124](02-service.md#c124), [#156](05-politics.md#c156), [#157](05-politics.md#c157), [#188](06-cabinet.md#c188), [#191](06-cabinet.md#c191).
+- Sets `strange_met`: read by [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 
 **Who might notice** (unseen; one who notices moves one appraisal 1 to 3 years later):
 
 - People from other agencies who were in the room or on the email (service, `agencies`), 45%: A helps (+1) · B helps (+1) · C hurts (−2).
 - The Minister's office (service, `ministersOffice`), 30%: A hurts (−1) · C helps (+1).
 
-[← 129](02-service.md#c129) · [Next → 131](#c131) · [Contents](../DECK-DESIGN.md#contents)
+[← 139](02-service.md#c139) · [Next → 141](#c141) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c131"></a>131. Acting
+### <a id="c141"></a>141. Acting
 
-[← 130](#c130) · [Next → 132](#c132) · [Contents](../DECK-DESIGN.md#contents)
+[← 140](#c140) · [Next → 142](#c142) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_acting` · packs/top_service.json · once a career · weight 5
 
@@ -77,11 +77,11 @@ The Permanent Secretary is overseas for three weeks, and you are acting in the p
 - People from other agencies who were in the room or on the email (service, `agencies`), 45%: A helps (+2) · C hurts (−3).
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A helps (+1) · B hurts (−1) · C hurts (−1).
 
-[← 130](#c130) · [Next → 132](#c132) · [Contents](../DECK-DESIGN.md#contents)
+[← 140](#c140) · [Next → 142](#c142) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c132"></a>132. The Model
+### <a id="c142"></a>142. The Model
 
-[← 131](#c131) · [Next → 133](#c133) · [Contents](../DECK-DESIGN.md#contents)
+[← 141](#c141) · [Next → 143](#c143) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_board` · packs/top_service.json · once a career · weight 7 · starts the `top_service` clock
 
@@ -112,11 +112,11 @@ You sit on the board of one of the agencies your ministry runs at arm's length, 
 - People from other agencies who were in the room or on the email (service, `agencies`), 45%: A helps (+2) · B hurts (−1) · C hurts (−2).
 - The officer who countersigns your appraisal (service, `countersigner`), 35%: A hurts (−2) · B helps (+2) · C helps (+1).
 
-[← 131](#c131) · [Next → 133](#c133) · [Contents](../DECK-DESIGN.md#contents)
+[← 141](#c141) · [Next → 143](#c143) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c133"></a>133. The Box Marked Successor
+### <a id="c143"></a>143. The Box Marked Successor
 
-[← 132](#c132) · [Next → 134](#c134) · [Contents](../DECK-DESIGN.md#contents)
+[← 142](#c142) · [Next → 144](#c144) · [Contents](../DECK-DESIGN.md#contents)
 
 `ps_successor` · events.json · once a career · weight 9
 
@@ -136,11 +136,11 @@ The Public Service Division, which makes the service's top appointments, asks ev
 
 - Hidden: Standing up (+5), Reputation up a little (+1), Integrity down (−3).
 
-[← 132](#c132) · [Next → 134](#c134) · [Contents](../DECK-DESIGN.md#contents)
+[← 142](#c142) · [Next → 144](#c144) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c134"></a>134. Openness to Challenge
+### <a id="c144"></a>144. Openness to Challenge
 
-[← 133](#c133) · [Next → 135](#c135) · [Contents](../DECK-DESIGN.md#contents)
+[← 143](#c143) · [Next → 145](#c145) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_feedback` · packs/top_service.json · once a career · weight 8 · starts the `top_service` clock
 
@@ -171,11 +171,11 @@ Every few years the Public Service Division, which looks after the careers of th
 - The people who work around you (service, `floor`), 45%: A helps (+3) · C hurts (−2).
 - The officer who countersigns your appraisal (service, `countersigner`), 30%: A helps (+2) · B helps (+1) · C hurts (−1).
 
-[← 133](#c133) · [Next → 135](#c135) · [Contents](../DECK-DESIGN.md#contents)
+[← 143](#c143) · [Next → 145](#c145) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c135"></a>135. The Orphan
+### <a id="c145"></a>145. The Orphan
 
-[← 134](#c134) · [Next → 136](#c136) · [Contents](../DECK-DESIGN.md#contents)
+[← 144](#c144) · [Next → 146](#c146) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_orphan` · packs/top_service.json · once a career · weight 8 · starts the `top_service` clock
 
@@ -206,11 +206,11 @@ A hotline that sits between your ministry and another has been passed back and f
 - People from other agencies who were in the room or on the email (service, `agencies`), 45%: A helps (+3) · B hurts (−3) · C helps (+1).
 - The people who work around you (service, `floor`), 35%: A hurts (−2) · B helps (+1).
 
-[← 134](#c134) · [Next → 136](#c136) · [Contents](../DECK-DESIGN.md#contents)
+[← 144](#c144) · [Next → 146](#c146) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c136"></a>136. The Podium
+### <a id="c146"></a>146. The Podium
 
-[← 135](#c135) · [Next → 137](#c137) · [Contents](../DECK-DESIGN.md#contents)
+[← 145](#c145) · [Next → 147](#c147) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_podium` · packs/top_service.json · once a career · weight 8 · starts the `top_service` clock
 
@@ -241,11 +241,11 @@ A payments system at one of the agencies your ministry runs at arm's length has 
 - People from other agencies who were in the room or on the email (service, `agencies`), 45%: A hurts (−3) · B helps (+3) · C helps (+1).
 - The Minister's office (service, `ministersOffice`), 40%: A helps (+2) · B hurts (−1) · C hurts (−2).
 
-[← 135](#c135) · [Next → 137](#c137) · [Contents](../DECK-DESIGN.md#contents)
+[← 145](#c145) · [Next → 147](#c147) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c137"></a>137. The Predecessor
+### <a id="c147"></a>147. The Predecessor
 
-[← 136](#c136) · [Next → 138](#c138) · [Contents](../DECK-DESIGN.md#contents)
+[← 146](#c146) · [Next → 148](#c148) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_predecessor` · packs/top_service.json · once a career · weight 8 · starts the `top_service` clock
 
@@ -276,11 +276,11 @@ Your predecessor as Permanent Secretary has retired, and now chairs the board of
 - The people who work around you (service, `floor`), 45%: A helps (+2) · B hurts (−1) · C hurts (−3).
 - People from other agencies who were in the room or on the email (service, `agencies`), 35%: A hurts (−3) · B helps (+1) · C helps (+2).
 
-[← 136](#c136) · [Next → 138](#c138) · [Contents](../DECK-DESIGN.md#contents)
+[← 146](#c146) · [Next → 148](#c148) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c138"></a>138. Paragraph Six
+### <a id="c148"></a>148. Paragraph Six
 
-[← 137](#c137) · [Next → 139](#c139) · [Contents](../DECK-DESIGN.md#contents)
+[← 147](#c147) · [Next → 149](#c149) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_sentence` · packs/top_service.json · once a career · weight 8 · starts the `top_service` clock
 
@@ -311,11 +311,11 @@ You are giving the keynote at an industry conference, and the speech your office
 - The Minister's office (service, `ministersOffice`), 45%: A hurts (−3) · B helps (+1) · C helps (+3).
 - The officer who countersigns your appraisal (service, `countersigner`), 30%: A hurts (−2) · C helps (+2).
 
-[← 137](#c137) · [Next → 139](#c139) · [Contents](../DECK-DESIGN.md#contents)
+[← 147](#c147) · [Next → 149](#c149) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c139"></a>139. The Terms of Reference
+### <a id="c149"></a>149. The Terms of Reference
 
-[← 138](#c138) · [Next → 140](#c140) · [Contents](../DECK-DESIGN.md#contents)
+[← 148](#c148) · [Next → 150](#c150) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_terms` · packs/top_service.json · once a career · weight 8 · starts the `top_service` clock
 
@@ -348,11 +348,11 @@ After a four-day outage of your ministry's main online service, the Minister is 
 - The Minister's office (service, `ministersOffice`), 40%: A hurts (−2) · B helps (+2) · C helps (+1).
 - People from other agencies who were in the room or on the email (service, `agencies`), 40%: A helps (+3) · B hurts (−3) · C helps (+1).
 
-[← 138](#c138) · [Next → 140](#c140) · [Contents](../DECK-DESIGN.md#contents)
+[← 148](#c148) · [Next → 150](#c150) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c140"></a>140. The List
+### <a id="c150"></a>150. The List
 
-[← 139](#c139) · [Next → 141](#c141) · [Contents](../DECK-DESIGN.md#contents)
+[← 149](#c149) · [Next → 151](#c151) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_the_list` · packs/top_service.json · once a career · weight 8 · starts the `top_service` clock
 
@@ -383,11 +383,11 @@ Your Minister comes back from every visit to a market or an estate with a new id
 - The Minister's office (service, `ministersOffice`), 45%: A helps (+2) · B helps (+3) · C hurts (−3).
 - The people who work around you (service, `floor`), 40%: A hurts (−3) · B helps (+3).
 
-[← 139](#c139) · [Next → 141](#c141) · [Contents](../DECK-DESIGN.md#contents)
+[← 149](#c149) · [Next → 151](#c151) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c141"></a>141. Two Names
+### <a id="c151"></a>151. Two Names
 
-[← 140](#c140) · [Next → 142](#c142) · [Contents](../DECK-DESIGN.md#contents)
+[← 150](#c150) · [Next → 152](#c152) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_two_names` · packs/top_service.json · once a career · weight 8 · starts the `top_service` clock
 
@@ -421,11 +421,11 @@ The Head of Civil Service, the most senior official in the service, is moving se
 - The officer who countersigns your appraisal (service, `countersigner`), 40%: A helps (+3) · B hurts (−3).
 - The people who work around you (service, `floor`), 40%: A hurts (−1) · B hurts (−1) · C helps (+3).
 
-[← 140](#c140) · [Next → 142](#c142) · [Contents](../DECK-DESIGN.md#contents)
+[← 150](#c150) · [Next → 152](#c152) · [Contents](../DECK-DESIGN.md#contents)
 
-### <a id="c142"></a>142. Mentioned Twice
+### <a id="c152"></a>152. Mentioned Twice
 
-[← 141](#c141) · [Next → 143](04-crossing.md#c143) · [Contents](../DECK-DESIGN.md#contents)
+[← 151](#c151) · [Next → 153](04-crossing.md#c153) · [Contents](../DECK-DESIGN.md#contents)
 
 `ts_ward` · packs/top_service.json · once a career · weight 8 · starts the `top_service` clock
 
@@ -458,6 +458,6 @@ Your ministry is deciding which estates get the next round of a building program
 - The Minister's office (service, `ministersOffice`), 45%: A hurts (−2) · B helps (+3) · C helps (+1).
 - The people who work around you (service, `floor`), 40%: A helps (+3) · B hurts (−3) · C helps (+1).
 
-[← 141](#c141) · [Next → 143](04-crossing.md#c143) · [Contents](../DECK-DESIGN.md#contents)
+[← 151](#c151) · [Next → 153](04-crossing.md#c153) · [Contents](../DECK-DESIGN.md#contents)
 
-[← The service](02-service.md#c58) · [Contents](../DECK-DESIGN.md#contents) · [The crossing →](04-crossing.md#c143)
+[← The service](02-service.md#c68) · [Contents](../DECK-DESIGN.md#contents) · [The crossing →](04-crossing.md#c153)
