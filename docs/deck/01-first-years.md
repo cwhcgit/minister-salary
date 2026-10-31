@@ -1016,7 +1016,7 @@ Years ago, as a junior officer, you were sent an envelope in your own handwritin
 
 [← 16](#c16) · [Next → 18](#c18) · [Contents](../DECK.md#contents)
 
-Late on the night of the ministry's year-end dinner, you reach the car park in time to see your Minister, Boey Shu Min, rise, quite calmly, into what looks very much like a flying saucer. The whole service admires her: she reads every annex, forgets no figure, and an officer she praises gets noticed. On her way up, she sees you, and nods.
+Late on the night of the ministry's year-end dinner, you reach the car park in time to see your Minister, Boey Shu Min, check her watch and rise, quite calmly, with her handbag and a folder, into what looks very much like a flying saucer. The whole service admires her: she reads every annex, and an officer she praises gets noticed. She sees you, and nods.
 
 **A. Go home. Say nothing until morning.**
 
@@ -1042,7 +1042,7 @@ Late on the night of the ministry's year-end dinner, you reach the car park in t
 
 [← 17](#c17) · [Next → 19](#c19) · [Contents](../DECK.md#contents)
 
-On the first working day of the new year, a few days after the dinner, you're summoned to the Minister's office. Boey Shu Min is back, and almost herself, though she now reads a brief without turning the pages. She thanks you for your discretion. "You saw nothing that night, Ms Lim," she says. "I want to be clear about that."
+A few days after the dinner, on the first working day of the year, the Minister sends for you. Boey Shu Min is back, though she holds her pen the wrong way round, and on her desk is a note in her own handwriting, addressed "To whoever sits here". She thanks you for your discretion. "You saw nothing that night, Ms Lim," she says, slowly and clearly.
 
 **A. Agree that you saw nothing. Then report it anyway.**
 
@@ -1080,7 +1080,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 [← 18](#c18) · [Next → 20](#c20) · [Contents](../DECK.md#contents)
 
-Your Minister, Boey Shu Min, has been flawless since the night you saw her rise into the sky. Then, at 3.12am, her official page thanks "Earth" for its efficient tax system: "We have nothing like it at home." By seven it's gone. Her press office calls it a draft. The finished post will praise the public service's efficiency instead, and the press office wants a figure for it from every division.
+Your Minister, Boey Shu Min, has been flawless since the night you saw her rise into the sky. At 3.12am, her official page posts: "Notes, continued. Earth's tax system is very efficient. We have nothing like it at home." It's gone by seven. Her press office calls it a draft of a post on the public service's efficiency, and wants a figure for the finished version from every division.
 
 **A. Send your division's best figure.**
 
@@ -1112,7 +1112,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 [← 19](#c19) · [Next → 21](#c21) · [Contents](../DECK.md#contents)
 
-Boey Shu Min, the Minister you once saw taken up into the sky, has given nobody cause for concern since. At 6am her official page posts a photo of a cup of kopi, the coffee every coffeeshop sells, captioned "Your species' finest achievement." By eight it's gone: a staff member's post, says her press office, from the wrong account. At lunch, colleagues ask what you make of it.
+Boey Shu Min, the Minister you once saw taken up into the sky, has given nobody cause for concern since. At 6am her official page posts a photo of a cup of kopi, the coffee every coffeeshop sells, captioned "Your species' finest achievement." By eight it's gone: a staff member's post, says her press office, from the wrong account. At lunch, colleagues ask what you make of it. They have all noticed she avoids you.
 
 **A. Say you know nothing about it.**
 
@@ -1134,7 +1134,8 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 - At lunch, the colleagues who were so kind about your report ask what, exactly, you saw.
 - At lunch, colleagues ask what you know. Everyone knows she rates you.
-- At lunch, colleagues ask what you make of it. *(shown above)*
+- At lunch, fellow Members ask what you make of it. Everyone knows she avoids you, and in politics that has started to look like good judgement.
+- At lunch, colleagues ask what you make of it. They have all noticed she avoids you. *(shown above)*
 
 </details>
 
@@ -1144,7 +1145,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 [← 20](#c20) · [Next → 22](#c22) · [Contents](../DECK.md#contents)
 
-It's years since you saw your Minister, Boey Shu Min, carried off by a flying saucer, and she has been an excellent Minister since. At 4am her official page posts: "Be kind to all visitors, however they arrived." By seven it's gone, and her press office wants a clarification out by noon. Ms Chua, your reporting officer, asks you to draft it. Ms Chua says everyone else is busy.
+It's years since you saw your Minister, Boey Shu Min, carried off by a flying saucer, and she has been an excellent Minister since. At 4am her official page posts: "Be kind to all visitors, however they arrived." By seven it's gone, and her press office wants a clarification out by noon. Ms Chua, your reporting officer, asks you to draft it. Ms Chua says the Minister's office has asked that your name not appear on it.
 
 **A. Call it a tourism campaign, posted early.**
 
@@ -1166,7 +1167,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 - Ms Chua says the Minister's office asked for you by name.
 - Ms Chua says the Minister's office asked for you, since you know the Minister's mind.
-- Ms Chua says everyone else is busy. *(shown above)*
+- Ms Chua says the Minister's office has asked that your name not appear on it. *(shown above)*
 
 </details>
 
@@ -1198,6 +1199,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 - Her office has asked the media team to make sure you do.
 - Yours is wanted first: you're known as one of hers.
+- You're one name on a long list, but residents in your ward have read that she avoids you, and like you for it.
 - You're one name on a long list. *(shown above)*
 
 </details>
@@ -1208,7 +1210,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 [← 22](#c22) · [Next → 24](#c24) · [Contents](../DECK.md#contents)
 
-Years have passed since you watched your Minister, Boey Shu Min, rise into a flying saucer. At 2am her official page posts a photo of the night sky, captioned "Not long now." By morning it's gone: a stargazing photo, says her press office, captioned too early. Then Rajesh Nair, a correspondent who covers the public service for the Straits Times, calls you. Rajesh Nair is ringing round the ministry, and has reached you. Officers need approval to talk to the press.
+Years have passed since you watched your Minister, Boey Shu Min, rise into a flying saucer. At 2am her official page posts a photo of the night sky, captioned "Not long now." By morning it's gone: a stargazing photo, says her press office, captioned too early. Then Rajesh Nair, a correspondent who covers the public service for the Straits Times, calls you. Rajesh Nair has heard that the Minister won't stay in a room with you, and wants to know why. Officers need approval to talk to the press.
 
 **A. Refer the call to the press office.**
 
@@ -1230,7 +1232,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 - Someone has told Rajesh Nair about your report.
 - Rajesh Nair has heard that the Minister thinks highly of you.
-- Rajesh Nair is ringing round the ministry, and has reached you. *(shown above)*
+- Rajesh Nair has heard that the Minister won't stay in a room with you, and wants to know why. *(shown above)*
 
 </details>
 
@@ -1262,6 +1264,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 - Rajesh Nair has learned that, as an officer, you once filed a report about Boey Shu Min.
 - Rajesh Nair has been told that Boey Shu Min made your career.
+- Rajesh Nair is calling every Member who once served in her ministry, and starts with the one she is known to avoid.
 - Rajesh Nair is calling every Member who once served in her ministry. *(shown above)*
 
 </details>

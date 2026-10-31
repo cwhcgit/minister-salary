@@ -1689,6 +1689,8 @@ const Engine = (() => {
     }
     // a mark on the appraisals of the next few years, on the ladder the player now stands on
     if (ch.lasting) lastingMark(s, ev, ch);
+    // lines for the review pages of later years
+    if (ch.later) laterMark(s, ev, ch);
     // the cast follows the player: a junior stays behind in the service, a fellow MP arrives
     if (!s.ending) castSync(content, s, log);
     return log;
@@ -1755,6 +1757,28 @@ const Engine = (() => {
     const L = ch.lasting;
     if (!L || !L.appraisal || !(L.years >= 1)) return;
     (s.lasting = s.lasting || []).push({ card: ev.id, mod: L.appraisal, from: s.year, until: s.year + L.years - 1, service: s.rank < 8 });
+  }
+  // --- later lines -------------------------------------------------------------------
+  // A choice can send lines to the review pages of later years, with no card around them:
+  //   "later": [{ "inYears": 1, "text": "...", "requires": { "maxRank": 7 } }]
+  // Each comes once, as a note on the review page of the year it falls due (inYears 0: this year's).
+  // A line whose requirements do not hold that year lapses unsaid, and a career that ends first
+  // never hears it. For what a choice goes on doing in the background (a Minister who avoids you)
+  // and for a story's last word, years on. A line stands alone, so it says who it names (rule 4.5).
+  function laterMark(s, ev, ch) {
+    for (const x of ch.later || []) if (x && x.text)
+      (s.later = s.later || []).push({ card: ev.id, year: s.year + (x.inYears || 0), text: x.text, requires: x.requires || null });
+  }
+  function laterDue(content, s, log) {
+    if (!s.later || !s.later.length) return;
+    const keep = [];
+    for (const x of s.later) {
+      if (x.year > s.year) { keep.push(x); continue; }
+      if (x.requires && !meets(x.requires, s)) continue;   // lapses unsaid
+      const text = sub(x.text, s, content);
+      if (isFresh(s, text)) log.push({ kind: "note", about: "later", text: markSaid(s, text) });
+    }
+    s.later = keep;
   }
   function lastingDue(s) {
     let n = 0;
@@ -2023,6 +2047,7 @@ const Engine = (() => {
     log.push({ kind: "appraisal", text: [`Grade ${grade.code}.`, label, however].filter(Boolean).join(" ") });
     log.push({ kind: "why", facts: whyFacts(content, s, grade, mod) });
     witnessReview(content, s, log, t, grade, score, wit);   // what somebody noticed, if it moved the grade
+    laterDue(content, s, log);                               // a line an earlier choice sent to this year
 
     // the last review: nothing that follows from a grade (a warning, a plan, a move) is to come
     if (grade.code === "C" && !finalYear) s.consecutiveC++; else s.consecutiveC = 0;

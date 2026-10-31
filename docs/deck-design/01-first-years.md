@@ -1558,7 +1558,7 @@ Years ago, as a junior officer, you were sent an envelope in your own handwritin
 
 **Who sees it:** up to Deputy Director; aged 50 or less; not after any of [#14](#c14), [#27](#c27), [#66](#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
-Late on the night of the ministry's year-end dinner, you reach the car park in time to see your Minister, Boey Shu Min, rise, quite calmly, into what looks very much like a flying saucer. The whole service admires her: she reads every annex, forgets no figure, and an officer she praises gets noticed. On her way up, she sees you, and nods.
+Late on the night of the ministry's year-end dinner, you reach the car park in time to see your Minister, Boey Shu Min, check her watch and rise, quite calmly, with her handbag and a folder, into what looks very much like a flying saucer. The whole service admires her: she reads every annex, and an officer she praises gets noticed. She sees you, and nods.
 
 **A. Go home. Say nothing until morning.**
 
@@ -1597,7 +1597,7 @@ Late on the night of the ministry's year-end dinner, you reach the car park in t
 
 **Who sees it:** only as a follow-up to [17. After the Dinner](#c17) (any choice: on the next card); when it falls due: up to Permanent Secretary.
 
-On the first working day of the new year, a few days after the dinner, you're summoned to the Minister's office. Boey Shu Min is back, and almost herself, though she now reads a brief without turning the pages. She thanks you for your discretion. "You saw nothing that night, Ms Lim," she says. "I want to be clear about that."
+A few days after the dinner, on the first working day of the year, the Minister sends for you. Boey Shu Min is back, though she holds her pen the wrong way round, and on her desk is a note in her own handwriting, addressed "To whoever sits here". She thanks you for your discretion. "You saw nothing that night, Ms Lim," she says, slowly and clearly.
 
 **A. Agree that you saw nothing. Then report it anyway.**
 
@@ -1606,6 +1606,7 @@ On the first working day of the new year, a few days after the dinner, you're su
 - Hidden: Standing down (−4), Integrity up a lot (+6).
 - Sets `saucer_reported`: named in the Declassified file; read by [#19](#c19), [#20](#c20), [#21](#c21), [#22](#c22), [#23](#c23), [#24](#c24), [#25](#c25), [#26](#c26).
 - A lasting mark: this year's appraisal and the next ones, four years in all, marked down (−4 each, never said on screen); it lapses on the other ladder.
+- A note on the review page in nine years: "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think."
 - ↳ Can lead to: [19. Earth's Tax System](#c19), in two years, 50% · [20. Your Species' Kopi](#c20), in two years · [21. However They Arrived](#c21), in five years, 30% (or, at another grade, [#22](#c22)) · [23. Not Long Now](#c23), in five years, 30% (or, at another grade, [#24](#c24)) · [25. The Second Report](#c25), in eight years, 85% (or, at another grade, [#26](#c26))
 
 **B. Agree that you saw nothing.**
@@ -1615,6 +1616,7 @@ On the first working day of the new year, a few days after the dinner, you're su
 - Hidden: Standing up (+3), Integrity down (−4), the ceiling (CEP) up one grade (+1).
 - Sets `saucer_silent`: named in the Declassified file; read by [#19](#c19), [#20](#c20), [#21](#c21), [#22](#c22), [#23](#c23), [#24](#c24).
 - A lasting mark: this year's appraisal and the next ones, three years in all, marked up (+3 each, never said on screen); it lapses on the other ladder.
+- A note on the review page in nine years: "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think."
 - ↳ Can lead to: [19. Earth's Tax System](#c19), in two years, 50% · [20. Your Species' Kopi](#c20), in two years · [21. However They Arrived](#c21), in five years, 30% (or, at another grade, [#22](#c22)) · [23. Not Long Now](#c23), in five years, 30% (or, at another grade, [#24](#c24))
 
 **C. Ask her, directly, whether she is an alien.**
@@ -1622,8 +1624,13 @@ On the first working day of the new year, a few days after the dinner, you're su
 > "I'm not," she says. "But even if I were, who would believe you?" You think it over on the way back to your desk, decide she's right, and do nothing.
 
 - Hidden: Standing down a little (−2), Integrity up (+3).
-- Sets `saucer_asked`: named in the Declassified file.
-- A lasting mark: this year's appraisal and the next ones, two years in all, marked down (−2 each, never said on screen); it lapses on the other ladder.
+- Sets `saucer_asked`: named in the Declassified file; read by [#20](#c20), [#22](#c22), [#24](#c24).
+- A lasting mark: this year's appraisal and the next ones, six years in all, marked down (−2 each, never said on screen); it lapses on the other ladder.
+- A note on the review page this year, if still in the service: "In March you step into a lift and find Boey Shu Min, your Minister, already in it. She gets out, and takes the stairs to the fourteenth floor."
+- A note on the review page in a year, if still in the service: "At the year-end dinner, Boey Shu Min, your Minister, finds her place card beside yours. By the soup, she has swapped seats with a Deputy Secretary."
+- A note on the review page in three years, if still Senior Director or below: "Boey Shu Min, your Minister, misses your division's briefing for the first time, and sends a Minister of State, who asks someone else to present your slides."
+- A note on the review page in five years, if still Senior Director or below: "Your division's checklist for events now has a line under Seating: you and Boey Shu Min, your Minister, are never at the same table."
+- A note on the review page in nine years: "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think."
 - ↳ Can lead to: [19. Earth's Tax System](#c19), in two years, 50% · [20. Your Species' Kopi](#c20), in two years · [21. However They Arrived](#c21), in five years, 30% (or, at another grade, [#22](#c22)) · [23. Not Long Now](#c23), in five years, 30% (or, at another grade, [#24](#c24))
 
 <details><summary>This card varies (1 part)</summary>
@@ -1650,7 +1657,7 @@ Each showing puts the card together from one option of each part. The text above
 
 **Shares a decision** (`saucer_post_early`) with [#20](#c20): a career sees only one.
 
-Your Minister, Boey Shu Min, has been flawless since the night you saw her rise into the sky. Then, at 3.12am, her official page thanks "Earth" for its efficient tax system: "We have nothing like it at home." By seven it's gone. Her press office calls it a draft. The finished post will praise the public service's efficiency instead, and the press office wants a figure for it from every division.
+Your Minister, Boey Shu Min, has been flawless since the night you saw her rise into the sky. At 3.12am, her official page posts: "Notes, continued. Earth's tax system is very efficient. We have nothing like it at home." It's gone by seven. Her press office calls it a draft of a post on the public service's efficiency, and wants a figure for the finished version from every division.
 
 **A. Send your division's best figure.**
 
@@ -1699,7 +1706,7 @@ Each showing puts the card together from one option of each part. The text above
 
 **Shares a decision** (`saucer_post_early`) with [#19](#c19): a career sees only one.
 
-Boey Shu Min, the Minister you once saw taken up into the sky, has given nobody cause for concern since. At 6am her official page posts a photo of a cup of kopi, the coffee every coffeeshop sells, captioned "Your species' finest achievement." By eight it's gone: a staff member's post, says her press office, from the wrong account. At lunch, colleagues ask what you make of it.
+Boey Shu Min, the Minister you once saw taken up into the sky, has given nobody cause for concern since. At 6am her official page posts a photo of a cup of kopi, the coffee every coffeeshop sells, captioned "Your species' finest achievement." By eight it's gone: a staff member's post, says her press office, from the wrong account. At lunch, colleagues ask what you make of it. They have all noticed she avoids you.
 
 **A. Say you know nothing about it.**
 
@@ -1725,6 +1732,7 @@ Boey Shu Min, the Minister you once saw taken up into the sky, has given nobody 
 - The people who work around you (service, `floor`), 80%, after [18. You Saw Nothing](#c18), B (`saucer_silent`): A hurts (−3) · B hurts (−1) · C hurts (−2).
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 100%, after [18. You Saw Nothing](#c18), A (`saucer_reported`): A hurts (−2) · B hurts (−4) · C hurts (−3).
 - Your fellow Members of Parliament (politics, `fellowMPs`), 80%, after [18. You Saw Nothing](#c18), B (`saucer_silent`): A hurts (−3) · B hurts (−1) · C hurts (−2).
+- Your party branch and its volunteers (politics, `branch`), 50%, after [18. You Saw Nothing](#c18), C (`saucer_asked`): A helps (+1) · B helps (+2) · C helps (+1).
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -1734,7 +1742,8 @@ Each showing puts the card together from one option of each part. The text above
 
 - At lunch, the colleagues who were so kind about your report ask what, exactly, you saw. *(`reported`; when after [18. You Saw Nothing](#c18), A (`saucer_reported`))*
 - At lunch, colleagues ask what you know. Everyone knows she rates you. *(`silent`; when after [18. You Saw Nothing](#c18), B (`saucer_silent`))*
-- At lunch, colleagues ask what you make of it. *(`asked`; shown above)*
+- At lunch, fellow Members ask what you make of it. Everyone knows she avoids you, and in politics that has started to look like good judgement. *(`asked_pol`; when Member of Parliament and up; after [18. You Saw Nothing](#c18), C (`saucer_asked`); every choice: Standing up a little (+2))*
+- At lunch, colleagues ask what you make of it. They have all noticed she avoids you. *(`asked`; shown above)*
 
 </details>
 
@@ -1750,7 +1759,7 @@ Each showing puts the card together from one option of each part. The text above
 
 **Shares a decision** (`saucer_post_late`) with [#22](#c22), [#23](#c23), [#24](#c24): a career sees only one.
 
-It's years since you saw your Minister, Boey Shu Min, carried off by a flying saucer, and she has been an excellent Minister since. At 4am her official page posts: "Be kind to all visitors, however they arrived." By seven it's gone, and her press office wants a clarification out by noon. Ms Chua, your reporting officer, asks you to draft it. Ms Chua says everyone else is busy.
+It's years since you saw your Minister, Boey Shu Min, carried off by a flying saucer, and she has been an excellent Minister since. At 4am her official page posts: "Be kind to all visitors, however they arrived." By seven it's gone, and her press office wants a clarification out by noon. Ms Chua, your reporting officer, asks you to draft it. Ms Chua says the Minister's office has asked that your name not appear on it.
 
 **A. Call it a tourism campaign, posted early.**
 
@@ -1783,7 +1792,7 @@ Each showing puts the card together from one option of each part. The text above
 
 - Ms Chua says the Minister's office asked for you by name. *(`reported`; when after [18. You Saw Nothing](#c18), A (`saucer_reported`))*
 - Ms Chua says the Minister's office asked for you, since you know the Minister's mind. *(`silent`; when after [18. You Saw Nothing](#c18), B (`saucer_silent`))*
-- Ms Chua says everyone else is busy. *(`asked`; shown above)*
+- Ms Chua says the Minister's office has asked that your name not appear on it. *(`asked`; shown above)*
 
 </details>
 
@@ -1823,6 +1832,7 @@ It's years since you saw Boey Shu Min, then your Minister, carried off by a flyi
 
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 100%, after [18. You Saw Nothing](#c18), A (`saucer_reported`): A hurts (−2) · B hurts (−3) · C hurts (−5).
 - Your fellow Members of Parliament (politics, `fellowMPs`), 80%, after [18. You Saw Nothing](#c18), B (`saucer_silent`): A hurts (−4) · B hurts (−3) · C hurts (−2).
+- The press gallery (politics, `pressGallery`), 60%, after [18. You Saw Nothing](#c18), C (`saucer_asked`): A helps (+1) · B helps (+2) · C helps (+2).
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -1832,7 +1842,8 @@ Each showing puts the card together from one option of each part. The text above
 
 - Her office has asked the media team to make sure you do. *(`reported`; when after [18. You Saw Nothing](#c18), A (`saucer_reported`))*
 - Yours is wanted first: you're known as one of hers. *(`silent`; when after [18. You Saw Nothing](#c18), B (`saucer_silent`))*
-- You're one name on a long list. *(`asked`; shown above)*
+- You're one name on a long list, but residents in your ward have read that she avoids you, and like you for it. *(`asked`; when after [18. You Saw Nothing](#c18), C (`saucer_asked`); every choice: Standing up a little (+1), Reputation up a little (+2))*
+- You're one name on a long list. *(`other`; shown above)*
 
 </details>
 
@@ -1848,7 +1859,7 @@ Each showing puts the card together from one option of each part. The text above
 
 **Shares a decision** (`saucer_post_late`) with [#21](#c21), [#22](#c22), [#24](#c24): a career sees only one.
 
-Years have passed since you watched your Minister, Boey Shu Min, rise into a flying saucer. At 2am her official page posts a photo of the night sky, captioned "Not long now." By morning it's gone: a stargazing photo, says her press office, captioned too early. Then Rajesh Nair, a correspondent who covers the public service for the Straits Times, calls you. Rajesh Nair is ringing round the ministry, and has reached you. Officers need approval to talk to the press.
+Years have passed since you watched your Minister, Boey Shu Min, rise into a flying saucer. At 2am her official page posts a photo of the night sky, captioned "Not long now." By morning it's gone: a stargazing photo, says her press office, captioned too early. Then Rajesh Nair, a correspondent who covers the public service for the Straits Times, calls you. Rajesh Nair has heard that the Minister won't stay in a room with you, and wants to know why. Officers need approval to talk to the press.
 
 **A. Refer the call to the press office.**
 
@@ -1881,7 +1892,7 @@ Each showing puts the card together from one option of each part. The text above
 
 - Someone has told Rajesh Nair about your report. *(`reported`; when after [18. You Saw Nothing](#c18), A (`saucer_reported`))*
 - Rajesh Nair has heard that the Minister thinks highly of you. *(`silent`; when after [18. You Saw Nothing](#c18), B (`saucer_silent`))*
-- Rajesh Nair is ringing round the ministry, and has reached you. *(`asked`; shown above)*
+- Rajesh Nair has heard that the Minister won't stay in a room with you, and wants to know why. *(`asked`; shown above)*
 
 </details>
 
@@ -1921,6 +1932,7 @@ Since entering Parliament, you've rarely thought about the night your old Minist
 
 - The party's leadership and the Prime Minister's office (politics, `leadership`), 100%, after [18. You Saw Nothing](#c18), A (`saucer_reported`): A hurts (−2) · B hurts (−4) · C hurts (−1).
 - Your fellow Members of Parliament (politics, `fellowMPs`), 80%, after [18. You Saw Nothing](#c18), B (`saucer_silent`): A hurts (−2) · B hurts (−1) · C hurts (−4).
+- The press gallery (politics, `pressGallery`), 70%, after [18. You Saw Nothing](#c18), C (`saucer_asked`): A helps (+1) · B helps (+3) · C helps (+1).
 
 <details><summary>This card varies (1 part)</summary>
 
@@ -1930,7 +1942,8 @@ Each showing puts the card together from one option of each part. The text above
 
 - Rajesh Nair has learned that, as an officer, you once filed a report about Boey Shu Min. *(`reported`; when after [18. You Saw Nothing](#c18), A (`saucer_reported`))*
 - Rajesh Nair has been told that Boey Shu Min made your career. *(`silent`; when after [18. You Saw Nothing](#c18), B (`saucer_silent`))*
-- Rajesh Nair is calling every Member who once served in her ministry. *(`asked`; shown above)*
+- Rajesh Nair is calling every Member who once served in her ministry, and starts with the one she is known to avoid. *(`asked`; when after [18. You Saw Nothing](#c18), C (`saucer_asked`); every choice: Standing up a little (+1), Reputation up a little (+2))*
+- Rajesh Nair is calling every Member who once served in her ministry. *(`other`; shown above)*
 
 </details>
 

@@ -1,7 +1,7 @@
 {
   "id": "strange",
   "title": "Strange Years",
-  "note": "Impossible premises, processed as routine. Every premise card needs the shared flag strange_met to be absent and sets it on every choice, so a career meets at most one premise; the callbacks (the envelope, the Merlion's talking points) are that same story's payoff years later. The flying saucer (strange_saucer_*) is a premise with a chain: the Minister, Boey Shu Min (invented), is seen rising into a flying saucer; the meeting with her the next card (inYears 0, so nothing scheduled earlier can come between them) sets saucer_reported, saucer_silent or saucer_asked, each with a lasting mark on the next appraisals; her deleted posts follow, one early (saucer_post_early: the tax post, scheduled at 50%, or else the kopi post, scheduled always and written for either ladder) and sometimes one late (saucer_post_late: the visitors post or the night sky, 30% each, each with a politics version), and their hidden witnesses read the branch flag (reported: her office, or the party's leadership; silent: the ranking panel, the floor, or fellow MPs; asked: nobody); the reported branch ends with the second report. Weights are tuned so that about a third of careers meet a premise: they are small, and smaller still where the pool is thin (ranks 0-1, Permanent Secretary). Adding a premise takes its share from the premises at its ranks, so the total holds (the saucer's 0.28 came out of the snow, the letter, the ghost and the Merlion). As other packs grow the pool, the rate falls; retune these weights.",
+  "note": "Impossible premises, processed as routine. Every premise card needs the shared flag strange_met to be absent and sets it on every choice, so a career meets at most one premise; the callbacks (the envelope, the Merlion's talking points) are that same story's payoff years later. The flying saucer (strange_saucer_*) is a premise with a chain: the Minister, Boey Shu Min (invented), is seen rising into a flying saucer; the meeting with her the next card (inYears 0, so nothing scheduled earlier can come between them) sets saucer_reported, saucer_silent or saucer_asked, each with a lasting mark on the next appraisals (the questioner's is the Minister's visible dislike, with its beats on the review pages of the next years, as later lines); her deleted posts follow, one early (saucer_post_early: the tax post, scheduled at 50%, or else the kopi post, scheduled always and written for either ladder) and sometimes one late (saucer_post_late: the visitors post or the night sky, 30% each, each with a politics version), and their hidden witnesses read the branch flag (reported: her office, or the party's leadership; silent: the ranking panel, the floor, or fellow MPs; asked: nobody in the service, while in politics being the one she avoids helps, with voters, the party and the press gallery); the reported branch ends with the second report, and every branch hears of her return from a long leave nine years on. Nothing ever says what she is. Weights are tuned so that about a third of careers meet a premise: they are small, and smaller still where the pool is thin (ranks 0-1, Permanent Secretary). A new premise takes an ordinary weight and the others keep theirs, so the odds of a Strange Year rise as stories are added (the saucer's 0.5). As other packs grow the pool, the rate falls; retune these weights.",
   "events": [
     {
       "id": "strange_letter",
@@ -478,7 +478,7 @@
     {
       "id": "strange_saucer",
       "title": "After the Dinner",
-      "body": "Late on the night of the ministry's year-end dinner, you reach the car park in time to see your Minister, Boey Shu Min, rise, quite calmly, into what looks very much like a flying saucer. The whole service admires her: she reads every annex, forgets no figure, and an officer she praises gets noticed. On her way up, she sees you, and nods.",
+      "body": "Late on the night of the ministry's year-end dinner, you reach the car park in time to see your Minister, Boey Shu Min, check her watch and rise, quite calmly, with her handbag and a folder, into what looks very much like a flying saucer. The whole service admires her: she reads every annex, and an officer she praises gets noticed. She sees you, and nods.",
       "requires": { "minRank": 0, "maxRank": 3, "maxAge": 50, "flagsNone": ["strange_met"] },
       "weight": 0.5,
       "once": true,
@@ -520,13 +520,16 @@
           ]
         }
       },
-      "body": "On the first working day of the new year, a few days after the dinner, you're summoned to the Minister's office. Boey Shu Min is back, and almost herself, though she now reads a brief without turning the pages. She thanks you for {thanks}. \"You saw nothing that night, {player.formal},\" she says. \"I want to be clear about that.\"",
+      "body": "A few days after the dinner, on the first working day of the year, the Minister sends for you. Boey Shu Min is back, though she holds her pen the wrong way round, and on her desk is a note in her own handwriting, addressed \"To whoever sits here\". She thanks you for {thanks}. \"You saw nothing that night, {player.formal},\" she says, slowly and clearly.",
       "requires": { "maxRank": 7 },
       "choices": [
         {
           "text": "Agree that you saw nothing. Then report it anyway.",
           "effects": { "integrity": 6, "standing": -4 },
           "lasting": { "appraisal": -4, "years": 4 },
+          "later": [
+            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think." }
+          ],
           "setFlags": ["saucer_reported"],
           "outcome": "You write it up for the ministry's security officer, who sends it, as a courtesy, to the Minister's office for comment. Her office has no comment. Nobody believes you, and everyone is very kind about it.",
           "schedule": [
@@ -541,6 +544,9 @@
           "text": "Agree that you saw nothing.",
           "effects": { "standing": 3, "integrity": -4, "cep": 1 },
           "lasting": { "appraisal": 3, "years": 3 },
+          "later": [
+            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think." }
+          ],
           "setFlags": ["saucer_silent"],
           "outcome": "\"Good,\" she says, and turns to your division's workplan, which she has read closely, all of it. You leave with the feeling that something has been decided about you.",
           "schedule": [
@@ -553,7 +559,14 @@
         {
           "text": "Ask her, directly, whether she is an alien.",
           "effects": { "integrity": 3, "standing": -2 },
-          "lasting": { "appraisal": -2, "years": 2 },
+          "lasting": { "appraisal": -2, "years": 6 },
+          "later": [
+            { "inYears": 0, "text": "In March you step into a lift and find Boey Shu Min, your Minister, already in it. She gets out, and takes the stairs to the fourteenth floor.", "requires": { "maxRank": 7 } },
+            { "inYears": 1, "text": "At the year-end dinner, Boey Shu Min, your Minister, finds her place card beside yours. By the soup, she has swapped seats with a Deputy Secretary.", "requires": { "maxRank": 7 } },
+            { "inYears": 3, "text": "Boey Shu Min, your Minister, misses your division's briefing for the first time, and sends a Minister of State, who asks someone else to present your slides.", "requires": { "maxRank": 5 } },
+            { "inYears": 5, "text": "Your division's checklist for events now has a line under Seating: you and Boey Shu Min, your Minister, are never at the same table.", "requires": { "maxRank": 5 } },
+            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think." }
+          ],
           "setFlags": ["saucer_asked"],
           "outcome": "\"I'm not,\" she says. \"But even if I were, who would believe you?\" You think it over on the way back to your desk, decide she's right, and do nothing.",
           "schedule": [
@@ -580,7 +593,7 @@
           ]
         }
       },
-      "body": "Your Minister, Boey Shu Min, has been flawless since the night you saw her rise into the sky. Then, at 3.12am, her official page thanks \"Earth\" for its efficient tax system: \"We have nothing like it at home.\" By seven it's gone. Her press office calls it a draft. The finished post will praise the public service's efficiency instead, and the press office wants a figure for it from {ask}.",
+      "body": "Your Minister, Boey Shu Min, has been flawless since the night you saw her rise into the sky. At 3.12am, her official page posts: \"Notes, continued. Earth's tax system is very efficient. We have nothing like it at home.\" It's gone by seven. Her press office calls it a draft of a post on the public service's efficiency, and wants a figure for the finished version from {ask}.",
       "requires": { "maxRank": 7 },
       "choices": [
         {
@@ -617,7 +630,8 @@
           "options": [
             { "id": "reported", "text": "At lunch, the colleagues who were so kind about your report ask what, exactly, you saw.", "requires": { "flagsAll": ["saucer_reported"] } },
             { "id": "silent", "text": "At lunch, colleagues ask what you know. Everyone knows she rates you.", "requires": { "flagsAll": ["saucer_silent"] } },
-            { "id": "asked", "text": "At lunch, colleagues ask what you make of it." }
+            { "id": "asked_pol", "text": "At lunch, fellow Members ask what you make of it. Everyone knows she avoids you, and in politics that has started to look like good judgement.", "requires": { "minRank": 8, "flagsAll": ["saucer_asked"] }, "effects": { "*": { "standing": 2 } } },
+            { "id": "asked", "text": "At lunch, colleagues ask what you make of it. They have all noticed she avoids you." }
           ]
         }
       },
@@ -644,7 +658,8 @@
           "ministersOffice": { "chance": 1, "react": [-2, -4, -3], "requires": { "flagsAll": ["saucer_reported"] } },
           "floor": { "chance": 0.8, "react": [-3, -1, -2], "requires": { "flagsAll": ["saucer_silent"] } },
           "leadership": { "chance": 1, "react": [-2, -4, -3], "requires": { "flagsAll": ["saucer_reported"] } },
-          "fellowMPs": { "chance": 0.8, "react": [-3, -1, -2], "requires": { "flagsAll": ["saucer_silent"] } }
+          "fellowMPs": { "chance": 0.8, "react": [-3, -1, -2], "requires": { "flagsAll": ["saucer_silent"] } },
+          "branch": { "chance": 0.5, "react": [1, 2, 1], "requires": { "flagsAll": ["saucer_asked"] } }
         }
       }
     },
@@ -659,7 +674,7 @@
           "options": [
             { "id": "reported", "text": "{senior} says the Minister's office asked for you by name.", "requires": { "flagsAll": ["saucer_reported"] } },
             { "id": "silent", "text": "{senior} says the Minister's office asked for you, since you know the Minister's mind.", "requires": { "flagsAll": ["saucer_silent"] } },
-            { "id": "asked", "text": "{senior} says everyone else is busy." }
+            { "id": "asked", "text": "{senior} says the Minister's office has asked that your name not appear on it." }
           ]
         }
       },
@@ -701,7 +716,8 @@
           "options": [
             { "id": "reported", "text": "Her office has asked the media team to make sure you do.", "requires": { "flagsAll": ["saucer_reported"] } },
             { "id": "silent", "text": "Yours is wanted first: you're known as one of hers.", "requires": { "flagsAll": ["saucer_silent"] } },
-            { "id": "asked", "text": "You're one name on a long list." }
+            { "id": "asked", "text": "You're one name on a long list, but residents in your ward have read that she avoids you, and like you for it.", "requires": { "flagsAll": ["saucer_asked"] }, "effects": { "*": { "reputation": 2, "standing": 1 } } },
+            { "id": "other", "text": "You're one name on a long list." }
           ]
         }
       },
@@ -727,7 +743,8 @@
       "witnesses": {
         "by": {
           "leadership": { "chance": 1, "react": [-2, -3, -5], "requires": { "flagsAll": ["saucer_reported"] } },
-          "fellowMPs": { "chance": 0.8, "react": [-4, -3, -2], "requires": { "flagsAll": ["saucer_silent"] } }
+          "fellowMPs": { "chance": 0.8, "react": [-4, -3, -2], "requires": { "flagsAll": ["saucer_silent"] } },
+          "pressGallery": { "chance": 0.6, "react": [1, 2, 2], "requires": { "flagsAll": ["saucer_asked"] } }
         }
       }
     },
@@ -742,7 +759,7 @@
           "options": [
             { "id": "reported", "text": "Someone has told {journalist} about your report.", "requires": { "flagsAll": ["saucer_reported"] } },
             { "id": "silent", "text": "{journalist} has heard that the Minister thinks highly of you.", "requires": { "flagsAll": ["saucer_silent"] } },
-            { "id": "asked", "text": "{journalist} is ringing round the ministry, and has reached you." }
+            { "id": "asked", "text": "{journalist} has heard that the Minister won't stay in a room with you, and wants to know why." }
           ]
         }
       },
@@ -784,7 +801,8 @@
           "options": [
             { "id": "reported", "text": "{journalist} has learned that, as an officer, you once filed a report about Boey Shu Min.", "requires": { "flagsAll": ["saucer_reported"] } },
             { "id": "silent", "text": "{journalist} has been told that Boey Shu Min made your career.", "requires": { "flagsAll": ["saucer_silent"] } },
-            { "id": "asked", "text": "{journalist} is calling every Member who once served in her ministry." }
+            { "id": "asked", "text": "{journalist} is calling every Member who once served in her ministry, and starts with the one she is known to avoid.", "requires": { "flagsAll": ["saucer_asked"] }, "effects": { "*": { "reputation": 2, "standing": 1 } } },
+            { "id": "other", "text": "{journalist} is calling every Member who once served in her ministry." }
           ]
         }
       },
@@ -810,7 +828,8 @@
       "witnesses": {
         "by": {
           "leadership": { "chance": 1, "react": [-2, -4, -1], "requires": { "flagsAll": ["saucer_reported"] } },
-          "fellowMPs": { "chance": 0.8, "react": [-2, -1, -4], "requires": { "flagsAll": ["saucer_silent"] } }
+          "fellowMPs": { "chance": 0.8, "react": [-2, -1, -4], "requires": { "flagsAll": ["saucer_silent"] } },
+          "pressGallery": { "chance": 0.7, "react": [1, 3, 1], "requires": { "flagsAll": ["saucer_asked"] } }
         }
       }
     },

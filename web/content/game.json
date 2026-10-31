@@ -889,9 +889,19 @@
       "requires": {
         "flagsAll": [
           "saucer_asked"
+        ],
+        "minRank": 8
+      },
+      "text": "You asked your Minister, Boey Shu Min, whether she was an alien. She said she was not, and avoided you from then on, which cost you at appraisal for years. Once you were in politics, being the one she avoided became a recommendation."
+    },
+    {
+      "label": "The flying saucer",
+      "requires": {
+        "flagsAll": [
+          "saucer_asked"
         ]
       },
-      "text": "You asked your Minister, Boey Shu Min, whether she was an alien. She said she was not, left you off her projects for a while, and never moved against you."
+      "text": "You asked your Minister, Boey Shu Min, whether she was an alien. She said she was not, and avoided you from then on, which cost you at appraisal for years."
     }
   ],
   "legacyTiers": [

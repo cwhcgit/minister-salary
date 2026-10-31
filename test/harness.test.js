@@ -584,6 +584,25 @@ ok('a lasting mark moves this year\'s appraisal and the next ones, unannounced, 
   assert.strictEqual(pol.state.lasting[0].lapsed, S.year + 1);
 });
 
+ok('a later line comes once, on the review page of the year it falls due, and lapses where its requirements fail', () => {
+  const E = build.engine;
+  const later = [{ inYears: 0, text: 'Said this year.' }, { inYears: 2, text: 'Said in two years.', requires: { maxRank: 7 } },
+    { inYears: 1, text: 'Only in politics.', requires: { minRank: 8 } }];
+  const card = (id, choice) => ({ id, title: 'T', body: 'B', choices: [{ text: 'Go.', outcome: 'Gone.', ...choice }, { text: 'Stay.', outcome: 'Stayed.' }] });
+  const C = { ...build.content, events: build.content.events.concat([card('__t_later', { later }), card('__t_plain', {})]) };
+  const S = H.newRun('grad', 9, { build }).S;
+  const notes = log => log.filter(l => l.about === 'later').map(l => l.text);
+  const first = E.advance(C, { ...S, currentEvent: '__t_later' }, 0);
+  assert.strictEqual(notes(first.log)[0], 'Said this year.', 'inYears 0 is this year\'s review page');
+  assert.ok(first.log.some(l => l.kind === 'appraisal') && first.log.findIndex(l => l.kind === 'appraisal') < first.log.findIndex(l => l.about === 'later'), 'it comes after the grade');
+  const second = E.advance(C, { ...first.state, year: Math.max(first.state.year, S.year + 2), age: S.age + 2, currentEvent: '__t_plain' }, 0);
+  const all = notes(first.log).concat(notes(second.log));
+  assert.deepStrictEqual(all.filter(t => t === 'Said this year.').length, 1);
+  assert.deepStrictEqual(all.filter(t => t === 'Said in two years.').length, 1);
+  assert.ok(!all.includes('Only in politics.'), 'a line whose requirements fail lapses unsaid');
+  assert.deepStrictEqual(second.state.later, [], 'nothing waits once it has fallen due');
+});
+
 ok('a cast member\'s aTitle takes "a" or "an" by how the title is said, initialisms by their first letter', () => {
   const E = build.engine, C = build.content;
   for (const [w, a] of [['MP', 'an'], ['RC chairman', 'an'], ['SMC', 'an'], ['HDB flat', 'an'], ['FAQ', 'an'], ['CCC chairman', 'a'], ['CCMC chairman', 'a'],
