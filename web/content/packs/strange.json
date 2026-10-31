@@ -478,7 +478,7 @@
     {
       "id": "strange_saucer",
       "title": "Past Midnight",
-      "body": "It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. You start over to say hello. Before you're close, she rises, suitcase and all, into what looks very much like a flying saucer. Halfway up, she sees you.",
+      "body": "It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. Curious, you start over to say hello. Above her, something very like a flying saucer appears, and you gasp, loudly. She looks at you. Before anything else can happen, she's gone, suitcase and all, and the saucer hangs there, humming.",
       "requires": { "minRank": 0, "maxRank": 3, "maxAge": 50, "flagsNone": ["strange_met"] },
       "weight": 0.5,
       "once": true,
@@ -491,17 +491,17 @@
           "schedule": [{ "eventId": "strange_saucer_office", "inYears": 0, "chance": 1 }]
         },
         {
-          "text": "Call her office's after-hours number.",
+          "text": "Call the police. Report her abducted.",
           "effects": { "integrity": 3, "standing": -2 },
           "setFlags": ["strange_met", "saucer_called"],
-          "outcome": "The duty officer listens without interrupting, then says the Minister has gone home \"by the usual arrangements\". Your call is logged with your name, the time and the words \"flying saucer\", in quotation marks.",
+          "outcome": "The officer is polite and quick: in Singapore there is no waiting period to report someone missing. Twenty minutes later, her office tells the police the Minister is safely at home. The report is closed, with your name on it and the words \"flying saucer\", in quotation marks.",
           "schedule": [{ "eventId": "strange_saucer_office", "inYears": 0, "chance": 1 }]
         },
         {
           "text": "Wave.",
-          "effects": { "standing": 2, "integrity": -1 },
+          "effects": { "competence": 3, "integrity": -3 },
           "setFlags": ["strange_met", "saucer_waved"],
-          "outcome": "You wave. The saucer dips, very slightly, and is gone. You stand in the empty car park until the guard asks, kindly, whether you need a taxi.",
+          "outcome": "You wave. The saucer dips, very slightly, and is gone. You blink, and when you open your eyes you're in your own bed, and it's morning. You feel good, perhaps better than you have ever felt.",
           "schedule": [{ "eventId": "strange_saucer_office", "inYears": 0, "chance": 1 }]
         }
       ]
@@ -515,7 +515,7 @@
           "pick": "first",
           "options": [
             { "id": "waved", "text": "waving", "requires": { "flagsAll": ["saucer_waved"] } },
-            { "id": "called", "text": "your call that night", "requires": { "flagsAll": ["saucer_called"] } },
+            { "id": "called", "text": "your concern for her safety", "requires": { "flagsAll": ["saucer_called"] } },
             { "id": "home", "text": "your discretion" }
           ]
         }
@@ -528,7 +528,7 @@
           "effects": { "integrity": 6, "standing": -4 },
           "lasting": { "appraisal": -4, "years": 4 },
           "later": [
-            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think." }
+            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, holds her pen the right way round again. Over lunch she tells a colleague, apropos of nothing, that the food was better than people think." }
           ],
           "setFlags": ["saucer_reported"],
           "outcome": "You write it up for the ministry's security officer, who sends it, as a courtesy, to the Minister's office for comment. Her office has no comment. Nobody believes you, and everyone is very kind about it.",
@@ -545,7 +545,7 @@
           "effects": { "standing": 3, "integrity": -4, "cep": 1 },
           "lasting": { "appraisal": 3, "years": 3 },
           "later": [
-            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think." }
+            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, holds her pen the right way round again. Over lunch she tells a colleague, apropos of nothing, that the food was better than people think." }
           ],
           "setFlags": ["saucer_silent"],
           "outcome": "\"Good,\" she says, and turns to your division's workplan, which she has read closely, all of it. You leave with the feeling that something has been decided about you.",
@@ -565,7 +565,7 @@
             { "inYears": 1, "text": "At the year-end dinner, Boey Shu Min, your Minister, finds her place card beside yours. By the soup, she has swapped seats with a Deputy Secretary.", "requires": { "maxRank": 7 } },
             { "inYears": 3, "text": "Boey Shu Min, your Minister, misses your division's briefing for the first time, and sends a Minister of State, who asks someone else to present your slides.", "requires": { "maxRank": 5 } },
             { "inYears": 5, "text": "Your division's checklist for events now has a line under Seating: you and Boey Shu Min, your Minister, are never at the same table.", "requires": { "maxRank": 5 } },
-            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think." }
+            { "inYears": 9, "text": "Boey Shu Min, the Minister you once saw rise into the sky, holds her pen the right way round again. Over lunch she tells a colleague, apropos of nothing, that the food was better than people think." }
           ],
           "setFlags": ["saucer_asked"],
           "outcome": "\"I'm not,\" she says. \"But even if I were, who would believe you?\" You think it over on the way back to your desk, decide she's right, and do nothing.",
@@ -837,7 +837,7 @@
       "id": "strange_saucer_first",
       "triggered": true,
       "title": "The Second Report",
-      "body": "Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a flying saucer, and nobody believed you. This year {peer} saw it too, from a car park after a dinner, and reported it, naming you as the first. Two reports make a pattern, says the security officer, and a pattern needs a working group. Meanwhile, colleagues are very kind to {peer}.",
+      "body": "Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a flying saucer, and nobody believed you. This year {peer}, working late, saw it too: the Minister and a big packed suitcase, rising from the same car park. {peer} reported it, naming you as the first. Two reports make a pattern, says the security officer, and a pattern needs a working group. Meanwhile, colleagues are very kind to {peer}.",
       "requires": { "maxRank": 7, "flagsAll": ["saucer_reported"] },
       "alternates": ["strange_saucer_first_pol"],
       "choices": [
@@ -873,7 +873,7 @@
       "id": "strange_saucer_first_pol",
       "triggered": true,
       "title": "The Second Report",
-      "body": "Before you entered politics, you once reported seeing your Minister at the time, Boey Shu Min, carried up into a flying saucer. Nobody believed it. Now {peer} has seen the same thing, at a ministry dinner, and filed a report that names yours as the first. With two reports there is a pattern, and the working group set up to study it wants your evidence.",
+      "body": "Before you entered politics, you once reported seeing your Minister at the time, Boey Shu Min, carried up into a flying saucer. Nobody believed it. Now {peer}, working late, has seen the same thing from the same car park, suitcase and all, and filed a report that names yours as the first. With two reports there is a pattern, and the working group set up to study it wants your evidence.",
       "requires": { "minRank": 8, "flagsAll": ["saucer_reported"] },
       "choices": [
         {

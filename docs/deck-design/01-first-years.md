@@ -1558,7 +1558,7 @@ Years ago, as a junior officer, you were sent an envelope in your own handwritin
 
 **Who sees it:** up to Deputy Director; aged 50 or less; not after any of [#14](#c14), [#27](#c27), [#66](#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
-It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. You start over to say hello. Before you're close, she rises, suitcase and all, into what looks very much like a flying saucer. Halfway up, she sees you.
+It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. Curious, you start over to say hello. Above her, something very like a flying saucer appears, and you gasp, loudly. She looks at you. Before anything else can happen, she's gone, suitcase and all, and the saucer hangs there, humming.
 
 **A. Go home. Say nothing until morning.**
 
@@ -1569,9 +1569,9 @@ It's past midnight. You stayed to finish a paper due today, and nobody else ever
 - Sets `saucer_home`.
 - ↳ Can lead to: [18. You Saw Nothing](#c18), on the next card
 
-**B. Call her office's after-hours number.**
+**B. Call the police. Report her abducted.**
 
-> The duty officer listens without interrupting, then says the Minister has gone home "by the usual arrangements". Your call is logged with your name, the time and the words "flying saucer", in quotation marks.
+> The officer is polite and quick: in Singapore there is no waiting period to report someone missing. Twenty minutes later, her office tells the police the Minister is safely at home. The report is closed, with your name on it and the words "flying saucer", in quotation marks.
 
 - Hidden: Standing down a little (−2), Integrity up (+3).
 - Sets `strange_met`: read by [#14](#c14), [#27](#c27), [#66](#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
@@ -1580,9 +1580,9 @@ It's past midnight. You stayed to finish a paper due today, and nobody else ever
 
 **C. Wave.**
 
-> You wave. The saucer dips, very slightly, and is gone. You stand in the empty car park until the guard asks, kindly, whether you need a taxi.
+> You wave. The saucer dips, very slightly, and is gone. You blink, and when you open your eyes you're in your own bed, and it's morning. You feel good, perhaps better than you have ever felt.
 
-- Hidden: Standing up a little (+2), Integrity down a little (−1).
+- Hidden: Competence up (+3), Integrity down (−3).
 - Sets `strange_met`: read by [#14](#c14), [#27](#c27), [#66](#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201).
 - Sets `saucer_waved`: read by [#18](#c18).
 - ↳ Can lead to: [18. You Saw Nothing](#c18), on the next card
@@ -1606,7 +1606,7 @@ A few days later, the Minister sends for you. Boey Shu Min is back, though she h
 - Hidden: Standing down (−4), Integrity up a lot (+6).
 - Sets `saucer_reported`: named in the Declassified file; read by [#19](#c19), [#20](#c20), [#21](#c21), [#22](#c22), [#23](#c23), [#24](#c24), [#25](#c25), [#26](#c26).
 - A lasting mark: this year's appraisal and the next ones, four years in all, marked down (−4 each, never said on screen); it lapses on the other ladder.
-- A note on the review page in nine years: "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think."
+- A note on the review page in nine years: "Boey Shu Min, the Minister you once saw rise into the sky, holds her pen the right way round again. Over lunch she tells a colleague, apropos of nothing, that the food was better than people think."
 - ↳ Can lead to: [19. Earth's Tax System](#c19), in two years, 50% · [20. Your Species' Kopi](#c20), in two years · [21. However They Arrived](#c21), in five years, 30% (or, at another grade, [#22](#c22)) · [23. Not Long Now](#c23), in five years, 30% (or, at another grade, [#24](#c24)) · [25. The Second Report](#c25), in eight years, 85% (or, at another grade, [#26](#c26))
 
 **B. Agree that you saw nothing.**
@@ -1616,7 +1616,7 @@ A few days later, the Minister sends for you. Boey Shu Min is back, though she h
 - Hidden: Standing up (+3), Integrity down (−4), the ceiling (CEP) up one grade (+1).
 - Sets `saucer_silent`: named in the Declassified file; read by [#19](#c19), [#20](#c20), [#21](#c21), [#22](#c22), [#23](#c23), [#24](#c24).
 - A lasting mark: this year's appraisal and the next ones, three years in all, marked up (+3 each, never said on screen); it lapses on the other ladder.
-- A note on the review page in nine years: "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think."
+- A note on the review page in nine years: "Boey Shu Min, the Minister you once saw rise into the sky, holds her pen the right way round again. Over lunch she tells a colleague, apropos of nothing, that the food was better than people think."
 - ↳ Can lead to: [19. Earth's Tax System](#c19), in two years, 50% · [20. Your Species' Kopi](#c20), in two years · [21. However They Arrived](#c21), in five years, 30% (or, at another grade, [#22](#c22)) · [23. Not Long Now](#c23), in five years, 30% (or, at another grade, [#24](#c24))
 
 **C. Ask her, directly, whether she is an alien.**
@@ -1630,7 +1630,7 @@ A few days later, the Minister sends for you. Boey Shu Min is back, though she h
 - A note on the review page in a year, if still in the service: "At the year-end dinner, Boey Shu Min, your Minister, finds her place card beside yours. By the soup, she has swapped seats with a Deputy Secretary."
 - A note on the review page in three years, if still Senior Director or below: "Boey Shu Min, your Minister, misses your division's briefing for the first time, and sends a Minister of State, who asks someone else to present your slides."
 - A note on the review page in five years, if still Senior Director or below: "Your division's checklist for events now has a line under Seating: you and Boey Shu Min, your Minister, are never at the same table."
-- A note on the review page in nine years: "Boey Shu Min, the Minister you once saw rise into the sky, returns from a long leave of absence. Asked about it, she says the food was better than people think."
+- A note on the review page in nine years: "Boey Shu Min, the Minister you once saw rise into the sky, holds her pen the right way round again. Over lunch she tells a colleague, apropos of nothing, that the food was better than people think."
 - ↳ Can lead to: [19. Earth's Tax System](#c19), in two years, 50% · [20. Your Species' Kopi](#c20), in two years · [21. However They Arrived](#c21), in five years, 30% (or, at another grade, [#22](#c22)) · [23. Not Long Now](#c23), in five years, 30% (or, at another grade, [#24](#c24))
 
 <details><summary>This card varies (1 part)</summary>
@@ -1640,7 +1640,7 @@ Each showing puts the card together from one option of each part. The text above
 **Part 1** · `thanks` (the first option that fits)
 
 - waving *(`waved`; when after [17. Past Midnight](#c17), C (`saucer_waved`))*
-- your call that night *(`called`; when after [17. Past Midnight](#c17), B (`saucer_called`))*
+- your concern for her safety *(`called`; when after [17. Past Midnight](#c17), B (`saucer_called`))*
 - your discretion *(`home`; shown above)*
 
 </details>
@@ -1957,7 +1957,7 @@ Each showing puts the card together from one option of each part. The text above
 
 **Who sees it:** only as a follow-up to [18. You Saw Nothing](#c18) (A: in eight years, 85%); when it falls due: up to Permanent Secretary; after [18. You Saw Nothing](#c18), A (`saucer_reported`).
 
-Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a flying saucer, and nobody believed you. This year Xin Yi, who joined the service with you, saw it too, from a car park after a dinner, and reported it, naming you as the first. Two reports make a pattern, says the security officer, and a pattern needs a working group. Meanwhile, colleagues are very kind to Xin Yi.
+Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a flying saucer, and nobody believed you. This year Xin Yi, working late, saw it too: the Minister and a big packed suitcase, rising from the same car park. Xin Yi reported it, naming you as the first. Two reports make a pattern, says the security officer, and a pattern needs a working group. Meanwhile, colleagues are very kind to Xin Yi.
 
 **A. Join Xin Yi on the working group.**
 
@@ -1997,7 +1997,7 @@ Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a f
 
 **Who sees it:** fires instead of [25. The Second Report](#c25) when that card falls due and this one's conditions hold (the first version that fits); when it falls due: Member of Parliament and up; after [18. You Saw Nothing](#c18), A (`saucer_reported`).
 
-Before you entered politics, you once reported seeing your Minister at the time, Boey Shu Min, carried up into a flying saucer. Nobody believed it. Now Xin Yi, who joined the service with you, has seen the same thing, at a ministry dinner, and filed a report that names yours as the first. With two reports there is a pattern, and the working group set up to study it wants your evidence.
+Before you entered politics, you once reported seeing your Minister at the time, Boey Shu Min, carried up into a flying saucer. Nobody believed it. Now Xin Yi, working late, has seen the same thing from the same car park, suitcase and all, and filed a report that names yours as the first. With two reports there is a pattern, and the working group set up to study it wants your evidence.
 
 **A. Give evidence, and say what you saw.**
 

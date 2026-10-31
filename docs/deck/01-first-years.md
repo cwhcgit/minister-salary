@@ -1016,7 +1016,7 @@ Years ago, as a junior officer, you were sent an envelope in your own handwritin
 
 [← 16](#c16) · [Next → 18](#c18) · [Contents](../DECK.md#contents)
 
-It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. You start over to say hello. Before you're close, she rises, suitcase and all, into what looks very much like a flying saucer. Halfway up, she sees you.
+It's past midnight. You stayed to finish a paper due today, and nobody else ever stays this late. In the car park, your Minister, Boey Shu Min, whom the whole service admires, stands beside a big packed suitcase, nervously checking her watch. Curious, you start over to say hello. Above her, something very like a flying saucer appears, and you gasp, loudly. She looks at you. Before anything else can happen, she's gone, suitcase and all, and the saucer hangs there, humming.
 
 **A. Go home. Say nothing until morning.**
 
@@ -1024,15 +1024,15 @@ It's past midnight. You stayed to finish a paper due today, and nobody else ever
 
 ↳ Can lead to: [18. You Saw Nothing](#c18)
 
-**B. Call her office's after-hours number.**
+**B. Call the police. Report her abducted.**
 
-> The duty officer listens without interrupting, then says the Minister has gone home "by the usual arrangements". Your call is logged with your name, the time and the words "flying saucer", in quotation marks.
+> The officer is polite and quick: in Singapore there is no waiting period to report someone missing. Twenty minutes later, her office tells the police the Minister is safely at home. The report is closed, with your name on it and the words "flying saucer", in quotation marks.
 
 ↳ Can lead to: [18. You Saw Nothing](#c18)
 
 **C. Wave.**
 
-> You wave. The saucer dips, very slightly, and is gone. You stand in the empty car park until the guard asks, kindly, whether you need a taxi.
+> You wave. The saucer dips, very slightly, and is gone. You blink, and when you open your eyes you're in your own bed, and it's morning. You feel good, perhaps better than you have ever felt.
 
 ↳ Can lead to: [18. You Saw Nothing](#c18)
 
@@ -1069,7 +1069,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 **Part 1**
 
 - waving
-- your call that night
+- your concern for her safety
 - your discretion *(shown above)*
 
 </details>
@@ -1275,7 +1275,7 @@ Each time the card is shown, it is put together from one option of each part. Th
 
 [← 24](#c24) · [Next → 26](#c26) · [Contents](../DECK.md#contents)
 
-Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a flying saucer, and nobody believed you. This year Xin Yi, who joined the service with you, saw it too, from a car park after a dinner, and reported it, naming you as the first. Two reports make a pattern, says the security officer, and a pattern needs a working group. Meanwhile, colleagues are very kind to Xin Yi.
+Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a flying saucer, and nobody believed you. This year Xin Yi, working late, saw it too: the Minister and a big packed suitcase, rising from the same car park. Xin Yi reported it, naming you as the first. Two reports make a pattern, says the security officer, and a pattern needs a working group. Meanwhile, colleagues are very kind to Xin Yi.
 
 **A. Join Xin Yi on the working group.**
 
@@ -1295,7 +1295,7 @@ Years ago you reported that you'd seen the Minister, Boey Shu Min, rise into a f
 
 [← 25](#c25) · [Next → 27](#c27) · [Contents](../DECK.md#contents)
 
-Before you entered politics, you once reported seeing your Minister at the time, Boey Shu Min, carried up into a flying saucer. Nobody believed it. Now Xin Yi, who joined the service with you, has seen the same thing, at a ministry dinner, and filed a report that names yours as the first. With two reports there is a pattern, and the working group set up to study it wants your evidence.
+Before you entered politics, you once reported seeing your Minister at the time, Boey Shu Min, carried up into a flying saucer. Nobody believed it. Now Xin Yi, working late, has seen the same thing from the same car park, suitcase and all, and filed a report that names yours as the first. With two reports there is a pattern, and the working group set up to study it wants your evidence.
 
 **A. Give evidence, and say what you saw.**
 
