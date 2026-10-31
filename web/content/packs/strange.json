@@ -8,7 +8,7 @@
       "title": "Eyes Only",
       "body": "An envelope arrives in the internal mail, addressed to you in your own handwriting and dated thirty years from now. It's stamped SECRET, and your grade isn't cleared to read SECRET documents: opening it would be a security breach, however it got here. The registry, which tracks every classified document in the building, would like it back.",
       "requires": { "minRank": 0, "maxRank": 2, "maxAge": 34, "flagsNone": ["strange_met"] },
-      "weight": 0.45,
+      "weight": 0.6,
       "once": true,
       "choices": [
         {
@@ -82,7 +82,7 @@
       "title": "Snow",
       "body": "At 3pm it snows in Toa Payoh for forty minutes. The National Environment Agency confirms that it was snow, and can't say why. Your division's business continuity plan, which says how the office keeps working through an emergency, covers haze, floods and a pandemic. {senior} wants a section on snow by 5pm, in case it happens again, and you're writing it.",
       "requires": { "minRank": 0, "maxRank": 1, "flagsNone": ["strange_met"] },
-      "weight": 0.33,
+      "weight": 0.45,
       "once": true,
       "choices": [
         {
@@ -116,7 +116,7 @@
       "title": "The Seventh Month",
       "body": "During the seventh month of the lunar calendar, when the spirits of the dead are said to roam, your division's online feedback form receives a compliment from a resident who passed away in 1974. It's courteous and specific. The service standard says every member of the public gets a reply within three working days. You must also rule whether his rating counts in the satisfaction survey, where your division's score is one decimal place short of its target.",
       "requires": { "minRank": 1, "maxRank": 4, "flagsNone": ["strange_met"] },
-      "weight": 1,
+      "weight": 1.2,
       "once": true,
       "choices": [
         {
@@ -150,7 +150,7 @@
       "title": "The Merlion Speaks",
       "body": "At 7.14am the Merlion, the half-lion, half-fish statue on Marina Bay, says good morning to a tour group, in all four official languages. By ten, nobody is asking how. The question is which agency is in charge of it: STB, the Tourism Board, which protects its image by law, or PUB, the water agency, since it spouts into Marina Reservoir. A meeting of both will decide, and you are writing the paper that recommends one.",
       "requires": { "minRank": 2, "maxRank": 4, "flagsNone": ["strange_met"] },
-      "weight": 0.85,
+      "weight": 1,
       "once": true,
       "choices": [
         {
@@ -480,7 +480,7 @@
       "title": "After the Dinner",
       "body": "Late on the night of the ministry's year-end dinner, you reach the car park in time to see your Minister, Boey Shu Min, rise, quite calmly, into what looks very much like a flying saucer. The whole service admires her: she reads every annex, forgets no figure, and an officer she praises gets noticed. On her way up, she sees you, and nods.",
       "requires": { "minRank": 0, "maxRank": 3, "maxAge": 50, "flagsNone": ["strange_met"] },
-      "weight": 0.28,
+      "weight": 0.5,
       "once": true,
       "choices": [
         {

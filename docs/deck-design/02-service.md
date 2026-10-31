@@ -673,7 +673,7 @@ The young scholar you once supervised is a Permanent Secretary now. Back then yo
 
 [← 89](#c89) · [Next → 91](#c91) · [Contents](../DECK-DESIGN.md#contents)
 
-`strange_merlion` · packs/strange.json · once a career · weight 0.85
+`strange_merlion` · packs/strange.json · once a career · weight 1
 
 **Who sees it:** Assistant Director to Director; not after any of [#14](01-first-years.md#c14), [#17](01-first-years.md#c17), [#27](01-first-years.md#c27), [#66](01-first-years.md#c66), [#124](#c124), [#125](#c125), [#134](#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 

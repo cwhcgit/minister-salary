@@ -1466,7 +1466,7 @@ A year that passes by itself on the habit shows one line, never the same one twi
 
 [← 13](#c13) · [Next → 15](#c15) · [Contents](../DECK-DESIGN.md#contents)
 
-`strange_letter` · packs/strange.json · once a career · weight 0.45
+`strange_letter` · packs/strange.json · once a career · weight 0.6
 
 **Who sees it:** up to Assistant Director; aged 34 or less; not after any of [#17](#c17), [#27](#c27), [#66](#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
@@ -1554,7 +1554,7 @@ Years ago, as a junior officer, you were sent an envelope in your own handwritin
 
 [← 16](#c16) · [Next → 18](#c18) · [Contents](../DECK-DESIGN.md#contents)
 
-`strange_saucer` · packs/strange.json · once a career · weight 0.28
+`strange_saucer` · packs/strange.json · once a career · weight 0.5
 
 **Who sees it:** up to Deputy Director; aged 50 or less; not after any of [#14](#c14), [#27](#c27), [#66](#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
@@ -2020,7 +2020,7 @@ Before you entered politics, you once reported seeing your Minister at the time,
 
 [← 26](#c26) · [Next → 28](#c28) · [Contents](../DECK-DESIGN.md#contents)
 
-`strange_snow` · packs/strange.json · once a career · weight 0.33
+`strange_snow` · packs/strange.json · once a career · weight 0.45
 
 **Who sees it:** up to Senior Management Executive; not after any of [#14](#c14), [#17](#c17), [#66](#c66), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
@@ -3983,7 +3983,7 @@ Each showing puts the card together from one option of each part. The text above
 
 [← 65](#c65) · [Next → 67](#c67) · [Contents](../DECK-DESIGN.md#contents)
 
-`strange_ghost` · packs/strange.json · once a career · weight 1
+`strange_ghost` · packs/strange.json · once a career · weight 1.2
 
 **Who sees it:** Senior Management Executive to Director; not after any of [#14](#c14), [#17](#c17), [#27](#c27), [#90](02-service.md#c90), [#124](02-service.md#c124), [#125](02-service.md#c125), [#134](02-service.md#c134), [#140](03-top-of-service.md#c140), [#166](05-politics.md#c166), [#167](05-politics.md#c167), [#198](06-cabinet.md#c198), [#201](06-cabinet.md#c201) (`strange_met`).
 
